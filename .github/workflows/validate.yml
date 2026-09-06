@@ -1,0 +1,11 @@
+name: Rules and asset validation
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test core rules with sanitizers and validate assets
+        run: bash Tools/test.sh
