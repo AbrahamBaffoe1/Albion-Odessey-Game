@@ -15,6 +15,7 @@ namespace AlbionOdyssey
         public Explorer player;
         public Camera builderCamera;
         public bool building;
+        public CampusLife life;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
@@ -24,7 +25,8 @@ namespace AlbionOdyssey
         int journalPage;
         GameObject footprint;
         readonly List<Renderer> footprintEdges=new List<Renderer>();
-        string SavePath=>Path.Combine(Application.persistentDataPath,OdysseySmoke.Enabled?"albion-unity-smoke.json":"albion-unity-v1.json");
+        string SavePath=>Path.Combine(Application.persistentDataPath,OdysseySmoke.Enabled?"albion-unity-smoke.json":"albion-unity-v2.json");
+        string LoadPath=>File.Exists(SavePath)?SavePath:Path.Combine(Application.persistentDataPath,"albion-unity-v1.json");
         static readonly string[] Names={"","Garden","Library","Observatory","Hall"};
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -34,10 +36,10 @@ namespace AlbionOdyssey
         void Start()
         {
             Application.runInBackground=OdysseySmoke.Enabled;
-            Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
-            if(!OdysseySmoke.Enabled&&File.Exists(SavePath))
+            Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.pixelLightCount=8;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
+            if(!OdysseySmoke.Enabled&&File.Exists(LoadPath))
             {
-                try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(SavePath));if(saved!=null&&saved.Valid())state=saved;else notice="Invalid save ignored. A new session has started.";}
+                try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(LoadPath));saved?.UpgradeLegacySave();if(saved!=null&&saved.Valid())state=saved;else notice="Invalid save ignored. A new session has started.";}
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
             }
             TowerGeometry.Load();
@@ -71,11 +73,13 @@ namespace AlbionOdyssey
             builderCamera.transform.LookAt(new Vector3(48,0,0));builderCamera.orthographic=true;builderCamera.orthographicSize=20;builderCamera.enabled=false;
             builderCamera.clearFlags=CameraClearFlags.Skybox;builderCamera.backgroundColor=new Color(.14f,.20f,.27f);
             OdysseyStory.Refresh(state);RefreshMemories();RebuildCampus();CreateFootprint();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;
+            life=gameObject.AddComponent<CampusLife>();life.Setup(this);
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
             if(player==null)return;
+            if(life!=null&&life.HandleInput())return;
             if(Input.GetKeyDown(KeyCode.J)){SetJournal(!journalOpen);}
             if(journalOpen)
             {
@@ -85,7 +89,7 @@ namespace AlbionOdyssey
                 return;
             }
             if(Input.GetKeyDown(KeyCode.F2))ToggleMode();
-            if(Input.GetKeyDown(KeyCode.Tab)){state.active=(state.active+1)%4;Save();RefreshMemories();RebuildCampus();notice="Keeper "+(state.active+1)+" — your collection and personal campus.";}
+            if(Input.GetKeyDown(KeyCode.Tab)){state.active=(state.active+1)%4;Save();RefreshMemories();RebuildCampus();life.RefreshRoster();notice="Keeper "+(state.active+1)+" — your collection and personal campus.";}
             if(Input.GetKeyDown(KeyCode.C))
             {
                 notice=state.Contribute()?"Two acorns added to the shared Beacon.":state.beacon>=24?"The shared Beacon is complete!":"You need two acorns to contribute.";
@@ -107,29 +111,33 @@ namespace AlbionOdyssey
                         {
                             bool reclaim=Input.GetMouseButtonDown(1);
                             bool ok=reclaim?state.Reclaim(plot.cell):state.Build(plot.cell,selected);
-                            notice=ok?(reclaim?"Building reclaimed. Full acorn refund.":Names[selected]+" built."):"Plot occupied or not enough acorns. Right-click a building for a full refund.";
+                            notice=ok?(reclaim?"Building reclaimed. Full acorn refund.":Names[selected]+" built."):"Plot occupied, course assigned, or not enough acorns. Remove a building’s course before reclaiming it.";
                             if(ok){Save();RebuildCampus();}
                         }
                     }
                 }
             }
-            else if(Input.GetKeyDown(KeyCode.E)&&Cursor.lockState==CursorLockMode.Locked)
-            {
-                if(Physics.Raycast(player.eyes.transform.position,player.eyes.transform.forward,out var hit,3.5f))
-                {
-                    if(hit.collider.GetComponent<GuideMarker>()!=null){notice="Pip: "+OdysseyStory.Hints[Mathf.Min(OdysseyStory.Next(state.Current),5)];SetJournal(true);return;}
-                    var memory=hit.collider.GetComponent<MemoryMarker>();
-                    if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorns. Press J to read your journal.";Save();RefreshMemories();}
-                }
-            }
+            else if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.F))&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
             foreach(var m in memories)if(m!=null)m.transform.Rotate(0,30*Time.deltaTime,0);
+        }
+        public void Interact()
+        {
+            if(building||journalOpen||(life!=null&&life.PanelOpen))return;
+            if(Physics.Raycast(player.eyes.transform.position,player.eyes.transform.forward,out var hit,3.5f))
+            {
+                if(hit.collider.GetComponent<GuideMarker>()!=null)
+                {int next=OdysseyStory.Next(state.Current);notice="Pip: "+(next<6?OdysseyStory.Hints[next]:"Your charter is complete! Visit the classroom and share what you have learned.");SetJournal(true);return;}
+                var memory=hit.collider.GetComponent<MemoryMarker>();
+                if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorns. Press J to read your journal.";Save();RefreshMemories();return;}
+            }
+            notice="Move closer and aim at a golden memory or Pip, then press E or F.";
         }
         public void ToggleMode()
         {
             if(journalOpen)SetJournal(false);
             building=!building;
             if(footprint!=null)footprint.SetActive(false);player.controls=!building;player.eyes.enabled=!building;builderCamera.enabled=building;
-            Cursor.lockState=building?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=building;
+            Cursor.lockState=building||player.pointerControls?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=building||player.pointerControls;
             notice=building?"Choose 1–4 and click an empty tile. Your tower discoveries fund this campus.":"Back at Legacy Hall. Explore the floors and collect memories.";
         }
         public bool Save()
@@ -201,8 +209,8 @@ namespace AlbionOdyssey
         {
             journalOpen=open;player.controls=!open&&!building;
             if(footprint!=null)footprint.SetActive(false);
-            Cursor.lockState=open||building?CursorLockMode.None:CursorLockMode.Locked;
-            Cursor.visible=open||building;
+            Cursor.lockState=open||building||player.pointerControls?CursorLockMode.None:CursorLockMode.Locked;
+            Cursor.visible=open||building||player.pointerControls;
         }
         void CreateFootprint()
         {
@@ -267,16 +275,17 @@ namespace AlbionOdyssey
             if(title==null){title=new GUIStyle(GUI.skin.label){fontSize=27,fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){fontSize=17};small=new GUIStyle(GUI.skin.label){fontSize=14,wordWrap=true};}
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
+            if(life!=null&&life.PanelOpen)return;
             if(journalOpen){DrawJournal(width,height);return;}
             GUI.color=new Color(.035f,.05f,.08f,.94f);GUI.DrawTexture(new Rect(16,16,Mathf.Min(width-32,850),108),Texture2D.whiteTexture);
             GUI.DrawTexture(new Rect(0,height-115,width,115),Texture2D.whiteTexture);GUI.color=Color.white;
-            GUI.Label(new Rect(32,25,900,40),"ALBION ODYSSEY  /  "+(building?"YOUR LEGACY CAMPUS":"LEGACY HALL"),title);
+            GUI.Label(new Rect(32,25,900,40),"ALBION ODYSSEY  /  "+(building?"YOUR LEGACY CAMPUS":life!=null?life.Location:"LEGACY HALL"),title);
             GUI.Label(new Rect(32,68,900,30),$"KEEPER {state.active+1}    {state.Current.acorns} ACORNS    {OdysseyState.Count(state.Current.memories)}/12 MEMORIES    BEACON {state.beacon}/24",body);
             GUI.Label(new Rect(32,96,900,23),building?"Personal campus · "+(state.Current.style==1?"Fantasy":"Campus"):$"Eight-storey Blender building · Floor {Mathf.Clamp(Mathf.FloorToInt((player.transform.position.y+.1f)/3.6f)+1,1,8)}",small);
             GUI.Label(new Rect(24,height-105,width-48,30),notice,small);
             GUI.Label(new Rect(24,height-81,width-48,25),"CHARTER  /  "+OdysseyStory.Objective(state.Current),small);
-            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD walk   MOUSE look   SHIFT run   SPACE jump   E interact   ESC release mouse",small);
-            GUI.Label(new Rect(24,height-30,width-48,28),"J journal    F2 explore / build    TAB next Keeper    C contribute"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
+            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD / ARROWS walk   MOUSE look   SHIFT run   SPACE jump   E / F interact   O screen buttons",small);
+            GUI.Label(new Rect(24,height-30,width-48,28),"M map    H history    K courses    J journal    F2 build    TAB Keeper    C Beacon    ESC help"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
             if(!building&&!journalOpen){GUI.Label(new Rect(width/2-5,height/2-12,20,24),"+",body);}
         }
     }

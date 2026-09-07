@@ -25,4 +25,4 @@ for asset in manifest["assets"]:
         assert ((hi-lo)-Vector(record["size"])).length<.002,f"Scale mismatch in {h.name}"
     assert render[0].data.uv_layers, "Missing texture coordinates"
     print("FBX_ROUNDTRIP_OK",asset["name"],len(hulls),flush=True)
-print("All ten exported geometry/collision assets round-tripped at meter scale.")
+print(f"All {len(manifest['assets'])} exported geometry/collision assets round-tripped at meter scale.")

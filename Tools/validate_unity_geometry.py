@@ -10,7 +10,7 @@ catalog = json.loads((folder / "mesh_catalog.json").read_text())["assets"]
 manifest = json.loads((folder / "architecture_manifest.json").read_text())
 source = json.loads((root / "Art/Architecture/architecture_manifest.json").read_text())
 assert manifest == source, "Unity collision export is stale"
-assert len(catalog) == len(manifest["assets"]) == 10
+assert len(catalog) == len(manifest["assets"]) == 12
 triangles = 0
 for entry, original in zip(catalog, manifest["assets"]):
     assert entry["name"] == original["name"]

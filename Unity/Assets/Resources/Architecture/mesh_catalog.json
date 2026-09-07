@@ -140,7 +140,36 @@
         "M_Architecture_Floor",
         "M_Architecture_Metal"
       ],
-      "vertices": 22200
+      "vertices": 22332
+    },
+    {
+      "name": "SM_LegacyTower_Classroom",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Plaster",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Metal",
+        "M_Architecture_Wood",
+        "M_Architecture_Grass",
+        "M_Architecture_Accent"
+      ],
+      "vertices": 56364
+    },
+    {
+      "name": "SM_LegacyTower_HistoryPavilion",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Plaster",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Metal",
+        "M_Architecture_Wood",
+        "M_Architecture_Grass"
+      ],
+      "vertices": 63780
     }
   ]
 }

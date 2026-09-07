@@ -1,35 +1,30 @@
-# From the playable chapter to the full game
+# Counted roadmap to the larger online campus game
 
-## Verified foundation
+Version 0.4 has **5 completed prototype work packages and 17 remaining work packages** in this 22-part roadmap. These are substantial milestones, not 17 small tasks or a promise that a commercial MMO is almost finished. New design decisions can expand the list. "Completed" below means the stated local prototype scope is implemented and tested, not final release quality.
 
-The Unity Mac prototype uses real Blender architecture and supports first-person exploration, four local Keepers, personal campus building, two builder palettes, refunds, a shared Beacon and local saves. Version 0.3 adds eight furnished floors, Pip the squirrel guide, a twelve-entry fictional journal, six charter milestones, wayfinding signs and placement feedback. Automated engine checks cover ascent/descent, collection, chapter completion, construction and persistence.
+| # | Work package | Status / completion requirement |
+|---|---|---|
+| 1 | Actual Blender architecture and Unity import | Complete: eight-storey furnished tower, teaching hall and history pavilion, exported meshes and authored collision |
+| 2 | Local exploration chapter | Complete: walking, stairs, twelve discoveries, Pip, journal, six milestones and saved progress |
+| 3 | Personal campus sandbox | Complete: four local Keepers, four placeable types, two palettes, refunds and shared local Beacon |
+| 4 | Learning route and navigation | Complete: connected concept spaces, map travel, sourced history cards, arrow keys, screen buttons and help |
+| 5 | Local course prototype | Complete: courses linked to owned buildings, twelve-seat classes, Keeper enrollment, simulated students, a lesson quiz and saved completion |
+| 6 | First five real Albion landmarks | Pending: source/capture plans, reviewed dimensions and Blender reconstruction for five agreed landmarks |
+| 7 | Remaining campus and landscape | Pending: inventoried buildings, interiors, roads, terrain, landscape and accessible routes; verify campus coverage against the official map |
+| 8 | Freeform building editor | Pending: player-authored walls, floors, roofs, doors, furniture and reusable blueprints beyond four tile models |
+| 9 | Course authoring and timetable | Pending: user-created lesson content, class schedules, assignments and teacher tools beyond three supplied lessons |
+| 10 | Online accounts and enrollment identities | Pending: authentication, profiles, roles, account recovery and online course registration |
+| 11 | Persistent online world | Pending: server-owned campuses, economy and courses; idempotent commands and safe save migrations; local files cannot mint online resources |
+| 12 | Real-time multiplayer movement | Pending: synchronized players, sessions, joining, reconnects and two-device testing |
+| 13 | Shared construction | Pending: build permissions, concurrent changes, ownership, invitations and conflict handling |
+| 14 | Online classrooms | Pending: live rosters, teacher/student presence, lesson delivery and progress shared between devices |
+| 15 | Campus chaos and world events | Pending: expanded sandbox interactions, shared physics limits, opt-in rules and recovery; current paper play is a small local prototype |
+| 16 | Social features and community tools | Pending: friends, communication, reporting, blocking, permissions and public-content review |
+| 17 | Characters and longer gameplay | Pending: animated characters, NPC routines, quests, campus activities, progression and repeatable challenges |
+| 18 | Finished art and audio | Pending: production character art, animation, environmental detail, music and sound |
+| 19 | Player experience and accessibility | Partial: help, pause, map and arrows exist; named profiles, settings, remapping, controllers and accessibility options remain |
+| 20 | Mobile, room play and on-campus AR | Partial: room play works on Mac; touch builds, real GPS/AR adapters and device performance tests remain |
+| 21 | Unreal runtime and feature parity | Pending: install/compile/play in Unreal, validate FBX pipeline, port the newer Unity learning systems and verify parity |
+| 22 | Release testing and distribution | Pending: performance, network recovery/load, security, human playtests, save upgrades, permissions review and supported-platform release builds |
 
-This is one original campus building and a creative sandbox. It is not yet the entire Albion campus, a finished commercial game, live AR or online multiplayer. The separate Unreal source and FBX import pipeline remain unverified in that engine.
-
-## Next: a complete local player experience
-
-Add a title screen, named Keeper selection, accessible settings, controller support, audio, remappable controls and a clear pause/quit flow. Add nearby interactable prompts, a campus map, smoother character movement and authored challenges in the furnished rooms. Expand buildable architecture beyond prototype shapes and allow players to walk around their own campus.
-
-Exit: a new player can choose a profile, learn the controls, finish the charter, customize a campus, quit and return without developer guidance. Test human play sessions, input devices and window sizes.
-
-## Reconstruct the Albion exploration route
-
-Continue with official campus references and a reviewed capture plan. Reconstruct the first five landmarks, add accessible room-play traversal between them, and label historical material with sources. The original Legacy Hall remains clearly identified as fiction, alongside the freeform personal-campus mode.
-
-Exit: reviewed landmark geometry and sourced history, with useful views around each building and no claims that imagined geometry is a surveyed replica.
-
-## Shared online campuses
-
-Implement authenticated accounts, a server-authoritative economy, persistent personal campuses and a community contribution ledger. Add idempotent commands, reconnects, conflict handling and invitation-based co-op before open chat or public user-generated stories.
-
-Exit: two physical devices can build independently, contribute concurrently, reconnect and agree with server state. Local save files cannot grant online currency.
-
-## Mobile and on-campus mode
-
-Add touch controls, platform builds, measured mobile rendering budgets, real location permissions/accuracy/freshness handling, and supported AR sessions. Room play must retain access to the complete discovery path without requiring GPS or a camera.
-
-Exit: a remote player and an on-campus player can complete equivalent objectives on tested devices. Precise location is not written into ordinary saves or logs.
-
-## Release quality
-
-Replace placeholder art and audio, profile performance, add accessible traversal and display options, test saves/upgrades and network recovery, review college branding and content permissions, and prepare distribution builds. Validate every advertised platform and feature before publishing a release.
+The next dependency is a better building/course editor alongside the first reviewed Albion landmark. Online work then needs accounts and a persistent server before real shared building and classrooms can be advertised. The current building arrangement is original game design, not a surveyed reconstruction of Albion College.

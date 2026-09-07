@@ -48,3 +48,7 @@ The opt-in `-odysseySmoke` player argument runs an actual CharacterController ro
 ## Current verification status
 
 Version 0.3 compiled and packaged with Unity 6000.6.0f1 (Apple silicon), without C# warnings or errors. The Mac game passed the expanded automated route: eight floors ascended, seven stair connections descended, Pip targetable, all twelve memories collected, all four building types placed, refunds, all six charter milestones, full Beacon completion, journal controls and saved-state readback. Runtime screenshots were inspected. These tests use direct controller movement; longer human input and usability testing remains. See `Docs/Verification.md` for measured results.
+
+## Version 0.4 learning expansion
+
+See [the complete play guide](PlayGuide.md) for arrow-key and screen-button controls, the map, sourced history and local course creation. The runtime now imports twelve Blender mesh modules. Version-2 saves include building-linked courses, ownership, twelve-seat enrollment, simulated students and per-Keeper lesson completion. First launch can import a valid version-1 save without modifying it. Multiplayer and real online students are not implemented.

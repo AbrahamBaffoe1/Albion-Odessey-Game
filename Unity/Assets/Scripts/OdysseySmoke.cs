@@ -10,7 +10,7 @@ namespace AlbionOdyssey
     public sealed class OdysseySmoke : MonoBehaviour
     {
         public static bool Enabled=>Array.IndexOf(Environment.GetCommandLineArgs(),"-odysseySmoke")>=0;
-        [Serializable] class Result { public bool passed;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public int triangles;public int colliders;public float seconds; }
+        [Serializable] class Result { public bool passed;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public int triangles;public int colliders;public float seconds; }
         OdysseyGame game;
         Result result=new Result();
         string Output=>Environment.GetEnvironmentVariable("ODYSSEY_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"Smoke");
@@ -22,6 +22,11 @@ namespace AlbionOdyssey
             yield return null;yield return null;
             game=FindAnyObjectByType<OdysseyGame>();
             if(game==null||game.player==null){Fail("Game failed to initialize");yield break;}
+            var oldKeeper=new Keeper{acorns=9,memories=1};
+            string oldJson="{\"version\":1,\"active\":0,\"beacon\":0,\"keepers\":["+JsonUtility.ToJson(oldKeeper)+","+JsonUtility.ToJson(new Keeper())+","+JsonUtility.ToJson(new Keeper())+","+JsonUtility.ToJson(new Keeper())+"]}";
+            var migrated=JsonUtility.FromJson<OdysseyState>(oldJson);migrated.UpgradeLegacySave();
+            if(!migrated.Valid()||migrated.Current.acorns!=9||migrated.Current.memories!=1||!JsonUtility.FromJson<OdysseyState>(JsonUtility.ToJson(migrated)).Valid()){Fail("Version-1 JSON upgrade or empty course save failed");yield break;}
+            result.saveMigration=true;
             game.state=new OdysseyState();game.player.controls=false;Cursor.lockState=CursorLockMode.None;Cursor.visible=false;
             foreach(var f in FindObjectsByType<MeshFilter>())if(f.name.StartsWith("SM_LegacyTower"))result.triangles+=f.sharedMesh.triangles.Length/3;
             result.colliders=FindObjectsByType<BoxCollider>().Length;
@@ -82,9 +87,46 @@ namespace AlbionOdyssey
             var journalImage=ScreenCapture.CaptureScreenshotAsTexture();
             File.WriteAllBytes(Path.Combine(Output,"05-journal.png"),journalImage.EncodeToPNG());Destroy(journalImage);
             game.SetJournal(false);result.journal=true;
+            game.ToggleMode();game.player.controls=false;
+            yield return Walk(new Vector3(6,0,-26));if(result.error!=null)yield break;
+            yield return Walk(new Vector3(-40,0,-26));if(result.error!=null)yield break;
+            yield return Walk(new Vector3(-40,0,5));if(result.error!=null)yield break;
+            if(!game.life.InClass||game.life.NearbyHistory!=0){Fail("Classroom entrance or history context failed");yield break;}
+            result.classroom=true;
+            var school=game.state.school;
+            if(!school.Create(game.state,"History with Keeper One",0)||!school.Enroll(0,0)){Fail("Course creation or enrollment failed");yield break;}
+            for(int i=0;i<11;i++)if(!school.AssignStudents(0,0,1)){Fail("Student seating failed");yield break;}
+            if(school.AssignStudents(0,0,1)||school.Enroll(0,1)||!school.Teach(0,0)||!school.Answer(0,0,0)||!game.Save()){Fail("Class capacity, teaching or quiz failed");yield break;}
+            var classSave=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"albion-unity-smoke.json")));
+            if(!classSave.Valid()||classSave.school.courses[0].Seats!=12||classSave.school.courses[0].graduates!=1){Fail("Course save roundtrip failed");yield break;}
+            game.life.RefreshRoster();yield return null;
+            if(GameObject.Find("Simulated student 12")==null){Fail("Classroom student visuals missing");yield break;}
+            yield return Capture("07-classroom",new Vector3(-40,2,-7),new Vector3(-40,1.5f,7));
+            game.life.SetPanel("courses");yield return new WaitForEndOfFrame();
+            var coursesImage=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(Output,"08-courses.png"),coursesImage.EncodeToPNG());Destroy(coursesImage);
+            game.life.SetPanel("");game.player.controls=false;result.courses=true;
+            if(!game.life.ThrowPaper()){Fail("Classroom paper play failed");yield break;}
+            yield return Walk(new Vector3(-40,0,-14));if(result.error!=null)yield break;
+            yield return Walk(new Vector3(-64,0,-14));if(result.error!=null)yield break;
+            yield return Walk(new Vector3(-64,0,3));if(result.error!=null)yield break;
+            if(game.life.NearbyHistory!=1){Fail("Pavilion history context failed");yield break;}
+            yield return Capture("09-history-pavilion",new Vector3(-64,2,-4),new Vector3(-64,1.6f,4.7f));
+            game.life.SetPanel("history");yield return new WaitForEndOfFrame();
+            var historyImage=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(Output,"10-history-card.png"),historyImage.EncodeToPNG());Destroy(historyImage);
+            if(game.player.controls){Fail("History modal leaked movement input");yield break;}
+            game.life.SetPanel("");game.player.controls=false;result.history=true;
+            game.life.Travel(1);game.player.pointerControls=true;game.player.controls=true;
+            game.player.buttonMove=Vector2.up;Vector3 startPosition=game.player.transform.position;
+            // GUI is not used here: hold the same movement state supplied by the screen arrows.
+            game.player.pointerControls=false;Cursor.lockState=CursorLockMode.Locked;
+            for(int i=0;i<20;i++)yield return null;
+            game.player.buttonMove=Vector2.zero;game.player.controls=false;
+            if(game.player.transform.position.z<startPosition.z+.2f){Fail("Directional button input did not move player");yield break;}
+            result.buttonMovement=true;
+            yield return Capture("11-campus-expansion",new Vector3(-76,24,-40),new Vector3(-38,7,0));
             result.passed=true;result.seconds=Time.realtimeSinceStartup;
             File.WriteAllText(Path.Combine(Output,"result.json"),JsonUtility.ToJson(result,true));
-            Debug.Log("ODYSSEY_SMOKE_OK: eight floors climbed and descended with CharacterController, memory rays, charter milestones, journal, building, refund and save.");
+            Debug.Log("ODYSSEY_SMOKE_OK: tower ascent/descent, full charter, learning-space walking, history, courses, student capacity, lesson completion, button movement and save migration.");
             Application.Quit(0);
         }
         IEnumerator Walk(Vector3 target)

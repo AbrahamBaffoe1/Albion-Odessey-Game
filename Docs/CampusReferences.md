@@ -30,3 +30,10 @@ Student ID is not needed to continue development and should not be committed. An
 ## Historical content standard
 
 The prototype claims only the named buildings/uses supported by the official map. Magical objects, squirrel lore, and memory stories are explicitly fictional. Additional dates, historical people, and events must have direct college/archive citations and editorial review before they become educational game content.
+
+## History cards shipped in Unity 0.4
+
+- [Our History — Albion College](https://www.albion.edu/about/at-a-glance/our-history/): charter in 1835, degree authorization for men and women in 1861, first permanent building cornerstone in 1840 and the Quad.
+- [Observatory History — Albion College Department of Physics](https://www.albion.edu/departments/physics/observatory-history/): cornerstone on September 8, 1883; completion in summer 1884; early physics, mathematics and astronomy teaching use.
+
+Reviewed September 7, 2026. Game text paraphrases these sources and links to them inside the history panel. The third card is an original design workshop. The teaching hall and pavilion are original architecture that presents the lessons, not reconstructions of the historic observatory or other named Albion buildings.

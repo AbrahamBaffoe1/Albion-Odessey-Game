@@ -12,7 +12,7 @@ assert m["units"]=="meters" and m["floors"]==8
 assert 28<=m["height_m"]<=40
 assert m["entrance_clear_width_m"]>=1.2
 assert m["stairs"]["riser_m"]<=.20 and m["stairs"]["tread_m"]>=.28
-assert len(m["assets"])==10
+assert len(m["assets"])==12
 boxes=[]
 for a in m["assets"]:
     assert (folder/a["file"]).read_bytes().startswith(b"Kaydara FBX Binary")
@@ -50,4 +50,6 @@ for floor in range(7):
     for step in range(10): check_position(11.5,4.2-(step+.5)*.3,z+1.8+(step+1)*.18)
     z+=3.6
     route([(11.5,1.35,z),(11.5,.6,z),(11.5,-1.4,z),(3.1,-1.4,z),(3.1,0,z),(0,0,z),(0,3,z),(0,0,z),(3.1,0,z),(3.1,-1.4,z),(9.1,-1.4,z),(9.1,1.2,z)])
+route([(0,-26,0),(-40,-26,0),(-40,6,0)])
+route([(-40,-14,0),(-64,-14,0),(-64,3,0),(-67.5,3,0),(-60.5,3,0)])
 print(f"PASS: {len(m['assets'])} full-size FBX modules, {len(boxes)} authored collision hulls, {checks} supported headroom samples across eight floors")

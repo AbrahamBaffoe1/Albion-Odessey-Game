@@ -13,7 +13,8 @@ namespace AlbionOdyssey
     }
     [Serializable] public sealed class OdysseyState
     {
-        public int version=1;
+        public int version=2;
+        public CampusSchool school=new CampusSchool();
         public int active;
         public int beacon;
         public Keeper[] keepers={new Keeper(),new Keeper(),new Keeper(),new Keeper()};
@@ -32,7 +33,7 @@ namespace AlbionOdyssey
         }
         public bool Reclaim(int cell)
         {
-            if(cell<0||cell>=49||Current.plots[cell]==0)return false;
+            if(cell<0||cell>=49||Current.plots[cell]==0||school.UsesPlot(active,cell))return false;
             Current.acorns+=Cost(Current.plots[cell]); Current.plots[cell]=0; return true;
         }
         public bool Contribute()
@@ -40,9 +41,13 @@ namespace AlbionOdyssey
             if(beacon>=24||Current.acorns<2)return false;
             Current.acorns-=2; Current.contribution+=2; beacon+=2; return true;
         }
+        public void UpgradeLegacySave()
+        {
+            if(version==1){school=new CampusSchool();version=2;}
+        }
         public bool Valid()
         {
-            if(version!=1||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4)return false;
+            if(version!=2||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4)return false;
             int total=0;
             foreach(var p in keepers)
             {
@@ -52,7 +57,7 @@ namespace AlbionOdyssey
                 if(p.acorns+spent!=6+3*Count(p.memories))return false;
                 total+=p.contribution;
             }
-            return total==beacon;
+            return total==beacon&&school!=null&&school.Valid(this);
         }
     }
 }

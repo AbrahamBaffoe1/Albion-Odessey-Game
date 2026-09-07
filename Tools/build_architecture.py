@@ -32,6 +32,8 @@ def collection(name):
 environment = collection("00 Site and human scale")
 levels = [collection(f"{i+1:02d} Level {i+1} - editable walls floors stairs") for i in range(FLOORS)]
 roof = collection("09 Roof and plant enclosure")
+classroom = collection("10 Common Classroom - editable architecture")
+pavilion = collection("11 History Pavilion - editable architecture")
 collision_collection = collection("90 Unreal UCX collision - hidden")
 export_collection = collection("91 Export meshes - hidden")
 current = environment
@@ -221,9 +223,9 @@ def planter(x,y,z):
     for dz,dx,dy in [(0,.22,0),(.25,-.18,.12),(.48,.1,-.1)]:
         round_shape("Living foliage",(x+dx,y+dy,z+.85+dz),(.35,.28,.25),grass)
 
-def chair(x,y,z):
+def chair(x,y,z,face_rear=False):
     box("Upholstered chair seat",(x,y,z+.48),(.52,.50,.12),accent)
-    box("Chair back",(x,y+.23,z+.82),(.52,.08,.64),accent)
+    box("Chair back",(x,y+(-.23 if face_rear else .23),z+.82),(.52,.08,.64),accent)
     for dx in [-.20,.20]:
         for dy in [-.18,.18]: box("Chair leg",(x+dx,y+dy,z+.22),(.055,.055,.44),metal,False)
 
@@ -364,6 +366,54 @@ def label(text,pos,size):
     o.location=pos; o.rotation_euler=(math.pi/2,0,0); o.data.materials.append(stone)
 label("LEGACY HALL",(0,-10.32,3.82),.58)
 
+# Two additional, fully walkable original teaching spaces. These are concept
+# buildings, not surveyed reconstructions of Albion landmarks.
+box("Learning walk",(-32,-14,-.12),(68,4,.24),stone)
+for cx,half,depth,height,title_text in [(-40,9,9,6.8,"THE COMMON CLASSROOM"),(-64,6,6,4.5,"ALBION HISTORY PAVILION")]:
+    current=classroom if cx==-40 else pavilion
+    box("Learning building floor",(cx,0,-.12),(half*2,depth*2,.24),floor_mat)
+    box("Learning roof",(cx,0,height),(half*2+.8,depth*2+.8,.3),plaster)
+    box("Learning rear wall",(cx,depth,height/2),(half*2,.3,height),brick)
+    for side in [-1,1]:
+        x=cx+side*half
+        box("Learning side base",(x,0,.55),(.3,depth*2,1.1),brick)
+        box("Learning side crown",(x,0,height-.6),(.3,depth*2,1.2),brick)
+        for y in range(-int(depth),int(depth)+1,3):
+            box("Learning window pier",(x,y,height/2),(.4,.35,height),brick)
+        box("Learning glazed wall",(x,0,height/2),(.06,depth*2,height-2.2),glass)
+        span=half-1.6
+        box("Learning entry wall",(cx+side*(1.6+span/2),-depth,height/2),(span,.35,height),brick)
+    box("Learning entry lintel",(cx,-depth,(height+3)/2),(3.2,.35,height-3),stone)
+    box("Learning canopy",(cx,-depth-1.2,3),(5,2.8,.18),metal)
+    box("Learning approach",(cx,(-14-depth)/2,-.12),(4,14-depth,.24),stone)
+    sign(title_text,(cx,-depth-.20,3.65),.27)
+    for side in [-1,1]:
+        planter(cx+side*(half-1.4),depth-1.3,0)
+        for y in [-depth+2,depth-2]:
+            box("Learning stone pier",(cx+side*(half+.2),y,height/2),(.55,.55,height),stone)
+# Twelve desks leave a central aisle open from the door to the teaching board.
+current=classroom
+for row in range(3):
+    for dx in [-5.5,-2.8,2.8,5.5]:
+        x,y=-40+dx,-3+row*2.5
+        box("Classroom desktop",(x,y,.82),(1.7,.85,.10),wood)
+        for lx in [-.65,.65]:box("Classroom desk support",(x+lx,y,.39),(.07,.6,.78),metal)
+        # Chairs face the board at the back of the hall.
+        chair(x,y-.85,0,True)
+box("Teaching board",(-40,8.78,2.15),(8,.08,2.8),metal)
+sign("CREATE  /  LEARN  /  SHARE",(-40,8.70,2.7),.31)
+sign("PRESS K TO ORGANIZE A CLASS",(-40,8.69,1.8),.21)
+box("Teacher lectern",(-44,6,.65),(1.5,.8,1.3),wood)
+# Three physical history displays with separate sourced cards in the game.
+current=pavilion
+for x in [-67.5,-64,-60.5]:
+    box("History exhibition panel",(x,4.7,1.65),(2.5,.22,2.7),metal)
+    box("History exhibition base",(x,4.7,.15),(2.8,.8,.3),stone)
+for x,text in [(-67.5,"1835 / A CHARTER"),(-64,"1884 / THE STARS"),(-60.5,"BUILD YOUR LEGACY")]:
+    sign(text,(x,4.55,2.2),.19)
+    sign("H / READ HISTORY",(x,4.54,1.4),.16)
+box("Pavilion reading bench",(-68,0,.46),(1,.65,.18),wood)
+
 # An explicit 1.80 m scale figure is part of the Blender scene, not the game export.
 human=collection("80 Human reference - 1.80 meters")
 current=human
@@ -377,11 +427,11 @@ move_to(bpy.context.object,human)
 # Export joined render meshes per level, with separately named convex box hulls.
 # Keep the original editable objects untouched in their floor collections.
 manifest={"schema":1,"name":"Legacy Hall","original_concept":True,"units":"meters",
-          "floor_names":FLOOR_NAMES,"furnished":True,"floors":FLOORS,"floor_height_m":RISE,"wall_height_m":FLOORS*RISE,
+          "floor_names":FLOOR_NAMES,"learning_spaces":["Common Classroom","Albion History Pavilion"],"furnished":True,"floors":FLOORS,"floor_height_m":RISE,"wall_height_m":FLOORS*RISE,
           "building_width_m":28,"building_depth_m":20,"height_m":32.8,
           "entrance_clear_width_m":2.1,"stairs":{"width_m":1.8,"riser_m":.18,"tread_m":.30},"assets":[]}
-for idx,c in enumerate(levels+[roof,environment]):
-    name=f"SM_LegacyTower_Level{idx:02d}" if idx<8 else "SM_LegacyTower_Roof" if idx==8 else "SM_LegacyTower_Site"
+for idx,c in enumerate(levels+[roof,environment,classroom,pavilion]):
+    name=f"SM_LegacyTower_Level{idx:02d}" if idx<8 else "SM_LegacyTower_Roof" if idx==8 else "SM_LegacyTower_Site" if idx==9 else "SM_LegacyTower_Classroom" if idx==10 else "SM_LegacyTower_HistoryPavilion"
     bpy.ops.object.select_all(action="DESELECT")
     copies=[]
     for source in list(c.objects):
