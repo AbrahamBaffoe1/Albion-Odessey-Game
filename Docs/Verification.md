@@ -1,5 +1,16 @@
 # Verification record
 
+## Full-size architecture update — September 7, 2026
+
+- Built an editable eight-storey, 32.8 m original campus tower in Blender, with ten exported architectural modules.
+- Generated 132,660 render triangles and 1,127 authored UCX collision hulls.
+- Verified 2,361 supported player-headroom samples along a route spanning all eight floors. Corrected stair supports that initially obstructed headroom.
+- Imported all ten FBXs back into Blender and verified mesh identities, UVs, collision counts, origins, and meter-scale dimensions.
+- Added first-person Unreal source, shared persistence with the builder, tower collectibles, and two-way map switching.
+- Unreal compilation, import, collision behavior, material appearance, and packaged gameplay remain unverified because Unreal Engine is not installed.
+
+See [FullScaleArchitecture.md](FullScaleArchitecture.md) for the revised native acceptance criteria.
+
 ## Completed locally
 
 - Blender 5.2.1 LTS executed `Tools/generate_assets.py` successfully.

@@ -48,6 +48,8 @@ if not unreal.EditorAssetLibrary.does_asset_exist(map_path):
         raise RuntimeError("Could not create LegacyCampus map")
 else:
     levels.load_level(map_path)
+world=unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
+world.get_world_settings().set_editor_property("default_game_mode",unreal.load_class(None,"/Script/AlbionOdyssey.OdysseyGameMode"))
 if not levels.save_current_level():
     raise RuntimeError("Could not save LegacyCampus map")
 unreal.log("Albion Odyssey is ready for Play. See README for controls.")

@@ -1,4 +1,5 @@
 #include "OdysseyGame.h"
+#include "OdysseyPersistence.h"
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
 #include "Components/StaticMeshComponent.h"
@@ -18,7 +19,6 @@
 namespace
 {
 constexpr float Step = 420.f;
-const TCHAR* SaveSlot = TEXT("AlbionOdyssey_Local_v1");
 FVector PlotPosition(int Cell)
 {
     return FVector((Cell % Odyssey::GridSize - 3) * Step, (Cell / Odyssey::GridSize - 3) * Step, 0);
@@ -223,36 +223,11 @@ FString AOdysseyGameMode::MemoryText(int Id)
 
 void AOdysseyGameMode::Save()
 {
-    auto* S=Cast<UOdysseySave>(UGameplayStatics::CreateSaveGameObject(UOdysseySave::StaticClass()));
-    if (!S) return;
-    S->Data.Add(State.ActivePlayer); S->Data.Add(State.CommunityAcorns);
-    for (int i=0;i<4;++i)
-    {
-        const auto& P=State.Players[i];
-        S->Data.Add(P.Acorns); S->Data.Add(P.Memories); S->Data.Add(int(P.Appearance)); S->Data.Add(State.Contributions[i]);
-        for (auto B:P.Plots) S->Data.Add(int(B));
-    }
-    if (!UGameplayStatics::SaveGameToSlot(S,SaveSlot,0)) Notice+=TEXT(" Save failed: progress remains in memory for this session.");
+    if (!OdysseyPersistence::Save(State)) Notice+=TEXT(" Save failed: progress remains in memory for this session.");
 }
 bool AOdysseyGameMode::Load()
 {
-    if (!UGameplayStatics::DoesSaveGameExist(SaveSlot,0)) return false;
-    auto* S=Cast<UOdysseySave>(UGameplayStatics::LoadGameFromSlot(SaveSlot,0));
-    if (!S || S->Version!=1 || S->Data.Num()!=214) return false;
-    Odyssey::State Candidate; int At=0;
-    Candidate.ActivePlayer=S->Data[At++]; Candidate.CommunityAcorns=S->Data[At++];
-    for(int i=0;i<4;++i)
-    {
-        auto& P=Candidate.Players[i];
-        P.Acorns=S->Data[At++];
-        const int Memories=S->Data[At++];
-        if (Memories<0 || Memories>4095) return false;
-        P.Memories=static_cast<uint16>(Memories);
-        P.Appearance=static_cast<Odyssey::Style>(S->Data[At++]); Candidate.Contributions[i]=S->Data[At++];
-        for(auto& B:P.Plots) B=static_cast<Odyssey::Building>(S->Data[At++]);
-    }
-    if (!Odyssey::Valid(Candidate)) { Notice=TEXT("Saved data did not pass validation. Starting a fresh session."); return false; }
-    State=Candidate; return true;
+    return OdysseyPersistence::Load(State);
 }
 
 void AOdysseyController::BeginPlay()
@@ -268,6 +243,12 @@ void AOdysseyController::PlayerTick(float Dt)
     Super::PlayerTick(Dt);
     auto* G=Cast<AOdysseyGameMode>(UGameplayStatics::GetGameMode(this));
     if (!G || !View) return;
+    if (WasInputKeyJustPressed(EKeys::F2))
+    {
+        if (OdysseyPersistence::Save(G->State)) UGameplayStatics::OpenLevel(this,FName(TEXT("CampusWalkthrough")));
+        else G->Notice=TEXT("Save failed. Staying here to preserve your current progress.");
+        return;
+    }
     if (WasInputKeyJustPressed(EKeys::One)) G->Select(1);
     if (WasInputKeyJustPressed(EKeys::Two)) G->Select(2);
     if (WasInputKeyJustPressed(EKeys::Three)) G->Select(3);
@@ -335,7 +316,7 @@ void AOdysseyHUD::DrawHUD()
     Text(G->Notice,28,Bottom,1.05,Gold);
     Text(FString::Printf(TEXT("BUILD  1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)   |   Selected: %s"),BuildingName(G->Selected)),28,Bottom+30,1.05,White);
     Text(TEXT("CLICK collect / build    RIGHT-CLICK reclaim    C contribute    T change style    J memory journal"),28,Bottom+58,1,White);
-    Text(TEXT("WASD move    Q / R orbit    SCROLL zoom    HOME reset view    E explore / build    TAB next Keeper"),28,Bottom+85,1,Muted);
+    Text(TEXT("F2 walk the full-size campus    WASD move    Q / R orbit    SCROLL zoom    HOME reset view    E explore / build    TAB next Keeper"),28,Bottom+85,1,Muted);
     Text(TEXT("EARLY PROTOTYPE / Original concept models. Campus facts and fictional stories are labeled separately."),28,Bottom+112,0.85,Muted);
     if (G->bJournal)
     {

@@ -2,6 +2,8 @@
 
 ## 1. Verify the native slice
 
+The current slice now starts with the full-size eight-storey Legacy Hall and first-person exploration, connected to the earlier builder by shared saves and F2 map switching. The building is modelled and its exported geometry/collision is checked in Blender; the Unreal runtime remains the next required verification step.
+
 Install an Unreal version compatible with the development Mac/Xcode combination. Compile the editor target, run the import script, and exercise the native checklist. Fix any API/compiler issues discovered. Produce a signed or locally launchable Mac package and record the exact engine version. Replace the initial text HUD with responsive UMG controls and add controller/touch input.
 
 Exit: a new user can install, launch, collect, build, switch appearance, switch local profile, save, quit, and resume without the editor.

@@ -4,17 +4,33 @@ Explore memories. Build your legacy. Together, anywhere.
 
 An Unreal Engine C++ prototype with an original Blender environment kit for a campus exploration and creative building game inspired by Albion College. Players collect memory echoes, turn starlit acorns into a personal campus, and contribute to a shared Constellation Beacon. Room play requires neither GPS nor a camera.
 
-![Echo Fantasy concept, rendered in Blender](Art/EchoFantasy.png)
+## Full-size 3D building — start here
 
-## Current status — 0.1.0 prototype source
+**Open `Art/Architecture/LegacyHall_FullScale.blend` in Blender.** This is editable 3D architecture: an eight-storey, 32.8-meter tower with a real entrance, interior floors, hallways, study spaces, and seven stair connections. It is an original game building, not a measured replica of an Albion building.
+
+The primary game map is now a **first-person walkthrough**. The Unreal source includes walking, mouse look, sprinting, jumping, and collecting memories on each floor. F2 connects this full-size environment to the existing personal-campus builder, using the same local inventory and saves.
+
+- Ten real FBX meshes: eight floors, a roof, and the surrounding site.
+- 132,660 render triangles and 1,127 authored UCX collision hulls.
+- Original brick color, normal, and roughness textures.
+- A 1.80 m reference figure and a 1.65 m player eye height.
+- 2,361 floor-support/headroom samples across a complete eight-floor route.
+- All ten FBXs round-tripped through Blender with geometry, UVs, and meter-scale collision verified.
+
+The Blender model is built and verified. The Unreal C++ and import integration are prepared but **not yet compiled/run in Unreal**, because the engine is not installed. Renders in the asset folder are inspection views of the model; the `.blend` and `.fbx` files contain the actual building.
+
+See [the step-by-step workflow](Docs/FullScaleArchitecture.md).
+
+## Current status — 0.2.0 prototype source
 
 The portable C++ game rules are compiled and tested, and the Blender models and renders have been generated and inspected. **The Unreal module and editor import script have not yet been compiled or run in Unreal.** Unreal Engine is not installed on the development Mac; Epic Launcher is installed but its engine page could not be opened through the available UI controls. There is no packaged executable in this repository yet.
 
-This is a foundation for the larger game, not a finished release. The campus appearance uses original, stylized architectural concept models. It is not photorealistic or an accurate reconstruction of Albion's grounds. The fantasy appearance adds purple masonry, celestial details, and storybook colors.
+This is a foundation for the larger game, not a finished release. The exploration building now uses full-size architectural proportions and brick/stone materials. The separate campus-builder kit retains its small tile-based models. Neither is an accurate reconstruction of Albion's grounds; the fantasy builder appearance adds purple masonry and celestial details.
 
 | Capability | Implementation status |
 | --- | --- |
-| Room exploration and campus building | Native Unreal source implemented; in-engine verification pending |
+| Full-size first-person tower exploration | Blender architecture and native Unreal source implemented; engine integration verification pending |
+| Personal campus building | Native Unreal source implemented; in-engine verification pending |
 | Two appearances per player | Eight generated Blender/FBX modules; source switches appearances |
 | Four independent personal campuses | Local pass-and-play profiles; not four simultaneous online players |
 | Shared building project | One local Beacon with tracked per-profile contributions |
@@ -29,8 +45,8 @@ This is a foundation for the larger game, not a finished release. The campus app
 
 1. Install Unreal Engine through Epic Games Launcher. The project association is set to **5.5** as a baseline; choose a version compatible with your installed macOS and Xcode. See [Epic's Mac requirements](https://dev.epicgames.com/documentation/en-us/unreal-engine/macos-development-requirements-for-unreal-engine). No engine-version combination is claimed tested yet.
 2. Open `AlbionOdyssey.uproject`. Let Unreal build the C++ module. If using a different engine version, switch the project association first.
-3. In the editor, run **Tools → Execute Python Script → Tools/setup_unreal.py**. This imports the eight FBX files, creates the shared material, and saves `/Game/Maps/LegacyCampus`. A missing-map warning on first launch is expected before this step.
-4. Press **Play**. The native game mode creates the campus grid, collectibles, camera, and HUD at runtime.
+3. In the editor, run **Tools → Execute Python Script → Tools/setup_all.py**. This imports the full-size architecture and builder assets, creates materials and collision, and saves `/Game/Maps/CampusWalkthrough` and `/Game/Maps/LegacyCampus`. A missing-map warning on first launch is expected before this step.
+4. Press **Play**. You start outside Legacy Hall in first person. Walk inside, climb the stairs, and press E to collect a memory. F2 switches to the personal-campus builder.
 
 On macOS the optional helper builds the editor target and opens Unreal with the setup script:
 
@@ -40,7 +56,11 @@ UE_ROOT='/path/to/UE_5.5' bash Tools/build_mac.sh
 
 The setup script is safe to rerun for asset updates and keeps an existing map. It replaces generated imports under `/Game/Generated`, so put hand-authored content elsewhere.
 
-## Play the prototype
+## First-person controls
+
+WASD moves, the mouse looks around, Shift runs, Space jumps, E collects a nearby memory, Tab switches local Keeper, and F2 opens the builder. The stairs are toward the right-hand rear of the building in Blender coordinates. Eight tower memories share IDs and rewards with the existing archive, so switching maps cannot duplicate a reward.
+
+## Play the campus builder
 
 Start with six acorns. Click the glowing memories around the island to collect three more per memory. Select a building, click an empty tile, and begin designing. Every profile can collect all twelve memories. Collection does not depend on leaving your room.
 
@@ -59,12 +79,13 @@ Start with six acorns. Click the glowing memories around the island to collect t
 | Q / R | Orbit the camera |
 | Mouse wheel | Zoom |
 | Home | Reset the camera |
+| F2 | Return to the full-size first-person tower |
 
 Changes save after successful transactions, appearance switches, and profile switches. Saves are local to the installation and use `AlbionOdyssey_Local_v1`. A local profile is a convenience for shared-device play, not an authenticated identity.
 
 The first objectives guide collection, building three structures, and completing the Beacon. All four Keepers can contribute. There is no paid currency and no penalty for redesigning: buildings return their full construction cost.
 
-## Blender source and previews
+## Earlier campus-builder kit
 
 Open `Art/AlbionConceptKit.blend` in Blender. The scene selector contains **Campus Concept** and **Echo Fantasy**. Each has its own camera and lighting. The initial scene contains the reusable source meshes, hidden from rendering.
 
@@ -78,20 +99,30 @@ To regenerate with Blender (tested with Blender 5.2.1 LTS):
 /Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/generate_assets.py
 ```
 
+## Regenerate the full-size architecture
+
+```sh
+/Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/build_architecture.py
+/Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/verify_fbx_roundtrip.py
+```
+
 ## Verify changes
 
 ```sh
 bash Tools/test.sh
 ```
 
-This compiles the same engine-independent rules included by the Unreal game using address/undefined-behavior sanitizers, then checks project metadata, scripts, and exported assets. It covers collection, duplicates, costs, refunds, profile isolation, shared contributions, invalid state, location-policy edge cases, and 100,000 randomized transactions. GitHub Actions runs this check on pushes and pull requests. **These checks do not establish that the Unreal module compiles or renders correctly.** See [the native verification checklist](Docs/Verification.md).
+This compiles the same engine-independent rules included by the Unreal game using address/undefined-behavior sanitizers, then checks project metadata, scripts, exported assets, and the full-size tower headroom/support route. It covers collection, duplicates, costs, refunds, profile isolation, shared contributions, invalid state, location-policy edge cases, and 100,000 randomized transactions. GitHub Actions runs this check on pushes and pull requests. **These checks do not establish that the Unreal module compiles or renders correctly.** See [the native verification checklist](Docs/Verification.md).
 
 ## Project guide
 
 - `Source/AlbionOdyssey/Core`: portable rules and optional future location eligibility policy.
+- `Source/AlbionOdyssey/OdysseyWalkthrough.*`: full-size first-person movement, collection, and map switching.
+- `Source/AlbionOdyssey/OdysseyPersistence.*`: shared validated saves for both maps.
 - `Source/AlbionOdyssey/OdysseyGame.*`: Unreal world, input, HUD, memory archive, and local saves.
 - `Tools`: Blender generation, Unreal import, macOS build helper, tests, and validation.
-- `Art`: editable Blender file, eight FBX modules, and two rendered previews.
+- `Art/Architecture`: the full-size editable tower, ten FBX modules, PBR textures, and collision manifest.
+- `Art`: the earlier campus-builder kit and inspection previews.
 - [Campus references](Docs/CampusReferences.md): official map/tour and reconstruction plan.
 - [Game direction](Docs/GameDesign.md): dual-mode vision and planned creative features.
 - [Next implementation milestones](Docs/Roadmap.md): concrete work needed for the full game.
