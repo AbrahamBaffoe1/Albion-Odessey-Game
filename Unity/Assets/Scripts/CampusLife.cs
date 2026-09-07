@@ -83,6 +83,7 @@ namespace AlbionOdyssey
         {
             if(!InClass||Time.time<nextPaper){game.notice="Paper play is available inside the classroom. M opens the map.";return false;}
             nextPaper=Time.time+.4f;
+            game.sound.Play(OdysseyCue.PaperThrow);
             while(papers.Count>=24){var old=papers.Dequeue();if(old!=null)Destroy(old);}
             var paper=GameObject.CreatePrimitive(PrimitiveType.Cube);paper.name="Paper play";
             paper.transform.position=game.player.eyes.transform.position+game.player.eyes.transform.forward*.7f;
@@ -128,6 +129,12 @@ namespace AlbionOdyssey
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             GUI.backgroundColor=new Color(.12f,.27f,.30f);
+            if(game.sound.AchievementCaption.Length>0)
+            {
+                GUI.color=new Color(.025f,.09f,.10f,.96f);GUI.DrawTexture(new Rect(width-440,138,420,78),Texture2D.whiteTexture);GUI.color=Color.white;
+                Label(width-423,147,390,22,"ACHIEVEMENT UNLOCKED",muted);
+                Label(width-423,174,390,40,game.sound.AchievementCaption,text);
+            }
             if(!PanelOpen)
             {
                 if(game.building||game.journalOpen)return;
@@ -152,11 +159,16 @@ namespace AlbionOdyssey
                 Label(left,95,1080,50,"Build your campus. Discover its stories. Start a class.",text);
                 Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  E or F, aimed at the object\nHISTORY  H inside a learning space\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nHELP / PAUSE  Esc or F1",text);
                 Label(left+590,155,510,220,"START HERE\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
-                Label(left+590,400,510,100,"Version 0.4 · Four local Keepers on this Mac.\nStudents are simulated. Online accounts and multiplayer are still in development.",muted);
+                Label(left+590,400,510,100,"Version 0.5 · Four local Keepers on this Mac.\nStudents are simulated. Online accounts and multiplayer are still in development.",muted);
                 if(Button(left,530,260,"Play / resume"))SetPanel("");
                 if(Button(left+280,530,260,"Explore the map"))SetPanel("map");
                 if(Button(left+560,530,260,"Create a course"))SetPanel("courses");
                 if(Button(left,600,260,"Save and quit")){if(game.Save())Application.Quit();}
+                Label(left+320,594,260,30,"SOUND EFFECTS  "+Mathf.RoundToInt(game.sound.Volume*100)+"%",muted);
+                float volume=GUI.HorizontalSlider(new Rect(left+320,637,330,28),game.sound.Volume,0,1);
+                bool effectsMuted=GUI.Toggle(new Rect(left+690,602,180,32),game.sound.Muted,"Mute effects");
+                game.sound.SetPreferences(volume,effectsMuted);
+                if(Button(left+870,600,230,"Preview pickup sound"))game.sound.Play(OdysseyCue.Memory);
             }
             else if(panel=="map")
             {

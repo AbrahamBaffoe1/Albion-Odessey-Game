@@ -16,3 +16,4 @@ jobs:
         run: |
           dotnet run --project Tests/UnityRules/Rules.csproj
           python3 Tools/validate_unity_geometry.py
+          python3 Tools/validate_audio.py

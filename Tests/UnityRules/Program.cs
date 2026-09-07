@@ -3,6 +3,7 @@ using AlbionOdyssey;
 class Program {
  static void Check(bool v,string m){if(!v)throw new Exception(m);}
  static void Main(){
+ FeedbackTests.Run();
  var s=new OdysseyState();Check(s.Valid(),"new state");Check(s.Build(0,3),"build");Check(s.Current.acorns==0,"cost");Check(!s.Build(1,1),"overspend");Check(s.Reclaim(0)&&s.Current.acorns==6,"refund");
  Check(s.Collect(0)&&!s.Collect(0),"one collection");Check(s.Current.acorns==9,"reward");
  s.active=1;Check(s.Current.memories==0&&s.Current.acorns==6,"keeper isolation");

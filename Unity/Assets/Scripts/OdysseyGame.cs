@@ -16,6 +16,7 @@ namespace AlbionOdyssey
         public Camera builderCamera;
         public bool building;
         public CampusLife life;
+        public OdysseyAudio sound;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
@@ -73,6 +74,7 @@ namespace AlbionOdyssey
             builderCamera.transform.LookAt(new Vector3(48,0,0));builderCamera.orthographic=true;builderCamera.orthographicSize=20;builderCamera.enabled=false;
             builderCamera.clearFlags=CameraClearFlags.Skybox;builderCamera.backgroundColor=new Color(.14f,.20f,.27f);
             OdysseyStory.Refresh(state);RefreshMemories();RebuildCampus();CreateFootprint();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;
+            sound=gameObject.AddComponent<OdysseyAudio>();sound.Initialize(state);
             life=gameObject.AddComponent<CampusLife>();life.Setup(this);
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
@@ -144,6 +146,7 @@ namespace AlbionOdyssey
         {
             if(!state.Valid()){notice="Save rejected: invalid game state.";return false;}
             OdysseyStory.Refresh(state);
+            if(sound!=null)sound.Observe(state);
             try
             {
                 Directory.CreateDirectory(Application.persistentDataPath);

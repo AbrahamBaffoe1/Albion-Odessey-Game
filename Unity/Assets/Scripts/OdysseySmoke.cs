@@ -10,7 +10,7 @@ namespace AlbionOdyssey
     public sealed class OdysseySmoke : MonoBehaviour
     {
         public static bool Enabled=>Array.IndexOf(Environment.GetCommandLineArgs(),"-odysseySmoke")>=0;
-        [Serializable] class Result { public bool passed;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public int triangles;public int colliders;public float seconds; }
+        [Serializable] class Result { public bool passed;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public bool audio;public int audioCues;public float audioPeak;public int triangles;public int colliders;public float seconds; }
         OdysseyGame game;
         Result result=new Result();
         string Output=>Environment.GetEnvironmentVariable("ODYSSEY_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"Smoke");
@@ -124,6 +124,32 @@ namespace AlbionOdyssey
             if(game.player.transform.position.z<startPosition.z+.2f){Fail("Directional button input did not move player");yield break;}
             result.buttonMovement=true;
             yield return Capture("11-campus-expansion",new Vector3(-76,24,-40),new Vector3(-38,7,0));
+            game.sound.ResetBaseline(game.state);
+            if(game.sound.LoadedCount!=20){Fail("Audio cue assets missing");yield break;}
+            foreach(OdysseyCue cue in Enum.GetValues(typeof(OdysseyCue)))
+            {
+                var clip=game.sound.Clip(cue);float[] samples=new float[clip.samples*clip.channels];
+                if(!clip.GetData(samples,0)||Array.FindIndex(samples,v=>Mathf.Abs(v)>.02f)<0){Fail("Empty audio asset: "+cue);yield break;}
+            }
+            game.sound.SetPreferences(.35f,false);game.sound.Play(OdysseyCue.Memory);
+            var audioBuffer=new float[1024];float deadline=Time.realtimeSinceStartup+1;
+            while(Time.realtimeSinceStartup<deadline)
+            {
+                AudioListener.GetOutputData(audioBuffer,0);
+                foreach(float sample in audioBuffer)result.audioPeak=Mathf.Max(result.audioPeak,Mathf.Abs(sample));
+                yield return null;
+            }
+            if(result.audioPeak<.001f){Fail("Audio listener produced no pickup sound");yield break;}
+            game.sound.SetPreferences(.35f,true);game.sound.Play(OdysseyCue.Memory);
+            yield return new WaitForSecondsRealtime(.08f);AudioListener.GetOutputData(audioBuffer,0);
+            if(Array.FindIndex(audioBuffer,v=>Mathf.Abs(v)>.0001f)>=0){Fail("Mute did not silence effects");yield break;}
+            game.sound.ResetBaseline(game.state);game.sound.Play(OdysseyCue.FirstDiscovery);game.sound.Play(OdysseyCue.ThreePlaces);
+            int beforeSounds=game.sound.PlayedCount;deadline=Time.realtimeSinceStartup+3;
+            while(Time.realtimeSinceStartup<deadline&&game.sound.PlayedCount<beforeSounds+2)yield return null;
+            if(game.sound.PlayedCount!=beforeSounds+2||game.sound.PendingAchievements!=0){Fail("Achievement audio queue lost an event");yield break;}
+            game.sound.ResetBaseline(game.state);game.life.SetPanel("welcome");yield return new WaitForEndOfFrame();
+            var audioSettings=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(Output,"12-audio-settings.png"),audioSettings.EncodeToPNG());Destroy(audioSettings);
+            result.audio=true;result.audioCues=game.sound.LoadedCount;
             result.passed=true;result.seconds=Time.realtimeSinceStartup;
             File.WriteAllText(Path.Combine(Output,"result.json"),JsonUtility.ToJson(result,true));
             Debug.Log("ODYSSEY_SMOKE_OK: tower ascent/descent, full charter, learning-space walking, history, courses, student capacity, lesson completion, button movement and save migration.");

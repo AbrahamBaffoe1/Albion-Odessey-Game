@@ -21,6 +21,10 @@ The Blender model is built and verified. The Unreal C++ and import integration a
 
 See [the step-by-step workflow](Docs/FullScaleArchitecture.md).
 
+## New in 0.5 — Collection and achievement sounds
+
+Twenty original audio cues give every event kind a consistent identity: all memory pickups share one chime, each charter achievement has its own motif, and the three lesson types and four building types have distinct sounds. Achievement cues play in sequence. Duplicate claims, failed actions, profile switches and loading saves stay silent. Press **Esc** for volume, mute and a pickup preview. [Sound design and checks](Docs/Audio.md).
+
 ## New in 0.4 — Learning spaces and local classes
 
 Two additional walkable Blender buildings join the tower: the Common Classroom and Albion History Pavilion. Press **M** for a map and travel, **H** inside a learning space for sourced history, and **K** to create a course for an owned Hall or Library. Enroll a local Keeper, assign simulated students, run a twelve-seat class and answer its lesson question. Course ownership, capacity and completion persist; old version-1 saves upgrade without losing discoveries or buildings.
@@ -37,7 +41,7 @@ Press **J** to open a twelve-entry journal of original game fiction. Six persist
 
 These additions are implemented in Unity. Updated Blender/FBX architecture is shared with Unreal; the new journal and charter gameplay have not been ported to the Unreal implementation.
 
-## Current status — 0.4.0 local learning prototype
+## Current status — 0.5.0 local learning prototype
 
 **The Unity Mac prototype now builds and runs.** Verified with Unity 6000.6.0f1 on an Apple M4 Max Mac: twelve real Blender meshes render, the controller ascends and descends the tower, all twelve memory raycasts work, and the complete six-milestone charter—including build/refund and save/readback—passes. A packaged app is available in the development workspace outputs; binaries are kept out of Git. **The separate Unreal module and import scripts remain uncompiled and unrun**, because Unreal Engine is not installed.
 

@@ -1,6 +1,6 @@
 # Counted roadmap to the larger online campus game
 
-Version 0.4 has **5 completed prototype work packages and 17 remaining work packages** in this 22-part roadmap. These are substantial milestones, not 17 small tasks or a promise that a commercial MMO is almost finished. New design decisions can expand the list. "Completed" below means the stated local prototype scope is implemented and tested, not final release quality.
+Version 0.5 has **5 completed prototype work packages and 17 remaining work packages** in this 22-part roadmap. These are substantial milestones, not 17 small tasks or a promise that a commercial MMO is almost finished. New design decisions can expand the list. "Completed" below means the stated local prototype scope is implemented and tested, not final release quality.
 
 | # | Work package | Status / completion requirement |
 |---|---|---|
@@ -21,7 +21,7 @@ Version 0.4 has **5 completed prototype work packages and 17 remaining work pack
 | 15 | Campus chaos and world events | Pending: expanded sandbox interactions, shared physics limits, opt-in rules and recovery; current paper play is a small local prototype |
 | 16 | Social features and community tools | Pending: friends, communication, reporting, blocking, permissions and public-content review |
 | 17 | Characters and longer gameplay | Pending: animated characters, NPC routines, quests, campus activities, progression and repeatable challenges |
-| 18 | Finished art and audio | Pending: production character art, animation, environmental detail, music and sound |
+| 18 | Finished art and audio | Partial: 20 original event sounds are implemented; production character art, animation, environmental detail, music and ambient/character audio remain |
 | 19 | Player experience and accessibility | Partial: help, pause, map and arrows exist; named profiles, settings, remapping, controllers and accessibility options remain |
 | 20 | Mobile, room play and on-campus AR | Partial: room play works on Mac; touch builds, real GPS/AR adapters and device performance tests remain |
 | 21 | Unreal runtime and feature parity | Pending: install/compile/play in Unreal, validate FBX pipeline, port the newer Unity learning systems and verify parity |

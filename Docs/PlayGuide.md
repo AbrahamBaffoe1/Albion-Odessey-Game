@@ -1,6 +1,6 @@
-# Play Albion Odyssey 0.4 on this Mac
+# Play Albion Odyssey 0.5 on this Mac
 
-Open **Albion Odyssey.app** from the version 0.4 output folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from the version 0.5 output folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
 
 ## Controls
 
@@ -44,3 +44,7 @@ A local Mac prototype: three real 3D concept buildings, exploration, personal ca
 Online accounts, simultaneous multiplayer, user-authored lesson content, freeform architecture and the full real campus remain on the counted roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
 
 Version 0.4 writes a separate version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.4.
+
+## Sound effects
+
+Press Esc to adjust effects volume, mute, or preview the pickup sound. Matching collection types always use the same sound; different achievement, lesson and building types have distinct sounds. Preferences persist between launches. Version 0.5 continues using the version-2 progress save introduced in 0.4.

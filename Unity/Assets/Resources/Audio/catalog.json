@@ -1,0 +1,234 @@
+{
+  "sample_rate": 48000,
+  "original_audio": true,
+  "cues": [
+    {
+      "cue": "Memory",
+      "notes": [
+        79,
+        86
+      ],
+      "timbre": "bell",
+      "duration": 0.47,
+      "sha256": "bb37c1a515fa3d1ad1df27f7147847e878bff7c16342d09b93c553de3caee27a"
+    },
+    {
+      "cue": "FirstDiscovery",
+      "notes": [
+        72,
+        76,
+        79
+      ],
+      "timbre": "bell",
+      "duration": 0.625,
+      "sha256": "6de18a56fcb09dc15109cc7876cba9901e292df116398f03832ea91f4704a949"
+    },
+    {
+      "cue": "ThreePlaces",
+      "notes": [
+        60,
+        67,
+        72,
+        76
+      ],
+      "timbre": "marimba",
+      "duration": 0.725,
+      "sha256": "638951376a58b7526d9159971e5a8ec37d71ea44e402eb4141251f0c79988a08"
+    },
+    {
+      "cue": "EightFloors",
+      "notes": [
+        67,
+        71,
+        74,
+        79
+      ],
+      "timbre": "glass",
+      "duration": 1.005,
+      "sha256": "2572f285167c2c9a39f53d75e28c5dcafc6f0fa67305dab9866f1b9cd365fe8b"
+    },
+    {
+      "cue": "AllBuildingKinds",
+      "notes": [
+        60,
+        64,
+        67,
+        72,
+        79
+      ],
+      "timbre": "marimba",
+      "duration": 0.845,
+      "sha256": "d5b735e31a93a3e7ce5e9f43c0b17883855314281d4fd6a3021d93070c54ee00"
+    },
+    {
+      "cue": "GenerousKeeper",
+      "notes": [
+        65,
+        69,
+        72,
+        77
+      ],
+      "timbre": "soft",
+      "duration": 0.785,
+      "sha256": "ba90cc1b314aadf10705db53fb9bac7f751f8ec35881223a0a38e18c667e71a9"
+    },
+    {
+      "cue": "BeaconComplete",
+      "notes": [
+        60,
+        67,
+        72,
+        76,
+        79,
+        84
+      ],
+      "timbre": "glass",
+      "duration": 1.385,
+      "sha256": "8da7aeb6b8fbf3121767e183ebd7decce5ba0f3aaafa70901ba5349f7e0be8ec"
+    },
+    {
+      "cue": "HistoryLesson",
+      "notes": [
+        62,
+        66,
+        69,
+        74
+      ],
+      "timbre": "bell",
+      "duration": 0.725,
+      "sha256": "f069d7811d4e847c36eb98bbcda754f46d73a738072c00d73834e257e02f7c37"
+    },
+    {
+      "cue": "AstronomyLesson",
+      "notes": [
+        69,
+        76,
+        81,
+        88
+      ],
+      "timbre": "glass",
+      "duration": 1.005,
+      "sha256": "a13d3bd654a3683b384afe79292506090ac2e7660a3376475ad199d67c702501"
+    },
+    {
+      "cue": "DesignLesson",
+      "notes": [
+        64,
+        68,
+        71,
+        76
+      ],
+      "timbre": "marimba",
+      "duration": 0.695,
+      "sha256": "4ae1d6485e1b8674abf4c4ea51f18fcb3a06b225ff0375840301055bd0d697d4"
+    },
+    {
+      "cue": "GardenBuilt",
+      "notes": [
+        72,
+        79,
+        76
+      ],
+      "timbre": "soft",
+      "duration": 0.515,
+      "sha256": "77e2ab4ade5ed5df683d7790700c8422858dabc054ef04ec484ac73cfb3955ef"
+    },
+    {
+      "cue": "LibraryBuilt",
+      "notes": [
+        55,
+        62,
+        67
+      ],
+      "timbre": "marimba",
+      "duration": 0.525,
+      "sha256": "16795172078d12e9cb49f85395be3c0fdda1a7ed857647496b0699543042aef7"
+    },
+    {
+      "cue": "ObservatoryBuilt",
+      "notes": [
+        81,
+        88,
+        93
+      ],
+      "timbre": "glass",
+      "duration": 0.755,
+      "sha256": "282ee164e2ae631c787d3b75cb29370694ec6249ff8a8aab4a5fae685ae784d3"
+    },
+    {
+      "cue": "HallBuilt",
+      "notes": [
+        48,
+        55,
+        60
+      ],
+      "timbre": "marimba",
+      "duration": 0.535,
+      "sha256": "5cc55c2c0021c6c3e17202695008386a179ebe28df851eb6e70e260810248b87"
+    },
+    {
+      "cue": "Reclaim",
+      "notes": [
+        74,
+        67
+      ],
+      "timbre": "soft",
+      "duration": 0.45,
+      "sha256": "290edcbf649ba3281c7a19b758824ca5daaf38660deddbe3f30626b2b5116312"
+    },
+    {
+      "cue": "Contribution",
+      "notes": [
+        67,
+        74,
+        79
+      ],
+      "timbre": "bell",
+      "duration": 0.515,
+      "sha256": "901b12c048557f52279b44c0737397abf3df27d359692af533a77df1431ea461"
+    },
+    {
+      "cue": "CourseCreated",
+      "notes": [
+        60,
+        64,
+        71
+      ],
+      "timbre": "soft",
+      "duration": 0.545,
+      "sha256": "75b598493218b64423edea79fab251724177625741caa540c94d95602df2f6dc"
+    },
+    {
+      "cue": "StudentEnrolled",
+      "notes": [
+        76,
+        79
+      ],
+      "timbre": "marimba",
+      "duration": 0.44,
+      "sha256": "a7ba96f2e8716db33c03c08009dab1e05c7433d57a3d3227e37fdfc682747a7e"
+    },
+    {
+      "cue": "ClassStarted",
+      "notes": [
+        67,
+        72,
+        76,
+        79
+      ],
+      "timbre": "soft",
+      "duration": 0.635,
+      "sha256": "b63ee3f853f5e6682423cb6c331358a797fd781d5384d7351af910dbb7d3694b"
+    },
+    {
+      "cue": "PaperThrow",
+      "notes": [
+        93,
+        69
+      ],
+      "timbre": "paper",
+      "duration": 0.17,
+      "sha256": "e96d5257d0fade21d532792c5bafc1215736c15b2702e82fd6a2770ad87263d1"
+    }
+  ]
+}
