@@ -3,6 +3,17 @@
   "name": "Legacy Hall",
   "original_concept": true,
   "units": "meters",
+  "floor_names": [
+    "WELCOME ATRIUM",
+    "FOUNDERS ARCHIVE",
+    "MAKER STUDIO",
+    "BOTANICAL COMMONS",
+    "STUDY LIBRARY",
+    "SKY GALLERY",
+    "STAR OBSERVATORY",
+    "LEGACY COUNCIL"
+  ],
+  "furnished": true,
   "floors": 8,
   "floor_height_m": 3.6,
   "wall_height_m": 28.8,
@@ -19,8 +30,8 @@
     {
       "name": "SM_LegacyTower_Level00",
       "file": "SM_LegacyTower_Level00.fbx",
-      "triangles": 15396,
-      "collision_hulls": 136,
+      "triangles": 34244,
+      "collision_hulls": 158,
       "collision_boxes": [
         {
           "center": [
@@ -1789,14 +1800,300 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            0.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            0.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            0.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            0.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            0.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            0.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            1.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            1.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            1.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            1.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            1.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            1.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            0.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            0.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            0.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            0.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            0.3
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            0.91
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            0.3
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            0.91
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            0.55
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            0.26
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level01",
       "file": "SM_LegacyTower_Level01.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 43144,
+      "collision_hulls": 164,
       "collision_boxes": [
         {
           "center": [
@@ -3643,14 +3940,300 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            4.08
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            4.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            4.08
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            4.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            4.08
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            4.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            4.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            4.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            4.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            4.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            4.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            4.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            3.88
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            3.88
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            3.88
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            3.88
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            3.9
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            4.51
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            3.9
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            4.51
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            4.15
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            3.8600000000000003
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level02",
       "file": "SM_LegacyTower_Level02.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 37972,
+      "collision_hulls": 168,
       "collision_boxes": [
         {
           "center": [
@@ -5497,14 +6080,352 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            7.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            8.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            7.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            8.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            7.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            8.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            8.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            8.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            8.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            8.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            8.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            8.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            7.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            7.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            7.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            7.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            7.5
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            8.11
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            7.5
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            8.11
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            7.75
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            7.46
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
+        },
+        {
+          "center": [
+            -9,
+            -8,
+            8.11
+          ],
+          "size": [
+            2.4,
+            1.1,
+            0.14
+          ],
+          "name": "Maker workbench"
+        },
+        {
+          "center": [
+            -9,
+            -8,
+            7.62
+          ],
+          "size": [
+            2.2,
+            0.9,
+            0.84
+          ],
+          "name": "Workbench cabinet"
+        },
+        {
+          "center": [
+            -5,
+            -8,
+            8.11
+          ],
+          "size": [
+            2.4,
+            1.1,
+            0.14
+          ],
+          "name": "Maker workbench"
+        },
+        {
+          "center": [
+            -5,
+            -8,
+            7.62
+          ],
+          "size": [
+            2.2,
+            0.9,
+            0.84
+          ],
+          "name": "Workbench cabinet"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level03",
       "file": "SM_LegacyTower_Level03.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 41580,
+      "collision_hulls": 167,
       "collision_boxes": [
         {
           "center": [
@@ -7351,14 +8272,339 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            11.280000000000001
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            11.620000000000001
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            11.280000000000001
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            11.620000000000001
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            11.280000000000001
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            11.620000000000001
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            12.0
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            12.0
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            12.0
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            12.0
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            12.0
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            12.0
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            11.100000000000001
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            11.71
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            11.100000000000001
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            11.71
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            11.350000000000001
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            11.06
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
+        },
+        {
+          "center": [
+            -10,
+            -8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -7,
+            -8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -4.5,
+            -8,
+            11.08
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level04",
       "file": "SM_LegacyTower_Level04.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 41720,
+      "collision_hulls": 164,
       "collision_boxes": [
         {
           "center": [
@@ -9205,14 +10451,300 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            14.88
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            15.22
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            14.88
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            15.22
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            14.88
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            15.22
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            15.6
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            15.6
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            15.6
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            15.6
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            15.6
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            15.6
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            14.68
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            14.68
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            14.68
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            14.68
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            14.700000000000001
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            15.31
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            14.700000000000001
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            15.31
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            14.950000000000001
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            14.66
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level05",
       "file": "SM_LegacyTower_Level05.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 35836,
+      "collision_hulls": 167,
       "collision_boxes": [
         {
           "center": [
@@ -11059,14 +12591,339 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            18.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            18.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            18.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            18.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            18.48
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            18.82
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            19.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            19.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            19.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            19.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            19.2
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            19.2
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            18.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            18.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            18.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            18.28
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            18.3
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            18.91
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            18.3
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            18.91
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            18.55
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            18.26
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
+        },
+        {
+          "center": [
+            -10.5,
+            -7,
+            18.5
+          ],
+          "size": [
+            0.8,
+            0.8,
+            1
+          ],
+          "name": "Gallery plinth"
+        },
+        {
+          "center": [
+            -10.5,
+            -3,
+            18.5
+          ],
+          "size": [
+            0.8,
+            0.8,
+            1
+          ],
+          "name": "Gallery plinth"
+        },
+        {
+          "center": [
+            -10.5,
+            1,
+            18.5
+          ],
+          "size": [
+            0.8,
+            0.8,
+            1
+          ],
+          "name": "Gallery plinth"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level06",
       "file": "SM_LegacyTower_Level06.fbx",
-      "triangles": 16816,
-      "collision_hulls": 142,
+      "triangles": 41740,
+      "collision_hulls": 165,
       "collision_boxes": [
         {
           "center": [
@@ -12913,14 +14770,313 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            22.080000000000002
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            22.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            22.080000000000002
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            22.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            22.080000000000002
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            22.42
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            22.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            22.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            22.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            22.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            22.8
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            22.8
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            21.880000000000003
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            21.880000000000003
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            21.880000000000003
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            21.880000000000003
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            21.900000000000002
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            22.51
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            21.900000000000002
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            22.51
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            22.150000000000002
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            21.860000000000003
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
+        },
+        {
+          "center": [
+            -7,
+            -8,
+            22.400000000000002
+          ],
+          "size": [
+            3,
+            1.1,
+            0.1
+          ],
+          "name": "Astronomy table"
         }
       ]
     },
     {
       "name": "SM_LegacyTower_Level07",
       "file": "SM_LegacyTower_Level07.fbx",
-      "triangles": 13076,
-      "collision_hulls": 118,
+      "triangles": 35500,
+      "collision_hulls": 147,
       "collision_boxes": [
         {
           "center": [
@@ -14455,6 +16611,383 @@
             0.44
           ],
           "name": "Bench support"
+        },
+        {
+          "center": [
+            -7,
+            -5.25,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            -5.02,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -7,
+            3.75,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            -7,
+            3.98,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6,
+            -5.25,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6,
+            -5.02,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            -13.2,
+            -6,
+            26.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            -6,
+            26.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            1,
+            26.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            1,
+            26.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -13.2,
+            6.5,
+            26.4
+          ],
+          "size": [
+            0.1,
+            2.6,
+            2.4
+          ],
+          "name": "Archive back panel"
+        },
+        {
+          "center": [
+            -12.959999999999999,
+            6.5,
+            26.4
+          ],
+          "size": [
+            0.6,
+            2.6,
+            2.4
+          ],
+          "name": "Bookcase volume"
+        },
+        {
+          "center": [
+            -3.7,
+            -8,
+            25.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            3.8,
+            -8,
+            25.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -3.7,
+            7.8,
+            25.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            6.5,
+            8.5,
+            25.48
+          ],
+          "size": [
+            0.62,
+            0.62,
+            0.56
+          ],
+          "name": "Stone planter"
+        },
+        {
+          "center": [
+            -9.8,
+            6,
+            25.5
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -10.23,
+            6,
+            26.11
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -5.0,
+            6,
+            25.5
+          ],
+          "size": [
+            1.05,
+            2.4,
+            0.46
+          ],
+          "name": "Lounge sofa base"
+        },
+        {
+          "center": [
+            -4.57,
+            6,
+            26.11
+          ],
+          "size": [
+            0.15,
+            2.4,
+            0.7
+          ],
+          "name": "Lounge sofa back"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            25.75
+          ],
+          "size": [
+            1.8,
+            1.4,
+            0.12
+          ],
+          "name": "Collaboration table"
+        },
+        {
+          "center": [
+            -7.4,
+            6,
+            25.46
+          ],
+          "size": [
+            0.35,
+            0.35,
+            0.52
+          ],
+          "name": "Table pedestal"
+        },
+        {
+          "center": [
+            6.1,
+            -7.2,
+            25.96
+          ],
+          "size": [
+            3.2,
+            1.35,
+            0.12
+          ],
+          "name": "Council table"
+        },
+        {
+          "center": [
+            5,
+            -8.3,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            5,
+            -8.07,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            6.1,
+            -8.3,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            6.1,
+            -8.07,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
+        },
+        {
+          "center": [
+            7.2,
+            -8.3,
+            25.68
+          ],
+          "size": [
+            0.52,
+            0.5,
+            0.12
+          ],
+          "name": "Upholstered chair seat"
+        },
+        {
+          "center": [
+            7.2,
+            -8.07,
+            26.02
+          ],
+          "size": [
+            0.52,
+            0.08,
+            0.64
+          ],
+          "name": "Chair back"
         }
       ]
     },
@@ -14599,8 +17132,8 @@
     {
       "name": "SM_LegacyTower_Site",
       "file": "SM_LegacyTower_Site.fbx",
-      "triangles": 1796,
-      "collision_hulls": 11,
+      "triangles": 7400,
+      "collision_hulls": 26,
       "collision_boxes": [
         {
           "center": [
@@ -14669,6 +17202,188 @@
         },
         {
           "center": [
+            -25,
+            -20,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            -25,
+            -7,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            -25,
+            10,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            -25,
+            26,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            25,
+            -20,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            25,
+            -7,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            25,
+            10,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            25,
+            26,
+            1.6
+          ],
+          "size": [
+            0.38,
+            0.38,
+            3.2
+          ],
+          "name": "Courtyard tree trunk"
+        },
+        {
+          "center": [
+            -9,
+            -22,
+            0.45
+          ],
+          "size": [
+            3,
+            0.65,
+            0.18
+          ],
+          "name": "Plaza bench"
+        },
+        {
+          "center": [
+            -10.1,
+            -22,
+            0.2
+          ],
+          "size": [
+            0.15,
+            0.5,
+            0.4
+          ],
+          "name": "Plaza bench support"
+        },
+        {
+          "center": [
+            -7.9,
+            -22,
+            0.2
+          ],
+          "size": [
+            0.15,
+            0.5,
+            0.4
+          ],
+          "name": "Plaza bench support"
+        },
+        {
+          "center": [
+            9,
+            -22,
+            0.45
+          ],
+          "size": [
+            3,
+            0.65,
+            0.18
+          ],
+          "name": "Plaza bench"
+        },
+        {
+          "center": [
+            7.9,
+            -22,
+            0.2
+          ],
+          "size": [
+            0.15,
+            0.5,
+            0.4
+          ],
+          "name": "Plaza bench support"
+        },
+        {
+          "center": [
+            10.1,
+            -22,
+            0.2
+          ],
+          "size": [
+            0.15,
+            0.5,
+            0.4
+          ],
+          "name": "Plaza bench support"
+        },
+        {
+          "center": [
             0,
             -11.8,
             3.4
@@ -14705,6 +17420,19 @@
             3.2
           ],
           "name": "Canopy support"
+        },
+        {
+          "center": [
+            5,
+            -15,
+            0.3
+          ],
+          "size": [
+            1.0,
+            0.9,
+            0.6
+          ],
+          "name": "Pip guide plinth"
         },
         {
           "center": [

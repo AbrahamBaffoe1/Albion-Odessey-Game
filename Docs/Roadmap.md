@@ -1,33 +1,35 @@
-# From prototype to the full game
+# From the playable chapter to the full game
 
-## 1. Verify the native slice
+## Verified foundation
 
-The current slice now starts with the full-size eight-storey Legacy Hall and first-person exploration, connected to the earlier builder by shared saves and F2 map switching. The building is modelled and its exported geometry/collision is checked in Blender; the Unreal runtime remains the next required verification step.
+The Unity Mac prototype uses real Blender architecture and supports first-person exploration, four local Keepers, personal campus building, two builder palettes, refunds, a shared Beacon and local saves. Version 0.3 adds eight furnished floors, Pip the squirrel guide, a twelve-entry fictional journal, six charter milestones, wayfinding signs and placement feedback. Automated engine checks cover ascent/descent, collection, chapter completion, construction and persistence.
 
-Install an Unreal version compatible with the development Mac/Xcode combination. Compile the editor target, run the import script, and exercise the native checklist. Fix any API/compiler issues discovered. Produce a signed or locally launchable Mac package and record the exact engine version. Replace the initial text HUD with responsive UMG controls and add controller/touch input.
+This is one original campus building and a creative sandbox. It is not yet the entire Albion campus, a finished commercial game, live AR or online multiplayer. The separate Unreal source and FBX import pipeline remain unverified in that engine.
 
-Exit: a new user can install, launch, collect, build, switch appearance, switch local profile, save, quit, and resume without the editor.
+## Next: a complete local player experience
 
-## 2. Build Albion's exploration map
+Add a title screen, named Keeper selection, accessible settings, controller support, audio, remappable controls and a clear pause/quit flow. Add nearby interactable prompts, a campus map, smoother character movement and authored challenges in the furnished rooms. Expand buildable architecture beyond prototype shapes and allow players to walk around their own campus.
 
-Use the reference manifest and approved capture process to reconstruct a verified campus route. Add accessible virtual traversal, landmark entry points, sourced history, and authored quests. Keep the freely designed Legacy Campus as a distinct map.
+Exit: a new player can choose a profile, learn the controls, finish the charter, customize a campus, quit and return without developer guidance. Test human play sessions, input devices and window sizes.
 
-Exit: the first five landmarks match reviewed references, with useful views from every side and no unsourced historical assertions.
+## Reconstruct the Albion exploration route
 
-## 3. Deliver mobile campus mode
+Continue with official campus references and a reviewed capture plan. Reconstruct the first five landmarks, add accessible room-play traversal between them, and label historical material with sources. The original Legacy Hall remains clearly identified as fiction, alongside the freeform personal-campus mode.
 
-Implement a location provider against the tested policy, with permission, stale-fix, and accuracy UI. Add Unreal AR session support on supported iOS/Android devices, anchors, and touch interaction. Never spoof GPS to provide room play: room play is its own first-class route to the same content. Add packaged device tests and confirm no precise location enters ordinary save files or logs.
+Exit: reviewed landmark geometry and sourced history, with useful views around each building and no claims that imagined geometry is a surveyed replica.
 
-Exit: both a remote student and an on-campus student can complete the same discovery objective, with real GPS and camera behavior verified on hardware.
+## Shared online campuses
 
-## 4. Online co-op and shared construction
+Implement authenticated accounts, a server-authoritative economy, persistent personal campuses and a community contribution ledger. Add idempotent commands, reconnects, conflict handling and invitation-based co-op before open chat or public user-generated stories.
 
-Add authenticated accounts and a server-authoritative inventory/transaction service. Persist personal islands by stable user identity and community contributions in a transaction ledger. Include idempotency, reconnect handling, rate limits, server-side eligibility checks, and conflict resolution. Replicate world events; client save files are never authoritative online. Add invitations and a friends list before expanding social tools.
+Exit: two physical devices can build independently, contribute concurrently, reconnect and agree with server state. Local save files cannot grant online currency.
 
-Exit: two physical devices can independently build their islands, contribute concurrently, reconnect, and agree with the server after duplicate/retried commands.
+## Mobile and on-campus mode
 
-## 5. Creative and educational expansion
+Add touch controls, platform builds, measured mobile rendering budgets, real location permissions/accuracy/freshness handling, and supported AR sessions. Room play must retain access to the complete discovery path without requiring GPS or a camera.
 
-Introduce blueprint postcards, era windows, a squirrel guide, and reviewed student memory trails. Start adaptive hints with transparent rules and measure whether they help. Add machine learning only when a real learning need, suitable consent, and evaluation data justify it. Build moderation/reporting and content provenance before enabling public user-generated stories or chat.
+Exit: a remote player and an on-campus player can complete equivalent objectives on tested devices. Precise location is not written into ordinary saves or logs.
 
-Exit: students can create and share a bounded design safely, with published history verified against sources and accessible alternatives available.
+## Release quality
+
+Replace placeholder art and audio, profile performance, add accessible traversal and display options, test saves/upgrades and network recovery, review college branding and content permissions, and prepare distribution builds. Validate every advertised platform and feature before publishing a release.

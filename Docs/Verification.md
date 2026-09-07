@@ -1,5 +1,18 @@
 # Verification record
 
+## Version 0.3 — furnished exploration and complete charter
+
+- Regenerated the actual Blender building with eight themed floors, bookcases, chairs, lounges, plants, studio/gallery/astronomy furniture, courtyard trees and Pip the squirrel guide.
+- Ten exported modules contain **320,632 render triangles and 1,336 authored architecture collision hulls**. All ten FBXs round-tripped through Blender; 2,361 supported headroom samples pass.
+- Unity 6000.6.0f1 compiled and packaged the updated Mac app without C# errors or warnings.
+- The packaged game passed the expanded automated test: eight floors ascended, seven stair connections descended, Pip targetable, all twelve memory raycasts collected, all four structure types built, a refund processed, all six charter milestones earned, and Beacon completed at 24.
+- Completed state was saved and read back with all twelve memories and all six milestones intact. Normal player saves are separate from the test slot. Existing version-1 saves gain an initially empty milestone field; resource balances and plots retain their original format.
+- Journal opening suspends movement; closing restores the appropriate play mode. The game screenshot shows all six completed objectives. Runtime images of furnished interiors, Pip, the journal and completed campus were inspected.
+- Runtime test finished in 11.63 seconds with accelerated incremental controller moves. It reports 1,386 active BoxCollider components: architecture, 49 plots and the guide target. This is not a human-play speed or framerate measurement.
+- Standalone C# tests also verify persistent milestones survive reclaiming a building, plus 100,000 randomized transactions with story updates and valid resource accounting.
+- Evidence: [v0.3 runtime result](UnityPlaytest-v03/result.json), [journal](UnityPlaytest-v03/05-journal.png), [Pip](UnityPlaytest-v03/06-pip-guide.png).
+- Remaining limits: longer human input/playtesting, animation/audio, menus/accessibility, full campus reconstruction, network play and mobile/AR. The Unreal runtime is still unverified.
+
 ## Verified Unity Mac prototype — September 7, 2026
 
 - Installed Unity Hub 3.21.1 and Unity 6000.6.0f1 (f7f8ed4d1e24), with an active license.

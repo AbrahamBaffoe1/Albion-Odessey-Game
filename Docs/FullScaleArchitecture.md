@@ -39,7 +39,7 @@ The full-size tower currently uses one architectural appearance. The builder sti
 ## Native acceptance criteria — still pending
 
 - Compile the editor target with a compatible Unreal/Xcode version.
-- Confirm the import yields ten meshes at centimeter scale and exactly 1,127 convex collision hulls in total.
+- Confirm the import yields ten meshes at centimeter scale and exactly 1,336 convex collision hulls in total.
 - Verify the player faces and reaches the entrance after FBX coordinate conversion.
 - Walk up and down all seven stair connections without clipping, getting stuck, or falling through a floor.
 - Confirm brick tiling, normal-map orientation, transparent glass, lighting, and frame time in the actual engine.

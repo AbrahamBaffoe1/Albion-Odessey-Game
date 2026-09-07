@@ -6,6 +6,7 @@ namespace AlbionOdyssey
     {
         public int acorns=6;
         public int memories;
+        public int milestones;
         public int style=1;
         public int contribution;
         public int[] plots=new int[49];
@@ -45,7 +46,7 @@ namespace AlbionOdyssey
             int total=0;
             foreach(var p in keepers)
             {
-                if(p==null||p.plots==null||p.plots.Length!=49||p.acorns<0||p.acorns>42||p.memories<0||p.memories>4095||p.style<0||p.style>1||p.contribution<0||p.contribution>24||p.contribution%2!=0)return false;
+                if(p==null||p.plots==null||p.plots.Length!=49||p.acorns<0||p.acorns>42||p.memories<0||p.memories>4095||p.milestones<0||p.milestones>63||p.style<0||p.style>1||p.contribution<0||p.contribution>24||p.contribution%2!=0)return false;
                 int spent=p.contribution;
                 foreach(int b in p.plots) { if(b<0||b>4)return false; spent+=Cost(b); }
                 if(p.acorns+spent!=6+3*Count(p.memories))return false;

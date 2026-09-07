@@ -1,0 +1,12 @@
+{
+    "passed": true,
+    "error": "",
+    "floors": 8,
+    "descents": 7,
+    "journal": true,
+    "guide": true,
+    "charterComplete": true,
+    "triangles": 320632,
+    "colliders": 1386,
+    "seconds": 11.632048606872559
+}

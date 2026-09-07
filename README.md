@@ -11,7 +11,7 @@ An Unreal Engine C++ prototype and Unity C# implementation with an original Blen
 The primary game map is now a **first-person walkthrough**. The Unity Mac build has been compiled, launched, and tested through all eight floors using its actual CharacterController. Both engine implementations include walking, mouse look, sprinting, jumping and memory collection. F2 connects exploration to each engine’s personal-campus builder.
 
 - Ten real FBX meshes: eight floors, a roof, and the surrounding site.
-- 132,660 render triangles and 1,127 authored UCX collision hulls.
+- 320,632 render triangles and 1,336 authored UCX collision hulls.
 - Original brick color, normal, and roughness textures.
 - A 1.80 m reference figure and a 1.65 m player eye height.
 - 2,361 floor-support/headroom samples across a complete eight-floor route.
@@ -21,9 +21,17 @@ The Blender model is built and verified. The Unreal C++ and import integration a
 
 See [the step-by-step workflow](Docs/FullScaleArchitecture.md).
 
-## Current status — 0.2.0 prototype source
+## New in 0.3 — The Keeper’s Charter
 
-**The Unity Mac prototype now builds and runs.** Verified with Unity 6000.6.0f1 on an Apple M4 Max Mac: ten real Blender meshes render, the controller traverses eight floors, memory raycasts work, and build/refund/save operations pass. A packaged app is available in the development workspace outputs; binaries are kept out of Git. **The separate Unreal module and import scripts remain uncompiled and unrun**, because Unreal Engine is not installed.
+Legacy Hall now has eight named, furnished floors with bookcases, chairs, lounges, plants, a maker workbench, gallery sculptures, an astronomy table and council seating. The plaza has trees, benches and **Pip**, an original 3D squirrel guide modelled in Blender. Aim at Pip and press **E** for your next objective.
+
+Press **J** to open a twelve-entry journal of original game fiction. Six persistent charter milestones take you from your first discovery to a completed campus and an illuminated shared Beacon. Earned milestones survive reclaiming and redesigning your buildings. The builder now previews valid/blocked plots and supports mouse-wheel zoom.
+
+These additions are implemented in Unity. Updated Blender/FBX architecture is shared with Unreal; the new journal and charter gameplay have not been ported to the Unreal implementation.
+
+## Current status — 0.3.0 playable chapter
+
+**The Unity Mac prototype now builds and runs.** Verified with Unity 6000.6.0f1 on an Apple M4 Max Mac: ten real Blender meshes render, the controller ascends and descends the tower, all twelve memory raycasts work, and the complete six-milestone charter—including build/refund and save/readback—passes. A packaged app is available in the development workspace outputs; binaries are kept out of Git. **The separate Unreal module and import scripts remain uncompiled and unrun**, because Unreal Engine is not installed.
 
 This is a foundation for the larger game, not a finished release. The exploration building now uses full-size architectural proportions and brick/stone materials. The separate campus-builder kit retains its small tile-based models. Neither is an accurate reconstruction of Albion's grounds; the fantasy builder appearance adds purple masonry and celestial details.
 
@@ -34,7 +42,7 @@ This is a foundation for the larger game, not a finished release. The exploratio
 | Two appearances per player | Eight generated Blender/FBX modules; source switches appearances |
 | Four independent personal campuses | Local pass-and-play profiles; not four simultaneous online players |
 | Shared building project | One local Beacon with tracked per-profile contributions |
-| Memory collection, journal, guided objectives | Native source implemented; twelve entries with fact/fiction labels |
+| Memory collection, journal, guided objectives | Unity has twelve fictional entries and six persistent charter milestones; Unreal has a separate archive |
 | Persistence | Unity validated JSON save round-trip verified; Unreal SaveGame verification pending |
 | Real-world location collection | Tested distance/accuracy/permission policy only; no live GPS adapter yet |
 | AR, accounts, online multiplayer, chat | Not implemented |

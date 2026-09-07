@@ -9,9 +9,11 @@
         "M_Architecture_Metal",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 46188
+      "vertices": 102732
     },
     {
       "name": "SM_LegacyTower_Level01",
@@ -22,9 +24,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 129432
     },
     {
       "name": "SM_LegacyTower_Level02",
@@ -35,9 +39,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 113916
     },
     {
       "name": "SM_LegacyTower_Level03",
@@ -48,9 +54,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 124740
     },
     {
       "name": "SM_LegacyTower_Level04",
@@ -61,9 +69,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 125160
     },
     {
       "name": "SM_LegacyTower_Level05",
@@ -74,9 +84,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 107508
     },
     {
       "name": "SM_LegacyTower_Level06",
@@ -87,9 +99,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 50448
+      "vertices": 125220
     },
     {
       "name": "SM_LegacyTower_Level07",
@@ -100,9 +114,11 @@
         "M_Architecture_Glass",
         "M_Architecture_Stone",
         "M_Architecture_Plaster",
-        "M_Architecture_Wood"
+        "M_Architecture_Wood",
+        "M_Architecture_Accent",
+        "M_Architecture_Grass"
       ],
-      "vertices": 39228
+      "vertices": 106500
     },
     {
       "name": "SM_LegacyTower_Roof",
@@ -120,9 +136,11 @@
         "M_Architecture_Grass",
         "M_Architecture_Stone",
         "M_Architecture_Asphalt",
+        "M_Architecture_Wood",
+        "M_Architecture_Floor",
         "M_Architecture_Metal"
       ],
-      "vertices": 5388
+      "vertices": 22200
     }
   ]
 }

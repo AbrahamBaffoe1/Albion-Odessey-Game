@@ -37,5 +37,6 @@ for entry, original in zip(catalog, manifest["assets"]):
     assert sorted(indices) == list(range(count)), "Missing or duplicated corners"
     assert len(indices)//3 == original["triangles"]
     triangles += len(indices)//3
-assert triangles == 132660
+assert triangles == sum(asset["triangles"] for asset in manifest["assets"])
+assert triangles > 100000
 print(f"UNITY_GEOMETRY_OK: {len(catalog)} Blender meshes, {triangles} triangles, finite UVs/unit normals, complete indices, matching colliders")

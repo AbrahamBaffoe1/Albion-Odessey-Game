@@ -200,6 +200,80 @@ def stairs(z):
         o=box("Sloping handrail",(x,2.7,z+(0.9 if x<10.1 else 2.7)+1.0),(.055,math.hypot(3,1.8),.055),metal,False)
         o.rotation_euler[0]=math.atan2(1.8,3)*(1 if x<10.1 else -1)
 
+FLOOR_NAMES = ["WELCOME ATRIUM", "FOUNDERS ARCHIVE", "MAKER STUDIO", "BOTANICAL COMMONS", "STUDY LIBRARY", "SKY GALLERY", "STAR OBSERVATORY", "LEGACY COUNCIL"]
+
+def sign(text, pos, size=.22, material=stone):
+    curve=bpy.data.curves.new(text,"FONT")
+    curve.body=text; curve.align_x="CENTER"; curve.size=size; curve.extrude=.003
+    obj=bpy.data.objects.new(text,curve); current.objects.link(obj)
+    obj.location=pos; obj.rotation_euler=(math.pi/2,0,0); obj.data.materials.append(material)
+
+def round_shape(name,pos,scale,material):
+    bpy.ops.mesh.primitive_uv_sphere_add(segments=12,ring_count=8,radius=1,location=pos)
+    obj=bpy.context.object; obj.name=name; obj.scale=scale
+    obj.data.materials.append(material); move_to(obj,current)
+    for face in obj.data.polygons: face.use_smooth=True
+    return obj
+
+def planter(x,y,z):
+    box("Stone planter",(x,y,z+.28),(.62,.62,.56),stone)
+    box("Plant stem",(x,y,z+.87),(.07,.07,1.20),wood,False)
+    for dz,dx,dy in [(0,.22,0),(.25,-.18,.12),(.48,.1,-.1)]:
+        round_shape("Living foliage",(x+dx,y+dy,z+.85+dz),(.35,.28,.25),grass)
+
+def chair(x,y,z):
+    box("Upholstered chair seat",(x,y,z+.48),(.52,.50,.12),accent)
+    box("Chair back",(x,y+.23,z+.82),(.52,.08,.64),accent)
+    for dx in [-.20,.20]:
+        for dy in [-.18,.18]: box("Chair leg",(x+dx,y+dy,z+.22),(.055,.055,.44),metal,False)
+
+def bookcase(x,y,z):
+    box("Archive back panel",(x,y,z+1.2),(.10,2.6,2.4),wood)
+    for dy in [-1.28,1.28]: box("Archive end panel",(x+.24,y+dy,z+1.2),(.55,.08,2.4),wood,False)
+    for height in [.12,.67,1.22,1.77,2.32]: box("Archive shelf",(x+.24,y,z+height),(.55,2.6,.08),wood,False)
+    # A single volume collider keeps the fine bookshelves inexpensive in the engine.
+    collisions.setdefault(current.name,[]).append({"center":[x+.24,y,z+1.2],"size":[.6,2.6,2.4],"name":"Bookcase volume"})
+    for shelf in range(4):
+        for j in range(13):
+            h=.27+(j%4)*.04
+            box("Bound archive volume",(x+.25,y-1.12+j*.18,z+.18+shelf*.55+h/2),(.32,.12,h),[accent,stone,grass,brick][(j+shelf)%4],False,.006)
+
+def furnish_level(level,z):
+    sign(f"{level+1:02d}  {FLOOR_NAMES[level]}",(0,9.79,z+2.62),.23)
+    for y in [-5,0,5]:
+        box("Wayfinding plaque",(0,y+.05,z+3.05),(2.9,.06,.40),metal,False)
+        sign("STAIRS  >" if y==0 else FLOOR_NAMES[level],(0,y,z+2.99),.19)
+    for x,y in [(-7,-5.25),(-7,3.75),(6,-5.25)]: chair(x,y,z)
+    for y in [-6,1,6.5]: bookcase(-13.2,y,z)
+    for x,y in [(-3.7,-8),(3.8,-8),(-3.7,7.8),(6.5,8.5)]: planter(x,y,z)
+    # West-side lounge and collaboration space remain clear of the central hall and stair route.
+    box("Lounge carpet",(-7,6,z+.012),(7.2,5.3,.024),accent,False,0)
+    for x in [-9.8,-5.0]:
+        box("Lounge sofa base",(x,6,z+.30),(1.05,2.4,.46),wood)
+        box("Lounge upholstery",(x,6,z+.58),(1.0,2.35,.16),accent,False)
+        box("Lounge sofa back",(x+(-.43 if x< -7 else .43),6,z+.91),(.15,2.4,.70),accent)
+    box("Collaboration table",(-7.4,6,z+.55),(1.8,1.4,.12),wood)
+    box("Table pedestal",(-7.4,6,z+.26),(.35,.35,.52),metal)
+    if level in [1,4]:
+        sign("COLLECTIONS & READING",(-7.5,-9.8,z+2.6),.28)
+    elif level==2:
+        for x in [-9,-5]:
+            box("Maker workbench",(x,-8,z+.91),(2.4,1.1,.14),wood)
+            box("Workbench cabinet",(x,-8,z+.42),(2.2,.9,.84),metal)
+            for dx in [-.6,0,.6]: round_shape("Studio ceramic studies",(x+dx,-8,z+1.2),(.18,.18,.25),stone)
+    elif level==3:
+        for x in [-10,-7,-4.5]: planter(x,-8,z)
+    elif level==5:
+        for y in [-7,-3,1]:
+            box("Gallery plinth",(-10.5,y,z+.50),(.8,.8,1),stone)
+            round_shape("Gallery sculpture",(-10.5,y,z+1.45),(.35,.35,.55),accent)
+    elif level==6:
+        box("Astronomy table",(-7,-8,z+.8),(3,1.1,.10),wood)
+        for j in range(5): round_shape("Planet study",(-8+j*.5,-8,z+1.08),(.10+j*.025,)*3,[stone,brick,grass,accent,metal][j])
+    elif level==7:
+        box("Council table",(6.1,-7.2,z+.76),(3.2,1.35,.12),wood)
+        for x in [5,6.1,7.2]: chair(x,-8.3,z)
+
 for i in range(FLOORS):
     print(f"Building editable level {i+1}/{FLOORS}",flush=True)
     current=levels[i]
@@ -237,6 +311,8 @@ for i in range(FLOORS):
         box("Lobby bench back",(x,y+.29,z+.85),(2.1,.08,.65),wood)
         for dx in [-.8,.8]: box("Bench support",(x+dx,y,z+.22),(.10,.5,.44),metal)
 
+    furnish_level(i,z)
+
 current=roof
 z=FLOORS*RISE
 box("Roof slab",(0,0,z),(28.4,20.4,.3),floor_mat)
@@ -254,8 +330,29 @@ box("Entry plaza",(0,-18,-.12),(42,16,.24),stone)
 box("Street",(0,-33,-.11),(180,9,.22),asphalt)
 for x in range(-80,81,8): box("Road marking",(x,-33,.007),(4,.12,.015),stone,False,0)
 for x in [-17,17]: box("Sidewalk",(x,4.5,-.12),(4,29,.24),stone)
+for x in [-25,25]:
+    for y in [-20,-7,10,26]:
+        box("Courtyard tree trunk",(x,y,1.6),(.38,.38,3.2),wood)
+        round_shape("Courtyard tree canopy",(x,y,4),(2.1,2.1,2.3),grass)
+        box("Tree planting bed",(x,y,.04),(3.3,3.3,.08),floor_mat,False)
+for x in [-9,9]:
+    box("Plaza bench",(x,-22,.45),(3,.65,.18),wood)
+    for dx in [-1.1,1.1]: box("Plaza bench support",(x+dx,-22,.20),(.15,.5,.4),metal)
 box("Entry canopy",(0,-11.8,3.4),(7.5,4,.24),metal)
 for x in [-3.4,3.4]: box("Canopy support",(x,-13,1.6),(.18,.18,3.2),metal)
+# Pip is a fully modelled squirrel guide at the entrance, with an interactable plinth in Unity.
+box("Pip guide plinth",(5,-15,.30),(1.0,.9,.6),stone)
+round_shape("Pip curled tail",(5,-14.62,1.28),(.32,.29,.67),wood)
+round_shape("Pip body",(5,-15,1.12),(.28,.25,.44),wood)
+round_shape("Pip chest",(5,-15.21,1.14),(.18,.08,.29),stone)
+round_shape("Pip head",(5,-15.03,1.65),(.28,.26,.25),wood)
+round_shape("Pip muzzle",(5,-15.26,1.57),(.16,.12,.10),stone)
+round_shape("Pip nose",(5,-15.37,1.61),(.045,.035,.035),metal)
+for dx in [-.18,.18]:
+    round_shape("Pip ear",(5+dx,-15.02,1.9),(.085,.075,.17),wood)
+    round_shape("Pip foot",(5+dx,-15.13,.70),(.12,.20,.075),wood)
+for dx in [-.12,.12]: round_shape("Pip eye",(5+dx,-15.27,1.71),(.032,.025,.038),metal)
+sign("KEEPER PIP",(5,-15.46,.34),.14,metal)
 # Entrance stays unobstructed between the two jambs. No closed door collision.
 for x in [-1.13,1.13]: box("Entry jamb",(x,-10.18,1.45),(.12,.16,2.9),metal)
 box("Entry transom",(0,-10.18,2.96),(2.38,.16,.12),metal)
@@ -280,7 +377,7 @@ move_to(bpy.context.object,human)
 # Export joined render meshes per level, with separately named convex box hulls.
 # Keep the original editable objects untouched in their floor collections.
 manifest={"schema":1,"name":"Legacy Hall","original_concept":True,"units":"meters",
-          "floors":FLOORS,"floor_height_m":RISE,"wall_height_m":FLOORS*RISE,
+          "floor_names":FLOOR_NAMES,"furnished":True,"floors":FLOORS,"floor_height_m":RISE,"wall_height_m":FLOORS*RISE,
           "building_width_m":28,"building_depth_m":20,"height_m":32.8,
           "entrance_clear_width_m":2.1,"stairs":{"width_m":1.8,"riser_m":.18,"tread_m":.30},"assets":[]}
 for idx,c in enumerate(levels+[roof,environment]):
