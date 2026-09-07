@@ -13,3 +13,15 @@ __pycache__/
 work/
 .env*
 !.env.example
+Unity/Library/
+Unity/Temp/
+Unity/Logs/
+Unity/Obj/
+Unity/Builds/
+Unity/UserSettings/
+Unity/*.csproj
+Unity/*.sln
+Tests/UnityRules/bin/
+Tests/UnityRules/obj/
+mono_crash.*
+*.dmp

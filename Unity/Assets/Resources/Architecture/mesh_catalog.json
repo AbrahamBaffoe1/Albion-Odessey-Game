@@ -1,0 +1,128 @@
+{
+  "assets": [
+    {
+      "name": "SM_LegacyTower_Level00",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Metal",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 46188
+    },
+    {
+      "name": "SM_LegacyTower_Level01",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level02",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level03",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level04",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level05",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level06",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 50448
+    },
+    {
+      "name": "SM_LegacyTower_Level07",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Metal",
+        "M_Architecture_Brick",
+        "M_Architecture_Glass",
+        "M_Architecture_Stone",
+        "M_Architecture_Plaster",
+        "M_Architecture_Wood"
+      ],
+      "vertices": 39228
+    },
+    {
+      "name": "SM_LegacyTower_Roof",
+      "materials": [
+        "M_Architecture_Floor",
+        "M_Architecture_Brick",
+        "M_Architecture_Stone",
+        "M_Architecture_Metal"
+      ],
+      "vertices": 4488
+    },
+    {
+      "name": "SM_LegacyTower_Site",
+      "materials": [
+        "M_Architecture_Grass",
+        "M_Architecture_Stone",
+        "M_Architecture_Asphalt",
+        "M_Architecture_Metal"
+      ],
+      "vertices": 5388
+    }
+  ]
+}

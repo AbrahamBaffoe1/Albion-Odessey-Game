@@ -1,0 +1,187 @@
+using System;
+using System.IO;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace AlbionOdyssey
+{
+    public sealed class MemoryMarker : MonoBehaviour { public int id; }
+    public sealed class PlotMarker : MonoBehaviour { public int cell; }
+    public sealed class OdysseyGame : MonoBehaviour
+    {
+        public OdysseyState state=new OdysseyState();
+        public Explorer player;
+        public Camera builderCamera;
+        public bool building;
+        public string notice="Enter Legacy Hall. Find a memory on each floor; aim and press E to collect.";
+        readonly List<GameObject> memories=new List<GameObject>();
+        GameObject island,beacon;
+        int selected=1;
+        GUIStyle title,body,small;
+        string SavePath=>Path.Combine(Application.persistentDataPath,OdysseySmoke.Enabled?"albion-unity-smoke.json":"albion-unity-v1.json");
+        static readonly string[] Names={"","Garden","Library","Observatory","Hall"};
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        static void Boot()
+        {
+            if(FindAnyObjectByType<OdysseyGame>()==null)new GameObject("Albion Odyssey").AddComponent<OdysseyGame>();
+        }
+        void Start()
+        {
+            Application.runInBackground=OdysseySmoke.Enabled;
+            Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
+            if(!OdysseySmoke.Enabled&&File.Exists(SavePath))
+            {
+                try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(SavePath));if(saved!=null&&saved.Valid())state=saved;else notice="Invalid save ignored. A new session has started.";}
+                catch(Exception e){notice="Save could not be loaded: "+e.Message;}
+            }
+            TowerGeometry.Load();
+            RenderSettings.ambientMode=AmbientMode.Trilight;
+            RenderSettings.ambientSkyColor=new Color(.55f,.65f,.78f);
+            RenderSettings.ambientEquatorColor=new Color(.38f,.42f,.48f);
+            RenderSettings.ambientGroundColor=new Color(.20f,.21f,.23f);
+            var sunlight=new GameObject("Afternoon sun").AddComponent<Light>();sunlight.type=LightType.Directional;
+            RenderSettings.sun=sunlight;RenderSettings.skybox=Resources.Load<Material>("ArchitectureSky");
+            sunlight.intensity=1.3f;sunlight.shadows=LightShadows.Soft;sunlight.transform.rotation=Quaternion.Euler(40,-35,0);
+            for(int floor=0;floor<8;floor++)foreach(float z in new[]{-5f,3f})
+            {
+                var light=new GameObject("Hall light").AddComponent<Light>();light.type=LightType.Spot;light.spotAngle=120;light.transform.rotation=Quaternion.Euler(90,0,0);light.shadows=LightShadows.Soft;
+                light.transform.position=new Vector3(0,floor*3.6f+2.7f,z);light.range=7;light.intensity=2.2f;light.color=new Color(1,.89f,.73f);
+            }
+            var avatar=new GameObject("Keeper - 1.92m character");avatar.transform.position=new Vector3(0,.05f,-22);
+            player=avatar.AddComponent<Explorer>();player.body=avatar.AddComponent<CharacterController>();
+            player.body.height=1.92f;player.body.radius=.42f;player.body.center=new Vector3(0,.96f,0);player.body.stepOffset=.40f;player.body.skinWidth=.035f;
+            var eye=new GameObject("Player eye height 1.65m");eye.transform.SetParent(avatar.transform,false);eye.transform.localPosition=new Vector3(0,1.65f,0);
+            player.eyes=eye.AddComponent<Camera>();player.eyes.nearClipPlane=.05f;player.eyes.farClipPlane=300;player.eyes.fieldOfView=80;
+            player.eyes.clearFlags=CameraClearFlags.Skybox;player.eyes.backgroundColor=new Color(.44f,.56f,.69f);eye.AddComponent<AudioListener>();
+            builderCamera=new GameObject("Campus design camera").AddComponent<Camera>();builderCamera.transform.position=new Vector3(65,32,-22);
+            builderCamera.transform.LookAt(new Vector3(48,0,0));builderCamera.orthographic=true;builderCamera.orthographicSize=20;builderCamera.enabled=false;
+            builderCamera.clearFlags=CameraClearFlags.Skybox;builderCamera.backgroundColor=new Color(.14f,.20f,.27f);
+            RefreshMemories();RebuildCampus();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;
+            Debug.Log("ODYSSEY_READY: Blender tower, 1127 collision boxes, first-person controller and campus builder initialized.");
+        }
+        void Update()
+        {
+            if(player==null)return;
+            if(Input.GetKeyDown(KeyCode.F2))ToggleMode();
+            if(Input.GetKeyDown(KeyCode.Tab)){state.active=(state.active+1)%4;Save();RefreshMemories();RebuildCampus();notice="Keeper "+(state.active+1)+" — your collection and personal campus.";}
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                notice=state.Contribute()?"Two acorns added to the shared Beacon.":state.beacon>=24?"The shared Beacon is complete!":"You need two acorns to contribute.";
+                Save();RebuildCampus();
+            }
+            if(building)
+            {
+                for(int i=1;i<=4;i++)if(Input.GetKeyDown((KeyCode)((int)KeyCode.Alpha0+i)))selected=i;
+                if(Input.GetKeyDown(KeyCode.T)){state.Current.style=1-state.Current.style;Save();RebuildCampus();}
+                float uiScale=Mathf.Min(Screen.width/1280f,Screen.height/800f);
+                if(Input.mousePosition.y>115*uiScale&&Input.mousePosition.y<Screen.height-125*uiScale&&(Input.GetMouseButtonDown(0)||Input.GetMouseButtonDown(1)))
+                {
+                    if(Physics.Raycast(builderCamera.ScreenPointToRay(Input.mousePosition),out var hit,200))
+                    {
+                        var plot=hit.collider.GetComponent<PlotMarker>();
+                        if(plot!=null)
+                        {
+                            bool reclaim=Input.GetMouseButtonDown(1);
+                            bool ok=reclaim?state.Reclaim(plot.cell):state.Build(plot.cell,selected);
+                            notice=ok?(reclaim?"Building reclaimed. Full acorn refund.":Names[selected]+" built."):"Plot occupied or not enough acorns. Right-click a building for a full refund.";
+                            if(ok){Save();RebuildCampus();}
+                        }
+                    }
+                }
+            }
+            else if(Input.GetKeyDown(KeyCode.E)&&Cursor.lockState==CursorLockMode.Locked)
+            {
+                if(Physics.Raycast(player.eyes.transform.position,player.eyes.transform.forward,out var hit,3.5f))
+                {
+                    var memory=hit.collider.GetComponent<MemoryMarker>();
+                    if(memory!=null&&state.Collect(memory.id)){notice="Memory "+(memory.id+1)+" collected. +3 acorns. F2 opens your campus builder.";Save();RefreshMemories();}
+                }
+            }
+            foreach(var m in memories)if(m!=null)m.transform.Rotate(0,30*Time.deltaTime,0);
+        }
+        public void ToggleMode()
+        {
+            building=!building;player.controls=!building;player.eyes.enabled=!building;builderCamera.enabled=building;
+            Cursor.lockState=building?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=building;
+            notice=building?"Choose 1–4 and click an empty tile. Your tower discoveries fund this campus.":"Back at Legacy Hall. Explore the floors and collect memories.";
+        }
+        public bool Save()
+        {
+            if(!state.Valid()){notice="Save rejected: invalid game state.";return false;}
+            try
+            {
+                Directory.CreateDirectory(Application.persistentDataPath);
+                string temp=SavePath+".tmp";File.WriteAllText(temp,JsonUtility.ToJson(state,true));
+                if(File.Exists(SavePath))File.Replace(temp,SavePath,SavePath+".bak");else File.Move(temp,SavePath);
+                return true;
+            }
+            catch(Exception e){notice="Save failed; session progress remains in memory. "+e.Message;return false;}
+        }
+        void RefreshMemories()
+        {
+            foreach(var m in memories)Destroy(m);memories.Clear();
+            var gold=TowerGeometry.Material("Memory gold",new Color(1,.66f,.12f),.35f,.7f);
+            gold.EnableKeyword("_EMISSION");gold.SetColor("_EmissionColor",new Color(1,.4f,.03f)*1.2f);
+            for(int i=0;i<12;i++)
+            {
+                if((state.Current.memories&(1<<i))!=0)continue;
+                Vector3 pos=i<8?new Vector3(0,i*3.6f+1.15f,3):new Vector3((i-9.5f)*4,1.15f,-18);
+                var orb=GameObject.CreatePrimitive(PrimitiveType.Sphere);orb.name="Memory "+(i+1);orb.transform.position=pos;orb.transform.localScale=Vector3.one*.45f;
+                orb.GetComponent<Renderer>().sharedMaterial=gold;orb.AddComponent<MemoryMarker>().id=i;memories.Add(orb);
+            }
+        }
+        GameObject Piece(PrimitiveType type,string name,Vector3 pos,Vector3 scale,Material mat,int cell=-1)
+        {
+            var o=GameObject.CreatePrimitive(type);o.name=name;o.transform.SetParent(island.transform,false);o.transform.position=pos;o.transform.localScale=scale;
+            o.GetComponent<Renderer>().sharedMaterial=mat;if(cell>=0)o.AddComponent<PlotMarker>().cell=cell;return o;
+        }
+        public void RebuildCampus()
+        {
+            if(island!=null){island.SetActive(false);Destroy(island);}island=new GameObject("Keeper's personal campus");
+            bool fantasy=state.Current.style==1;
+            var grass=TowerGeometry.Material(fantasy?"Fantasy plot":"Campus plot",fantasy?new Color(.12f,.29f,.29f):new Color(.29f,.4f,.18f));
+            var wall=TowerGeometry.Material(fantasy?"Fantasy facade":"Campus facade",fantasy?new Color(.42f,.25f,.58f):new Color(.5f,.22f,.13f));
+            var stone=TowerGeometry.Material("Builder stone",new Color(.75f,.7f,.57f));
+            var roof=TowerGeometry.Material("Builder copper",new Color(.14f,.29f,.28f),.4f,.5f);
+            for(int i=0;i<49;i++)
+            {
+                var p=new Vector3(48+(i%7-3)*4.2f,0,(i/7-3)*4.2f);
+                Piece(PrimitiveType.Cube,"Plot "+i,p,new Vector3(4.05f,.15f,4.05f),grass,i);
+                int kind=state.Current.plots[i];if(kind==0)continue;
+                if(kind==1)
+                {
+                    Piece(PrimitiveType.Cylinder,"Garden pedestal",p+Vector3.up*.25f,new Vector3(2.7f,.2f,2.7f),stone,i);
+                    Piece(PrimitiveType.Cylinder,"Garden trunk",p+Vector3.up*.8f,new Vector3(.25f,.65f,.25f),wall,i);
+                    Piece(PrimitiveType.Sphere,"Garden crown",p+Vector3.up*1.8f,Vector3.one*1.7f,grass,i);
+                }
+                else
+                {
+                    float height=kind==4?4.2f:kind==2?2.6f:3f;
+                    Piece(PrimitiveType.Cube,Names[kind],p+Vector3.up*(height/2),new Vector3(2.9f,height,2.8f),wall,i);
+                    Piece(kind==3?PrimitiveType.Sphere:PrimitiveType.Cube,"Roof",p+Vector3.up*(height+.15f),new Vector3(3.1f,kind==3?1.7f:.3f,3f),roof,i);
+                    for(float x=-.8f;x<1;x+=.8f)Piece(PrimitiveType.Cube,"Window",p+new Vector3(x,height*.6f,-1.42f),new Vector3(.4f,.65f,.05f),stone,i);
+                }
+            }
+            float h=1+state.beacon*.15f;
+            beacon=Piece(PrimitiveType.Cylinder,"Shared Beacon",new Vector3(48,h/2,18),new Vector3(1,h/2,1),stone);
+            Piece(PrimitiveType.Sphere,"Beacon star",new Vector3(48,h+.5f,18),Vector3.one*1.4f,roof);
+        }
+        void OnGUI()
+        {
+            if(player==null)return;
+            if(title==null){title=new GUIStyle(GUI.skin.label){fontSize=27,fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){fontSize=17};small=new GUIStyle(GUI.skin.label){fontSize=14,wordWrap=true};}
+            float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
+            float width=Screen.width/scale,height=Screen.height/scale;
+            GUI.color=new Color(.035f,.05f,.08f,.94f);GUI.DrawTexture(new Rect(16,16,Mathf.Min(width-32,850),108),Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(0,height-115,width,115),Texture2D.whiteTexture);GUI.color=Color.white;
+            GUI.Label(new Rect(32,25,900,40),"ALBION ODYSSEY  /  "+(building?"YOUR LEGACY CAMPUS":"LEGACY HALL"),title);
+            GUI.Label(new Rect(32,68,900,30),$"KEEPER {state.active+1}    {state.Current.acorns} ACORNS    {OdysseyState.Count(state.Current.memories)}/12 MEMORIES    BEACON {state.beacon}/24",body);
+            GUI.Label(new Rect(32,96,900,23),building?"Personal campus · "+(state.Current.style==1?"Fantasy":"Campus"):$"Eight-storey Blender building · Floor {Mathf.Clamp(Mathf.FloorToInt((player.transform.position.y+.1f)/3.6f)+1,1,8)}",small);
+            GUI.Label(new Rect(24,height-105,width-48,38),notice,body);
+            GUI.Label(new Rect(24,height-67,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD walk   MOUSE look   SHIFT run   SPACE jump   E collect   ESC release mouse",small);
+            GUI.Label(new Rect(24,height-38,width-48,28),"F2 explore / build    TAB next Keeper    C contribute"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
+            if(!building){GUI.Label(new Rect(width/2-5,height/2-12,20,24),"+",body);}
+        }
+    }
+}

@@ -1,5 +1,21 @@
 # Verification record
 
+## Verified Unity Mac prototype — September 7, 2026
+
+- Installed Unity Hub 3.21.1 and Unity 6000.6.0f1 (f7f8ed4d1e24), with an active license.
+- Compiled and packaged the Unity project without C# warnings or errors; launched the Mac app on an Apple M4 Max running macOS 15.7.7.
+- Exported all ten evaluated Blender meshes into Unity meter-scale buffers: 132,660 triangles with normals, UVs and materials.
+- Geometry validation confirms complete indices, finite values, unit normals, and matching authored colliders.
+- Unity C# rules pass 100,000 randomized transactions plus explicit spending, refund, duplicate-collection, player-isolation and tamper cases under .NET 9.
+- Added first-person controls, building, appearance switches, local player profiles, a shared Beacon and validated JSON saves.
+- Automated runtime walkthrough **passed**: the actual CharacterController traversed the entrance and seven stair connections, reached all eight floor heights, and targeted eight memory colliders.
+- Build/refund/contribution transactions, library scene creation, and reading back the saved JSON state passed. Smoke tests use a separate save file from normal play.
+- Runtime reports 132,660 tower triangles and 1,176 BoxColliders (1,127 tower/site hulls plus 49 campus tiles).
+- Inspected actual engine images of the exterior, eighth-floor corridor and built library. Fixed a focus-related test pause, builder test refresh and harsh point-light highlights.
+- Automated test completed in 7.21 seconds using accelerated incremental controller moves. This is not a measurement of normal gameplay speed or framerate.
+- Unity’s first interactive launch crashed in its UI text renderer. A normal restart succeeded; LegacyHall was prepared through the Odyssey menu and Play mode visibly rendered the tower and campus builder with Keeper progress.
+- Longer human testing of mouse/keyboard feel, descending every staircase, jumping, screen-size coverage and restart persistence through the UI remains. Interiors and campus surroundings need substantial further art work.
+
 ## Full-size architecture update — September 7, 2026
 
 - Built an editable eight-storey, 32.8 m original campus tower in Blender, with ten exported architectural modules.
