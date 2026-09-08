@@ -5,7 +5,7 @@ namespace AlbionOdyssey
 {
     public sealed class CampusExpansion : MonoBehaviour
     {
-        public OdysseyGame game;public readonly List<CampusCar> cars=new List<CampusCar>();public CampusParking parking;
+        public OdysseyGame game;public readonly List<CampusCar> cars=new List<CampusCar>();public CampusParking parking;public CampusFauna fauna;
         public readonly List<Vector3> discoveries=new List<Vector3>();
         public int found;public int selectedPlace;public int skin=1,outfit,hair;public bool backpack=true;
         public string keeperName="Keeper";int active=-1,treasurePage;string search="",category="All";Vector2 scroll;
@@ -35,7 +35,7 @@ namespace AlbionOdyssey
         }
         public void Setup(OdysseyGame owner)
         {
-            game=owner;CampusGeometry.Build();parking=gameObject.AddComponent<CampusParking>();parking.Setup(game);game.player.CreateAvatar();game.player.thirdPerson=!OdysseySmoke.Enabled;
+            game=owner;CampusGeometry.Build();parking=gameObject.AddComponent<CampusParking>();parking.Setup(game);game.player.CreateAvatar();fauna=gameObject.AddComponent<CampusFauna>();fauna.Setup(game);game.player.thirdPerson=!OdysseySmoke.Enabled;
             game.player.eyes.farClipPlane=1400;game.player.eyes.cullingMask=~(1<<30);
             foreach(var p in new[]{CampusCatalog.Point(409,241),CampusCatalog.Point(520,161),CampusCatalog.Point(599,286)})
             {

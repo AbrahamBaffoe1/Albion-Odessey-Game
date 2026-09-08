@@ -4,6 +4,7 @@ namespace AlbionOdyssey
 {
     public static class CampusGeometry
     {
+        public static readonly List<Vector3> HabitatTrees=new List<Vector3>();
         static Material brick,stone,roof,glass,grass,path,road,gold; static Transform root;
         static GameObject Box(Transform p,string name,Vector3 at,Vector3 size,Material mat,bool solid=true)
         {
@@ -13,6 +14,7 @@ namespace AlbionOdyssey
         }
         public static void Build()
         {
+            HabitatTrees.Clear();
             root=new GameObject("Albion College · map-based exterior campus").transform;
             brick=CraftModel.Surface("Campus brick",Color.white,"red_brick_03");stone=TowerGeometry.Material("Campus limestone",new Color(.78f,.72f,.59f));
             roof=TowerGeometry.Material("Campus slate",new Color(.16f,.23f,.25f));glass=TowerGeometry.Material("Campus blue windows",new Color(.19f,.36f,.44f),.15f,.7f);
@@ -72,7 +74,7 @@ namespace AlbionOdyssey
                 oakTemplates=new GameObject[3];var definition=JsonUtility.FromJson<CraftDescription>(Resources.Load<TextAsset>("CampusCraft/oak").text);
                 for(int i=0;i<3;i++){oakTemplates[i]=CraftModel.Load("oak"+i,definition.sections[0],definition.materials,null);oakTemplates[i].SetActive(false);}
             }
-            var tree=Object.Instantiate(oakTemplates[variant],root);tree.name="Blender oak";tree.transform.position=p;tree.transform.localRotation=Quaternion.Euler(0,(p.x*17)%360,0);tree.transform.localScale=Vector3.one*(.8f+Mathf.Abs(p.z%4)*.12f);tree.SetActive(true);
+            var tree=Object.Instantiate(oakTemplates[variant],root);tree.name="Blender oak";tree.transform.position=p;tree.transform.localRotation=Quaternion.Euler(0,(p.x*17)%360,0);tree.transform.localScale=Vector3.one*(.8f+Mathf.Abs(p.z%4)*.12f);tree.SetActive(true);HabitatTrees.Add(p);
         }
         static void Building(CampusPlace p)
         {
