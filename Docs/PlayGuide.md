@@ -10,7 +10,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Look around | Mouse |
 | Run / jump | Shift / Space |
 | Pick up a golden memory or talk to Pip | Aim at it from nearby, then E or F |
-| Read a building's story | H near a building, then use **Read aloud**, **Skip typing** or its reference media |
+| Read a building's story | H near a building opens a glass side panel; use **Read aloud**, **Skip typing** or **Open full archive · G** |
 | Browse all building stories | G from the welcome screen or while exploring |
 | Map and travel | M, then Travel here |
 | Course creation and enrollment | K |

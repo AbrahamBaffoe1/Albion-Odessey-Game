@@ -300,7 +300,7 @@ namespace AlbionOdyssey
             {
                 TourPlace story = game.tour.catalog.ForCampus(Id);
                 if (story == null && Id == "18") story = game.tour.catalog.ForCampus("18n");
-                game.tour.Open(story); return true;
+                game.tour.OpenStory(story); return true;
             }
             return false;
         }

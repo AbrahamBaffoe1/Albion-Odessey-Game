@@ -47,7 +47,7 @@ namespace AlbionOdyssey
                 g.player.transform.rotation=Quaternion.Euler(0,-90,0);g.player.UpdateCamera();yield return Frame("03-floor-"+floor);
                 if(floor<2){yield return Move(b.Origin+new Vector3(9.05f,floor*3.5f,5));yield return Move(b.Origin+new Vector3(9.05f,floor*3.5f,-5));yield return Move(b.Origin+new Vector3(11.7f,floor*3.5f,-5));}
             }
-            g.tour.Open(g.tour.catalog.ForCampus("26"));Require(g.tour.selected.name.Contains("Ferguson"),"Building history");yield return Frame("04-history");g.tour.Close();g.player.controls=false;
+            g.tour.OpenStory(g.tour.catalog.ForCampus("26"));Require(g.tour.selected.name.Contains("Ferguson"),"Building history");yield return Frame("04-history");g.tour.Close();g.player.controls=false;
             // Verify actual skin deformation from the authored clips rather than a static pose.
             g.player.avatar.gameObject.SetActive(true);
             var animator=g.player.avatar.GetComponentInChildren<Animator>(true);Require(animator!=null&&animator.runtimeAnimatorController!=null,"Animator controller missing");
