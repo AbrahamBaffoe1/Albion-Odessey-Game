@@ -1,55 +1,44 @@
-# Albion Odyssey 0.11 — campus systems and four-wing Science Complex update
+# Albion Odyssey
 
-Open **Albion Odyssey.app**. On the launch screen, choose **Explore Ferguson Hall** on the right. Approach the entrance, press **E** to open the door and walk inside. Press **E** near room doors. Stairs at the east end connect all three floors. **H** opens Ferguson’s history and official media; **G** opens all building stories.
+Albion Odyssey is a living campus adventure about learning, belonging and making a place your own.
 
-## Controls and interface
+The game begins at Legacy Hall, where a new Keeper discovers the stories held in its rooms. From there, the campus opens into a walkable world: historic buildings, study spaces, paths, gardens, student activity and the people who give a college its rhythm. Every building is an invitation to look closer. A doorway leads to a room, a room leads to a story, and a story gives the player a reason to return.
 
-WASD or arrow keys move; mouse looks; Shift runs; Space jumps; V changes camera. O enables the four on-screen movement buttons. M opens the map, B opens the Building Studio, K opens courses, J opens the journal, and Esc opens the main menu. No function keys are needed for these actions.
+## The vision
 
-During exploration the interface has one compact location header, Map/Menu buttons and one contextual action prompt. Movement buttons appear only when enabled. Achievements use one notification area. Detailed stats, courses, character choices and media remain in their dedicated panels.
+Albion Odyssey brings together two kinds of play. One is grounded in the real character of Albion College: recognizable landmarks, public history, campus traditions and spaces designed for learning. The other is imaginative: a Keeper can shape a personal campus, choose a visual style, create a building and turn it into a classroom, library, gathering place or new chapter of the story.
 
-Choose **Finish session** to save and see the summary, then **Quit to desktop**. All existing campus, Legacy Hall, classroom, courses, collections, media and building tools are in the same app. Internet is needed only for the official streamed media.
+The result should feel like a place rather than a menu. Students can tour, explore and learn at their own pace. Players can collect memories, meet campus characters, build spaces, create courses and invite other people into a shared world. The campus is both the setting and the game system.
 
-## What changed
+## What players do
 
-- Ferguson’s solid exterior placeholder is replaced with actual Blender meshes, photographed brick textures, a recessed arched entrance, three levels, stairs, furniture and 19 interactive doors.
-- The student is now a skinned character based on Quaternius’s CC0 model, with project-made campus clothing, footwear and backpack. A 65-bone rig plays authored idle, walking, jogging, sprinting and seated animations through a Unity Animator blend tree. This is a stylized human character, not a photorealistic person.
-- Campus lawns and paving have photographed textures. Blender oak trees have branches and individual leaf geometry. Lighting and shadows are coordinated across the scene. The campus still uses the approximate centers derived from the college’s published map.
-- Generic mesh-section loading and reusable door components support the next buildings. Interiors are created on approach, hidden when distant, and reused on return. History and travel are available through the existing directory and map.
-- Robinson Hall now has a reference-driven four-level atrium reconstruction with nine reusable doors, stairs, offices, balcony rails and a history panel. Bonta Admission Center now has a reference-driven walkable lobby, admissions offices, three doors and its own history panel. Both buildings use measured reconstruction dimensions recorded in `Art/BuildingReferences-v0.9.md`.
-- The Science Complex is now registered as a connected four-level walkable group with an atrium, lab/collection signage, teaching and research lab spaces, display cases and history links for Kresge, Norris, Palenske and Putnam. Publicly documented atrium and laboratory facts are recorded in `Art/PublicCampusResearch-2026-09.md`; private room dimensions remain provisional.
-- The 0.11 pass replaces the Science Complex box with four connected Kresge, Norris, Palenske and Putnam wings around a real atrium opening, adds labs, lecture/study rooms, collections, stair rails and accessible side entry details, and polishes Ferguson, Robinson and Bonta with furniture, signs, visitor seating, benches and collision-safe approaches.
-- Campus paths now have rest benches, lamps, planters and six routed student NPCs. F4 opens captions, large text, high contrast, reduced motion and alternate-key settings; controllers use the standard left stick and jump button. F5 opens the LAN shared-campus session, F8 opens optional XR mode, and F9 shows the runtime profiler.
-- Courses now carry a weekday, start time and duration. Saves recover from the atomic `.bak` copy after an interrupted write, while `runtime-profile.json` records frame-rate and memory samples.
-- Duplicate HUD panels are removed. World labels use depth testing so they do not show through walls.
+- Explore Legacy Hall, Ferguson Hall, Robinson Hall, Bonta Admission Center and the growing Science Complex through walkable entrances, rooms, stairs and history interactions.
+- Read the story of each place, open linked college media and discover how architecture, people and campus traditions connect.
+- Move across the campus on foot or by car, follow paths through landscaped grounds and encounter student NPCs travelling between destinations.
+- Create a personal campus in either a campus-inspired or fantasy style, then furnish its plots and make space for learning.
+- Create courses with schedules, enrol Keepers, assign simulated students, teach a session and complete lessons.
+- Shape a Keeper with saved appearance, collection progress, sound feedback and an accessible control scheme.
+- Host or join a small shared LAN campus, with presence, movement snapshots, chat filtering and host moderation.
 
-## Accuracy and remaining work
+## A campus built to grow
 
-Ferguson’s visible facade follows reference photographs. Robinson’s four-story atrium is supported by a published renovation report, and Bonta’s visitor-facing layout follows the official tour and public descriptions. Their hidden room dimensions and all three buildings’ complete floor plans remain provisional reconstructions, not measured digital twins. Gameplay room labels do not assert current official office assignments. Other campus buildings still need individual facade/interior reconstruction; adding all 61 map destinations was not the same as completing 61 explorable buildings. Wesley remains a separate reference-based room study accessible from its directory entry.
+The building system is deliberately reusable. Doors, stairs, floors, rooms, signs, furniture, history panels and proximity loading are shared components, so each new hall can receive its own architecture without losing the consistent feel of the world. The Science Complex is the next architectural pattern: four connected wings around an atrium, with teaching laboratories, research spaces, collections and public circulation.
 
-Headset VR, online multiplayer and online enrollment are not implemented. Courses and four Keeper profiles are local. Custom Building Studio designs can be edited and walked through; campus course buildings use the separate plot-building mode inside this same app.
+The world is authored in Blender and played in Unity. Materials, collision and character animation are part of the same pipeline. Public campus references guide placement and visible character; game-scale reconstruction keeps the world playable while individual halls are refined.
 
-## Source and resources
+## The experience we are making
 
-The consolidated source archive includes the Unity project and editable Blender sources: **FergusonHall.blend**, **StudentRig.blend** and **CampusOaks.blend**. Open Unity with 6000.6.0f1. Authoring tools are under Tools; generated editor caches are omitted. The canonical development checkout is `~/Development/Albion-Odessey-Game`. Unity is the current playable game; `Source/`, `Config/` and the `.uproject` preserve the earlier Unreal foundation.
+Albion Odyssey is meant to be calm enough for a self-guided tour, playful enough for discovery and deep enough to support a long-running shared campus. History is encountered through movement. Learning is expressed through rooms and schedules. Building is a form of authorship. Multiplayer is a way to turn a campus into a community.
 
-See **Art/ASSET-CREDITS.md** and **Art/AssetProvenance.json** for reference links, CC0 materials, character/animation credits and hashes. College photos/videos remain linked to their providers rather than copied into the app as geometry.
+The current development path is to finish the major academic halls one by one, improve the daily life of the campus, expand courses and activities, harden shared-world persistence and moderation, then bring the experience to tested VR hardware and signed releases.
 
-The current public reference register is [Art/PublicCampusResearch-2026-09.md](Art/PublicCampusResearch-2026-09.md). It records Albion’s public CAD/floor-plan request process, verified Science Complex facts, public room-plan sources and the evidence level for each modeled building.
+## Project resources
 
-## Verification
+- [Player guide](Docs/PlayGuide.md) — controls and the first ten minutes.
+- [Game design](Docs/GameDesign.md) — the world model, learning loop and Keeper progression.
+- [Next milestones](Docs/NextMilestones.md) — the current build order.
+- [Public campus research](Art/PublicCampusResearch-2026-09.md) — sources and evidence used for reconstruction.
+- [Asset credits](Art/ASSET-CREDITS.md) and [asset provenance](Art/AssetProvenance.json) — Blender, texture, character and audio attribution.
+- [Developer guide](Docs/DeveloperGuide.md) — Unity setup, builds and verification for contributors.
 
-The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The 0.11 walkable-building check verifies Robinson, Bonta and the four-wing Science Complex registration, floors, doors, arrival, interior access and history mapping. Results are recorded in [Docs/Verification-v0.11](Docs/Verification-v0.11) and the earlier [Docs/Verification-v0.9](Docs/Verification-v0.9). New local test output goes to the ignored `Verification/` directory.
-
-## Build and check from this repository
-
-Large binary models, textures and audio use Git LFS. Install Git LFS and run `git lfs pull` after cloning so Unity and Blender receive the actual assets.
-
-1. In Unity Hub, add the `Unity` folder and open it with Unity **6000.6.0f1**. Use **Odyssey → Prepare playable scene**, then Play. The checked-in runtime meshes, textures and rig are ready to import; Blender is needed only to edit/regenerate assets.
-2. Build the Mac app with `bash Tools/unity_mac.sh build`. The default output is `Unity/Builds/Albion Odyssey.app`; `UNITY_EDITOR` and `ODYSSEY_BUILD_PATH` can override the editor and output paths.
-3. Run `python3 Tools/check_craft_release.py` against that app, or pass `--app '/path/to/Albion Odyssey.app'`. This launches five isolated test sessions and writes results under `Verification/`.
-4. Run `bash Tools/test.sh`, then `dotnet run --project Tests/UnityRules/Rules.csproj`, `dotnet run --project Tests/BuildingDesigner/Rules.csproj`, and `dotnet run --project Tests/Catalog/Catalog.csproj` for rules, design and catalog checks without launching the game. These require a C++ compiler, Python 3 and .NET 9.
-
-Editable Blender files are in `Art/`; source-generation tools and asset credits are included. The old `Tools/clean_campus_ui.py` is a historical one-time migration and must not be rerun on this version.
-
-See [next development milestones](Docs/NextMilestones.md) for the current work order. Older versioned documents describe their respective releases.
+Albion Odyssey is an original game project inspired by the experience of learning and living on a college campus. The real college references inform the setting; the Keeper, personal campus, fantasy layer and game systems are original work.
