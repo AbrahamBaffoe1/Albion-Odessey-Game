@@ -8,4 +8,4 @@ The complete Unity Mac walkthrough passes with the new campus fauna layer.
 - All 61 campus destinations, third-person character, three cars, seven discoveries, classroom, audio, save migration and prior Legacy Hall checks continue to pass.
 - `Playtest/20-squirrel-habitat.png` is a close-up visual inspection of a roaming squirrel beside its tree.
 
-The fauna layer is original game content, shaped from a red-squirrel wildlife reference. Campus buildings, roads and tree locations remain approximate exterior game geometry based on the reviewed campus map, not a surveyed reconstruction. Other platforms, Unreal runtime parity, large-player load tests and network multiplayer remain unverified.
+The fauna layer is original game content, shaped from the supplied leucistic eastern gray squirrel reference. Campus buildings, roads and tree locations remain approximate exterior game geometry based on the reviewed campus map, not a surveyed reconstruction. Other platforms, Unreal runtime parity, large-player load tests and network multiplayer remain unverified.

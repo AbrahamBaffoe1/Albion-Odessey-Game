@@ -2,7 +2,7 @@
 
 Albion Odyssey is a living campus adventure about learning, belonging and making a place your own.
 
-The current Unity campus build includes a production wildlife layer: 18 animated squirrels use a 432-point habitat graph around the authored campus trees. They forage, sprint, rest and climb, with one consistent natural russet coat and warm cream underside. See [the fauna notes](Docs/CampusFauna-v0.7.md) and [verification record](Docs/Verification-v0.7.md).
+The current Unity campus build includes a production wildlife layer: 18 animated squirrels use a 432-point habitat graph around the authored campus trees. They forage, sprint, rest and climb, with one consistent warm-ivory leucistic coat, pale underside, ruby eyes and pink ears and paws. See [the fauna notes](Docs/CampusFauna-v0.7.md) and [verification record](Docs/Verification-v0.7.md).
 
 The game begins at Legacy Hall, where a new Keeper discovers the stories held in its rooms. From there, the campus opens into a walkable world: historic buildings, study spaces, paths, gardens, student activity and the people who give a college its rhythm. Every building is an invitation to look closer. A doorway leads to a room, a room leads to a story, and a story gives the player a reason to return.
 

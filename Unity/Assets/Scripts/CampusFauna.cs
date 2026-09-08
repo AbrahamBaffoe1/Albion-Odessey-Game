@@ -46,14 +46,16 @@ namespace AlbionOdyssey
 
         void BuildSquirrels()
         {
-            // One shared russet coat keeps the population visually coherent as
-            // the same campus species. The reference red squirrel's pointed
-            // ears, pale chest and full tail drive the proportions below.
-            var russet=TowerGeometry.Material("Squirrel coat natural russet",new Color(.62f,.23f,.065f),0,.60f);
-            coats=new[]{russet};
-            var cream=TowerGeometry.Material("Squirrel warm cream",new Color(.88f,.70f,.48f),0,.70f);
-            var dark=TowerGeometry.Material("Squirrel eyes",new Color(.012f,.006f,.003f),0,.88f);
-            var nose=TowerGeometry.Material("Squirrel nose",new Color(.10f,.025f,.012f),0,.70f);
+            // One shared warm ivory coat keeps the population visually
+            // coherent as the same leucistic eastern-gray species shown in
+            // the supplied reference. The pale chest, ruby eye and pink nose
+            // preserve its living-animal cues without using a photo texture.
+            var ivory=TowerGeometry.Material("Squirrel coat leucistic ivory",new Color(.88f,.85f,.77f),0,.62f);
+            coats=new[]{ivory};
+            var cream=TowerGeometry.Material("Squirrel warm white underside",new Color(.96f,.92f,.82f),0,.72f);
+            var pink=TowerGeometry.Material("Squirrel pink ears and paws",new Color(.72f,.33f,.34f),0,.58f);
+            var dark=TowerGeometry.Material("Squirrel ruby eyes",new Color(.16f,.012f,.018f),0,.90f);
+            var nose=TowerGeometry.Material("Squirrel rose nose",new Color(.45f,.10f,.12f),0,.68f);
             for(int i=0;i<Population;i++)
             {
                 int habitatIndex=(i*17+3)%Mathf.Max(1,habitat.Count);
@@ -61,7 +63,7 @@ namespace AlbionOdyssey
                 var root=new GameObject("Campus squirrel "+(i+1).ToString("00"));
                 root.transform.position=start+Vector3.up*.12f;
                 var agent=root.AddComponent<SquirrelAgent>();
-                agent.Configure(this,habitatIndex,i,coats[0],cream,dark,nose,random.Next(0,2));
+                agent.Configure(this,habitatIndex,i,coats[0],cream,dark,nose,random.Next(0,2),pink);
                 Squirrels.Add(agent);
             }
         }
@@ -94,7 +96,7 @@ namespace AlbionOdyssey
     {
         enum Activity { Forage, Run, Rest, Climb }
         CampusFauna fauna; Transform body,head,tail,tailMid,tailTip,frontLeft,frontRight,backLeft,backRight;
-        Material coat,cream,dark,nose; int habitatIndex,variant,seed,decisionCount; float speed,phase,nextDecision;
+        Material coat,cream,dark,nose,pink; int habitatIndex,variant,seed,decisionCount; float speed,phase,nextDecision;
         Vector3 target; Activity activity; bool built;
         public float DistanceTravelled {get;private set;}
         public bool IsNearTree
@@ -114,9 +116,9 @@ namespace AlbionOdyssey
         }
         public string ActivityName=>activity.ToString();
 
-        public void Configure(CampusFauna owner,int start,int identity,Material fur,Material muzzle,Material eyes,Material snout,int style)
+        public void Configure(CampusFauna owner,int start,int identity,Material fur,Material muzzle,Material eyes,Material snout,int style,Material pawColor)
         {
-            fauna=owner;habitatIndex=start;seed=identity;coat=fur;cream=muzzle;dark=eyes;nose=snout;variant=style;phase=identity*.83f;BuildModel();
+            fauna=owner;habitatIndex=start;seed=identity;coat=fur;cream=muzzle;dark=eyes;nose=snout;variant=style;pink=pawColor;phase=identity*.83f;BuildModel();
             target=transform.position;activity=Activity.Forage;nextDecision=Time.time+1.2f+(identity*.07f);built=true;
         }
 
@@ -139,9 +141,15 @@ namespace AlbionOdyssey
             for(int side=-1;side<=1;side+=2)
             {
                 Part(head,"Rounded ear",PrimitiveType.Sphere,new Vector3(side*.18f,.16f,.02f),new Vector3(.13f,.17f,.09f),coat);
+                Part(head,"Pink inner ear",PrimitiveType.Sphere,new Vector3(side*.18f,.16f,.085f),new Vector3(.075f,.10f,.025f),pink);
                 var tuft=Part(head,"Ear tuft",PrimitiveType.Capsule,new Vector3(side*.18f,.29f,.02f),new Vector3(.045f,.16f,.045f),coat).transform;
                 tuft.localRotation=Quaternion.Euler(0,0,-side*15);
                 Part(head,"Bright eye",PrimitiveType.Sphere,new Vector3(side*.10f,.055f,.25f),new Vector3(.041f,.048f,.028f),dark);
+                for(int whisker=0;whisker<2;whisker++)
+                {
+                    var line=Part(head,"Whisker",PrimitiveType.Capsule,new Vector3(side*(.12f+.018f*whisker),-.035f,.39f+.025f*whisker),new Vector3(.008f,.12f,.008f),cream).transform;
+                    line.localRotation=Quaternion.Euler(0,side*(18+whisker*12),90);
+                }
             }
             tail=Part(root,"Bushy tail base",PrimitiveType.Capsule,new Vector3(0,.63f,-.34f),new Vector3(.25f,.34f,.23f),coat).transform;
             tail.localRotation=Quaternion.Euler(-28,0,0);
@@ -159,7 +167,7 @@ namespace AlbionOdyssey
         Transform Leg(Transform root,string name,float side)
         {
             var leg=Part(root,name,PrimitiveType.Capsule,new Vector3(side,.27f,.08f),new Vector3(.09f,.20f,.09f),coat).transform;
-            Part(leg,"Paw",PrimitiveType.Sphere,new Vector3(0,-.19f,.06f),new Vector3(.11f,.07f,.16f),cream);return leg;
+            Part(leg,"Pink paw",PrimitiveType.Sphere,new Vector3(0,-.19f,.06f),new Vector3(.11f,.07f,.16f),pink);return leg;
         }
 
         void Update()
