@@ -12,10 +12,13 @@ namespace AlbionOdyssey
             result.parkingStalls=c.parking.StallCount;result.parkedCars=c.parking.ParkedCarCount;
             result.activitySpaces=a.ActivitySpaces;result.activityAgents=a.ActivityAgents;result.activityStations=a.InteractionStations;
             var firstStation=FindAnyObjectByType<CampusActivityStation>();if(firstStation==null){Fail("Activity interaction stations missing");yield break;}firstStation.Activate(game);result.activityInteraction=firstStation.Uses==1&&a.CompletedInteractions==1;
+            int walkable=0;foreach(var place in CampusCatalog.Places)if(CampusBuildings.Instance.Building(place.id)!=null)walkable++;
+            if(walkable<11){Fail("Walkable building chapter incomplete: "+walkable);yield break;}result.walkableBuildings=walkable;
             foreach(var place in CampusCatalog.Places)
             {
                 bool science=place.id=="18k"||place.id=="18n"||place.id=="18p"||place.id=="18u";
-                if((place.id=="1"||place.id=="16") ? CampusBuildings.Instance.Building(place.id)==null : science ? CampusBuildings.Instance.Building("18")==null : GameObject.Find(place.id+" · "+place.name)==null){Fail("Missing model "+place.name);yield break;}
+                bool hasWalkable=CampusBuildings.Instance!=null&&CampusBuildings.Instance.Building(place.id)!=null;
+                if((place.id=="1"||place.id=="16") ? CampusBuildings.Instance.Building(place.id)==null : science ? CampusBuildings.Instance.Building("18")==null : !hasWalkable&&GameObject.Find(place.id+" · "+place.name)==null){Fail("Missing model "+place.name);yield break;}
                 if(!c.Travel(place)){Fail("Travel failed "+place.name);yield break;}p.controls=false;
                 yield return null;
                 Vector3 at=p.transform.position;

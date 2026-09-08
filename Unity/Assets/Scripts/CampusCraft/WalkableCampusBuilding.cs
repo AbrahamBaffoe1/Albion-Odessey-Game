@@ -91,12 +91,24 @@ namespace AlbionOdyssey
                 for (int side = -1; side <= 1; side += 2) Box(Root.transform, "Robinson entry lantern", new Vector3(side * 2.65f, 2.35f, -Depth * .5f - .55f), new Vector3(.28f, .55f, .18f), roof, false);
                 Dormer(new Vector3(-Width * .27f, roofY + .65f, -Depth * .18f)); Dormer(new Vector3(Width * .27f, roofY + .65f, -Depth * .18f));
             }
-            else
+            else if (Id == "1")
             {
                 Box(Root.transform, "Bonta glazed lobby", new Vector3(0, 1.65f, -Depth * .5f - .28f), new Vector3(Width * .46f, 2.9f, .12f), glass, false);
                 Box(Root.transform, "Bonta roof hip", new Vector3(0, roofY + .55f, 0), new Vector3(Width + 1.2f, .65f, Depth + 1.2f), roof, false);
                 Sign(new Vector3(0, 2.55f, -Depth * .5f - .43f), "BONTA ADMISSION CENTER");
                 Box(Root.transform, "Bonta visitor ramp", new Vector3(-Width * .30f, .12f, -Depth * .5f - 1.6f), new Vector3(2.2f, .14f, 3.2f), floor, true);
+            }
+            else
+            {
+                Box(Root.transform, "Entry glazing", new Vector3(0, 1.65f, -Depth * .5f - .28f), new Vector3(Width * .46f, 2.9f, .12f), glass, false);
+                Sign(new Vector3(0, 2.55f, -Depth * .5f - .43f), Place.name.ToUpperInvariant());
+                if (Place.shape == "chapel")
+                {
+                    for (int side = -1; side <= 1; side += 2) Box(Root.transform, "Chapel entry column", new Vector3(side * 2.0f, 1.65f, -Depth * .5f - .7f), new Vector3(.42f, 3.3f, .52f), stone, true);
+                    Box(Root.transform, "Chapel entry pediment", new Vector3(0, 4.0f, -Depth * .5f - .75f), new Vector3(5.2f, .35f, 1.5f), stone, false);
+                }
+                else if (Place.shape == "gym" || Place.shape == "theatre")
+                    Box(Root.transform, "Public entry canopy", new Vector3(0, 3.35f, -Depth * .5f - 1.0f), new Vector3(7.0f, .22f, 1.8f), stone, false);
             }
         }
 
@@ -171,19 +183,22 @@ namespace AlbionOdyssey
                 {
                     Box(Root.transform, "Balcony left rail", new Vector3(-Width * .23f, y + 1.05f, 0), new Vector3(.08f, 1.05f, Depth - 2f), trim, true); Box(Root.transform, "Balcony right rail", new Vector3(Width * .23f, y + 1.05f, 0), new Vector3(.08f, 1.05f, Depth - 2f), trim, true);
                 }
-                else
+                else if (Id == "1")
                 {
                     Box(Root.transform, "Bonta reception wall", new Vector3(0, y + 1.55f, 0), new Vector3(.15f, 3.1f, Depth - 3f), plaster, true); if (f == 0) Box(Root.transform, "Visitor lounge divider", new Vector3(Width * .25f, y + 1.55f, 1.5f), new Vector3(Width * .45f, 3.1f, .15f), plaster, true);
                 }
-                string sign = Id == "1" ? (f == 0 ? "ADMISSIONS LOBBY" : "VISITOR SERVICES") : Id == "18" ? (f == 0 ? "SCIENCE ON DISPLAY" : f == 1 ? "TEACHING LABORATORIES" : f == 2 ? "RESEARCH LABORATORIES" : "COLLECTIONS & OBSERVATION") : (f == 0 ? "QUAD ATRIUM" : "ACADEMIC OFFICES");
+                else if (Place.shape != "chapel" && Place.shape != "gym")
+                    Box(Root.transform, "Building corridor divider", new Vector3(0, y + 1.55f, 0), new Vector3(.15f, 3.1f, Depth - 3f), plaster, true);
+                string sign = Id == "1" ? (f == 0 ? "ADMISSIONS LOBBY" : "VISITOR SERVICES") : Id == "18" ? (f == 0 ? "SCIENCE ON DISPLAY" : f == 1 ? "TEACHING LABORATORIES" : f == 2 ? "RESEARCH LABORATORIES" : "COLLECTIONS & OBSERVATION") : Id == "16" ? (f == 0 ? "QUAD ATRIUM" : "ACADEMIC OFFICES") : Place.name.ToUpperInvariant() + (f == 0 ? " · COMMONS" : " · ROOMS & STUDY");
                 Sign(new Vector3(-Width * .25f, y + 2.35f, -Depth * .5f + .25f), sign);
                 for (int x = -1; x <= 1; x += 2)
                 {
-                    float roomX = x * Width * .31f; Box(Root.transform, "Room partition", new Vector3(roomX, y + 1.55f, Depth * .24f), new Vector3(.14f, 3.1f, Depth * .45f), plaster, true); Door(new Vector3(roomX, y, Depth * .02f), 1.25f, 2.35f, f == 0 ? (Id == "1" ? "Admissions office" : Id == "18" ? "Teaching lab" : "Department room") : Id == "18" ? "Laboratory door" : "Office door"); Desk(new Vector3(roomX, y, Depth * .34f));
+                    float roomX = x * Width * .31f; Box(Root.transform, "Room partition", new Vector3(roomX, y + 1.55f, Depth * .24f), new Vector3(.14f, 3.1f, Depth * .45f), plaster, true); Door(new Vector3(roomX, y, Depth * .02f), 1.25f, 2.35f, f == 0 ? (Id == "1" ? "Admissions office" : Id == "18" ? "Teaching lab" : "Room entrance") : Id == "18" ? "Laboratory door" : "Office door"); Desk(new Vector3(roomX, y, Depth * .34f));
                     if (Id == "18") LabBench(new Vector3(roomX, y, -Depth * .28f));
                 }
                 if (Id == "1" && f == 0) VisitorFurniture(y);
-                if (Id == "16") AcademicFurniture(y);
+                else if (Id == "16") AcademicFurniture(y);
+                else if (Place.shape != "chapel") GenericFurniture(y);
                 Light(new Vector3(0, y + 3.05f, 0)); if (f < Floors - 1) Stair(f);
             }
         }
@@ -264,6 +279,17 @@ namespace AlbionOdyssey
             {
                 Box(Root.transform, "Robinson study table", new Vector3(i * 3.1f, y + .72f, Depth * .30f), new Vector3(2.1f, .10f, .75f), wood, true);
                 Box(Root.transform, "Robinson study chair", new Vector3(i * 3.1f, y + .45f, Depth * .30f - .72f), new Vector3(.55f, .12f, .48f), fabric, true);
+            }
+        }
+
+        void GenericFurniture(float y)
+        {
+            int seats = Mathf.Clamp(Mathf.FloorToInt(Width / 5f), 2, 6);
+            for (int i = 0; i < seats; i++)
+            {
+                float x = (i - (seats - 1) * .5f) * Mathf.Min(4.0f, Width / Mathf.Max(2, seats));
+                Box(Root.transform, "Common room table", new Vector3(x, y + .72f, Depth * .30f), new Vector3(1.7f, .10f, .7f), wood, true);
+                Box(Root.transform, "Common room chair", new Vector3(x, y + .45f, Depth * .30f - .7f), new Vector3(.55f, .12f, .48f), fabric, true);
             }
         }
 
