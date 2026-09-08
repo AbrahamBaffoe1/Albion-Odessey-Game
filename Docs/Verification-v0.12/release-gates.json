@@ -1,0 +1,10 @@
+{
+  "version": "0.12.0",
+  "platform": "macOS",
+  "player": "Unity/Builds/Albion Odyssey.app",
+  "integrationSuites": ["craft", "combined08", "campus08", "tour08", "shell08"],
+  "crashSessionMarker": true,
+  "saveBackupRecovery": true,
+  "developerIdRequiredForDistribution": true,
+  "notarizationRequiresAppleCredentials": true
+}

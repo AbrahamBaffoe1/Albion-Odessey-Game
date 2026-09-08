@@ -25,6 +25,7 @@ namespace AlbionOdyssey
         public CampusOnlineSession online;
         public OdysseyVrSupport vr;
         public OdysseyRuntimeDiagnostics diagnostics;
+        public OdysseyCrashReporter crashReporter;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
@@ -52,6 +53,7 @@ namespace AlbionOdyssey
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
             }
             TowerGeometry.Load();
+            crashReporter=gameObject.AddComponent<OdysseyCrashReporter>();crashReporter.Setup(this);
             var guide=new GameObject("Pip the squirrel guide");guide.transform.position=new Vector3(5,1.2f,-15);
             var guideTarget=guide.AddComponent<BoxCollider>();guideTarget.size=new Vector3(.9f,1.5f,.9f);guideTarget.isTrigger=true;guide.AddComponent<GuideMarker>();
             RenderSettings.ambientMode=AmbientMode.Trilight;
