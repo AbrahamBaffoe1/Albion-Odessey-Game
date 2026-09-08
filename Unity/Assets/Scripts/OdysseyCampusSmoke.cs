@@ -7,9 +7,11 @@ namespace AlbionOdyssey
     {
         IEnumerator CampusChecks()
         {
-            var c=game.campus;var p=game.player;game.life.SetPanel("");p.controls=false;p.thirdPerson=false;
-            if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3||c.parking==null||c.parking.StallCount<36||c.parking.ParkedCarCount<20){Fail("Campus destinations, parking or cars missing");yield break;}
+            var c=game.campus;var p=game.player;var a=game.world==null?null:game.world.activities;game.life.SetPanel("");p.controls=false;p.thirdPerson=false;
+            if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3||c.parking==null||c.parking.StallCount<36||c.parking.ParkedCarCount<20||a==null||a.ActivitySpaces<20||a.ActivityAgents<9||a.InteractionStations<20){Fail("Campus destinations, parking or activity spaces missing");yield break;}
             result.parkingStalls=c.parking.StallCount;result.parkedCars=c.parking.ParkedCarCount;
+            result.activitySpaces=a.ActivitySpaces;result.activityAgents=a.ActivityAgents;result.activityStations=a.InteractionStations;
+            var firstStation=FindAnyObjectByType<CampusActivityStation>();if(firstStation==null){Fail("Activity interaction stations missing");yield break;}firstStation.Activate(game);result.activityInteraction=firstStation.Uses==1&&a.CompletedInteractions==1;
             foreach(var place in CampusCatalog.Places)
             {
                 bool science=place.id=="18k"||place.id=="18n"||place.id=="18p"||place.id=="18u";

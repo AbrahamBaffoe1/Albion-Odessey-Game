@@ -49,3 +49,7 @@ Version 0.4 writes a separate version-2 save. On its first launch it imports a v
 ## Sound effects and narration
 
 Press Esc to adjust effects volume, mute, or preview the pickup sound. Matching collection types always use the same sound; different achievement, lesson and building types have distinct sounds. Open a building story and choose **Read aloud** to hear its narrated history. Preferences persist between launches.
+
+## Campus activities
+
+The chapter includes walkable learning, dining and recreation spaces. Press **M** to travel to Baldwin Dining Commons or Kellogg Commons, then approach a signed counter, table or game and press **E** (or **F**) to interact. Ferguson, Robinson and the Science Complex include desks, seminar tables and lab benches with students and staff following daily routines.

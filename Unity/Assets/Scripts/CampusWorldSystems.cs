@@ -8,6 +8,7 @@ namespace AlbionOdyssey
     public sealed class CampusWorldSystems : MonoBehaviour
     {
         OdysseyGame game;
+        public CampusActivitySystem activities { get; private set; }
         Transform root;
         readonly List<CampusNpcAgent> agents = new List<CampusNpcAgent>();
 
@@ -17,6 +18,8 @@ namespace AlbionOdyssey
             root = new GameObject("Campus paths, furniture and NPC routes").transform;
             BuildLandscaping();
             BuildNpcRoutes();
+            activities = gameObject.AddComponent<CampusActivitySystem>();
+            activities.Setup(game);
         }
 
         void BuildLandscaping()

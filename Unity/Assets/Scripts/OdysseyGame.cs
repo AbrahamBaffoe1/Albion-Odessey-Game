@@ -158,6 +158,8 @@ namespace AlbionOdyssey
             if(campus!=null&&campus.TryInteract())return;
             if(player.TryTarget(out var hit))
             {
+                var activity=hit.collider.GetComponentInParent<CampusActivityStation>();
+                if(activity!=null){activity.Activate(this);return;}
                 if(hit.collider.GetComponent<GuideMarker>()!=null)
                 {int next=OdysseyStory.Next(state.Current);notice="Pip: "+(next<6?OdysseyStory.Hints[next]:"Your charter is complete! Visit the classroom and share what you have learned.");SetJournal(true);return;}
                 var memory=hit.collider.GetComponent<MemoryMarker>();
