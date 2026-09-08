@@ -11,12 +11,15 @@ namespace AlbionOdyssey
         public string Context()
         {
             var b=CampusBuildings.Instance;var d=b?.NearbyDoor;
+            var additional=b?.AdditionalInside();
+            if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();return "E  "+(door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
             if(d!=null)return "E  "+(d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();
             if(game.player.vehicle!=null)return "E  Leave vehicle   ·   Space  Brake";
             if(game.tour.InRoom)return "H  Room story   ·   E  Exit at the doorway";
             foreach(var car in game.campus.cars)if(Vector3.Distance(car.transform.position,game.player.transform.position)<4.8f)return "E  Drive campus car";
             foreach(var p in game.campus.discoveries)if(Vector3.Distance(p,game.player.transform.position)<4.5f)return "E  Collect discovery";
             if(game.player.TryTarget(out var hit)&&(hit.collider.GetComponent<MemoryMarker>()!=null||hit.collider.GetComponent<GuideMarker>()!=null))return "E  Pick up / interact";
+            if(additional!=null)return "H  "+additional.Place.name+" story   ·   Stairs and rooms to explore";
             if(b!=null&&b.Inside)return "H  Ferguson’s story   ·   Stairs at the east end →";
             return game.tour.Nearby()!=null?"H  Read building story   ·   G  All stories":"WASD / arrows  Move   ·   G  Stories";
         }
@@ -27,7 +30,8 @@ namespace AlbionOdyssey
             if(label==null){label=new GUIStyle(GUI.skin.label){fontSize=20,fontStyle=FontStyle.Bold,richText=false,wordWrap=true};small=new GUIStyle(label){fontSize=14,fontStyle=FontStyle.Normal};button=new GUIStyle(GUI.skin.button){fontSize=15,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=new Color(.94f,.94f,.9f);}}
             var old=GUI.matrix;var bc=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;GUI.color=Color.white;GUI.backgroundColor=new Color(.16f,.12f,.23f);
             var buildings=CampusBuildings.Instance;
-            string place=buildings!=null&&buildings.Inside?buildings.Location:game.tour.InRoom?"Wesley Hall":game.campus.OnCampus?game.campus.Nearest.name:game.life.Location;
+            var additionalInside=buildings?.AdditionalInside();
+            string place=additionalInside!=null?additionalInside.Location:buildings!=null&&buildings.Inside?buildings.Location:game.tour.InRoom?"Wesley Hall":game.campus.OnCampus?game.campus.Nearest.name:game.life.Location;
             if(place.Length>33)place=place.Substring(0,30)+"…";
             Card(new Rect(24,24,350,72));GUI.Label(new Rect(40,33,322,28),place,label);GUI.Label(new Rect(40,65,322,23),game.campus.keeperName+"  ·  "+game.state.Current.acorns+" acorns",small);
             if(GUI.Button(new Rect(w-246,24,98,38),"Map · M",button))game.life.SetPanel("campus");

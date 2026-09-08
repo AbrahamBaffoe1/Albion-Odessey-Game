@@ -1,6 +1,6 @@
 # Next development milestones
 
-The 0.8 update includes a playable three-level Ferguson reconstruction, a rigged student, reusable doors/interior loading, campus textures and trees, and a consolidated interface. This is a prototype milestone, not completion of the full campus.
+The 0.8 update includes a playable three-level Ferguson reconstruction, a rigged student, reusable doors/interior loading, campus textures and trees, and a consolidated interface. The 0.9 work now adds reference-driven, walkable Robinson Hall and Bonta Admission Center shells with reusable doors, stairs, signs and history hooks. This is still a prototype milestone, not completion of the full campus.
 
 1. **Ferguson reference and usability pass.** Compare every visible facade and entrance against college references; obtain additional interior photographs or floor plans before describing rooms as exact. Correct scale, signage and room contents. Playtest stairs, doors, history prompts and camera movement on Mac.
 2. **Robinson Hall and Bonta Admission Center.** Build distinctive Blender exteriors and connected walkable interiors using the shared door, room and history systems. Mark inferred areas explicitly. Finish and playtest each building before moving to the next hall.

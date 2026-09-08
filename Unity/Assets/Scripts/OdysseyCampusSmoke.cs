@@ -11,7 +11,7 @@ namespace AlbionOdyssey
             if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3){Fail("Campus destinations or cars missing");yield break;}
             foreach(var place in CampusCatalog.Places)
             {
-                if(GameObject.Find(place.id+" · "+place.name)==null){Fail("Missing model "+place.name);yield break;}
+                if((place.id=="1"||place.id=="16") ? CampusBuildings.Instance.Building(place.id)==null : GameObject.Find(place.id+" · "+place.name)==null){Fail("Missing model "+place.name);yield break;}
                 if(!c.Travel(place)){Fail("Travel failed "+place.name);yield break;}p.controls=false;
                 yield return null;
                 Vector3 at=p.transform.position;

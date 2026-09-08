@@ -76,7 +76,7 @@ namespace AlbionOdyssey
         }
         static void Building(CampusPlace p)
         {
-            if(p.id=="26")return;
+            if(p.id=="26"||p.id=="1"||p.id=="16")return;
             var t=new GameObject(p.id+" · "+p.name).transform;t.SetParent(root);t.position=p.position;
             float w=p.width,d=p.depth,h=p.height;bool field=p.shape=="field"||p.shape=="stadium"||p.shape=="baseball";
             if(field)

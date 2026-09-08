@@ -1,4 +1,4 @@
-# Albion Odyssey 0.8 — Ferguson and campus craft update
+# Albion Odyssey 0.9 — explorable Robinson and Bonta update
 
 Open **Albion Odyssey.app**. On the launch screen, choose **Explore Ferguson Hall** on the right. Approach the entrance, press **E** to open the door and walk inside. Press **E** near room doors. Stairs at the east end connect all three floors. **H** opens Ferguson’s history and official media; **G** opens all building stories.
 
@@ -16,11 +16,12 @@ Choose **Finish session** to save and see the summary, then **Quit to desktop**.
 - The student is now a skinned character based on Quaternius’s CC0 model, with project-made campus clothing, footwear and backpack. A 65-bone rig plays authored idle, walking, jogging, sprinting and seated animations through a Unity Animator blend tree. This is a stylized human character, not a photorealistic person.
 - Campus lawns and paving have photographed textures. Blender oak trees have branches and individual leaf geometry. Lighting and shadows are coordinated across the scene. The campus still uses the approximate centers derived from the college’s published map.
 - Generic mesh-section loading and reusable door components support the next buildings. Interiors are created on approach, hidden when distant, and reused on return. History and travel are available through the existing directory and map.
+- Robinson Hall now has a reference-driven four-level atrium reconstruction with nine reusable doors, stairs, offices, balcony rails and a history panel. Bonta Admission Center now has a reference-driven walkable lobby, admissions offices, three doors and its own history panel. Both buildings use measured reconstruction dimensions recorded in `Art/BuildingReferences-v0.9.md`.
 - Duplicate HUD panels are removed. World labels use depth testing so they do not show through walls.
 
 ## Accuracy and remaining work
 
-Ferguson’s visible facade follows reference photographs. Its overall scale, roof details, interior floor plan and room contents are provisional reconstructions, not a measured digital twin. Gameplay room labels do not assert current official office assignments. Other campus buildings still need individual facade/interior reconstruction; adding all 61 map destinations was not the same as completing 61 explorable buildings. Wesley remains a separate reference-based room study accessible from its directory entry.
+Ferguson’s visible facade follows reference photographs. Robinson’s four-story atrium is supported by a published renovation report, and Bonta’s visitor-facing layout follows the official tour and public descriptions. Their hidden room dimensions and all three buildings’ complete floor plans remain provisional reconstructions, not measured digital twins. Gameplay room labels do not assert current official office assignments. Other campus buildings still need individual facade/interior reconstruction; adding all 61 map destinations was not the same as completing 61 explorable buildings. Wesley remains a separate reference-based room study accessible from its directory entry.
 
 Headset VR, online multiplayer and online enrollment are not implemented. Courses and four Keeper profiles are local. Custom Building Studio designs can be edited and walked through; campus course buildings use the separate plot-building mode inside this same app.
 
@@ -32,7 +33,7 @@ See **Art/ASSET-CREDITS.md** and **Art/AssetProvenance.json** for reference link
 
 ## Verification
 
-The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The verified release results are recorded in [Docs/Verification-v0.8](Docs/Verification-v0.8). New local test output goes to the ignored `Verification/` directory.
+The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The new walkable-building check verifies Robinson and Bonta registration, dimensions, doors, arrival, interior access and history mapping. Results are recorded in [Docs/Verification-v0.9](Docs/Verification-v0.9). New local test output goes to the ignored `Verification/` directory.
 
 ## Build and check from this repository
 

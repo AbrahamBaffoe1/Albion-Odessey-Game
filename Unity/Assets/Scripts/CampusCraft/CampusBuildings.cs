@@ -8,6 +8,7 @@ namespace AlbionOdyssey
         public GameObject Exterior=>stream.Exterior;public GameObject Interior=>stream.Content;
         StreamedInterior stream;
         public readonly List<CampusDoor> Doors=new List<CampusDoor>();
+        readonly List<WalkableCampusBuilding> additional=new List<WalkableCampusBuilding>();
         OdysseyGame game;CraftDescription description;Transform site;
         public Vector3 Origin=>CampusExpansion.Find("26").position;
         public bool Inside {get {if(game==null)return false;var p=game.player.transform.position-Origin;return Mathf.Abs(p.x)<15.6f&&Mathf.Abs(p.z)<5.85f&&p.y<10.4f;}}
@@ -25,8 +26,13 @@ namespace AlbionOdyssey
             // A small permanent collision shell is already present; occupied interior geometry loads by proximity.
             var plaque=new GameObject("Ferguson name").transform;plaque.SetParent(site,false);plaque.localPosition=new Vector3(0,5.84f,-7.22f);
             var label=plaque.gameObject.AddComponent<TextMesh>();label.text="FERGUSON HALL";label.fontSize=64;label.characterSize=.085f;label.anchor=TextAnchor.MiddleCenter;label.color=new Color(.18f,.2f,.18f);
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("16"),28f,13.5f,4,3.35f,true,"Robinson Hall stands on the site of Albion’s original Central Building. The 1843 building was rebuilt after fire and renovated in 1992; its present use includes humanities and social-science classrooms and offices. The central atrium in this game follows the documented renovation description, while room placement remains a reconstruction."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("1"),16.5f,11.2f,1,3.7f,false,"The Bonta Admission Center is Albion College’s visitor front door at 100 N. Hannah Street. It was named for Dean of Admissions Frank Bonta in 1996. This playable lobby and office layout is reconstructed from the official tour, campus photographs and public descriptions; hidden room dimensions remain unverified."));
         }
         public void EnsureInterior()=>stream.EnsureLoaded();
+        public WalkableCampusBuilding Building(string id)=>additional.Find(b=>b.Id==id);
+        public bool VisitCampus(string id){var b=Building(id);if(b==null)return false;b.Visit();return true;}
+        public WalkableCampusBuilding AdditionalInside(){foreach(var b in additional)if(b.Inside)return b;return null;}
         void DecorateInterior(GameObject interior)
         {
             Door(new Vector3(0,0,-6),2.7f,2.8f,"Ferguson entrance");
@@ -48,6 +54,7 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if(game.life.PanelOpen||game.building||game.journalOpen)return false;
+            foreach(var b in additional)if(b.HandleInput())return true;
             if(Input.GetKeyDown(KeyCode.E)&&NearbyDoor!=null){NearbyDoor.Toggle(game.player);return true;}
             if(Input.GetKeyDown(KeyCode.H)&&Inside){game.tour.Open(game.tour.catalog.ForCampus("26"));return true;}
             return false;

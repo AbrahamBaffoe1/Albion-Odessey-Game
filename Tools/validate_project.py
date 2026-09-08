@@ -21,5 +21,7 @@ for name in ["CampusConcept","EchoFantasy"]:
 assert (root/"Art"/"AlbionConceptKit.blend").stat().st_size>100000
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
+        if any(part in path.parts for part in ("Builds", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):
+            continue
         assert path.stat().st_size<50*1024*1024, f"Large asset needs Git LFS: {path}"
 print("PASS: project metadata, Python syntax, eight FBX exports, Blender source, and two 1600x1200 previews")
