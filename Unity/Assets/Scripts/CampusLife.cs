@@ -11,6 +11,8 @@ namespace AlbionOdyssey
         int history,course,subject;
         string courseName="My first class",feedback="";
         GameObject roster;
+        public int ClassroomStudentCount{get;private set;}
+        public int ClassroomTransStudentCount{get;private set;}
         readonly Queue<GameObject> papers=new Queue<GameObject>();
         float nextPaper;
         GUIStyle heading,text,muted,button;
@@ -97,17 +99,20 @@ namespace AlbionOdyssey
         }
         public void RefreshRoster()
         {
-            if(roster!=null){roster.SetActive(false);Destroy(roster);}roster=new GameObject("Local classroom students");
+            if(roster!=null){roster.SetActive(false);Destroy(roster);}roster=new GameObject("Local classroom students");ClassroomStudentCount=0;ClassroomTransStudentCount=0;
             var school=game.state.school;if(!school.Exists(school.active))return;
             var c=school.courses[school.active];
             for(int i=0;i<c.Seats;i++)
             {
                 float x=-40+new[]{-5.5f,-2.8f,2.8f,5.5f}[i%4],z=-3+(i/4)*2.5f-.85f;
-                var mat=TowerGeometry.Material("Student coat "+i,new Color(.18f+(i%3)*.13f,.3f,.5f+(i%2)*.15f));
+                var profile=CampusStudentProfiles.Get(32+i);
+                var mat=TowerGeometry.Material("Student coat "+i,KeeperAvatar.Coats[profile.Coat]);
                 var torso=GameObject.CreatePrimitive(PrimitiveType.Capsule);torso.name="Simulated student "+(i+1);torso.transform.SetParent(roster.transform);
                 torso.transform.position=new Vector3(x,.94f,z);torso.transform.localScale=new Vector3(.4f,.35f,.3f);torso.GetComponent<Renderer>().sharedMaterial=mat;Destroy(torso.GetComponent<Collider>());
+                var identity=torso.AddComponent<CampusStudentIdentity>();identity.Apply(profile);ClassroomStudentCount++;if(profile.IsTrans)ClassroomTransStudentCount++;
                 var head=GameObject.CreatePrimitive(PrimitiveType.Sphere);head.transform.SetParent(torso.transform,false);head.transform.localPosition=new Vector3(0,1.3f,0);head.transform.localScale=new Vector3(.7f,.8f,.85f);
-                head.GetComponent<Renderer>().sharedMaterial=TowerGeometry.Material("Student skin "+i,new Color(.34f+(i%4)*.14f,.22f+(i%4)*.12f,.16f+(i%4)*.10f));Destroy(head.GetComponent<Collider>());
+                head.GetComponent<Renderer>().sharedMaterial=TowerGeometry.Material("Student skin "+i,KeeperAvatar.Skin[profile.Skin]);Destroy(head.GetComponent<Collider>());
+                if(profile.Hair!=2)KeeperAvatar.Part(head.transform,"Classroom student hair",PrimitiveType.Sphere,new Vector3(0,.34f,-.02f),new Vector3(.78f,.36f,.86f),TowerGeometry.Material("Student hair "+i,profile.Hair==1?new Color(.17f,.075f,.035f):new Color(.045f,.025f,.016f)));
             }
         }
         void Commit(string message)

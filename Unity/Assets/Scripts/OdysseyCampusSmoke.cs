@@ -9,6 +9,8 @@ namespace AlbionOdyssey
         {
             var c=game.campus;var p=game.player;var a=game.world==null?null:game.world.activities;game.life.SetPanel("");p.controls=false;p.thirdPerson=false;
             if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3||c.parking==null||c.parking.StallCount<36||c.parking.ParkedCarCount<20||a==null||a.ActivitySpaces<33||a.ActivityAgents<31||a.InteractionStations<33||a.ActiveClubCount<11||a.ClubAgents<22){Fail("Campus destinations, parking, activities or clubs missing");yield break;}
+            if(game.world==null||game.world.StudentCount<12||game.world.TransStudentCount<3){Fail("Campus student population or inclusive identity mix missing");yield break;}
+            result.students=game.world.StudentCount;result.transStudents=game.world.TransStudentCount;
             if(c.fauna==null||c.fauna.ActiveCount!=CampusFauna.Population||c.fauna.HabitatCount<100){Fail("Campus squirrel population or habitat missing");yield break;}
             var firstSquirrel=c.fauna.Squirrels[0];firstSquirrel.ResetForVerification();Vector3 squirrelStart=firstSquirrel.transform.position;
             if(!firstSquirrel.UsesBlenderAsset){Fail("Blender leucistic squirrel asset was not loaded");yield break;}

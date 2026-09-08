@@ -10,7 +10,7 @@ namespace AlbionOdyssey
     public sealed partial class OdysseySmoke : MonoBehaviour
     {
         public static bool Enabled=>Array.IndexOf(Environment.GetCommandLineArgs(),"-odysseySmoke")>=0;
-        [Serializable] class Result { public bool passed;public int campusDestinations;public int walkableBuildings;public int activeClubs;public int clubAgents;public int parkingStalls;public int parkedCars;public int activitySpaces;public int activityAgents;public int activityStations;public bool activityInteraction;public bool character;public bool driving;public bool campusDiscoveries;public int squirrels;public int squirrelHabitat;public float squirrelTravel;public bool blenderSquirrel;public bool snow;public int snowflakes;public int snowTransitions;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public bool audio;public int audioCues;public float audioPeak;public int triangles;public int colliders;public float seconds; }
+        [Serializable] class Result { public bool passed;public int campusDestinations;public int walkableBuildings;public int activeClubs;public int clubAgents;public int parkingStalls;public int parkedCars;public int activitySpaces;public int activityAgents;public int activityStations;public bool activityInteraction;public bool character;public bool driving;public bool campusDiscoveries;public int squirrels;public int squirrelHabitat;public float squirrelTravel;public bool blenderSquirrel;public int students;public int transStudents;public int classroomStudents;public int classroomTransStudents;public bool snow;public int snowflakes;public int snowTransitions;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public bool audio;public int audioCues;public float audioPeak;public int triangles;public int colliders;public float seconds; }
         OdysseyGame game;
         Result result=new Result();
         string Output=>Environment.GetEnvironmentVariable("ODYSSEY_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"Smoke");
@@ -100,7 +100,8 @@ namespace AlbionOdyssey
             var classSave=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"Playtests",PlaytestMode.Name,"save.json")));
             if(!classSave.Valid()||classSave.school.courses[0].Seats!=12||classSave.school.courses[0].graduates!=1){Fail("Course save roundtrip failed");yield break;}
             game.life.RefreshRoster();yield return null;
-            if(GameObject.Find("Simulated student 12")==null){Fail("Classroom student visuals missing");yield break;}
+            if(GameObject.Find("Simulated student 12")==null||game.life.ClassroomStudentCount!=12||game.life.ClassroomTransStudentCount<2){Fail("Classroom roster is missing its inclusive student mix");yield break;}
+            result.classroomStudents=game.life.ClassroomStudentCount;result.classroomTransStudents=game.life.ClassroomTransStudentCount;
             yield return Capture("07-classroom",new Vector3(-40,2,-7),new Vector3(-40,1.5f,7));
             game.life.SetPanel("courses");yield return new WaitForEndOfFrame();
             var coursesImage=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(Output,"08-courses.png"),coursesImage.EncodeToPNG());Destroy(coursesImage);

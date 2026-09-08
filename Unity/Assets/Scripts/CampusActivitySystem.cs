@@ -161,7 +161,7 @@ namespace AlbionOdyssey
         void Agent(string name, CampusActivityKind kind, Vector3[] route, int skin, int coat, int hair)
         {
             var o = new GameObject(name + " · " + kind); o.transform.SetParent(Root, false); o.transform.position = route[0];
-            var agent = o.AddComponent<CampusActivityAgent>(); agent.Activity = kind; agent.Route = route; agent.Speed = kind == CampusActivityKind.Play ? .8f : 1.0f; agent.Build(skin, coat, hair); agents.Add(agent); ActivityAgents++;
+            var agent = o.AddComponent<CampusActivityAgent>(); agent.Activity = kind; agent.Route = route; agent.Speed = kind == CampusActivityKind.Play ? .8f : 1.0f; agent.Build(CampusStudentProfiles.Get(16+ActivityAgents),name); agents.Add(agent); ActivityAgents++;
         }
 
         void ActivitySpace(string title, CampusActivityKind kind, Vector3 at, Vector3 size, string prompt)
@@ -200,7 +200,8 @@ namespace AlbionOdyssey
     {
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
         KeeperAvatar avatar; int target; float pause; Vector3 last; bool seated; float dancePhase;
-        public void Build(int skin, int coat, int hair) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(skin, coat, hair, Activity != CampusActivityKind.Play); last = transform.position; }
+        public CampusStudentIdentity Identity { get; private set; }
+        public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;

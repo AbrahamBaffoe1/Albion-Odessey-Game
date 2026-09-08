@@ -34,7 +34,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 4. Press K. Name a course, choose one of the three lessons, and choose **Create in my Hall / Library**. Every course needs an unused Hall or Library on your personal campus.
 5. Choose **Enroll this Keeper**, add simulated students and choose **Run class / travel to classroom**. Walk through the doorway. K opens the lesson and quiz. The class has twelve seats total.
 6. Press M to visit the history pavilion. Enter it, stand by a display and press H. Historical cards include links to the official college sources. In the building archive, the core chapter has voice narration for Ferguson, Robinson, Bonta and the Science Complex.
-7. Press O if you prefer clickable direction buttons. Use their turn buttons to aim, then the Pick up / interact button. Press O again for mouse-look controls.
+7. Press O if you prefer clickable direction buttons. Use their turn buttons to aim, then the Pick up / interact button. Press O again for mouse-look controls. Students circulate through the Quad, learning spaces, dining, clubs, residences and athletics as you travel.
 8. Press Esc and **Save and quit**. Construction, collection, courses, enrollment and completed lessons are also saved after each successful change.
 
 To reclaim a building that hosts a course, remove that course first. Course deletion removes its roster and lesson completion; the owner can then reclaim the building for a full refund.

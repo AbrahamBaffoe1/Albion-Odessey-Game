@@ -11,6 +11,11 @@ namespace AlbionOdyssey
         public CampusActivitySystem activities { get; private set; }
         Transform root;
         readonly List<CampusNpcAgent> agents = new List<CampusNpcAgent>();
+        public int StudentCount=>agents.Count;
+        public int TransStudentCount
+        {
+            get {int count=0;foreach(var agent in agents)if(agent!=null&&agent.Identity!=null&&agent.Identity.IsTrans)count++;return count;}
+        }
 
         public void Setup(OdysseyGame owner)
         {
@@ -76,12 +81,23 @@ namespace AlbionOdyssey
                 new[]{CampusCatalog.Point(409, 213), CampusCatalog.Point(413, 47), CampusCatalog.Point(504, 151)},
                 new[]{CampusCatalog.Point(504, 151), CampusCatalog.Point(550, 344), CampusCatalog.Point(630, 349)},
                 new[]{CampusCatalog.Point(503, 120), CampusCatalog.Point(428, 274), CampusCatalog.Point(739, 294)},
-                new[]{CampusCatalog.Point(445, 203), CampusCatalog.Point(375, 229), CampusCatalog.Point(346, 180)}
+                new[]{CampusCatalog.Point(445, 203), CampusCatalog.Point(375, 229), CampusCatalog.Point(346, 180)},
+                new[]{CampusCatalog.Point(346, 180), CampusCatalog.Point(377, 180), CampusCatalog.Point(429, 189)},
+                new[]{CampusCatalog.Point(497, 204)+new Vector3(0,0,-18), CampusCatalog.Point(445, 225), CampusCatalog.Point(497, 204)},
+                new[]{CampusCatalog.Point(413, 47), CampusCatalog.Point(323, 69), CampusCatalog.Point(310, 69)},
+                new[]{CampusCatalog.Point(497, 274), CampusCatalog.Point(529, 274), CampusCatalog.Point(540, 188)},
+                new[]{CampusCatalog.Point(550, 344), CampusCatalog.Point(544, 400), CampusCatalog.Point(684, 349)},
+                new[]{CampusCatalog.Point(398, 174), CampusCatalog.Point(409, 213), CampusCatalog.Point(428, 274)},
+                new[]{CampusCatalog.Point(503, 105), CampusCatalog.Point(503, 138), CampusCatalog.Point(512, 105)},
+                new[]{CampusCatalog.Point(739, 294), CampusCatalog.Point(394, 383), CampusCatalog.Point(630, 349)},
+                new[]{CampusCatalog.Point(445, 225)+new Vector3(-10,0,-9), CampusCatalog.Point(445, 203), CampusCatalog.Point(375, 229)},
+                new[]{CampusCatalog.Point(572, 268), CampusCatalog.Point(575, 203), CampusCatalog.Point(693, 206)}
             };
             for (int i = 0; i < routes.Length; i++)
             {
-                var o = new GameObject("Campus student route " + (i + 1)); o.transform.SetParent(root); o.transform.position = routes[i][0] + Vector3.up * .08f;
-                var agent = o.AddComponent<CampusNpcAgent>(); agent.Route = routes[i]; agent.Speed = 1.1f + (i % 3) * .18f; agent.Build(i % 5, (i + 1) % 5, i % 3); agents.Add(agent);
+                var profile=CampusStudentProfiles.Get(i);
+                var o = new GameObject("Campus student · "+profile.Name); o.transform.SetParent(root); o.transform.position = routes[i][0] + Vector3.up * .08f;
+                var agent = o.AddComponent<CampusNpcAgent>(); agent.Route = routes[i]; agent.Speed = 1.1f + (i % 3) * .18f; agent.Build(profile); agents.Add(agent);
             }
         }
     }
@@ -90,9 +106,10 @@ namespace AlbionOdyssey
     {
         public Vector3[] Route; public float Speed = 1.2f;
         KeeperAvatar avatar; int target; Vector3 last;
-        public void Build(int skin, int coat, int hair)
+        public CampusStudentIdentity Identity { get; private set; }
+        public void Build(CampusStudentProfile profile)
         {
-            var body = new GameObject("Student avatar"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(skin, coat, hair, false); last = transform.position;
+            var body = new GameObject("Student avatar"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile); last = transform.position;
         }
         void Update()
         {

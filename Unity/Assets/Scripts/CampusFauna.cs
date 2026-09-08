@@ -226,7 +226,7 @@ namespace AlbionOdyssey
             Vector3 delta=target-transform.position;if(activity!=Activity.Climb)delta.y=0;
             if(delta.sqrMagnitude<.35f){habitatIndex=(habitatIndex+1)%Mathf.Max(1,fauna.HabitatCount);ChooseNext();return;}
             Vector3 direction=delta.normalized;
-            if(activity!=Activity.Climb&&Physics.SphereCast(transform.position+Vector3.up*.35f,.32f,direction,out var obstacle,.9f,~0,QueryTriggerInteraction.Ignore))
+            if(activity!=Activity.Climb&&Physics.SphereCast(transform.position+Vector3.up*.35f,.32f,direction,out var obstacle,.9f,~0,QueryTriggerInteraction.Ignore)&&obstacle.collider.GetComponentInParent<CampusStudentIdentity>()==null)
             {
                 target=fauna.PickHabitat(habitatIndex+2,seed+1);return;
             }
