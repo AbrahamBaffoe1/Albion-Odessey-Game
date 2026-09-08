@@ -127,10 +127,12 @@ namespace AlbionOdyssey
                 {
                     Box(Root.transform, "Bonta reception wall", new Vector3(0, y + 1.55f, 0), new Vector3(.15f, 3.1f, Depth - 3f), plaster, true); if (f == 0) Box(Root.transform, "Visitor lounge divider", new Vector3(Width * .25f, y + 1.55f, 1.5f), new Vector3(Width * .45f, 3.1f, .15f), plaster, true);
                 }
-                Sign(new Vector3(-Width * .25f, y + 2.35f, -Depth * .5f + .25f), f == 0 ? (Id == "1" ? "ADMISSIONS LOBBY" : "QUAD ATRIUM") : "ACADEMIC OFFICES");
+                string sign = Id == "1" ? (f == 0 ? "ADMISSIONS LOBBY" : "VISITOR SERVICES") : Id == "18" ? (f == 0 ? "SCIENCE ON DISPLAY" : f == 1 ? "TEACHING LABORATORIES" : f == 2 ? "RESEARCH LABORATORIES" : "COLLECTIONS & OBSERVATION") : (f == 0 ? "QUAD ATRIUM" : "ACADEMIC OFFICES");
+                Sign(new Vector3(-Width * .25f, y + 2.35f, -Depth * .5f + .25f), sign);
                 for (int x = -1; x <= 1; x += 2)
                 {
-                    float roomX = x * Width * .31f; Box(Root.transform, "Room partition", new Vector3(roomX, y + 1.55f, Depth * .24f), new Vector3(.14f, 3.1f, Depth * .45f), plaster, true); Door(new Vector3(roomX, y, Depth * .02f), 1.25f, 2.35f, f == 0 ? (Id == "1" ? "Admissions office" : "Department room") : "Office door"); Desk(new Vector3(roomX, y, Depth * .34f));
+                    float roomX = x * Width * .31f; Box(Root.transform, "Room partition", new Vector3(roomX, y + 1.55f, Depth * .24f), new Vector3(.14f, 3.1f, Depth * .45f), plaster, true); Door(new Vector3(roomX, y, Depth * .02f), 1.25f, 2.35f, f == 0 ? (Id == "1" ? "Admissions office" : Id == "18" ? "Teaching lab" : "Department room") : Id == "18" ? "Laboratory door" : "Office door"); Desk(new Vector3(roomX, y, Depth * .34f));
+                    if (Id == "18") LabBench(new Vector3(roomX, y, -Depth * .28f));
                 }
                 Light(new Vector3(0, y + 3.05f, 0)); if (f < Floors - 1) Stair(f);
             }
@@ -139,6 +141,13 @@ namespace AlbionOdyssey
         void Desk(Vector3 at)
         {
             Box(Root.transform, "Room desk", at + Vector3.up * .72f, new Vector3(1.9f, .10f, .8f), wood, true); Box(Root.transform, "Room monitor", at + new Vector3(0, 1.12f, .28f), new Vector3(.55f, .38f, .08f), metal, false); Box(Root.transform, "Room chair", at + new Vector3(0, .45f, -.78f), new Vector3(.55f, .12f, .55f), fabric, true);
+        }
+
+        void LabBench(Vector3 at)
+        {
+            Box(Root.transform, "Science lab bench", at + Vector3.up * .88f, new Vector3(2.4f, .12f, .72f), wood, true);
+            Box(Root.transform, "Science bench cabinet", at + Vector3.up * .42f, new Vector3(2.2f, .72f, .62f), plaster, true);
+            Box(Root.transform, "Science display case", at + new Vector3(0, 1.28f, .22f), new Vector3(.72f, .48f, .12f), glass, false);
         }
 
         void Stair(int floorIndex)
@@ -170,7 +179,12 @@ namespace AlbionOdyssey
         {
             if (game.life.PanelOpen || game.building || game.journalOpen) return false;
             CampusDoor nearby = NearbyDoor(); if (Input.GetKeyDown(KeyCode.E) && nearby != null) { nearby.Toggle(game.player); return true; }
-            if (Input.GetKeyDown(KeyCode.H) && Inside) { game.tour.Open(game.tour.catalog.ForCampus(Id)); return true; }
+            if (Input.GetKeyDown(KeyCode.H) && Inside)
+            {
+                TourPlace story = game.tour.catalog.ForCampus(Id);
+                if (story == null && Id == "18") story = game.tour.catalog.ForCampus("18n");
+                game.tour.Open(story); return true;
+            }
             return false;
         }
 

@@ -1,4 +1,4 @@
-# Albion Odyssey 0.9 — explorable Robinson and Bonta update
+# Albion Odyssey 0.10 — public-reference science complex update
 
 Open **Albion Odyssey.app**. On the launch screen, choose **Explore Ferguson Hall** on the right. Approach the entrance, press **E** to open the door and walk inside. Press **E** near room doors. Stairs at the east end connect all three floors. **H** opens Ferguson’s history and official media; **G** opens all building stories.
 
@@ -17,6 +17,7 @@ Choose **Finish session** to save and see the summary, then **Quit to desktop**.
 - Campus lawns and paving have photographed textures. Blender oak trees have branches and individual leaf geometry. Lighting and shadows are coordinated across the scene. The campus still uses the approximate centers derived from the college’s published map.
 - Generic mesh-section loading and reusable door components support the next buildings. Interiors are created on approach, hidden when distant, and reused on return. History and travel are available through the existing directory and map.
 - Robinson Hall now has a reference-driven four-level atrium reconstruction with nine reusable doors, stairs, offices, balcony rails and a history panel. Bonta Admission Center now has a reference-driven walkable lobby, admissions offices, three doors and its own history panel. Both buildings use measured reconstruction dimensions recorded in `Art/BuildingReferences-v0.9.md`.
+- The Science Complex is now registered as a connected four-level walkable group with an atrium, lab/collection signage, teaching and research lab spaces, display cases and history links for Kresge, Norris, Palenske and Putnam. Publicly documented atrium and laboratory facts are recorded in `Art/PublicCampusResearch-2026-09.md`; private room dimensions remain provisional.
 - Duplicate HUD panels are removed. World labels use depth testing so they do not show through walls.
 
 ## Accuracy and remaining work
@@ -30,6 +31,8 @@ Headset VR, online multiplayer and online enrollment are not implemented. Course
 The consolidated source archive includes the Unity project and editable Blender sources: **FergusonHall.blend**, **StudentRig.blend** and **CampusOaks.blend**. Open Unity with 6000.6.0f1. Authoring tools are under Tools; generated editor caches are omitted. The canonical development checkout is `~/Development/Albion-Odessey-Game`. Unity is the current playable game; `Source/`, `Config/` and the `.uproject` preserve the earlier Unreal foundation.
 
 See **Art/ASSET-CREDITS.md** and **Art/AssetProvenance.json** for reference links, CC0 materials, character/animation credits and hashes. College photos/videos remain linked to their providers rather than copied into the app as geometry.
+
+The current public reference register is [Art/PublicCampusResearch-2026-09.md](Art/PublicCampusResearch-2026-09.md). It records Albion’s public CAD/floor-plan request process, verified Science Complex facts, public room-plan sources and the evidence level for each modeled building.
 
 ## Verification
 

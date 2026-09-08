@@ -25,3 +25,5 @@ This pass records the evidence used by the next explorable buildings. A dimensio
 ## Measurement policy
 
 The official campus map establishes placement and orientation, but it is not a surveyed building plan. Each new hall keeps its reference-derived dimensions separate from inferred interior values in code and in this document. Student-facing history panels explain when a room is a reconstruction. Before calling a hall an accurate digital twin, the project still needs permissioned interior photography, floor plans or a measured site survey from the college.
+
+The public research register in [PublicCampusResearch-2026-09](PublicCampusResearch-2026-09.md) records the college’s own floor-plan request process and the newly verified Science Complex facts that will guide the next modeling pass.

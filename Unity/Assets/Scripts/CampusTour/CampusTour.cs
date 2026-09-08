@@ -201,6 +201,7 @@ namespace AlbionOdyssey
                     if(selected.id=="888"&&Button(new Rect(x,630,w,48),"Explore Ferguson · three levels")){StopMedia();CampusBuildings.Instance.Visit();}
                     if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"16")>=0&&Button(new Rect(x,630,w,48),"Explore Robinson Hall · four levels")){StopMedia();CampusBuildings.Instance.VisitCampus("16");}
                     if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"1")>=0&&Button(new Rect(x,630,w,48),"Explore Bonta Admission Center")){StopMedia();CampusBuildings.Instance.VisitCampus("1");}
+                    if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)&&Button(new Rect(x,630,w,48),"Explore Science Complex · four levels")){StopMedia();CampusBuildings.Instance.VisitCampus("18");}
                     if(selected.id=="917"&&Button(new Rect(x,630,w,48),InRoom?"Resume the 3D room":"Walk inside · Wesley room study"))EnterRoom();
                 }
                 else
