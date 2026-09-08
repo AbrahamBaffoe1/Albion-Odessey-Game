@@ -8,7 +8,8 @@ namespace AlbionOdyssey
         IEnumerator CampusChecks()
         {
             var c=game.campus;var p=game.player;game.life.SetPanel("");p.controls=false;p.thirdPerson=false;
-            if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3){Fail("Campus destinations or cars missing");yield break;}
+            if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3||c.parking==null||c.parking.StallCount<36||c.parking.ParkedCarCount<20){Fail("Campus destinations, parking or cars missing");yield break;}
+            result.parkingStalls=c.parking.StallCount;result.parkedCars=c.parking.ParkedCarCount;
             foreach(var place in CampusCatalog.Places)
             {
                 bool science=place.id=="18k"||place.id=="18n"||place.id=="18p"||place.id=="18u";
