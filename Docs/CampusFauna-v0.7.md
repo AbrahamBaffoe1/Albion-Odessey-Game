@@ -13,3 +13,7 @@ The feature is cosmetic and safe to ignore: squirrels have no gameplay collider,
 The packaged Unity walkthrough checks 18 active squirrels, 432 habitat points, a tree-adjacent spawn, more than two metres of movement in the test window, and continued proximity to the campus tree network. It also checks all 61 campus destinations, third-person character behavior, cars, discoveries, classroom progression, sound cues and save migration. The close-up review frame is `Playtest/20-squirrel-habitat.png` in the version 0.7 output.
 
 The map buildings and tree placement are approximate game geometry derived from the reviewed campus map. The squirrels, behavior, colors and habitat logic are original game content.
+
+## Blender reference portrait
+
+`Art/Wildlife/LeucisticSquirrelPortrait.blend` is the clean wildlife reference scene: one large side-profile squirrel, a single diagonal branch with snow on its upper surface, blurred autumn branches and leaves, a 120 mm camera and eye-focused depth of field. The matching render is `Art/Wildlife/LeucisticSquirrelPortrait.png`. `Art/Wildlife/Squirrel_Leucistic.fbx` is the posed base mesh imported by the Unity runtime; its fallback procedural model remains available if an importer is unavailable.

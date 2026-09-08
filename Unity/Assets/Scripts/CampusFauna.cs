@@ -95,7 +95,7 @@ namespace AlbionOdyssey
     public sealed class SquirrelAgent : MonoBehaviour
     {
         enum Activity { Forage, Run, Rest, Climb }
-        CampusFauna fauna; Transform body,head,tail,tailMid,tailTip,frontLeft,frontRight,backLeft,backRight;
+        CampusFauna fauna; Transform body,head,tail,tailMid,tailTip,frontLeft,frontRight,backLeft,backRight; Vector3 modelBasePosition;
         Material coat,cream,dark,nose,pink; int habitatIndex,variant,seed,decisionCount; float speed,phase,nextDecision;
         Vector3 target; Activity activity; bool built;
         public float DistanceTravelled {get;private set;}
@@ -115,6 +115,7 @@ namespace AlbionOdyssey
             target=transform.position;activity=Activity.Forage;nextDecision=Time.time+.2f;DistanceTravelled=0;
         }
         public string ActivityName=>activity.ToString();
+        public bool UsesBlenderAsset {get;private set;}
 
         public void Configure(CampusFauna owner,int start,int identity,Material fur,Material muzzle,Material eyes,Material snout,int style,Material pawColor)
         {
@@ -125,8 +126,27 @@ namespace AlbionOdyssey
         static GameObject Part(Transform parent,string name,PrimitiveType shape,Vector3 at,Vector3 scale,Material material)
             =>KeeperAvatar.Part(parent,name,shape,at,scale,material,false);
 
+        static Transform FindDescendant(Transform root,string fragment)
+        {
+            if(root.name.IndexOf(fragment,StringComparison.OrdinalIgnoreCase)>=0)return root;
+            foreach(Transform child in root)
+            {
+                var found=FindDescendant(child,fragment);if(found!=null)return found;
+            }
+            return null;
+        }
+
         void BuildModel()
         {
+            var blenderPrefab=Resources.Load<GameObject>("Wildlife/Squirrel_Leucistic");
+            if(blenderPrefab!=null)
+            {
+                var imported=Instantiate(blenderPrefab,transform,false);imported.name="Blender leucistic squirrel model";imported.transform.localScale=Vector3.one*.14f;
+                body=imported.transform;modelBasePosition=Vector3.down*.05f;body.localPosition=modelBasePosition;
+                head=FindDescendant(imported.transform,"Squirrel alert head");tail=FindDescendant(imported.transform,"Single continuous bushy tail");tailMid=null;tailTip=tail;
+                UsesBlenderAsset=true;return;
+            }
+            UsesBlenderAsset=false;modelBasePosition=Vector3.zero;
             var root=new GameObject("Squirrel model").transform;root.SetParent(transform,false);
             root.localPosition=Vector3.up*.14f;
             body=root;
@@ -221,9 +241,9 @@ namespace AlbionOdyssey
         {
             float gait=speed>0?Mathf.Sin(Time.time*(activity==Activity.Run?18:10)+phase):0;
             float bounce=speed>0?Mathf.Abs(Mathf.Sin(Time.time*(activity==Activity.Run?18:10)+phase))*(activity==Activity.Run?.065f:.025f):0;
-            if(body!=null)body.localPosition=new Vector3(0,.14f+bounce,0);
+            if(body!=null)body.localPosition=modelBasePosition+new Vector3(0,.14f+bounce,0);
             if(frontLeft!=null){frontLeft.localRotation=Quaternion.Euler(gait*28,0,0);frontRight.localRotation=Quaternion.Euler(-gait*28,0,0);backLeft.localRotation=Quaternion.Euler(-gait*24,0,0);backRight.localRotation=Quaternion.Euler(gait*24,0,0);}
-            if(tail!=null){tail.localRotation=Quaternion.Euler(-28+Mathf.Sin(Time.time*3+phase)*8,Mathf.Sin(Time.time*2+phase)*12,Mathf.Sin(Time.time*4+phase)*5);tailMid.localRotation=Quaternion.Euler(-42+Mathf.Sin(Time.time*2.6f+phase)*10,Mathf.Sin(Time.time*2.2f+phase)*10,0);tailTip.localRotation=Quaternion.Euler(28+Mathf.Sin(Time.time*3.5f+phase)*12,0,0);}
+            if(tail!=null){tail.localRotation=Quaternion.Euler(-28+Mathf.Sin(Time.time*3+phase)*8,Mathf.Sin(Time.time*2+phase)*12,Mathf.Sin(Time.time*4+phase)*5);if(tailMid!=null)tailMid.localRotation=Quaternion.Euler(-42+Mathf.Sin(Time.time*2.6f+phase)*10,Mathf.Sin(Time.time*2.2f+phase)*10,0);if(tailTip!=null)tailTip.localRotation=Quaternion.Euler(28+Mathf.Sin(Time.time*3.5f+phase)*12,0,0);}
             if(head!=null)head.localRotation=Quaternion.Euler(activity==Activity.Rest?8:Mathf.Sin(Time.time*2+phase)*3,Mathf.Sin(Time.time*1.4f+phase)*6,0);
         }
     }

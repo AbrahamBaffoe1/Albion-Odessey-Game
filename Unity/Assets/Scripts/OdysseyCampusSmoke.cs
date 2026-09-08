@@ -11,10 +11,11 @@ namespace AlbionOdyssey
             if(c==null||CampusCatalog.Places.Length!=61||c.cars.Count!=3||c.parking==null||c.parking.StallCount<36||c.parking.ParkedCarCount<20||a==null||a.ActivitySpaces<33||a.ActivityAgents<31||a.InteractionStations<33||a.ActiveClubCount<11||a.ClubAgents<22){Fail("Campus destinations, parking, activities or clubs missing");yield break;}
             if(c.fauna==null||c.fauna.ActiveCount!=CampusFauna.Population||c.fauna.HabitatCount<100){Fail("Campus squirrel population or habitat missing");yield break;}
             var firstSquirrel=c.fauna.Squirrels[0];firstSquirrel.ResetForVerification();Vector3 squirrelStart=firstSquirrel.transform.position;
+            if(!firstSquirrel.UsesBlenderAsset){Fail("Blender leucistic squirrel asset was not loaded");yield break;}
             if(!firstSquirrel.IsNearTree){Fail("Squirrel spawned outside tree habitat at "+firstSquirrel.transform.position+"; trees="+CampusGeometry.HabitatTrees.Count);yield break;}
             for(int i=0;i<240;i++)yield return null;
             if(firstSquirrel.DistanceTravelled<2||Vector3.Distance(firstSquirrel.transform.position,squirrelStart)<.4f||!firstSquirrel.IsNearTree){Fail("Squirrel did not roam its bounded campus habitat");yield break;}
-            result.squirrels=CampusFauna.Population;result.squirrelTravel=firstSquirrel.DistanceTravelled;result.squirrelHabitat=c.fauna.HabitatCount;
+            result.squirrels=CampusFauna.Population;result.squirrelTravel=firstSquirrel.DistanceTravelled;result.squirrelHabitat=c.fauna.HabitatCount;result.blenderSquirrel=true;
             yield return Capture("20-squirrel-habitat",firstSquirrel.transform.position+new Vector3(5,3,-5),firstSquirrel.transform.position+Vector3.up*.5f);
             result.parkingStalls=c.parking.StallCount;result.parkedCars=c.parking.ParkedCarCount;
             result.activitySpaces=a.ActivitySpaces;result.activityAgents=a.ActivityAgents;result.activityStations=a.InteractionStations;result.activeClubs=a.ActiveClubCount;result.clubAgents=a.ClubAgents;
