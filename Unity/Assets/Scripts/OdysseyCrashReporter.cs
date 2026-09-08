@@ -36,17 +36,19 @@ namespace AlbionOdyssey
         void OnLog(string condition, string stackTrace, LogType type)
         {
             if (shuttingDown || (type != LogType.Exception && type != LogType.Assert && type != LogType.Error)) return;
+            string[] snapshot;
             lock (Gate)
             {
                 string line = DateTime.UtcNow.ToString("o") + " | " + condition + "\n" + stackTrace;
                 while (recent.Count >= 20) recent.Dequeue(); recent.Enqueue(line);
                 if (writing) return; writing = true;
+                snapshot = recent.ToArray();
             }
             try
             {
                 var record = new OdysseyCrashRecord { timestamp = DateTime.UtcNow.ToString("o"), condition = condition, stackTrace = stackTrace, version = Application.version, platform = Application.platform.ToString(), scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name };
                 File.WriteAllText(report, JsonUtility.ToJson(record, true));
-                File.WriteAllLines(Path.Combine(root, "recent.log"), recent.ToArray());
+                File.WriteAllLines(Path.Combine(root, "recent.log"), snapshot);
             }
             catch { }
             finally { lock (Gate) writing = false; }
