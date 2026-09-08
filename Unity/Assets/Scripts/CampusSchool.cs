@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 namespace AlbionOdyssey
 {
     [Serializable] public sealed class CampusCourse
@@ -11,7 +10,7 @@ namespace AlbionOdyssey
         public int Seats => students+OdysseyState.Count(enrolled);
         public string ScheduleLabel
         {
-            get { string[] days={"Mon","Tue","Wed","Thu","Fri"};int day=Mathf.Clamp(dayOfWeek,0,4);int minute=Mathf.Clamp(startMinute,0,1439);return days[day]+" "+(minute/60).ToString("00")+":"+(minute%60).ToString("00")+" · "+Mathf.Max(30,duration)+" min"; }
+            get { string[] days={"Mon","Tue","Wed","Thu","Fri"};int day=dayOfWeek<0?0:dayOfWeek>4?4:dayOfWeek;int minute=startMinute<0?0:startMinute>1439?1439:startMinute;int length=duration<30?30:duration;return days[day]+" "+(minute/60).ToString("00")+":"+(minute%60).ToString("00")+" · "+length+" min"; }
         }
     }
     [Serializable] public sealed class CampusSchool
