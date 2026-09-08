@@ -27,7 +27,7 @@ namespace AlbionOdyssey
         Camera panoramaCamera; GameObject panoramaSphere,room; Material panoramaMaterial;
         float yaw,pitch,mediaStarted,revealChars; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
         string[] narrativeLines=Array.Empty<string>(); int narrativePage;
-        GUIStyle title,text,small,button,story,detailTitle; TourPlace[] filtered;
+        GUIStyle title,text,small,button,story,detailTitle,textButton; TourPlace[] filtered;
         public static readonly Vector3 RoomOrigin=new Vector3(1600,0,1600);
         public void Setup(OdysseyGame owner)
         {
@@ -109,7 +109,7 @@ namespace AlbionOdyssey
         string RevealedStory()
         {
             int count=Mathf.Clamp(Mathf.FloorToInt(revealChars),0,DisplayStory.Length);
-            return DisplayStory.Substring(0,count)+(count<DisplayStory.Length?"▌":"");
+            return DisplayStory.Substring(0,count);
         }
         void AdvanceStory()
         {
@@ -210,13 +210,15 @@ namespace AlbionOdyssey
             text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};story=new GUIStyle(text){fontSize=21};detailTitle=new GUIStyle(title){fontSize=26};small=new GUIStyle(text){fontSize=13};
             button=new GUIStyle(GUI.skin.button){fontSize=16,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,8,8)};
             foreach(var style in new[]{button.normal,button.hover,button.active,button.focused}){style.background=Texture2D.whiteTexture;style.textColor=Color.white;}
+            textButton=new GUIStyle(GUI.skin.button){fontSize=15,wordWrap=true,richText=false,alignment=TextAnchor.MiddleCenter,padding=new RectOffset(8,8,4,4),border=new RectOffset()};
+            foreach(var style in new[]{textButton.normal,textButton.hover,textButton.active,textButton.focused}){style.background=null;style.textColor=new Color(.95f,.92f,.84f,1);}
         }
         void Box(Rect r,Color c){GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}
         bool Button(Rect r,string value){var color=GUI.backgroundColor;if(color==Color.white)GUI.backgroundColor=new Color(.29f,.17f,.40f);bool hit=GUI.Button(r,value,button);GUI.backgroundColor=color;return hit;}
         bool ControlButton(Rect r,string value)
-        {var color=GUI.backgroundColor;GUI.backgroundColor=new Color(.10f,.14f,.16f,.86f);bool hit=GUI.Button(r,value,button);GUI.backgroundColor=color;return hit;}
+        {return GUI.Button(r,value,textButton);}
         bool NextButton(Rect r,string value)
-        {var color=GUI.backgroundColor;GUI.backgroundColor=new Color(.80f,.60f,.22f,.96f);bool hit=GUI.Button(r,value,button);GUI.backgroundColor=color;return hit;}
+        {return GUI.Button(r,value,textButton);}
         bool EnterSelected()
         {
             if(selected==null)return false;
@@ -231,9 +233,7 @@ namespace AlbionOdyssey
         void DrawStorySide(float width,float height)
         {
             float panelWidth=Mathf.Min(505,width*.44f),x=width-panelWidth;
-            Box(new Rect(x-14,0,panelWidth+14,height),new Color(.01f,.02f,.03f,.60f));
-            Box(new Rect(x,0,panelWidth,height),new Color(.055f,.085f,.105f,.93f));
-            Box(new Rect(x,0,5,height),new Color(.86f,.63f,.22f,1));
+            Box(new Rect(x,190,panelWidth,height-190),new Color(.005f,.008f,.012f,.68f));
             GUI.Label(new Rect(x+30,28,panelWidth-90,22),"HISTORY / FIELD NOTE",small);
             if(ControlButton(new Rect(x+panelWidth-105,22,78,34),"Close"))Close();
             GUI.Label(new Rect(x+30,67,panelWidth-60,90),selected.name,detailTitle);
@@ -241,7 +241,6 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(x+30,214,panelWidth-60,22),"THE STORY  /  "+(narrativePage+1)+" OF "+narrativeLines.Length,small);
             GUI.Label(new Rect(x+30,250,panelWidth-60,165),RevealedStory(),story);
             GUI.Label(new Rect(x+30,420,panelWidth-60,22),Mathf.FloorToInt(Mathf.Min(revealChars,CurrentStory.Length))+" / "+CurrentStory.Length+" characters",small);
-            Box(new Rect(x+30,449,panelWidth-60,1),new Color(.86f,.63f,.22f,.55f));
             if(ControlButton(new Rect(x+30,470,160,38),voicePlaying?"Pause voice":"Read aloud"))ToggleNarration();
             if(ControlButton(new Rect(x+205,470,205,38),"Open archive  ·  G")){sidePanel=false;Open(selected);}
             if(ControlButton(new Rect(x+30,520,185,38),"Enter building"))EnterSelected();
