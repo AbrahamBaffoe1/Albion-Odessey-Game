@@ -46,15 +46,14 @@ namespace AlbionOdyssey
 
         void BuildSquirrels()
         {
-            coats=new[]{
-                TowerGeometry.Material("Squirrel coat chestnut",new Color(.36f,.13f,.045f),0,.58f),
-                TowerGeometry.Material("Squirrel coat russet",new Color(.58f,.24f,.07f),0,.58f),
-                TowerGeometry.Material("Squirrel coat silver",new Color(.36f,.39f,.42f),0,.64f),
-                TowerGeometry.Material("Squirrel coat golden",new Color(.70f,.40f,.10f),0,.58f)
-            };
-            var cream=TowerGeometry.Material("Squirrel muzzle",new Color(.84f,.67f,.43f),0,.68f);
-            var dark=TowerGeometry.Material("Squirrel eyes",new Color(.015f,.008f,.004f),0,.85f);
-            var nose=TowerGeometry.Material("Squirrel nose",new Color(.12f,.035f,.02f),0,.65f);
+            // One shared russet coat keeps the population visually coherent as
+            // the same campus species. The reference red squirrel's pointed
+            // ears, pale chest and full tail drive the proportions below.
+            var russet=TowerGeometry.Material("Squirrel coat natural russet",new Color(.62f,.23f,.065f),0,.60f);
+            coats=new[]{russet};
+            var cream=TowerGeometry.Material("Squirrel warm cream",new Color(.88f,.70f,.48f),0,.70f);
+            var dark=TowerGeometry.Material("Squirrel eyes",new Color(.012f,.006f,.003f),0,.88f);
+            var nose=TowerGeometry.Material("Squirrel nose",new Color(.10f,.025f,.012f),0,.70f);
             for(int i=0;i<Population;i++)
             {
                 int habitatIndex=(i*17+3)%Mathf.Max(1,habitat.Count);
@@ -62,7 +61,7 @@ namespace AlbionOdyssey
                 var root=new GameObject("Campus squirrel "+(i+1).ToString("00"));
                 root.transform.position=start+Vector3.up*.12f;
                 var agent=root.AddComponent<SquirrelAgent>();
-                agent.Configure(this,habitatIndex,i,coats[i%coats.Length],cream,dark,nose,random.Next(0,4));
+                agent.Configure(this,habitatIndex,i,coats[0],cream,dark,nose,random.Next(0,2));
                 Squirrels.Add(agent);
             }
         }
@@ -94,7 +93,7 @@ namespace AlbionOdyssey
     public sealed class SquirrelAgent : MonoBehaviour
     {
         enum Activity { Forage, Run, Rest, Climb }
-        CampusFauna fauna; Transform body,head,tail,tailTip,frontLeft,frontRight;
+        CampusFauna fauna; Transform body,head,tail,tailMid,tailTip,frontLeft,frontRight,backLeft,backRight;
         Material coat,cream,dark,nose; int habitatIndex,variant,seed,decisionCount; float speed,phase,nextDecision;
         Vector3 target; Activity activity; bool built;
         public float DistanceTravelled {get;private set;}
@@ -127,24 +126,34 @@ namespace AlbionOdyssey
         void BuildModel()
         {
             var root=new GameObject("Squirrel model").transform;root.SetParent(transform,false);
-            root.localPosition=Vector3.up*.18f;
+            root.localPosition=Vector3.up*.14f;
             body=root;
-            Part(root,"Squirrel body",PrimitiveType.Capsule,new Vector3(0,.42f,0),new Vector3(.38f,.28f,.25f),coat);
-            head=Part(root,"Squirrel head",PrimitiveType.Sphere,new Vector3(0,.70f,.17f),new Vector3(.28f,.25f,.26f),coat).transform;
-            Part(head,"Muzzle",PrimitiveType.Sphere,new Vector3(0,-.01f,.19f),new Vector3(.18f,.14f,.12f),cream);
-            Part(head,"Nose",PrimitiveType.Sphere,new Vector3(0,-.01f,.30f),new Vector3(.055f,.045f,.045f),nose);
+            var torso=Part(root,"Squirrel long torso",PrimitiveType.Capsule,new Vector3(0,.40f,0),new Vector3(.34f,.25f,.52f),coat).transform;
+            torso.localRotation=Quaternion.Euler(90,0,0);
+            Part(root,"Squirrel cream belly",PrimitiveType.Sphere,new Vector3(0,.39f,.19f),new Vector3(.25f,.20f,.24f),cream);
+            Part(root,"Squirrel hind haunch",PrimitiveType.Sphere,new Vector3(0,.43f,-.18f),new Vector3(.34f,.30f,.30f),coat);
+            head=Part(root,"Squirrel alert head",PrimitiveType.Sphere,new Vector3(0,.73f,.36f),new Vector3(.27f,.24f,.27f),coat).transform;
+            var muzzle=Part(head,"Pointed cream muzzle",PrimitiveType.Capsule,new Vector3(0,-.01f,.22f),new Vector3(.15f,.12f,.22f),cream).transform;
+            muzzle.localRotation=Quaternion.Euler(90,0,0);
+            Part(head,"Nose",PrimitiveType.Sphere,new Vector3(0,-.01f,.35f),new Vector3(.055f,.045f,.045f),nose);
             for(int side=-1;side<=1;side+=2)
             {
-                Part(head,"Ear",PrimitiveType.Sphere,new Vector3(side*.18f,.16f,.02f),new Vector3(.13f,.18f,.08f),coat);
-                Part(head,"Eye",PrimitiveType.Sphere,new Vector3(side*.095f,.055f,.235f),new Vector3(.037f,.045f,.025f),dark);
+                Part(head,"Rounded ear",PrimitiveType.Sphere,new Vector3(side*.18f,.16f,.02f),new Vector3(.13f,.17f,.09f),coat);
+                var tuft=Part(head,"Ear tuft",PrimitiveType.Capsule,new Vector3(side*.18f,.29f,.02f),new Vector3(.045f,.16f,.045f),coat).transform;
+                tuft.localRotation=Quaternion.Euler(0,0,-side*15);
+                Part(head,"Bright eye",PrimitiveType.Sphere,new Vector3(side*.10f,.055f,.25f),new Vector3(.041f,.048f,.028f),dark);
             }
-            tail=Part(root,"Squirrel tail",PrimitiveType.Sphere,new Vector3(0,.57f,-.29f),new Vector3(.28f,.58f,.26f),coat).transform;
-            tailTip=Part(tail,"Tail tip",PrimitiveType.Sphere,new Vector3(0,.78f,-.02f),new Vector3(.23f,.40f,.22f),coat).transform;
+            tail=Part(root,"Bushy tail base",PrimitiveType.Capsule,new Vector3(0,.63f,-.34f),new Vector3(.25f,.34f,.23f),coat).transform;
+            tail.localRotation=Quaternion.Euler(-28,0,0);
+            tailMid=Part(root,"Bushy tail middle",PrimitiveType.Capsule,new Vector3(0,.96f,-.43f),new Vector3(.29f,.42f,.26f),coat).transform;
+            tailMid.localRotation=Quaternion.Euler(-42,0,0);
+            tailTip=Part(root,"Bushy tail tip",PrimitiveType.Capsule,new Vector3(0,1.30f,-.29f),new Vector3(.23f,.38f,.21f),coat).transform;
+            tailTip.localRotation=Quaternion.Euler(28,0,0);
             frontLeft=Leg(root,"Front left",-.16f);frontRight=Leg(root,"Front right",.16f);
-            Leg(root,"Back left",-.17f);Leg(root,"Back right",.17f);
-            // A tiny gold collar makes the four population variants readable
-            // at distance without using expensive textures or animation rigs.
-            if(variant==3)Part(root,"Gold collar",PrimitiveType.Cylinder,new Vector3(0,.59f,.12f),new Vector3(.20f,.035f,.20f),TowerGeometry.Material("Squirrel gold collar",new Color(.96f,.68f,.18f),.25f,.65f));
+            backLeft=Leg(root,"Back left",-.19f);backRight=Leg(root,"Back right",.19f);
+            // A subtle pale throat catches the light without changing the
+            // single natural coat color shared by every campus squirrel.
+            Part(root,"Pale throat",PrimitiveType.Sphere,new Vector3(0,.61f,.27f),new Vector3(.17f,.16f,.13f),cream);
         }
 
         Transform Leg(Transform root,string name,float side)
@@ -203,8 +212,10 @@ namespace AlbionOdyssey
         void Animate(float oldSpeed)
         {
             float gait=speed>0?Mathf.Sin(Time.time*(activity==Activity.Run?18:10)+phase):0;
-            if(frontLeft!=null){frontLeft.localRotation=Quaternion.Euler(gait*28,0,0);frontRight.localRotation=Quaternion.Euler(-gait*28,0,0);}
-            if(tail!=null){tail.localRotation=Quaternion.Euler(-10+Mathf.Sin(Time.time*3+phase)*8,Mathf.Sin(Time.time*2+phase)*12,Mathf.Sin(Time.time*4+phase)*5);tailTip.localRotation=Quaternion.Euler(Mathf.Sin(Time.time*3.5f+phase)*10,0,0);}
+            float bounce=speed>0?Mathf.Abs(Mathf.Sin(Time.time*(activity==Activity.Run?18:10)+phase))*(activity==Activity.Run?.065f:.025f):0;
+            if(body!=null)body.localPosition=new Vector3(0,.14f+bounce,0);
+            if(frontLeft!=null){frontLeft.localRotation=Quaternion.Euler(gait*28,0,0);frontRight.localRotation=Quaternion.Euler(-gait*28,0,0);backLeft.localRotation=Quaternion.Euler(-gait*24,0,0);backRight.localRotation=Quaternion.Euler(gait*24,0,0);}
+            if(tail!=null){tail.localRotation=Quaternion.Euler(-28+Mathf.Sin(Time.time*3+phase)*8,Mathf.Sin(Time.time*2+phase)*12,Mathf.Sin(Time.time*4+phase)*5);tailMid.localRotation=Quaternion.Euler(-42+Mathf.Sin(Time.time*2.6f+phase)*10,Mathf.Sin(Time.time*2.2f+phase)*10,0);tailTip.localRotation=Quaternion.Euler(28+Mathf.Sin(Time.time*3.5f+phase)*12,0,0);}
             if(head!=null)head.localRotation=Quaternion.Euler(activity==Activity.Rest?8:Mathf.Sin(Time.time*2+phase)*3,Mathf.Sin(Time.time*1.4f+phase)*6,0);
         }
     }

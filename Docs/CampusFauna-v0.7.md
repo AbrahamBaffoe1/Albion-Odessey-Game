@@ -2,9 +2,9 @@
 
 Albion Odyssey now has a living campus population: 18 animated squirrels roam the map around a deterministic habitat graph derived from the campus trees. The population is capped and created once when the exterior campus loads, so a player can visit all 61 destinations without spawning an unbounded number of agents.
 
-Each squirrel is a real runtime 3D model assembled from low-cost meshes: body, head, muzzle, ears, eyes, four legs and a segmented tail. Four coat variants (chestnut, russet, silver and golden) make the group readable at a distance; the golden variant has a small collar. Legs, heads and tails animate continuously with different gait speeds for forage, run, rest and climb activities.
+Each squirrel is a real runtime 3D model assembled from low-cost meshes: a long torso, cream belly, alert head, pointed muzzle, tufted ears, bright eyes, four legs and a full segmented tail. Every agent shares the same natural russet coat and warm cream underside so the population reads as one red-squirrel species. Legs, heads and tails animate continuously with different gait speeds for forage, run, rest and climb activities.
 
-The habitat graph places four points around every authored campus tree. Squirrels choose points from that graph, check ground and capsule clearance, steer around obstacles and remain near the tree network. Resting pauses, short runs and slower forage walks prevent the group from moving as a synchronized flock. No NavMesh query runs per frame. Agents use a bounded sphere cast and a ground ray only while moving.
+The habitat graph places four points around every authored campus tree. Squirrels choose points from that graph, sample the ground, steer around obstacles with a bounded sphere cast and remain near the tree network. Resting pauses, short runs and slower forage walks prevent the group from moving as a synchronized flock. No NavMesh query runs per frame; agents use only a sphere cast and ground ray while moving.
 
 The feature is cosmetic and safe to ignore: squirrels have no gameplay collider, do not block arrivals, do not alter course or collection rules, and do not affect saved progress. They are visible in the third-person campus view and continue their routine while a player opens the map, character editor or car.
 
