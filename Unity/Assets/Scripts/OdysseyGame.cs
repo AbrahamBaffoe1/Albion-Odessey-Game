@@ -24,6 +24,7 @@ namespace AlbionOdyssey
         public OdysseyAccessibility accessibility;
         public CampusOnlineSession online;
         public OdysseyVrSupport vr;
+        public CampusWeather weather;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
@@ -92,6 +93,7 @@ namespace AlbionOdyssey
             tour=gameObject.AddComponent<CampusTour>();tour.Setup(this);
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
+            weather=gameObject.AddComponent<CampusWeather>();weather.Setup(this);
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
@@ -108,6 +110,7 @@ namespace AlbionOdyssey
             if(online!=null&&online.HandleInput())return;
             if(vr!=null&&vr.HandleInput())return;
             if(shell!=null&&shell.HandleInput())return;
+            if(weather!=null&&weather.HandleInput())return;
             if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.HandleInput())return;
             if(tour!=null&&tour.HandleInput())return;
             if(campus!=null&&campus.HandleInput())return;
@@ -323,7 +326,7 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(24,height-105,width-48,30),notice,small);
             GUI.Label(new Rect(24,height-81,width-48,25),"CHARTER  /  "+OdysseyStory.Objective(state.Current),small);
             GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD / ARROWS move   MOUSE look   SHIFT run   SPACE jump / brake   E interact / enter / exit   V camera",small);
-            GUI.Label(new Rect(24,height-30,width-48,28),"M map    H history    G building stories    K courses    J journal    F2 build    TAB Keeper    C Beacon    ESC help"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
+            GUI.Label(new Rect(24,height-30,width-48,28),"M map    H history    G building stories    K courses    J journal    F2 build    TAB Keeper    C Beacon    Y snow    ESC help"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
             if(!building&&!journalOpen){GUI.Label(new Rect(width/2-5,height/2-12,20,24),"+",body);}
         }
     }

@@ -17,6 +17,13 @@ namespace AlbionOdyssey
             if(firstSquirrel.DistanceTravelled<2||Vector3.Distance(firstSquirrel.transform.position,squirrelStart)<.4f||!firstSquirrel.IsNearTree){Fail("Squirrel did not roam its bounded campus habitat");yield break;}
             result.squirrels=CampusFauna.Population;result.squirrelTravel=firstSquirrel.DistanceTravelled;result.squirrelHabitat=c.fauna.HabitatCount;result.blenderSquirrel=true;
             yield return Capture("20-squirrel-habitat",firstSquirrel.transform.position+new Vector3(5,3,-5),firstSquirrel.transform.position+Vector3.up*.5f);
+            if(game.weather==null){Fail("Campus weather system missing");yield break;}
+            if(!c.Travel(CampusExpansion.Find("5"))){Fail("Snow verification could not reach campus");yield break;}
+            p.controls=false;game.weather.SetSnowForVerification(true);yield return null;
+            if(!game.weather.IsSnowing||!game.weather.SnowCoverVisible||game.weather.SnowflakesVisible<=0){Fail("Campus snow did not activate across the playable campus");yield break;}
+            result.snow=true;result.snowflakes=game.weather.SnowflakesVisible;result.snowTransitions=game.weather.SnowTransitions;
+            yield return Capture("21-campus-snow",new Vector3(-155,120,360),CampusCatalog.Point(423,170));
+            game.weather.SetSnowForVerification(false);yield return null;
             result.parkingStalls=c.parking.StallCount;result.parkedCars=c.parking.ParkedCarCount;
             result.activitySpaces=a.ActivitySpaces;result.activityAgents=a.ActivityAgents;result.activityStations=a.InteractionStations;result.activeClubs=a.ActiveClubCount;result.clubAgents=a.ClubAgents;
             var firstStation=FindAnyObjectByType<CampusActivityStation>();if(firstStation==null){Fail("Activity interaction stations missing");yield break;}firstStation.Activate(game);result.activityInteraction=firstStation.Uses==1&&a.CompletedInteractions==1;
