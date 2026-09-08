@@ -27,7 +27,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if(game==null||game.life.PanelOpen||game.building||game.journalOpen)return;
-            if(label==null){label=new GUIStyle(GUI.skin.label){fontSize=20,fontStyle=FontStyle.Bold,richText=false,wordWrap=true};small=new GUIStyle(label){fontSize=14,fontStyle=FontStyle.Normal};button=new GUIStyle(GUI.skin.button){fontSize=15,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=new Color(.94f,.94f,.9f);}}
+            if(label==null){label=new GUIStyle(GUI.skin.label){fontSize=OdysseyAccessibility.LargeText?23:20,fontStyle=FontStyle.Bold,richText=false,wordWrap=true};small=new GUIStyle(label){fontSize=OdysseyAccessibility.LargeText?17:14,fontStyle=FontStyle.Normal};button=new GUIStyle(GUI.skin.button){fontSize=OdysseyAccessibility.LargeText?18:15,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=new Color(.94f,.94f,.9f);}}
             var old=GUI.matrix;var bc=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;GUI.color=Color.white;GUI.backgroundColor=new Color(.16f,.12f,.23f);
             var buildings=CampusBuildings.Instance;
             var additionalInside=buildings?.AdditionalInside();
@@ -39,7 +39,7 @@ namespace AlbionOdyssey
             string action=Context();Card(new Rect(w/2-270,h-74,540,46));GUI.Label(new Rect(w/2-255,h-63,510,34),action,small);
             GUI.Label(new Rect(w-260,h-29,236,22),"O  Movement buttons   ·   V  Camera",small);
             if(Cursor.lockState==CursorLockMode.Locked){GUI.color=new Color(1,1,1,.65f);GUI.DrawTexture(new Rect(w/2-1,h/2-1,3,3),Texture2D.whiteTexture);GUI.color=Color.white;}
-            string toast=game.sound.AchievementCaption;
+            string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
             if(toast.Length>0){Card(new Rect(w/2-220,24,440,67));GUI.Label(new Rect(w/2-202,34,405,50),"Achievement unlocked\n"+toast,small);}
             // Ordinary game messages appear briefly and never under another panel or achievement.
             else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){Card(new Rect(24,106,350,72));GUI.Label(new Rect(40,116,318,56),lastNotice,small);}

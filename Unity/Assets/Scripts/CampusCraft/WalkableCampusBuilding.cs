@@ -59,6 +59,7 @@ namespace AlbionOdyssey
 
         void BuildExterior()
         {
+            if (Id == "18") { BuildScienceExterior(); return; }
             float roofY = Floors * FloorHeight;
             Box(Root.transform, "Foundation", new Vector3(0, .15f, 0), new Vector3(Width + .45f, .30f, Depth + .45f), stone);
             Box(Root.transform, "Back wall", new Vector3(0, roofY * .5f, Depth * .5f), new Vector3(Width, roofY, .32f), brick);
@@ -86,13 +87,59 @@ namespace AlbionOdyssey
             {
                 for (int x = -1; x <= 1; x += 2) Box(Root.transform, "Robinson portico column", new Vector3(x * 2.0f, 1.65f, -Depth * .5f - .7f), new Vector3(.42f, 3.3f, .52f), stone, true);
                 Box(Root.transform, "Robinson pediment", new Vector3(0, 4.0f, -Depth * .5f - .75f), new Vector3(5.2f, .35f, 1.5f), stone, false);
+                Sign(new Vector3(0, 2.45f, -Depth * .5f - .48f), "ROBINSON HALL · QUADRANGLE");
+                for (int side = -1; side <= 1; side += 2) Box(Root.transform, "Robinson entry lantern", new Vector3(side * 2.65f, 2.35f, -Depth * .5f - .55f), new Vector3(.28f, .55f, .18f), roof, false);
                 Dormer(new Vector3(-Width * .27f, roofY + .65f, -Depth * .18f)); Dormer(new Vector3(Width * .27f, roofY + .65f, -Depth * .18f));
             }
             else
             {
                 Box(Root.transform, "Bonta glazed lobby", new Vector3(0, 1.65f, -Depth * .5f - .28f), new Vector3(Width * .46f, 2.9f, .12f), glass, false);
                 Box(Root.transform, "Bonta roof hip", new Vector3(0, roofY + .55f, 0), new Vector3(Width + 1.2f, .65f, Depth + 1.2f), roof, false);
+                Sign(new Vector3(0, 2.55f, -Depth * .5f - .43f), "BONTA ADMISSION CENTER");
+                Box(Root.transform, "Bonta visitor ramp", new Vector3(-Width * .30f, .12f, -Depth * .5f - 1.6f), new Vector3(2.2f, .14f, 3.2f), floor, true);
             }
+        }
+
+        void BuildScienceExterior()
+        {
+            float roofY = Floors * FloorHeight;
+            Box(Root.transform, "Science Complex foundation", new Vector3(0, .15f, 0), new Vector3(Width + .6f, .3f, Depth + .6f), stone);
+            // A cross-shaped four-wing mass leaves a real glazed atrium in the centre.
+            Wing("Kresge teaching wing", new Vector3(-Width * .34f, roofY * .5f, 0), new Vector3(Width * .32f, roofY, Depth * .78f), "KRESGE");
+            Wing("Norris lecture wing", new Vector3(Width * .34f, roofY * .5f, 0), new Vector3(Width * .32f, roofY, Depth * .78f), "NORRIS");
+            Wing("Palenske research wing", new Vector3(0, roofY * .5f, Depth * .34f), new Vector3(Width * .58f, roofY, Depth * .32f), "PALENSKE");
+            Wing("Putnam collections wing", new Vector3(0, roofY * .5f, -Depth * .34f), new Vector3(Width * .58f, roofY, Depth * .32f), "PUTNAM");
+            Box(Root.transform, "Science atrium floor", new Vector3(0, .28f, 0), new Vector3(10.4f, .16f, 10.4f), floor);
+            Box(Root.transform, "Atrium east glass", new Vector3(5.25f, roofY * .5f, 0), new Vector3(.12f, roofY - .4f, 10.8f), glass, false);
+            Box(Root.transform, "Atrium west glass", new Vector3(-5.25f, roofY * .5f, 0), new Vector3(.12f, roofY - .4f, 10.8f), glass, false);
+            Box(Root.transform, "Atrium north glass", new Vector3(0, roofY * .5f, 5.25f), new Vector3(10.8f, roofY - .4f, .12f), glass, false);
+            Box(Root.transform, "Atrium south glass", new Vector3(0, roofY * .5f, -5.25f), new Vector3(10.8f, roofY - .4f, .12f), glass, false);
+            Box(Root.transform, "Science main canopy", new Vector3(0, 3.55f, -Depth * .5f - .9f), new Vector3(7.2f, .24f, 2.2f), stone, false);
+            Door(new Vector3(0, 0, -Depth * .5f - .28f), 2.8f, 2.8f, "Science Complex main entrance");
+            Box(Root.transform, "Science approach walk", new Vector3(0, .04f, -Depth * .5f - 3.5f), new Vector3(5.4f, .08f, 7f), floor);
+            Sign(new Vector3(0, 2.2f, -Depth * .5f - .34f), "SCIENCE COMPLEX");
+            Sign(new Vector3(0, roofY + .55f, -Depth * .5f - .16f), "KRESGE · NORRIS · PALENSKE · PUTNAM");
+        }
+
+        void Wing(string name, Vector3 center, Vector3 size, string label)
+        {
+            Box(Root.transform, name + " facade", center, size, brick);
+            Box(Root.transform, name + " limestone base", center + Vector3.down * (size.y * .5f - .28f), new Vector3(size.x + .2f, .45f, size.z + .2f), stone, false);
+            Box(Root.transform, name + " cornice", center + Vector3.up * (size.y * .5f - .22f), new Vector3(size.x + .35f, .44f, size.z + .35f), trim, false);
+            Box(Root.transform, name + " roof", center + Vector3.up * (size.y * .5f + .16f), new Vector3(size.x + .5f, .36f, size.z + .5f), roof, false);
+            int floors = Mathf.Max(1, Mathf.FloorToInt(size.y / FloorHeight));
+            for (int f = 0; f < floors; f++)
+            {
+                float y = center.y - size.y * .5f + 1.65f + f * FloorHeight;
+                int frontWindows = Mathf.Max(2, Mathf.FloorToInt(size.x / 3.1f));
+                for (int i = 0; i < frontWindows; i++)
+                {
+                    float x = center.x - size.x * .5f + 1.6f + i * ((size.x - 3.2f) / Mathf.Max(1, frontWindows - 1));
+                    Window(new Vector3(x, y, center.z - size.z * .5f - .18f), new Vector3(1.05f, .08f, 1.22f));
+                    Window(new Vector3(x, y, center.z + size.z * .5f + .18f), new Vector3(1.05f, .08f, 1.22f));
+                }
+            }
+            Sign(new Vector3(center.x, 2.18f, center.z - size.z * .5f - .25f), label);
         }
 
         void Window(Vector3 at, Vector3 size)
@@ -107,6 +154,7 @@ namespace AlbionOdyssey
 
         void BuildInterior()
         {
+            if (Id == "18") { BuildScienceInterior(); return; }
             for (int f = 0; f < Floors; f++)
             {
                 float y = f * FloorHeight;
@@ -134,8 +182,61 @@ namespace AlbionOdyssey
                     float roomX = x * Width * .31f; Box(Root.transform, "Room partition", new Vector3(roomX, y + 1.55f, Depth * .24f), new Vector3(.14f, 3.1f, Depth * .45f), plaster, true); Door(new Vector3(roomX, y, Depth * .02f), 1.25f, 2.35f, f == 0 ? (Id == "1" ? "Admissions office" : Id == "18" ? "Teaching lab" : "Department room") : Id == "18" ? "Laboratory door" : "Office door"); Desk(new Vector3(roomX, y, Depth * .34f));
                     if (Id == "18") LabBench(new Vector3(roomX, y, -Depth * .28f));
                 }
+                if (Id == "1" && f == 0) VisitorFurniture(y);
+                if (Id == "16") AcademicFurniture(y);
                 Light(new Vector3(0, y + 3.05f, 0)); if (f < Floors - 1) Stair(f);
             }
+        }
+
+        void BuildScienceInterior()
+        {
+            const float atriumHalf = 5.05f;
+            for (int f = 0; f < Floors; f++)
+            {
+                float y = f * FloorHeight;
+                if (f == 0)
+                    Box(Root.transform, "Science ground floor", new Vector3(0, y - .1f, 0), new Vector3(Width - .7f, .2f, Depth - .7f), floor);
+                else
+                {
+                    Box(Root.transform, "Science west floor plate", new Vector3(-(Width + atriumHalf) * .25f, y - .1f, 0), new Vector3((Width - atriumHalf) * .5f, .2f, Depth - .7f), floor);
+                    Box(Root.transform, "Science east floor plate", new Vector3((Width + atriumHalf) * .25f, y - .1f, 0), new Vector3((Width - atriumHalf) * .5f, .2f, Depth - .7f), floor);
+                    Box(Root.transform, "Science north floor plate", new Vector3(0, y - .1f, (Depth + atriumHalf) * .25f), new Vector3(atriumHalf * 2f, .2f, (Depth - atriumHalf) * .5f), floor);
+                    Box(Root.transform, "Science south floor plate", new Vector3(0, y - .1f, -(Depth + atriumHalf) * .25f), new Vector3(atriumHalf * 2f, .2f, (Depth - atriumHalf) * .5f), floor);
+                }
+                // Guard rails make the atrium edge readable and block accidental falls.
+                if (f > 0)
+                {
+                    Box(Root.transform, "Atrium west rail", new Vector3(-atriumHalf, y + 1.05f, 0), new Vector3(.08f, 1.05f, atriumHalf * 2f), trim, true);
+                    Box(Root.transform, "Atrium east rail", new Vector3(atriumHalf, y + 1.05f, 0), new Vector3(.08f, 1.05f, atriumHalf * 2f), trim, true);
+                    Box(Root.transform, "Atrium north rail", new Vector3(0, y + 1.05f, atriumHalf), new Vector3(atriumHalf * 2f, 1.05f, .08f), trim, true);
+                    Box(Root.transform, "Atrium south rail", new Vector3(0, y + 1.05f, -atriumHalf), new Vector3(atriumHalf * 2f, 1.05f, .08f), trim, true);
+                }
+                string levelSign = f == 0 ? "SCIENCE ON DISPLAY" : f == 1 ? "TEACHING LABORATORIES" : f == 2 ? "RESEARCH LABORATORIES" : "COLLECTIONS & OBSERVATION";
+                Sign(new Vector3(-Width * .33f, y + 2.35f, -Depth * .5f + .25f), levelSign);
+                LabRoom(new Vector3(-Width * .31f, y, 0), "Kresge teaching lab", f < 2);
+                LabRoom(new Vector3(Width * .31f, y, 0), "Norris lecture / study room", f == 0);
+                LabRoom(new Vector3(0, y, Depth * .34f), "Palenske research lab", f >= 2);
+                LabRoom(new Vector3(0, y, -Depth * .34f), "Putnam collections room", f != 2);
+                Door(new Vector3(-Width * .31f, y, -Depth * .5f + 1.8f), 1.25f, 2.35f, "Science room door");
+                Door(new Vector3(Width * .31f, y, -Depth * .5f + 1.8f), 1.25f, 2.35f, "Science room door");
+                if (f == 0) { Door(new Vector3(-2.1f, y, -Depth * .5f - .28f), 1.2f, 2.35f, "Accessible side entrance"); Sign(new Vector3(0, y + 2.1f, -Depth * .5f + .35f), "ELEVATOR · RESTROOMS · INFO"); }
+                Light(new Vector3(0, y + 3.05f, 0));
+                ScienceStair(f);
+            }
+        }
+
+        void LabRoom(Vector3 at, string label, bool bench)
+        {
+            Sign(at + new Vector3(0, 2.55f, -2.3f), label.ToUpperInvariant());
+            if (!bench) { Desk(at + new Vector3(0, 0, .35f)); return; }
+            LabBench(at + new Vector3(0, 0, .35f)); LabBench(at + new Vector3(0, 0, -1.35f));
+        }
+
+        void ScienceStair(int floorIndex)
+        {
+            float y = floorIndex * FloorHeight;
+            for (int step = 0; step < 20; step++) Box(Root.transform, "Science stair tread", new Vector3(Width * .27f, y + (step + 1) * .17f - .085f, -Depth * .12f + step * .28f), new Vector3(2.2f, .17f, .28f), stone, true);
+            for (int side = -1; side <= 1; side += 2) Box(Root.transform, "Science stair rail", new Vector3(Width * .27f + side * 1.15f, y + 1.55f, Depth * .12f), new Vector3(.06f, .06f, Depth * .48f), wood, false);
         }
 
         void Desk(Vector3 at)
@@ -148,6 +249,22 @@ namespace AlbionOdyssey
             Box(Root.transform, "Science lab bench", at + Vector3.up * .88f, new Vector3(2.4f, .12f, .72f), wood, true);
             Box(Root.transform, "Science bench cabinet", at + Vector3.up * .42f, new Vector3(2.2f, .72f, .62f), plaster, true);
             Box(Root.transform, "Science display case", at + new Vector3(0, 1.28f, .22f), new Vector3(.72f, .48f, .12f), glass, false);
+        }
+
+        void VisitorFurniture(float y)
+        {
+            Box(Root.transform, "Bonta reception desk", new Vector3(-Width * .22f, y + .72f, Depth * .30f), new Vector3(3.8f, 1.35f, .75f), wood, true);
+            for (int i = -1; i <= 1; i++) Box(Root.transform, "Bonta visitor chair", new Vector3(i * 1.45f, y + .48f, Depth * .08f), new Vector3(.65f, .18f, .65f), fabric, true);
+            Sign(new Vector3(-Width * .22f, y + 2.25f, Depth * .30f - .42f), "VISITOR CHECK-IN");
+        }
+
+        void AcademicFurniture(float y)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                Box(Root.transform, "Robinson study table", new Vector3(i * 3.1f, y + .72f, Depth * .30f), new Vector3(2.1f, .10f, .75f), wood, true);
+                Box(Root.transform, "Robinson study chair", new Vector3(i * 3.1f, y + .45f, Depth * .30f - .72f), new Vector3(.55f, .12f, .48f), fabric, true);
+            }
         }
 
         void Stair(int floorIndex)

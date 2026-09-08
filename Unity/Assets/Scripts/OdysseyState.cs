@@ -44,6 +44,7 @@ namespace AlbionOdyssey
         public void UpgradeLegacySave()
         {
             if(version==1){school=new CampusSchool();version=2;}
+            if(school!=null)school.NormalizeSchedules();
         }
         public bool Valid()
         {

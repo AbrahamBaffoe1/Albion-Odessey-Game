@@ -24,13 +24,16 @@ namespace AlbionOdyssey
                 if(vehicle==null)transform.Rotate(0,Input.GetAxisRaw("Mouse X")*2,0);
                 pitch=Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*2,-45,65);
             }
-            float x=(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)?1:0)+buttonMove.x;
-            float z=(Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)?1:0)+buttonMove.y;
+            float x=(Input.GetKey(OdysseyAccessibility.RightKey)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.LeftKey)||Input.GetKey(KeyCode.LeftArrow)?1:0)+buttonMove.x;
+            float z=(Input.GetKey(OdysseyAccessibility.ForwardKey)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.BackKey)||Input.GetKey(KeyCode.DownArrow)?1:0)+buttonMove.y;
+            // Unity's legacy axes keep common USB and Bluetooth controllers working on Mac.
+            float axisX=Input.GetAxisRaw("Horizontal"),axisZ=Input.GetAxisRaw("Vertical");
+            if(Mathf.Abs(axisX)>.12f)x+=axisX;if(Mathf.Abs(axisZ)>.12f)z+=axisZ;
             if(vehicle!=null){vehicle.Drive(Mathf.Clamp(z,-1,1),Mathf.Clamp(x,-1,1),Input.GetKey(KeyCode.Space)||buttonJump,Time.deltaTime);buttonJump=false;movementSpeed=0;return;}
             Vector3 move=Vector3.ClampMagnitude(transform.right*x+transform.forward*z,1)*(Input.GetKey(KeyCode.LeftShift)?6.5f:3.8f);movementSpeed=move.magnitude;
             if(body.isGrounded&&velocity<0)velocity=-2;
             if(pointerControls)transform.Rotate(0,((Input.GetKey(KeyCode.X)?1:0)-(Input.GetKey(KeyCode.Z)?1:0)+buttonTurn)*90*Time.deltaTime,0);
-            if(body.isGrounded&&(Input.GetKeyDown(KeyCode.Space)||buttonJump))velocity=5.5f;
+            if(body.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||Input.GetButtonDown("Jump")||buttonJump))velocity=5.5f;
             buttonJump=false;velocity-=18*Time.deltaTime;var before=transform.position;body.Move((move+Vector3.up*velocity)*Time.deltaTime);
             var delta=transform.position-before;delta.y=0;movementSpeed=delta.magnitude/Mathf.Max(.001f,Time.deltaTime);
             if(avatar!=null&&move.sqrMagnitude>.01f&&thirdPerson)avatar.transform.localRotation=Quaternion.RotateTowards(avatar.transform.localRotation,Quaternion.Euler(0,Mathf.Atan2(x,z)*Mathf.Rad2Deg,0),540*Time.deltaTime);

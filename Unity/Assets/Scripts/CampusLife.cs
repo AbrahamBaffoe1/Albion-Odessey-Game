@@ -208,7 +208,7 @@ namespace AlbionOdyssey
             {
                 var c=school.courses[course];bool owner=c.owner==game.state.active;
                 Label(rx,130,355,70,c.title,text);
-                Label(rx,194,355,88,$"Owner: Keeper {c.owner+1} · Plot {c.plot+1}\nSeats {c.Seats}/12 · Simulated students {c.students}\nClass sessions: {c.sessions}",muted);
+                Label(rx,194,355,106,$"Owner: Keeper {c.owner+1} · Plot {c.plot+1}\nSchedule: {c.ScheduleLabel}\nSeats {c.Seats}/12 · Simulated students {c.students}\nClass sessions: {c.sessions}",muted);
                 bool enrolled=(c.enrolled&(1<<game.state.active))!=0;
                 if(Button(rx,280,355,enrolled?"Enrolled as Keeper "+(game.state.active+1):"Enroll this Keeper"))
                 {if(school.Enroll(course,game.state.active))Commit("You are enrolled. Read the lesson and answer below.");else feedback=enrolled?"You are already enrolled.":"This class is full.";}

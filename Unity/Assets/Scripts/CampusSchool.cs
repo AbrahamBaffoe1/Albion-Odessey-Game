@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 namespace AlbionOdyssey
 {
     [Serializable] public sealed class CampusCourse
@@ -6,7 +7,12 @@ namespace AlbionOdyssey
         public bool created;
         public string title;
         public int owner,plot,subject,students,enrolled,graduates,sessions;
+        public int dayOfWeek=1,startMinute=540,duration=60;
         public int Seats => students+OdysseyState.Count(enrolled);
+        public string ScheduleLabel
+        {
+            get { string[] days={"Mon","Tue","Wed","Thu","Fri"};int day=Mathf.Clamp(dayOfWeek,0,4);int minute=Mathf.Clamp(startMinute,0,1439);return days[day]+" "+(minute/60).ToString("00")+":"+(minute%60).ToString("00")+" · "+Mathf.Max(30,duration)+" min"; }
+        }
     }
     [Serializable] public sealed class CampusSchool
     {
@@ -24,7 +30,7 @@ namespace AlbionOdyssey
             {
                 int kind=state.Current.plots[p];
                 if((kind==2||kind==4)&&Array.FindIndex(courses,c=>c!=null&&c.created&&c.owner==state.active&&c.plot==p)<0)
-                {courses[slot]=new CampusCourse{created=true,title=name,owner=state.active,plot=p,subject=subject};active=slot;return true;}
+                {courses[slot]=new CampusCourse{created=true,title=name,owner=state.active,plot=p,subject=subject,dayOfWeek=(slot+state.active)%5,startMinute=540+(slot%4)*90,duration=60};active=slot;return true;}
             }
             return false;
         }
@@ -58,6 +64,13 @@ namespace AlbionOdyssey
             if(!Exists(slot)||courses[slot].owner!=owner)return false;
             courses[slot]=new CampusCourse();if(active==slot)active=-1;return true;
         }
+        public void NormalizeSchedules()
+        {
+            for(int i=0;i<courses.Length;i++)if(courses[i]!=null&&courses[i].created)
+            {
+                var c=courses[i];if(c.dayOfWeek<0||c.dayOfWeek>4)c.dayOfWeek=i%5;if(c.startMinute<=0||c.startMinute>=1440)c.startMinute=540+(i%4)*90;if(c.duration<=0||c.duration>240)c.duration=60;
+            }
+        }
         public bool Exists(int i)=>i>=0&&i<courses.Length&&courses[i]!=null&&courses[i].created;
         public bool UsesPlot(int keeper,int plot)=>Array.FindIndex(courses,c=>c!=null&&c.created&&c.owner==keeper&&c.plot==plot)>=0;
         static bool GoodTitle(string name)
@@ -73,7 +86,7 @@ namespace AlbionOdyssey
             {
                 var c=courses[i];if(c==null)return false;
                 if(!c.created){if(!string.IsNullOrEmpty(c.title)||c.owner!=0||c.plot!=0||c.subject!=0||c.students!=0||c.enrolled!=0||c.graduates!=0||c.sessions!=0)return false;continue;}
-                if(!GoodTitle(c.title)||c.owner<0||c.owner>3||c.plot<0||c.plot>=49||c.subject<0||c.subject>2||c.students<0||c.students>12||c.enrolled<0||c.enrolled>15||c.graduates<0||c.graduates>15||(c.graduates&~c.enrolled)!=0||c.Seats>12||c.sessions<0||c.sessions>10000)return false;
+                if(!GoodTitle(c.title)||c.owner<0||c.owner>3||c.plot<0||c.plot>=49||c.subject<0||c.subject>2||c.students<0||c.students>12||c.enrolled<0||c.enrolled>15||c.graduates<0||c.graduates>15||(c.graduates&~c.enrolled)!=0||c.Seats>12||c.sessions<0||c.sessions>10000||c.dayOfWeek<0||c.dayOfWeek>4||c.startMinute<0||c.startMinute>=1440||c.duration<30||c.duration>240)return false;
                 int kind=state.keepers[c.owner].plots[c.plot];if(kind!=2&&kind!=4)return false;
                 for(int j=0;j<i;j++)if(courses[j]!=null&&courses[j].created&&courses[j].owner==c.owner&&courses[j].plot==c.plot)return false;
             }

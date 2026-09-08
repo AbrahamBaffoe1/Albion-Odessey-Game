@@ -1,4 +1,4 @@
-# Albion Odyssey 0.10 — public-reference science complex update
+# Albion Odyssey 0.11 — campus systems and four-wing Science Complex update
 
 Open **Albion Odyssey.app**. On the launch screen, choose **Explore Ferguson Hall** on the right. Approach the entrance, press **E** to open the door and walk inside. Press **E** near room doors. Stairs at the east end connect all three floors. **H** opens Ferguson’s history and official media; **G** opens all building stories.
 
@@ -18,6 +18,9 @@ Choose **Finish session** to save and see the summary, then **Quit to desktop**.
 - Generic mesh-section loading and reusable door components support the next buildings. Interiors are created on approach, hidden when distant, and reused on return. History and travel are available through the existing directory and map.
 - Robinson Hall now has a reference-driven four-level atrium reconstruction with nine reusable doors, stairs, offices, balcony rails and a history panel. Bonta Admission Center now has a reference-driven walkable lobby, admissions offices, three doors and its own history panel. Both buildings use measured reconstruction dimensions recorded in `Art/BuildingReferences-v0.9.md`.
 - The Science Complex is now registered as a connected four-level walkable group with an atrium, lab/collection signage, teaching and research lab spaces, display cases and history links for Kresge, Norris, Palenske and Putnam. Publicly documented atrium and laboratory facts are recorded in `Art/PublicCampusResearch-2026-09.md`; private room dimensions remain provisional.
+- The 0.11 pass replaces the Science Complex box with four connected Kresge, Norris, Palenske and Putnam wings around a real atrium opening, adds labs, lecture/study rooms, collections, stair rails and accessible side entry details, and polishes Ferguson, Robinson and Bonta with furniture, signs, visitor seating, benches and collision-safe approaches.
+- Campus paths now have rest benches, lamps, planters and six routed student NPCs. F4 opens captions, large text, high contrast, reduced motion and alternate-key settings; controllers use the standard left stick and jump button. F5 opens the LAN shared-campus session, F8 opens optional XR mode, and F9 shows the runtime profiler.
+- Courses now carry a weekday, start time and duration. Saves recover from the atomic `.bak` copy after an interrupted write, while `runtime-profile.json` records frame-rate and memory samples.
 - Duplicate HUD panels are removed. World labels use depth testing so they do not show through walls.
 
 ## Accuracy and remaining work
@@ -36,7 +39,7 @@ The current public reference register is [Art/PublicCampusResearch-2026-09.md](A
 
 ## Verification
 
-The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The new walkable-building check verifies Robinson and Bonta registration, dimensions, doors, arrival, interior access and history mapping. Results are recorded in [Docs/Verification-v0.9](Docs/Verification-v0.9). New local test output goes to the ignored `Verification/` directory.
+The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The 0.11 walkable-building check verifies Robinson, Bonta and the four-wing Science Complex registration, floors, doors, arrival, interior access and history mapping. Results are recorded in [Docs/Verification-v0.11](Docs/Verification-v0.11) and the earlier [Docs/Verification-v0.9](Docs/Verification-v0.9). New local test output goes to the ignored `Verification/` directory.
 
 ## Build and check from this repository
 

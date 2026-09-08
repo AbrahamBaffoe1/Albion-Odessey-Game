@@ -18,6 +18,7 @@ Unity/Temp/
 Unity/Logs/
 Unity/Obj/
 Unity/Builds/
+Unity/Releases/
 Unity/UserSettings/
 Unity/*.csproj
 Unity/*.sln

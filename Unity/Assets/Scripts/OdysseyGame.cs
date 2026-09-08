@@ -20,6 +20,11 @@ namespace AlbionOdyssey
         public CampusTour tour;
         public CampusShell shell;
         public OdysseyAudio sound;
+        public CampusWorldSystems world;
+        public OdysseyAccessibility accessibility;
+        public CampusOnlineSession online;
+        public OdysseyVrSupport vr;
+        public OdysseyRuntimeDiagnostics diagnostics;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
@@ -30,7 +35,7 @@ namespace AlbionOdyssey
         GameObject footprint;
         readonly List<Renderer> footprintEdges=new List<Renderer>();
         string SavePath=>PlaytestMode.Active?Path.Combine(Application.persistentDataPath,"Playtests",PlaytestMode.Name,"save.json"):Path.Combine(Application.persistentDataPath,"albion-unity-v2.json");
-        string LoadPath=>File.Exists(SavePath)?SavePath:Path.Combine(Application.persistentDataPath,"albion-unity-v1.json");
+        string LoadPath=>File.Exists(SavePath)?SavePath:File.Exists(SavePath+".bak")?SavePath+".bak":Path.Combine(Application.persistentDataPath,"albion-unity-v1.json");
         static readonly string[] Names={"","Garden","Library","Observatory","Hall"};
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         static void Boot()
@@ -43,7 +48,7 @@ namespace AlbionOdyssey
             Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.pixelLightCount=8;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
             if(!PlaytestMode.Active&&File.Exists(LoadPath))
             {
-                try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(LoadPath));saved?.UpgradeLegacySave();if(saved!=null&&saved.Valid())state=saved;else notice="Invalid save ignored. A new session has started.";}
+                try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(LoadPath));saved?.UpgradeLegacySave();if(saved!=null&&saved.Valid()){state=saved;if(LoadPath.EndsWith(".bak"))notice="Recovered the last safe save after an interrupted write.";}else notice="Invalid save ignored. A new session has started.";}
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
             }
             TowerGeometry.Load();
@@ -85,6 +90,11 @@ namespace AlbionOdyssey
             tour=gameObject.AddComponent<CampusTour>();tour.Setup(this);
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
+            world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
+            accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
+            online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
+            vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);
+            diagnostics=gameObject.AddComponent<OdysseyRuntimeDiagnostics>();diagnostics.Setup(this);
             gameObject.AddComponent<CampusHud>().Setup(this);
             gameObject.AddComponent<WorldTextDepth>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
@@ -92,6 +102,9 @@ namespace AlbionOdyssey
         void Update()
         {
             if(player==null)return;
+            if(accessibility!=null&&accessibility.HandleInput())return;
+            if(online!=null&&online.HandleInput())return;
+            if(vr!=null&&vr.HandleInput())return;
             if(shell!=null&&shell.HandleInput())return;
             if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.HandleInput())return;
             if(tour!=null&&tour.HandleInput())return;

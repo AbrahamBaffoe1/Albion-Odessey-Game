@@ -47,8 +47,19 @@ namespace AlbionOdyssey
             {
                 Sign(new Vector3(8.5f,f*3.5f+2.15f,-1.7f),"STAIRS  →\nLEVEL "+(f+1));
                 Sign(new Vector3(-10,f*3.5f+2.7f,-1.71f),f==0?"STUDENT SERVICES":f==1?"STUDY ROOM":"CAREER EXPLORATION");
+                FergusonFurniture(f);
             }
             Physics.SyncTransforms();
+        }
+        void FergusonFurniture(int floor)
+        {
+            Material wood=CraftModel.Surface("Ferguson oak furniture",new Color(.34f,.17f,.08f));
+            Material fabric=CraftModel.Surface("Ferguson seating",new Color(.22f,.28f,.34f));
+            Vector3 at=new Vector3(-6+floor*2.2f,floor*3.5f+.48f,-3.1f);
+            KeeperAvatar.Part(Interior.transform,"Ferguson waiting bench",PrimitiveType.Cube,at+Vector3.up*.25f,new Vector3(3.1f,.22f,.65f),fabric,true);
+            KeeperAvatar.Part(Interior.transform,"Ferguson bench back",PrimitiveType.Cube,at+Vector3.up*.75f+Vector3.back*.25f,new Vector3(3.1f,.75f,.12f),wood,true);
+            KeeperAvatar.Part(Interior.transform,"Ferguson information table",PrimitiveType.Cube,new Vector3(5,floor*3.5f+.72f,2.8f),new Vector3(2.4f,.12f,.9f),wood,true);
+            Sign(new Vector3(5,floor*3.5f+2.2f,2.35f),floor==0?"WELCOME / COUNSELING":floor==1?"QUIET STUDY":"CAREER RESOURCE DESK");
         }
         void Sign(Vector3 at,string text){var o=new GameObject(text);o.transform.SetParent(Interior.transform,false);o.transform.localPosition=at;var m=o.AddComponent<TextMesh>();m.text=text;m.characterSize=.065f;m.fontSize=48;m.anchor=TextAnchor.MiddleCenter;m.color=new Color(.22f,.15f,.3f);}
         void Door(Vector3 at,float width,float height,string label){var o=new GameObject(label);o.transform.SetParent(Interior.transform,false);o.transform.localPosition=at;var door=o.AddComponent<CampusDoor>();door.Label=label;door.Build(width,height,CraftModel.Surface("Door glass",new Color(.27f,.38f,.4f),"",.6f));Doors.Add(door);}
