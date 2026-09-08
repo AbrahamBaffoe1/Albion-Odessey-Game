@@ -77,7 +77,7 @@ namespace AlbionOdyssey
         static void Building(CampusPlace p)
         {
             // Walkable majors are authored by CampusBuildings; skip their sealed map shells.
-            if(p.id=="26"||p.id=="1"||p.id=="16"||p.id=="6"||p.id=="10"||p.id=="12"||p.id=="14"||p.id=="17"||p.id=="20"||p.id=="21"||p.id=="77"||p.id=="79"||p.id=="18k"||p.id=="18n"||p.id=="18p"||p.id=="18u")return;
+            if(p.id=="26"||p.id=="1"||p.id=="16"||p.id=="6"||p.id=="10"||p.id=="12"||p.id=="14"||p.id=="17"||p.id=="20"||p.id=="21"||p.id=="77"||p.id=="79"||p.id=="40"||p.id=="41"||p.id=="42"||p.id=="45"||p.id=="46"||p.id=="47"||p.id=="49"||p.id=="50"||p.id=="51"||p.category=="Greek life"||p.id=="18k"||p.id=="18n"||p.id=="18p"||p.id=="18u")return;
             var t=new GameObject(p.id+" · "+p.name).transform;t.SetParent(root);t.position=p.position;
             float w=p.width,d=p.depth,h=p.height;bool field=p.shape=="field"||p.shape=="stadium"||p.shape=="baseball";
             if(field)

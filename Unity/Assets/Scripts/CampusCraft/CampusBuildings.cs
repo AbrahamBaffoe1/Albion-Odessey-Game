@@ -39,6 +39,17 @@ namespace AlbionOdyssey
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("21"),34f,15f,3,3.6f,true,"Mudd Learning Center contains library and archive functions. The interior models public reading rooms, archive consultation tables and study circulation."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("77"),50f,38f,2,4.0f,false,"Dow Recreation and Wellness Center is a campus athletics and wellness destination. This walkable reconstruction models a large gym floor, fitness rooms and wellness reception."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("79"),24f,24f,2,3.8f,false,"Kresge Gymnasium is a campus recreation space. The interior models a court, equipment room, seating and student activity circulation."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("40"),12f,10f,2,3.5f,false,"Briton House Apartments is a residential campus home. The game interior models a shared entry, lounge, kitchens and study rooms."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("41"),30f,10f,3,3.5f,true,"Burns Street Apartments are student residences. The interior models shared circulation, lounges and study rooms as a game-scale reconstruction."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("42"),14f,10f,3,3.5f,false,"Dean Hall is a residential campus hall. The interior models a common room, resident rooms and study circulation."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("45"),18f,28f,3,3.5f,true,"Karro Apartments are student residences. The interior models apartment entries, a shared lounge and study spaces."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("46"),16f,28f,5,3.8f,true,"Mitchell Towers are campus residences. The interior models a tower lobby, repeated room floors and shared study lounges."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("47"),24f,15f,3,3.5f,true,"Munger Hall and Apartments are student residences. The interior models shared lounges, rooms and quiet study areas."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("49"),30f,11f,4,3.5f,true,"Seaton Hall is a residential campus hall. The interior models resident rooms, a common lounge and study circulation."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("50"),24f,30f,4,3.5f,true,"Wesley Hall is a residential campus hall. The interior models a lobby, resident rooms, study lounges and shared gathering areas."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("51"),28f,11f,4,3.5f,true,"Whitehouse Hall is a residential campus hall. The interior models resident rooms, shared lounges and study circulation."));
+            foreach(var greek in CampusCatalog.Places)
+                if(greek.category=="Greek life") additional.Add(new WalkableCampusBuilding(game,greek,11f,9f,2,3.5f,false,greek.name+" is a Greek-life residence and student organization house. The playable reconstruction provides a shared lounge, rooms, study space and an active club floor; private room dimensions remain a game-scale approximation."));
         }
         public void EnsureInterior()=>stream.EnsureLoaded();
         public WalkableCampusBuilding Building(string id)=>additional.Find(b=>b.Id==id);

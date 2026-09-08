@@ -7,6 +7,7 @@ The chapter now has authored activity spaces that are part of the world geometry
 - **Eat and buy food:** Baldwin Dining Commons has a service counter, checkout, prepared food, dining tables, chairs and plates.
 - **Work:** A dining worker and cashier move between the prep and checkout points.
 - **Play:** Kellogg Commons has table tennis, a chess table and a lounge bench.
+- **Greek-life clubs:** every Greek-life house has an active club floor with a DJ booth, speakers, lighting, lounge seating and dancing students.
 
 Nine named student and staff agents follow short, deterministic routes. They pause at the task point and use the existing rigged student locomotion, including seated poses for study and meals. The spaces are visible and walkable so a player can read the room, approach the station and press **E** or **F** to take part.
 

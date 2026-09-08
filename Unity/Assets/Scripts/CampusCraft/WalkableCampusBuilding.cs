@@ -109,6 +109,9 @@ namespace AlbionOdyssey
                 }
                 else if (Place.shape == "gym" || Place.shape == "theatre")
                     Box(Root.transform, "Public entry canopy", new Vector3(0, 3.35f, -Depth * .5f - 1.0f), new Vector3(7.0f, .22f, 1.8f), stone, false);
+                if (Place.shape == "house")
+                    foreach (int side in new[] { -1, 1 }) { var slope = Box(Root.transform, "Pitched residence roof", new Vector3(side * Width * .25f, roofY + Width * .13f, 0), new Vector3(Width * .57f, .45f, Depth + 1f), roof, false); slope.transform.localRotation = Quaternion.Euler(0, 0, -side * 25f); }
+                if (Place.shape == "tower") Box(Root.transform, "Tower roof cap", new Vector3(0, roofY + .55f, 0), new Vector3(Width + 1.0f, .7f, Depth + 1.0f), roof, false);
             }
         }
 
@@ -187,7 +190,7 @@ namespace AlbionOdyssey
                 {
                     Box(Root.transform, "Bonta reception wall", new Vector3(0, y + 1.55f, 0), new Vector3(.15f, 3.1f, Depth - 3f), plaster, true); if (f == 0) Box(Root.transform, "Visitor lounge divider", new Vector3(Width * .25f, y + 1.55f, 1.5f), new Vector3(Width * .45f, 3.1f, .15f), plaster, true);
                 }
-                else if (Place.shape != "chapel" && Place.shape != "gym")
+                else if (Place.shape != "chapel" && Place.shape != "gym" && Place.category != "Greek life")
                     Box(Root.transform, "Building corridor divider", new Vector3(0, y + 1.55f, 0), new Vector3(.15f, 3.1f, Depth - 3f), plaster, true);
                 string sign = Id == "1" ? (f == 0 ? "ADMISSIONS LOBBY" : "VISITOR SERVICES") : Id == "18" ? (f == 0 ? "SCIENCE ON DISPLAY" : f == 1 ? "TEACHING LABORATORIES" : f == 2 ? "RESEARCH LABORATORIES" : "COLLECTIONS & OBSERVATION") : Id == "16" ? (f == 0 ? "QUAD ATRIUM" : "ACADEMIC OFFICES") : Place.name.ToUpperInvariant() + (f == 0 ? " · COMMONS" : " · ROOMS & STUDY");
                 Sign(new Vector3(-Width * .25f, y + 2.35f, -Depth * .5f + .25f), sign);

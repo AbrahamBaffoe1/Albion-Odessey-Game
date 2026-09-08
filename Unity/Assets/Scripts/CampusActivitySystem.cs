@@ -12,11 +12,13 @@ namespace AlbionOdyssey
         public int ActivitySpaces { get; private set; }
         public int ActivityAgents { get; private set; }
         public int InteractionStations { get; private set; }
+        public int ActiveClubCount { get; private set; }
+        public int ClubAgents { get; private set; }
         public int CompletedInteractions { get; private set; }
         public Transform Root { get; private set; }
         readonly List<CampusActivityAgent> agents = new List<CampusActivityAgent>();
         OdysseyGame game;
-        Material wood, metal, fabric, paper, food, counter, chalk, green, gold, glass;
+        Material wood, metal, fabric, paper, food, counter, chalk, green, gold, glass, purple;
 
         public void Setup(OdysseyGame owner)
         {
@@ -32,9 +34,11 @@ namespace AlbionOdyssey
             green = TowerGeometry.Material("Recreation felt", new Color(.08f, .37f, .24f));
             gold = TowerGeometry.Material("Activity brass", new Color(.92f, .64f, .18f), .5f, .6f);
             glass = TowerGeometry.Material("Activity glassware", new Color(.35f, .70f, .78f), .2f, .6f);
+            purple = TowerGeometry.Material("Club dance purple", new Color(.34f, .10f, .52f), .2f, .35f);
             BuildLearningSpaces();
             BuildDiningCommons();
             BuildRecreation();
+            BuildGreekClubs();
             BuildAgents();
             Physics.SyncTransforms();
         }
@@ -111,6 +115,29 @@ namespace AlbionOdyssey
             Bench(center + new Vector3(-4.0f, 0, .4f));
         }
 
+        void BuildGreekClubs()
+        {
+            int index = 0;
+            foreach (var place in CampusCatalog.Places)
+            {
+                if (place.category != "Greek life") continue;
+                Vector3 center = place.position + Vector3.up * .05f;
+                RoomLabel(center + new Vector3(0, 2.55f, -3.7f), place.name.ToUpperInvariant() + " · ACTIVE CLUB");
+                for (int x = -2; x <= 2; x++) for (int z = -1; z <= 1; z++)
+                    Box(center + new Vector3(x * .85f, .08f, z * .85f), new Vector3(.78f, .08f, .78f), (x + z) % 2 == 0 ? purple : gold, false, "Club dance floor");
+                Box(center + new Vector3(0, .72f, 2.8f), new Vector3(2.8f, 1.4f, .65f), counter, true, "Club DJ booth");
+                Box(center + new Vector3(-1.9f, .85f, 2.6f), new Vector3(.42f, 1.5f, .42f), metal, true, "Club speaker");
+                Box(center + new Vector3(1.9f, .85f, 2.6f), new Vector3(.42f, 1.5f, .42f), metal, true, "Club speaker");
+                Bench(center + new Vector3(-3.0f, 0, -2.1f)); Bench(center + new Vector3(3.0f, 0, -2.1f));
+                ActivitySpace(place.name + " dance floor", CampusActivityKind.Play, center + new Vector3(0, .05f, -.2f), new Vector3(5.2f, 1.2f, 3.8f), "Join the active club and dance with the students.");
+                var light = new GameObject(place.name + " club lights"); light.transform.SetParent(Root, false); light.transform.position = center + Vector3.up * 2.8f; var lamp = light.AddComponent<Light>(); lamp.type = LightType.Point; lamp.range = 8; lamp.intensity = 1.5f; lamp.color = new[]{new Color(.65f,.22f,1f),new Color(.15f,.65f,1f),new Color(1f,.24f,.38f)}[index%3]; lamp.shadows = LightShadows.None;
+                Agent(place.name + " dancers A", CampusActivityKind.Play, new[]{center + new Vector3(-1.1f,.08f,0),center + new Vector3(1.1f,.08f,0),center + new Vector3(0,.08f,1.2f)}, index%5, (index+2)%5, index%3);
+                Agent(place.name + " dancers B", CampusActivityKind.Play, new[]{center + new Vector3(1.1f,.08f,0),center + new Vector3(-1.1f,.08f,0),center + new Vector3(0,.08f,-1.2f)}, (index+2)%5, (index+3)%5, (index+1)%3);
+                ActiveClubCount++; ClubAgents += 2;
+                index++;
+            }
+        }
+
         void BuildAgents()
         {
             CampusPlace baldwin = CampusExpansion.Find("6");
@@ -172,15 +199,16 @@ namespace AlbionOdyssey
     public sealed class CampusActivityAgent : MonoBehaviour
     {
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
-        KeeperAvatar avatar; int target; float pause; Vector3 last; bool seated;
+        KeeperAvatar avatar; int target; float pause; Vector3 last; bool seated; float dancePhase;
         public void Build(int skin, int coat, int hair) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(skin, coat, hair, Activity != CampusActivityKind.Play); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;
-            if (pause > 0) { pause -= Time.deltaTime; avatar.Animate(0, seated); return; }
+            if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) Dance(); else avatar.Animate(0, seated); return; }
             Vector3 goal = Route[target]; Vector3 delta = goal - transform.position; delta.y = 0;
-            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; avatar.Animate(0, seated); return; }
-            seated = false; transform.position += delta.normalized * Speed * Time.deltaTime; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f); avatar.Animate(Speed, false); last = transform.position;
+            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if (Activity == CampusActivityKind.Play) Dance(); else avatar.Animate(0, seated); return; }
+            seated = false; avatar.transform.localRotation = Quaternion.identity; transform.position += delta.normalized * Speed * Time.deltaTime; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f); avatar.Animate(Speed, false); last = transform.position;
         }
+        void Dance() { dancePhase += Time.deltaTime * 5.5f; avatar.Animate(0, false); avatar.transform.localRotation = Quaternion.Euler(Mathf.Sin(dancePhase * 1.7f) * 7f, Mathf.Sin(dancePhase) * 16f, Mathf.Sin(dancePhase * 2.1f) * 5f); }
     }
 }
