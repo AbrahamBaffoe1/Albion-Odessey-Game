@@ -31,4 +31,5 @@ mono_crash.*
 Tests/**/bin/
 Tests/**/obj/
 Verification/
+outputs/
 Art/References/*.zip
