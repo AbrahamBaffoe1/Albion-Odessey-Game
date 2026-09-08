@@ -15,6 +15,7 @@ namespace AlbionOdyssey
         public bool IsOpen=>game.life.panel=="tour";
         public string Status {get;private set;}="Choose a building to discover its story.";
         AudioSource storySound; AudioClip storyClip;
+        AudioSource narration; AudioClip narrationClip;
         OdysseyGame game; string search=""; Vector2 listScroll,detailScroll;
         readonly HashSet<string> read=new HashSet<string>();
         readonly HashSet<string> videosStarted=new HashSet<string>();
@@ -24,12 +25,12 @@ namespace AlbionOdyssey
         Texture2D photo; Coroutine loading; UnityWebRequest request; TourMedia activeMedia;
         VideoPlayer video; AudioSource videoAudio; RenderTexture videoTexture,panoramaTexture;
         Camera panoramaCamera; GameObject panoramaSphere,room; Material panoramaMaterial;
-        float yaw,pitch,mediaStarted; Vector3 returnPosition; Quaternion returnRotation; bool returnThird;
-        GUIStyle title,text,small,button; TourPlace[] filtered;
+        float yaw,pitch,mediaStarted,revealChars; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying;
+        GUIStyle title,text,small,button,story,detailTitle; TourPlace[] filtered;
         public static readonly Vector3 RoomOrigin=new Vector3(1600,0,1600);
         public void Setup(OdysseyGame owner)
         {
-            game=owner;storySound=gameObject.AddComponent<AudioSource>();storySound.playOnAwake=false;storySound.spatialBlend=0;storyClip=Resources.Load<AudioClip>("CampusTour/BuildingStory");catalog=JsonUtility.FromJson<TourCatalog>(Resources.Load<TextAsset>("CampusTour/catalog").text);
+            game=owner;storySound=gameObject.AddComponent<AudioSource>();storySound.playOnAwake=false;storySound.spatialBlend=0;storyClip=Resources.Load<AudioClip>("CampusTour/BuildingStory");narration=gameObject.AddComponent<AudioSource>();narration.playOnAwake=false;narration.spatialBlend=0;narration.volume=.9f;catalog=JsonUtility.FromJson<TourCatalog>(Resources.Load<TextAsset>("CampusTour/catalog").text);
             if(!catalog.Valid())throw new InvalidOperationException("Invalid campus tour catalog");
             // Four destinations from the game map do not have main-tour entries.
             var all=new List<TourPlace>(catalog.places);
@@ -72,9 +73,37 @@ namespace AlbionOdyssey
         public void Open(TourPlace place)
         {
             if(place==null)return;
-            StopMedia();selected=place;detailScroll=Vector2.zero;game.life.SetPanel("tour");
+            StopMedia();selected=place;detailScroll=Vector2.zero;revealChars=Mathf.Min(42,place.summary==null?0:place.summary.Length);PrepareNarration(place);game.life.SetPanel("tour");
             if(read.Add(game.state.active+"."+place.id)){storySound.volume=game.sound.Muted?0:game.sound.Volume;storySound.PlayOneShot(storyClip);}
             Status="Information summarized from the official tour. Check the source for current services.";
+        }
+        string VoiceKey(TourPlace place)
+        {
+            if(place==null||place.campusIds==null)return null;
+            if(Array.IndexOf(place.campusIds,"26")>=0)return "Ferguson";
+            if(Array.IndexOf(place.campusIds,"16")>=0)return "Robinson";
+            if(Array.IndexOf(place.campusIds,"1")>=0)return "Bonta";
+            if(place.campusIds.Any(id=>id=="18k"||id=="18n"||id=="18p"||id=="18u"))return "ScienceComplex";
+            return null;
+        }
+        void PrepareNarration(TourPlace place)
+        {
+            if(narration==null)return;
+            narration.Stop();voicePlaying=false;narrationClip=null;
+            var key=VoiceKey(place);if(!string.IsNullOrWhiteSpace(key))narrationClip=Resources.Load<AudioClip>("CampusTour/Voice/"+key);
+            narration.clip=narrationClip;
+        }
+        string RevealedStory()
+        {
+            if(selected==null||string.IsNullOrEmpty(selected.summary))return "";
+            int count=Mathf.Clamp(Mathf.FloorToInt(revealChars),0,selected.summary.Length);
+            return selected.summary.Substring(0,count)+(count<selected.summary.Length?"▌":"");
+        }
+        void ToggleNarration()
+        {
+            if(narration==null||narrationClip==null){Status="Voice narration is being prepared for this building.";return;}
+            if(narration.isPlaying){narration.Stop();voicePlaying=false;Status="Voice narration paused. Press Read aloud to continue.";return;}
+            revealChars=selected.summary.Length;narration.Play();voicePlaying=true;Status="Reading this building's story aloud.";
         }
         public void Close(){StopMedia();game.life.SetPanel("");}
         public bool EnterRoom()
@@ -132,6 +161,7 @@ namespace AlbionOdyssey
         }
         public void StopMedia(bool clear=true)
         {
+            if(narration!=null){narration.Stop();voicePlaying=false;}
             if(loading!=null){StopCoroutine(loading);loading=null;}
             if(request!=null){request.Abort();request.Dispose();request=null;}
             if(video!=null){video.prepareCompleted-=VideoReady;video.errorReceived-=VideoError;video.Stop();Destroy(video);video=null;}
@@ -148,6 +178,8 @@ namespace AlbionOdyssey
         {
             if(game==null)return;
             if(!IsOpen&&activeMedia!=null)StopMedia();
+            if(IsOpen&&selected!=null&&activeMedia==null&&!voicePlaying)revealChars=Mathf.MoveTowards(revealChars,selected.summary.Length,Time.unscaledDeltaTime*62f);
+            if(voicePlaying&&narration!=null&&!narration.isPlaying){voicePlaying=false;Status="Story complete. Explore the references or enter the building.";}
             if(video!=null&&!video.isPrepared&&Time.unscaledTime-mediaStarted>30){Status="Video preparation timed out. Retry or use the official page.";StopMedia(false);}
             if(InRoom&&Vector3.Distance(game.player.transform.position,RoomOrigin)>30)InRoom=false;
         }
@@ -155,8 +187,8 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(title!=null)return;
-            title=new GUIStyle(GUI.skin.label){fontSize=27,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};
-            text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};small=new GUIStyle(text){fontSize=14};
+            title=new GUIStyle(GUI.skin.label){fontSize=31,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};
+            text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};story=new GUIStyle(text){fontSize=21};detailTitle=new GUIStyle(title){fontSize=26};small=new GUIStyle(text){fontSize=13};
             button=new GUIStyle(GUI.skin.button){fontSize=16,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,8,8)};
             foreach(var style in new[]{button.normal,button.hover,button.active,button.focused}){style.background=Texture2D.whiteTexture;style.textColor=Color.white;}
         }
@@ -168,9 +200,10 @@ namespace AlbionOdyssey
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);
             float width=Screen.width/scale,height=Screen.height/scale;
             if(!IsOpen){GUI.matrix=old;return;}
-            Box(new Rect(0,0,width,height),new Color(.035f,.028f,.055f));Box(new Rect(0,0,width,94),new Color(.22f,.12f,.32f));
-            GUI.Label(new Rect(28,16,width-260,38),VideosOnly?"ALBION / COLLEGE VIDEOS":"ALBION / PLACES & STORIES",title);
-            GUI.Label(new Rect(30,58,width-300,26),"Discover the campus through its buildings, people and spaces.",small);
+            Box(new Rect(0,0,width,height),new Color(.025f,.037f,.050f));Box(new Rect(0,0,width,94),new Color(.075f,.105f,.125f));
+            GUI.Label(new Rect(28,14,width-260,22),"FIELD NOTES  /  ALBION COLLEGE ARCHIVE",small);
+            GUI.Label(new Rect(28,35,width-260,38),VideosOnly?"College videos":"Places & stories",title);
+            GUI.Label(new Rect(30,72,width-300,20),"Read the history, hear the voice and step through the reference material.",small);
             if(Button(new Rect(width-190,23,160,45),"Return · Esc"))Close();
             var next=GUI.TextField(new Rect(24,110,310,38),search,80);if(next!=search){search=next;Filter();listScroll=Vector2.zero;}
             if(Button(new Rect(24,158,148,36),"All buildings")){VideosOnly=false;Filter();listScroll=Vector2.zero;}
@@ -178,31 +211,37 @@ namespace AlbionOdyssey
             listScroll=GUI.BeginScrollView(new Rect(20,208,325,height-234),listScroll,new Rect(0,0,299,filtered.Length*67));
             for(int i=0;i<filtered.Length;i++)
             {
-                GUI.backgroundColor=filtered[i]==selected?new Color(.7f,.48f,.12f):new Color(.29f,.20f,.40f);
+                GUI.backgroundColor=filtered[i]==selected?new Color(.73f,.52f,.19f):new Color(.10f,.15f,.17f);
                 if(Button(new Rect(0,i*67,294,60),filtered[i].name))Open(filtered[i]);
             }
             GUI.EndScrollView();GUI.backgroundColor=Color.white;
             if(selected!=null)
             {
                 float x=370,w=width-400;
-                GUI.Label(new Rect(x,108,w,72),selected.name,title);
-                GUI.Label(new Rect(x,184,w,24),selected.category.ToUpperInvariant(),small);
+                GUI.Label(new Rect(x,108,w,68),selected.name,detailTitle);
+                GUI.Label(new Rect(x,184,w,24),selected.category.ToUpperInvariant()+"   ·   "+(selected.media.Length>0?selected.media.Length+" REFERENCE ITEMS":"TEXT ARCHIVE"),small);
                 if(activeMedia==null)
                 {
-                    detailScroll=GUI.BeginScrollView(new Rect(x,222,w,190),detailScroll,new Rect(0,0,w-24,Mathf.Max(185,text.CalcHeight(new GUIContent(selected.summary),w-36)+20)));
-                    GUI.Label(new Rect(0,0,w-36,Mathf.Max(185,text.CalcHeight(new GUIContent(selected.summary),w-36))),selected.summary,text);GUI.EndScrollView();
-                    GUI.Label(new Rect(x,435,w,27),"EXPLORE THE REFERENCES",small);
+                    Box(new Rect(x,214,w,236),new Color(.075f,.105f,.115f));Box(new Rect(x,214,5,236),new Color(.86f,.63f,.22f));
+                    GUI.Label(new Rect(x+24,230,w-48,22),"THE STORY",small);
+                    detailScroll=GUI.BeginScrollView(new Rect(x+22,258,w-44,132),detailScroll,new Rect(0,0,w-66,Mathf.Max(120,story.CalcHeight(new GUIContent(selected.summary),w-66)+8)));
+                    GUI.Label(new Rect(0,0,w-66,Mathf.Max(120,story.CalcHeight(new GUIContent(selected.summary),w-66))),RevealedStory(),story);GUI.EndScrollView();
+                    GUI.Label(new Rect(x+24,404,w-48,22),Mathf.FloorToInt(Mathf.Min(revealChars,selected.summary.Length))+" / "+selected.summary.Length+" characters",small);
+                    if(Button(new Rect(x+24,462,175,40),voicePlaying?"Pause voice":"Read aloud"))ToggleNarration();
+                    if(Button(new Rect(x+210,462,145,40),"Skip typing")){revealChars=selected.summary.Length;Status="Story ready. Explore the references or enter the building.";}
+                    GUI.Label(new Rect(x+370,467,w-394,30),narrationClip!=null?"Narration available":"Text narration",small);
+                    GUI.Label(new Rect(x,520,w,27),"REFERENCE MATERIAL",small);
                     for(int i=0;i<selected.media.Length;i++)
                     {
                         var m=selected.media[i];string label=m.kind=="panorama"?"360° room view":m.kind=="video"?"Watch video":"Photo "+(i+1);
-                        if(Button(new Rect(x+(i%3)*(w/3),475+(i/3)*49,w/3-10,42),label))ShowMedia(m);
+                        if(Button(new Rect(x+(i%3)*(w/3),555+(i/3)*49,w/3-10,42),label))ShowMedia(m);
                     }
-                    if(selected.media.Length==0)GUI.Label(new Rect(x,478,w,60),"This entry has no photo, video or panorama in the main tour.",text);
-                    if(selected.id=="888"&&Button(new Rect(x,630,w,48),"Explore Ferguson · three levels")){StopMedia();CampusBuildings.Instance.Visit();}
-                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"16")>=0&&Button(new Rect(x,630,w,48),"Explore Robinson Hall · four levels")){StopMedia();CampusBuildings.Instance.VisitCampus("16");}
-                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"1")>=0&&Button(new Rect(x,630,w,48),"Explore Bonta Admission Center")){StopMedia();CampusBuildings.Instance.VisitCampus("1");}
-                    if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)&&Button(new Rect(x,630,w,48),"Explore Science Complex · four levels")){StopMedia();CampusBuildings.Instance.VisitCampus("18");}
-                    if(selected.id=="917"&&Button(new Rect(x,630,w,48),InRoom?"Resume the 3D room":"Walk inside · Wesley room study"))EnterRoom();
+                    if(selected.media.Length==0)GUI.Label(new Rect(x,555,w,42),"This entry has no media in the main tour. The written archive remains available.",text);
+                    if(selected.id=="888"&&Button(new Rect(x,650,w,45),"ENTER FERGUSON  /  THREE LEVELS")){StopMedia();CampusBuildings.Instance.Visit();}
+                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"16")>=0&&Button(new Rect(x,650,w,45),"ENTER ROBINSON HALL  /  FOUR LEVELS")){StopMedia();CampusBuildings.Instance.VisitCampus("16");}
+                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"1")>=0&&Button(new Rect(x,650,w,45),"ENTER BONTA ADMISSION CENTER")){StopMedia();CampusBuildings.Instance.VisitCampus("1");}
+                    if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)&&Button(new Rect(x,650,w,45),"ENTER SCIENCE COMPLEX  /  FOUR LEVELS")){StopMedia();CampusBuildings.Instance.VisitCampus("18");}
+                    if(selected.id=="917"&&Button(new Rect(x,650,w,45),InRoom?"RESUME THE 3D ROOM":"WALK INSIDE  /  WESLEY ROOM STUDY"))EnterRoom();
                 }
                 else
                 {
