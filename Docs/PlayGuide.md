@@ -20,6 +20,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Place / reclaim | Left click an empty plot / right click an existing building |
 | Builder zoom / appearance | Mouse wheel / T |
 | Next local Keeper / contribute to Beacon | Tab / C |
+| Snowfall | Y toggles campus snow; clear weather returns when pressed again. Snow also cycles automatically during a longer visit. |
 | Show four on-screen movement buttons | O; hold an arrow with the mouse |
 | Turn with screen-button controls | Z/X or the Turn L / Turn R buttons |
 | Paper-play shortcut | P inside the Common Classroom |
