@@ -10,7 +10,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Look around | Mouse |
 | Run / jump | Shift / Space |
 | Pick up a golden memory or talk to Pip | Aim at it from nearby, then E or F |
-| Read a building's story | H near a building opens a glass side panel; use **Read aloud**, **Skip typing** or **Open full archive · G** |
+| Read a building's story | H near a building opens a glass side panel; use **Read online** for the official building page or **More information** for the full archive |
 | Browse all building stories | G from the welcome screen or while exploring |
 | Map and travel | M, then Travel here |
 | Course creation and enrollment | K |
@@ -49,7 +49,7 @@ Version 0.4 writes a separate version-2 save. On its first launch it imports a v
 
 ## Sound effects and narration
 
-Press Esc to adjust effects volume, mute, or preview the pickup sound. Matching collection types always use the same sound; different achievement, lesson and building types have distinct sounds. Open a building story and choose **Read aloud** to hear its narrated history. Preferences persist between launches.
+Press Esc to adjust effects volume, mute, or preview the pickup sound. Matching collection types always use the same sound; different achievement, lesson and building types have distinct sounds. Open a building story and choose **Read online** to view the official Albion source. Preferences persist between launches.
 
 ## Campus activities
 
