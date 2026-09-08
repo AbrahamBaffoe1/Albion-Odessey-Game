@@ -1,0 +1,79 @@
+[
+  {
+    "file": "red_brick_03_Color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_diff_1k.jpg",
+    "sha256": "9c58254c099b2d211478f50a427fcdde622af24249ff2e94da41fb836f8c857f",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "red_brick_03_Normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_nor_gl_1k.jpg",
+    "sha256": "9bfd45e24720d851017c1e1678b70219c72239b2ac6b25e11d57d458bdab8503",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "red_brick_03_Rough.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/red_brick_03/red_brick_03_rough_1k.jpg",
+    "sha256": "cd865623c1422926848024e877103e9dfe857b2ca8221fce49264b74c9ff48b1",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "concrete_pavement_Color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_diff_1k.jpg",
+    "sha256": "70d3ff969a7421c7ae057b5d16386d11f5e59c6740db643352e1039413f419c4",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "concrete_pavement_Normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_nor_gl_1k.jpg",
+    "sha256": "a5009e409ff0f7b2d19e1316fe5e2b2b4f28e4a6b79990a664be69d4e8a0e690",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "concrete_pavement_Rough.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_pavement/concrete_pavement_rough_1k.jpg",
+    "sha256": "99f81099af07b009134b6a81bf0f95ab16da09c57156cc2ed534975664a68533",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "aerial_grass_rock_Color.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_diff_1k.jpg",
+    "sha256": "57b8041bfe0d0f01430e4dbaad45e7ddddf0a9fc97317f90dbc51f7b0d9e1b5d",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "aerial_grass_rock_Normal.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_nor_gl_1k.jpg",
+    "sha256": "1aa3e23bff453f152e089b9f83aa36b4901651e019f7e2ca01d5331a9bbbda78",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "aerial_grass_rock_Rough.jpg",
+    "source": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_rough_1k.jpg",
+    "sha256": "b9f3f76aba74007f708333c0dbe73c52eb83ea0c4187a13e2e994f888a25114a",
+    "license": "CC0",
+    "author": "Poly Haven"
+  },
+  {
+    "file": "UniversalBaseCharacters.zip",
+    "source": "https://quaternius.itch.io/universal-base-characters",
+    "license": "CC0",
+    "author": "Quaternius; animation collaboration credited to Gonzalo Furnier",
+    "sha256": "fdbf1804c90dfc1ea03e992bff7da2dfd1a79318e13270a660180f9308455f40"
+  },
+  {
+    "file": "UniversalAnimationLibrary.zip",
+    "source": "https://quaternius.itch.io/universal-animation-library",
+    "license": "CC0",
+    "author": "Quaternius; animation collaboration credited to Gonzalo Furnier",
+    "sha256": "cc73fc4e495b82958207316596317a3f40b9fa38065bde1027937452da537724"
+  }
+]

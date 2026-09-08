@@ -1,3 +1,5 @@
+> **v0.6 update:** The playable Unity build now includes 61 Albion map-based exterior destinations, third-person characters, character settings, cars and seven discoveries. See [CampusExpansion-v0.6.md](CampusExpansion-v0.6.md) for current controls and [CampusInventory.md](CampusInventory.md) for coverage. Earlier sections below describe the original tower/learning-space implementation.
+
 # Albion campus references
 
 Reference search: September 6, 2026. These links support research and visual planning. The current environment is an original concept kit, not a measured campus replica.

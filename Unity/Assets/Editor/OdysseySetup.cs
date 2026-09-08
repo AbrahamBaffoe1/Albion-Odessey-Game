@@ -11,11 +11,11 @@ namespace AlbionOdyssey.Editor
     {
         void OnPreprocessTexture()
         {
-            if(!assetPath.Contains("/Architecture/"))return;
+            if(!assetPath.Contains("/Architecture/")&&!assetPath.Contains("/CampusCraft/"))return;
             var importer=(TextureImporter)assetImporter;
             importer.wrapMode=TextureWrapMode.Repeat;
             importer.maxTextureSize=2048;
-            if(assetPath.EndsWith("_Normal.png"))importer.textureType=TextureImporterType.NormalMap;
+            if((assetPath.EndsWith("_Normal.png")||assetPath.EndsWith("_Normal.jpg")))importer.textureType=TextureImporterType.NormalMap;
             else if(assetPath.EndsWith("_Roughness.png"))importer.sRGBTexture=false;
         }
     }
@@ -26,7 +26,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.5.0";
+            PlayerSettings.bundleVersion="0.8.0";
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
@@ -35,6 +35,7 @@ namespace AlbionOdyssey.Editor
             var settings=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset")[0]);
             var input=settings.FindProperty("activeInputHandler");if(input!=null){input.intValue=0;settings.ApplyModifiedProperties();}
             ConfigureMouse();
+            StudentSetup.Prepare();
             Directory.CreateDirectory("Assets/Scenes");Directory.CreateDirectory("Assets/Resources");
             // Keep runtime-created Standard materials and their shader variants in player builds.
             var material=new Material(Shader.Find("Standard"));
@@ -81,7 +82,7 @@ namespace AlbionOdyssey.Editor
         {
             Prepare();
             string output=Environment.GetEnvironmentVariable("ODYSSEY_BUILD_PATH")??"Builds/Albion Odyssey.app";
-            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.StandaloneOSX,options=BuildOptions.Development});
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.StandaloneOSX,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new Exception("Unity build failed: "+report.summary.result);
             Debug.Log("ODYSSEY_BUILD_OK "+output);
         }

@@ -7,10 +7,10 @@ using UnityEngine;
 namespace AlbionOdyssey
 {
     // Opt-in player verification. Uses a separate save and never changes normal play progress.
-    public sealed class OdysseySmoke : MonoBehaviour
+    public sealed partial class OdysseySmoke : MonoBehaviour
     {
         public static bool Enabled=>Array.IndexOf(Environment.GetCommandLineArgs(),"-odysseySmoke")>=0;
-        [Serializable] class Result { public bool passed;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public bool audio;public int audioCues;public float audioPeak;public int triangles;public int colliders;public float seconds; }
+        [Serializable] class Result { public bool passed;public int campusDestinations;public bool character;public bool driving;public bool campusDiscoveries;public string error;public int floors;public int descents;public bool journal;public bool guide;public bool charterComplete;public bool classroom;public bool history;public bool courses;public bool buttonMovement;public bool saveMigration;public bool audio;public int audioCues;public float audioPeak;public int triangles;public int colliders;public float seconds; }
         OdysseyGame game;
         Result result=new Result();
         string Output=>Environment.GetEnvironmentVariable("ODYSSEY_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"Smoke");
@@ -61,7 +61,7 @@ namespace AlbionOdyssey
             }
             yield return Capture("04-furnished-atrium",new Vector3(-4.5f,1.65f,-3.5f),new Vector3(-11,1.1f,2));
             if(!game.state.Build(24,2)||!game.state.Build(25,3)||!game.state.Build(26,1)||!game.state.Build(27,4)||!game.Save()||!game.state.Reclaim(25)||!game.state.Contribute()||!game.state.Contribute()||!game.state.Contribute()||!game.state.Valid()||!game.Save()){Fail("Build, refund, contribution or save failed");yield break;}
-            var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"albion-unity-smoke.json")));
+            var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"Playtests",PlaytestMode.Name,"save.json")));
             if(!saved.Valid()||saved.Current.plots[24]!=2||saved.Current.plots[25]!=0||saved.beacon!=6||saved.Current.memories!=255||saved.Current.milestones!=31){Fail("Saved state does not match play progress");yield break;}
             yield return Walk(new Vector3(0,0,-20));if(result.error!=null)yield break;
             for(int i=8;i<12;i++)
@@ -74,7 +74,7 @@ namespace AlbionOdyssey
             if(!game.state.Build(25,3)){Fail("Final campus type could not be rebuilt");yield break;}
             while(game.state.beacon<24)if(!game.state.Contribute()){Fail("Charter resources cannot complete Beacon");yield break;}
             if(!game.Save()||game.state.Current.milestones!=63){Fail("Full charter did not complete");yield break;}
-            var completed=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"albion-unity-smoke.json")));
+            var completed=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"Playtests",PlaytestMode.Name,"save.json")));
             if(!completed.Valid()||completed.Current.milestones!=63||completed.Current.memories!=4095||completed.beacon!=24){Fail("Completed chapter did not persist");yield break;}
             result.charterComplete=true;
             game.ToggleMode();game.RebuildCampus();
@@ -97,7 +97,7 @@ namespace AlbionOdyssey
             if(!school.Create(game.state,"History with Keeper One",0)||!school.Enroll(0,0)){Fail("Course creation or enrollment failed");yield break;}
             for(int i=0;i<11;i++)if(!school.AssignStudents(0,0,1)){Fail("Student seating failed");yield break;}
             if(school.AssignStudents(0,0,1)||school.Enroll(0,1)||!school.Teach(0,0)||!school.Answer(0,0,0)||!game.Save()){Fail("Class capacity, teaching or quiz failed");yield break;}
-            var classSave=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"albion-unity-smoke.json")));
+            var classSave=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(Path.Combine(Application.persistentDataPath,"Playtests",PlaytestMode.Name,"save.json")));
             if(!classSave.Valid()||classSave.school.courses[0].Seats!=12||classSave.school.courses[0].graduates!=1){Fail("Course save roundtrip failed");yield break;}
             game.life.RefreshRoster();yield return null;
             if(GameObject.Find("Simulated student 12")==null){Fail("Classroom student visuals missing");yield break;}
@@ -150,6 +150,7 @@ namespace AlbionOdyssey
             game.sound.ResetBaseline(game.state);game.life.SetPanel("welcome");yield return new WaitForEndOfFrame();
             var audioSettings=ScreenCapture.CaptureScreenshotAsTexture();File.WriteAllBytes(Path.Combine(Output,"12-audio-settings.png"),audioSettings.EncodeToPNG());Destroy(audioSettings);
             result.audio=true;result.audioCues=game.sound.LoadedCount;
+            yield return CampusChecks();if(result.error!=null)yield break;
             result.passed=true;result.seconds=Time.realtimeSinceStartup;
             File.WriteAllText(Path.Combine(Output,"result.json"),JsonUtility.ToJson(result,true));
             Debug.Log("ODYSSEY_SMOKE_OK: tower ascent/descent, full charter, learning-space walking, history, courses, student capacity, lesson completion, button movement and save migration.");

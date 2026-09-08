@@ -1,0 +1,965 @@
+{
+  "places": [
+    {
+      "id": "877",
+      "name": "Bonta Admission Center",
+      "category": "Enrollment Services",
+      "campusIds": [
+        "1"
+      ],
+      "summary": "Admissions welcomes campus visitors at 100 N. Hannah Street. Visitor parking is beside the center. Consult the official page for current visiting arrangements.",
+      "source": "https://albion.college-tour.com/#Bonta%20Admission%20Center",
+      "media": [
+        {
+          "label": "Bonta Admission Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/49598c56-25d4-4af7-b28f-6dd1342a6131.jpg"
+        }
+      ]
+    },
+    {
+      "id": "921",
+      "name": "Cass Street Building",
+      "category": "Enrollment Services",
+      "campusIds": [
+        "2"
+      ],
+      "summary": "The tour identifies this location with financial aid and campus safety services. The game map calls it Cass Center; service locations should be reconfirmed before release.",
+      "source": "https://albion.college-tour.com/#Cass%20Street%20Building",
+      "media": []
+    },
+    {
+      "id": "906",
+      "name": "Baldwin Hall (Student Dining)",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "6"
+      ],
+      "summary": "Baldwin is a campus dining and gathering destination. Lower Baldwin was renovated in 2013; other dining spaces serve events and smaller groups.",
+      "source": "https://albion.college-tour.com/#Baldwin%20Hall%20%28Student%20Dining%29",
+      "media": [
+        {
+          "label": "Baldwin Hall (Student Dining) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/cb63e3f2-a010-4276-9c9d-7f805d98e3e7.jpg"
+        },
+        {
+          "label": "Baldwin Hall (Student Dining) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/f70541a4-c9c8-44e2-8d97-3e32c1a6c18b.jpg"
+        },
+        {
+          "label": "Baldwin Hall (Student Dining) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/b439ee89-6df2-440e-abe4-bdd7128e22f0.jpg"
+        },
+        {
+          "label": "Baldwin Hall (Student Dining) \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/9e5ff619-877d-4efa-8a94-7f41eb442519.jpg"
+        }
+      ]
+    },
+    {
+      "id": "887",
+      "name": "Bobbitt Annex",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "7a"
+      ],
+      "summary": "The annex supports ceramics, including wheel work, hand-built pieces and kiln firing.",
+      "source": "https://albion.college-tour.com/#Bobbitt%20Annex",
+      "media": [
+        {
+          "label": "Bobbitt Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/f08fbce8-facb-462b-899d-9edb1737ec60.jpg"
+        },
+        {
+          "label": "Bobbitt Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/6566fee2-4dde-433e-ab20-5567a97f4ad9.jpg"
+        },
+        {
+          "label": "Bobbitt Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/d74098fd-d6a9-4829-99b6-48355a4b3ae6.jpg"
+        },
+        {
+          "label": "Bobbitt Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/ae5f158b-79c8-4593-a28b-e3742ad38390.jpg"
+        },
+        {
+          "label": "Bobbitt Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/497fbca8-5ab6-4d5c-93be-f5338db4af27.jpg"
+        }
+      ]
+    },
+    {
+      "id": "886",
+      "name": "Bobbitt Visual Arts Center",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "7"
+      ],
+      "summary": "Art teaching, studios, galleries and an auditorium share this building. Its facilities cover painting, drawing, printmaking, sculpture, photography and digital work.",
+      "source": "https://albion.college-tour.com/#Bobbitt%20Visual%20Arts%20Center",
+      "media": [
+        {
+          "label": "Bobbitt Visual Arts Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/eb1106f5-63f8-48e0-8486-93fcc4089aa0.jpg"
+        },
+        {
+          "label": "Bobbitt Visual Arts Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/06b27070-4447-4bfb-ab51-711af4370072.jpg"
+        },
+        {
+          "label": "Bobbitt Visual Arts Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/6d99f0fa-53b9-44e4-b7e8-744c0efc6c56.jpg"
+        },
+        {
+          "label": "Bobbitt Visual Arts Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/3f600353-5278-4718-bbde-1457c03c4d35.jpg"
+        },
+        {
+          "label": "Bobbitt Visual Arts Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/97a9d9e8-3469-4da7-b592-098c4f4a7a6b.jpg"
+        }
+      ]
+    },
+    {
+      "id": "901",
+      "name": "Facilities Operations",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "9"
+      ],
+      "summary": "This campus service maintains and develops college facilities.",
+      "source": "https://albion.college-tour.com/#Facilities%20Operations",
+      "media": []
+    },
+    {
+      "id": "888",
+      "name": "Ferguson Student, Technology, and Administrative Services Building",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "26"
+      ],
+      "summary": "Ferguson was completed in 2002 as an administrative and student-services hub. The tour lists technology, academic and student-support offices here.",
+      "source": "https://albion.college-tour.com/#Ferguson%20Student%2C%20Technology%2C%20and%20Administrative%20Services%20Building",
+      "media": [
+        {
+          "label": "Ferguson Student, Technology, and Administrative Services Building \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/12053f5e-cc5c-4330-a7ff-5e5bcf527a70.jpg"
+        },
+        {
+          "label": "Ferguson Student, Technology, and Administrative Services Building \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/dc5817ee-8bf0-4cbc-935d-26b60d18f8d9.jpg"
+        },
+        {
+          "label": "Ferguson Student, Technology, and Administrative Services Building \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/8d216c23-0fc8-4eda-a5be-4ac194980ccc.jpg"
+        },
+        {
+          "label": "Ferguson Student, Technology, and Administrative Services Building \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Ferguson_Building.mp4"
+        }
+      ]
+    },
+    {
+      "id": "889",
+      "name": "Goodrich Chapel/Wesley Chapel",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "10"
+      ],
+      "summary": "Goodrich hosted required chapel gatherings from 1958 into the late 1960s. Today the tour describes a large auditorium for college ceremonies and music, with teaching and practice spaces below.",
+      "source": "https://albion.college-tour.com/#Goodrich%20Chapel/Wesley%20Chapel",
+      "media": [
+        {
+          "label": "Goodrich Chapel/Wesley Chapel \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/d2b4db70-7562-4217-8a44-681b514476b6.jpg"
+        },
+        {
+          "label": "Goodrich Chapel/Wesley Chapel \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/77fe2efa-c21e-4e32-8508-89a235632263.JPG"
+        },
+        {
+          "label": "Goodrich Chapel/Wesley Chapel \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/goodrich_chape_tour_dvb.mp4"
+        }
+      ]
+    },
+    {
+      "id": "922",
+      "name": "Grounds",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "11"
+      ],
+      "summary": "The grounds team cares for campus landscaping and outdoor spaces throughout the year.",
+      "source": "https://albion.college-tour.com/#Grounds",
+      "media": []
+    },
+    {
+      "id": "890",
+      "name": "Herrick Theatre",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "12"
+      ],
+      "summary": "Herrick includes a mainstage theatre and a flexible black-box space, with nearby teaching and office rooms. Students from different majors can participate in productions.",
+      "source": "https://albion.college-tour.com/#Herrick%20Theatre",
+      "media": [
+        {
+          "label": "Herrick Theatre \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/f49d0efe-094f-444c-a70d-43e7e5ff6b53.jpg"
+        },
+        {
+          "label": "Herrick Theatre \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/ea34a963-2a14-4e74-88b7-4dfbbaa25af6.jpg"
+        }
+      ]
+    },
+    {
+      "id": "891",
+      "name": "Journey House",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [],
+      "summary": "Journey House is identified in the tour as a base for Intercultural Affairs, cultural programming and student leadership. Its game-map position has not yet been established.",
+      "source": "https://albion.college-tour.com/#Journey%20House",
+      "media": []
+    },
+    {
+      "id": "892",
+      "name": "Kellogg Center/Dickie Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "14"
+      ],
+      "summary": "Dickie Hall construction began in 1857 and finished fourteen years later. Former chapel and office space became part of the Kellogg Center, a campus gathering place with student services and entertainment.",
+      "source": "https://albion.college-tour.com/#Kellogg%20Center/Dickie%20Hall",
+      "media": [
+        {
+          "label": "Kellogg Center/Dickie Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/d34c84ac-b3ec-4d5e-90c3-5c43b9b227d3.jpg"
+        },
+        {
+          "label": "Kellogg Center/Dickie Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/2eae3f58-3188-4399-9159-427559970f53.jpg"
+        },
+        {
+          "label": "Kellogg Center/Dickie Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/29cdc7df-48dd-485c-aec3-33540472e0fe.jpg"
+        }
+      ]
+    },
+    {
+      "id": "893",
+      "name": "Kresge Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "18k"
+      ],
+      "summary": "Kresge supports life-science teaching and research. The tour describes biology facilities, specimen collections, chemistry labs and an adjoining greenhouse.",
+      "source": "https://albion.college-tour.com/#Kresge%20Hall",
+      "media": [
+        {
+          "label": "Kresge Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/2af8cb77-80f6-468b-ba1c-e7affc9d77c2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "895",
+      "name": "Norris Center",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "18n"
+      ],
+      "summary": "Norris contains lecture and teaching spaces along with scientific research equipment in the Dow Analytical Science Laboratory.",
+      "source": "https://albion.college-tour.com/#Norris%20Center",
+      "media": [
+        {
+          "label": "Norris Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/4ae9a210-385b-4265-a6b1-8372fb16b7d5.jpg"
+        },
+        {
+          "label": "Norris Center \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/c1a6cf08-2d2e-46d0-aa7b-d0d9d254b5ea.jpg"
+        },
+        {
+          "label": "Norris Center \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/norris_center_dvb.mp4"
+        }
+      ]
+    },
+    {
+      "id": "896",
+      "name": "Olin Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "17"
+      ],
+      "summary": "Olin brings together communication, psychology and education activities. Its teaching and research spaces include specialist psychology laboratories.",
+      "source": "https://albion.college-tour.com/#Olin%20Hall",
+      "media": [
+        {
+          "label": "Olin Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/164cd333-ec48-4c11-827f-371fb65c6fff.jpg"
+        },
+        {
+          "label": "Olin Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/e6419e1d-c192-4f19-914f-f766621d28c4.jpg"
+        },
+        {
+          "label": "Olin Hall \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Olin_Hall.mp4"
+        }
+      ]
+    },
+    {
+      "id": "897",
+      "name": "Palenske Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "18p"
+      ],
+      "summary": "Palenske supports geology, physics, mathematics and computing. The tour identifies rooftop astronomy equipment, research labs and geological collections.",
+      "source": "https://albion.college-tour.com/#Palenske%20Hall",
+      "media": [
+        {
+          "label": "Palenske Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/dd2ee328-9f84-44e8-9260-f0462470c2c7.jpg"
+        }
+      ]
+    },
+    {
+      "id": "885",
+      "name": "Prentiss M. Brown Honors Center & Astronomical Observatory",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "5"
+      ],
+      "summary": "The historic observatory now also serves the Brown Honors Program. The tour dates it to 1883; the Physics Department history distinguishes construction beginning in 1883 from completion in 1884. Its historic telescope remains an important feature.",
+      "source": "https://albion.college-tour.com/#Prentiss%20M.%20Brown%20Honors%20Center%20%26%20Astronomical%20Observatory",
+      "media": []
+    },
+    {
+      "id": "898",
+      "name": "Putnam Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "18u"
+      ],
+      "summary": "Putnam provides faculty offices and teaching and laboratory space for biology and chemistry, alongside computing facilities.",
+      "source": "https://albion.college-tour.com/#Putnam%20Hall",
+      "media": [
+        {
+          "label": "Putnam Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/71334df2-90e0-4573-9d65-b6faeff1e51e.jpg"
+        }
+      ]
+    },
+    {
+      "id": "899",
+      "name": "Robinson Hall",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "16"
+      ],
+      "summary": "Robinson occupies the site of the original college building erected in 1843. It underwent a full renovation in 1992. The tour associates it with humanities and social-science classrooms and offices.",
+      "source": "https://albion.college-tour.com/#Robinson%20Hall",
+      "media": [
+        {
+          "label": "Robinson Hall \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/RobinsonBuilding.mp4"
+        }
+      ]
+    },
+    {
+      "id": "900",
+      "name": "Stockwell Memorial Library/Mudd Learning Center",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "20",
+        "21"
+      ],
+      "summary": "Stockwell opened in 1938 and Mudd in 1980. Together they support library study, research and archives. Stockwell\u2019s ground-level learning commons was redesigned in 2011.",
+      "source": "https://albion.college-tour.com/#Stockwell%20Memorial%20Library/Mudd%20Learning%20Center",
+      "media": [
+        {
+          "label": "Stockwell Memorial Library/Mudd Learning Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/8580903d-d65d-494f-8b97-9e8869b392a9.jpg"
+        },
+        {
+          "label": "Stockwell Memorial Library/Mudd Learning Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/d49810ed-25e6-4643-b95f-89fabf885f79.jpg"
+        },
+        {
+          "label": "Stockwell Memorial Library/Mudd Learning Center \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Stockwell_Mudd_Library.mp4"
+        }
+      ]
+    },
+    {
+      "id": "902",
+      "name": "Umbrella House",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "22"
+      ],
+      "summary": "Umbrella House provides a meeting and support setting for multicultural student organizations.",
+      "source": "https://albion.college-tour.com/#Umbrella%20House",
+      "media": []
+    },
+    {
+      "id": "903",
+      "name": "Vulgamore Hall (North Hall)",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "23"
+      ],
+      "summary": "Vulgamore, also known as North Hall, dates to 1854 and was renovated in 1993. The tour places humanities teaching and international education offices here.",
+      "source": "https://albion.college-tour.com/#Vulgamore%20Hall%20%28North%20Hall%29",
+      "media": [
+        {
+          "label": "Vulgamore Hall (North Hall) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/e8416778-1c9b-4b30-beb4-02579e1aa4f3.jpg"
+        },
+        {
+          "label": "Vulgamore Hall (North Hall) \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Vulgamore_Building.mp4"
+        }
+      ]
+    },
+    {
+      "id": "904",
+      "name": "Welton House (Black Student Alliance)",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "24"
+      ],
+      "summary": "The house honors James Welton, a 1904 graduate identified as Albion\u2019s first African American alumnus. The Black Student Alliance house was rededicated to him in 2002.",
+      "source": "https://albion.college-tour.com/#Welton%20House%20%28Black%20Student%20Alliance%29",
+      "media": []
+    },
+    {
+      "id": "905",
+      "name": "Whitehouse Nature Center",
+      "category": "Classroom and Common Buildings",
+      "campusIds": [
+        "25"
+      ],
+      "summary": "Whitehouse provides trails and outdoor learning beside the Kalamazoo River. The tour describes an interpretive center and opportunities for fieldwork, art and environmental education.",
+      "source": "https://albion.college-tour.com/#Whitehouse%20Nature%20Center",
+      "media": [
+        {
+          "label": "Whitehouse Nature Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/8b554398-5289-4c73-a8fa-916f6e5c21fe.jpg"
+        },
+        {
+          "label": "Whitehouse Nature Center \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/f3eacfd6-00d5-4926-a274-dc2bef29a06a.jpg"
+        },
+        {
+          "label": "Whitehouse Nature Center \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/70e354ef-9747-45a8-ad1a-f80892c06d55.jpg"
+        }
+      ]
+    },
+    {
+      "id": "928",
+      "name": "Alpha Chi Omega Sorority",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "60"
+      ],
+      "summary": "The tour dates Albion\u2019s Beta chapter to 1887. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Alpha%20Chi%20Omega%20Sorority",
+      "media": []
+    },
+    {
+      "id": "929",
+      "name": "Alpha Tau Omega Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "61"
+      ],
+      "summary": "The tour dates Albion\u2019s Beta Omicron chapter to 1889. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Alpha%20Tau%20Omega%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "930",
+      "name": "Alpha Xi Delta Sorority",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "62"
+      ],
+      "summary": "The tour dates Albion\u2019s Phi chapter to 1915. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Alpha%20Xi%20Delta%20Sorority",
+      "media": []
+    },
+    {
+      "id": "931",
+      "name": "Delta Gamma Sorority",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "63"
+      ],
+      "summary": "The tour dates Albion\u2019s Zeta chapter to 1883. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Delta%20Gamma%20Sorority",
+      "media": []
+    },
+    {
+      "id": "932",
+      "name": "Delta Sigma Phi Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "64"
+      ],
+      "summary": "The tour dates Albion\u2019s Alpha Tau chapter to 1917. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Delta%20Sigma%20Phi%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "933",
+      "name": "Delta Tau Delta Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "65"
+      ],
+      "summary": "The tour dates Albion\u2019s Epsilon chapter to 1876. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Delta%20Tau%20Delta%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "934",
+      "name": "Kappa Alpha Theta Sorority",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "66"
+      ],
+      "summary": "The tour dates Albion\u2019s Pi chapter to 1887. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Kappa%20Alpha%20Theta%20Sorority",
+      "media": []
+    },
+    {
+      "id": "935",
+      "name": "Kappa Delta Sorority",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "67"
+      ],
+      "summary": "The tour dates Albion\u2019s Sigma Pi chapter to 1923. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Kappa%20Delta%20Sorority",
+      "media": []
+    },
+    {
+      "id": "937",
+      "name": "Sigma Chi Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "69"
+      ],
+      "summary": "The tour dates Albion\u2019s Alpha Pi chapter to 1886. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Sigma%20Chi%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "936",
+      "name": "Sigma Nu Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "68"
+      ],
+      "summary": "The tour dates Albion\u2019s Gamma Gamma chapter to 1895. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Sigma%20Nu%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "938",
+      "name": "Tau Kappa Epsilon Fraternity",
+      "category": "Sororities and Fraternities",
+      "campusIds": [
+        "70"
+      ],
+      "summary": "The tour dates Albion\u2019s Omega chapter to 1926. This is chapter history; the page does not establish the construction date or interior layout of its building.",
+      "source": "https://albion.college-tour.com/#Tau%20Kappa%20Epsilon%20Fraternity",
+      "media": []
+    },
+    {
+      "id": "918",
+      "name": "416 Erie St. Apartments (\u201cOctagon House\u201d)",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "52"
+      ],
+      "summary": "The Octagon House contains two furnished apartments. The tour describes shared living, dining, kitchen and laundry facilities.",
+      "source": "https://albion.college-tour.com/#416%20Erie%20St.%20Apartments%20%28%E2%80%9COctagon%20House%E2%80%9D%29",
+      "media": [
+        {
+          "label": "416 Erie St. Apartments (\u201cOctagon House\u201d) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/5106b72e-e13d-414e-8b54-4133adf49609.jpg"
+        }
+      ]
+    },
+    {
+      "id": "919",
+      "name": "507 Erie St. Apartments",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "54"
+      ],
+      "summary": "This Erie Street apartment offers furnished bedrooms and shared living, dining, cooking and laundry spaces.",
+      "source": "https://albion.college-tour.com/#507%20Erie%20St.%20Apartments",
+      "media": [
+        {
+          "label": "507 Erie St. Apartments \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/5dc1c138-2b9a-46b6-8b41-682d9ce92f27.JPG"
+        }
+      ]
+    },
+    {
+      "id": "920",
+      "name": "711 E. Michigan Avenue Annex",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "55"
+      ],
+      "summary": "The Michigan Avenue annex is described as student housing with shared living, dining, kitchen and laundry facilities.",
+      "source": "https://albion.college-tour.com/#711%20E.%20Michigan%20Avenue%20Annex",
+      "media": [
+        {
+          "label": "711 E. Michigan Avenue Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/05e267c0-3e2b-4d45-ba4a-3cbda506921e.JPG"
+        },
+        {
+          "label": "711 E. Michigan Avenue Annex \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/8e222509-1b30-4eef-9d20-8b2c3d5e1b94.JPG"
+        }
+      ]
+    },
+    {
+      "id": "907",
+      "name": "Briton House Apartments",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "40"
+      ],
+      "summary": "Briton House provides furnished student apartments with kitchens and shared laundry facilities.",
+      "source": "https://albion.college-tour.com/#Briton%20House%20Apartments",
+      "media": [
+        {
+          "label": "Briton House Apartments \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/ebb0b13f-7b50-4983-9913-a6b0b9642ca1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "908",
+      "name": "Burns Street Apartments",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "41"
+      ],
+      "summary": "Burns Street offers furnished apartments and efficiencies, with kitchens and on-site laundry.",
+      "source": "https://albion.college-tour.com/#Burns%20Street%20Apartments",
+      "media": []
+    },
+    {
+      "id": "909",
+      "name": "Dean Hall",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "42"
+      ],
+      "summary": "Dean is described as cooperative student housing. Residents share domestic responsibilities, including preparing meals and caring for common areas.",
+      "source": "https://albion.college-tour.com/#Dean%20Hall",
+      "media": [
+        {
+          "label": "Dean Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/63097d6f-a62b-4afe-bcaa-baf4cc7e956b.jpg"
+        },
+        {
+          "label": "Dean Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/81254f12-4a1e-47e6-b198-89caec98afdc.JPG"
+        }
+      ]
+    },
+    {
+      "id": "910",
+      "name": "Fiske House",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "43"
+      ],
+      "summary": "Fiske is associated with language living and learning. Its residential program encourages language practice and international awareness.",
+      "source": "https://albion.college-tour.com/#Fiske%20House",
+      "media": [
+        {
+          "label": "Fiske House \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/473f6a12-1c00-44c6-86ae-4cd2a90edb9b.jpg"
+        }
+      ]
+    },
+    {
+      "id": "911",
+      "name": "Ingham Hall",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "44"
+      ],
+      "summary": "Ingham offers student bedrooms, furnished common areas, a kitchenette and laundry.",
+      "source": "https://albion.college-tour.com/#Ingham%20Hall",
+      "media": []
+    },
+    {
+      "id": "912",
+      "name": "Karro Apartments (\u201cThe Mae\u201d)",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "45"
+      ],
+      "summary": "Karro Village, nicknamed The Mae, groups furnished apartments in four adjoining buildings. Shared living, kitchen and laundry facilities support residential life.",
+      "source": "https://albion.college-tour.com/#Karro%20Apartments%20%28%E2%80%9CThe%20Mae%E2%80%9D%29",
+      "media": [
+        {
+          "label": "Karro Apartments (\u201cThe Mae\u201d) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/013a062e-65ba-4ea3-876d-ddbf9ca1d5b1.JPG"
+        },
+        {
+          "label": "Karro Apartments (\u201cThe Mae\u201d) \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/cd3f4b7b-fe09-41e2-b97c-3e9044b47235.JPG"
+        }
+      ]
+    },
+    {
+      "id": "914",
+      "name": "Mitchell Towers (\u201cTwin\u201d)",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "46"
+      ],
+      "summary": "The tour lists student rooms and common areas at Mitchell Towers, nicknamed Twin. It does not establish a construction history or complete floor plan.",
+      "source": "https://albion.college-tour.com/#Mitchell%20Towers%20%28%E2%80%9CTwin%E2%80%9D%29",
+      "media": []
+    },
+    {
+      "id": "1142",
+      "name": "Munger Annex (E-House)",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "48"
+      ],
+      "summary": "The official tour currently has a placeholder for Munger Annex. A verified building description and history still need to be added.",
+      "source": "https://albion.college-tour.com/#Munger%20Annex%20%28E-House%29",
+      "media": []
+    },
+    {
+      "id": "913",
+      "name": "Munger Place Apartments",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "47"
+      ],
+      "summary": "Munger Place provides furnished student apartments with living, dining and kitchen space and access to laundry.",
+      "source": "https://albion.college-tour.com/#Munger%20Place%20Apartments",
+      "media": []
+    },
+    {
+      "id": "915",
+      "name": "Seaton Hall",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "49"
+      ],
+      "summary": "Seaton is described as a four-story residence with double rooms, study lounges, a kitchenette and laundry. A dorm panorama is available.",
+      "source": "https://albion.college-tour.com/#Seaton%20Hall",
+      "media": [
+        {
+          "label": "Seaton Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/bdb5b991-1194-4986-836c-0b395933b1ba.jpg"
+        }
+      ]
+    },
+    {
+      "id": "917",
+      "name": "Wesley Hall",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "50"
+      ],
+      "summary": "Susanna Wesley Hall, nicknamed Susie, opened in 1926 as the college\u2019s first dedicated residence building, initially for women. East and West additions and Kresge Dining Room followed in the 1950s. The tour describes four stories with double rooms and study lounges.",
+      "source": "https://albion.college-tour.com/#Wesley%20Hall",
+      "media": [
+        {
+          "label": "Wesley Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/daf18586-cacd-4ad3-b3cc-94b4333387b9.jpg"
+        },
+        {
+          "label": "Wesley Hall \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/7f419dd1-4866-404d-872f-8e874e96f346.jpg"
+        },
+        {
+          "label": "Wesley Hall \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/e39b15bb-77c8-442c-905f-3e493a624e9d.jpg"
+        }
+      ]
+    },
+    {
+      "id": "916",
+      "name": "Whitehouse Hall",
+      "category": "Residence Halls and Apartments",
+      "campusIds": [
+        "51"
+      ],
+      "summary": "Whitehouse Hall has four stories. Its suites pair two double bedrooms with a shared bathroom; the tour also describes study and domestic facilities.",
+      "source": "https://albion.college-tour.com/#Whitehouse%20Hall",
+      "media": []
+    },
+    {
+      "id": "880",
+      "name": "Davis Athletic Complex - Alumni Field, Champions Stadium at the Frank Joranko Field, Dempsey Field",
+      "category": "Athletics",
+      "campusIds": [
+        "76a",
+        "76b",
+        "76c"
+      ],
+      "summary": "Davis combines soccer and lacrosse, baseball, softball and throwing facilities, connected by an entrance and walkway. The game represents its fields as three separate destinations.",
+      "source": "https://albion.college-tour.com/#Davis%20Athletic%20Complex%20-%20Alumni%20Field%2C%20Champions%20Stadium%20at%20the%20Frank%20Joranko%20Field%2C%20Dempsey%20Field",
+      "media": [
+        {
+          "label": "Davis Athletic Complex - Alumni Field, Champions Stadium at the Frank Joranko Field, Dempsey Field \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Davis_Athletics_Complex.mp4"
+        }
+      ]
+    },
+    {
+      "id": "881",
+      "name": "Dow Recreation and Wellness Center, Dean Aquatic Center, Ungrodt Tennis Center",
+      "category": "Athletics",
+      "campusIds": [
+        "77"
+      ],
+      "summary": "Dow combines exercise, indoor sports and wellness spaces with aquatic and tennis facilities. Its tour panorama depicts the weight room.",
+      "source": "https://albion.college-tour.com/#Dow%20Recreation%20and%20Wellness%20Center%2C%20Dean%20Aquatic%20Center%2C%20Ungrodt%20Tennis%20Center",
+      "media": [
+        {
+          "label": "Dow Recreation and Wellness Center, Dean Aquatic Center, Ungrodt Tennis Center \u00b7 panorama",
+          "kind": "panorama",
+          "url": "https://content.studentbridge.com/prod/63/d05984f3-e9df-47e8-9f39-56982871925e.jpg"
+        }
+      ]
+    },
+    {
+      "id": "883",
+      "name": "Kresge Gymnasium",
+      "category": "Athletics",
+      "campusIds": [
+        "79"
+      ],
+      "summary": "Kresge Gymnasium hosts basketball and volleyball. Its brick facade also forms a backdrop for outdoor commencement on the Quad.",
+      "source": "https://albion.college-tour.com/#Kresge%20Gymnasium",
+      "media": [
+        {
+          "label": "Kresge Gymnasium \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/4b8225e6-ebac-4fc6-a9af-efb31fa4a116.jpg"
+        },
+        {
+          "label": "Kresge Gymnasium \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/7b73a6d8-07ea-4f77-87ac-e8975cdedf43.jpg"
+        },
+        {
+          "label": "Kresge Gymnasium \u00b7 video",
+          "kind": "video",
+          "url": "https://cdn.media.studentbridge.com/albion_college/Kresge_Gymnasium.mp4"
+        }
+      ]
+    },
+    {
+      "id": "884",
+      "name": "Sprankle-Sprandel Stadium",
+      "category": "Athletics",
+      "campusIds": [
+        "80"
+      ],
+      "summary": "The stadium opened in 1976. The tour records renovation in 1999, field and track work in 2011, and lighting in 2012. It sits near the Kalamazoo River.",
+      "source": "https://albion.college-tour.com/#Sprankle-Sprandel%20Stadium",
+      "media": []
+    },
+    {
+      "id": "927",
+      "name": "President's Home",
+      "category": "President's Home",
+      "campusIds": [
+        "53"
+      ],
+      "summary": "This Colonial Revival home was built in 1902 and acquired by the college in 1940. It later accommodated advancement offices and student housing before renovation in 2014 for use as the president\u2019s residence.",
+      "source": "https://albion.college-tour.com/#President%27s%20Home",
+      "media": [
+        {
+          "label": "President's Home \u00b7 photo",
+          "kind": "photo",
+          "url": "https://content.studentbridge.com/prod/63/bf3c506a-a950-437a-8572-e2f1179af66c.jpg"
+        }
+      ]
+    }
+  ]
+}

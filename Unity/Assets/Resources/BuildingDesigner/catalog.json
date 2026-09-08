@@ -1,0 +1,83 @@
+[
+  {
+    "kind": 0,
+    "notes": [
+      48,
+      55
+    ],
+    "sha256": "d4b7f369ad962e4dc6116105500a560a9c987cb99c6f8ac67c68f0c7d5002ab0"
+  },
+  {
+    "kind": 1,
+    "notes": [
+      51,
+      58
+    ],
+    "sha256": "53dcf3aba3c3c2ae5c034247f82763000e36e1086ac125962eaf63e9a9e5794b"
+  },
+  {
+    "kind": 2,
+    "notes": [
+      54,
+      61
+    ],
+    "sha256": "8895edc4872c0e902dc7525a7128889458bc46cf0e0a42e47485a99cb3b16d24"
+  },
+  {
+    "kind": 3,
+    "notes": [
+      57,
+      64
+    ],
+    "sha256": "7dd9c7979865ae302db8ad6e7af6d6db74f5e7bebd709bd42fcdc5cd0c2795cf"
+  },
+  {
+    "kind": 4,
+    "notes": [
+      60,
+      67
+    ],
+    "sha256": "bd9cfe99f6e970d3cf593f187f11c4dd93b0198b1950f6f0c10bd98fc0a20d45"
+  },
+  {
+    "kind": 5,
+    "notes": [
+      63,
+      70
+    ],
+    "sha256": "905e93b4afff2c2eb0a2bb2e47e0e3a2c794b11cad5b1a09659f66116d927a7b"
+  },
+  {
+    "kind": 6,
+    "notes": [
+      66,
+      73
+    ],
+    "sha256": "0e4dc1dc7d9ab823b782f793f9287f78950b773f11168d91ed374685d4d3b55e"
+  },
+  {
+    "kind": 7,
+    "notes": [
+      69,
+      76
+    ],
+    "sha256": "75264f6f99e18072ff36889414936000a4afb67c2df0431747693e4c93794b01"
+  },
+  {
+    "kind": 8,
+    "notes": [
+      72,
+      64
+    ],
+    "sha256": "83cca9cfdcbe80275305e932b95411d1cbc8a3759e724c26476fa2146996a75c"
+  },
+  {
+    "kind": 9,
+    "notes": [
+      60,
+      64,
+      72
+    ],
+    "sha256": "51c3c2e0f5ba73cec28ae7778f4591da5a462a047a305692e35552a758e78775"
+  }
+]

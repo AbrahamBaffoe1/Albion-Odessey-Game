@@ -25,3 +25,9 @@ Tests/UnityRules/bin/
 Tests/UnityRules/obj/
 mono_crash.*
 *.dmp
+
+# Generated local verification and imported asset caches
+Tests/**/bin/
+Tests/**/obj/
+Verification/
+Art/References/*.zip

@@ -38,10 +38,11 @@ namespace AlbionOdyssey
                 return -1;
             }
         }
-        public string Location=>InClass?"THE COMMON CLASSROOM":Mathf.Abs(game.player.transform.position.x+64)<7&&Mathf.Abs(game.player.transform.position.z)<7?"HISTORY PAVILION":game.player.transform.position.x>30?"YOUR CAMPUS":"LEGACY HALL";
+        public string Location=>game.tour!=null&&game.tour.InRoom?"WESLEY / ROOM STUDY":game.campus!=null&&game.campus.OnCampus?game.campus.Nearest.name.ToUpperInvariant():InClass?"THE COMMON CLASSROOM":Mathf.Abs(game.player.transform.position.x+64)<7&&Mathf.Abs(game.player.transform.position.z)<7?"HISTORY PAVILION":game.player.transform.position.x>30?"YOUR CAMPUS":"LEGACY HALL";
         public void SetPanel(string value)
         {
             if(value!=""&&game.journalOpen)game.SetJournal(false);
+            if(panel=="settings"&&value!="settings"&&game.campus!=null)game.campus.SaveKeeper();
             panel=value;game.player.controls=!PanelOpen&&!game.building;
             game.player.buttonMove=Vector2.zero;game.player.buttonTurn=0;
             bool free=PanelOpen||game.building||game.player.pointerControls;
@@ -49,6 +50,7 @@ namespace AlbionOdyssey
         }
         public void Travel(int destination)
         {
+            if(!game.player.TryExitVehicle()){game.notice="Move the car into an open space before traveling.";return;}
             if(game.building)game.ToggleMode();
             game.player.Teleport(destination==0?new Vector3(0,.05f,-22):destination==1?new Vector3(-40,.05f,-12):destination==2?new Vector3(-64,.05f,-9):new Vector3(48,.05f,-20));
             game.player.transform.rotation=Quaternion.identity;SetPanel("");
@@ -63,7 +65,7 @@ namespace AlbionOdyssey
             }
             if(game.journalOpen)return false;
             if(Input.GetKeyDown(KeyCode.Escape)||Input.GetKeyDown(KeyCode.F1)){SetPanel("welcome");return true;}
-            if(Input.GetKeyDown(KeyCode.M)){SetPanel("map");return true;}
+            if(Input.GetKeyDown(KeyCode.M)){SetPanel("campus");return true;}
             if(Input.GetKeyDown(KeyCode.K)){SetPanel("courses");return true;}
             if(Input.GetKeyDown(KeyCode.H))
             {
@@ -116,7 +118,7 @@ namespace AlbionOdyssey
         void Label(float x,float y,float w,float h,string value,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),value,style??text);
         void OnGUI()
         {
-            if(game==null||game.player==null)return;
+            if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend")return;
             if(heading==null)
             {
                 heading=new GUIStyle(GUI.skin.label){fontSize=30,fontStyle=FontStyle.Bold};
@@ -129,41 +131,32 @@ namespace AlbionOdyssey
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             GUI.backgroundColor=new Color(.12f,.27f,.30f);
-            if(game.sound.AchievementCaption.Length>0)
+            if(PanelOpen&&game.sound.AchievementCaption.Length>0)
             {
                 GUI.color=new Color(.025f,.09f,.10f,.96f);GUI.DrawTexture(new Rect(width-440,138,420,78),Texture2D.whiteTexture);GUI.color=Color.white;
                 Label(width-423,147,390,22,"ACHIEVEMENT UNLOCKED",muted);
                 Label(width-423,174,390,40,game.sound.AchievementCaption,text);
             }
-            if(!PanelOpen)
-            {
-                if(game.building||game.journalOpen)return;
-                if(NearbyHistory>=0)Label(width/2-180,height-180,500,25,InClass?"H · History     K · Courses     P · Paper play":"H · Read this place's history",muted);
-                if(Physics.Raycast(game.player.eyes.transform.position,game.player.eyes.transform.forward,out var hit,3.5f)&&(hit.collider.GetComponent<MemoryMarker>()!=null||hit.collider.GetComponent<GuideMarker>()!=null))Label(width/2-110,height/2+25,250,28,"E / F · Pick up or interact",text);
-                if(game.player.pointerControls)
-                {
-                    float x=width-290,y=height-290;
-                    game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+120,y+54,58,46),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+54,58,46),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+60,y,58,46),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+60,y+54,58,46),"↓",button)?1:0));
-                    game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+180,y,70,46),"Turn R",button)?1:0)-(GUI.RepeatButton(new Rect(x-75,y,70,46),"Turn L",button)?1:0);
-                    if(Button(x-75,y+105,155,"Pick up / interact"))game.Interact();
-                    if(Button(x+90,y+105,90,"Jump"))game.player.buttonJump=true;
-                }
-                return;
-            }
+            if(!PanelOpen)return;
             GUI.color=new Color(.018f,.03f,.043f,1f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=Color.white;
             float left=(width-1120)/2;
-            Label(left,28,920,50,panel=="map"?"EXPLORE THE CAMPUS":panel=="history"?"ALBION / LEARN THE STORY":panel=="courses"?"YOUR CAMPUS / COURSES":"ALBION ODYSSEY",heading);
+            Label(left,28,920,50,panel=="campus"?"EXPLORE ALBION COLLEGE":panel=="settings"?"GAME SETTINGS / YOUR CHARACTER":panel=="treasures"?"CAMPUS TREASURES":panel=="map"?"LEGACY CAMPUS":panel=="history"?"ALBION / LEARN THE STORY":panel=="courses"?"YOUR CAMPUS / COURSES":"ALBION ODYSSEY",heading);
             if(Button(left+965,32,155,"Return · Esc"))SetPanel("");
-            if(panel=="welcome")
+            if(panel=="campus"||panel=="settings"||panel=="treasures") {game.campus.DrawPanel(panel,left);}
+            else if(panel=="welcome")
             {
                 Label(left,95,1080,50,"Build your campus. Discover its stories. Start a class.",text);
-                Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  E or F, aimed at the object\nHISTORY  H inside a learning space\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nHELP / PAUSE  Esc or F1",text);
-                Label(left+590,155,510,220,"START HERE\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
-                Label(left+590,400,510,100,"Version 0.5 · Four local Keepers on this Mac.\nStudents are simulated. Online accounts and multiplayer are still in development.",muted);
+                Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  E or F, aimed at the object\nHISTORY  H near a building   ·   ALL STORIES  G\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nCHARACTER SETTINGS  F3   ·   CAMERA  V\nHELP / PAUSE  Esc or F1",text);
+                Label(left+590,155,510,260,"NEW: EXPLORE ALBION\n61 campus destinations · 7 discoveries\nE enters / exits a car. Space brakes.\nF3 lets you choose or create your character.\n\nLEGACY CAMPUS\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
+                Label(left+590,447,510,75,"Version 0.6 · Four local Keepers on this Mac.\nStudents are simulated. Online accounts and multiplayer are still in development.",muted);
                 if(Button(left,530,260,"Play / resume"))SetPanel("");
-                if(Button(left+280,530,260,"Explore the map"))SetPanel("map");
+                if(Button(left+280,530,260,"Building stories · G"))game.shell.Stories();
+                if(Button(left+840,530,230,"College videos"))game.shell.Videos();
                 if(Button(left+560,530,260,"Create a course"))SetPanel("courses");
-                if(Button(left,600,260,"Save and quit")){if(game.Save())Application.Quit();}
+                if(Button(left,680,260,"Character settings · F3"))SetPanel("settings");
+                if(Button(left+280,680,260,"Campus treasures"))SetPanel("treasures");
+                if(Button(left+560,680,260,"Legacy Hall & builder"))SetPanel("map");
+                if(Button(left,600,260,"Finish session"))game.shell.EndSession();
                 Label(left+320,594,260,30,"SOUND EFFECTS  "+Mathf.RoundToInt(game.sound.Volume*100)+"%",muted);
                 float volume=GUI.HorizontalSlider(new Rect(left+320,637,330,28),game.sound.Volume,0,1);
                 bool effectsMuted=GUI.Toggle(new Rect(left+690,602,180,32),game.sound.Muted,"Mute effects");
@@ -205,9 +198,10 @@ namespace AlbionOdyssey
             {
                 bool ok=school.Create(game.state,courseName,subject);
                 if(ok){course=school.active;Commit("Course created. Enroll yourself or assign students.");}
-                else feedback="Build an unused Hall or Library first (F2). Use a title of 1–40 characters. Limit: six courses.";
+                else feedback="Place an unused Hall or Library first with the button below. Use a title of 1–40 characters. Limit: six courses.";
             }
-            Label(x,430,340,75,"One course per Hall or Library. Remove its course before reclaiming that building.",muted);
+            if(Button(x,422,340,"Place a Hall or Library"))game.shell.PlaceCampusBuildings();
+            Label(x,473,340,39,"One course per Hall or Library. Remove its course before reclaiming that building.",muted);
             for(int i=0;i<6;i++)if(school.Exists(i)&&Button(x+375,133+i*48,355,(i==course?"● ":"")+school.courses[i].title))course=i;
             float rx=x+765;
             if(school.Exists(course))

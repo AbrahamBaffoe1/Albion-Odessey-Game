@@ -1,157 +1,48 @@
-# Cosmic Squirrels: Albion Odyssey
+# Albion Odyssey 0.8 — Ferguson and campus craft update
 
-Explore memories. Build your legacy. Together, anywhere.
+Open **Albion Odyssey.app**. On the launch screen, choose **Explore Ferguson Hall** on the right. Approach the entrance, press **E** to open the door and walk inside. Press **E** near room doors. Stairs at the east end connect all three floors. **H** opens Ferguson’s history and official media; **G** opens all building stories.
 
-An Unreal Engine C++ prototype and Unity C# implementation with an original Blender environment kit for a campus exploration and creative building game inspired by Albion College. Players collect memory echoes, turn starlit acorns into a personal campus, and contribute to a shared Constellation Beacon. Room play requires neither GPS nor a camera.
+## Controls and interface
 
-## Full-size 3D building — start here
+WASD or arrow keys move; mouse looks; Shift runs; Space jumps; V changes camera. O enables the four on-screen movement buttons. M opens the map, B opens the Building Studio, K opens courses, J opens the journal, and Esc opens the main menu. No function keys are needed for these actions.
 
-**Open `Art/Architecture/LegacyHall_FullScale.blend` in Blender.** This is editable 3D architecture: an eight-storey, 32.8-meter tower with a real entrance, interior floors, hallways, study spaces, and seven stair connections. It is an original game building, not a measured replica of an Albion building.
+During exploration the interface has one compact location header, Map/Menu buttons and one contextual action prompt. Movement buttons appear only when enabled. Achievements use one notification area. Detailed stats, courses, character choices and media remain in their dedicated panels.
 
-The primary game map is now a **first-person walkthrough**. The Unity Mac build has been compiled, launched, and tested through all eight floors using its actual CharacterController. Both engine implementations include walking, mouse look, sprinting, jumping and memory collection. F2 connects exploration to each engine’s personal-campus builder.
+Choose **Finish session** to save and see the summary, then **Quit to desktop**. All existing campus, Legacy Hall, classroom, courses, collections, media and building tools are in the same app. Internet is needed only for the official streamed media.
 
-- Twelve real FBX meshes: eight tower floors, a roof, site, classroom and history pavilion.
-- 360,724 render triangles and 1,470 authored UCX collision hulls.
-- Original brick color, normal, and roughness textures.
-- A 1.80 m reference figure and a 1.65 m player eye height.
-- 3,193 floor-support/headroom samples across a complete eight-floor route.
-- All twelve FBXs round-tripped through Blender with geometry, UVs, and meter-scale collision verified.
+## What changed
 
-The Blender model is built and verified. The Unreal C++ and import integration are prepared but **not yet compiled/run in Unreal**, because the engine is not installed. Renders in the asset folder are inspection views of the model; the `.blend` and `.fbx` files contain the actual building.
+- Ferguson’s solid exterior placeholder is replaced with actual Blender meshes, photographed brick textures, a recessed arched entrance, three levels, stairs, furniture and 19 interactive doors.
+- The student is now a skinned character based on Quaternius’s CC0 model, with project-made campus clothing, footwear and backpack. A 65-bone rig plays authored idle, walking, jogging, sprinting and seated animations through a Unity Animator blend tree. This is a stylized human character, not a photorealistic person.
+- Campus lawns and paving have photographed textures. Blender oak trees have branches and individual leaf geometry. Lighting and shadows are coordinated across the scene. The campus still uses the approximate centers derived from the college’s published map.
+- Generic mesh-section loading and reusable door components support the next buildings. Interiors are created on approach, hidden when distant, and reused on return. History and travel are available through the existing directory and map.
+- Duplicate HUD panels are removed. World labels use depth testing so they do not show through walls.
 
-See [the step-by-step workflow](Docs/FullScaleArchitecture.md).
+## Accuracy and remaining work
 
-## New in 0.5 — Collection and achievement sounds
+Ferguson’s visible facade follows reference photographs. Its overall scale, roof details, interior floor plan and room contents are provisional reconstructions, not a measured digital twin. Gameplay room labels do not assert current official office assignments. Other campus buildings still need individual facade/interior reconstruction; adding all 61 map destinations was not the same as completing 61 explorable buildings. Wesley remains a separate reference-based room study accessible from its directory entry.
 
-Twenty original audio cues give every event kind a consistent identity: all memory pickups share one chime, each charter achievement has its own motif, and the three lesson types and four building types have distinct sounds. Achievement cues play in sequence. Duplicate claims, failed actions, profile switches and loading saves stay silent. Press **Esc** for volume, mute and a pickup preview. [Sound design and checks](Docs/Audio.md).
+Headset VR, online multiplayer and online enrollment are not implemented. Courses and four Keeper profiles are local. Custom Building Studio designs can be edited and walked through; campus course buildings use the separate plot-building mode inside this same app.
 
-## New in 0.4 — Learning spaces and local classes
+## Source and resources
 
-Two additional walkable Blender buildings join the tower: the Common Classroom and Albion History Pavilion. Press **M** for a map and travel, **H** inside a learning space for sourced history, and **K** to create a course for an owned Hall or Library. Enroll a local Keeper, assign simulated students, run a twelve-seat class and answer its lesson question. Course ownership, capacity and completion persist; old version-1 saves upgrade without losing discoveries or buildings.
+The consolidated source archive includes the Unity project and editable Blender sources: **FergusonHall.blend**, **StudentRig.blend** and **CampusOaks.blend**. Open Unity with 6000.6.0f1. Authoring tools are under Tools; generated editor caches are omitted. The canonical development checkout is `~/Development/Albion-Odessey-Game`. Unity is the current playable game; `Source/`, `Config/` and the `.uproject` preserve the earlier Unreal foundation.
 
-Movement now supports **WASD and all four arrow keys**. **O** enables clickable direction/turn buttons, **E/F** picks up or interacts, and **Esc/F1** opens help with Save and quit. **P** throws short-lived paper balls inside the classroom. This is local classroom simulation, not online enrollment or multiplayer.
+See **Art/ASSET-CREDITS.md** and **Art/AssetProvenance.json** for reference links, CC0 materials, character/animation credits and hashes. College photos/videos remain linked to their providers rather than copied into the app as geometry.
 
-Start with [the play guide](Docs/PlayGuide.md). The [counted roadmap](Docs/Roadmap.md) has **5 completed prototype packages and 17 remaining major packages**.
+## Verification
 
-## New in 0.3 — The Keeper’s Charter
+The release checks exercise physical entrance collision, door opening, walking both stair flights, rooms, history, real skinned-mesh deformation, proximity loading, camera and audio ownership, studio save/return, all 61 destinations, cars, courses, media, menus and save-failure recovery. The verified release results are recorded in [Docs/Verification-v0.8](Docs/Verification-v0.8). New local test output goes to the ignored `Verification/` directory.
 
-Legacy Hall now has eight named, furnished floors with bookcases, chairs, lounges, plants, a maker workbench, gallery sculptures, an astronomy table and council seating. The plaza has trees, benches and **Pip**, an original 3D squirrel guide modelled in Blender. Aim at Pip and press **E** for your next objective.
+## Build and check from this repository
 
-Press **J** to open a twelve-entry journal of original game fiction. Six persistent charter milestones take you from your first discovery to a completed campus and an illuminated shared Beacon. Earned milestones survive reclaiming and redesigning your buildings. The builder now previews valid/blocked plots and supports mouse-wheel zoom.
+Large binary models, textures and audio use Git LFS. Install Git LFS and run `git lfs pull` after cloning so Unity and Blender receive the actual assets.
 
-These additions are implemented in Unity. Updated Blender/FBX architecture is shared with Unreal; the new journal and charter gameplay have not been ported to the Unreal implementation.
+1. In Unity Hub, add the `Unity` folder and open it with Unity **6000.6.0f1**. Use **Odyssey → Prepare playable scene**, then Play. The checked-in runtime meshes, textures and rig are ready to import; Blender is needed only to edit/regenerate assets.
+2. Build the Mac app with `bash Tools/unity_mac.sh build`. The default output is `Unity/Builds/Albion Odyssey.app`; `UNITY_EDITOR` and `ODYSSEY_BUILD_PATH` can override the editor and output paths.
+3. Run `python3 Tools/check_craft_release.py` against that app, or pass `--app '/path/to/Albion Odyssey.app'`. This launches five isolated test sessions and writes results under `Verification/`.
+4. Run `bash Tools/test.sh`, then `dotnet run --project Tests/UnityRules/Rules.csproj`, `dotnet run --project Tests/BuildingDesigner/Rules.csproj`, and `dotnet run --project Tests/Catalog/Catalog.csproj` for rules, design and catalog checks without launching the game. These require a C++ compiler, Python 3 and .NET 9.
 
-## Current status — 0.5.0 local learning prototype
+Editable Blender files are in `Art/`; source-generation tools and asset credits are included. The old `Tools/clean_campus_ui.py` is a historical one-time migration and must not be rerun on this version.
 
-**The Unity Mac prototype now builds and runs.** Verified with Unity 6000.6.0f1 on an Apple M4 Max Mac: twelve real Blender meshes render, the controller ascends and descends the tower, all twelve memory raycasts work, and the complete six-milestone charter—including build/refund and save/readback—passes. A packaged app is available in the development workspace outputs; binaries are kept out of Git. **The separate Unreal module and import scripts remain uncompiled and unrun**, because Unreal Engine is not installed.
-
-This is a foundation for the larger game, not a finished release. The exploration building now uses full-size architectural proportions and brick/stone materials. The separate campus-builder kit retains its small tile-based models. Neither is an accurate reconstruction of Albion's grounds; the fantasy builder appearance adds purple masonry and celestial details.
-
-| Capability | Implementation status |
-| --- | --- |
-| Full-size first-person tower exploration | Unity Mac runtime verified across all eight floors; Unreal verification pending |
-| Personal campus building | Unity build/refund and rendered structure verified; Unreal verification pending |
-| Two appearances per player | Eight generated Blender/FBX modules; source switches appearances |
-| Four independent personal campuses | Local pass-and-play profiles; not four simultaneous online players |
-| Shared building project | One local Beacon with tracked per-profile contributions |
-| Memory collection, journal, guided objectives | Unity has twelve fictional entries and six persistent charter milestones; Unreal has a separate archive |
-| Persistence | Unity validated JSON save round-trip verified; Unreal SaveGame verification pending |
-| Real-world location collection | Tested distance/accuracy/permission policy only; no live GPS adapter yet |
-| Courses and classroom enrollment | Local saved courses, twelve-seat capacity, simulated students and quizzes; online remains pending |
-| Map, history and screen movement buttons | Implemented in Unity; sourced history and original concept architecture |
-| AR, accounts, online multiplayer, chat | Not implemented |
-| Realistic surveyed campus, full 360 coverage | Reference gathering started; capture and reconstruction remain |
-| Adaptive AI | Not implemented; current objectives use deterministic progression rules |
-
-## Open in Unity
-
-The `Unity/` project uses the actual eight-storey Blender tower with first-person controls, memory collection, four local Keepers, a campus builder, and validated JSON saves. Unity 6000.6.0f1 is installed and licensed on the development Mac. Editor compilation, Mac packaging and an automated eight-floor physics walkthrough pass. See [Unity setup and controls](Docs/Unity.md).
-
-## Open in Unreal
-
-1. Install Unreal Engine through Epic Games Launcher. The project association is set to **5.5** as a baseline; choose a version compatible with your installed macOS and Xcode. See [Epic's Mac requirements](https://dev.epicgames.com/documentation/en-us/unreal-engine/macos-development-requirements-for-unreal-engine). No engine-version combination is claimed tested yet.
-2. Open `AlbionOdyssey.uproject`. Let Unreal build the C++ module. If using a different engine version, switch the project association first.
-3. In the editor, run **Tools → Execute Python Script → Tools/setup_all.py**. This imports the full-size architecture and builder assets, creates materials and collision, and saves `/Game/Maps/CampusWalkthrough` and `/Game/Maps/LegacyCampus`. A missing-map warning on first launch is expected before this step.
-4. Press **Play**. You start outside Legacy Hall in first person. Walk inside, climb the stairs, and press E to collect a memory. F2 switches to the personal-campus builder.
-
-On macOS the optional helper builds the editor target and opens Unreal with the setup script:
-
-```sh
-UE_ROOT='/path/to/UE_5.5' bash Tools/build_mac.sh
-```
-
-The setup script is safe to rerun for asset updates and keeps an existing map. It replaces generated imports under `/Game/Generated`, so put hand-authored content elsewhere.
-
-## First-person controls
-
-In Unity, WASD or arrow keys move, the mouse looks around, Shift runs, Space jumps, E/F interacts, Tab switches local Keeper, and F2 opens the builder. M opens travel, H reads nearby history, K manages courses and O toggles screen controls. The Unreal source still uses its earlier controls. The stairs are toward the right-hand rear of the building in Blender coordinates. Eight tower memories share IDs and rewards with the existing archive, so switching maps cannot duplicate a reward.
-
-## Play the Unreal campus builder
-
-Start with six acorns. Click the glowing memories around the island to collect three more per memory. Select a building, click an empty tile, and begin designing. Every profile can collect all twelve memories. Collection does not depend on leaving your room.
-
-| Control | Action |
-| --- | --- |
-| Left click | Collect a memory or build on a tile |
-| 1 / 2 / 3 / 4 | Garden (2), Library (4), Observatory (6), Hall (3) |
-| Right click | Reclaim a building for a full refund |
-| T | Switch your campus / fantasy appearance |
-| Tab | Switch to the next of four local Keepers |
-| C | Contribute two acorns to the shared Beacon (24 total) |
-| J | Open/close the memory journal |
-| [ / ] | Browse collected memories while the journal is open |
-| E | Toggle room exploration / construction |
-| W A S D | Move the camera focus |
-| Q / R | Orbit the camera |
-| Mouse wheel | Zoom |
-| Home | Reset the camera |
-| F2 | Return to the full-size first-person tower |
-
-Changes save after successful transactions, appearance switches, and profile switches. Saves are local to the installation and use `AlbionOdyssey_Local_v1`. A local profile is a convenience for shared-device play, not an authenticated identity.
-
-The first objectives guide collection, building three structures, and completing the Beacon. All four Keepers can contribute. There is no paid currency and no penalty for redesigning: buildings return their full construction cost.
-
-## Earlier campus-builder kit
-
-Open `Art/AlbionConceptKit.blend` in Blender. The scene selector contains **Campus Concept** and **Echo Fantasy**. Each has its own camera and lighting. The initial scene contains the reusable source meshes, hidden from rendering.
-
-![Campus architectural concept, rendered in Blender](Art/CampusConcept.png)
-
-The library, hall, observatory, and garden each have Campus and Fantasy versions. The source meshes use meters and FBX unit metadata; Unreal imports them in centimeters. Each module fits one 420 cm game tile. Assets are original procedural geometry, not downloaded college photographs or logos.
-
-To regenerate with Blender (tested with Blender 5.2.1 LTS):
-
-```sh
-/Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/generate_assets.py
-```
-
-## Regenerate the full-size architecture
-
-```sh
-/Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/build_architecture.py
-/Applications/Blender.app/Contents/MacOS/Blender --background --python Tools/verify_fbx_roundtrip.py
-```
-
-## Verify changes
-
-```sh
-bash Tools/test.sh
-```
-
-This compiles the same engine-independent rules included by the Unreal game using address/undefined-behavior sanitizers, then checks project metadata, scripts, exported assets, and the full-size tower headroom/support route. It covers collection, duplicates, costs, refunds, profile isolation, shared contributions, invalid state, location-policy edge cases, and 100,000 randomized transactions. GitHub Actions runs this check on pushes and pull requests. **These checks do not establish that the Unreal module compiles or renders correctly.** See [the native verification checklist](Docs/Verification.md).
-
-## Project guide
-
-- `Unity`: C# game implementation, actual exported Blender geometry, editor setup, and an opt-in physics walkthrough test.
-- `Source/AlbionOdyssey/Core`: portable rules and optional future location eligibility policy.
-- `Source/AlbionOdyssey/OdysseyWalkthrough.*`: full-size first-person movement, collection, and map switching.
-- `Source/AlbionOdyssey/OdysseyPersistence.*`: shared validated saves for both maps.
-- `Source/AlbionOdyssey/OdysseyGame.*`: Unreal world, input, HUD, memory archive, and local saves.
-- `Tools`: Blender generation, Unreal import, macOS build helper, tests, and validation.
-- `Art/Architecture`: the full-size editable tower and learning spaces, twelve FBX modules, PBR textures, and collision manifest.
-- `Art`: the earlier campus-builder kit and inspection previews.
-- [Campus references](Docs/CampusReferences.md): official map/tour and reconstruction plan.
-- [Game direction](Docs/GameDesign.md): dual-mode vision and planned creative features.
-- [Next implementation milestones](Docs/Roadmap.md): concrete work needed for the full game.
-
-No student ID, credentials, personal location records, or third-party photographs are included.
+See [next development milestones](Docs/NextMilestones.md) for the current work order. Older versioned documents describe their respective releases.

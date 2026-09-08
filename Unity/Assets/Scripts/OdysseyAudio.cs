@@ -27,7 +27,7 @@ namespace AlbionOdyssey
             }
             actions=gameObject.AddComponent<AudioSource>();celebration=gameObject.AddComponent<AudioSource>();
             foreach(var source in new[]{actions,celebration}){source.playOnAwake=false;source.loop=false;source.spatialBlend=0;source.pitch=1;source.priority=32;}
-            if(!OdysseySmoke.Enabled){Volume=Mathf.Clamp01(PlayerPrefs.GetFloat("Odyssey.EffectsVolume",.65f));Muted=PlayerPrefs.GetInt("Odyssey.EffectsMuted",0)!=0;}
+            if(!PlaytestMode.Active){Volume=Mathf.Clamp01(PlayerPrefs.GetFloat("Odyssey.EffectsVolume",.65f));Muted=PlayerPrefs.GetInt("Odyssey.EffectsMuted",0)!=0;}
             else Muted=true; // The accelerated walkthrough would stack many rewards in a single frame.
             ApplyVolume();feedback.Reset(state);
         }
@@ -64,8 +64,8 @@ namespace AlbionOdyssey
         {
             volume=Mathf.Clamp01(volume);if(Mathf.Approximately(volume,Volume)&&muted==Muted)return;
             Volume=volume;Muted=muted;ApplyVolume();
-            if(!OdysseySmoke.Enabled){PlayerPrefs.SetFloat("Odyssey.EffectsVolume",Volume);PlayerPrefs.SetInt("Odyssey.EffectsMuted",Muted?1:0);prefsDue=Time.unscaledTime+1;}
+            if(!PlaytestMode.Active){PlayerPrefs.SetFloat("Odyssey.EffectsVolume",Volume);PlayerPrefs.SetInt("Odyssey.EffectsMuted",Muted?1:0);prefsDue=Time.unscaledTime+1;}
         }
-        void OnApplicationQuit(){if(!OdysseySmoke.Enabled)PlayerPrefs.Save();}
+        void OnApplicationQuit(){if(!PlaytestMode.Active)PlayerPrefs.Save();}
     }
 }

@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          lfs: true
       - name: Test core rules with sanitizers and validate assets
         run: bash Tools/test.sh
       - uses: actions/setup-dotnet@v4
@@ -17,3 +19,5 @@ jobs:
           dotnet run --project Tests/UnityRules/Rules.csproj
           python3 Tools/validate_unity_geometry.py
           python3 Tools/validate_audio.py
+          dotnet run --project Tests/BuildingDesigner/Rules.csproj
+          dotnet run --project Tests/Catalog/Catalog.csproj

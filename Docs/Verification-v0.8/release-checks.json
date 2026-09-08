@@ -1,0 +1,22 @@
+[
+  {
+    "check": "craft",
+    "exit": 0
+  },
+  {
+    "check": "combined08",
+    "exit": 0
+  },
+  {
+    "check": "campus08",
+    "exit": 0
+  },
+  {
+    "check": "tour08",
+    "exit": 0
+  },
+  {
+    "check": "shell08",
+    "exit": 0
+  }
+]
