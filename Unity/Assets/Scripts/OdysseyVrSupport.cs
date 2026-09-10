@@ -17,15 +17,32 @@ namespace AlbionOdyssey
         }
         public bool HandleInput()
         {
-            if (Input.GetKeyDown(KeyCode.F8)) { open = !open; if (open) { focus = 0; openedAt = Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; } else { game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; } return true; }
-            if (!open) return false;
-            if (Input.GetKeyDown(KeyCode.Escape)) { open = false; game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; return true; }
+            if (Input.GetKeyDown(KeyCode.F8)) { if (open) ClosePanel(); else OpenPanel(); return true; }
+            if (!open)
+            {
+                AlbionUIInput.Poll(out var unusedHorizontal, out var unusedVertical, out var unusedChoose, out var menu);
+                if (menu) { OpenPanel(); return true; }
+                return false;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape)) { ClosePanel(); return true; }
             int horizontal, vertical; bool choose, cancel;
             AlbionUIInput.Poll(out horizontal, out vertical, out choose, out cancel);
             if (vertical != 0 || horizontal != 0) focus = (focus + (vertical != 0 ? -vertical : horizontal) + 2) % 2;
-            if (cancel) { open = false; game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; return true; }
-            if (choose) { if (focus == 0) Apply(!active); else { open = false; game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; } return true; }
+            if (cancel) { ClosePanel(); return true; }
+            if (choose) { if (focus == 0) Apply(!active); else ClosePanel(); return true; }
             return true;
+        }
+        void OpenPanel()
+        {
+            open = true; focus = 0; openedAt = Time.unscaledTime;
+            if (game == null || game.player == null) return;
+            game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+        }
+        void ClosePanel()
+        {
+            open = false;
+            if (game == null || game.player == null) return;
+            game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
         }
         void Apply(bool enable)
         {
