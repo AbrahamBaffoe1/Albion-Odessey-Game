@@ -28,6 +28,13 @@ namespace AlbionOdyssey
         public int RemoteCount => remotes.Count;
         string PlayerId { get { string id = PlayerPrefs.GetString("Odyssey.NetworkId", ""); if (id.Length == 0) { id = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString("Odyssey.NetworkId", id); PlayerPrefs.Save(); } return id; } }
         public bool Active => active;
+        public Vector3 RemotePosition(int index)
+        {
+            if (index < 0) return Vector3.zero;
+            int current = 0;
+            foreach (var remote in remotes.Values) if (current++ == index) return remote.root == null ? Vector3.zero : remote.root.transform.position;
+            return Vector3.zero;
+        }
 
         public void Setup(OdysseyGame owner)
         {

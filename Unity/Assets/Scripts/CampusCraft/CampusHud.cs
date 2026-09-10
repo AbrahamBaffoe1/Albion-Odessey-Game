@@ -87,6 +87,19 @@ namespace AlbionOdyssey
                 Color marker=MapColor(placeInfo.category);Fill(new Rect(px-3,py-3,6,6),marker);
                 if(distance<42f){mapName.normal.textColor=marker;GUI.Label(new Rect(px+6,py-7,Mathf.Min(110,map.xMax-px-5),18),placeInfo.name,mapName);}
             }
+            if(game.online!=null&&game.online.Active)
+            {
+                Color onlineColor=new Color(1f,.40f,.78f);
+                for(int i=0;i<game.online.RemoteCount;i++)
+                {
+                    Vector3 delta=game.online.RemotePosition(i)-player;float distance=new Vector2(delta.x,delta.z).magnitude;
+                    if(distance>range)continue;
+                    float px=map.x+map.width*.5f+Mathf.Clamp(delta.x/range,-1,1)*radius;
+                    float py=map.y+map.height*.5f-Mathf.Clamp(delta.z/range,-1,1)*radius;
+                    Fill(new Rect(px-4,py-4,8,8),onlineColor);
+                    if(distance<42f){mapName.normal.textColor=onlineColor;GUI.Label(new Rect(px+7,py-7,Mathf.Min(58,map.xMax-px-5),18),"ONLINE",mapName);}
+                }
+            }
             // The player stays centered while the world map remains north-up.
             GUI.Label(new Rect(map.center.x-12,map.center.y-13,24,24),"▲",mapPlayer);
             GUI.Label(new Rect(map.x+4,map.y+2,18,18),"N",eyebrow);
