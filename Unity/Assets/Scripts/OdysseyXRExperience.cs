@@ -32,6 +32,10 @@ namespace AlbionOdyssey
         public void Setup(OdysseyGame owner)
         {
             game = owner;
+            SnapTurn = PlayerPrefs.GetInt("Odyssey.XR.SnapTurn", 1) == 1;
+            ComfortVignette = PlayerPrefs.GetInt("Odyssey.XR.Vignette", 1) == 1;
+            RoomScale = PlayerPrefs.GetInt("Odyssey.XR.RoomScale", 1) == 1;
+            HandTrackingEnabled = PlayerPrefs.GetInt("Odyssey.XR.Hands", 1) == 1;
             Application.targetFrameRate = 72;
             handMaterial = TowerGeometry.Material("XR hand tracking", new Color(.55f, .78f, .95f), 0, .55f);
             leftAnchor = Anchor("XR left controller");
