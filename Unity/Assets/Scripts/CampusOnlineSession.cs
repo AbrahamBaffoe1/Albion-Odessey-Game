@@ -74,7 +74,7 @@ namespace AlbionOdyssey
                     if (packet.type == "join" && host) Send(packet, from, "hello");
                     if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
-                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) message = packet.display + ": " + Sanitize(packet.text);
+                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
                 }
             }
@@ -147,7 +147,9 @@ namespace AlbionOdyssey
         sealed class RemoteKeeper
         {
             public readonly GameObject root; public Vector3 target; public string display; public float lastSeen;
-            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; lastSeen = Time.unscaledTime; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); var tag = root.AddComponent<CampusWorldLabel>(); tag.Configure(name + "  ·  ONLINE", AlbionUITheme.Cyan, new Vector3(0, 2.35f, 0), 24f); target = root.transform.position; }
+            readonly CampusOnlineChatBubble chat;
+            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; lastSeen = Time.unscaledTime; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); var tag = root.AddComponent<CampusWorldLabel>(); tag.Configure(name + "  ·  ONLINE", AlbionUITheme.Cyan, new Vector3(0, 2.35f, 0), 24f); chat = root.AddComponent<CampusOnlineChatBubble>(); chat.Configure(new Vector3(0, 2.78f, 0), 20f); target = root.transform.position; }
+            public void Chat(string name, string text) { chat.Show(name, text); }
             public void Tick() { root.transform.position = Vector3.Lerp(root.transform.position, target, Time.deltaTime * 8f); }
         }
         void LateUpdate() { foreach (var remote in remotes.Values) remote.Tick(); }
