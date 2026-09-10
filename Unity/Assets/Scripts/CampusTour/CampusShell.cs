@@ -7,7 +7,7 @@ namespace AlbionOdyssey
     public sealed class CampusShell : MonoBehaviour
     {
         OdysseyGame game; Texture2D hero; GUIStyle brand,display,heading,text,small,button;
-        float seconds; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
+        float seconds,menuOpenedAt; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
         public bool SaveSucceeded {get;private set;}
         public string SaveMessage {get;private set;}="";
         public bool OwnsPanel=>game.life.panel=="launch"||game.life.panel=="sessionend";
@@ -24,7 +24,7 @@ namespace AlbionOdyssey
         public static bool HasCompletedChapter(Keeper keeper)=>keeper.milestones==63;
         int MemoryCount()=>game.state.keepers.Sum(k=>OdysseyState.Count(k.memories));
         int BuildingCount()=>game.state.keepers.Sum(k=>k.plots.Count(p=>p!=0));
-        public void ShowLaunch(){menuFocus=0;game.tour.StopMedia();game.life.SetPanel("launch");}
+        public void ShowLaunch(){menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("launch");}
         public void Play(){game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
         public void Stories(){game.tour.OpenDirectory();}
         public void Videos(){game.tour.OpenVideos();}
@@ -52,7 +52,7 @@ namespace AlbionOdyssey
                 catch(Exception e){SaveSucceeded=false;Debug.LogWarning("Campus profile save failed: "+e.Message);}
             }
             if(!SaveSucceeded)SaveMessage="We could not save. Retry below, or keep playing.";
-            game.life.SetPanel("sessionend");
+            menuOpenedAt=Time.unscaledTime;game.life.SetPanel("sessionend");
         }
         public void QuitSaved(){if(!SaveSucceeded){EndSession(chapterEnd);return;}allowQuit=true;Application.Quit();}
         bool OnQuitRequested()
@@ -147,6 +147,7 @@ namespace AlbionOdyssey
             }
             else
             {
+                GUI.matrix=AlbionUITheme.Slide(GUI.matrix,menuOpenedAt,OdysseyAccessibility.ReducedMotion);
                 Fill(new Rect(0,0,w,h),Ink);
                 float right=w*.52f;
                 if(hero!=null)GUI.DrawTexture(new Rect(right,0,w-right,h),hero,ScaleMode.ScaleAndCrop);
