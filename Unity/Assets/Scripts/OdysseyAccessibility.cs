@@ -40,7 +40,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if (!open || game == null) return;
-            if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = 27, fontStyle = FontStyle.Bold }; title.normal.textColor=new Color(.96f,.94f,.86f); text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = 17, wordWrap = true }; text.normal.textColor=new Color(.88f,.88f,.92f); button = AlbionUITheme.Button(16); }
+            if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = AlbionUITheme.TextSize(27), fontStyle = FontStyle.Bold }; title.normal.textColor=new Color(.96f,.94f,.86f); text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = AlbionUITheme.TextSize(17), wordWrap = true }; text.normal.textColor=new Color(.88f,.88f,.92f); button = AlbionUITheme.Button(16); }
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,ReducedMotion); float w = Screen.width / scale, h = Screen.height / scale; Rect safe = AlbionUITheme.SafeArea(scale);
             GUI.color = HighContrast ? Color.black : new Color(.025f, .028f, .052f, .98f); GUI.DrawTexture(new Rect(0, 0, w, h), Texture2D.whiteTexture); GUI.color = Color.white;
             float x = Mathf.Clamp((w - 780) * .5f, safe.xMin + 24, safe.xMax - 780 - 24); GUI.Label(new Rect(x, 70, 740, 48), "ACCESSIBILITY & CONTROLS", title); GUI.Label(new Rect(x, 125, 740, 54), "F4 opens this panel. Settings are saved for this Mac. Gamepad left stick moves, right stick looks, A/Cross jumps and B/Circle interacts.", text);

@@ -286,7 +286,7 @@ namespace AlbionOdyssey
             GUI.color=new Color(.024f,.037f,.052f,1);GUI.DrawTexture(new Rect(x,y,w,h),Texture2D.whiteTexture);GUI.color=Color.white;
             if(journalButton==null)
             {
-                journalButton=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(12,8,0,0),border=new RectOffset()};
+                journalButton=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),alignment=TextAnchor.MiddleLeft,padding=new RectOffset(12,8,0,0),border=new RectOffset()};
                 foreach(var appearance in new[]{journalButton.normal,journalButton.hover,journalButton.active,journalButton.focused}){appearance.background=Texture2D.whiteTexture;appearance.textColor=Color.white;}
             }
             GUI.Label(new Rect(x+24,y+18,w-130,40),"THE KEEPER'S JOURNAL",title);
@@ -304,7 +304,7 @@ namespace AlbionOdyssey
             }
             float rx=x+column+14,rw=w-column-40;
             bool collected=(state.Current.memories&(1<<journalPage))!=0;
-            GUI.Label(new Rect(rx,y+106,rw,50),collected?OdysseyStory.Titles[journalPage]:"A memory is waiting",new GUIStyle(title){fontSize=23,wordWrap=true});
+            GUI.Label(new Rect(rx,y+106,rw,50),collected?OdysseyStory.Titles[journalPage]:"A memory is waiting",new GUIStyle(title){fontSize=AlbionUITheme.TextSize(23),wordWrap=true});
             GUI.Label(new Rect(rx,y+163,rw,30),journalPage<8?"FLOOR "+(journalPage+1)+" · "+OdysseyStory.Floors[journalPage]:"OUTSIDE · Entrance plaza",small);
             GUI.Label(new Rect(rx,y+204,rw,160),collected?OdysseyStory.Entries[journalPage]:"Find the golden memory at this location, aim at it and press E. Every Keeper can make their own discoveries.",new GUIStyle(body){wordWrap=true});
             GUI.Label(new Rect(rx,y+370,rw,28),"YOUR CHARTER",body);
@@ -315,7 +315,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if(player==null)return;
-            if(title==null){title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=27,fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=17};small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=14,wordWrap=true};}
+            if(title==null){title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(27),fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(17)};small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),wordWrap=true};}
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             if(life!=null&&life.PanelOpen)return;

@@ -44,12 +44,12 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(eyebrow!=null)return;
-            eyebrow=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=11,fontStyle=FontStyle.Bold};eyebrow.normal.textColor=Cyan;
-            place=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=22,fontStyle=FontStyle.Bold};place.normal.textColor=Color.white;
-            value=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=16,fontStyle=FontStyle.Bold};value.normal.textColor=Gold;
-            small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=14,wordWrap=true};small.normal.textColor=new Color(.83f,.84f,.9f);
-            prompt=new GUIStyle(small){fontSize=16,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};prompt.normal.textColor=Color.white;
-            button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
+            eyebrow=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(11),fontStyle=FontStyle.Bold};eyebrow.normal.textColor=Cyan;
+            place=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(22),fontStyle=FontStyle.Bold};place.normal.textColor=Color.white;
+            value=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(16),fontStyle=FontStyle.Bold};value.normal.textColor=Gold;
+            small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),wordWrap=true};small.normal.textColor=new Color(.83f,.84f,.9f);
+            prompt=new GUIStyle(small){fontSize=AlbionUITheme.TextSize(16),fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};prompt.normal.textColor=Color.white;
+            button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=pixel;s.textColor=Color.white;}
         }
         void Compass(float center,float top)
@@ -75,7 +75,7 @@ namespace AlbionOdyssey
             Rect map=new Rect(r.x+12,r.y+35,r.width-24,r.width-47);Fill(map,new Color(.025f,.07f,.085f,.96f));
             var grid=new Color(.20f,.52f,.55f,.18f);Fill(new Rect(map.x+map.width*.5f,map.y,1,map.height),grid);Fill(new Rect(map.x,map.y+map.height*.5f,map.width,1),grid);
             float radius=Mathf.Min(map.width,map.height)*.46f,range=180f;Vector3 player=game.player.transform.position;
-            if(mapPlayer==null){mapPlayer=new GUIStyle(eyebrow){fontSize=17,alignment=TextAnchor.MiddleCenter};mapPlayer.normal.textColor=Gold;mapName=new GUIStyle(eyebrow){fontSize=8};}
+            if(mapPlayer==null){mapPlayer=new GUIStyle(eyebrow){fontSize=AlbionUITheme.TextSize(17),alignment=TextAnchor.MiddleCenter};mapPlayer.normal.textColor=Gold;mapName=new GUIStyle(eyebrow){fontSize=AlbionUITheme.TextSize(8)};}
             CampusPlace closest=null;float closestDistance=float.MaxValue;
             foreach(var placeInfo in CampusCatalog.Places)
             {
