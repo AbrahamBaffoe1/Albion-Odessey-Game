@@ -23,7 +23,7 @@ namespace AlbionOdyssey.BuildingDesigner
         public bool Active {get;private set;}
         public bool Ready=>game!=null;
         bool walking,showRoof,share,dirty,editingName,blurNextGui;
-        int keeper,slot,rotation;StudioPart selected;
+        int keeper,slot,rotation,controllerFocus;StudioPart selected;
         float previousTimeScale,azimuth=35,pitch,velocity,openedAt;
         Vector3 returnCameraPosition;Quaternion returnCameraRotation;
         string message="Choose a piece, then click the grid. Right-click removes the selected layer.",card="";
@@ -105,6 +105,14 @@ namespace AlbionOdyssey.BuildingDesigner
             if(game==null||Smoke)return;
             if(!share&&!editingName&&Input.GetKeyDown(KeyCode.F4)){if(Active)Leave();else Enter();return;}
             if(!Active)return;
+            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
+            {
+                if(cancel){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
+                if(horizontal!=0)controllerFocus=(controllerFocus+(horizontal>0?1:-1)+13)%13;
+                if(vertical!=0)controllerFocus=(controllerFocus+(vertical>0?-1:1)+13)%13;
+                if(choose){if(controllerFocus==0)Leave();else if(controllerFocus<=8)selected=(StudioPart)(controllerFocus-1);else if(controllerFocus==9)StartWalk();else if(controllerFocus==10){showRoof=!showRoof;Rebuild();}else if(controllerFocus==11){card=JsonUtility.ToJson(blueprint);share=true;}else if(controllerFocus==12&& (invalidSlot||SaveBlueprint())){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
+                return;
+            }
             if(Input.GetKeyDown(KeyCode.Escape)){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
             if(walking){WalkInput();return;}
             if(share||invalidSlot)return;
@@ -202,6 +210,7 @@ namespace AlbionOdyssey.BuildingDesigner
             GUI.enabled=true;
             if(Button(1097,h-120,145,"Slot "+(slot+1)+" →")){if(invalidSlot||SaveBlueprint()){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
             Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Creative materials are free in this prototype",small);
+            Label(w-430,h-73,406,24,"STICK navigate · TRIGGER choose · MENU back",small);
             Label(24,h-42,w-48,36,message,small);
             editingName=GUI.GetNameOfFocusedControl()=="BlueprintName";
             if(share)

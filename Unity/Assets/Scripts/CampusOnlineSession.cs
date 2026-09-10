@@ -24,7 +24,7 @@ namespace AlbionOdyssey
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
-        GUIStyle title, text, button;
+        GUIStyle title, text, button;int focus;
         public int RemoteCount => remotes.Count;
         string PlayerId { get { string id = PlayerPrefs.GetString("Odyssey.NetworkId", ""); if (id.Length == 0) { id = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString("Odyssey.NetworkId", id); PlayerPrefs.Save(); } return id; } }
         public bool Active => active;
@@ -39,6 +39,7 @@ namespace AlbionOdyssey
         {
             if (!open && Input.GetKeyDown(KeyCode.F5)) { open = true; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
+            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){open=false;}else{if(horizontal!=0)focus=(focus+(horizontal>0?1:-1)+4)%4;if(choose){if(focus==0)StartSession(true);else if(focus==1)StartSession(false);else if(focus==2)StopSession("");else open=false;}}return true;}
             if (Input.GetKeyDown(KeyCode.Escape)) { open = false; game.player.controls = !game.building && !game.life.PanelOpen; Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls; return true; }
             return true;
         }

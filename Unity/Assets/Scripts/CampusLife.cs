@@ -15,7 +15,7 @@ namespace AlbionOdyssey
         public int ClassroomTransStudentCount{get;private set;}
         readonly Queue<GameObject> papers=new Queue<GameObject>();
         float nextPaper;
-        GUIStyle heading,text,muted,button;float panelOpenedAt;
+        GUIStyle heading,text,muted,button;float panelOpenedAt;int menuFocus;
         public void Setup(OdysseyGame owner)
         {
             game=owner;
@@ -45,7 +45,7 @@ namespace AlbionOdyssey
         {
             if(value!=""&&game.journalOpen)game.SetJournal(false);
             if(panel=="settings"&&value!="settings"&&game.campus!=null)game.campus.SaveKeeper();
-            panel=value;panelOpenedAt=Time.unscaledTime;game.player.controls=!PanelOpen&&!game.building;
+            panel=value;panelOpenedAt=Time.unscaledTime;menuFocus=0;game.player.controls=!PanelOpen&&!game.building;
             game.player.buttonMove=Vector2.zero;game.player.buttonTurn=0;
             bool free=PanelOpen||game.building||game.player.pointerControls;
             Cursor.lockState=free?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=free;
@@ -62,6 +62,7 @@ namespace AlbionOdyssey
         {
             if(PanelOpen)
             {
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){SetPanel("");return true;}if(vertical!=0){int count=panel=="map"?4:panel=="history"?3:8;menuFocus=(menuFocus+(vertical>0?-1:1)+count)%count;}if(choose){if(panel=="map")Travel(menuFocus);else if(panel=="history")history=menuFocus;else if(panel=="welcome"){if(menuFocus==0)SetPanel("");else if(menuFocus==1)game.shell.Stories();else if(menuFocus==2)SetPanel("courses");else if(menuFocus==3)game.shell.Videos();else if(menuFocus==4)game.shell.EndSession();else if(menuFocus==5)SetPanel("settings");else if(menuFocus==6)SetPanel("treasures");else if(menuFocus==7)SetPanel("map");}return true;} }
                 if(Input.GetKeyDown(KeyCode.Escape))SetPanel("");
                 return true;
             }
@@ -192,6 +193,7 @@ namespace AlbionOdyssey
                 if(Button(left+280,590,260,"Take a course"))SetPanel("courses");
             }
             else if(panel=="courses")DrawCourses(left);
+            Label(left,height-18,1120,18,"STICK  Navigate   ·   TRIGGER  Select   ·   MENU  Back",muted);
         }
         void DrawCourses(float x)
         {

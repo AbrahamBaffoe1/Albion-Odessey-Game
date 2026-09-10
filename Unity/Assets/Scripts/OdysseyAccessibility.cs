@@ -17,7 +17,7 @@ namespace AlbionOdyssey
         public static bool HighContrast { get; private set; }
         public static bool ReducedMotion { get; private set; }
 
-        OdysseyGame game; bool open; float openedAt; GUIStyle title, text, button;
+        OdysseyGame game; bool open; float openedAt;int focus; GUIStyle title, text, button;
         public void Setup(OdysseyGame owner)
         {
             game = owner; CaptionsEnabled = PlayerPrefs.GetInt("Odyssey.Captions", 1) == 1; LargeText = PlayerPrefs.GetInt("Odyssey.LargeText", 0) == 1; HighContrast = PlayerPrefs.GetInt("Odyssey.HighContrast", 0) == 1; ReducedMotion = PlayerPrefs.GetInt("Odyssey.ReducedMotion", 0) == 1;
@@ -32,6 +32,7 @@ namespace AlbionOdyssey
         {
             if (!open && Input.GetKeyDown(KeyCode.F4)) { open = true; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
+            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){open=false;}else{if(vertical!=0)focus=(focus+(vertical>0?-1:1)+6)%6;if(choose){if(focus==0){CaptionsEnabled=!CaptionsEnabled;Save("Odyssey.Captions",CaptionsEnabled?1:0);}else if(focus==1){LargeText=!LargeText;Save("Odyssey.LargeText",LargeText?1:0);}else if(focus==2){HighContrast=!HighContrast;Save("Odyssey.HighContrast",HighContrast?1:0);}else if(focus==3){ReducedMotion=!ReducedMotion;Save("Odyssey.ReducedMotion",ReducedMotion?1:0);}else if(focus==4){bool alternate=PlayerPrefs.GetInt("Odyssey.AlternateKeys",0)==1;ApplyKeys(!alternate);Save("Odyssey.AlternateKeys",!alternate?1:0);}else open=false;}}return true;}
             if (Input.GetKeyDown(KeyCode.Escape)) { open = false; game.player.controls = !game.building && !game.life.PanelOpen; Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls; return true; }
             return true;
         }
