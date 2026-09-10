@@ -263,13 +263,13 @@ namespace AlbionOdyssey
             if (!Active) return;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f);
             GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
-            float width = Screen.width / scale;
+            float width = Screen.width / scale; Rect safe = AlbionUITheme.SafeArea(scale);
             GUI.color = Color.white;
-            GUI.Label(new Rect(22, 20, 580, 28), "XR CAMPUS WALK · " + (Tracking ? "TRACKING" : "SEARCHING FOR HEADSET"));
-            GUI.Label(new Rect(22, 49, 700, 24), "Left stick move · right stick snap-turn · trigger interact · grip grab · F8 menu");
-            if (recovering) GUI.Label(new Rect(22, 78, 480, 24), "Resuming headset tracking…");
-            if (lowFrameSeconds > 1f) GUI.Label(new Rect(22, 78, 620, 24), "Comfort warning: performance below 55 FPS");
-            if (performanceReduced) GUI.Label(new Rect(22, 106, 620, 24), "Performance guard active · visual scale reduced temporarily");
+            // The regular campus HUD owns the top of the view. Keep XR diagnostics
+            // compact and safe-area aware so they never compete with objectives or prompts.
+            if (recovering) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 480, 24), "Resuming headset tracking…");
+            if (lowFrameSeconds > 1f) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 620, 24), "Comfort warning: performance below 55 FPS");
+            if (performanceReduced) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 58, 620, 24), "Performance guard active · visual scale reduced temporarily");
             if (ComfortVignette)
             {
                 GUI.color = new Color(0, 0, 0, .42f);
