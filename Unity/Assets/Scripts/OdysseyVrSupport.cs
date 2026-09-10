@@ -52,7 +52,9 @@ namespace AlbionOdyssey
         {
             open = false;
             if (game == null || game.player == null) return;
-            game.player.controls = true; Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false;
+            game.player.controls = game.xr == null || !game.xr.Active;
+            Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = game.player.pointerControls;
         }
         void Apply(bool enable)
         {
