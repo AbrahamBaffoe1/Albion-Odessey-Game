@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.Build.Reporting;
+using UnityEditor.XR.Management;
+using UnityEditor.XR.Management.Metadata;
+using UnityEngine.XR.Management;
+using UnityEngine.XR.OpenXR;
 
 namespace AlbionOdyssey.Editor
 {
@@ -26,7 +30,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.13.0";
+            PlayerSettings.bundleVersion="0.14.0";
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
@@ -36,6 +40,7 @@ namespace AlbionOdyssey.Editor
             var input=settings.FindProperty("activeInputHandler");if(input!=null){input.intValue=0;settings.ApplyModifiedProperties();}
             ConfigureMouse();
             StudentSetup.Prepare();
+            ConfigureXR();
             Directory.CreateDirectory("Assets/Scenes");Directory.CreateDirectory("Assets/Resources");
             // Keep runtime-created Standard materials and their shader variants in player builds.
             var material=new Material(Shader.Find("Standard"));
@@ -59,6 +64,41 @@ namespace AlbionOdyssey.Editor
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene("Assets/Scenes/LegacyHall.unity",true)};
             AssetDatabase.SaveAssets();AssetDatabase.Refresh();
             Debug.Log("ODYSSEY_SETUP_OK: scene, materials, mouse input and macOS player settings ready.");
+        }
+
+        static void ConfigureXR()
+        {
+            const string path="Assets/XR/Settings/XRGeneralSettingsPerBuildTarget.asset";
+            var settings=AssetDatabase.LoadAssetAtPath<XRGeneralSettingsPerBuildTarget>(path);
+            if(settings==null)
+            {
+                Directory.CreateDirectory("Assets/XR/Settings");
+                settings=ScriptableObject.CreateInstance<XRGeneralSettingsPerBuildTarget>();
+                AssetDatabase.CreateAsset(settings,path);
+            }
+            EditorBuildSettings.AddConfigObject(XRGeneralSettings.settingsKey,settings,true);
+            foreach(var target in new[]{BuildTargetGroup.Standalone,BuildTargetGroup.Android})
+            {
+                if(!settings.HasSettingsForBuildTarget(target))settings.CreateDefaultSettingsForBuildTarget(target);
+                if(!settings.HasManagerSettingsForBuildTarget(target))settings.CreateDefaultManagerSettingsForBuildTarget(target);
+                var manager=settings.ManagerSettingsForBuildTarget(target);
+                XRPackageMetadataStore.AssignLoader(manager,"UnityEngine.XR.OpenXR.OpenXRLoader",target);
+                manager.automaticLoading=true;manager.automaticRunning=true;
+                var managerData=new SerializedObject(manager);
+                managerData.FindProperty("m_AutomaticLoading").boolValue=true;
+                managerData.FindProperty("m_AutomaticRunning").boolValue=true;
+                managerData.ApplyModifiedPropertiesWithoutUndo();
+                var openxr=OpenXRSettings.GetSettingsForBuildTargetGroup(target);
+                if(openxr==null)continue;
+                foreach(var feature in openxr.GetFeatures())
+                {
+                    string type=feature.GetType().Name;
+                    if(type.Contains("ControllerProfile")||type.Contains("HandTracking")||type.Contains("HandJoints"))feature.enabled=true;
+                }
+                EditorUtility.SetDirty(openxr);
+            }
+            AssetDatabase.SaveAssets();AssetDatabase.Refresh();
+            Debug.Log("ODYSSEY_XR_SETUP_OK: OpenXR loaders assigned for Standalone and Android with controller and hand features enabled.");
         }
         static void ConfigureMouse()
         {
@@ -85,6 +125,25 @@ namespace AlbionOdyssey.Editor
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.StandaloneOSX,options=BuildOptions.None});
             if(report.summary.result!=BuildResult.Succeeded)throw new Exception("Unity build failed: "+report.summary.result);
             Debug.Log("ODYSSEY_BUILD_OK "+output);
+        }
+
+        [MenuItem("Odyssey/Build Quest Android")]
+        public static void BuildQuest()
+        {
+            const string outputDefault="Builds/Albion Odyssey-Quest.apk";
+            string output=Environment.GetEnvironmentVariable("ODYSSEY_QUEST_BUILD_PATH")??outputDefault;
+            if(!Directory.Exists(Path.GetDirectoryName(output)??"."))Directory.CreateDirectory(Path.GetDirectoryName(output)??".");
+            if(!EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android,BuildTarget.Android))
+                throw new Exception("Could not switch Unity to Android; install Android Build Support in Unity Hub.");
+            Prepare();
+            PlayerSettings.Android.minSdkVersion=AndroidSdkVersions.AndroidApiLevel29;
+            PlayerSettings.Android.targetSdkVersion=AndroidSdkVersions.AndroidApiLevel35;
+            PlayerSettings.Android.bundleVersionCode=14;
+            PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android,ScriptingImplementation.IL2CPP);
+            PlayerSettings.SetArchitecture(BuildTargetGroup.Android,(int)AndroidArchitecture.ARM64);
+            var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.Android,options=BuildOptions.None});
+            if(report.summary.result!=BuildResult.Succeeded)throw new Exception("Quest Android build failed: "+report.summary.result);
+            Debug.Log("ODYSSEY_QUEST_BUILD_OK "+output);
         }
     }
 }

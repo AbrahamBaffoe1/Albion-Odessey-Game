@@ -8,5 +8,6 @@ if [[ ! -x "$UNITY_EDITOR" ]]; then
 fi
 METHOD=AlbionOdyssey.Editor.OdysseySetup.Prepare
 [[ "${1:-}" == "build" ]] && METHOD=AlbionOdyssey.Editor.OdysseySetup.BuildMac
+[[ "${1:-}" == "quest" ]] && METHOD=AlbionOdyssey.Editor.OdysseySetup.BuildQuest
 mkdir -p "$ROOT/Unity/Logs"
 "$UNITY_EDITOR" -batchmode -quit -projectPath "$ROOT/Unity" -executeMethod "$METHOD" -logFile "$ROOT/Unity/Logs/setup.log"

@@ -42,6 +42,8 @@ namespace AlbionOdyssey
         void LateUpdate()
         {
             if(eyes==null||avatar==null)return;
+            var xr=FindAnyObjectByType<OdysseyXRExperience>();
+            if(xr!=null&&xr.Active)return;
             // The old physics walkthrough owns its camera for its explicit captures.
             if(OdysseySmoke.Enabled&&!controls&&!thirdPerson)return;
             UpdateCamera();

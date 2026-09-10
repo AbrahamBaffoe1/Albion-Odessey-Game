@@ -24,6 +24,7 @@ namespace AlbionOdyssey
         public OdysseyAccessibility accessibility;
         public CampusOnlineSession online;
         public OdysseyVrSupport vr;
+        public OdysseyXRExperience xr;
         public CampusWeather weather;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
@@ -98,6 +99,7 @@ namespace AlbionOdyssey
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
             vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);
+            xr=gameObject.AddComponent<OdysseyXRExperience>();xr.Setup(this);
             diagnostics=gameObject.AddComponent<OdysseyRuntimeDiagnostics>();diagnostics.Setup(this);
             gameObject.AddComponent<CampusHud>().Setup(this);
             gameObject.AddComponent<WorldTextDepth>();
@@ -203,7 +205,7 @@ namespace AlbionOdyssey
                 if((state.Current.memories&(1<<i))!=0)continue;
                 Vector3 pos=i<8?new Vector3(0,i*3.6f+1.15f,3):new Vector3((i-9.5f)*4,1.15f,-18);
                 var orb=GameObject.CreatePrimitive(PrimitiveType.Sphere);orb.name="Memory "+(i+1);orb.transform.position=pos;orb.transform.localScale=Vector3.one*.45f;
-                orb.GetComponent<Renderer>().sharedMaterial=gold;orb.AddComponent<MemoryMarker>().id=i;memories.Add(orb);
+                orb.GetComponent<Renderer>().sharedMaterial=gold;orb.AddComponent<MemoryMarker>().id=i;orb.AddComponent<OdysseyXRGrabTarget>();memories.Add(orb);
             }
         }
         GameObject Piece(PrimitiveType type,string name,Vector3 pos,Vector3 scale,Material mat,int cell=-1)
