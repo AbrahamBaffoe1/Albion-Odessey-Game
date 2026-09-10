@@ -47,7 +47,7 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x, 210, 360, 46), (CaptionsEnabled ? "✓ " : "○ ") + "Captions and achievement text", button)) { CaptionsEnabled = !CaptionsEnabled; Save("Odyssey.Captions", CaptionsEnabled ? 1 : 0); }
             if (GUI.Button(new Rect(x, 270, 360, 46), (LargeText ? "✓ " : "○ ") + "Large readable interface text", button)) { LargeText = !LargeText; Save("Odyssey.LargeText", LargeText ? 1 : 0); }
             if (GUI.Button(new Rect(x, 330, 360, 46), (HighContrast ? "✓ " : "○ ") + "High contrast panels", button)) { HighContrast = !HighContrast; Save("Odyssey.HighContrast", HighContrast ? 1 : 0); }
-            if (GUI.Button(new Rect(x, 390, 360, 46), (ReducedMotion ? "✓ " : "○ ") + "Reduce camera and NPC motion", button)) { ReducedMotion = !ReducedMotion; Save("Odyssey.ReducedMotion", ReducedMotion ? 1 : 0); }
+            if (GUI.Button(new Rect(x, 390, 360, 46), (ReducedMotion ? "✓ " : "○ ") + "Reduce interface and NPC motion", button)) { ReducedMotion = !ReducedMotion; Save("Odyssey.ReducedMotion", ReducedMotion ? 1 : 0); }
             bool alternate = PlayerPrefs.GetInt("Odyssey.AlternateKeys", 0) == 1;
             if (GUI.Button(new Rect(x, 470, 360, 46), (alternate ? "✓ " : "○ ") + (alternate ? "I J K L movement" : "W A S D movement"), button)) { alternate = !alternate; ApplyKeys(alternate); Save("Odyssey.AlternateKeys", alternate ? 1 : 0); }
             GUI.Label(new Rect(x + 405, 210, 360, 170), "KEYBOARD\nMove: " + ForwardKey + " " + LeftKey + " " + BackKey + " " + RightKey + "\nJump: " + JumpKey + "   Interact: " + InteractKey + "\nCamera: V   Menu: Esc\nGamepad: left stick move, right stick look, A/Cross jump, B/Circle interact", text);

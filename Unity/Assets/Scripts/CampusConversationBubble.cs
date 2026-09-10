@@ -64,8 +64,8 @@ namespace AlbionOdyssey
             bool visible = distance < maxDistance && screen.z > .2f;
             mesh.gameObject.SetActive(visible);
             if (!visible) return;
-            phase += Time.deltaTime * 2.4f;
-            mesh.transform.position = world + Vector3.up * (Mathf.Sin(phase) * .035f);
+            if(!OdysseyAccessibility.ReducedMotion) phase += Time.deltaTime * 2.4f;
+            mesh.transform.position = world + Vector3.up * (OdysseyAccessibility.ReducedMotion?0:Mathf.Sin(phase) * .035f);
             mesh.transform.rotation = Quaternion.LookRotation(mesh.transform.position - targetCamera.transform.position, Vector3.up);
         }
 

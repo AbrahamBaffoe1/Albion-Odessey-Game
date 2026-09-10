@@ -140,7 +140,7 @@ namespace AlbionOdyssey
             IsMoving=true;
             transform.position += direction * distance;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f);
-            avatar.Animate((transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime), false); last = transform.position;
+            avatar.Animate(OdysseyAccessibility.ReducedMotion?0:(transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime), false); last = transform.position;
         }
     }
 }
