@@ -145,7 +145,16 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x + 410, 325, 190, 44), (focus==2?"▶  ":"") + "Stop session", button)) { focus=2; StopSession(""); }
             if (GUI.Button(new Rect(x, 380, 230, 36), (focus==4?"▶  ":"") + "Copy invite code", button)) { focus=4; CopyInvite(); }
             GUI.Label(new Rect(x, 425, 760, 34), status + " · " + remotes.Count + " remote player(s)", text);
-            int row = 468; foreach (var entry in remotes) { GUI.Label(new Rect(x, row, 430, 28), entry.Value.display + "  " + entry.Key.Substring(0, 6), text); if (host && GUI.Button(new Rect(x + 450, row, 130, 28), "Remove", button)) Block(entry.Key); row += 34; }
+            int row = 468; string removeId = "";
+            foreach (var entry in remotes)
+            {
+                GUI.Label(new Rect(x, row, 430, 28), entry.Value.display + "  " + entry.Key.Substring(0, 6), text);
+                if (host && GUI.Button(new Rect(x + 450, row, 130, 28), "Remove", button)) removeId = entry.Key;
+                row += 34;
+            }
+            // Defer the dictionary mutation until after enumeration. A host can
+            // remove a player from the roster without throwing a GUI exception.
+            if (removeId.Length > 0) Block(removeId);
             message = GUI.TextField(new Rect(x, h - 115, 530, 36), message, 80); if (GUI.Button(new Rect(x + 545, h - 115, 120, 36), (focus==3?"▶  ":"")+"Send", button)) { focus=3; SendChat(); }
             if (GUI.Button(new Rect(x + 680, 325, 100, 44), (focus==5?"▶  ":"") + "Close", button)) { focus=5; ClosePanel(); }
             GUI.Label(new Rect(x, h - 65, 760, 28), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
