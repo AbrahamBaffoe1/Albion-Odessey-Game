@@ -11,6 +11,7 @@ The live HUD includes:
 - One readable interaction prompt with the current action.
 - Animated achievement and notice cards with the existing collection sounds.
 - Responsive scaling for 16:9, ultrawide and headset preview resolutions.
+- Safe-area insets for notches, camera cutouts and headset compositor margins; HUD cards, prompts and touch controls stay inside the readable viewport.
 
 Keyboard, pointer buttons, controller input and the XR action layer use the same interaction methods. The HUD pauses behind history, course, builder, journal and launch panels, which now share the same card treatment without duplicating gameplay state.
 
