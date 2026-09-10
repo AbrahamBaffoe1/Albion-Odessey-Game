@@ -44,12 +44,12 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(eyebrow!=null)return;
-            eyebrow=new GUIStyle(GUI.skin.label){fontSize=11,fontStyle=FontStyle.Bold};eyebrow.normal.textColor=Cyan;
-            place=new GUIStyle(GUI.skin.label){fontSize=22,fontStyle=FontStyle.Bold};place.normal.textColor=Color.white;
-            value=new GUIStyle(GUI.skin.label){fontSize=16,fontStyle=FontStyle.Bold};value.normal.textColor=Gold;
-            small=new GUIStyle(GUI.skin.label){fontSize=14,wordWrap=true};small.normal.textColor=new Color(.83f,.84f,.9f);
+            eyebrow=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=11,fontStyle=FontStyle.Bold};eyebrow.normal.textColor=Cyan;
+            place=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=22,fontStyle=FontStyle.Bold};place.normal.textColor=Color.white;
+            value=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=16,fontStyle=FontStyle.Bold};value.normal.textColor=Gold;
+            small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=14,wordWrap=true};small.normal.textColor=new Color(.83f,.84f,.9f);
             prompt=new GUIStyle(small){fontSize=16,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};prompt.normal.textColor=Color.white;
-            button=new GUIStyle(GUI.skin.button){fontSize=14,fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
+            button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=pixel;s.textColor=Color.white;}
         }
         void Compass(float w)

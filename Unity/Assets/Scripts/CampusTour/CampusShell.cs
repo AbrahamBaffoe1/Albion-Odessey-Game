@@ -87,10 +87,10 @@ namespace AlbionOdyssey
         void Styles()
         {
             if(brand!=null)return;
-            brand=new GUIStyle(GUI.skin.label){fontSize=19,fontStyle=FontStyle.Bold,richText=false};
-            display=new GUIStyle(brand){fontSize=62,wordWrap=true};heading=new GUIStyle(brand){fontSize=29,wordWrap=true};
-            text=new GUIStyle(GUI.skin.label){fontSize=19,wordWrap=true,richText=false};small=new GUIStyle(text){fontSize=14};
-            button=new GUIStyle(text){fontSize=18,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(22,16,9,9),border=new RectOffset()};
+            brand=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=19,fontStyle=FontStyle.Bold,richText=false};
+            display=new GUIStyle(brand){font=AlbionUITheme.DisplayFont,fontSize=62,wordWrap=true};heading=new GUIStyle(brand){font=AlbionUITheme.DisplayFont,fontSize=29,wordWrap=true};
+            text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=19,wordWrap=true,richText=false};small=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=14};
+            button=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=18,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(22,16,9,9),border=new RectOffset()};
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=Cream;}
         }
         void Fill(Rect r,Color color){var c=GUI.color;GUI.color=color;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=c;}

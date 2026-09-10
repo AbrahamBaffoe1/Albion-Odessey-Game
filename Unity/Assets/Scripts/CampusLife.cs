@@ -127,8 +127,8 @@ namespace AlbionOdyssey
             if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend")return;
             if(heading==null)
             {
-                heading=new GUIStyle(GUI.skin.label){fontSize=30,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);
-                text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};
+                heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=30,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);
+                text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=18,wordWrap=true,richText=false};
                 muted=new GUIStyle(text){fontSize=14};
                 button=AlbionUITheme.Button(16);
                 foreach(var appearance in new[]{button.normal,button.hover,button.active,button.focused})

@@ -58,7 +58,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if (!open || game == null) return;
-            if (title == null) { title = new GUIStyle(GUI.skin.label) { fontSize = 27, fontStyle = FontStyle.Bold }; text = new GUIStyle(GUI.skin.label) { fontSize = 17, wordWrap = true }; button = AlbionUITheme.Button(16); }
+            if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = 27, fontStyle = FontStyle.Bold }; text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = 17, wordWrap = true }; button = AlbionUITheme.Button(16); }
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); float w = Screen.width / scale, h = Screen.height / scale, x = (w - 700) * .5f;
             GUI.color = new Color(.018f, .03f, .05f, .98f); GUI.DrawTexture(new Rect(0, 0, w, h), Texture2D.whiteTexture); GUI.color = Color.white;
             AlbionUITheme.TopRule(w); GUI.Label(new Rect(x, 130, 650, 45), "VR WALKTHROUGH", title); GUI.Label(new Rect(x, 195, 650, 90), "Optional XR support is detected automatically. Keep the room scale clear, use the controller stick to move, and take regular breaks. Desktop mode stays available when no headset is connected.", text);

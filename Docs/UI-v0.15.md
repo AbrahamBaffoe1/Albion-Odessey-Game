@@ -16,6 +16,6 @@ Keyboard, pointer buttons, controller input and the XR action layer continue to 
 
 The social layer now uses the same visual language: seated learners and lunch groups show short conversation bubbles while they talk, club players show a playful prompt while paused, and all bubbles face the active camera and disappear outside a readable distance. The VR walkthrough and shared-campus panels expose their focused action with a gold-arrow cue and show the same stick/trigger/menu footer used by the in-world controls.
 
-## Next UI slice
+## Typography and input pass
 
-The next pass should apply this theme helper to `CampusLife`, `CampusTour` and `BlueprintStudio`: shared typography, selected states, animated open/close transitions, and larger controller focus targets. The information architecture is already kept separate from the HUD so those panel changes remain safe to iterate.
+Headings use a cached display face (`Avenir Next Condensed` when available) and body/control copy uses a readable system face (`Helvetica Neue` when available). Quest and other devices fall back to Unity's bundled Arial font without changing layout. The same font roles are applied to the HUD, history, courses, builder, journal, accessibility, VR and shared-session panels.

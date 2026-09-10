@@ -206,11 +206,11 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(title!=null)return;
-            title=new GUIStyle(GUI.skin.label){fontSize=31,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};title.normal.textColor=new Color(.96f,.94f,.86f);
-            text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);story=new GUIStyle(text){fontSize=21};detailTitle=new GUIStyle(title){fontSize=26};small=new GUIStyle(text){fontSize=13};small.normal.textColor=new Color(.52f,.84f,.9f);
-            button=new GUIStyle(GUI.skin.button){fontSize=16,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,8,8)};
+            title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=31,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};title.normal.textColor=new Color(.96f,.94f,.86f);
+            text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=18,wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);story=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=21};detailTitle=new GUIStyle(title){font=AlbionUITheme.DisplayFont,fontSize=26};small=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=13};small.normal.textColor=new Color(.52f,.84f,.9f);
+            button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=16,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,8,8)};
             foreach(var style in new[]{button.normal,button.hover,button.active,button.focused}){style.background=Texture2D.whiteTexture;style.textColor=Color.white;}
-            textButton=new GUIStyle(GUI.skin.button){fontSize=15,wordWrap=true,richText=false,alignment=TextAnchor.MiddleCenter,padding=new RectOffset(8,8,4,4),border=new RectOffset()};
+            textButton=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=15,wordWrap=true,richText=false,alignment=TextAnchor.MiddleCenter,padding=new RectOffset(8,8,4,4),border=new RectOffset()};
             foreach(var style in new[]{textButton.normal,textButton.hover,textButton.active,textButton.focused}){style.background=null;style.textColor=new Color(.95f,.92f,.84f,1);}
         }
         void Box(Rect r,Color c){GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}

@@ -136,8 +136,8 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(styles)return;styles=true;
-            heading=new GUIStyle(GUI.skin.label){fontSize=28,fontStyle=FontStyle.Bold,richText=false};text=new GUIStyle(GUI.skin.label){fontSize=17,wordWrap=true,richText=false};small=new GUIStyle(text){fontSize=14};
-            button=new GUIStyle(GUI.skin.button){fontSize=15,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};
+            heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=28,fontStyle=FontStyle.Bold,richText=false};text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=17,wordWrap=true,richText=false};small=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=14};
+            button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=15,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=Color.white;}
         }
         void Label(float x,float y,float w,float h,string s,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),s,style??text);

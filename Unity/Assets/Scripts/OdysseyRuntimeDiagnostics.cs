@@ -29,7 +29,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if (!open || game == null) return;
-            if (title == null) { title = new GUIStyle(GUI.skin.label) { fontSize = 24, fontStyle = FontStyle.Bold }; text = new GUIStyle(GUI.skin.label) { fontSize = 16, wordWrap = true }; }
+            if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = 24, fontStyle = FontStyle.Bold }; text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = 16, wordWrap = true }; }
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); float w = Screen.width / scale;
             GUI.color = new Color(.02f, .04f, .05f, .94f); GUI.DrawTexture(new Rect(24, 24, 390, 155), Texture2D.whiteTexture); GUI.color = Color.white; GUI.Label(new Rect(42, 40, 350, 34), "PERFORMANCE · F9", title);
             float fps = 1f / Mathf.Max(.001f, Time.unscaledDeltaTime); GUI.Label(new Rect(42, 84, 350, 78), "Frame rate: " + fps.ToString("0") + " FPS\nAllocated: " + (Profiler.GetTotalAllocatedMemoryLong() / (1024f * 1024f)).ToString("0") + " MB\nProfile saved every 10 seconds", text);
