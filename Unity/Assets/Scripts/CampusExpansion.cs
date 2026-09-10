@@ -253,7 +253,7 @@ namespace AlbionOdyssey
         void LayerPreview(){foreach(var t in preview.GetComponentsInChildren<Transform>(true))t.gameObject.layer=30;}
         void DrawSettings(float x)
         {
-            PreparePreview();preview.transform.rotation=Quaternion.Euler(0,Mathf.Sin(Time.unscaledTime*.4f)*35,0);preview.Animate(0,false);
+            PreparePreview();preview.transform.rotation=OdysseyAccessibility.ReducedMotion?Quaternion.identity:Quaternion.Euler(0,Mathf.Sin(Time.unscaledTime*.4f)*35,0);preview.Animate(0,false);
             if(Event.current.type==EventType.Repaint)previewCamera.Render();GUI.DrawTexture(new Rect(x,112,480,552),previewTexture,ScaleMode.ScaleToFit);
             Label(x,678,480,30,"YOUR KEEPER  /  Live character preview",small);
             float r=x+535;Label(r,111,580,40,"CHOOSE YOUR LOOK",heading);
