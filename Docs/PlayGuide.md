@@ -1,6 +1,6 @@
-# Play Albion Odyssey 0.12 on this Mac
+# Play Albion Odyssey 0.15 on this Mac
 
-Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from the 0.15 release folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
 
 ## Controls
 
@@ -21,6 +21,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Builder zoom / appearance | Mouse wheel / T |
 | Next local Keeper / contribute to Beacon | Tab / C |
 | Snowfall | Y toggles campus snow; clear weather returns when pressed again. Snow also cycles automatically during a longer visit. |
+| Campus pulse | The live card shows moving students, seated activities, squirrels, weather and total campus population. |
 | Show four on-screen movement buttons | O; hold an arrow with the mouse |
 | Turn with screen-button controls | Z/X or the Turn L / Turn R buttons |
 | Paper-play shortcut | P inside the Common Classroom |
@@ -45,7 +46,7 @@ A local Mac chapter: walkable Ferguson, Robinson, Bonta and the four-wing Scienc
 
 Online accounts, simultaneous multiplayer, user-authored lesson content, freeform architecture and the full real campus remain on the counted roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
 
-Version 0.4 writes a separate version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.4.
+Version 0.15 writes a separate version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.15.
 
 ## Sound effects and narration
 
