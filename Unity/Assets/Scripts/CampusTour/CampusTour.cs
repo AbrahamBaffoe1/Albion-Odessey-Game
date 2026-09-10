@@ -25,7 +25,7 @@ namespace AlbionOdyssey
         Texture2D photo; Coroutine loading; UnityWebRequest request; TourMedia activeMedia;
         VideoPlayer video; AudioSource videoAudio; RenderTexture videoTexture,panoramaTexture;
         Camera panoramaCamera; GameObject panoramaSphere,room; Material panoramaMaterial;
-        float yaw,pitch,mediaStarted,revealChars,openedAt;int directoryFocus; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
+        float yaw,pitch,mediaStarted,revealChars,openedAt;int directoryFocus,storyFocus; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
         string[] narrativeLines=Array.Empty<string>(); int narrativePage;
         GUIStyle title,text,small,button,story,detailTitle,textButton; TourPlace[] filtered;
         public static readonly Vector3 RoomOrigin=new Vector3(1600,0,1600);
@@ -57,7 +57,7 @@ namespace AlbionOdyssey
         {
             if(IsOpen)
             {
-                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(choose)AdvanceStory();}else{if(vertical!=0&&filtered!=null&&filtered.Length>0){directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null)Open(selected);}return true;}
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(vertical!=0||horizontal!=0)storyFocus=(storyFocus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+4)%4;if(choose){if(storyFocus==0&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);else if(storyFocus==1){sidePanel=false;Open(selected);}else if(storyFocus==2)EnterSelected();else Close();}}else{if(vertical!=0&&filtered!=null&&filtered.Length>0){directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null)Open(selected);}return true;}
                 if(Input.GetKeyDown(KeyCode.Escape))Close();
                 else if(sidePanel&&(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.Space))){AdvanceStory();}
                 return true;
@@ -78,7 +78,7 @@ namespace AlbionOdyssey
         void OpenInternal(TourPlace place,bool compact)
         {
             if(place==null)return;
-            StopMedia();sidePanel=compact;selected=place;directoryFocus=filtered==null?0:Mathf.Max(0,System.Array.IndexOf(filtered,place));detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;openedAt=Time.unscaledTime;game.life.SetPanel("tour");
+            StopMedia();sidePanel=compact;storyFocus=0;selected=place;directoryFocus=filtered==null?0:Mathf.Max(0,System.Array.IndexOf(filtered,place));detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;openedAt=Time.unscaledTime;game.life.SetPanel("tour");
             if(read.Add(game.state.active+"."+place.id)){storySound.volume=game.sound.Muted?0:game.sound.Volume;storySound.PlayOneShot(storyClip);}
             Status="";
         }
@@ -217,6 +217,7 @@ namespace AlbionOdyssey
         bool Button(Rect r,string value){var color=GUI.backgroundColor;if(color==Color.white)GUI.backgroundColor=new Color(.29f,.17f,.40f);bool hit=GUI.Button(r,value,button);GUI.backgroundColor=color;return hit;}
         bool ControlButton(Rect r,string value)
         {return GUI.Button(r,value,textButton);}
+        string FocusLabel(int index,string value)=>storyFocus==index?"▶  "+value:value;
         bool NextButton(Rect r,string value)
         {return GUI.Button(r,value,textButton);}
         bool EnterSelected()
@@ -240,9 +241,10 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(x+30,160,panelWidth-60,22),selected.category.ToUpperInvariant(),small);
             GUI.Label(new Rect(x+30,214,panelWidth-60,22),"THE STORY",small);
             GUI.Label(new Rect(x+30,250,panelWidth-60,245),RevealedStory(),story);
-            if(ControlButton(new Rect(x+30,520,185,38),"Read online")&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
-            if(ControlButton(new Rect(x+235,520,185,38),"More information")){sidePanel=false;Open(selected);}
-            if(ControlButton(new Rect(x+30,575,185,38),"Enter building"))EnterSelected();
+            if(ControlButton(new Rect(x+30,520,185,38),FocusLabel(0,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+            if(ControlButton(new Rect(x+235,520,185,38),FocusLabel(1,"More information"))){sidePanel=false;Open(selected);}
+            if(ControlButton(new Rect(x+30,575,185,38),FocusLabel(2,"Enter building")))EnterSelected();
+            if(ControlButton(new Rect(x+235,575,185,38),FocusLabel(3,"Close")))Close();
         }
         void OnGUI()
         {
