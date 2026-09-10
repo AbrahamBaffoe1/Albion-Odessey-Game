@@ -39,7 +39,7 @@ namespace AlbionOdyssey
         {
             if (!open && Input.GetKeyDown(KeyCode.F5)) { open = true; focus=0; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
-            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){ClosePanel();}else{if(vertical!=0||horizontal!=0)focus=(focus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+4)%4;if(choose){if(focus==0)StartSession(true);else if(focus==1)StartSession(false);else if(focus==2)StopSession("");else ClosePanel();}}return true;}
+            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){ClosePanel();}else{if(vertical!=0||horizontal!=0)focus=(focus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+5)%5;if(choose){if(focus==0)StartSession(true);else if(focus==1)StartSession(false);else if(focus==2)StopSession("");else if(focus==3)SendChat();else ClosePanel();}}return true;}
             if (Input.GetKeyDown(KeyCode.Escape)) { ClosePanel(); return true; }
             return true;
         }
@@ -109,6 +109,11 @@ namespace AlbionOdyssey
             if (socket == null || host) return;
             Send(new CampusNetPacket { type = "join", session = session, id = PlayerId, display = display }, broadcast);
         }
+        void SendChat()
+        {
+            string clean=Sanitize(message);if(!active||clean.Length==0){status=active?"Type a message before sending.":"Start or join a world before chatting.";return;}
+            Send(new CampusNetPacket { type="chat", text=clean }, broadcast);message="";
+        }
         public void StopSession(string reason)
         {
             active = false; if (socket != null) { socket.Close(); socket = null; } foreach (var remote in remotes.Values) if (remote.root != null) Destroy(remote.root); remotes.Clear(); if (reason.Length > 0) status = reason; else status = "Offline";
@@ -135,8 +140,8 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x + 410, 325, 190, 44), (focus==2?"▶  ":"") + "Stop session", button)) { focus=2; StopSession(""); }
             GUI.Label(new Rect(x, 395, 760, 34), status + " · " + remotes.Count + " remote player(s)", text);
             int row = 440; foreach (var entry in remotes) { GUI.Label(new Rect(x, row, 430, 28), entry.Value.display + "  " + entry.Key.Substring(0, 6), text); if (host && GUI.Button(new Rect(x + 450, row, 130, 28), "Remove", button)) Block(entry.Key); row += 34; }
-            message = GUI.TextField(new Rect(x, h - 115, 530, 36), message, 80); if (GUI.Button(new Rect(x + 545, h - 115, 120, 36), "Send", button) && active) { Send(new CampusNetPacket { type = "chat", text = Sanitize(message) }, broadcast); message = ""; }
-            if (GUI.Button(new Rect(x + 680, 325, 100, 44), (focus==3?"▶  ":"") + "Close", button)) { focus=3; ClosePanel(); }
+            message = GUI.TextField(new Rect(x, h - 115, 530, 36), message, 80); if (GUI.Button(new Rect(x + 545, h - 115, 120, 36), (focus==3?"▶  ":"")+"Send", button)) { focus=3; SendChat(); }
+            if (GUI.Button(new Rect(x + 680, 325, 100, 44), (focus==4?"▶  ":"") + "Close", button)) { focus=4; ClosePanel(); }
             GUI.Label(new Rect(x, h - 65, 760, 28), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
         }
         void OnApplicationQuit()
