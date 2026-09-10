@@ -126,16 +126,16 @@ namespace AlbionOdyssey
             if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend")return;
             if(heading==null)
             {
-                heading=new GUIStyle(GUI.skin.label){fontSize=30,fontStyle=FontStyle.Bold};
+                heading=new GUIStyle(GUI.skin.label){fontSize=30,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);
                 text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};
                 muted=new GUIStyle(text){fontSize=14};
                 button=new GUIStyle(GUI.skin.button){fontSize=16,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,4,4)};
                 foreach(var appearance in new[]{button.normal,button.hover,button.active,button.focused})
-                {appearance.background=Texture2D.whiteTexture;appearance.textColor=Color.white;}
+                {appearance.background=Texture2D.whiteTexture;appearance.textColor=new Color(.98f,.96f,.9f);}
             }
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
-            GUI.backgroundColor=new Color(.12f,.27f,.30f);
+            GUI.backgroundColor=new Color(.40f,.22f,.57f);
             if(PanelOpen&&game.sound.AchievementCaption.Length>0)
             {
                 GUI.color=new Color(.025f,.09f,.10f,.96f);GUI.DrawTexture(new Rect(width-440,138,420,78),Texture2D.whiteTexture);GUI.color=Color.white;
@@ -143,7 +143,8 @@ namespace AlbionOdyssey
                 Label(width-423,174,390,40,game.sound.AchievementCaption,text);
             }
             if(!PanelOpen)return;
-            GUI.color=new Color(.018f,.03f,.043f,1f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=Color.white;
+            GUI.color=new Color(.025f,.028f,.052f,1f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=Color.white;
+            GUI.color=new Color(1f,.76f,.28f,1f);GUI.DrawTexture(new Rect(0,0,width,5),Texture2D.whiteTexture);GUI.color=Color.white;
             float left=(width-1120)/2;
             Label(left,28,920,50,panel=="campus"?"EXPLORE ALBION COLLEGE":panel=="settings"?"GAME SETTINGS / YOUR CHARACTER":panel=="treasures"?"CAMPUS TREASURES":panel=="map"?"LEGACY CAMPUS":panel=="history"?"ALBION / LEARN THE STORY":panel=="courses"?"YOUR CAMPUS / COURSES":"ALBION ODYSSEY",heading);
             if(Button(left+965,32,155,"Return · Esc"))SetPanel("");

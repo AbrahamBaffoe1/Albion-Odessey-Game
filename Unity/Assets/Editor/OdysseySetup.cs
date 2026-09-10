@@ -30,7 +30,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.14.0";
+            PlayerSettings.bundleVersion="0.15.0";
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;

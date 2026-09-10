@@ -1,17 +1,34 @@
 using UnityEngine;
+
 namespace AlbionOdyssey
 {
-    // One owner for gameplay HUD: location, navigation, one action and one notification.
+    // Art-directed gameplay HUD. The world remains visible; information arrives in small,
+    // animated cards with one clear action at a time.
     public sealed class CampusHud : MonoBehaviour
     {
-        OdysseyGame game;GUIStyle label,small,button;string lastNotice="";float noticeUntil;
-        public void Setup(OdysseyGame owner){game=owner;}
+        static readonly Color Ink=new Color(.035f,.04f,.065f,.94f),Panel=new Color(.055f,.065f,.10f,.88f),Gold=new Color(1f,.76f,.28f),Purple=new Color(.44f,.25f,.64f),Cyan=new Color(.35f,.84f,.92f);
+        OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt;string lastNotice="";float noticeUntil;
+        public void Setup(OdysseyGame owner){game=owner;pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}
         void Update(){if(game!=null&&game.notice!=lastNotice){lastNotice=game.notice;noticeUntil=Time.unscaledTime+5;}}
-        void Card(Rect r){var c=GUI.color;GUI.color=new Color(.035f,.045f,.052f,.87f);GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=c;}
+        void Fill(Rect r,Color c){var old=GUI.color;GUI.color=c;GUI.DrawTexture(r,pixel);GUI.color=old;}
+        void Card(Rect r,bool accent=false){Fill(r,Panel);if(accent)Fill(new Rect(r.x,r.y,4,r.height),Gold);}
+        string CurrentPlace()
+        {
+            var buildings=CampusBuildings.Instance;var extra=buildings?.AdditionalInside();
+            string p=extra!=null?extra.Location:buildings!=null&&buildings.Inside?buildings.Location:game.tour.InRoom?"Wesley Hall":game.campus.OnCampus?game.campus.Nearest.name:game.life.Location;
+            return p.Length>31?p.Substring(0,29)+"…":p;
+        }
+        string Objective()
+        {
+            int found=OdysseyState.Count(game.state.Current.memories);
+            if(found<12)return "Discover the next memory in Legacy Hall";
+            if(game.state.beacon<24)return "Bring acorns to the shared Beacon";
+            if(game.state.school!=null&&game.state.school.active<0)return "Create a course for your campus";
+            return "Your charter is complete — keep exploring";
+        }
         public string Context()
         {
-            var b=CampusBuildings.Instance;var d=b?.NearbyDoor;
-            var additional=b?.AdditionalInside();
+            var b=CampusBuildings.Instance;var d=b?.NearbyDoor;var additional=b?.AdditionalInside();
             if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();return "E  "+(door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
             if(d!=null)return "E  "+(d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();
             if(game.player.vehicle!=null)return "E  Leave vehicle   ·   Space  Brake";
@@ -24,33 +41,53 @@ namespace AlbionOdyssey
             return game.tour.Nearby()!=null?"H  Read building story   ·   G  All stories":"WASD / arrows  Move   ·   G  Stories";
         }
         void Interact(){var d=CampusBuildings.Instance?.NearbyDoor;if(d!=null){d.Toggle(game.player);return;}if(game.tour.InRoom){game.tour.ExitRoom();return;}game.Interact();}
+        void InitStyles()
+        {
+            if(eyebrow!=null)return;
+            eyebrow=new GUIStyle(GUI.skin.label){fontSize=11,fontStyle=FontStyle.Bold};eyebrow.normal.textColor=Cyan;
+            place=new GUIStyle(GUI.skin.label){fontSize=22,fontStyle=FontStyle.Bold};place.normal.textColor=Color.white;
+            value=new GUIStyle(GUI.skin.label){fontSize=16,fontStyle=FontStyle.Bold};value.normal.textColor=Gold;
+            small=new GUIStyle(GUI.skin.label){fontSize=14,wordWrap=true};small.normal.textColor=new Color(.83f,.84f,.9f);
+            prompt=new GUIStyle(small){fontSize=16,fontStyle=FontStyle.Bold,alignment=TextAnchor.MiddleCenter};prompt.normal.textColor=Color.white;
+            button=new GUIStyle(GUI.skin.button){fontSize=14,fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
+            foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=pixel;s.textColor=Color.white;}
+        }
+        void Compass(float w)
+        {
+            float cx=w*.5f,heading=game.player.transform.eulerAngles.y;Card(new Rect(cx-170,24,340,40));
+            string[] dirs={"N","NE","E","SE","S","SW","W","NW"};
+            for(int i=0;i<dirs.Length;i++){float relative=Mathf.DeltaAngle(heading,i*45);float x=cx+relative*2.8f;if(x<cx-152||x>cx+152)continue;GUI.Label(new Rect(x-16,32,32,22),dirs[i],new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter,fontSize=12});}
+            Fill(new Rect(cx-2,58,4,4),Gold);
+        }
+        void TargetTag(float scale)
+        {
+            if(game.player.eyes==null||!game.player.TryTarget(out var hit))return;
+            var marker=hit.collider.GetComponentInParent<MemoryMarker>();var guide=hit.collider.GetComponentInParent<GuideMarker>();var station=hit.collider.GetComponentInParent<CampusActivityStation>();
+            if(marker==null&&guide==null&&station==null)return;
+            Vector3 point=hit.collider.transform.position+Vector3.up*.9f;Vector3 screen=game.player.eyes.WorldToScreenPoint(point);if(screen.z<0)return;
+            float x=screen.x/scale,y=(Screen.height-screen.y)/scale;string text=marker!=null?"MEMORY  "+(marker.id+1).ToString("00"):guide!=null?"PIP  CAMPUS GUIDE":"CLASSROOM ACTIVITY";
+            Card(new Rect(x-112,y-26,224,30),true);GUI.Label(new Rect(x-102,y-21,204,21),text,new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter});
+        }
         void OnGUI()
         {
-            if(game==null||game.life.PanelOpen||game.building||game.journalOpen)return;
-            if(label==null){label=new GUIStyle(GUI.skin.label){fontSize=OdysseyAccessibility.LargeText?23:20,fontStyle=FontStyle.Bold,richText=false,wordWrap=true};small=new GUIStyle(label){fontSize=OdysseyAccessibility.LargeText?17:14,fontStyle=FontStyle.Normal};button=new GUIStyle(GUI.skin.button){fontSize=OdysseyAccessibility.LargeText?18:15,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,5,5)};foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=new Color(.94f,.94f,.9f);}}
-            var old=GUI.matrix;var bc=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;GUI.color=Color.white;GUI.backgroundColor=new Color(.16f,.12f,.23f);
-            var buildings=CampusBuildings.Instance;
-            var additionalInside=buildings?.AdditionalInside();
-            string place=additionalInside!=null?additionalInside.Location:buildings!=null&&buildings.Inside?buildings.Location:game.tour.InRoom?"Wesley Hall":game.campus.OnCampus?game.campus.Nearest.name:game.life.Location;
-            if(place.Length>33)place=place.Substring(0,30)+"…";
-            Card(new Rect(24,24,350,72));GUI.Label(new Rect(40,33,322,28),place,label);GUI.Label(new Rect(40,65,322,23),game.campus.keeperName+"  ·  "+game.state.Current.acorns+" acorns",small);
-            if(GUI.Button(new Rect(w-246,24,98,38),"Map · M",button))game.life.SetPanel("campus");
-            if(GUI.Button(new Rect(w-138,24,114,38),"Menu · Esc",button))game.shell.ShowLaunch();
-            string action=Context();Card(new Rect(w/2-270,h-74,540,46));GUI.Label(new Rect(w/2-255,h-63,510,34),action,small);
-            GUI.Label(new Rect(w-260,h-29,236,22),"O  Movement buttons   ·   V  Camera",small);
-            if(Cursor.lockState==CursorLockMode.Locked){GUI.color=new Color(1,1,1,.65f);GUI.DrawTexture(new Rect(w/2-1,h/2-1,3,3),Texture2D.whiteTexture);GUI.color=Color.white;}
+            if(game==null||game.player==null||game.life.PanelOpen||game.building||game.journalOpen)return;
+            InitStyles();var old=GUI.matrix;var oldBg=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale;
+            GUI.backgroundColor=Purple;string p=CurrentPlace();
+            Card(new Rect(24,24,330,92),true);GUI.Label(new Rect(44,34,290,18),"ALBION COLLEGE  /  LIVE",eyebrow);GUI.Label(new Rect(44,55,290,30),p,place);GUI.Label(new Rect(44,84,290,22),game.campus.keeperName+"   ·   "+game.state.Current.acorns+" ACORNS",small);
+            Compass(w);
+            Card(new Rect(w-326,24,302,92));GUI.Label(new Rect(w-304,35,260,18),game.player.vehicle==null?"KEEPER STATUS":"CAMPUS CAR",eyebrow);
+            if(game.player.vehicle==null){GUI.Label(new Rect(w-304,55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%",value);Fill(new Rect(w-304,88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(w-304,88,258*game.player.Stamina,7),Cyan);}
+            else GUI.Label(new Rect(w-304,57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H",value);
+            Card(new Rect(24,132,330,74),true);GUI.Label(new Rect(44,143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(44,164,286,34),Objective(),small);
+            string progress=OdysseyState.Count(game.state.Current.memories)+" / 12 memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(44,190,286,18),progress,eyebrow);
+            TargetTag(scale);
+            string action=Context();float promptY=h-78;Card(new Rect(w*.5f-285,promptY,570,52),true);GUI.Label(new Rect(w*.5f-270,promptY+8,540,34),action,prompt);
             string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
-            if(toast.Length>0){Card(new Rect(w/2-220,24,440,67));GUI.Label(new Rect(w/2-202,34,405,50),"Achievement unlocked\n"+toast,small);}
-            // Ordinary game messages appear briefly and never under another panel or achievement.
-            else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){Card(new Rect(24,106,350,72));GUI.Label(new Rect(40,116,318,56),lastNotice,small);}
-            if(game.player.pointerControls)
-            {
-                float x=35,y=h-227;Card(new Rect(x-11,y-11,220,140));
-                game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));
-                game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);
-                if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;
-            }
-            GUI.matrix=old;GUI.backgroundColor=bc;
+            if(toast.Length>0){float y=130-Mathf.Sin(Time.unscaledTime*2f)*2f;Card(new Rect(w*.5f-225,y,450,72),true);GUI.Label(new Rect(w*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect(w*.5f-205,y+32,410,28),toast,value);}
+            else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(24,220,330,66));GUI.Label(new Rect(44,232,286,42),lastNotice,small);GUI.color=Color.white;}
+            if(game.player.pointerControls){float x=35,y=h-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
+            if(GUI.Button(new Rect(w-248,130,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(w-136,130,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
+            GUI.Label(new Rect(w-310,h-28,286,20),"V camera   ·   J journal   ·   F2 build",eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }
 }

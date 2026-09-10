@@ -7,6 +7,8 @@ namespace AlbionOdyssey
         public Camera eyes; public CharacterController body; public bool controls=true;
         public bool pointerControls,thirdPerson=true; public Vector2 buttonMove;public bool buttonJump;public float buttonTurn;
         public KeeperAvatar avatar; public CampusCar vehicle; public float cameraDistance=4.5f;
+        public float Stamina{get;private set;}=1f;
+        public float MovementSpeed=>movementSpeed;
         float pitch=12,velocity,movementSpeed;
         public void CreateAvatar()
         {
@@ -30,7 +32,9 @@ namespace AlbionOdyssey
             float axisX=Input.GetAxisRaw("Horizontal"),axisZ=Input.GetAxisRaw("Vertical");
             if(Mathf.Abs(axisX)>.12f)x+=axisX;if(Mathf.Abs(axisZ)>.12f)z+=axisZ;
             if(vehicle!=null){vehicle.Drive(Mathf.Clamp(z,-1,1),Mathf.Clamp(x,-1,1),Input.GetKey(KeyCode.Space)||buttonJump,Time.deltaTime);buttonJump=false;movementSpeed=0;return;}
-            Vector3 move=Vector3.ClampMagnitude(transform.right*x+transform.forward*z,1)*(Input.GetKey(KeyCode.LeftShift)?6.5f:3.8f);movementSpeed=move.magnitude;
+            bool sprint=Input.GetKey(KeyCode.LeftShift)&&Stamina>.04f&&Mathf.Abs(x)+Mathf.Abs(z)>.1f;
+            if(sprint)Stamina=Mathf.Max(0,Stamina-Time.deltaTime*.18f);else Stamina=Mathf.Min(1,Stamina+Time.deltaTime*.24f);
+            Vector3 move=Vector3.ClampMagnitude(transform.right*x+transform.forward*z,1)*(sprint?6.5f:3.8f);movementSpeed=move.magnitude;
             if(body.isGrounded&&velocity<0)velocity=-2;
             if(pointerControls)transform.Rotate(0,((Input.GetKey(KeyCode.X)?1:0)-(Input.GetKey(KeyCode.Z)?1:0)+buttonTurn)*90*Time.deltaTime,0);
             if(body.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||Input.GetButtonDown("Jump")||buttonJump))velocity=5.5f;
