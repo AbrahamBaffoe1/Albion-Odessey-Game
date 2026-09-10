@@ -279,9 +279,11 @@ namespace AlbionOdyssey
             foreach(var edge in footprintEdges)edge.sharedMaterial=material;
             footprint.SetActive(true);
         }
-        void DrawJournal(float width,float height)
+        void DrawJournal(float width,float height,float scale)
         {
-            float w=Mathf.Min(1000,width-50),h=Mathf.Min(650,height-40),x=(width-w)/2,y=(height-h)/2;
+            Rect safe=AlbionUITheme.SafeArea(scale);
+            float w=Mathf.Min(1000,Mathf.Max(320,safe.width-50)),h=Mathf.Min(650,Mathf.Max(300,safe.height-40));
+            float x=Mathf.Max(safe.xMin+25,safe.xMin+(safe.width-w)/2),y=Mathf.Max(safe.yMin+20,safe.yMin+(safe.height-h)/2);
             GUI.color=new Color(0,0,0,.75f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);
             GUI.color=new Color(.024f,.037f,.052f,1);GUI.DrawTexture(new Rect(x,y,w,h),Texture2D.whiteTexture);GUI.color=Color.white;
             if(journalButton==null)
@@ -319,7 +321,7 @@ namespace AlbionOdyssey
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             if(life!=null&&life.PanelOpen)return;
-            if(journalOpen){DrawJournal(width,height);return;}
+            if(journalOpen){DrawJournal(width,height,scale);return;}
             if(!building)return;
             GUI.color=new Color(.035f,.05f,.08f,.94f);GUI.DrawTexture(new Rect(16,16,Mathf.Min(width-32,850),108),Texture2D.whiteTexture);
             GUI.DrawTexture(new Rect(0,height-115,width,115),Texture2D.whiteTexture);GUI.color=Color.white;
