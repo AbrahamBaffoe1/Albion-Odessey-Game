@@ -199,16 +199,16 @@ namespace AlbionOdyssey
     public sealed class CampusActivityAgent : MonoBehaviour
     {
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
-        KeeperAvatar avatar; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase;
+        KeeperAvatar avatar; CampusConversationBubble bubble; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase;
         public CampusStudentIdentity Identity { get; private set; }
-        public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); last = transform.position; }
+        public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); bubble=gameObject.AddComponent<CampusConversationBubble>();bubble.Configure(displayName,Activity,new Vector3(0,2.72f,0),16f); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;
-            if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
+            if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) { bubble.SetVisible(true); Dance(); } else {avatar.Animate(0, seated);bubble.SetVisible(seated);if(seated)Talk();} return; }
             Vector3 goal = Route[target]; Vector3 delta = goal - transform.position; delta.y = 0;
-            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
-            seated = false; avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
+            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
+            seated = false; bubble.SetVisible(false); avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
             if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;pause=.35f;return;}
             transform.position += direction * distance; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 5f); avatar.Animate(Speed, false); last = transform.position;
