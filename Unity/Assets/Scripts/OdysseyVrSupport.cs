@@ -35,7 +35,7 @@ namespace AlbionOdyssey
         void SetComfort(string key, bool snap)
         {
             if (game == null || game.xr == null) return;
-            if (key == "Odyssey.XR.SnapTurn") game.xr.SnapTurn = !game.xr.SnapTurn;
+            if (key == "Odyssey.XR.SnapTurn") { game.xr.SnapTurn = !game.xr.SnapTurn; game.xr.SmoothTurn = !game.xr.SnapTurn; PlayerPrefs.SetInt("Odyssey.XR.SmoothTurn", game.xr.SmoothTurn ? 1 : 0); }
             else if (key == "Odyssey.XR.Vignette") game.xr.ComfortVignette = !game.xr.ComfortVignette;
             else if (key == "Odyssey.XR.RoomScale") game.xr.RoomScale = !game.xr.RoomScale;
             else if (key == "Odyssey.XR.Hands") game.xr.HandTrackingEnabled = !game.xr.HandTrackingEnabled;
@@ -74,7 +74,7 @@ namespace AlbionOdyssey
             AlbionUITheme.TopRule(w); GUI.Label(new Rect(x, 130, 650, 45), "VR WALKTHROUGH", title); GUI.Label(new Rect(x, 195, 650, 90), "Optional XR support is detected automatically. Keep the room scale clear, use the controller stick to move, and take regular breaks. Desktop mode stays available when no headset is connected.", text);
             GUI.Label(new Rect(x, 315, 650, 34), IsDeviceActive() ? "XR device detected" : "No XR loader detected · desktop preview", text);
             string enable = (focus == 0 ? "▶  " : "") + (active ? "Disable VR" : "Enable VR");
-            string snap = (game.xr != null && game.xr.SnapTurn ? "✓  " : "○  ") + "Snap turn";
+            string snap = (game.xr != null && game.xr.SnapTurn ? "✓  Snap turn" : "✓  Smooth turn") + "  ·  turn mode";
             string vignette = (game.xr != null && game.xr.ComfortVignette ? "✓  " : "○  ") + "Comfort vignette";
             string room = (game.xr != null && game.xr.RoomScale ? "✓  " : "○  ") + "Room-scale movement";
             string hands = (game.xr != null && game.xr.HandTrackingEnabled ? "✓  " : "○  ") + "Hand tracking";
@@ -85,7 +85,7 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x + 270, 420, 250, 44), ComfortLabel(3, room), button)) { focus = 3; SetComfort("Odyssey.XR.RoomScale", true); }
             if (GUI.Button(new Rect(x, 475, 250, 44), ComfortLabel(4, hands), button)) { focus = 4; SetComfort("Odyssey.XR.Hands", false); }
             if (GUI.Button(new Rect(x + 270, 475, 250, 44), ComfortLabel(5, close), button)) { focus = 5; ClosePanel(); }
-            GUI.Label(new Rect(x, h - 145, 650, 32), "Comfort mode: third-person camera, reduced camera distance, 90° field of view.", text);
+            GUI.Label(new Rect(x, h - 145, 650, 32), "Comfort mode: third-person camera, reduced camera distance, 90° field of view, selectable turn mode.", text);
             GUI.Label(new Rect(x, h - 105, 650, 32), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
         }
         static bool IsDeviceActive()

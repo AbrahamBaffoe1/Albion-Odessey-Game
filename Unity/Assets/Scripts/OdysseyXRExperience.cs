@@ -12,6 +12,7 @@ namespace AlbionOdyssey
     {
         public bool Active { get; private set; }
         public bool SnapTurn = true;
+        public bool SmoothTurn;
         public bool ComfortVignette = true;
         public bool RoomScale = true;
         public bool HandTrackingEnabled = true;
@@ -33,6 +34,8 @@ namespace AlbionOdyssey
         {
             game = owner;
             SnapTurn = PlayerPrefs.GetInt("Odyssey.XR.SnapTurn", 1) == 1;
+            SmoothTurn = PlayerPrefs.GetInt("Odyssey.XR.SmoothTurn", SnapTurn ? 0 : 1) == 1;
+            if (SmoothTurn) SnapTurn = false;
             ComfortVignette = PlayerPrefs.GetInt("Odyssey.XR.Vignette", 1) == 1;
             RoomScale = PlayerPrefs.GetInt("Odyssey.XR.RoomScale", 1) == 1;
             HandTrackingEnabled = PlayerPrefs.GetInt("Odyssey.XR.Hands", 1) == 1;
@@ -202,7 +205,9 @@ namespace AlbionOdyssey
         {
             if (rightController.isValid && rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out var turnAxis))
             {
-                if (SnapTurn && Mathf.Abs(turnAxis.x) > .65f && turnCooldown <= 0)
+                if (SmoothTurn && Mathf.Abs(turnAxis.x) > .08f)
+                    game.player.transform.Rotate(0, turnAxis.x * 75f * Time.unscaledDeltaTime, 0);
+                else if (SnapTurn && Mathf.Abs(turnAxis.x) > .65f && turnCooldown <= 0)
                 {
                     game.player.transform.Rotate(0, turnAxis.x > 0 ? 30f : -30f, 0);
                     turnCooldown = .28f;
