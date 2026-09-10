@@ -30,12 +30,13 @@ namespace AlbionOdyssey
         void Save(string key, int value) { PlayerPrefs.SetInt(key, value); PlayerPrefs.Save(); }
         public bool HandleInput()
         {
-            if (!open && Input.GetKeyDown(KeyCode.F4)) { open = true; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
+            if (!open && Input.GetKeyDown(KeyCode.F4)) { open = true; focus=0; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
-            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){open=false;}else{if(vertical!=0)focus=(focus+(vertical>0?-1:1)+6)%6;if(choose){if(focus==0){CaptionsEnabled=!CaptionsEnabled;Save("Odyssey.Captions",CaptionsEnabled?1:0);}else if(focus==1){LargeText=!LargeText;Save("Odyssey.LargeText",LargeText?1:0);}else if(focus==2){HighContrast=!HighContrast;Save("Odyssey.HighContrast",HighContrast?1:0);}else if(focus==3){ReducedMotion=!ReducedMotion;Save("Odyssey.ReducedMotion",ReducedMotion?1:0);}else if(focus==4){bool alternate=PlayerPrefs.GetInt("Odyssey.AlternateKeys",0)==1;ApplyKeys(!alternate);Save("Odyssey.AlternateKeys",!alternate?1:0);}else open=false;}}return true;}
-            if (Input.GetKeyDown(KeyCode.Escape)) { open = false; game.player.controls = !game.building && !game.life.PanelOpen; Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls; return true; }
+            if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){ClosePanel();}else{if(vertical!=0)focus=(focus+(vertical>0?-1:1)+6)%6;if(choose){if(focus==0){CaptionsEnabled=!CaptionsEnabled;Save("Odyssey.Captions",CaptionsEnabled?1:0);}else if(focus==1){LargeText=!LargeText;Save("Odyssey.LargeText",LargeText?1:0);}else if(focus==2){HighContrast=!HighContrast;Save("Odyssey.HighContrast",HighContrast?1:0);}else if(focus==3){ReducedMotion=!ReducedMotion;Save("Odyssey.ReducedMotion",ReducedMotion?1:0);}else if(focus==4){bool alternate=PlayerPrefs.GetInt("Odyssey.AlternateKeys",0)==1;ApplyKeys(!alternate);Save("Odyssey.AlternateKeys",!alternate?1:0);}else ClosePanel();}}return true;}
+            if (Input.GetKeyDown(KeyCode.Escape)) { ClosePanel(); return true; }
             return true;
         }
+        void ClosePanel(){open=false;game.player.controls=!game.building&&!game.life.PanelOpen;Cursor.lockState=game.player.pointerControls?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=game.player.pointerControls;}
         void OnGUI()
         {
             if (!open || game == null) return;
@@ -50,7 +51,7 @@ namespace AlbionOdyssey
             bool alternate = PlayerPrefs.GetInt("Odyssey.AlternateKeys", 0) == 1;
             if (GUI.Button(new Rect(x, 470, 360, 46), (alternate ? "✓ " : "○ ") + (alternate ? "I J K L movement" : "W A S D movement"), button)) { alternate = !alternate; ApplyKeys(alternate); Save("Odyssey.AlternateKeys", alternate ? 1 : 0); }
             GUI.Label(new Rect(x + 405, 210, 360, 170), "KEYBOARD\nMove: " + ForwardKey + " " + LeftKey + " " + BackKey + " " + RightKey + "\nJump: " + JumpKey + "   Interact: " + InteractKey + "\nCamera: V   Menu: Esc\nController: left stick, right stick, A/Cross, Menu", text);
-            if (GUI.Button(new Rect(x + 405, 470, 260, 46), "Close · F4 / Esc", button)) { open = false; game.player.controls = !game.building && !game.life.PanelOpen; Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls; }
+            if (GUI.Button(new Rect(x + 405, 470, 260, 46), "Close · F4 / Esc", button)) ClosePanel();
         }
     }
 }

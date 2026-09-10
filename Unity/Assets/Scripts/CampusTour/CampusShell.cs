@@ -7,7 +7,7 @@ namespace AlbionOdyssey
     public sealed class CampusShell : MonoBehaviour
     {
         OdysseyGame game; Texture2D hero; GUIStyle brand,display,heading,text,small,button;
-        float seconds; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit;
+        float seconds; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
         public bool SaveSucceeded {get;private set;}
         public string SaveMessage {get;private set;}="";
         public bool OwnsPanel=>game.life.panel=="launch"||game.life.panel=="sessionend";
@@ -24,7 +24,7 @@ namespace AlbionOdyssey
         public static bool HasCompletedChapter(Keeper keeper)=>keeper.milestones==63;
         int MemoryCount()=>game.state.keepers.Sum(k=>OdysseyState.Count(k.memories));
         int BuildingCount()=>game.state.keepers.Sum(k=>k.plots.Count(p=>p!=0));
-        public void ShowLaunch(){game.tour.StopMedia();game.life.SetPanel("launch");}
+        public void ShowLaunch(){menuFocus=0;game.tour.StopMedia();game.life.SetPanel("launch");}
         public void Play(){game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
         public void Stories(){game.tour.OpenDirectory();}
         public void Videos(){game.tour.OpenVideos();}
@@ -66,6 +66,28 @@ namespace AlbionOdyssey
         {
             if(OwnsPanel)
             {
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
+                {
+                    int count=IsSummary?3:9;
+                    if(cancel){if(IsSummary)ShowLaunch();else Play();return true;}
+                    if(horizontal!=0||vertical!=0)
+                    {
+                        int direction=horizontal!=0?(horizontal>0?1:-1):(vertical>0?-1:1);
+                        menuFocus=(menuFocus+direction+count)%count;
+                    }
+                    if(choose)
+                    {
+                        if(IsSummary)
+                        {
+                            if(menuFocus==0)Play();else if(menuFocus==1)ShowLaunch();else if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);
+                        }
+                        else
+                        {
+                            if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)BuildYourOwn();else if(menuFocus==4)Courses();else if(menuFocus==5)game.life.SetPanel("settings");else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else if(CampusBuildings.Instance!=null)CampusBuildings.Instance.Visit();
+                        }
+                    }
+                    return true;
+                }
                 if(Input.GetKeyDown(KeyCode.B)){BuildYourOwn();return true;}
                 if(Input.GetKeyDown(KeyCode.G)){Stories();return true;}
                 if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.Escape)){Play();return true;}
@@ -103,6 +125,7 @@ namespace AlbionOdyssey
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused})s.textColor=primary?Ink:Cream;
             bool clicked=GUI.Button(r,label,button);GUI.backgroundColor=bg;GUI.contentColor=fg;return clicked;
         }
+        string FocusLabel(int index,string label)=>menuFocus==index?"▶ "+label:label;
         void OnGUI()
         {
             if(game==null)return;Styles();var oldMatrix=GUI.matrix;var oldColor=GUI.color;var oldContent=GUI.contentColor;var oldBackground=GUI.backgroundColor;int oldDepth=GUI.depth;
@@ -141,21 +164,21 @@ namespace AlbionOdyssey
             Label(new Rect(40,155,right-72,155),"Make yourself\nat Albion.",display,Cream);
             Label(new Rect(46,321,right-94,75),"Explore the college. Watch its stories.\nBuild a place of your own.",text,Muted);
             string play=seconds>1?"Continue exploring   →":"Enter campus   →";
-            if(Button(new Rect(46,428,right-94,60),play,true))Play();
+            if(Button(new Rect(46,428,right-94,60),FocusLabel(0,play),true))Play();
             float bw=(right-106)/2;
-            if(Button(new Rect(46,502,bw,55),"College videos"))Videos();
-            if(Button(new Rect(58+bw,502,bw,55),"Building stories"))Stories();
-            if(Button(new Rect(46,569,bw,48),"Build your own · B"))BuildYourOwn();
-            if(Button(new Rect(58+bw,569,bw,48),"Courses & classes"))Courses();
-            if(Button(new Rect(46,629,bw,42),"Your character"))game.life.SetPanel("settings");
-            if(Button(new Rect(58+bw,629,bw,42),"Controls & sound"))game.life.SetPanel("welcome");
-            if(Button(new Rect(46,683,right-94,36),"Finish session"))EndSession();
+            if(Button(new Rect(46,502,bw,55),FocusLabel(1,"College videos")))Videos();
+            if(Button(new Rect(58+bw,502,bw,55),FocusLabel(2,"Building stories")))Stories();
+            if(Button(new Rect(46,569,bw,48),FocusLabel(3,"Build your own · B")))BuildYourOwn();
+            if(Button(new Rect(58+bw,569,bw,48),FocusLabel(4,"Courses & classes")))Courses();
+            if(Button(new Rect(46,629,bw,42),FocusLabel(5,"Your character")))game.life.SetPanel("settings");
+            if(Button(new Rect(58+bw,629,bw,42),FocusLabel(6,"Controls & sound")))game.life.SetPanel("welcome");
+            if(Button(new Rect(46,683,right-94,36),FocusLabel(7,"Finish session")))EndSession();
             Label(new Rect(46,h-74,right-90,46),"G  Stories & media    ·    B  Building studio    ·    Esc  Menu\nWASD / arrows  Move    ·    O  On-screen controls",small,Muted);
             Fill(new Rect(right+28,h-250,w-right-58,212),new Color(.025f,.018f,.042f,.91f));
             Label(new Rect(right+50,h-227,w-right-98,26),"STEP INSIDE / FERGUSON HALL",small,Gold);
             Label(new Rect(right+50,h-190,w-right-100,63),"Explore beyond the doors.",heading,Cream);
             Label(new Rect(right+50,h-139,w-right-100,44),"Three levels, openable doors and rooms to explore.",small,Muted);
-            if(Button(new Rect(right+50,h-82,w-right-100,36),"Explore Ferguson Hall   →")){CampusBuildings.Instance.Visit();}
+            if(Button(new Rect(right+50,h-82,w-right-100,36),FocusLabel(8,"Explore Ferguson Hall   →"))){CampusBuildings.Instance.Visit();}
         }
         void Stat(float x,float y,float width,string value,string caption)
         {Fill(new Rect(x,y,width,93),new Color(.063f,.040f,.09f));Label(new Rect(x+14,y+10,width-28,42),value,heading,Gold);Label(new Rect(x+14,y+57,width-24,30),caption,small,Muted);}
@@ -173,9 +196,9 @@ namespace AlbionOdyssey
             Fill(new Rect(right+30,h-363,w-right-62,319),new Color(.025f,.018f,.042f,.94f));
             Label(new Rect(right+53,h-340,w-right-102,32),"WHERE NEXT?",heading,Cream);
             Label(new Rect(right+53,h-291,w-right-106,45),Math.Max(0,BuildingCount()-initialBuildings)+" more buildings on your campus this session.",small,Muted);
-            if(Button(new Rect(right+53,h-237,w-right-108,51),"Keep exploring   →",true))Play();
-            if(Button(new Rect(right+53,h-171,w-right-108,45),"Return to launch screen"))ShowLaunch();
-            if(Button(new Rect(right+53,h-111,w-right-108,45),SaveSucceeded?"Quit to desktop":"Retry saving")){if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);}
+            if(Button(new Rect(right+53,h-237,w-right-108,51),FocusLabel(0,"Keep exploring   →"),true))Play();
+            if(Button(new Rect(right+53,h-171,w-right-108,45),FocusLabel(1,"Return to launch screen")))ShowLaunch();
+            if(Button(new Rect(right+53,h-111,w-right-108,45),FocusLabel(2,SaveSucceeded?"Quit to desktop":"Retry saving"))){if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);}
         }
     }
 }
