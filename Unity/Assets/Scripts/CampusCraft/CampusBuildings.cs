@@ -88,7 +88,7 @@ namespace AlbionOdyssey
         {
             if(game.life.PanelOpen||game.building||game.journalOpen)return false;
             foreach(var b in additional)if(b.HandleInput())return true;
-            if(Input.GetKeyDown(KeyCode.E)&&NearbyDoor!=null){NearbyDoor.Toggle(game.player);return true;}
+            if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.JoystickButton1))&&NearbyDoor!=null){NearbyDoor.Toggle(game.player);return true;}
             if(Input.GetKeyDown(KeyCode.H)&&Inside){game.tour.OpenStory(game.tour.catalog.ForCampus("26"));return true;}
             return false;
         }

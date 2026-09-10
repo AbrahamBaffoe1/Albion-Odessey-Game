@@ -65,8 +65,8 @@ namespace AlbionOdyssey
             if(game.life.PanelOpen||game.building||game.journalOpen)return false;
             if(Input.GetKeyDown(KeyCode.G)||Input.GetKeyDown(KeyCode.F6)){OpenDirectory();return true;}
             if(Input.GetKeyDown(KeyCode.H)&&Nearby()!=null){VideosOnly=false;Filter();OpenStory(Nearby());return true;}
-            if(!InRoom&&game.player.vehicle==null&&Input.GetKeyDown(KeyCode.E)&&Vector3.Distance(game.player.transform.position,CampusExpansion.Find("50").Arrival)<5){EnterRoom();return true;}
-            if(InRoom&&Input.GetKeyDown(KeyCode.E)&&Vector3.Distance(game.player.transform.position,RoomOrigin+new Vector3(0,0,-3.5f))<2.5f){ExitRoom();return true;}
+            if(!InRoom&&game.player.vehicle==null&&(Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.JoystickButton1))&&Vector3.Distance(game.player.transform.position,CampusExpansion.Find("50").Arrival)<5){EnterRoom();return true;}
+            if(InRoom&&(Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.JoystickButton1))&&Vector3.Distance(game.player.transform.position,RoomOrigin+new Vector3(0,0,-3.5f))<2.5f){ExitRoom();return true;}
             return false;
         }
         void Filter(){filtered=catalog.Search(search);if(VideosOnly)filtered=filtered.Where(p=>p.media.Any(m=>m.kind=="video")).ToArray();}

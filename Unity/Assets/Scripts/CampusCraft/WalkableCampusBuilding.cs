@@ -347,7 +347,7 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if (game.life.PanelOpen || game.building || game.journalOpen) return false;
-            CampusDoor nearby = NearbyDoor(); if (Input.GetKeyDown(KeyCode.E) && nearby != null) { nearby.Toggle(game.player); return true; }
+            CampusDoor nearby = NearbyDoor(); if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton1)) && nearby != null) { nearby.Toggle(game.player); return true; }
             if (Input.GetKeyDown(KeyCode.H) && Inside)
             {
                 TourPlace story = game.tour.catalog.ForCampus(Id);
