@@ -25,7 +25,7 @@ namespace AlbionOdyssey
         Texture2D photo; Coroutine loading; UnityWebRequest request; TourMedia activeMedia;
         VideoPlayer video; AudioSource videoAudio; RenderTexture videoTexture,panoramaTexture;
         Camera panoramaCamera; GameObject panoramaSphere,room; Material panoramaMaterial;
-        float yaw,pitch,mediaStarted,revealChars,openedAt;int directoryFocus,storyFocus; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
+        float yaw,pitch,mediaStarted,revealChars,openedAt;int directoryFocus,storyFocus,detailFocus; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel,detailFocusActive;
         string[] narrativeLines=Array.Empty<string>(); int narrativePage;
         GUIStyle title,text,small,button,story,detailTitle,textButton; TourPlace[] filtered;
         public static readonly Vector3 RoomOrigin=new Vector3(1600,0,1600);
@@ -57,7 +57,7 @@ namespace AlbionOdyssey
         {
             if(IsOpen)
             {
-                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(vertical!=0||horizontal!=0)storyFocus=(storyFocus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+4)%4;if(choose){if(storyFocus==0&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);else if(storyFocus==1){sidePanel=false;Open(selected);}else if(storyFocus==2)EnterSelected();else Close();}}else{if(vertical!=0&&filtered!=null&&filtered.Length>0){directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null)Open(selected);}return true;}
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(vertical!=0||horizontal!=0)storyFocus=(storyFocus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+4)%4;if(choose){if(storyFocus==0&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);else if(storyFocus==1){sidePanel=false;Open(selected);}else if(storyFocus==2)EnterSelected();else Close();}}else{if(horizontal!=0||detailFocusActive&&vertical!=0){detailFocusActive=true;int count=activeMedia==null?DetailActionCount():MediaActionCount();detailFocus=(detailFocus+(horizontal!=0?(horizontal>0?1:-1):(vertical>0?-1:1))+count)%count;}else if(vertical!=0&&filtered!=null&&filtered.Length>0){detailFocusActive=false;directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null){if(detailFocusActive){if(activeMedia==null)ActivateDetailFocus();else ActivateMediaFocus();}else Open(selected);}}return true;}
                 if(Input.GetKeyDown(KeyCode.Escape))Close();
                 else if(sidePanel&&(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.Space))){AdvanceStory();}
                 return true;
@@ -78,7 +78,7 @@ namespace AlbionOdyssey
         void OpenInternal(TourPlace place,bool compact)
         {
             if(place==null)return;
-            StopMedia();sidePanel=compact;storyFocus=0;selected=place;directoryFocus=filtered==null?0:Mathf.Max(0,System.Array.IndexOf(filtered,place));detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;openedAt=Time.unscaledTime;game.life.SetPanel("tour");
+            StopMedia();sidePanel=compact;storyFocus=0;detailFocus=0;detailFocusActive=false;selected=place;directoryFocus=filtered==null?0:Mathf.Max(0,System.Array.IndexOf(filtered,place));detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;openedAt=Time.unscaledTime;game.life.SetPanel("tour");
             if(read.Add(game.state.active+"."+place.id)){storySound.volume=game.sound.Muted?0:game.sound.Volume;storySound.PlayOneShot(storyClip);}
             Status="";
         }
@@ -218,6 +218,7 @@ namespace AlbionOdyssey
         bool ControlButton(Rect r,string value)
         {return GUI.Button(r,value,textButton);}
         string FocusLabel(int index,string value)=>storyFocus==index?"▶  "+value:value;
+        string DetailFocusLabel(int index,string value)=>detailFocusActive&&detailFocus==index?"▶  "+value:value;
         bool NextButton(Rect r,string value)
         {return GUI.Button(r,value,textButton);}
         bool EnterSelected()
@@ -230,6 +231,28 @@ namespace AlbionOdyssey
             if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)){CampusBuildings.Instance.VisitCampus("18");return true;}
             if(selected.id=="917"){EnterRoom();return true;}
             return false;
+        }
+        bool HasEntry(TourPlace place)
+        {
+            if(place==null)return false;
+            if(place.id=="888"||place.id=="917")return true;
+            if(place.campusIds==null)return false;
+            return Array.IndexOf(place.campusIds,"16")>=0||Array.IndexOf(place.campusIds,"1")>=0||place.campusIds.Any(id=>id=="18k"||id=="18n"||id=="18p"||id=="18u");
+        }
+        int DetailActionCount(){return Mathf.Max(1,(selected==null?0:selected.media.Length)+(HasEntry(selected)?1:0)+1);}
+        int MediaActionCount(){int count=2;if(video!=null&&video.isPrepared)count++;if(videoAudio!=null)count++;return count;}
+        void ActivateDetailFocus()
+        {
+            if(selected==null)return;
+            int mediaCount=selected.media.Length;
+            if(detailFocus<mediaCount){ShowMedia(selected.media[detailFocus]);return;}
+            if(HasEntry(selected)&&detailFocus==mediaCount){EnterSelected();return;}
+            if(TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+        }
+        void ActivateMediaFocus()
+        {
+            if(activeMedia==null)return;
+            if(detailFocus==0)StopMedia();else if(detailFocus==1)ShowMedia(activeMedia);else if(detailFocus==2&&video!=null&&video.isPrepared){if(video.isPlaying)video.Pause();else video.Play();}else if(detailFocus==3&&videoAudio!=null)videoAudio.mute=!videoAudio.mute;
         }
         void DrawStorySide(float width,float height)
         {
@@ -283,14 +306,15 @@ namespace AlbionOdyssey
                     for(int i=0;i<selected.media.Length;i++)
                     {
                         var m=selected.media[i];string label=m.kind=="panorama"?"360° room view":m.kind=="video"?"Watch video":"Photo "+(i+1);
-                        if(Button(new Rect(x+(i%3)*(w/3),555+(i/3)*49,w/3-10,42),label))ShowMedia(m);
+                        if(Button(new Rect(x+(i%3)*(w/3),555+(i/3)*49,w/3-10,42),DetailFocusLabel(i,label)))ShowMedia(m);
                     }
                     if(selected.media.Length==0)GUI.Label(new Rect(x,555,w,42),"This building has no attached media. Read the building story online below.",text);
-                    if(selected.id=="888"&&Button(new Rect(x,650,w,45),"ENTER FERGUSON  /  THREE LEVELS")){StopMedia();CampusBuildings.Instance.Visit();}
-                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"16")>=0&&Button(new Rect(x,650,w,45),"ENTER ROBINSON HALL  /  FOUR LEVELS")){StopMedia();CampusBuildings.Instance.VisitCampus("16");}
-                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"1")>=0&&Button(new Rect(x,650,w,45),"ENTER BONTA ADMISSION CENTER")){StopMedia();CampusBuildings.Instance.VisitCampus("1");}
-                    if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)&&Button(new Rect(x,650,w,45),"ENTER SCIENCE COMPLEX  /  FOUR LEVELS")){StopMedia();CampusBuildings.Instance.VisitCampus("18");}
-                    if(selected.id=="917"&&Button(new Rect(x,650,w,45),InRoom?"RESUME THE 3D ROOM":"WALK INSIDE  /  WESLEY ROOM STUDY"))EnterRoom();
+                    int enterFocus=selected.media.Length;
+                    if(selected.id=="888"&&Button(new Rect(x,650,w,45),DetailFocusLabel(enterFocus,"ENTER FERGUSON  /  THREE LEVELS"))){StopMedia();CampusBuildings.Instance.Visit();}
+                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"16")>=0&&Button(new Rect(x,650,w,45),DetailFocusLabel(enterFocus,"ENTER ROBINSON HALL  /  FOUR LEVELS"))){StopMedia();CampusBuildings.Instance.VisitCampus("16");}
+                    if(selected.campusIds!=null&&Array.IndexOf(selected.campusIds,"1")>=0&&Button(new Rect(x,650,w,45),DetailFocusLabel(enterFocus,"ENTER BONTA ADMISSION CENTER"))){StopMedia();CampusBuildings.Instance.VisitCampus("1");}
+                    if(selected.campusIds!=null&&(Array.IndexOf(selected.campusIds,"18k")>=0||Array.IndexOf(selected.campusIds,"18n")>=0||Array.IndexOf(selected.campusIds,"18p")>=0||Array.IndexOf(selected.campusIds,"18u")>=0)&&Button(new Rect(x,650,w,45),DetailFocusLabel(enterFocus,"ENTER SCIENCE COMPLEX  /  FOUR LEVELS"))){StopMedia();CampusBuildings.Instance.VisitCampus("18");}
+                    if(selected.id=="917"&&Button(new Rect(x,650,w,45),DetailFocusLabel(enterFocus,InRoom?"RESUME THE 3D ROOM":"WALK INSIDE  /  WESLEY ROOM STUDY")))EnterRoom();
                 }
                 else
                 {
@@ -302,13 +326,13 @@ namespace AlbionOdyssey
                         panoramaCamera.transform.rotation=Quaternion.Euler(pitch,yaw,0);if(Event.current.type==EventType.Repaint)panoramaCamera.Render();GUI.DrawTexture(r,panoramaTexture,ScaleMode.ScaleToFit);
                     }
                     if(video!=null&&video.isPrepared)GUI.DrawTexture(r,videoTexture,ScaleMode.ScaleToFit);
-                    if(Button(new Rect(x,r.yMax+14,170,42),"Back to information"))StopMedia();
-                    if(activeMedia!=null&&Button(new Rect(x+185,r.yMax+14,110,42),"Retry"))ShowMedia(activeMedia);
-                    if(video!=null&&video.isPrepared&&Button(new Rect(x+310,r.yMax+14,120,42),video.isPlaying?"Pause":"Play")){if(video.isPlaying)video.Pause();else video.Play();}
-                    if(videoAudio!=null&&Button(new Rect(x+445,r.yMax+14,120,42),videoAudio.mute?"Unmute":"Mute"))videoAudio.mute=!videoAudio.mute;
+                    if(Button(new Rect(x,r.yMax+14,170,42),DetailFocusLabel(0,"Back to information")))StopMedia();
+                    if(activeMedia!=null&&Button(new Rect(x+185,r.yMax+14,110,42),DetailFocusLabel(1,"Retry")))ShowMedia(activeMedia);
+                    if(video!=null&&video.isPrepared&&Button(new Rect(x+310,r.yMax+14,120,42),DetailFocusLabel(2,video.isPlaying?"Pause":"Play"))){if(video.isPlaying)video.Pause();else video.Play();}
+                    if(videoAudio!=null&&Button(new Rect(x+445,r.yMax+14,120,42),DetailFocusLabel(3,videoAudio.mute?"Unmute":"Mute")))videoAudio.mute=!videoAudio.mute;
                 }
                 GUI.Label(new Rect(x,height-99,w-205,77),Status,small);
-                if(Button(new Rect(width-210,height-86,180,46),"Read online")&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+                int readFocus=selected.media.Length+(HasEntry(selected)?1:0);if(Button(new Rect(width-210,height-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
             }
             GUI.Label(new Rect(28,height-22,width-56,18),"STICK  Browse   ·   TRIGGER  Open   ·   MENU  Back",small);
             GUI.matrix=old;
