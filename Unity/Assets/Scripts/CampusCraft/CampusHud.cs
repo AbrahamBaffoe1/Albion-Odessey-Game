@@ -119,6 +119,12 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(r.x+210,r.y+28,106,22),wildlife+"  SQUIRRELS",value);
             GUI.Label(new Rect(r.x+14,r.y+49,r.width-28,14),weather+"  ·  "+(game.world==null?0:game.world.StudentCount)+" STUDENTS ON CAMPUS",eyebrow);
         }
+        string InputFooter()
+        {
+            if(game.xr!=null&&game.xr.Active)return "LEFT STICK  Move   ·   RIGHT STICK  Turn   ·   TRIGGER  Interact   ·   GRIP  Grab   ·   MENU  Pause";
+            if(game.player.pointerControls)return "ON-SCREEN ARROWS  Move   ·   TURN  Aim   ·   INTERACT  Pick up / talk   ·   O  Hide controls";
+            return "V  Camera   ·   J  Journal   ·   F2  Build   ·   E / F  Interact   ·   O  Screen controls";
+        }
         void TargetTag(float scale)
         {
             if(game.player.eyes==null||!game.player.TryTarget(out var hit))return;
@@ -150,7 +156,7 @@ namespace AlbionOdyssey
             if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
             float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize,top+130,mapSize,mapSize));
             if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
-            GUI.Label(new Rect(right-310,bottom-28,286,20),"V camera   ·   J journal   ·   F2 build",eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
+            GUI.Label(new Rect(left+24,bottom-28,right-left-48,20),InputFooter(),eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }
 }
