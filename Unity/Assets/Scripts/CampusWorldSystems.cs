@@ -22,6 +22,7 @@ namespace AlbionOdyssey
             game = owner;
             root = new GameObject("Campus paths, furniture and NPC routes").transform;
             BuildLandscaping();
+            Physics.SyncTransforms();
             BuildNpcRoutes();
             activities = gameObject.AddComponent<CampusActivitySystem>();
             activities.Setup(game);
@@ -91,12 +92,24 @@ namespace AlbionOdyssey
                 new[]{CampusCatalog.Point(503, 105), CampusCatalog.Point(503, 138), CampusCatalog.Point(512, 105)},
                 new[]{CampusCatalog.Point(739, 294), CampusCatalog.Point(394, 383), CampusCatalog.Point(630, 349)},
                 new[]{CampusCatalog.Point(445, 225)+new Vector3(-10,0,-9), CampusCatalog.Point(445, 203), CampusCatalog.Point(375, 229)},
-                new[]{CampusCatalog.Point(572, 268), CampusCatalog.Point(575, 203), CampusCatalog.Point(693, 206)}
+                new[]{CampusCatalog.Point(572, 268), CampusCatalog.Point(575, 203), CampusCatalog.Point(693, 206)},
+                new[]{CampusCatalog.Point(497, 204)+new Vector3(0,0,-18), CampusCatalog.Point(445, 225)+new Vector3(17,0,-9), CampusCatalog.Point(497, 204)},
+                new[]{CampusCatalog.Point(400, 241)+new Vector3(18,0,0), CampusCatalog.Point(409, 213), CampusCatalog.Point(445, 203)},
+                new[]{CampusCatalog.Point(310, 69), CampusCatalog.Point(323, 69), CampusCatalog.Point(375, 229)},
+                new[]{CampusCatalog.Point(235, 296), CampusCatalog.Point(310, 275), CampusCatalog.Point(323, 275)},
+                new[]{CampusCatalog.Point(630, 349), CampusCatalog.Point(682, 401), CampusCatalog.Point(544, 400)},
+                new[]{CampusCatalog.Point(739, 294), CampusCatalog.Point(739, 310), CampusCatalog.Point(394, 383)},
+                new[]{CampusCatalog.Point(489, 258), CampusCatalog.Point(509, 258), CampusCatalog.Point(532, 258)},
+                new[]{CampusCatalog.Point(377, 180)+new Vector3(-16,0,0), CampusCatalog.Point(346, 180)+new Vector3(16,0,0), CampusCatalog.Point(429, 189)},
+                new[]{CampusCatalog.Point(503, 120)+new Vector3(-20,0,0), CampusCatalog.Point(503, 138)+new Vector3(20,0,0), CampusCatalog.Point(492, 105)},
+                new[]{CampusCatalog.Point(544, 400)+new Vector3(-18,0,0), CampusCatalog.Point(630, 349)+new Vector3(18,0,0), CampusCatalog.Point(684, 349)},
+                new[]{CampusCatalog.Point(394, 383)+new Vector3(-20,0,-10), CampusCatalog.Point(394, 383)+new Vector3(20,0,10), CampusCatalog.Point(739, 294)}
             };
             for (int i = 0; i < routes.Length; i++)
             {
                 var profile=CampusStudentProfiles.Get(i);
-                var o = new GameObject("Campus student · "+profile.Name); o.transform.SetParent(root); o.transform.position = routes[i][0] + Vector3.up * .08f;
+                for(int waypoint=0;waypoint<routes[i].Length;waypoint++)routes[i][waypoint]=CampusStudentNavigation.FreeWaypoint(routes[i][waypoint]);
+                var o = new GameObject("Campus student · "+profile.Name+" · route "+(i+1)); o.transform.SetParent(root); o.transform.position = routes[i][0];
                 var agent = o.AddComponent<CampusNpcAgent>(); agent.Route = routes[i]; agent.Speed = 1.1f + (i % 3) * .18f; agent.Build(profile); agents.Add(agent);
             }
         }
@@ -116,7 +129,9 @@ namespace AlbionOdyssey
             if (Route == null || Route.Length < 2 || avatar == null) return;
             Vector3 goal = Route[target] + Vector3.up * .08f; Vector3 delta = goal - transform.position; delta.y = 0;
             if (delta.magnitude < .7f) { target = (target + 1) % Route.Length; return; }
-            transform.position += delta.normalized * Speed * Time.deltaTime;
+            Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
+            if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;return;}
+            transform.position += direction * distance;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f);
             avatar.Animate((transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime), false); last = transform.position;
         }

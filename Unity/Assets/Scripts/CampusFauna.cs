@@ -111,8 +111,11 @@ namespace AlbionOdyssey
         public void ResetForVerification()
         {
             if(fauna.HabitatCount==0)return;
-            transform.position=fauna.PickHabitat(0,seed)+Vector3.up*.12f;
-            target=transform.position;activity=Activity.Forage;nextDecision=Time.time+.2f;DistanceTravelled=0;
+            // Use a short, open cross-tree route for the smoke walkthrough so
+            // extra campus agents cannot make the verification squirrel pick a
+            // temporary rest state or an obstructed random waypoint.
+            Vector3 tree=fauna.CurrentTree(0);transform.position=tree+new Vector3(3.8f,.12f,0);
+            target=tree+new Vector3(-3.8f,.12f,0);activity=Activity.Run;nextDecision=Time.time+8f;DistanceTravelled=0;
         }
         public string ActivityName=>activity.ToString();
         public bool UsesBlenderAsset {get;private set;}

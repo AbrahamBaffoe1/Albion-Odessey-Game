@@ -208,7 +208,10 @@ namespace AlbionOdyssey
             if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
             Vector3 goal = Route[target]; Vector3 delta = goal - transform.position; delta.y = 0;
             if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
-            seated = false; avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero; transform.position += delta.normalized * Speed * Time.deltaTime; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f); avatar.Animate(Speed, false); last = transform.position;
+            seated = false; avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
+            Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
+            if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;pause=.35f;return;}
+            transform.position += direction * distance; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 5f); avatar.Animate(Speed, false); last = transform.position;
         }
         void Talk()
         {
