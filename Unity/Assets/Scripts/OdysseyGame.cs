@@ -120,6 +120,7 @@ namespace AlbionOdyssey
             if(Input.GetKeyDown(KeyCode.J)){SetJournal(!journalOpen);}
             if(journalOpen)
             {
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){SetJournal(false);return;}if(horizontal!=0)journalPage=(journalPage+(horizontal>0?1:-1)+12)%12;if(vertical!=0)journalPage=(journalPage+(vertical>0?-1:1)+12)%12;return;}
                 if(Input.GetKeyDown(KeyCode.Escape))SetJournal(false);
                 if(Input.GetKeyDown(KeyCode.LeftArrow))journalPage=(journalPage+11)%12;
                 if(Input.GetKeyDown(KeyCode.RightArrow))journalPage=(journalPage+1)%12;
