@@ -23,8 +23,14 @@ namespace AlbionOdyssey
             if(Input.GetKeyDown(KeyCode.V))thirdPerson=!thirdPerson;
             if(Cursor.lockState==CursorLockMode.Locked)
             {
-                if(vehicle==null)transform.Rotate(0,Input.GetAxisRaw("Mouse X")*2,0);
-                pitch=Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*2,-45,65);
+                float lookX=Input.GetAxisRaw("Mouse X"),lookY=Input.GetAxisRaw("Mouse Y");
+                if(AlbionUIInput.ControllerPresent)
+                {
+                    float padX=Input.GetAxisRaw("Look X"),padY=Input.GetAxisRaw("Look Y");
+                    if(Mathf.Abs(padX)>.01f||Mathf.Abs(padY)>.01f){lookX=padX*3.1f;lookY=padY*3.1f;}
+                }
+                if(vehicle==null)transform.Rotate(0,lookX*2,0);
+                pitch=Mathf.Clamp(pitch-lookY*2,-45,65);
             }
             float x=(Input.GetKey(OdysseyAccessibility.RightKey)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.LeftKey)||Input.GetKey(KeyCode.LeftArrow)?1:0)+buttonMove.x;
             float z=(Input.GetKey(OdysseyAccessibility.ForwardKey)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.BackKey)||Input.GetKey(KeyCode.DownArrow)?1:0)+buttonMove.y;
@@ -37,7 +43,7 @@ namespace AlbionOdyssey
             Vector3 move=Vector3.ClampMagnitude(transform.right*x+transform.forward*z,1)*(sprint?6.5f:3.8f);movementSpeed=move.magnitude;
             if(body.isGrounded&&velocity<0)velocity=-2;
             if(pointerControls)transform.Rotate(0,((Input.GetKey(KeyCode.X)?1:0)-(Input.GetKey(KeyCode.Z)?1:0)+buttonTurn)*90*Time.deltaTime,0);
-            if(body.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||Input.GetButtonDown("Jump")||buttonJump))velocity=5.5f;
+            if(body.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||Input.GetButtonDown("Jump")||Input.GetKeyDown(KeyCode.JoystickButton0)||buttonJump))velocity=5.5f;
             buttonJump=false;velocity-=18*Time.deltaTime;var before=transform.position;body.Move((move+Vector3.up*velocity)*Time.deltaTime);
             var delta=transform.position-before;delta.y=0;movementSpeed=delta.magnitude/Mathf.Max(.001f,Time.deltaTime);
             if(avatar!=null&&move.sqrMagnitude>.01f&&thirdPerson)avatar.transform.localRotation=Quaternion.RotateTowards(avatar.transform.localRotation,Quaternion.Euler(0,Mathf.Atan2(x,z)*Mathf.Rad2Deg,0),540*Time.deltaTime);

@@ -155,7 +155,7 @@ namespace AlbionOdyssey
                     }
                 }
             }
-            else if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.F))&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
+            else if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.F)||Input.GetKeyDown(KeyCode.JoystickButton1))&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
             foreach(var m in memories)if(m!=null)m.transform.Rotate(0,30*Time.deltaTime,0);
         }
         public void Interact()

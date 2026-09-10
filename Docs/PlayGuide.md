@@ -8,6 +8,7 @@ Open **Albion Odyssey.app** from the 0.15 release folder. If using the ZIP, doub
 |---|---|
 | Forward, backward, left, right | W/A/S/D or the four arrow keys |
 | Look around | Mouse |
+| Gamepad | Left stick moves, right stick looks, A/Cross jumps, B/Circle interacts, Menu pauses |
 | Run / jump | Shift / Space |
 | Pick up a golden memory or talk to Pip | Aim at it from nearby, then E or F |
 | Read a building's story | H near a building opens a glass side panel; use **Read online** for the official building page or **More information** for the full archive |
