@@ -153,6 +153,14 @@ namespace AlbionOdyssey
         }
         bool Button(float x,float y,float w,string label)=>GUI.Button(new Rect(x,y,w,38),label,button);
         void Label(float x,float y,float w,float h,string value,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),value,style??text);
+        void Card(Rect r,Color accent)
+        {
+            var old=GUI.color;
+            GUI.color=new Color(.045f,.060f,.095f,.92f);GUI.DrawTexture(r,Texture2D.whiteTexture);
+            GUI.color=accent;GUI.DrawTexture(new Rect(r.x,r.y,4,r.height),Texture2D.whiteTexture);
+            GUI.color=new Color(accent.r,accent.g,accent.b,.45f);GUI.DrawTexture(new Rect(r.x+4,r.y,r.width-4,2),Texture2D.whiteTexture);
+            GUI.color=old;
+        }
         string FocusLabel(int index,string value)=>menuFocus==index?"▶ "+value:value;
         void FocusBox(Rect r,int index)
         {
@@ -191,6 +199,11 @@ namespace AlbionOdyssey
             if(panel=="campus"||panel=="settings"||panel=="treasures") {game.campus.DrawPanel(panel,left);}
             else if(panel=="welcome")
             {
+                Card(new Rect(left-16,134,545,330),AlbionUITheme.Cyan);
+                Card(new Rect(left+570,134,550,330),AlbionUITheme.Gold);
+                Card(new Rect(left-16,510,1120,225),AlbionUITheme.Purple);
+                Label(left+12,140,500,20,"PLAYER CONTROLS",muted);
+                Label(left+602,140,500,20,"CAMPUS LOOP",muted);
                 Label(left,95,1080,50,"Build your campus. Discover its stories. Start a class.",text);
                 Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  E or F, aimed at the object\nHISTORY  H near a building   ·   ALL STORIES  G\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nCHARACTER SETTINGS  F3   ·   CAMERA  V\nHELP / PAUSE  Esc or F1",text);
                 Label(left+590,155,510,260,"NEW: EXPLORE ALBION\n61 campus destinations · 7 discoveries\nE enters / exits a car. Space brakes.\nF3 lets you choose or create your character.\n\nLEGACY CAMPUS\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
@@ -217,7 +230,7 @@ namespace AlbionOdyssey
                 for(int i=0;i<4;i++)
                 {
                     float x=left+(i%2)*570,y=125+(i/2)*230;
-                    GUI.color=new Color(.07f,.13f,.16f);GUI.DrawTexture(new Rect(x,y,545,205),Texture2D.whiteTexture);GUI.color=Color.white;
+                    Card(new Rect(x,y,545,205),i%2==0?AlbionUITheme.Cyan:AlbionUITheme.Gold);
                     Label(x+22,y+20,500,45,names[i],text);Label(x+22,y+72,480,60,detail[i],muted);
                     if(Button(x+22,y+140,220,FocusLabel(i,"Travel here")))Travel(i);
                     FocusBox(new Rect(x+22,y+140,220,38),i);
@@ -226,6 +239,7 @@ namespace AlbionOdyssey
             }
             else if(panel=="history")
             {
+                Card(new Rect(left-16,180,1120,395),AlbionUITheme.Gold);
                 for(int i=0;i<3;i++)if(Button(left+i*375,110,360,FocusLabel(i,CampusLessons.Titles[i])))history=i;
                 FocusBox(new Rect(left,110,360,38),0);FocusBox(new Rect(left+375,110,360,38),1);FocusBox(new Rect(left+750,110,360,38),2);
                 Label(left,190,1090,60,CampusLessons.Titles[history],heading);
@@ -241,6 +255,10 @@ namespace AlbionOdyssey
         void DrawCourses(float x)
         {
             var school=game.state.school;
+            Card(new Rect(x-16,120,380,390),AlbionUITheme.Cyan);
+            Card(new Rect(x+359,120,380,390),AlbionUITheme.Purple);
+            Card(new Rect(x+749,120,380,390),AlbionUITheme.Gold);
+            Card(new Rect(x-16,500,1140,245),AlbionUITheme.Cyan);
             Label(x,88,1100,32,"LOCAL CLASSROOM · Keeper "+(game.state.active+1)+" · shared on this Mac · 12 seats per class",muted);
             Label(x,133,345,28,"CREATE A COURSE",text);
             courseName=GUI.TextField(new Rect(x,170,340,36),courseName,40);
