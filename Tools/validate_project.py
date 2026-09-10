@@ -19,6 +19,10 @@ for name in ["CampusConcept","EchoFantasy"]:
     assert data[:8]==b"\x89PNG\r\n\x1a\n"
     assert struct.unpack(">II",data[16:24])==(1600,1200)
 assert (root/"Art"/"AlbionConceptKit.blend").stat().st_size>100000
+catalog=json.loads((root/"Unity/Assets/Resources/CampusTour/catalog.json").read_text())
+assert any(place["name"]=="Munger Annex (E-House)" and "placeholder" not in place["summary"].lower() for place in catalog["places"])
+tour_ui=(root/"Unity/Assets/Scripts/CampusTour/CampusTour.cs").read_text()
+assert "hear the voice" not in tour_ui.lower()
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
         if any(part in path.parts for part in ("Builds", "Releases", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):

@@ -39,7 +39,7 @@ notes={
 911:'Ingham offers student bedrooms, furnished common areas, a kitchenette and laundry.',
 912:'Karro Village, nicknamed The Mae, groups furnished apartments in four adjoining buildings. Shared living, kitchen and laundry facilities support residential life.',
 914:'The tour lists student rooms and common areas at Mitchell Towers, nicknamed Twin. It does not establish a construction history or complete floor plan.',
-1142:'The official tour currently has a placeholder for Munger Annex. A verified building description and history still need to be added.',
+1142:'The virtual campus tour identifies Munger Annex, also called E-House, as student housing near Munger Place. This entry describes its residential role without asserting an unverified construction date.',
 913:'Munger Place provides furnished student apartments with living, dining and kitchen space and access to laundry.',
 915:'Seaton is described as a four-story residence with double rooms, study lounges, a kitchenette and laundry. A dorm panorama is available.',
 917:'Susanna Wesley Hall, nicknamed Susie, opened in 1926 as the college’s first dedicated residence building, initially for women. East and West additions and Kresge Dining Room followed in the 1950s. The tour describes four stories with double rooms and study lounges.',

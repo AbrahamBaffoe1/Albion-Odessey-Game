@@ -279,7 +279,7 @@ namespace AlbionOdyssey
             Box(new Rect(0,0,width,height),new Color(.025f,.028f,.052f));Box(new Rect(0,0,width,94),new Color(.075f,.055f,.12f));Box(new Rect(0,0,width,5),new Color(1f,.76f,.28f));
             GUI.Label(new Rect(28,14,width-260,22),"ALBION COLLEGE ARCHIVE",small);
             GUI.Label(new Rect(28,35,width-260,38),VideosOnly?"College videos":"Places & stories",title);
-            GUI.Label(new Rect(30,72,width-300,20),"Read the history, hear the voice and step through the reference material.",small);
+            GUI.Label(new Rect(30,72,width-300,20),"Explore the history and reference material for each campus place.",small);
             if(Button(new Rect(right-160,safe.yMin+23,160,45),"Return · Esc"))Close();
             var next=GUI.TextField(new Rect(left,110,310,38),search,80);if(next!=search){search=next;Filter();listScroll=Vector2.zero;}
             if(Button(new Rect(left,158,148,36),"All buildings")){VideosOnly=false;Filter();listScroll=Vector2.zero;}
