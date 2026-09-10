@@ -267,6 +267,18 @@ namespace AlbionOdyssey
             marker.BeginGrab(hand); Pulse(controller, .42f, .10f); return true;
         }
 
+        public bool RecenterView()
+        {
+            bool recentered = false;
+            var subsystems = new List<XRInputSubsystem>();
+            SubsystemManager.GetSubsystems(subsystems);
+            foreach (var subsystem in subsystems)
+                if (subsystem != null && subsystem.running) recentered |= subsystem.TryRecenter();
+            haveHeadPose = false;
+            if (game != null) game.notice = recentered ? "XR view recentered. Keep your play area clear." : "XR recenter is unavailable until a running headset is connected.";
+            return recentered;
+        }
+
         void ReleaseGrab()
         {
             var grabbed = FindObjectsByType<OdysseyXRGrabTarget>(FindObjectsSortMode.None);
