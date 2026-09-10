@@ -25,7 +25,7 @@ namespace AlbionOdyssey
         Texture2D photo; Coroutine loading; UnityWebRequest request; TourMedia activeMedia;
         VideoPlayer video; AudioSource videoAudio; RenderTexture videoTexture,panoramaTexture;
         Camera panoramaCamera; GameObject panoramaSphere,room; Material panoramaMaterial;
-        float yaw,pitch,mediaStarted,revealChars; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
+        float yaw,pitch,mediaStarted,revealChars,openedAt; Vector3 returnPosition; Quaternion returnRotation; bool returnThird,voicePlaying,sidePanel;
         string[] narrativeLines=Array.Empty<string>(); int narrativePage;
         GUIStyle title,text,small,button,story,detailTitle,textButton; TourPlace[] filtered;
         public static readonly Vector3 RoomOrigin=new Vector3(1600,0,1600);
@@ -77,7 +77,7 @@ namespace AlbionOdyssey
         void OpenInternal(TourPlace place,bool compact)
         {
             if(place==null)return;
-            StopMedia();sidePanel=compact;selected=place;detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;game.life.SetPanel("tour");
+            StopMedia();sidePanel=compact;selected=place;detailScroll=Vector2.zero;PrepareNarration(place);revealChars=place.summary.Length;openedAt=Time.unscaledTime;game.life.SetPanel("tour");
             if(read.Add(game.state.active+"."+place.id)){storySound.volume=game.sound.Muted?0:game.sound.Volume;storySound.PlayOneShot(storyClip);}
             Status="";
         }
@@ -247,7 +247,7 @@ namespace AlbionOdyssey
         {
             if(game==null)return;InitStyles();var old=GUI.matrix;
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);
-            float width=Screen.width/scale,height=Screen.height/scale;
+            float width=Screen.width/scale,height=Screen.height/scale;GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);
             if(!IsOpen){GUI.matrix=old;return;}
             if(sidePanel){DrawStorySide(width,height);GUI.matrix=old;return;}
             Box(new Rect(0,0,width,height),new Color(.025f,.028f,.052f));Box(new Rect(0,0,width,94),new Color(.075f,.055f,.12f));Box(new Rect(0,0,width,5),new Color(1f,.76f,.28f));

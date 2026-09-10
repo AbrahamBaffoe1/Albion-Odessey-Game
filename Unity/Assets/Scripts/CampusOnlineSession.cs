@@ -20,7 +20,7 @@ namespace AlbionOdyssey
     public sealed class CampusOnlineSession : MonoBehaviour
     {
         const int Port = 40777;
-        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat; bool open, active, host;
+        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,openedAt; bool open, active, host;
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
@@ -37,7 +37,7 @@ namespace AlbionOdyssey
         }
         public bool HandleInput()
         {
-            if (!open && Input.GetKeyDown(KeyCode.F5)) { open = true; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
+            if (!open && Input.GetKeyDown(KeyCode.F5)) { open = true; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
             if (Input.GetKeyDown(KeyCode.Escape)) { open = false; game.player.controls = !game.building && !game.life.PanelOpen; Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls; return true; }
             return true;
@@ -104,7 +104,7 @@ namespace AlbionOdyssey
         {
             if (!open || game == null) return;
             if (title == null) { title = new GUIStyle(GUI.skin.label) { fontSize = 27, fontStyle = FontStyle.Bold }; title.normal.textColor=new Color(.96f,.94f,.86f); text = new GUIStyle(GUI.skin.label) { fontSize = 17, wordWrap = true }; text.normal.textColor=new Color(.88f,.88f,.92f); button = new GUIStyle(GUI.skin.button) { fontSize = 16, padding = new RectOffset(12, 12, 6, 6) }; }
-            float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); float w = Screen.width / scale, h = Screen.height / scale, x = (w - 800) * .5f;
+            float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion); float w = Screen.width / scale, h = Screen.height / scale, x = (w - 800) * .5f;
             GUI.color = new Color(.025f, .028f, .052f, .98f); GUI.DrawTexture(new Rect(0, 0, w, h), Texture2D.whiteTexture); GUI.color = Color.white;
             GUI.Label(new Rect(x, 70, 760, 45), "SHARED CAMPUS SESSION", title); GUI.Label(new Rect(x, 125, 760, 54), "F5 opens this panel. Host or join a small LAN world. Player movement is synchronized and the host can remove a player.", text);
             GUI.Label(new Rect(x, 205, 140, 30), "WORLD CODE", text); session = GUI.TextField(new Rect(x + 150, 202, 250, 36), session, 18).ToUpperInvariant();

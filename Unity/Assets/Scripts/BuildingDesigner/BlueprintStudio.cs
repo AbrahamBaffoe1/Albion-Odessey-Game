@@ -24,7 +24,7 @@ namespace AlbionOdyssey.BuildingDesigner
         public bool Ready=>game!=null;
         bool walking,showRoof,share,dirty,editingName,blurNextGui;
         int keeper,slot,rotation;StudioPart selected;
-        float previousTimeScale,azimuth=35,pitch,velocity;
+        float previousTimeScale,azimuth=35,pitch,velocity,openedAt;
         Vector3 returnCameraPosition;Quaternion returnCameraRotation;
         string message="Choose a piece, then click the grid. Right-click removes the selected layer.",card="";
         Vector2 cardScroll;
@@ -55,7 +55,7 @@ namespace AlbionOdyssey.BuildingDesigner
             camera.orthographic=true;camera.orthographicSize=22;camera.nearClipPlane=.03f;camera.farClipPlane=100;camera.clearFlags=CameraClearFlags.Skybox;
             effects=cameraObject.AddComponent<AudioSource>();effects.playOnAwake=false;effects.spatialBlend=0;effects.volume=Smoke?0:game.sound.Muted?0:game.sound.Volume;
             preview=GameObject.CreatePrimitive(PrimitiveType.Cube);preview.name="Placement outline";Destroy(preview.GetComponent<Collider>());
-            LoadSlot();FrameBuilding();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;return true;
+            LoadSlot();FrameBuilding();openedAt=Time.unscaledTime;Cursor.lockState=CursorLockMode.None;Cursor.visible=true;return true;
         }
         public void Leave()
         {
@@ -185,7 +185,7 @@ namespace AlbionOdyssey.BuildingDesigner
             if(!Active)return;
             if(blurNextGui){GUI.FocusControl(null);blurNextGui=false;}
             if(heading==null){heading=new GUIStyle(GUI.skin.label){fontSize=28,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);text=new GUIStyle(GUI.skin.label){fontSize=16,wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);small=new GUIStyle(text){fontSize=13};small.normal.textColor=new Color(.52f,.84f,.9f);button=new GUIStyle(GUI.skin.button){fontSize=14,richText=false};foreach(var v in new[]{button.normal,button.active,button.hover,button.focused}){v.background=Texture2D.whiteTexture;v.textColor=new Color(.98f,.96f,.9f);}}
-            float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));float w=Screen.width/scale,h=Screen.height/scale;
+            float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);float w=Screen.width/scale,h=Screen.height/scale;
             GUI.backgroundColor=new Color(.22f,.10f,.34f);GUI.color=new Color(.025f,.04f,.055f,.96f);GUI.DrawTexture(new Rect(0,0,w,walking?85:190),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(0,h-140,w,140),Texture2D.whiteTexture);GUI.color=Color.white;
             Label(24,18,850,40,walking?"WALK INSIDE YOUR DESIGN":"THE BUILDING STUDIO",heading);
             Label(24,60,1000,25,$"Keeper {keeper+1} · Slot {slot+1} · 24 × 24 metres · Original player blueprint",small);

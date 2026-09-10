@@ -15,7 +15,7 @@ namespace AlbionOdyssey
         public int ClassroomTransStudentCount{get;private set;}
         readonly Queue<GameObject> papers=new Queue<GameObject>();
         float nextPaper;
-        GUIStyle heading,text,muted,button;
+        GUIStyle heading,text,muted,button;float panelOpenedAt;
         public void Setup(OdysseyGame owner)
         {
             game=owner;
@@ -45,7 +45,7 @@ namespace AlbionOdyssey
         {
             if(value!=""&&game.journalOpen)game.SetJournal(false);
             if(panel=="settings"&&value!="settings"&&game.campus!=null)game.campus.SaveKeeper();
-            panel=value;game.player.controls=!PanelOpen&&!game.building;
+            panel=value;panelOpenedAt=Time.unscaledTime;game.player.controls=!PanelOpen&&!game.building;
             game.player.buttonMove=Vector2.zero;game.player.buttonTurn=0;
             bool free=PanelOpen||game.building||game.player.pointerControls;
             Cursor.lockState=free?CursorLockMode.None:CursorLockMode.Locked;Cursor.visible=free;
@@ -129,12 +129,12 @@ namespace AlbionOdyssey
                 heading=new GUIStyle(GUI.skin.label){fontSize=30,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);
                 text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};
                 muted=new GUIStyle(text){fontSize=14};
-                button=new GUIStyle(GUI.skin.button){fontSize=16,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,4,4)};
+                button=AlbionUITheme.Button(16);
                 foreach(var appearance in new[]{button.normal,button.hover,button.active,button.focused})
                 {appearance.background=Texture2D.whiteTexture;appearance.textColor=new Color(.98f,.96f,.9f);}
             }
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
-            float width=Screen.width/scale,height=Screen.height/scale;
+            float width=Screen.width/scale,height=Screen.height/scale;GUI.matrix=AlbionUITheme.Slide(GUI.matrix,panelOpenedAt,OdysseyAccessibility.ReducedMotion);
             GUI.backgroundColor=new Color(.40f,.22f,.57f);
             if(PanelOpen&&game.sound.AchievementCaption.Length>0)
             {
