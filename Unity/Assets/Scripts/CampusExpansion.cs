@@ -197,6 +197,13 @@ namespace AlbionOdyssey
         void Label(float x,float y,float w,float h,string s,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),s,style??text);
         bool Button(float x,float y,float w,string s)=>GUI.Button(new Rect(x,y,w,38),s,button);
         void Card(Rect r,Color c){GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}
+        void FocusBox(Rect r,int index)
+        {
+            if(controllerFocus!=index)return;
+            var old=GUI.color;GUI.color=AlbionUITheme.Cyan;
+            GUI.DrawTexture(new Rect(r.x-3,r.y-3,r.width+6,3),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(r.x-3,r.yMax,r.width+6,3),Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(r.x-3,r.y,3,r.height),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(r.xMax,r.y,3,r.height),Texture2D.whiteTexture);GUI.color=old;
+        }
         public void DrawPanel(string panel,float x)
         {
             InitStyles();GUI.backgroundColor=new Color(.26f,.17f,.39f);
@@ -229,7 +236,9 @@ namespace AlbionOdyssey
             if(Button(mx,650,215,"Travel to building"))Travel(chosen);
             if(Button(mx+232,650,215,"Campus discoveries"))game.life.SetPanel("treasures");
             if(Button(mx+464,650,230,"Official campus map"))Application.OpenURL(CampusCatalog.MapSource);
+            FocusBox(new Rect(mx,650,215,38),0);FocusBox(new Rect(mx+232,650,215,38),1);FocusBox(new Rect(mx+464,650,230,38),2);
             if(Button(x,716,245,"Legacy Hall & builder"))game.life.SetPanel("map");
+            FocusBox(new Rect(x,716,245,38),3);
             Label(x+270,717,840,45,"Buildings are exterior approximations; the original Legacy Hall still has eight walkable floors.",small);
         }
         void PreparePreview()
@@ -250,25 +259,32 @@ namespace AlbionOdyssey
             float r=x+535;Label(r,111,580,40,"CHOOSE YOUR LOOK",heading);
             string[] presets={"Campus explorer","Trail keeper","Briton spirit"};
             for(int i=0;i<3;i++)if(Button(r+i*196,167,184,presets[i])){skin=i;outfit=i==0?0:i==1?1:4;hair=i;backpack=i!=2;RefreshAvatar();SaveKeeper();}
+            FocusBox(new Rect(r,167,580,38),0);
             Label(r,227,560,26,"NAME",small);string n=GUI.TextField(new Rect(r,262,570,36),keeperName,24);if(n!=keeperName){keeperName=n;}
             Label(r,316,560,25,"SKIN TONE",small);
             GUI.contentColor=new Color(.12f,.09f,.07f);
             for(int i=0;i<5;i++){GUI.backgroundColor=KeeperAvatar.Skin[i];if(Button(r+i*114,351,102,skin==i?"Selected":"Tone "+(i+1))){skin=i;RefreshAvatar();SaveKeeper();}}
+            FocusBox(new Rect(r,351,558,38),1);
             GUI.contentColor=Color.white;GUI.backgroundColor=new Color(.26f,.17f,.39f);Label(r,405,570,26,"OUTFIT COLOUR",small);
             for(int i=0;i<5;i++){GUI.backgroundColor=KeeperAvatar.Coats[i];if(Button(r+i*114,440,102,outfit==i?"Selected":"Look "+(i+1))){outfit=i;RefreshAvatar();SaveKeeper();}}
+            FocusBox(new Rect(r,440,558,38),2);
             GUI.backgroundColor=new Color(.26f,.17f,.39f);
             string[] hairNames={"Dark hair","Brown hair","Shaved"};for(int i=0;i<3;i++)if(Button(r+i*196,495,184,(hair==i?"● ":"")+hairNames[i])){hair=i;RefreshAvatar();SaveKeeper();}
+            FocusBox(new Rect(r,495,580,38),3);
             bool b=GUI.Toggle(new Rect(r,551,240,32),backpack,"Wear a backpack");if(b!=backpack){backpack=b;RefreshAvatar();SaveKeeper();}
             bool third=GUI.Toggle(new Rect(r+270,551,300,32),game.player.thirdPerson,"Third-person camera");if(third!=game.player.thirdPerson){game.player.thirdPerson=third;SaveKeeper();}
+            FocusBox(new Rect(r,551,240,32),4);FocusBox(new Rect(r+270,551,300,32),5);
             Label(r,596,570,26,"CAMERA DISTANCE",small);game.player.cameraDistance=GUI.HorizontalSlider(new Rect(r,631,570,24),game.player.cameraDistance,2.5f,7);
             if(Button(r,678,275,"Save character & play")){SaveKeeper();game.life.SetPanel("");}
             if(Button(r+295,678,275,"Sound & game controls")){SaveKeeper();game.life.SetPanel("welcome");}
+            FocusBox(new Rect(r,678,275,38),6);FocusBox(new Rect(r+295,678,275,38),7);
             Label(x,739,1100,32,"Each of the four local Keepers remembers its own appearance and discoveries. V switches camera view during play.",small);
         }
         void DrawTreasures(float x)
         {
             Label(x,97,1100,30,$"CAMPUS DISCOVERIES  /  {CountFound()}/7 collected · saved for {keeperName}",small);
             for(int i=0;i<7;i++)if(Button(x,155+i*60,400,((found&(1<<i))!=0?"✓ ":"○ ")+TreasureNames[i]))treasurePage=i;
+            FocusBox(new Rect(x,155,400,38),0);
             float r=x+450;bool unlocked=(found&(1<<treasurePage))!=0;
             Label(r,157,640,80,TreasureNames[treasurePage],heading);
             Label(r,251,640,175,unlocked?TreasureText[treasurePage]:"Find the discovery marker on campus, walk close to it, and press E. You can travel to the clue below to start exploring.");
@@ -279,6 +295,7 @@ namespace AlbionOdyssey
             }
             if(treasurePage<6&&Button(r+320,554,300,"Read college source"))Application.OpenURL(TreasureSources[treasurePage]);
             if(Button(r,619,300,"All campus buildings"))game.life.SetPanel("campus");
+            FocusBox(new Rect(r,554,300,38),1);FocusBox(new Rect(r+320,554,300,38),2);FocusBox(new Rect(r,619,300,38),3);
             Label(r,690,635,65,"Brit's model and the treasure tokens are original game artwork. Discovery does not imply the real object can be taken.",small);
         }
         public int CountFound(){int count=0;for(int i=0;i<7;i++)if((found&(1<<i))!=0)count++;return count;}
