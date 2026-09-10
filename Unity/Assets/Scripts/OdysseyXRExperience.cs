@@ -25,7 +25,7 @@ namespace AlbionOdyssey
         static readonly XRHandJointID[] visibleJoints = { XRHandJointID.Wrist, XRHandJointID.Palm, XRHandJointID.ThumbTip, XRHandJointID.IndexTip, XRHandJointID.MiddleTip };
         Vector3 lastHeadLocal;
         bool haveHeadPose, wasSelect, wasGrip;
-        float turnCooldown, averageFrame, lowFrameSeconds, previousViewportScale = 1f;
+        float turnCooldown, averageFrame, lowFrameSeconds, previousViewportScale = 1f, nextDeviceRefresh;
         bool recovering, performanceReduced;
         Material handMaterial;
         public bool Tracking => leftController.isValid || rightController.isValid || handSubsystem != null;
@@ -59,7 +59,11 @@ namespace AlbionOdyssey
                 return;
             }
             if (!Active) Activate();
-            if (!leftController.isValid && !rightController.isValid) RefreshDevices();
+            if ((!leftController.isValid || !rightController.isValid || handSubsystem == null) && Time.unscaledTime >= nextDeviceRefresh)
+            {
+                RefreshDevices();
+                nextDeviceRefresh = Time.unscaledTime + .75f;
+            }
             UpdateController(leftController, leftAnchor, true);
             UpdateController(rightController, rightAnchor, false);
             UpdateHands();
@@ -79,6 +83,7 @@ namespace AlbionOdyssey
             haveHeadPose = false;
             previousViewportScale = XRSettings.renderViewportScale;
             performanceReduced = false;
+            nextDeviceRefresh = 0f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Debug.Log("ODYSSEY_XR_ACTIVE: room-scale locomotion, controller input and hand tracking ready");
@@ -108,6 +113,12 @@ namespace AlbionOdyssey
             handSubsystems.Clear();
             SubsystemManager.GetSubsystems(handSubsystems);
             handSubsystem = handSubsystems.Count > 0 && handSubsystems[0].running ? handSubsystems[0] : null;
+            if (recovering && Tracking)
+            {
+                recovering = false;
+                haveHeadPose = false;
+                Debug.Log("ODYSSEY_XR_TRACKING_RESTORED: headset or controller tracking reacquired");
+            }
         }
 
         Transform Anchor(string name)
@@ -271,8 +282,23 @@ namespace AlbionOdyssey
 
         void OnApplicationPause(bool pause)
         {
-            if (pause) recovering = true;
-            else if (recovering) { recovering = false; RefreshDevices(); haveHeadPose = false; Debug.Log("ODYSSEY_XR_RECOVERED: tracking devices reacquired after pause"); }
+            if (pause) BeginRecovery();
+            else { BeginRecovery(); RefreshDevices(); Debug.Log("ODYSSEY_XR_RECOVERED: tracking devices reacquiring after pause"); }
+        }
+
+        void OnApplicationFocus(bool focused)
+        {
+            if (!focused) BeginRecovery();
+            else { BeginRecovery(); RefreshDevices(); }
+        }
+
+        void BeginRecovery()
+        {
+            recovering = true;
+            haveHeadPose = false;
+            wasSelect = false;
+            wasGrip = false;
+            nextDeviceRefresh = 0f;
         }
 
         void OnGUI()
@@ -285,6 +311,7 @@ namespace AlbionOdyssey
             // The regular campus HUD owns the top of the view. Keep XR diagnostics
             // compact and safe-area aware so they never compete with objectives or prompts.
             if (recovering) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 480, 24), "Resuming headset tracking…");
+            else if (!Tracking) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 620, 24), "Headset tracking unavailable · reconnect a controller or enable hands");
             if (lowFrameSeconds > 1f) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 620, 24), "Comfort warning: performance below 55 FPS");
             if (performanceReduced) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 58, 620, 24), "Performance guard active · visual scale reduced temporarily");
             if (ComfortVignette)
