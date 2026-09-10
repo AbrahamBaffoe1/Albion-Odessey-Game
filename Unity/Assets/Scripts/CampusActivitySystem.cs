@@ -201,7 +201,7 @@ namespace AlbionOdyssey
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
         KeeperAvatar avatar; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase;
         public CampusStudentIdentity Identity { get; private set; }
-        public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); last = transform.position; }
+        public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;

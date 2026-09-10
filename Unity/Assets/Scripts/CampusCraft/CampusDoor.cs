@@ -12,6 +12,7 @@ namespace AlbionOdyssey
             leaf=KeeperAvatar.Part(transform,"Sliding glazed door",PrimitiveType.Cube,new Vector3(0,height/2,0),new Vector3(opening,height,.075f),material).transform;
             barrier=gameObject.AddComponent<BoxCollider>();barrier.center=new Vector3(0,height/2,0);barrier.size=new Vector3(opening,height,.12f);
             for(int i=-1;i<=1;i++)KeeperAvatar.Part(leaf,"Door frame",PrimitiveType.Cube,new Vector3(i*.49f,0,-.1f),new Vector3(.025f,1.02f,1.3f),CraftModel.Surface("Door bronze",new Color(.16f,.18f,.18f)));
+            var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure("E  "+Label.ToUpperInvariant(),new Color(1f,.76f,.28f),new Vector3(0,height+.28f,0),8f);
         }
         public bool Toggle(Explorer player)
         {

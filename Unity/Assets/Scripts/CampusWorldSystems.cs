@@ -122,7 +122,7 @@ namespace AlbionOdyssey
         public CampusStudentIdentity Identity { get; private set; }
         public void Build(CampusStudentProfile profile)
         {
-            var body = new GameObject("Student avatar"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile); last = transform.position;
+            var body = new GameObject("Student avatar"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(profile.Name+"  ·  STUDENT",new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),13f); last = transform.position;
         }
         void Update()
         {
