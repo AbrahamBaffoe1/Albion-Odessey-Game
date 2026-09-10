@@ -7,7 +7,7 @@ namespace AlbionOdyssey
     public sealed class CampusHud : MonoBehaviour
     {
         static readonly Color Ink=new Color(.035f,.04f,.065f,.94f),Panel=new Color(.055f,.065f,.10f,.88f),Gold=new Color(1f,.76f,.28f),Purple=new Color(.44f,.25f,.64f),Cyan=new Color(.35f,.84f,.92f);
-        OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt,mapPlayer;string lastNotice="";float noticeUntil;
+        OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt,mapPlayer,mapName;string lastNotice="";float noticeUntil;
         public void Setup(OdysseyGame owner){game=owner;pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}
         void Update(){if(game!=null&&game.notice!=lastNotice){lastNotice=game.notice;noticeUntil=Time.unscaledTime+5;}}
         void Fill(Rect r,Color c){var old=GUI.color;GUI.color=c;GUI.DrawTexture(r,pixel);GUI.color=old;}
@@ -75,6 +75,7 @@ namespace AlbionOdyssey
             Rect map=new Rect(r.x+12,r.y+35,r.width-24,r.width-47);Fill(map,new Color(.025f,.07f,.085f,.96f));
             var grid=new Color(.20f,.52f,.55f,.18f);Fill(new Rect(map.x+map.width*.5f,map.y,1,map.height),grid);Fill(new Rect(map.x,map.y+map.height*.5f,map.width,1),grid);
             float radius=Mathf.Min(map.width,map.height)*.46f,range=180f;Vector3 player=game.player.transform.position;
+            if(mapPlayer==null){mapPlayer=new GUIStyle(eyebrow){fontSize=17,alignment=TextAnchor.MiddleCenter};mapPlayer.normal.textColor=Gold;mapName=new GUIStyle(eyebrow){fontSize=8};}
             CampusPlace closest=null;float closestDistance=float.MaxValue;
             foreach(var placeInfo in CampusCatalog.Places)
             {
@@ -84,10 +85,9 @@ namespace AlbionOdyssey
                 float px=map.x+map.width*.5f+Mathf.Clamp(delta.x/range,-1,1)*radius;
                 float py=map.y+map.height*.5f-Mathf.Clamp(delta.z/range,-1,1)*radius;
                 Color marker=MapColor(placeInfo.category);Fill(new Rect(px-3,py-3,6,6),marker);
-                if(distance<42f)GUI.Label(new Rect(px+6,py-7,Mathf.Min(110,map.xMax-px-5),18),placeInfo.name,new GUIStyle(eyebrow){fontSize=8,normal={textColor=marker}});
+                if(distance<42f){mapName.normal.textColor=marker;GUI.Label(new Rect(px+6,py-7,Mathf.Min(110,map.xMax-px-5),18),placeInfo.name,mapName);}
             }
             // The player stays centered while the world map remains north-up.
-            if(mapPlayer==null){mapPlayer=new GUIStyle(eyebrow){fontSize=17,alignment=TextAnchor.MiddleCenter};mapPlayer.normal.textColor=Gold;}
             GUI.Label(new Rect(map.center.x-12,map.center.y-13,24,24),"▲",mapPlayer);
             GUI.Label(new Rect(map.x+4,map.y+2,18,18),"N",eyebrow);
             string nearest=closest==null?"Explore the grounds":closest.name;
