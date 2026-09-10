@@ -6,7 +6,12 @@ Ferguson facade, arch, window arrangement and material references:
 - https://albionpleiad.com/2024/09/photos-albion-colleges-summer-additions-renovations-and-refurbishments/
 - https://www.albion.edu/wp-content/uploads/2025/10/ac_campus_map_8-25.pdf
 
-FergusonHall.blend is authored for this project. The overall scale, roof details and interior layout are provisional. The career center photograph is an interior reference, not a complete floor plan. Room labels describe gameplay spaces and do not assert current official office assignments. Campus centers remain approximate readings of the published map; no survey accuracy is claimed.
+Robinson Hall facade, roofline and site references:
+- https://albion.college-tour.com/#Robinson%20Hall
+- https://www.albion.edu/wp-content/uploads/2025/10/ac_campus_map_8-25.pdf
+- https://www.albion.edu/about/at-a-glance/our-history/
+
+FergusonHall.blend and RobinsonHall.blend are authored for this project. Their overall scales and interior layouts are game-scale reconstructions. The career center photograph is an interior reference, not a complete floor plan. Room labels describe gameplay spaces and do not assert current official office assignments. Campus centers remain approximate readings of the published map; no survey accuracy is claimed.
 
 StudentRig.blend is derived from Quaternius Universal Base Characters Standard (CC0), with project-created sweatshirt, jeans, sneakers and backpack. It retains the artist's 65-bone skeleton and skin weights. Animations are from Quaternius Universal Animation Library Standard (CC0), with Gonzalo Furnier credited by the publisher. No paid Source or Pro assets were downloaded.
 - https://quaternius.itch.io/universal-base-characters

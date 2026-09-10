@@ -50,10 +50,33 @@ namespace AlbionOdyssey
         void Build()
         {
             Root = new GameObject(Id + " · " + Place.name + " · walkable"); Root.transform.position = Origin;
-            BuildExterior(); BuildInterior();
+            if (Id == "16") BuildAuthoredRobinson();
+            else { BuildExterior(); BuildInterior(); }
             var plaque = new GameObject(Place.name + " history plaque"); plaque.transform.SetParent(Root.transform, false); plaque.transform.localPosition = new Vector3(0, 2.15f, -Depth * .5f - .08f);
             var label = plaque.AddComponent<TextMesh>(); label.text = Place.name.ToUpperInvariant(); label.fontSize = 52; label.characterSize = .09f; label.anchor = TextAnchor.MiddleCenter; label.color = new Color(.22f, .13f, .30f);
             var info = plaque.AddComponent<CampusBuildingInfo>(); info.Title = Place.name; info.Body = History;
+            Physics.SyncTransforms();
+        }
+
+        void BuildAuthoredRobinson()
+        {
+            // Robinson is the first additional hall with a dedicated Blender
+            // export. Keep the existing building contract so map travel,
+            // doors, history and activity systems remain compatible.
+            var text = Resources.Load<TextAsset>("CampusCraft/robinson");
+            if (text == null) { BuildExterior(); BuildInterior(); return; }
+            var description = JsonUtility.FromJson<CraftDescription>(text.text);
+            foreach (var section in description.sections)
+                CraftModel.Load("robinson-" + section.name, section, description.materials, Root.transform);
+            Door(new Vector3(0, 0, -Depth * .5f - .32f), 2.50f, 2.75f, "Robinson main entrance");
+            for (int f = 0; f < 4; f++)
+            {
+                float y = f * FloorHeight;
+                Door(new Vector3(0, y, -2.35f), 1.25f, 2.35f, "Robinson seminar door");
+                Door(new Vector3(0, y, 2.35f), 1.25f, 2.35f, "Robinson seminar door");
+                Sign(new Vector3(-9.2f, y + 2.35f, -5.85f), f == 0 ? "QUAD ATRIUM · SEMINARS" : "ACADEMIC OFFICES · LEVEL " + (f + 1));
+                Light(new Vector3(-9.2f, y + 3.08f, 0));
+            }
             Physics.SyncTransforms();
         }
 

@@ -3,7 +3,7 @@
 The 0.8 update includes a playable three-level Ferguson reconstruction, a rigged student, reusable doors/interior loading, campus textures and trees, and a consolidated interface. The 0.9 work adds reference-driven, walkable Robinson Hall and Bonta Admission Center shells. The 0.10 work starts the connected Science Complex group. The 0.11 work replaces that placeholder with four connected wings, adds campus life and accessibility systems, and lays down LAN, XR, save recovery and profiling foundations. The 0.12 desktop release candidate adds crash-session reporting, release signature checks and a macOS acceptance gate. This remains a prototype milestone, not completion of a production MMO or a surveyed digital twin.
 
 1. **Ferguson usability polish.** Keep refining its reference-based exterior and interior furniture, signage and room collision as the next art review.
-2. **Robinson and Bonta polish.** Continue visual review of materials, visitor map, furniture, collision and history/media transitions.
+2. **Robinson and Bonta polish.** Robinson now has a dedicated Blender exterior/interior asset and authored collision in the 0.13 build; continue visual review alongside the Bonta pass.
 3. **Science Complex art review.** Tune the four-wing proportions, lab dressing, collection displays, accessibility signs and lighting against the public references.
 4. **Campus placement and landscape.** Continue replacing generic map exteriors with individually authored halls and improve roads, planting and lighting.
 5. **Student movement and campus life.** Connect more natural animation transitions and extend NPC schedules beyond the six deterministic routes.
