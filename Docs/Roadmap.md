@@ -15,14 +15,14 @@ Version 0.5 has **5 completed prototype work packages and 17 remaining work pack
 | 9 | Course authoring and timetable | Pending: user-created lesson content, class schedules, assignments and teacher tools beyond three supplied lessons |
 | 10 | Online accounts and enrollment identities | Pending: authentication, profiles, roles, account recovery and online course registration |
 | 11 | Persistent online world | Pending: server-owned campuses, economy and courses; idempotent commands and safe save migrations; local files cannot mint online resources |
-| 12 | Real-time multiplayer movement | Pending: synchronized players, sessions, joining, reconnects and two-device testing |
+| 12 | Real-time multiplayer movement | Partial: LAN sessions now bind the advertised UDP port, synchronize player presence/movement and render online nameplates; reconnect, hosted service and two-device testing remain |
 | 13 | Shared construction | Pending: build permissions, concurrent changes, ownership, invitations and conflict handling |
 | 14 | Online classrooms | Pending: live rosters, teacher/student presence, lesson delivery and progress shared between devices |
 | 15 | Campus chaos and world events | Pending: expanded sandbox interactions, shared physics limits, opt-in rules and recovery; current paper play is a small local prototype |
 | 16 | Social features and community tools | Pending: friends, communication, reporting, blocking, permissions and public-content review |
 | 17 | Characters and longer gameplay | Pending: animated characters, NPC routines, quests, campus activities, progression and repeatable challenges |
 | 18 | Finished art and audio | Partial: 20 original event sounds are implemented; production character art, animation, environmental detail, music and ambient/character audio remain |
-| 19 | Player experience and accessibility | Partial: help, pause, map and arrows exist; named profiles, settings, remapping, controllers and accessibility options remain |
+| 19 | Player experience and accessibility | Partial: help, pause, map, arrows, named profiles, settings, remapping, controller navigation and accessibility options are implemented; human usability testing remains |
 | 20 | Mobile, room play and on-campus AR | Partial: room play works on Mac; touch builds, real GPS/AR adapters and device performance tests remain |
 | 21 | Unreal runtime and feature parity | Pending: install/compile/play in Unreal, validate FBX pipeline, port the newer Unity learning systems and verify parity |
 | 22 | Release testing and distribution | Pending: performance, network recovery/load, security, human playtests, save upgrades, permissions review and supported-platform release builds |

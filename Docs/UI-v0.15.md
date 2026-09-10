@@ -12,7 +12,7 @@ The live HUD includes:
 - Animated achievement and notice cards with the existing collection sounds.
 - Responsive scaling for 16:9, ultrawide and headset preview resolutions.
 
-Keyboard, pointer buttons, controller input and the XR action layer continue to use the same interaction methods. The HUD pauses behind history, course, builder, journal and launch panels, so those screens can be given the same card treatment in the next pass without duplicating gameplay state.
+Keyboard, pointer buttons, controller input and the XR action layer use the same interaction methods. The HUD pauses behind history, course, builder, journal and launch panels, which now share the same card treatment without duplicating gameplay state.
 
 The social layer now uses the same visual language: seated learners and lunch groups show short conversation bubbles while they talk, club players show a playful prompt while paused, and all bubbles face the active camera and disappear outside a readable distance. The VR walkthrough and shared-campus panels expose their focused action with a gold-arrow cue and show the same stick/trigger/menu footer used by the in-world controls.
 

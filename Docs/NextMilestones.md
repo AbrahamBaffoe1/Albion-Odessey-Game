@@ -9,7 +9,7 @@ The 0.8 update includes a playable three-level Ferguson reconstruction, a rigged
 5. **Student movement and campus life.** Connect more natural animation transitions and extend NPC schedules beyond the six deterministic routes.
 6. **Interface and accessibility.** Add per-action rebinding UI, controller glyphs, audio descriptions and a complete caption track for media.
 7. **Building and learning gameplay.** Expand the schedule into prerequisites, assignments, clubs and saved student activity history.
-8. **Online service hardening.** The 0.11 LAN session is a working transport foundation with presence, movement snapshots and host moderation. The production phase still needs accounts, an authoritative hosted server, encrypted transport, cloud persistence and abuse reporting.
+8. **Online service hardening.** The LAN session now binds UDP 40777, carries presence/movement snapshots, shows online nameplates and supports host moderation. The production phase still needs accounts, an authoritative hosted server, encrypted transport, cloud persistence and abuse reporting.
 9. **VR and release readiness.** The 0.11 XR bridge and profiler are optional foundations. Add a tested OpenXR loader, headset-specific comfort settings, performance budgets, recovery QA, notarization and distribution signing.
 
 Completion gates for each new hall: an identifiable referenced exterior, a usable entrance, walkable rooms and stairs where applicable, collision and camera checks, history/media interactions, safe return to campus, and measured performance. Full-campus and VR completion must be assessed separately from the count of map pins.

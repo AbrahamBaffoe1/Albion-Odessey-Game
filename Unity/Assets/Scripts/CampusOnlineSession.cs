@@ -89,7 +89,7 @@ namespace AlbionOdyssey
         {
             try
             {
-                StopSession(""); host = asHost; socket = new UdpClient(0); socket.EnableBroadcast = true; socket.Client.Blocking = false; broadcast = new IPEndPoint(IPAddress.Broadcast, Port); active = true; status = asHost ? "Hosting LAN world" : "Searching for host"; session = session.Trim().ToUpperInvariant(); if (session.Length == 0) session = "ALBION"; PlayerPrefs.SetString("Odyssey.NetworkSession", session); PlayerPrefs.SetString("Odyssey.NetworkName", display); PlayerPrefs.Save();
+                StopSession(""); host = asHost; socket = new UdpClient(); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true); socket.Client.Bind(new IPEndPoint(IPAddress.Any, Port)); socket.EnableBroadcast = true; socket.Client.Blocking = false; broadcast = new IPEndPoint(IPAddress.Broadcast, Port); active = true; status = asHost ? "Hosting LAN world" : "Searching for host"; session = session.Trim().ToUpperInvariant(); if (session.Length == 0) session = "ALBION"; PlayerPrefs.SetString("Odyssey.NetworkSession", session); PlayerPrefs.SetString("Odyssey.NetworkName", display); PlayerPrefs.Save();
                 if (!asHost) Send(new CampusNetPacket { type = "join", session = session, id = PlayerId, display = display }, broadcast);
             }
             catch (Exception e) { status = "Network unavailable: " + e.Message; active = false; }
@@ -132,7 +132,7 @@ namespace AlbionOdyssey
         sealed class RemoteKeeper
         {
             public readonly GameObject root; public Vector3 target; public string display;
-            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); target = root.transform.position; }
+            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); var tag = root.AddComponent<CampusWorldLabel>(); tag.Configure(name + "  ·  ONLINE", AlbionUITheme.Cyan, new Vector3(0, 2.35f, 0), 24f); target = root.transform.position; }
             public void Tick() { root.transform.position = Vector3.Lerp(root.transform.position, target, Time.deltaTime * 8f); }
         }
         void LateUpdate() { foreach (var remote in remotes.Values) remote.Tick(); }
