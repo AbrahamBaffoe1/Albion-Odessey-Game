@@ -205,8 +205,8 @@ namespace AlbionOdyssey
         void InitStyles()
         {
             if(title!=null)return;
-            title=new GUIStyle(GUI.skin.label){fontSize=31,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};
-            text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};story=new GUIStyle(text){fontSize=21};detailTitle=new GUIStyle(title){fontSize=26};small=new GUIStyle(text){fontSize=13};
+            title=new GUIStyle(GUI.skin.label){fontSize=31,fontStyle=FontStyle.Bold,wordWrap=true,richText=false};title.normal.textColor=new Color(.96f,.94f,.86f);
+            text=new GUIStyle(GUI.skin.label){fontSize=18,wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);story=new GUIStyle(text){fontSize=21};detailTitle=new GUIStyle(title){fontSize=26};small=new GUIStyle(text){fontSize=13};small.normal.textColor=new Color(.52f,.84f,.9f);
             button=new GUIStyle(GUI.skin.button){fontSize=16,wordWrap=true,richText=false,border=new RectOffset(),padding=new RectOffset(12,12,8,8)};
             foreach(var style in new[]{button.normal,button.hover,button.active,button.focused}){style.background=Texture2D.whiteTexture;style.textColor=Color.white;}
             textButton=new GUIStyle(GUI.skin.button){fontSize=15,wordWrap=true,richText=false,alignment=TextAnchor.MiddleCenter,padding=new RectOffset(8,8,4,4),border=new RectOffset()};
@@ -250,8 +250,8 @@ namespace AlbionOdyssey
             float width=Screen.width/scale,height=Screen.height/scale;
             if(!IsOpen){GUI.matrix=old;return;}
             if(sidePanel){DrawStorySide(width,height);GUI.matrix=old;return;}
-            Box(new Rect(0,0,width,height),new Color(.025f,.037f,.050f));Box(new Rect(0,0,width,94),new Color(.075f,.105f,.125f));
-            GUI.Label(new Rect(28,14,width-260,22),"FIELD NOTES  /  ALBION COLLEGE ARCHIVE",small);
+            Box(new Rect(0,0,width,height),new Color(.025f,.028f,.052f));Box(new Rect(0,0,width,94),new Color(.075f,.055f,.12f));Box(new Rect(0,0,width,5),new Color(1f,.76f,.28f));
+            GUI.Label(new Rect(28,14,width-260,22),"ALBION COLLEGE ARCHIVE",small);
             GUI.Label(new Rect(28,35,width-260,38),VideosOnly?"College videos":"Places & stories",title);
             GUI.Label(new Rect(30,72,width-300,20),"Read the history, hear the voice and step through the reference material.",small);
             if(Button(new Rect(width-190,23,160,45),"Return · Esc"))Close();
