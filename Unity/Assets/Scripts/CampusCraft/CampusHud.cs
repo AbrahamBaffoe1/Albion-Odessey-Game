@@ -52,12 +52,12 @@ namespace AlbionOdyssey
             button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,fontStyle=FontStyle.Bold,padding=new RectOffset(13,13,7,7),border=new RectOffset()};
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=pixel;s.textColor=Color.white;}
         }
-        void Compass(float w)
+        void Compass(float center,float top)
         {
-            float cx=w*.5f,heading=game.player.transform.eulerAngles.y;Card(new Rect(cx-170,24,340,40));
+            float cx=center,heading=game.player.transform.eulerAngles.y;Card(new Rect(cx-170,top+24,340,40));
             string[] dirs={"N","NE","E","SE","S","SW","W","NW"};
-            for(int i=0;i<dirs.Length;i++){float relative=Mathf.DeltaAngle(heading,i*45);float x=cx+relative*2.8f;if(x<cx-152||x>cx+152)continue;GUI.Label(new Rect(x-16,32,32,22),dirs[i],new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter,fontSize=12});}
-            Fill(new Rect(cx-2,58,4,4),Gold);
+            for(int i=0;i<dirs.Length;i++){float relative=Mathf.DeltaAngle(heading,i*45);float x=cx+relative*2.8f;if(x<cx-152||x>cx+152)continue;GUI.Label(new Rect(x-16,top+32,32,22),dirs[i],new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter,fontSize=12});}
+            Fill(new Rect(cx-2,top+58,4,4),Gold);
         }
         void TargetTag(float scale)
         {
@@ -65,29 +65,29 @@ namespace AlbionOdyssey
             var marker=hit.collider.GetComponentInParent<MemoryMarker>();var guide=hit.collider.GetComponentInParent<GuideMarker>();var station=hit.collider.GetComponentInParent<CampusActivityStation>();
             if(marker==null&&guide==null&&station==null)return;
             Vector3 point=hit.collider.transform.position+Vector3.up*.9f;Vector3 screen=game.player.eyes.WorldToScreenPoint(point);if(screen.z<0)return;
-            float x=screen.x/scale,y=(Screen.height-screen.y)/scale;string text=marker!=null?"MEMORY  "+(marker.id+1).ToString("00"):guide!=null?"PIP  CAMPUS GUIDE":"CLASSROOM ACTIVITY";
+            Rect safe=AlbionUITheme.SafeArea(scale);float x=Mathf.Clamp(screen.x/scale,safe.xMin+118,safe.xMax-118),y=Mathf.Clamp((Screen.height-screen.y)/scale,safe.yMin+40,safe.yMax-40);string text=marker!=null?"MEMORY  "+(marker.id+1).ToString("00"):guide!=null?"PIP  CAMPUS GUIDE":"CLASSROOM ACTIVITY";
             Card(new Rect(x-112,y-26,224,30),true);GUI.Label(new Rect(x-102,y-21,204,21),text,new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter});
         }
         void OnGUI()
         {
             if(game==null||game.player==null||game.life.PanelOpen||game.building||game.journalOpen)return;
-            InitStyles();var old=GUI.matrix;var oldBg=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale;
+            InitStyles();var old=GUI.matrix;var oldBg=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale;Rect safe=AlbionUITheme.SafeArea(scale);float left=safe.xMin,right=safe.xMax,top=safe.yMin,bottom=safe.yMax;
             GUI.backgroundColor=Purple;string p=CurrentPlace();
-            Card(new Rect(24,24,330,92),true);GUI.Label(new Rect(44,34,290,18),"ALBION COLLEGE  /  LIVE",eyebrow);GUI.Label(new Rect(44,55,290,30),p,place);GUI.Label(new Rect(44,84,290,22),game.campus.keeperName+"   ·   "+game.state.Current.acorns+" ACORNS",small);
-            Compass(w);
-            Card(new Rect(w-326,24,302,92));GUI.Label(new Rect(w-304,35,260,18),game.player.vehicle==null?"KEEPER STATUS":"CAMPUS CAR",eyebrow);
-            if(game.player.vehicle==null){GUI.Label(new Rect(w-304,55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%",value);Fill(new Rect(w-304,88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(w-304,88,258*game.player.Stamina,7),Cyan);}
-            else GUI.Label(new Rect(w-304,57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H",value);
-            Card(new Rect(24,132,330,74),true);GUI.Label(new Rect(44,143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(44,164,286,34),Objective(),small);
-            string progress=OdysseyState.Count(game.state.Current.memories)+" / 12 memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(44,190,286,18),progress,eyebrow);
+            Card(new Rect(left+24,top+24,330,92),true);GUI.Label(new Rect(left+44,top+34,290,18),"ALBION COLLEGE  /  LIVE",eyebrow);GUI.Label(new Rect(left+44,top+55,290,30),p,place);GUI.Label(new Rect(left+44,top+84,290,22),game.campus.keeperName+"   ·   "+game.state.Current.acorns+" ACORNS",small);
+            Compass((left+right)*.5f,top);
+            Card(new Rect(right-326,top+24,302,92));GUI.Label(new Rect(right-304,top+35,260,18),game.player.vehicle==null?"KEEPER STATUS":"CAMPUS CAR",eyebrow);
+            if(game.player.vehicle==null){GUI.Label(new Rect(right-304,top+55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%",value);Fill(new Rect(right-304,top+88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(right-304,top+88,258*game.player.Stamina,7),Cyan);}
+            else GUI.Label(new Rect(right-304,top+57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H",value);
+            Card(new Rect(left+24,top+132,330,74),true);GUI.Label(new Rect(left+44,top+143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(left+44,top+164,286,34),Objective(),small);
+            string progress=OdysseyState.Count(game.state.Current.memories)+" / 12 memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(left+44,top+190,286,18),progress,eyebrow);
             TargetTag(scale);
-            string action=Context();float promptY=h-78;Card(new Rect(w*.5f-285,promptY,570,52),true);GUI.Label(new Rect(w*.5f-270,promptY+8,540,34),action,prompt);
+            string action=Context();float promptY=bottom-78;Card(new Rect((left+right)*.5f-285,promptY,570,52),true);GUI.Label(new Rect((left+right)*.5f-270,promptY+8,540,34),action,prompt);
             string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
-            if(toast.Length>0){float y=130-Mathf.Sin(Time.unscaledTime*2f)*2f;Card(new Rect(w*.5f-225,y,450,72),true);GUI.Label(new Rect(w*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect(w*.5f-205,y+32,410,28),toast,value);}
-            else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(24,220,330,66));GUI.Label(new Rect(44,232,286,42),lastNotice,small);GUI.color=Color.white;}
-            if(game.player.pointerControls){float x=35,y=h-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
-            if(GUI.Button(new Rect(w-248,130,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(w-136,130,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
-            GUI.Label(new Rect(w-310,h-28,286,20),"V camera   ·   J journal   ·   F2 build",eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
+            if(toast.Length>0){float y=top+130-Mathf.Sin(Time.unscaledTime*2f)*2f;Card(new Rect((left+right)*.5f-225,y,450,72),true);GUI.Label(new Rect((left+right)*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect((left+right)*.5f-205,y+32,410,28),toast,value);}
+            else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(left+24,top+220,330,66));GUI.Label(new Rect(left+44,top+232,286,42),lastNotice,small);GUI.color=Color.white;}
+            if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
+            if(GUI.Button(new Rect(right-248,top+130,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-136,top+130,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
+            GUI.Label(new Rect(right-310,bottom-28,286,20),"V camera   ·   J journal   ·   F2 build",eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }
 }

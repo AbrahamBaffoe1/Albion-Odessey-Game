@@ -27,6 +27,14 @@ namespace AlbionOdyssey
             style.normal.background=Pixel();style.normal.textColor=new Color(.98f,.96f,.9f);style.hover.background=Pixel();style.hover.textColor=Color.white;style.active.background=Pixel();style.active.textColor=Gold;style.focused.background=Pixel();style.focused.textColor=Cyan;
             return style;
         }
+        // IMGUI uses a top-left origin while Screen.safeArea uses a bottom-left
+        // origin. Convert once so HUD cards stay clear of notches, camera cutouts,
+        // and headset compositor margins on every target resolution.
+        public static Rect SafeArea(float scale)
+        {
+            Rect safe=Screen.safeArea;
+            return new Rect(safe.xMin/scale,(Screen.height-safe.yMax)/scale,safe.width/scale,safe.height/scale);
+        }
         public static Matrix4x4 Slide(Matrix4x4 matrix,float openedAt,bool reducedMotion)
         {
             float t=reducedMotion?1:Mathf.Clamp01((Time.unscaledTime-openedAt)*8f);return matrix*Matrix4x4.Translate(new Vector3(0,Mathf.SmoothStep(12,0,t),0));
