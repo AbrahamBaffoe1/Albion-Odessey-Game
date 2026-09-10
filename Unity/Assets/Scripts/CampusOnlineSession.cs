@@ -68,7 +68,15 @@ namespace AlbionOdyssey
             if (remotes.Count == 0) return;
             var expired = new List<string>();
             foreach (var entry in remotes) if (Time.unscaledTime - entry.Value.lastSeen > RemoteTimeout) expired.Add(entry.Key);
-            foreach (var id in expired) { if (remotes.TryGetValue(id, out var remote) && remote.root != null) Destroy(remote.root); remotes.Remove(id); }
+            foreach (var id in expired)
+            {
+                if (remotes.TryGetValue(id, out var remote))
+                {
+                    if (remote.root != null) Destroy(remote.root);
+                    if (game != null) game.notice = remote.display + " left the campus session.";
+                }
+                remotes.Remove(id);
+            }
         }
         void ReceivePackets()
         {
@@ -81,7 +89,7 @@ namespace AlbionOdyssey
                     if (packet.type == "join" && host) Send(packet, from, "hello");
                     if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
-                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
+                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); if (game != null) game.notice = message; if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
                 }
             }
@@ -92,7 +100,8 @@ namespace AlbionOdyssey
         {
             if (!remotes.TryGetValue(packet.id, out var remote))
             {
-                var o = new GameObject("Remote Keeper · " + packet.display); remote = new RemoteKeeper(o, packet.display, remotes.Count % 5); remotes.Add(packet.id, remote);
+                string safeDisplay = Sanitize(packet.display);
+                var o = new GameObject("Remote Keeper · " + safeDisplay); remote = new RemoteKeeper(o, safeDisplay, remotes.Count % 5); remotes.Add(packet.id, remote); if (game != null) game.notice = safeDisplay + " joined the campus session.";
             }
             remote.target = new Vector3(packet.x, packet.y, packet.z); remote.display = Sanitize(packet.display); remote.lastSeen = Time.unscaledTime;
         }
