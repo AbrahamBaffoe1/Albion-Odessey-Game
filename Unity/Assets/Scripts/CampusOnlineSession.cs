@@ -19,7 +19,7 @@ namespace AlbionOdyssey
     // can replace this transport later without changing campus gameplay code.
     public sealed class CampusOnlineSession : MonoBehaviour
     {
-        const int Port = 40777;
+        const int Port = 40777; const float RemoteTimeout = 4.5f;
         OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,openedAt; bool open, active, host;
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
@@ -53,6 +53,14 @@ namespace AlbionOdyssey
             if (!active || socket == null) return;
             ReceivePackets();
             if (Time.unscaledTime >= nextHeartbeat) { SendPresence(); nextHeartbeat = Time.unscaledTime + 1.2f; }
+            PruneRemotes();
+        }
+        void PruneRemotes()
+        {
+            if (remotes.Count == 0) return;
+            var expired = new List<string>();
+            foreach (var entry in remotes) if (Time.unscaledTime - entry.Value.lastSeen > RemoteTimeout) expired.Add(entry.Key);
+            foreach (var id in expired) { if (remotes.TryGetValue(id, out var remote) && remote.root != null) Destroy(remote.root); remotes.Remove(id); }
         }
         void ReceivePackets()
         {
@@ -77,7 +85,7 @@ namespace AlbionOdyssey
             {
                 var o = new GameObject("Remote Keeper · " + packet.display); remote = new RemoteKeeper(o, packet.display, remotes.Count % 5); remotes.Add(packet.id, remote);
             }
-            remote.target = new Vector3(packet.x, packet.y, packet.z); remote.display = Sanitize(packet.display);
+            remote.target = new Vector3(packet.x, packet.y, packet.z); remote.display = Sanitize(packet.display); remote.lastSeen = Time.unscaledTime;
         }
         void SendPresence() { Send(new CampusNetPacket { type = "presence", session = session, id = PlayerId, display = display, x = game.player.transform.position.x, y = game.player.transform.position.y, z = game.player.transform.position.z }, broadcast); }
         void Send(CampusNetPacket packet, IPEndPoint endpoint, string typeOverride = null)
@@ -131,8 +139,8 @@ namespace AlbionOdyssey
         }
         sealed class RemoteKeeper
         {
-            public readonly GameObject root; public Vector3 target; public string display;
-            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); var tag = root.AddComponent<CampusWorldLabel>(); tag.Configure(name + "  ·  ONLINE", AlbionUITheme.Cyan, new Vector3(0, 2.35f, 0), 24f); target = root.transform.position; }
+            public readonly GameObject root; public Vector3 target; public string display; public float lastSeen;
+            public RemoteKeeper(GameObject owner, string name, int variant) { root = owner; display = name; lastSeen = Time.unscaledTime; root.transform.position = Vector3.zero; var avatar = root.AddComponent<KeeperAvatar>(); avatar.Build(variant % 5, (variant + 1) % 5, variant % 3, false); var tag = root.AddComponent<CampusWorldLabel>(); tag.Configure(name + "  ·  ONLINE", AlbionUITheme.Cyan, new Vector3(0, 2.35f, 0), 24f); target = root.transform.position; }
             public void Tick() { root.transform.position = Vector3.Lerp(root.transform.position, target, Time.deltaTime * 8f); }
         }
         void LateUpdate() { foreach (var remote in remotes.Values) remote.Tick(); }
