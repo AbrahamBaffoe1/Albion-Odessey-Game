@@ -29,8 +29,8 @@ namespace AlbionOdyssey
         public string Context()
         {
             var b=CampusBuildings.Instance;var d=b?.NearbyDoor;var additional=b?.AdditionalInside();
-            if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();return "E  "+(door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
-            if(d!=null)return "E  "+(d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();
+            if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();bool tooClose=door.IsOpen&&Vector3.Distance(game.player.transform.position,door.ClosedPosition)<1.2f;return "E  "+(tooClose?"Move clear to close ":door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
+            if(d!=null){bool tooClose=d.IsOpen&&Vector3.Distance(game.player.transform.position,d.ClosedPosition)<1.2f;return "E  "+(tooClose?"Move clear to close ":d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();}
             if(game.player.vehicle!=null)return "E  Leave vehicle   ·   Space  Brake";
             if(game.tour.InRoom)return "H  Room story   ·   E  Exit at the doorway";
             foreach(var car in game.campus.cars)if(Vector3.Distance(car.transform.position,game.player.transform.position)<4.8f)return "E  Drive campus car";
@@ -76,8 +76,9 @@ namespace AlbionOdyssey
             Card(new Rect(left+24,top+24,330,92),true);GUI.Label(new Rect(left+44,top+34,290,18),"ALBION COLLEGE  /  LIVE",eyebrow);GUI.Label(new Rect(left+44,top+55,290,30),p,place);GUI.Label(new Rect(left+44,top+84,290,22),game.campus.keeperName+"   ·   "+game.state.Current.acorns+" ACORNS",small);
             Compass((left+right)*.5f,top);
             Card(new Rect(right-326,top+24,302,92));GUI.Label(new Rect(right-304,top+35,260,18),game.player.vehicle==null?"KEEPER STATUS":"CAMPUS CAR",eyebrow);
-            if(game.player.vehicle==null){GUI.Label(new Rect(right-304,top+55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%",value);Fill(new Rect(right-304,top+88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(right-304,top+88,258*game.player.Stamina,7),Cyan);}
-            else GUI.Label(new Rect(right-304,top+57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H",value);
+            string online=game.online!=null&&game.online.Active?"  ·  "+game.online.RemoteCount+" ONLINE":"";
+            if(game.player.vehicle==null){GUI.Label(new Rect(right-304,top+55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%"+online,value);Fill(new Rect(right-304,top+88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(right-304,top+88,258*game.player.Stamina,7),Cyan);}
+            else GUI.Label(new Rect(right-304,top+57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H"+online,value);
             Card(new Rect(left+24,top+132,330,74),true);GUI.Label(new Rect(left+44,top+143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(left+44,top+164,286,34),Objective(),small);
             string progress=OdysseyState.Count(game.state.Current.memories)+" / 12 memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(left+44,top+190,286,18),progress,eyebrow);
             TargetTag(scale);

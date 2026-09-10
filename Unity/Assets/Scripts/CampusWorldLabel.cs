@@ -11,6 +11,8 @@ namespace AlbionOdyssey
         {
             offset=localOffset;maxDistance=distance;var labelObject=new GameObject("World label");labelObject.transform.SetParent(transform,false);mesh=labelObject.AddComponent<TextMesh>();mesh.text=text;mesh.fontSize=42;mesh.characterSize=.045f;mesh.anchor=TextAnchor.MiddleCenter;mesh.alignment=TextAlignment.Center;mesh.color=accent;mesh.fontStyle=FontStyle.Bold;
         }
+        public void SetText(string value){if(mesh!=null)mesh.text=value;}
+        public void SetColor(Color value){if(mesh!=null)mesh.color=value;}
         void LateUpdate()
         {
             if(mesh==null)return;
