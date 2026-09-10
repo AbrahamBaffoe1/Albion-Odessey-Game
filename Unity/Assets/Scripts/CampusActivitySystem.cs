@@ -15,6 +15,7 @@ namespace AlbionOdyssey
         public int ActiveClubCount { get; private set; }
         public int ClubAgents { get; private set; }
         public int CompletedInteractions { get; private set; }
+        public int SeatedAgentCount { get { int count = 0; foreach (var agent in agents) if (agent != null && agent.IsSeated) count++; return count; } }
         public Transform Root { get; private set; }
         readonly List<CampusActivityAgent> agents = new List<CampusActivityAgent>();
         OdysseyGame game;
@@ -148,18 +149,25 @@ namespace AlbionOdyssey
             CampusPlace kellogg = CampusExpansion.Find("14");
             Vector3 recreation = (kellogg != null ? kellogg.position : CampusCatalog.Point(445, 225)) + new Vector3(17f, .1f, -9f);
             Agent("Professor Ayo", CampusActivityKind.Teach, new[] { ferguson + new Vector3(7, .08f, 1.5f), ferguson + new Vector3(7, .08f, 3.2f) }, 2, 3, 1);
-            Agent("Study group 1", CampusActivityKind.Learn, new[] { ferguson + new Vector3(-11.2f, .08f, -3.4f), ferguson + new Vector3(-6.8f, .08f, -3.4f) }, 1, 0, 0);
+            Agent("Study group 1", CampusActivityKind.Learn, new[] { ferguson + new Vector3(-11.2f, .08f, -3.9f), ferguson + new Vector3(-6.8f, .08f, -3.9f) }, 1, 0, 0);
             Agent("Study group 2", CampusActivityKind.Learn, new[] { robinson + new Vector3(-4, .08f, 1.7f), robinson + new Vector3(0, .08f, -1.7f) }, 3, 1, 1);
             Agent("Lab researcher", CampusActivityKind.Learn, new[] { science + new Vector3(-9, .08f, -5.0f), science + new Vector3(-3, .08f, -5.0f) }, 4, 3, 2);
             Agent("Dining worker", CampusActivityKind.Serve, new[] { dining + new Vector3(-5.8f, .08f, .35f), dining + new Vector3(-5.8f, .08f, 2.0f) }, 2, 2, 0);
             Agent("Cashier", CampusActivityKind.Buy, new[] { dining + new Vector3(-2.5f, .08f, .35f), dining + new Vector3(-5.8f, .08f, .35f) }, 3, 0, 1);
-            Agent("Student lunch 1", CampusActivityKind.Eat, new[] { dining + new Vector3(1.5f, .08f, -1.7f), dining + new Vector3(5.5f, .08f, -1.7f) }, 1, 1, 0);
-            Agent("Student lunch 2", CampusActivityKind.Eat, new[] { dining + new Vector3(1.5f, .08f, 1.8f), dining + new Vector3(5.5f, .08f, 1.8f) }, 4, 3, 2);
+            // Seat-side anchors keep the avatars beside the table instead of
+            // sending them through the tabletop. Opposite anchors also make
+            // the two lunch guests naturally face one another while talking.
+            Agent("Student lunch 1", CampusActivityKind.Eat, new[] { dining + new Vector3(1.5f, .08f, -3.35f), dining + new Vector3(1.5f, .08f, -.05f) }, 1, 1, 0);
+            Agent("Student lunch 2", CampusActivityKind.Eat, new[] { dining + new Vector3(5.5f, .08f, .15f), dining + new Vector3(5.5f, .08f, 3.45f) }, 4, 3, 2);
             Agent("Commons player", CampusActivityKind.Play, new[] { recreation + new Vector3(0, .08f, 1.1f), recreation + new Vector3(4, .08f, .2f) }, 2, 4, 1);
         }
 
         void Agent(string name, CampusActivityKind kind, Vector3[] route, int skin, int coat, int hair)
         {
+            // Furniture is already authored before agents are built. Resolve
+            // each target against the real colliders once, so a route can
+            // never ask an avatar to stand inside a desk, table or chair.
+            for (int i = 0; i < route.Length; i++) route[i] = CampusStudentNavigation.FreeWaypoint(route[i]);
             var o = new GameObject(name + " · " + kind); o.transform.SetParent(Root, false); o.transform.position = route[0];
             var agent = o.AddComponent<CampusActivityAgent>(); agent.Activity = kind; agent.Route = route; agent.Speed = kind == CampusActivityKind.Play ? .8f : 1.0f; agent.Build(CampusStudentProfiles.Get(16+ActivityAgents),name); agents.Add(agent); ActivityAgents++;
         }
@@ -175,10 +183,10 @@ namespace AlbionOdyssey
         void RoomLabel(Vector3 at, string value)
         { var o = new GameObject(value); o.transform.SetParent(Root, false); o.transform.position = at; var t = o.AddComponent<TextMesh>(); t.text = value; t.fontSize = 40; t.characterSize = .07f; t.anchor = TextAnchor.MiddleCenter; t.color = new Color(.97f, .84f, .50f); }
         void Board(Vector3 at, string value) { Box(at, new Vector3(3.2f, 1.7f, .12f), chalk, true, "Learning board"); RoomLabel(at + Vector3.forward * -.08f + Vector3.up * .05f, value); }
-        void Desk(Vector3 at, string name) { Box(at + Vector3.up * .72f, new Vector3(1.8f, .12f, .75f), wood, true, name); foreach (int s in new[] { -1, 1 }) Box(at + new Vector3(s * .65f, .35f, 0), new Vector3(.10f, .7f, .10f), metal, true, "Desk leg"); Box(at + Vector3.up * .82f + Vector3.forward * .05f, new Vector3(.5f, .05f, .3f), paper, false, "Notebook"); }
+        void Desk(Vector3 at, string name) { Box(at + Vector3.up * .72f, new Vector3(1.8f, .12f, .75f), wood, true, name); foreach (int s in new[] { -1, 1 }) Box(at + new Vector3(s * .65f, .35f, 0), new Vector3(.10f, .7f, .10f), metal, true, "Desk leg"); Box(at + new Vector3(0, .45f, -.98f), new Vector3(.58f, .12f, .52f), fabric, true, "Learning chair"); Box(at + Vector3.up * .82f + Vector3.forward * .05f, new Vector3(.5f, .05f, .3f), paper, false, "Notebook"); }
         void LabBench(Vector3 at, string name) { Box(at + Vector3.up * .72f, new Vector3(2.7f, .14f, .9f), metal, true, name); Box(at + Vector3.up * .84f, new Vector3(.7f, .05f, .4f), glass, false, "Lab glassware"); }
         void Counter(Vector3 at) { Box(at + Vector3.up * .72f, new Vector3(6.1f, .22f, 1.1f), counter, true, "Dining service counter"); Box(at + Vector3.up * 1.05f + Vector3.forward * .28f, new Vector3(1.0f, .35f, .5f), food, false, "Prepared food tray"); Box(at + Vector3.up * 1.05f + Vector3.back * .28f, new Vector3(.7f, .35f, .5f), gold, false, "Cash register"); }
-        void DiningTable(Vector3 at, int number) { Box(at + Vector3.up * .72f, new Vector3(2.4f, .12f, 1.4f), wood, true, "Dining table " + number); foreach (int side in new[] { -1, 1 }) foreach (int end in new[] { -1, 1 }) Box(at + new Vector3(side * .85f, .35f, end * .45f), new Vector3(.10f, .7f, .10f), metal, true, "Dining table leg"); foreach (int side in new[] { -1, 1 }) Box(at + new Vector3(side * 1.45f, .45f, 0), new Vector3(.55f, .12f, .55f), fabric, true, "Dining chair"); Box(at + Vector3.up * .84f, new Vector3(.35f, .06f, .25f), food, false, "Lunch plate"); }
+        void DiningTable(Vector3 at, int number) { Box(at + Vector3.up * .72f, new Vector3(2.4f, .12f, 1.4f), wood, true, "Dining table " + number); foreach (int side in new[] { -1, 1 }) foreach (int end in new[] { -1, 1 }) Box(at + new Vector3(side * .85f, .35f, end * .45f), new Vector3(.10f, .7f, .10f), metal, true, "Dining table leg"); foreach (int side in new[] { -1, 1 }) Box(at + new Vector3(0, .45f, side * 1.12f), new Vector3(.55f, .12f, .55f), fabric, true, "Dining chair"); Box(at + Vector3.up * .84f, new Vector3(.35f, .06f, .25f), food, false, "Lunch plate"); }
         void ChessTable(Vector3 at) { Box(at + Vector3.up * .72f, new Vector3(1.8f, .12f, 1.8f), wood, true, "Chess table"); for (int i = 0; i < 8; i++) for (int j = 0; j < 8; j++) Box(at + new Vector3(-.7f + i * .2f, .80f, -.7f + j * .2f), new Vector3(.19f, .025f, .19f), (i + j) % 2 == 0 ? paper : wood, false, "Chess board square"); }
         void Bench(Vector3 at) { Box(at + Vector3.up * .48f, new Vector3(2.2f, .14f, .55f), fabric, true, "Commons lounge bench"); }
         static GameObject Box(Vector3 at, Vector3 size, Material mat, bool solid, string name) { var o = KeeperAvatar.Part(null, name, PrimitiveType.Cube, at, size, mat, solid); return o; }
@@ -201,13 +209,14 @@ namespace AlbionOdyssey
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
         KeeperAvatar avatar; CampusConversationBubble bubble; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase;
         public CampusStudentIdentity Identity { get; private set; }
+        public bool IsSeated { get { return seated && pause > 0f; } }
         public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); bubble=gameObject.AddComponent<CampusConversationBubble>();bubble.Configure(displayName,Activity,new Vector3(0,2.72f,0),16f); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;
             if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) { bubble.SetVisible(true); Dance(); } else {avatar.Animate(0, seated);bubble.SetVisible(seated);if(seated)Talk();} return; }
             Vector3 goal = Route[target]; Vector3 delta = goal - transform.position; delta.y = 0;
-            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
+            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if(seated)FaceConversationPartner(); bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) Dance(); else {avatar.Animate(0, seated);if(seated)Talk();} return; }
             seated = false; bubble.SetVisible(false); avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
             if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;pause=.35f;return;}
@@ -221,6 +230,12 @@ namespace AlbionOdyssey
             talkPhase+=Time.deltaTime*3.1f;
             avatar.transform.localRotation=Quaternion.Euler(Mathf.Sin(talkPhase*.83f)*2.2f,Mathf.Sin(talkPhase*1.17f)*4.5f,Mathf.Sin(talkPhase*1.61f)*1.4f);
             avatar.transform.localPosition=Vector3.up*(Mathf.Abs(Mathf.Sin(talkPhase*1.45f))*.018f);
+        }
+        void FaceConversationPartner()
+        {
+            if(Route == null || Route.Length < 2) return;
+            Vector3 next = Route[target] - transform.position; next.y = 0f;
+            if(next.sqrMagnitude > .05f) transform.rotation = Quaternion.LookRotation(next.normalized, Vector3.up);
         }
         void Dance() { dancePhase += Time.deltaTime * 5.5f; avatar.Animate(0, false); avatar.transform.localRotation = Quaternion.Euler(Mathf.Sin(dancePhase * 1.7f) * 7f, Mathf.Sin(dancePhase) * 16f, Mathf.Sin(dancePhase * 2.1f) * 5f); }
     }
