@@ -136,7 +136,7 @@ namespace AlbionOdyssey
             }
             returnPosition=game.player.transform.position;returnRotation=game.player.transform.rotation;returnThird=game.player.thirdPerson;
             game.player.Teleport(RoomOrigin+new Vector3(0,.08f,-3.55f));game.player.transform.rotation=Quaternion.identity;game.player.thirdPerson=false;InRoom=true;Close();
-            game.notice="Wesley reference room · WASD / arrows · H information · E by the doorway returns to campus. Dimensions and unseen surfaces are provisional.";
+            game.notice="Wesley reference room · WASD / arrows · H information · "+OdysseyAccessibility.InteractLabel+" by the doorway returns to campus. Dimensions and unseen surfaces are provisional.";
             return true;
         }
         public void ExitRoom()
