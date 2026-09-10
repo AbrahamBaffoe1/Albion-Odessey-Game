@@ -24,8 +24,8 @@ namespace AlbionOdyssey
         static readonly XRHandJointID[] visibleJoints = { XRHandJointID.Wrist, XRHandJointID.Palm, XRHandJointID.ThumbTip, XRHandJointID.IndexTip, XRHandJointID.MiddleTip };
         Vector3 lastHeadLocal;
         bool haveHeadPose, wasSelect, wasGrip;
-        float turnCooldown, averageFrame, lowFrameSeconds;
-        bool recovering;
+        float turnCooldown, averageFrame, lowFrameSeconds, previousViewportScale = 1f;
+        bool recovering, performanceReduced;
         Material handMaterial;
         public bool Tracking => leftController.isValid || rightController.isValid || handSubsystem != null;
 
@@ -59,6 +59,7 @@ namespace AlbionOdyssey
             ApplyRoomScale();
             ApplyLocomotion();
             ApplyActions();
+            ApplyPerformanceGuard();
             if (turnCooldown > 0) turnCooldown -= Time.unscaledDeltaTime;
         }
 
@@ -69,6 +70,8 @@ namespace AlbionOdyssey
             game.player.thirdPerson = false;
             game.player.cameraDistance = 1.8f;
             haveHeadPose = false;
+            previousViewportScale = XRSettings.renderViewportScale;
+            performanceReduced = false;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Debug.Log("ODYSSEY_XR_ACTIVE: room-scale locomotion, controller input and hand tracking ready");
@@ -82,6 +85,8 @@ namespace AlbionOdyssey
             if (rightAnchor != null) rightAnchor.gameObject.SetActive(false);
             SetHandsVisible(false);
             haveHeadPose = false;
+            if (performanceReduced) XRSettings.renderViewportScale = previousViewportScale;
+            performanceReduced = false;
             Debug.Log("ODYSSEY_XR_INACTIVE: desktop controls restored");
         }
 
@@ -208,6 +213,23 @@ namespace AlbionOdyssey
             wasGrip = grip;
         }
 
+        void ApplyPerformanceGuard()
+        {
+            if (lowFrameSeconds > 1f && !performanceReduced)
+            {
+                previousViewportScale = XRSettings.renderViewportScale;
+                XRSettings.renderViewportScale = Mathf.Clamp(previousViewportScale * .82f, .65f, 1f);
+                performanceReduced = true;
+                Debug.Log("ODYSSEY_XR_PERFORMANCE_GUARD: viewport scale reduced for comfort");
+            }
+            else if (performanceReduced && lowFrameSeconds < .2f)
+            {
+                XRSettings.renderViewportScale = previousViewportScale;
+                performanceReduced = false;
+                Debug.Log("ODYSSEY_XR_PERFORMANCE_RECOVERED: viewport scale restored");
+            }
+        }
+
         static bool Button(InputDevice device, InputFeatureUsage<bool> usage)
         {
             return device.isValid && device.TryGetFeatureValue(usage, out var pressed) && pressed;
@@ -243,6 +265,7 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(22, 49, 700, 24), "Left stick move · right stick snap-turn · trigger interact · grip grab · F8 menu");
             if (recovering) GUI.Label(new Rect(22, 78, 480, 24), "Resuming headset tracking…");
             if (lowFrameSeconds > 1f) GUI.Label(new Rect(22, 78, 620, 24), "Comfort warning: performance below 55 FPS");
+            if (performanceReduced) GUI.Label(new Rect(22, 106, 620, 24), "Performance guard active · visual scale reduced temporarily");
             if (ComfortVignette)
             {
                 GUI.color = new Color(0, 0, 0, .42f);

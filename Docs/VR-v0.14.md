@@ -18,7 +18,7 @@ The 0.14 build adds a single OpenXR path for desktop headsets and Quest. The sam
 - F8: open the existing desktop/XR settings menu. Comfort vignette and snap-turn defaults are enabled.
 - Motion-controller menu button: open the XR settings panel. Thumbstick moves the focused action, trigger selects it, and menu backs out. The same input path is available in the shared-campus panel once it is opened with F5.
 
-The XR layer hides desktop mouse movement while a headset is active, then restores keyboard/mouse controls when it is removed. It also reacquires devices after a headset pause/resume and shows a comfort warning if the frame time stays below 55 FPS.
+The XR layer hides desktop mouse movement while a headset is active, then restores keyboard/mouse controls when it is removed. It reacquires devices after a headset pause/resume and shows a comfort warning if the frame time stays below 55 FPS. If performance remains below that threshold for a second, a reversible viewport-scale guard reduces render load; it restores the previous scale after performance recovers.
 
 ## Build and test
 
