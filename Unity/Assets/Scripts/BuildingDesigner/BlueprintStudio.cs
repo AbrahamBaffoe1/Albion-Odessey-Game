@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 namespace AlbionOdyssey.BuildingDesigner
 {
     [DefaultExecutionOrder(-2000)]
@@ -24,7 +25,7 @@ namespace AlbionOdyssey.BuildingDesigner
         public bool Ready=>game!=null;
         bool walking,showRoof,share,dirty,editingName,blurNextGui;
         int keeper,slot,rotation,controllerFocus;StudioPart selected;
-        float previousTimeScale,azimuth=35,pitch,velocity,openedAt;
+        float previousTimeScale,azimuth=35,pitch,velocity,openedAt,controllerTurnCooldown;bool previousControllerJump;
         Vector3 returnCameraPosition;Quaternion returnCameraRotation;
         string message="Choose a piece, then click the grid. Right-click removes the selected layer.",card="";
         Vector2 cardScroll;
@@ -105,6 +106,12 @@ namespace AlbionOdyssey.BuildingDesigner
             if(game==null||Smoke)return;
             if(!share&&!editingName&&Input.GetKeyDown(KeyCode.F4)){if(Active)Leave();else Enter();return;}
             if(!Active)return;
+            if(walking)
+            {
+                AlbionUIInput.Poll(out var unusedHorizontal,out var unusedVertical,out var unusedChoose,out var cancelWalk);
+                if(cancelWalk){StopWalk();return;}
+                WalkInput();return;
+            }
             if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
             {
                 if(cancel){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
@@ -114,7 +121,6 @@ namespace AlbionOdyssey.BuildingDesigner
                 return;
             }
             if(Input.GetKeyDown(KeyCode.Escape)){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
-            if(walking){WalkInput();return;}
             if(share||invalidSlot)return;
             float interfaceScale=Mathf.Min(Screen.width/1280f,Screen.height/800f);
             if(editingName)
@@ -171,20 +177,28 @@ namespace AlbionOdyssey.BuildingDesigner
             if(walking)return;walking=true;share=false;preview.SetActive(false);returnCameraPosition=camera.transform.position;returnCameraRotation=camera.transform.rotation;
             walker=new GameObject("Blueprint walkthrough Keeper");walker.transform.position=StudioGeometry.Origin+new Vector3(-1,.15f,-7);controller=walker.AddComponent<CharacterController>();controller.height=1.8f;controller.radius=.32f;controller.center=Vector3.up*.9f;controller.stepOffset=.3f;
             camera.orthographic=false;camera.fieldOfView=75;camera.transform.SetParent(walker.transform,false);camera.transform.localPosition=Vector3.up*1.65f;camera.transform.localRotation=Quaternion.identity;pitch=velocity=0;
-            Rebuild();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;message="Walk through your doorway. Esc returns to the designer.";
+            Rebuild();controllerTurnCooldown=0;previousControllerJump=false;Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;message="Walk through your doorway. Esc returns to the designer.";
         }
         void WalkInput()
         {
             walker.transform.Rotate(0,Input.GetAxisRaw("Mouse X")*2,0);pitch=Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*2,-80,80);camera.transform.localRotation=Quaternion.Euler(pitch,0,0);
             float x=(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)?1:0);
             float z=(Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)?1:0);
-            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&Input.GetKeyDown(KeyCode.Space))velocity=5;
+            var devices=new List<InputDevice>();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Left,devices);
+            if(devices.Count>0&&devices[0].TryGetFeatureValue(CommonUsages.primary2DAxis,out var moveAxis)&&moveAxis.sqrMagnitude>.01f){x=moveAxis.x;z=moveAxis.y;}
+            devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Right,devices);
+            if(devices.Count>0&&devices[0].TryGetFeatureValue(CommonUsages.primary2DAxis,out var turnAxis)&&Mathf.Abs(turnAxis.x)>.65f&&controllerTurnCooldown<=0){walker.transform.Rotate(0,turnAxis.x>0?30f:-30f,0);controllerTurnCooldown=.28f;}
+            if(controllerTurnCooldown>0)controllerTurnCooldown-=Time.unscaledDeltaTime;
+            bool controllerJump=devices.Count>0&&(Button(devices[0],CommonUsages.primaryButton)||Button(devices[0],CommonUsages.triggerButton));
+            bool jumpPressed=controllerJump&&!previousControllerJump;previousControllerJump=controllerJump;
+            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&(Input.GetKeyDown(KeyCode.Space)||jumpPressed))velocity=5;
             velocity-=18*Time.unscaledDeltaTime;controller.Move((Vector3.ClampMagnitude(walker.transform.right*x+walker.transform.forward*z,1)*3.5f+Vector3.up*velocity)*Time.unscaledDeltaTime);
             if(walker.transform.position.y< -5){controller.enabled=false;walker.transform.position=StudioGeometry.Origin+new Vector3(-1,.15f,-7);controller.enabled=true;velocity=0;}
         }
+        static bool Button(InputDevice device,InputFeatureUsage<bool> usage){return device.isValid&&device.TryGetFeatureValue(usage,out var pressed)&&pressed;}
         public void StopWalk()
         {
-            walking=false;camera.transform.SetParent(null,true);camera.orthographic=true;camera.transform.position=returnCameraPosition;camera.transform.rotation=returnCameraRotation;Destroy(walker);Rebuild();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
+            walking=false;previousControllerJump=false;camera.transform.SetParent(null,true);camera.orthographic=true;camera.transform.position=returnCameraPosition;camera.transform.rotation=returnCameraRotation;Destroy(walker);Rebuild();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
         }
         bool Button(float x,float y,float w,string value)=>GUI.Button(new Rect(x,y,w,36),value,button);
         void Label(float x,float y,float w,float h,string value,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),value,style??text);
