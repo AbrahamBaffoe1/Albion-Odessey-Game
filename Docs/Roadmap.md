@@ -15,7 +15,7 @@ Version 0.5 has **5 completed prototype work packages and 17 remaining work pack
 | 9 | Course authoring and timetable | Pending: user-created lesson content, class schedules, assignments and teacher tools beyond three supplied lessons |
 | 10 | Online accounts and enrollment identities | Pending: authentication, profiles, roles, account recovery and online course registration |
 | 11 | Persistent online world | Pending: server-owned campuses, economy and courses; idempotent commands and safe save migrations; local files cannot mint online resources |
-| 12 | Real-time multiplayer movement | Partial: LAN sessions bind UDP 40777, synchronize player presence/movement, render online nameplates and remove stale avatars after 4.5 seconds; reconnect, hosted service and two-device testing remain |
+| 12 | Real-time multiplayer movement | Partial: LAN sessions bind UDP 40777, retry missed joins, report host loss, synchronize player presence/movement, render online nameplates and remove stale avatars after 4.5 seconds; hosted service and two-device testing remain |
 | 13 | Shared construction | Pending: build permissions, concurrent changes, ownership, invitations and conflict handling |
 | 14 | Online classrooms | Pending: live rosters, teacher/student presence, lesson delivery and progress shared between devices |
 | 15 | Campus chaos and world events | Pending: expanded sandbox interactions, shared physics limits, opt-in rules and recovery; current paper play is a small local prototype |

@@ -20,7 +20,7 @@ namespace AlbionOdyssey
     public sealed class CampusOnlineSession : MonoBehaviour
     {
         const int Port = 40777; const float RemoteTimeout = 4.5f;
-        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,openedAt; bool open, active, host;
+        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,nextJoin,lastHostSeen,openedAt; int joinAttempts; bool open, active, host;
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
@@ -53,6 +53,7 @@ namespace AlbionOdyssey
             if (!active || socket == null) return;
             ReceivePackets();
             if (Time.unscaledTime >= nextHeartbeat) { SendPresence(); nextHeartbeat = Time.unscaledTime + 1.2f; }
+            if (!host && Time.unscaledTime >= nextJoin) { SendJoin(); nextJoin = Time.unscaledTime + 2.4f; joinAttempts++; if (lastHostSeen > 0 && Time.unscaledTime - lastHostSeen > 6f) status = "Host not responding · retrying (" + joinAttempts + ")"; }
             PruneRemotes();
         }
         void PruneRemotes()
@@ -71,6 +72,7 @@ namespace AlbionOdyssey
                     IPEndPoint from = new IPEndPoint(IPAddress.Any, 0); byte[] bytes = socket.Receive(ref from); var packet = JsonUtility.FromJson<CampusNetPacket>(Encoding.UTF8.GetString(bytes));
                     if (packet == null || packet.id == PlayerId || packet.session != session || blocked.Contains(packet.id)) continue;
                     if (packet.type == "join" && host) Send(packet, from, "hello");
+                    if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
                     if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) message = packet.display + ": " + Sanitize(packet.text);
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
@@ -97,10 +99,15 @@ namespace AlbionOdyssey
         {
             try
             {
-                StopSession(""); host = asHost; socket = new UdpClient(); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true); socket.Client.Bind(new IPEndPoint(IPAddress.Any, Port)); socket.EnableBroadcast = true; socket.Client.Blocking = false; broadcast = new IPEndPoint(IPAddress.Broadcast, Port); active = true; status = asHost ? "Hosting LAN world" : "Searching for host"; session = session.Trim().ToUpperInvariant(); if (session.Length == 0) session = "ALBION"; PlayerPrefs.SetString("Odyssey.NetworkSession", session); PlayerPrefs.SetString("Odyssey.NetworkName", display); PlayerPrefs.Save();
-                if (!asHost) Send(new CampusNetPacket { type = "join", session = session, id = PlayerId, display = display }, broadcast);
+                StopSession(""); host = asHost; socket = new UdpClient(); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true); socket.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, true); socket.Client.Bind(new IPEndPoint(IPAddress.Any, Port)); socket.EnableBroadcast = true; socket.Client.Blocking = false; broadcast = new IPEndPoint(IPAddress.Broadcast, Port); active = true; joinAttempts = 0; lastHostSeen = 0; nextJoin = Time.unscaledTime; status = asHost ? "Hosting LAN world" : "Searching for host"; session = session.Trim().ToUpperInvariant(); if (session.Length == 0) session = "ALBION"; PlayerPrefs.SetString("Odyssey.NetworkSession", session); PlayerPrefs.SetString("Odyssey.NetworkName", display); PlayerPrefs.Save();
+                if (!asHost) SendJoin();
             }
             catch (Exception e) { status = "Network unavailable: " + e.Message; active = false; }
+        }
+        void SendJoin()
+        {
+            if (socket == null || host) return;
+            Send(new CampusNetPacket { type = "join", session = session, id = PlayerId, display = display }, broadcast);
         }
         public void StopSession(string reason)
         {
