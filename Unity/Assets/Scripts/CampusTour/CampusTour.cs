@@ -254,9 +254,9 @@ namespace AlbionOdyssey
             if(activeMedia==null)return;
             if(detailFocus==0)StopMedia();else if(detailFocus==1)ShowMedia(activeMedia);else if(detailFocus==2&&video!=null&&video.isPrepared){if(video.isPlaying)video.Pause();else video.Play();}else if(detailFocus==3&&videoAudio!=null)videoAudio.mute=!videoAudio.mute;
         }
-        void DrawStorySide(float width,float height)
+        void DrawStorySide(float width,float height,Rect safe)
         {
-            float panelWidth=Mathf.Min(505,width*.44f),x=width-panelWidth;
+            float panelWidth=Mathf.Min(505,width*.44f),x=Mathf.Clamp(width-panelWidth,safe.xMin,safe.xMax-panelWidth);
             Box(new Rect(x,190,panelWidth,height-190),new Color(.005f,.008f,.012f,.68f));
             GUI.Label(new Rect(x+30,28,panelWidth-90,22),"HISTORY",small);
             if(ControlButton(new Rect(x+panelWidth-105,22,78,34),"Close"))Close();
@@ -273,18 +273,18 @@ namespace AlbionOdyssey
         {
             if(game==null)return;InitStyles();var old=GUI.matrix;
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);
-            float width=Screen.width/scale,height=Screen.height/scale;GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);
+            float width=Screen.width/scale,height=Screen.height/scale;Rect safe=AlbionUITheme.SafeArea(scale);float left=Mathf.Max(24,safe.xMin+8),right=Mathf.Min(width-24,safe.xMax-8);GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);
             if(!IsOpen){GUI.matrix=old;return;}
-            if(sidePanel){DrawStorySide(width,height);GUI.matrix=old;return;}
+            if(sidePanel){DrawStorySide(width,height,safe);GUI.matrix=old;return;}
             Box(new Rect(0,0,width,height),new Color(.025f,.028f,.052f));Box(new Rect(0,0,width,94),new Color(.075f,.055f,.12f));Box(new Rect(0,0,width,5),new Color(1f,.76f,.28f));
             GUI.Label(new Rect(28,14,width-260,22),"ALBION COLLEGE ARCHIVE",small);
             GUI.Label(new Rect(28,35,width-260,38),VideosOnly?"College videos":"Places & stories",title);
             GUI.Label(new Rect(30,72,width-300,20),"Read the history, hear the voice and step through the reference material.",small);
-            if(Button(new Rect(width-190,23,160,45),"Return · Esc"))Close();
-            var next=GUI.TextField(new Rect(24,110,310,38),search,80);if(next!=search){search=next;Filter();listScroll=Vector2.zero;}
-            if(Button(new Rect(24,158,148,36),"All buildings")){VideosOnly=false;Filter();listScroll=Vector2.zero;}
-            if(Button(new Rect(180,158,148,36),"College videos")){VideosOnly=true;Filter();listScroll=Vector2.zero;if(filtered.Length>0&&!selected.media.Any(m=>m.kind=="video"))Open(filtered[0]);}
-            listScroll=GUI.BeginScrollView(new Rect(20,208,325,height-234),listScroll,new Rect(0,0,299,filtered.Length*67));
+            if(Button(new Rect(right-160,safe.yMin+23,160,45),"Return · Esc"))Close();
+            var next=GUI.TextField(new Rect(left,110,310,38),search,80);if(next!=search){search=next;Filter();listScroll=Vector2.zero;}
+            if(Button(new Rect(left,158,148,36),"All buildings")){VideosOnly=false;Filter();listScroll=Vector2.zero;}
+            if(Button(new Rect(left+156,158,148,36),"College videos")){VideosOnly=true;Filter();listScroll=Vector2.zero;if(filtered.Length>0&&!selected.media.Any(m=>m.kind=="video"))Open(filtered[0]);}
+            listScroll=GUI.BeginScrollView(new Rect(left-4,208,325,height-234),listScroll,new Rect(0,0,299,filtered.Length*67));
             for(int i=0;i<filtered.Length;i++)
             {
                 GUI.backgroundColor=filtered[i]==selected?new Color(.73f,.52f,.19f):new Color(.10f,.15f,.17f);
@@ -293,7 +293,7 @@ namespace AlbionOdyssey
             GUI.EndScrollView();GUI.backgroundColor=Color.white;
             if(selected!=null)
             {
-                float x=370,w=width-400;
+                float x=Mathf.Max(370,left+346),w=Mathf.Max(300,right-x);
                 GUI.Label(new Rect(x,108,w,68),selected.name,detailTitle);
                 GUI.Label(new Rect(x,184,w,24),selected.category.ToUpperInvariant()+"   ·   "+(selected.media.Length>0?selected.media.Length+" REFERENCE ITEMS":"TEXT ARCHIVE"),small);
                 if(activeMedia==null)
@@ -332,9 +332,9 @@ namespace AlbionOdyssey
                     if(videoAudio!=null&&Button(new Rect(x+445,r.yMax+14,120,42),DetailFocusLabel(3,videoAudio.mute?"Unmute":"Mute")))videoAudio.mute=!videoAudio.mute;
                 }
                 GUI.Label(new Rect(x,height-99,w-205,77),Status,small);
-                int readFocus=selected.media.Length+(HasEntry(selected)?1:0);if(Button(new Rect(width-210,height-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+                int readFocus=selected.media.Length+(HasEntry(selected)?1:0);if(Button(new Rect(right-180,safe.yMax-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
             }
-            GUI.Label(new Rect(28,height-22,width-56,18),"STICK  Browse   ·   TRIGGER  Open   ·   MENU  Back",small);
+            GUI.Label(new Rect(left,safe.yMax-22,right-left,18),"STICK  Browse   ·   TRIGGER  Open   ·   MENU  Back",small);
             GUI.matrix=old;
         }
     }
