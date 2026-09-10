@@ -98,7 +98,7 @@ namespace AlbionOdyssey
         public static readonly string[] Text={
             "Albion received its charter from the Michigan Territorial Legislature in 1835. In 1861, the legislature authorized four-year degrees for both men and women. The first permanent building's cornerstone was laid in 1840 on the site now known as the Quad.",
             "Albion's observatory cornerstone was laid on September 8, 1883. Construction finished in summer 1884. Its first-floor room originally served physics, mathematics and astronomy classes. The observatory combined teaching with astronomical observation.",
-            "Game design workshop: a learning space needs a clear entrance, an open walking route and seating that faces the lesson. In this prototype, build a Hall or Library in your personal campus, then give that building a course. This workshop is original game content."
+            "Game design workshop: a learning space needs a clear entrance, an open walking route and seating that faces the lesson. In this chapter, build a Hall or Library in your personal campus, then give that building a course. This workshop is original game content."
         };
         public static readonly string[] Sources={"https://www.albion.edu/about/at-a-glance/our-history/","https://www.albion.edu/departments/physics/observatory-history/",""};
         public static readonly string[] Questions={"In which year did Albion receive its charter?","When was the observatory completed?","What should a classroom keep clear?"};

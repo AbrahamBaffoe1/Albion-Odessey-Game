@@ -85,7 +85,7 @@ namespace AlbionOdyssey
             CampusPlace baldwin = CampusExpansion.Find("6");
             Vector3 center = baldwin != null ? baldwin.position + new Vector3(0, .1f, -18f) : CampusCatalog.Point(497, 204) + new Vector3(0, .1f, -18f);
             // An open-sided dining annex keeps the counter, tables and people readable
-            // from the campus approach while avoiding a sealed exterior placeholder.
+            // from the campus approach while keeping the annex open and readable.
             Box(center + Vector3.up * 2.8f, new Vector3(18f, .25f, 9f), wood, false, "Baldwin dining canopy");
             Box(center + new Vector3(-8.7f, 1.4f, 0), new Vector3(.25f, 2.8f, 9f), wood, true, "Dining west screen");
             Box(center + new Vector3(8.7f, 1.4f, 0), new Vector3(.25f, 2.8f, 9f), wood, true, "Dining east screen");
