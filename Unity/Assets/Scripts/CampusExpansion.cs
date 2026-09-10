@@ -150,7 +150,7 @@ namespace AlbionOdyssey
                     var token=KeeperAvatar.Part(t,"Discovery token",i==3?PrimitiveType.Cube:PrimitiveType.Sphere,new Vector3(0,1.2f,0),i==3?new Vector3(.65f,.15f,.5f):Vector3.one*.55f,gold);
                     if(i==2){token.transform.localScale=new Vector3(.22f,.22f,1.3f);token.transform.localRotation=Quaternion.Euler(-30,0,0);}
                 }
-                CampusGeometry.Sign(t,TreasureNames[i]+"\nE · Discover",new Vector3(0,2.9f,0),9);
+                CampusGeometry.Sign(t,TreasureNames[i]+"\nDISCOVER",new Vector3(0,2.9f,0),9);
                 var worldTag=t.gameObject.AddComponent<CampusWorldLabel>();worldTag.Configure("DISCOVERY\n"+TreasureNames[i],new Color(1f,.76f,.28f),new Vector3(0,3.45f,0),18f);
             }
         }

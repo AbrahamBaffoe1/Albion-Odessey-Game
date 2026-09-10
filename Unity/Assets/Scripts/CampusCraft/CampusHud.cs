@@ -26,16 +26,24 @@ namespace AlbionOdyssey
             if(game.state.school!=null&&game.state.school.active<0)return "Create a course for your campus";
             return "Your charter is complete — keep exploring";
         }
+        string InteractGlyph()
+        {
+            if(game.xr!=null&&game.xr.Active)return "TRIGGER";
+            if(game.player.pointerControls)return "INTERACT";
+            if(AlbionUIInput.ControllerPresent)return "B / CIRCLE";
+            return "E / F";
+        }
         public string Context()
         {
+            string use=InteractGlyph();
             var b=CampusBuildings.Instance;var d=b?.NearbyDoor;var additional=b?.AdditionalInside();
-            if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();bool tooClose=door.IsOpen&&Vector3.Distance(game.player.transform.position,door.ClosedPosition)<1.2f;return "E  "+(tooClose?"Move clear to close ":door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
-            if(d!=null){bool tooClose=d.IsOpen&&Vector3.Distance(game.player.transform.position,d.ClosedPosition)<1.2f;return "E  "+(tooClose?"Move clear to close ":d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();}
-            if(game.player.vehicle!=null)return "E  Leave vehicle   ·   Space  Brake";
+            if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();bool tooClose=door.IsOpen&&Vector3.Distance(game.player.transform.position,door.ClosedPosition)<1.2f;return use+"  "+(tooClose?"Move clear to close ":door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
+            if(d!=null){bool tooClose=d.IsOpen&&Vector3.Distance(game.player.transform.position,d.ClosedPosition)<1.2f;return use+"  "+(tooClose?"Move clear to close ":d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();}
+            if(game.player.vehicle!=null)return use+"  Leave vehicle   ·   "+(AlbionUIInput.ControllerPresent?"A / CROSS":"Space")+"  Brake";
             if(game.tour.InRoom)return "H  Room story   ·   E  Exit at the doorway";
-            foreach(var car in game.campus.cars)if(Vector3.Distance(car.transform.position,game.player.transform.position)<4.8f)return "E  Drive campus car";
-            foreach(var p in game.campus.discoveries)if(Vector3.Distance(p,game.player.transform.position)<4.5f)return "E  Collect discovery";
-            if(game.player.TryTarget(out var hit)&&(hit.collider.GetComponent<MemoryMarker>()!=null||hit.collider.GetComponent<GuideMarker>()!=null))return "E  Pick up / interact";
+            foreach(var car in game.campus.cars)if(Vector3.Distance(car.transform.position,game.player.transform.position)<4.8f)return use+"  Drive campus car";
+            foreach(var p in game.campus.discoveries)if(Vector3.Distance(p,game.player.transform.position)<4.5f)return use+"  Collect discovery";
+            if(game.player.TryTarget(out var hit)&&(hit.collider.GetComponent<MemoryMarker>()!=null||hit.collider.GetComponent<GuideMarker>()!=null))return use+"  Pick up / interact";
             if(additional!=null)return "H  "+additional.Place.name+" story   ·   Stairs and rooms to explore";
             if(b!=null&&b.Inside)return "H  Ferguson’s story   ·   Stairs at the east end →";
             return game.tour.Nearby()!=null?"H  Read building story   ·   G  All stories":"WASD / arrows  Move   ·   G  Stories";

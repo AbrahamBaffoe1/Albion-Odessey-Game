@@ -37,7 +37,7 @@ namespace AlbionOdyssey
             // Unity's legacy axes keep common USB and Bluetooth controllers working on Mac.
             float axisX=Input.GetAxisRaw("Horizontal"),axisZ=Input.GetAxisRaw("Vertical");
             if(Mathf.Abs(axisX)>.12f)x+=axisX;if(Mathf.Abs(axisZ)>.12f)z+=axisZ;
-            if(vehicle!=null){vehicle.Drive(Mathf.Clamp(z,-1,1),Mathf.Clamp(x,-1,1),Input.GetKey(KeyCode.Space)||buttonJump,Time.deltaTime);buttonJump=false;movementSpeed=0;return;}
+            if(vehicle!=null){bool brake=Input.GetKey(KeyCode.Space)||Input.GetKey(KeyCode.JoystickButton0)||buttonJump;vehicle.Drive(Mathf.Clamp(z,-1,1),Mathf.Clamp(x,-1,1),brake,Time.deltaTime);buttonJump=false;movementSpeed=0;return;}
             bool sprint=Input.GetKey(KeyCode.LeftShift)&&Stamina>.04f&&Mathf.Abs(x)+Mathf.Abs(z)>.1f;
             if(sprint)Stamina=Mathf.Max(0,Stamina-Time.deltaTime*.18f);else Stamina=Mathf.Min(1,Stamina+Time.deltaTime*.24f);
             Vector3 move=Vector3.ClampMagnitude(transform.right*x+transform.forward*z,1)*(sprint?6.5f:3.8f);movementSpeed=move.magnitude;
