@@ -208,11 +208,15 @@ namespace AlbionOdyssey
                     turnCooldown = .28f;
                 }
             }
-            bool select = Button(rightController, CommonUsages.primaryButton) || Button(rightController, CommonUsages.triggerButton);
-            if (select && !wasSelect) game.Interact();
+            bool leftSelect = Button(leftController, CommonUsages.primaryButton) || Button(leftController, CommonUsages.triggerButton);
+            bool rightSelect = Button(rightController, CommonUsages.primaryButton) || Button(rightController, CommonUsages.triggerButton);
+            bool select = leftSelect || rightSelect;
+            if (select && !wasSelect) { game.Interact(); Pulse(rightSelect ? rightController : leftController, .28f, .06f); }
             wasSelect = select;
-            bool grip = Button(rightController, CommonUsages.gripButton);
-            if (grip && !wasGrip) TryGrab(rightAnchor);
+            bool leftGrip = Button(leftController, CommonUsages.gripButton);
+            bool rightGrip = Button(rightController, CommonUsages.gripButton);
+            bool grip = leftGrip || rightGrip;
+            if (grip && !wasGrip) TryGrab(rightGrip ? rightAnchor : leftAnchor, rightGrip ? rightController : leftController);
             if (!grip && wasGrip) ReleaseGrab();
             wasGrip = grip;
         }
@@ -239,17 +243,25 @@ namespace AlbionOdyssey
             return device.isValid && device.TryGetFeatureValue(usage, out var pressed) && pressed;
         }
 
-        void TryGrab(Transform hand)
+        bool TryGrab(Transform hand, InputDevice controller)
         {
-            if (hand == null || !hand.gameObject.activeSelf || !Physics.Raycast(hand.position, hand.forward, out var hit, 2.0f)) return;
+            if (hand == null || !hand.gameObject.activeSelf || !Physics.Raycast(hand.position, hand.forward, out var hit, 2.0f)) return false;
             var marker = hit.collider.GetComponentInParent<OdysseyXRGrabTarget>();
-            if (marker != null) marker.BeginGrab(hand);
+            if (marker == null) return false;
+            marker.BeginGrab(hand); Pulse(controller, .42f, .10f); return true;
         }
 
         void ReleaseGrab()
         {
             var grabbed = FindObjectsByType<OdysseyXRGrabTarget>(FindObjectsSortMode.None);
             foreach (var target in grabbed) target.EndGrab();
+            Pulse(leftController, .18f, .04f); Pulse(rightController, .18f, .04f);
+        }
+
+        static void Pulse(InputDevice device, float amplitude, float duration)
+        {
+            if (!device.isValid || !device.TryGetHapticCapabilities(out var capabilities) || !capabilities.supportsImpulse) return;
+            try { device.SendHapticImpulse(0u, Mathf.Clamp01(amplitude), Mathf.Clamp(duration, .01f, .25f)); } catch { }
         }
 
         void OnApplicationPause(bool pause)

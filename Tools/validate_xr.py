@@ -23,6 +23,6 @@ assert settings.count("m_AutomaticRunning: 1") >= 2
 loader = root / "Unity/Assets/XR/Loaders/OpenXRLoader.asset"
 assert loader.exists() and loader.stat().st_size > 100
 runtime = (root / "Unity/Assets/Scripts/OdysseyXRExperience.cs").read_text()
-for marker in ("CommonUsages.primary2DAxis", "CommonUsages.triggerButton", "CommonUsages.gripButton", "XRHandSubsystem", "ApplyRoomScale", "ODYSSEY_XR_RECOVERED"):
+for marker in ("CommonUsages.primary2DAxis", "CommonUsages.triggerButton", "CommonUsages.gripButton", "SendHapticImpulse", "leftSelect", "XRHandSubsystem", "ApplyRoomScale", "ODYSSEY_XR_RECOVERED"):
     assert marker in runtime, f"missing XR runtime hook: {marker}"
 print("PASS: OpenXR packages, Standalone/Android loaders, controller input, hand tracking, room-scale movement and recovery hooks")
