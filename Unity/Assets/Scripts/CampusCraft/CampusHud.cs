@@ -31,7 +31,7 @@ namespace AlbionOdyssey
             if(game.xr!=null&&game.xr.Active)return "TRIGGER";
             if(game.player.pointerControls)return "INTERACT";
             if(AlbionUIInput.ControllerPresent)return "B / CIRCLE";
-            return "E / F";
+            return OdysseyAccessibility.InteractLabel;
         }
         public string Context()
         {
@@ -40,7 +40,7 @@ namespace AlbionOdyssey
             if(additional!=null&&additional.NearbyDoor()!=null){var door=additional.NearbyDoor();bool tooClose=door.IsOpen&&Vector3.Distance(game.player.transform.position,door.ClosedPosition)<1.2f;return use+"  "+(tooClose?"Move clear to close ":door.IsOpen?"Close ":"Open ")+door.Label.ToLowerInvariant();}
             if(d!=null){bool tooClose=d.IsOpen&&Vector3.Distance(game.player.transform.position,d.ClosedPosition)<1.2f;return use+"  "+(tooClose?"Move clear to close ":d.IsOpen?"Close ":"Open ")+d.Label.ToLowerInvariant();}
             if(game.player.vehicle!=null)return use+"  Leave vehicle   ·   "+(AlbionUIInput.ControllerPresent?"A / CROSS":"Space")+"  Brake";
-            if(game.tour.InRoom)return "H  Room story   ·   E  Exit at the doorway";
+            if(game.tour.InRoom)return "H  Room story   ·   "+OdysseyAccessibility.InteractLabel+"  Exit at the doorway";
             foreach(var car in game.campus.cars)if(Vector3.Distance(car.transform.position,game.player.transform.position)<4.8f)return use+"  Drive campus car";
             foreach(var p in game.campus.discoveries)if(Vector3.Distance(p,game.player.transform.position)<4.5f)return use+"  Collect discovery";
             if(game.player.TryTarget(out var hit)&&(hit.collider.GetComponent<MemoryMarker>()!=null||hit.collider.GetComponent<GuideMarker>()!=null))return use+"  Pick up / interact";
@@ -132,7 +132,7 @@ namespace AlbionOdyssey
             if(game.xr!=null&&game.xr.Active)return "LEFT STICK  Move   ·   RIGHT STICK  Turn   ·   TRIGGER  Interact   ·   GRIP  Grab   ·   MENU  Pause";
             if(game.player.pointerControls)return "ON-SCREEN ARROWS  Move   ·   TURN  Aim   ·   INTERACT  Pick up / talk   ·   O  Hide controls";
             if(AlbionUIInput.ControllerPresent)return "LEFT STICK  Move   ·   RIGHT STICK  Look   ·   A / CROSS  Jump   ·   B / CIRCLE  Interact   ·   MENU  Pause";
-            return "V  Camera   ·   J  Journal   ·   F2  Build   ·   E / F  Interact   ·   O  Screen controls";
+            return "V  Camera   ·   J  Journal   ·   F2  Build   ·   "+OdysseyAccessibility.InteractLabel+"  Interact   ·   O  Screen controls";
         }
         void TargetTag(float scale)
         {

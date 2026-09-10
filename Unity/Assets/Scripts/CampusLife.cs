@@ -56,7 +56,7 @@ namespace AlbionOdyssey
             if(game.building)game.ToggleMode();
             game.player.Teleport(destination==0?new Vector3(0,.05f,-22):destination==1?new Vector3(-40,.05f,-12):destination==2?new Vector3(-64,.05f,-9):new Vector3(48,.05f,-20));
             game.player.transform.rotation=Quaternion.identity;SetPanel("");
-            game.notice=destination==1?"Enter the classroom. K opens courses. H opens the history lesson.":destination==2?"Enter the pavilion. Stand by a display and press H.":destination==3?"Your personal campus. F2 opens the building tools.":"Legacy Hall: aim at golden memories and press E or F.";
+            game.notice=destination==1?"Enter the classroom. K opens courses. H opens the history lesson.":destination==2?"Enter the pavilion. Stand by a display and press H.":destination==3?"Your personal campus. F2 opens the building tools.":"Legacy Hall: aim at golden memories and press "+OdysseyAccessibility.InteractLabel+".";
         }
         public bool HandleInput()
         {
@@ -205,7 +205,7 @@ namespace AlbionOdyssey
                 Label(left+12,140,500,20,"PLAYER CONTROLS",muted);
                 Label(left+602,140,500,20,"CAMPUS LOOP",muted);
                 Label(left,95,1080,50,"Build your campus. Discover its stories. Start a class.",text);
-                Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  E or F, aimed at the object\nHISTORY  H near a building   ·   ALL STORIES  G\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nCHARACTER SETTINGS  F3   ·   CAMERA  V\nHELP / PAUSE  Esc or F1",text);
+                Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  "+OdysseyAccessibility.InteractLabel+", aimed at the object\nHISTORY  H near a building   ·   ALL STORIES  G\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nCHARACTER SETTINGS  F3   ·   CAMERA  V\nHELP / PAUSE  Esc or F1",text);
                 Label(left+590,155,510,260,"NEW: EXPLORE ALBION\n61 campus destinations · 7 discoveries\nE enters / exits a car. Space brakes.\nF3 lets you choose or create your character.\n\nLEGACY CAMPUS\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
                 Label(left+590,447,510,75,"Version 0.15 · Four local Keepers on this Mac.\nHost or join a LAN campus with F5; movement, names and chat stay in sync.",muted);
                 if(Button(left,530,260,FocusLabel(0,"Play / resume")))SetPanel("");

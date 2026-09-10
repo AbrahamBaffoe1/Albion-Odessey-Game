@@ -341,13 +341,13 @@ namespace AlbionOdyssey
 
         public void Visit()
         {
-            game.tour.StopMedia(); if (game.building) game.ToggleMode(); if (!game.player.TryExitVehicle()) return; game.player.Teleport(Origin + new Vector3(0, .08f, -Depth * .5f - 3.0f)); game.player.transform.rotation = Quaternion.identity; game.life.SetPanel(""); game.notice = Place.name + " · enter the reference-based interior. Press E at doors and H for the building story.";
+            game.tour.StopMedia(); if (game.building) game.ToggleMode(); if (!game.player.TryExitVehicle()) return; game.player.Teleport(Origin + new Vector3(0, .08f, -Depth * .5f - 3.0f)); game.player.transform.rotation = Quaternion.identity; game.life.SetPanel(""); game.notice = Place.name + " · enter the reference-based interior. Press " + OdysseyAccessibility.InteractLabel + " at doors and H for the building story.";
         }
 
         public bool HandleInput()
         {
             if (game.life.PanelOpen || game.building || game.journalOpen) return false;
-            CampusDoor nearby = NearbyDoor(); if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton1)) && nearby != null) { nearby.Toggle(game.player); return true; }
+            CampusDoor nearby = NearbyDoor(); if (OdysseyAccessibility.InteractPressed() && nearby != null) { nearby.Toggle(game.player); return true; }
             if (Input.GetKeyDown(KeyCode.H) && Inside)
             {
                 TourPlace story = game.tour.catalog.ForCampus(Id);

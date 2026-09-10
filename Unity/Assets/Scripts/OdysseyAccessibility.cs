@@ -25,6 +25,8 @@ namespace AlbionOdyssey
             bool alternate = PlayerPrefs.GetInt("Odyssey.AlternateKeys", 0) == 1; ApplyKeys(alternate);
         }
         static KeyCode StoredKey(string name,KeyCode fallback){int value=PlayerPrefs.GetInt("Odyssey.Key."+name,(int)fallback);return System.Enum.IsDefined(typeof(KeyCode),value)?(KeyCode)value:fallback;}
+        public static bool InteractPressed(){return Input.GetKeyDown(InteractKey)||Input.GetKeyDown(KeyCode.F)||Input.GetKeyDown(KeyCode.JoystickButton1);}
+        public static string InteractLabel=>InteractKey==KeyCode.E?"E / F":InteractKey==KeyCode.F?"F":InteractKey.ToString();
         static void ApplyKeys(bool alternate)
         {
             ForwardKey=StoredKey("Forward",alternate?KeyCode.I:KeyCode.W);BackKey=StoredKey("Back",alternate?KeyCode.K:KeyCode.S);LeftKey=StoredKey("Left",alternate?KeyCode.J:KeyCode.A);RightKey=StoredKey("Right",alternate?KeyCode.L:KeyCode.D);JumpKey=StoredKey("Jump",KeyCode.Space);InteractKey=StoredKey("Interact",KeyCode.E);

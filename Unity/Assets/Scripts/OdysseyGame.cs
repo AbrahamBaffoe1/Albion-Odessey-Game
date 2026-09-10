@@ -28,7 +28,7 @@ namespace AlbionOdyssey
         public CampusWeather weather;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
-        public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
+        public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press your interact key.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
         int selected=1;
@@ -155,7 +155,7 @@ namespace AlbionOdyssey
                     }
                 }
             }
-            else if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.F)||Input.GetKeyDown(KeyCode.JoystickButton1))&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
+            else if(OdysseyAccessibility.InteractPressed()&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
             foreach(var m in memories)if(m!=null)m.transform.Rotate(0,30*Time.deltaTime,0);
         }
         public void Interact()
@@ -171,7 +171,7 @@ namespace AlbionOdyssey
                 var memory=hit.collider.GetComponent<MemoryMarker>();
                 if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorns. Press J to read your journal.";Save();RefreshMemories();return;}
             }
-            notice="Move closer and aim at a golden memory or Pip, then press E or F.";
+            notice="Move closer and aim at a golden memory or Pip, then press "+OdysseyAccessibility.InteractLabel+".";
         }
         public void ToggleMode()
         {
@@ -308,7 +308,7 @@ namespace AlbionOdyssey
             bool collected=(state.Current.memories&(1<<journalPage))!=0;
             GUI.Label(new Rect(rx,y+106,rw,50),collected?OdysseyStory.Titles[journalPage]:"A memory is waiting",new GUIStyle(title){fontSize=AlbionUITheme.TextSize(23),wordWrap=true});
             GUI.Label(new Rect(rx,y+163,rw,30),journalPage<8?"FLOOR "+(journalPage+1)+" · "+OdysseyStory.Floors[journalPage]:"OUTSIDE · Entrance plaza",small);
-            GUI.Label(new Rect(rx,y+204,rw,160),collected?OdysseyStory.Entries[journalPage]:"Find the golden memory at this location, aim at it and press E. Every Keeper can make their own discoveries.",new GUIStyle(body){wordWrap=true});
+            GUI.Label(new Rect(rx,y+204,rw,160),collected?OdysseyStory.Entries[journalPage]:"Find the golden memory at this location, aim at it and press your interact key. Every Keeper can make their own discoveries.",new GUIStyle(body){wordWrap=true});
             GUI.Label(new Rect(rx,y+370,rw,28),"YOUR CHARTER",body);
             for(int i=0;i<6;i++)GUI.Label(new Rect(rx,y+407+i*26,rw,25),((state.Current.milestones&(1<<i))!=0?"✓  ":"○  ")+OdysseyStory.Chapters[i],small);
             int next=OdysseyStory.Next(state.Current);

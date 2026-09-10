@@ -33,7 +33,7 @@ namespace AlbionOdyssey
             "Build one of every structure", "Contribute six acorns", "Complete the shared Beacon"
         };
         public static readonly string[] Hints = {
-            "Enter Legacy Hall. Aim at a golden memory and press E.",
+            "Enter Legacy Hall. Aim at a golden memory and press your interact key.",
             "Press F2. Choose structures with 1–4, then click empty plots.",
             "Follow the STAIRS signs through the right-hand doorway in the middle of each floor.",
             "Your campus needs a Garden, Library, Observatory and Hall at the same time.",

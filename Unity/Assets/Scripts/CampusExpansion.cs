@@ -287,7 +287,7 @@ namespace AlbionOdyssey
             FocusBox(new Rect(x,155,400,38),0);
             float r=x+450;bool unlocked=(found&(1<<treasurePage))!=0;
             Label(r,157,640,80,TreasureNames[treasurePage],heading);
-            Label(r,251,640,175,unlocked?TreasureText[treasurePage]:"Find the discovery marker on campus, walk close to it, and press E. You can travel to the clue below to start exploring.");
+            Label(r,251,640,175,unlocked?TreasureText[treasurePage]:"Find the discovery marker on campus, walk close to it, and press "+OdysseyAccessibility.InteractLabel+". You can travel to the clue below to start exploring.");
             Label(r,453,640,65,treasurePage==6?"ORIGINAL GAME FICTION":"REAL CAMPUS STORY · College source linked below",small);
             if(Button(r,554,300,"Travel to this clue"))
             {
