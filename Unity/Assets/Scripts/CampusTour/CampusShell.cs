@@ -174,7 +174,7 @@ namespace AlbionOdyssey
             if(Button(new Rect(46,629,bw,42),FocusLabel(5,"Your character")))game.life.SetPanel("settings");
             if(Button(new Rect(58+bw,629,bw,42),FocusLabel(6,"Controls & sound")))game.life.SetPanel("welcome");
             if(Button(new Rect(46,683,right-94,36),FocusLabel(7,"Finish session")))EndSession();
-            string controls=AlbionUIInput.ControllerPresent?"GAMEPAD  Left stick navigate    ·    A / Cross select    ·    B / Circle back":"G  Stories & media    ·    B  Building studio    ·    Esc  Menu\nWASD / arrows  Move    ·    O  On-screen controls";
+            string controls=game.xr!=null&&game.xr.Active?"VR  Point at a button    ·    Trigger select    ·    Menu back":AlbionUIInput.ControllerPresent?"GAMEPAD  Left stick navigate    ·    A / Cross select    ·    B / Circle back":"G  Stories & media    ·    B  Building studio    ·    Esc  Menu\nWASD / arrows  Move    ·    O  On-screen controls";
             Label(new Rect(46,h-74,right-90,46),controls,small,Muted);
             Fill(new Rect(right+28,h-250,w-right-58,212),new Color(.025f,.018f,.042f,.91f));
             Label(new Rect(right+50,h-227,w-right-98,26),"STEP INSIDE / FERGUSON HALL",small,Gold);
