@@ -10,7 +10,7 @@ namespace AlbionOdyssey
         public int found;public int selectedPlace;public int skin=1,outfit,hair;public bool backpack=true;
         public string keeperName="Keeper";int active=-1,treasurePage;string search="",category="All";Vector2 scroll;
         KeeperAvatar preview;Camera previewCamera;RenderTexture previewTexture;
-        GUIStyle heading,text,small,button;bool styles;
+        GUIStyle heading,text,small,button;bool styles;int controllerFocus;string controllerPanel="";
         public static readonly string[] TreasureNames={"Brit the Briton","The painted Rock","The observatory telescope","The library's rare books","Whitehouse's living classroom","The former chapel in Kellogg","Pip's golden acorn"};
         public static readonly string[] TreasureText={
             "Brit the Briton was introduced in fall 2011. The mascot appears at college games and events. This game uses an original stylized knight as a discovery guide.",
@@ -63,7 +63,61 @@ namespace AlbionOdyssey
         void Update(){if(game!=null&&active!=game.state.active)LoadKeeper();}
         public bool HandleInput()
         {
+            if(game.life!=null&&!game.life.PanelOpen)controllerPanel="";
             if(Input.GetKeyDown(KeyCode.F3)){game.life.SetPanel(game.life.panel=="settings"?"":"settings");return true;}
+            if(game.life!=null&&(game.life.panel=="settings"||game.life.panel=="campus"||game.life.panel=="treasures"))
+            {
+                if(controllerPanel!=game.life.panel){controllerPanel=game.life.panel;controllerFocus=0;}
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
+                {
+                    string panel=game.life.panel;int count=panel=="settings"?8:panel=="campus"?5:4;
+                    if(cancel){game.life.SetPanel("");return true;}
+                    if(panel=="campus"&&controllerFocus==0&&horizontal!=0)
+                    {
+                        selectedPlace=(selectedPlace+(horizontal>0?1:-1)+CampusCatalog.Places.Length)%CampusCatalog.Places.Length;
+                    }
+                    else if(panel=="treasures"&&controllerFocus==0&&horizontal!=0)
+                    {
+                        treasurePage=(treasurePage+(horizontal>0?1:-1)+TreasureNames.Length)%TreasureNames.Length;
+                    }
+                    else if(vertical!=0)
+                    {
+                        controllerFocus=(controllerFocus+(vertical>0?-1:1)+count)%count;
+                    }
+                    if(choose)
+                    {
+                        if(panel=="settings")
+                        {
+                            if(controllerFocus==0){skin=0;outfit=0;hair=0;backpack=true;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==1){skin=(skin+1)%KeeperAvatar.Skin.Length;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==2){outfit=(outfit+1)%KeeperAvatar.Coats.Length;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==3){hair=(hair+1)%3;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==4){backpack=!backpack;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==5){game.player.thirdPerson=!game.player.thirdPerson;SaveKeeper();}
+                            else if(controllerFocus==6){SaveKeeper();game.life.SetPanel("");}
+                            else {SaveKeeper();game.life.SetPanel("welcome");}
+                        }
+                        else if(panel=="campus")
+                        {
+                            if(controllerFocus==0)Travel(CampusCatalog.Places[Mathf.Clamp(selectedPlace,0,CampusCatalog.Places.Length-1)]);
+                            else if(controllerFocus==1)game.life.SetPanel("treasures");
+                            else if(controllerFocus==2)Application.OpenURL(CampusCatalog.MapSource);
+                            else if(controllerFocus==3)game.life.SetPanel("map");
+                            else game.life.SetPanel("");
+                        }
+                        else
+                        {
+                            if(controllerFocus==1)
+                            {
+                                if(game.player.TryExitVehicle()){if(game.building)game.ToggleMode();game.player.Teleport(discoveries[treasurePage]+new Vector3(0,.08f,-3));game.player.transform.rotation=Quaternion.identity;game.life.SetPanel("");}
+                            }
+                            else if(controllerFocus==2&&treasurePage<6)Application.OpenURL(TreasureSources[treasurePage]);
+                            else if(controllerFocus==3)game.life.SetPanel("campus");
+                        }
+                    }
+                    return true;
+                }
+            }
             return false;
         }
         void BuildDiscoveries()

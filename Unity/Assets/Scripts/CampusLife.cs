@@ -62,7 +62,7 @@ namespace AlbionOdyssey
         {
             if(PanelOpen)
             {
-                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){SetPanel("");return true;}if(vertical!=0){int count=panel=="map"?4:panel=="history"?3:8;menuFocus=(menuFocus+(vertical>0?-1:1)+count)%count;}if(choose){if(panel=="map")Travel(menuFocus);else if(panel=="history")history=menuFocus;else if(panel=="welcome"){if(menuFocus==0)SetPanel("");else if(menuFocus==1)game.shell.Stories();else if(menuFocus==2)SetPanel("courses");else if(menuFocus==3)game.shell.Videos();else if(menuFocus==4)game.shell.EndSession();else if(menuFocus==5)SetPanel("settings");else if(menuFocus==6)SetPanel("treasures");else if(menuFocus==7)SetPanel("map");}return true;} }
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){SetPanel("");return true;}int count=panel=="map"?4:panel=="history"?4:panel=="courses"?7:8;if(vertical!=0){menuFocus=(menuFocus+(vertical>0?-1:1)+count)%count;}if(choose){if(panel=="map")Travel(menuFocus);else if(panel=="history"){if(menuFocus<3)history=menuFocus;else SetPanel("courses");}else if(panel=="courses")ActivateCourseFocus();else if(panel=="welcome"){if(menuFocus==0)SetPanel("");else if(menuFocus==1)game.shell.Stories();else if(menuFocus==2)SetPanel("courses");else if(menuFocus==3)game.shell.Videos();else if(menuFocus==4)game.shell.EndSession();else if(menuFocus==5)SetPanel("settings");else if(menuFocus==6)SetPanel("treasures");else if(menuFocus==7)SetPanel("map");}return true;} }
                 if(Input.GetKeyDown(KeyCode.Escape))SetPanel("");
                 return true;
             }
@@ -83,6 +83,37 @@ namespace AlbionOdyssey
             }
             if(!game.building&&Input.GetKeyDown(KeyCode.P))ThrowPaper();
             return false;
+        }
+        void ActivateCourseFocus()
+        {
+            var school=game.state.school;
+            if(menuFocus==0)
+            {
+                bool ok=school.Create(game.state,courseName,subject);
+                if(ok){course=school.active;Commit("Course created. Enroll yourself or assign students.");}
+                else feedback="Place an unused Hall or Library first. Use a title of 1–40 characters. Limit: six courses.";
+            }
+            else if(menuFocus==1)subject=(subject+1)%3;
+            else if(menuFocus==2)game.shell.PlaceCampusBuildings();
+            else if(!school.Exists(course))feedback="Create or select a course first.";
+            else if(menuFocus==3)
+            {
+                if(school.Enroll(course,game.state.active))Commit("You are enrolled. Read the lesson and answer below.");else feedback="You are already enrolled or this class is full.";
+            }
+            else if(menuFocus==4)
+            {
+                if(school.AssignStudents(course,game.state.active,1))Commit("Simulated student assigned.");else feedback="The classroom is full or you do not own this course.";
+            }
+            else if(menuFocus==5)
+            {
+                if(school.Teach(course,game.state.active)){Commit("Class is in session.");Travel(1);}else feedback="Enroll someone or add a student first.";
+            }
+            else
+            {
+                bool enrolled=(school.courses[course].enrolled&(1<<game.state.active))!=0;
+                if(!enrolled){feedback="Enroll to answer this lesson.";return;}
+                if(school.Answer(course,game.state.active,0))Commit("Lesson answer submitted. Try the other answers if needed.");else feedback="That answer was not correct. Read the lesson above and try again.";
+            }
         }
         public bool ThrowPaper()
         {
