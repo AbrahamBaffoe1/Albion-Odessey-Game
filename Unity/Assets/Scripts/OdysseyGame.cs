@@ -330,7 +330,7 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(32,96,800,23),tour!=null&&tour.InRoom?"Wesley · room study (approximate dimensions)":campus!=null&&campus.OnCampus&&!building?campus.Nearest.name+" · "+campus.CountFound()+"/7 discoveries" : building?"Personal campus · "+(state.Current.style==1?"Fantasy":"Campus"):$"Eight-storey Blender building · Floor {Mathf.Clamp(Mathf.FloorToInt((player.transform.position.y+.1f)/3.6f)+1,1,8)}",small);
             GUI.Label(new Rect(24,height-105,width-48,30),notice,small);
             GUI.Label(new Rect(24,height-81,width-48,25),"CHARTER  /  "+OdysseyStory.Objective(state.Current),small);
-            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD / ARROWS move   MOUSE look   SHIFT run   SPACE jump / brake   E interact / enter / exit   V camera",small);
+            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":OdysseyAccessibility.ForwardKey+" / ARROWS move   MOUSE look   SHIFT run   "+OdysseyAccessibility.JumpKey+" jump / brake   "+OdysseyAccessibility.InteractLabel+" interact / enter / exit   V camera",small);
             GUI.Label(new Rect(24,height-30,width-48,28),"M map    H history    G building stories    K courses    J journal    F2 build    TAB Keeper    C Beacon    Y snow    ESC help"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
             if(!building&&!journalOpen){GUI.Label(new Rect(width/2-5,height/2-12,20,24),"+",body);}
         }

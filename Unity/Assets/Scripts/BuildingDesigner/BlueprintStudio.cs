@@ -194,8 +194,8 @@ namespace AlbionOdyssey.BuildingDesigner
         void WalkInput()
         {
             walker.transform.Rotate(0,Input.GetAxisRaw("Mouse X")*2,0);pitch=Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*2,-80,80);camera.transform.localRotation=Quaternion.Euler(pitch,0,0);
-            float x=(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)?1:0);
-            float z=(Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)?1:0);
+            float x=(Input.GetKey(OdysseyAccessibility.RightKey)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.LeftKey)||Input.GetKey(KeyCode.LeftArrow)?1:0);
+            float z=(Input.GetKey(OdysseyAccessibility.ForwardKey)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.BackKey)||Input.GetKey(KeyCode.DownArrow)?1:0);
             var devices=new List<InputDevice>();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Left,devices);
             if(devices.Count>0&&devices[0].TryGetFeatureValue(CommonUsages.primary2DAxis,out var moveAxis)&&moveAxis.sqrMagnitude>.01f){x=moveAxis.x;z=moveAxis.y;}
             devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Right,devices);
@@ -203,7 +203,7 @@ namespace AlbionOdyssey.BuildingDesigner
             if(controllerTurnCooldown>0)controllerTurnCooldown-=Time.unscaledDeltaTime;
             bool controllerJump=devices.Count>0&&(Button(devices[0],CommonUsages.primaryButton)||Button(devices[0],CommonUsages.triggerButton));
             bool jumpPressed=controllerJump&&!previousControllerJump;previousControllerJump=controllerJump;
-            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&(Input.GetKeyDown(KeyCode.Space)||jumpPressed))velocity=5;
+            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||jumpPressed))velocity=5;
             velocity-=18*Time.unscaledDeltaTime;controller.Move((Vector3.ClampMagnitude(walker.transform.right*x+walker.transform.forward*z,1)*3.5f+Vector3.up*velocity)*Time.unscaledDeltaTime);
             if(walker.transform.position.y< -5){controller.enabled=false;walker.transform.position=StudioGeometry.Origin+new Vector3(-1,.15f,-7);controller.enabled=true;velocity=0;}
         }
@@ -234,7 +234,7 @@ namespace AlbionOdyssey.BuildingDesigner
             GUI.backgroundColor=new Color(.22f,.10f,.34f);GUI.color=new Color(.025f,.04f,.055f,.96f);GUI.DrawTexture(new Rect(0,0,w,walking?85:190),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(0,h-140,w,140),Texture2D.whiteTexture);GUI.color=Color.white;
             Label(24,18,850,40,walking?"WALK INSIDE YOUR DESIGN":"THE BUILDING STUDIO",heading);
             Label(24,60,1000,25,$"Keeper {keeper+1} · Slot {slot+1} · 24 × 24 metres · Original player blueprint",small);
-            if(walking){Label(24,h-120,w-48,50,"WASD / arrows walk · Mouse look · Space jump · Esc back to design · Esc twice returns to campus",text);return;}
+            if(walking){Label(24,h-120,w-48,50,OdysseyAccessibility.ForwardKey+" / "+OdysseyAccessibility.LeftKey+" "+OdysseyAccessibility.BackKey+" "+OdysseyAccessibility.RightKey+" / arrows walk · Mouse look · "+OdysseyAccessibility.JumpKey+" jump · Esc back to design · Esc twice returns to campus",text);return;}
             if(Button(w-200,22,175,FocusLabel(0,"Save & return · Esc")))Leave();FocusBox(new Rect(w-200,22,175,36),0);
             GUI.enabled=!invalidSlot;
             string[] names={"1 Floor","2 Wall","3 Door","4 Window","5 Roof","6 Table","7 Chair","8 Planter"};
