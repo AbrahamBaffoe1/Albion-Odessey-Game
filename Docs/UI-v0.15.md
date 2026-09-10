@@ -14,6 +14,8 @@ The live HUD includes:
 
 Keyboard, pointer buttons, controller input and the XR action layer continue to use the same interaction methods. The HUD pauses behind history, course, builder, journal and launch panels, so those screens can be given the same card treatment in the next pass without duplicating gameplay state.
 
+The social layer now uses the same visual language: seated learners and lunch groups show short conversation bubbles while they talk, club players show a playful prompt while paused, and all bubbles face the active camera and disappear outside a readable distance. The VR walkthrough and shared-campus panels expose their focused action with a gold-arrow cue and show the same stick/trigger/menu footer used by the in-world controls.
+
 ## Next UI slice
 
 The next pass should apply this theme helper to `CampusLife`, `CampusTour` and `BlueprintStudio`: shared typography, selected states, animated open/close transitions, and larger controller focus targets. The information architecture is already kept separate from the HUD so those panel changes remain safe to iterate.
