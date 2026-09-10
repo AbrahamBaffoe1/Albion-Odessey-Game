@@ -52,7 +52,7 @@ namespace AlbionOdyssey
         }
         void ClosePanel()
         {
-            open = false; game.player.controls = !game.building && !game.life.PanelOpen;
+            open = false; game.player.controls = (game.xr == null || !game.xr.Active) && !game.building && !game.life.PanelOpen;
             Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked; Cursor.visible = game.player.pointerControls;
         }
         void Update()
@@ -173,7 +173,7 @@ namespace AlbionOdyssey
             if (removeId.Length > 0) Block(removeId);
             message = GUI.TextField(new Rect(x, h - 115, 530, 36), message, 80); if (GUI.Button(new Rect(x + 545, h - 115, 120, 36), (focus==3?"▶  ":"")+"Send", button)) { focus=3; SendChat(); }
             if (GUI.Button(new Rect(x + 680, 325, 100, 44), (focus==5?"▶  ":"") + "Close", button)) { focus=5; ClosePanel(); }
-            GUI.Label(new Rect(x, h - 65, 760, 28), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
+            GUI.Label(new Rect(x, h - 65, 760, 28), game.xr != null && game.xr.Active ? "POINT   Navigate   ·   TRIGGER Select   ·   MENU Back" : "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
         }
         void OnApplicationQuit()
         {
