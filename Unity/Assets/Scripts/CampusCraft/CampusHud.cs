@@ -106,6 +106,19 @@ namespace AlbionOdyssey
             string nearest=closest==null?"Explore the grounds":closest.name;
             GUI.Label(new Rect(r.x+14,r.yMax-25,r.width-28,18),nearest.Length>28?nearest.Substring(0,26)+"…":nearest,small);
         }
+        void CampusPulse(Rect r)
+        {
+            Card(r);
+            GUI.Label(new Rect(r.x+14,r.y+8,r.width-28,16),"CAMPUS PULSE  ·  LIVE",eyebrow);
+            int moving=game.world==null?0:game.world.MovingStudentCount;
+            int seated=game.world==null||game.world.activities==null?0:game.world.activities.SeatedAgentCount;
+            int wildlife=game.campus==null||game.campus.fauna==null?0:game.campus.fauna.ActiveCount;
+            string weather=game.weather!=null&&game.weather.IsSnowing?"SNOW":"CLEAR";
+            GUI.Label(new Rect(r.x+14,r.y+28,96,22),moving+"  MOVING",value);
+            GUI.Label(new Rect(r.x+112,r.y+28,96,22),seated+"  SEATED",value);
+            GUI.Label(new Rect(r.x+210,r.y+28,106,22),wildlife+"  SQUIRRELS",value);
+            GUI.Label(new Rect(r.x+14,r.y+49,r.width-28,14),weather+"  ·  "+(game.world==null?0:game.world.StudentCount)+" STUDENTS ON CAMPUS",eyebrow);
+        }
         void TargetTag(float scale)
         {
             if(game.player.eyes==null||!game.player.TryTarget(out var hit))return;
@@ -133,6 +146,7 @@ namespace AlbionOdyssey
             string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
             if(toast.Length>0){float y=top+130-Mathf.Sin(Time.unscaledTime*2f)*2f;Card(new Rect((left+right)*.5f-225,y,450,72),true);GUI.Label(new Rect((left+right)*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect((left+right)*.5f-205,y+32,410,28),toast,value);}
             else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(left+24,top+220,330,66));GUI.Label(new Rect(left+44,top+232,286,42),lastNotice,small);GUI.color=Color.white;}
+            CampusPulse(new Rect(left+24,top+296,330,68));
             if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
             float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize,top+130,mapSize,mapSize));
             if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.ShowLaunch();

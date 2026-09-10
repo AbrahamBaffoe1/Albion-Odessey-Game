@@ -12,6 +12,10 @@ namespace AlbionOdyssey
         Transform root;
         readonly List<CampusNpcAgent> agents = new List<CampusNpcAgent>();
         public int StudentCount=>agents.Count;
+        public int MovingStudentCount
+        {
+            get {int count=0;foreach(var agent in agents)if(agent!=null&&agent.IsMoving)count++;return count;}
+        }
         public int TransStudentCount
         {
             get {int count=0;foreach(var agent in agents)if(agent!=null&&agent.Identity!=null&&agent.Identity.IsTrans)count++;return count;}
@@ -120,17 +124,20 @@ namespace AlbionOdyssey
         public Vector3[] Route; public float Speed = 1.2f;
         KeeperAvatar avatar; int target; Vector3 last;
         public CampusStudentIdentity Identity { get; private set; }
+        public bool IsMoving { get; private set; }
         public void Build(CampusStudentProfile profile)
         {
             var body = new GameObject("Student avatar"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(profile.Name+"  ·  STUDENT",new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),13f); last = transform.position;
         }
         void Update()
         {
+            IsMoving=false;
             if (Route == null || Route.Length < 2 || avatar == null) return;
             Vector3 goal = Route[target] + Vector3.up * .08f; Vector3 delta = goal - transform.position; delta.y = 0;
             if (delta.magnitude < .7f) { target = (target + 1) % Route.Length; return; }
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
             if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;return;}
+            IsMoving=true;
             transform.position += direction * distance;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f);
             avatar.Animate((transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime), false); last = transform.position;
