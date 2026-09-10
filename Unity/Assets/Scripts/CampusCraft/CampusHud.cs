@@ -7,7 +7,7 @@ namespace AlbionOdyssey
     public sealed class CampusHud : MonoBehaviour
     {
         static readonly Color Ink=new Color(.035f,.04f,.065f,.94f),Panel=new Color(.055f,.065f,.10f,.88f),Gold=new Color(1f,.76f,.28f),Purple=new Color(.44f,.25f,.64f),Cyan=new Color(.35f,.84f,.92f);
-        OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt;string lastNotice="";float noticeUntil;
+        OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt,mapPlayer;string lastNotice="";float noticeUntil;
         public void Setup(OdysseyGame owner){game=owner;pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}
         void Update(){if(game!=null&&game.notice!=lastNotice){lastNotice=game.notice;noticeUntil=Time.unscaledTime+5;}}
         void Fill(Rect r,Color c){var old=GUI.color;GUI.color=c;GUI.DrawTexture(r,pixel);GUI.color=old;}
@@ -59,6 +59,40 @@ namespace AlbionOdyssey
             for(int i=0;i<dirs.Length;i++){float relative=Mathf.DeltaAngle(heading,i*45);float x=cx+relative*2.8f;if(x<cx-152||x>cx+152)continue;GUI.Label(new Rect(x-16,top+32,32,22),dirs[i],new GUIStyle(eyebrow){alignment=TextAnchor.MiddleCenter,fontSize=12});}
             Fill(new Rect(cx-2,top+58,4,4),Gold);
         }
+        Color MapColor(string category)
+        {
+            if(category=="Academic")return Gold;
+            if(category=="Residential")return Cyan;
+            if(category=="Athletics")return new Color(.45f,.85f,.48f);
+            if(category=="Nature")return new Color(.48f,.82f,.46f);
+            if(category=="Greek life")return new Color(.78f,.48f,.88f);
+            return new Color(.72f,.74f,.82f);
+        }
+        void Minimap(Rect r)
+        {
+            Card(r);
+            GUI.Label(new Rect(r.x+14,r.y+10,r.width-28,18),"CAMPUS MAP  ·  180 M",eyebrow);
+            Rect map=new Rect(r.x+12,r.y+35,r.width-24,r.width-47);Fill(map,new Color(.025f,.07f,.085f,.96f));
+            var grid=new Color(.20f,.52f,.55f,.18f);Fill(new Rect(map.x+map.width*.5f,map.y,1,map.height),grid);Fill(new Rect(map.x,map.y+map.height*.5f,map.width,1),grid);
+            float radius=Mathf.Min(map.width,map.height)*.46f,range=180f;Vector3 player=game.player.transform.position;
+            CampusPlace closest=null;float closestDistance=float.MaxValue;
+            foreach(var placeInfo in CampusCatalog.Places)
+            {
+                Vector3 delta=placeInfo.position-player;float distance=new Vector2(delta.x,delta.z).magnitude;
+                if(distance<closestDistance){closestDistance=distance;closest=placeInfo;}
+                if(distance>range)continue;
+                float px=map.x+map.width*.5f+Mathf.Clamp(delta.x/range,-1,1)*radius;
+                float py=map.y+map.height*.5f-Mathf.Clamp(delta.z/range,-1,1)*radius;
+                Color marker=MapColor(placeInfo.category);Fill(new Rect(px-3,py-3,6,6),marker);
+                if(distance<42f)GUI.Label(new Rect(px+6,py-7,Mathf.Min(110,map.xMax-px-5),18),placeInfo.name,new GUIStyle(eyebrow){fontSize=8,normal={textColor=marker}});
+            }
+            // The player stays centered while the world map remains north-up.
+            if(mapPlayer==null){mapPlayer=new GUIStyle(eyebrow){fontSize=17,alignment=TextAnchor.MiddleCenter};mapPlayer.normal.textColor=Gold;}
+            GUI.Label(new Rect(map.center.x-12,map.center.y-13,24,24),"▲",mapPlayer);
+            GUI.Label(new Rect(map.x+4,map.y+2,18,18),"N",eyebrow);
+            string nearest=closest==null?"Explore the grounds":closest.name;
+            GUI.Label(new Rect(r.x+14,r.yMax-25,r.width-28,18),nearest.Length>28?nearest.Substring(0,26)+"…":nearest,small);
+        }
         void TargetTag(float scale)
         {
             if(game.player.eyes==null||!game.player.TryTarget(out var hit))return;
@@ -87,7 +121,8 @@ namespace AlbionOdyssey
             if(toast.Length>0){float y=top+130-Mathf.Sin(Time.unscaledTime*2f)*2f;Card(new Rect((left+right)*.5f-225,y,450,72),true);GUI.Label(new Rect((left+right)*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect((left+right)*.5f-205,y+32,410,28),toast,value);}
             else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(left+24,top+220,330,66));GUI.Label(new Rect(left+44,top+232,286,42),lastNotice,small);GUI.color=Color.white;}
             if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
-            if(GUI.Button(new Rect(right-248,top+130,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-136,top+130,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
+            float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize,top+130,mapSize,mapSize));
+            if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
             GUI.Label(new Rect(right-310,bottom-28,286,20),"V camera   ·   J journal   ·   F2 build",eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }
