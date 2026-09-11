@@ -23,6 +23,9 @@ catalog=json.loads((root/"Unity/Assets/Resources/CampusTour/catalog.json").read_
 assert any(place["name"]=="Munger Annex (E-House)" and "placeholder" not in place["summary"].lower() for place in catalog["places"])
 tour_ui=(root/"Unity/Assets/Scripts/CampusTour/CampusTour.cs").read_text()
 assert "hear the voice" not in tour_ui.lower()
+world_label_ui=(root/"Unity/Assets/Scripts/CampusWorldLabel.cs").read_text()
+for marker in ["World label backing", "Physics.Raycast", "LookRotation(targetCamera.transform.position"]:
+    assert marker in world_label_ui, f"World-label readability hook missing: {marker}"
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
         if any(part in path.parts for part in ("Builds", "Releases", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):
