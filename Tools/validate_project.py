@@ -24,6 +24,8 @@ assert any(place["name"]=="Munger Annex (E-House)" and "placeholder" not in plac
 assert all(media.get("caption","").strip() for place in catalog["places"] for media in place.get("media",[]))
 tour_ui=(root/"Unity/Assets/Scripts/CampusTour/CampusTour.cs").read_text()
 assert "hear the voice" not in tour_ui.lower()
+assert "not yet been linked" not in tour_ui.lower()
+assert "pending source verification" in tour_ui.lower()
 world_label_ui=(root/"Unity/Assets/Scripts/CampusWorldLabel.cs").read_text()
 for marker in ["World label backing", "Physics.Raycast", "LookRotation(targetCamera.transform.position"]:
     assert marker in world_label_ui, f"World-label readability hook missing: {marker}"

@@ -36,7 +36,7 @@ namespace AlbionOdyssey
             // Four destinations from the game map do not have main-tour entries.
             var all=new List<TourPlace>(catalog.places);
             foreach(var p in CampusCatalog.Places)if(catalog.ForCampus(p.id)==null)
-                all.Add(new TourPlace{id="map-"+p.id,name=p.name,category=p.category,campusIds=new[]{p.id},media=Array.Empty<TourMedia>(),source=CampusCatalog.MapSource,summary="This destination appears on the official campus map. A verified history and media reference have not yet been linked. Its exterior in this preview is approximate."});
+                all.Add(new TourPlace{id="map-"+p.id,name=p.name,category=p.category,campusIds=new[]{p.id},media=Array.Empty<TourMedia>(),source=CampusCatalog.MapSource,summary="Campus map destination. This entry records the location and category; detailed historical notes and media are pending source verification."});
             catalog.places=all.ToArray();filtered=catalog.Search("");selected=catalog.ForCampus("50");
             Debug.Log("CAMPUS_TOUR_READY: "+catalog.places.Length+" information records; all 61 map destinations linked.");
         }
