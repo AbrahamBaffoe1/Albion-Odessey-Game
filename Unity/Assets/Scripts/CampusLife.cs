@@ -279,17 +279,19 @@ namespace AlbionOdyssey
                 var c=school.courses[course];bool owner=c.owner==game.state.active;
                 Label(rx,130,355,70,c.title,text);
                 Label(rx,194,355,106,$"Owner: Keeper {c.owner+1} · Plot {c.plot+1}\nSchedule: {c.ScheduleLabel}\nSeats {c.Seats}/12 · Simulated students {c.students}\nClass sessions: {c.sessions}",muted);
+                Label(rx,248,355,18,"ROSTER · " + c.Seats + " / 12",muted);
+                Label(rx,267,355,48,RosterLabel(c),muted);
                 bool enrolled=(c.enrolled&(1<<game.state.active))!=0;
-                if(Button(rx,280,355,FocusLabel(3,enrolled?"Enrolled as Keeper "+(game.state.active+1):"Enroll this Keeper")))
+                if(Button(rx,320,355,FocusLabel(3,enrolled?"Enrolled as Keeper "+(game.state.active+1):"Enroll this Keeper")))
                 {if(school.Enroll(course,game.state.active))Commit("You are enrolled. Read the lesson and answer below.");else feedback=enrolled?"You are already enrolled.":"This class is full.";}
                 GUI.enabled=owner;
-                if(Button(rx,325,170,FocusLabel(4,"+ Student"))){if(school.AssignStudents(course,game.state.active,1))Commit("Simulated student assigned.");else feedback="The classroom is full.";}
-                if(Button(rx+185,325,170,"− Student")){if(school.AssignStudents(course,game.state.active,-1))Commit("Student removed.");}
-                if(Button(rx,370,355,FocusLabel(5,"Run class / travel to classroom")))
+                if(Button(rx,365,170,FocusLabel(4,"+ Student"))){if(school.AssignStudents(course,game.state.active,1))Commit("Simulated student assigned.");else feedback="The classroom is full.";}
+                if(Button(rx+185,365,170,"− Student")){if(school.AssignStudents(course,game.state.active,-1))Commit("Student removed.");}
+                if(Button(rx,410,355,FocusLabel(5,"Run class / travel to classroom")))
                 {if(school.Teach(course,game.state.active)){Commit("Class is in session.");Travel(1);}else feedback="Enroll someone or add a student first.";}
-                if(Button(rx,415,355,"Remove course")){school.Remove(course,game.state.active);Commit("Course removed. Its building can now be reclaimed.");}
+                if(Button(rx,455,355,"Remove course")){school.Remove(course,game.state.active);Commit("Course removed. Its building can now be reclaimed.");}
                 GUI.enabled=true;
-                FocusBox(new Rect(rx,280,355,38),3);FocusBox(new Rect(rx,325,170,38),4);FocusBox(new Rect(rx,370,355,38),5);
+                FocusBox(new Rect(rx,320,355,38),3);FocusBox(new Rect(rx,365,170,38),4);FocusBox(new Rect(rx,410,355,38),5);
                 Label(x,515,1100,65,CampusLessons.Text[c.subject],muted);
                 Label(x,590,1100,32,CampusLessons.Questions[c.subject],text);
                 GUI.enabled=enrolled;
@@ -305,6 +307,15 @@ namespace AlbionOdyssey
             }
             else Label(x+765,150,340,160,"Build a Hall or Library, create a course and give students a place to learn. The Common Classroom hosts your active class.",text);
             Label(x,735,1110,55,feedback,muted);
+        }
+        string RosterLabel(CampusCourse c)
+        {
+            if(c==null||c.Seats==0)return "No learners enrolled yet. Add a student or enroll a Keeper.";
+            var names=new List<string>();
+            for(int i=0;i<c.students;i++)names.Add(CampusStudentProfiles.Get(i+c.plot).Name);
+            for(int i=0;i<4;i++)if((c.enrolled&(1<<i))!=0)names.Add("Keeper "+(i+1));
+            string value=string.Join("  ·  ",names.ToArray());
+            return value.Length>92?value.Substring(0,89)+"…":value;
         }
     }
 }

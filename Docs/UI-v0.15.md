@@ -20,6 +20,8 @@ Keyboard, pointer buttons, controller input and the XR action layer use the same
 
 The social layer now uses the same visual language: seated learners and lunch groups show short conversation bubbles while they talk, club players show a playful prompt while paused, and online Keepers can show a short chat bubble above their avatar. All bubbles face the active camera, expire quickly, and disappear outside a readable distance. The VR walkthrough and shared-campus panels expose their focused action with a gold-arrow cue and show the same stick/trigger/menu footer used by the in-world controls.
 
+Course panels now show a compact roster strip alongside the seat count. Local Keepers and named simulated learners share the same enrollment view, so a player can see who is in a class before starting the lesson.
+
 ## Typography and input pass
 
 Headings use a cached display face (`Avenir Next Condensed` when available) and body/control copy uses a readable system face (`Helvetica Neue` when available). Quest and other devices fall back to Unity's bundled Arial font without changing layout. The same font roles are applied to the HUD, history, courses, builder, journal, accessibility, VR and shared-session panels.
