@@ -346,7 +346,7 @@ namespace AlbionOdyssey
                 GUI.Label(new Rect(x,height-99,w-205,77),Status,small);
                 int readFocus=SourceFocus();if(Button(new Rect(right-180,safe.yMax-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
             }
-            GUI.Label(new Rect(left,safe.yMax-22,right-left,18),"STICK  Browse   ·   TRIGGER  Open   ·   MENU  Back",small);
+            GUI.Label(new Rect(left,safe.yMax-22,right-left,18),AlbionControls.MenuFooter(game.xr!=null&&game.xr.Active,"Open"),small);
             GUI.matrix=old;
         }
     }

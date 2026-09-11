@@ -250,7 +250,7 @@ namespace AlbionOdyssey
                 FocusBox(new Rect(left,590,260,38),3);FocusBox(new Rect(left+280,590,260,38),3);
             }
             else if(panel=="courses")DrawCourses(left);
-            float footerY=Mathf.Min(height-36,safe.yMax-28);Label(Mathf.Max(left,safe.xMin),footerY,1120,24,"STICK  Navigate   ·   TRIGGER  Select   ·   MENU  Back",muted);
+            float footerY=Mathf.Min(height-36,safe.yMax-28);Label(Mathf.Max(left,safe.xMin),footerY,1120,24,AlbionControls.MenuFooter(game.xr!=null&&game.xr.Active,"Select"),muted);
         }
         void DrawCourses(float x)
         {

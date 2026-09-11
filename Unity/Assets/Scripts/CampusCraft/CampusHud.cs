@@ -129,9 +129,9 @@ namespace AlbionOdyssey
         }
         string InputFooter()
         {
-            if(game.xr!=null&&game.xr.Active)return "LEFT STICK  Move   ·   RIGHT STICK  Turn   ·   TRIGGER  Interact   ·   GRIP  Grab   ·   MENU  Pause";
+            if(game.xr!=null&&game.xr.Active)return AlbionControls.GameplayFooter(true);
             if(game.player.pointerControls)return "ON-SCREEN ARROWS  Move   ·   TURN  Aim   ·   INTERACT  Pick up / talk   ·   O  Hide controls";
-            if(AlbionUIInput.ControllerPresent)return "LEFT STICK  Move   ·   RIGHT STICK  Look   ·   A / CROSS  Jump   ·   B / CIRCLE  Interact   ·   MENU  Pause";
+            if(AlbionUIInput.ControllerPresent)return AlbionControls.GameplayFooter(false);
             return "V  Camera   ·   J  Journal   ·   F2  Build   ·   "+OdysseyAccessibility.InteractLabel+"  Interact   ·   O  Screen controls";
         }
         void TargetTag(float scale)

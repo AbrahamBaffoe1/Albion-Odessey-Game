@@ -249,7 +249,7 @@ namespace AlbionOdyssey.BuildingDesigner
             if(Button(1097,h-120,145,FocusLabel(15,"Slot "+(slot+1)+" →"))){if(invalidSlot||SaveBlueprint()){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
             FocusBox(new Rect(300,h-120,100,36),9);FocusBox(new Rect(412,h-120,90,36),10);FocusBox(new Rect(514,h-120,90,36),11);FocusBox(new Rect(616,h-120,145,36),12);FocusBox(new Rect(773,h-120,140,36),13);FocusBox(new Rect(925,h-120,160,36),14);FocusBox(new Rect(1097,h-120,145,36),15);
             Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Creative materials are free in this studio",small);
-            Label(w-430,h-73,406,24,"STICK navigate · TRIGGER choose · MENU back",small);
+            Label(w-430,h-73,406,24,AlbionControls.CompactMenuFooter(game.xr!=null&&game.xr.Active,"Choose"),small);
             Label(24,h-42,w-48,36,message,small);
             editingName=GUI.GetNameOfFocusedControl()=="BlueprintName";
             if(share)

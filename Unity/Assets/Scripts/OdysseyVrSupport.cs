@@ -90,7 +90,7 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x + 270, 475, 250, 44), ComfortLabel(5, recenter), button)) { focus = 5; game.xr?.RecenterView(); }
             if (GUI.Button(new Rect(x, 530, 250, 44), ComfortLabel(6, close), button)) { focus = 6; ClosePanel(); }
             GUI.Label(new Rect(x, h - 145, 650, 32), "Comfort mode: third-person camera, reduced camera distance, 90° field of view, selectable turn mode.", text);
-            GUI.Label(new Rect(x, h - 105, 650, 32), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back", text);
+            GUI.Label(new Rect(x, h - 105, 650, 32), AlbionControls.MenuFooter(true, "Select"), text);
         }
         static bool IsDeviceActive()
         {
