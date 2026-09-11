@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 namespace AlbionOdyssey
 {
@@ -22,7 +23,7 @@ namespace AlbionOdyssey
             Application.runInBackground=true;var t=g.tour;g.life.SetPanel("");g.player.controls=false;
             Require(t.catalog.Valid(),"Catalog invalid");Require(t.catalog.Search("wesley").Length>=2,"Wesley search");
             foreach(var p in CampusCatalog.Places)Require(t.catalog.ForCampus(p.id)!=null,"Missing map record "+p.id);
-            var wesley=t.catalog.ForCampus("50");Require(wesley.media.Length==3,"Wesley media coverage");
+            var wesley=t.catalog.ForCampus("50");Require(wesley.media.Length==3,"Wesley media coverage");Require(t.catalog.places.SelectMany(p=>p.media).All(m=>!string.IsNullOrWhiteSpace(m.caption)),"Media captions missing");
             t.Open(wesley);Require(g.sound.PendingAchievements==0,"Reading falsely awarded a lesson achievement");yield return new WaitForEndOfFrame();ScreenCapture.CaptureScreenshot(Path.Combine(Application.dataPath,"../../Directory-in-game.png"));
             t.Close();var before=g.player.transform.position;Require(t.EnterRoom(),"Room entry failed");g.player.controls=false;Physics.SyncTransforms();
             var origin=CampusTour.RoomOrigin;Require(Physics.Raycast(origin+new Vector3(0,1,0),Vector3.down,2),"No room floor");

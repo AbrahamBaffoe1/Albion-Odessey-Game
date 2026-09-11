@@ -21,6 +21,7 @@ for name in ["CampusConcept","EchoFantasy"]:
 assert (root/"Art"/"AlbionConceptKit.blend").stat().st_size>100000
 catalog=json.loads((root/"Unity/Assets/Resources/CampusTour/catalog.json").read_text())
 assert any(place["name"]=="Munger Annex (E-House)" and "placeholder" not in place["summary"].lower() for place in catalog["places"])
+assert all(media.get("caption","").strip() for place in catalog["places"] for media in place.get("media",[]))
 tour_ui=(root/"Unity/Assets/Scripts/CampusTour/CampusTour.cs").read_text()
 assert "hear the voice" not in tour_ui.lower()
 world_label_ui=(root/"Unity/Assets/Scripts/CampusWorldLabel.cs").read_text()

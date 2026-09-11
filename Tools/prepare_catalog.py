@@ -57,7 +57,9 @@ for m in data:
   for p in c['pins']:
    media=[]
    for key,kind in [('images','photo'),('panoramas','panorama'),('videos','video')]:
-    for a in p[key]:media.append({'label':p['name']+' · '+kind,'kind':kind,'url':a.get('path',a.get('url'))})
+    for a in p[key]:
+     caption=('Photograph reference for '+p['name']+'.') if kind=='photo' else ('360-degree reference view of '+p['name']+'. Drag to look around the photographed viewpoint.') if kind=='panorama' else ('Video reference for '+p['name']+'. Use the official source page for the complete spoken transcript.')
+     media.append({'label':p['name']+' · '+kind,'kind':kind,'url':a.get('path',a.get('url')),'caption':caption})
    rows.append({'id':str(p['id']),'name':p['name'],'category':c['name'],'campusIds':mapping.get(p['id'],[]),'summary':notes[p['id']],'source':'https://albion.college-tour.com/#'+urllib.parse.quote(p['name']),'media':media})
 assert len(rows)==55 and len({i for r in rows for i in r['campusIds']})==sum(len(r['campusIds']) for r in rows)
 (root/'Unity/Assets/Resources/CampusTour/catalog.json').write_text(json.dumps({'places':rows},indent=2))

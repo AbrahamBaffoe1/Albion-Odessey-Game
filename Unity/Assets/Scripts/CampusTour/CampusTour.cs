@@ -57,7 +57,7 @@ namespace AlbionOdyssey
         {
             if(IsOpen)
             {
-                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(vertical!=0||horizontal!=0)storyFocus=(storyFocus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+4)%4;if(choose){if(storyFocus==0&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);else if(storyFocus==1){sidePanel=false;Open(selected);}else if(storyFocus==2)EnterSelected();else Close();}}else{if(horizontal!=0||detailFocusActive&&vertical!=0){detailFocusActive=true;int count=activeMedia==null?DetailActionCount():MediaActionCount();detailFocus=(detailFocus+(horizontal!=0?(horizontal>0?1:-1):(vertical>0?-1:1))+count)%count;}else if(vertical!=0&&filtered!=null&&filtered.Length>0){detailFocusActive=false;directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null){if(detailFocusActive){if(activeMedia==null)ActivateDetailFocus();else ActivateMediaFocus();}else Open(selected);}}return true;}
+                if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){Close();return true;}if(sidePanel){if(vertical!=0||horizontal!=0)storyFocus=(storyFocus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+StoryActionCount())%StoryActionCount();if(choose){if(storyFocus==0)ToggleNarration();else if(storyFocus==1&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);else if(storyFocus==2){sidePanel=false;Open(selected);}else if(storyFocus==3)EnterSelected();else Close();}}else{if(horizontal!=0||detailFocusActive&&vertical!=0){detailFocusActive=true;int count=activeMedia==null?DetailActionCount():MediaActionCount();detailFocus=(detailFocus+(horizontal!=0?(horizontal>0?1:-1):(vertical>0?-1:1))+count)%count;}else if(vertical!=0&&filtered!=null&&filtered.Length>0){detailFocusActive=false;directoryFocus=(directoryFocus+(vertical>0?-1:1)+filtered.Length)%filtered.Length;selected=filtered[directoryFocus];}if(choose&&selected!=null){if(detailFocusActive){if(activeMedia==null)ActivateDetailFocus();else ActivateMediaFocus();}else Open(selected);}}return true;}
                 if(Input.GetKeyDown(KeyCode.Escape))Close();
                 else if(sidePanel&&(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter)||Input.GetKeyDown(KeyCode.Space))){AdvanceStory();}
                 return true;
@@ -124,6 +124,9 @@ namespace AlbionOdyssey
             if(narration.isPlaying){narration.Stop();voicePlaying=false;return;}
             revealChars=DisplayStory.Length;narration.Play();voicePlaying=true;
         }
+        string NarrationLabel=>narrationClip==null?"Audio unavailable":voicePlaying?"Stop audio description":"Play audio description";
+        string MediaCaption=>activeMedia==null||!OdysseyAccessibility.CaptionsEnabled?"":activeMedia.caption;
+        int StoryActionCount()=>5;
         public void Close(){StopMedia();sidePanel=false;game.life.SetPanel("");}
         public bool EnterRoom()
         {
@@ -198,6 +201,7 @@ namespace AlbionOdyssey
             if(game==null)return;
             if(!IsOpen&&activeMedia!=null)StopMedia();
             if(IsOpen&&selected!=null&&activeMedia==null&&!voicePlaying){float target=selected.summary.Length;revealChars=Mathf.MoveTowards(revealChars,target,Time.unscaledDeltaTime*62f);}
+            if(voicePlaying&&narration!=null&&narration.isPlaying&&narrationClip!=null&&narrativeLines.Length>0)narrativePage=Mathf.Clamp(Mathf.FloorToInt((narration.time/Mathf.Max(.01f,narrationClip.length))*narrativeLines.Length),0,narrativeLines.Length-1);
             if(voicePlaying&&narration!=null&&!narration.isPlaying){voicePlaying=false;Status="Story complete. Explore the references or enter the building.";}
             if(video!=null&&!video.isPrepared&&Time.unscaledTime-mediaStarted>30){Status="Video preparation timed out. Retry or use the official page.";StopMedia(false);}
             if(InRoom&&Vector3.Distance(game.player.transform.position,RoomOrigin)>30)InRoom=false;
@@ -239,14 +243,17 @@ namespace AlbionOdyssey
             if(place.campusIds==null)return false;
             return Array.IndexOf(place.campusIds,"16")>=0||Array.IndexOf(place.campusIds,"1")>=0||place.campusIds.Any(id=>id=="18k"||id=="18n"||id=="18p"||id=="18u");
         }
-        int DetailActionCount(){return Mathf.Max(1,(selected==null?0:selected.media.Length)+(HasEntry(selected)?1:0)+1);}
+        int SourceFocus(){return selected==null?0:selected.media.Length+(narrationClip!=null?1:0)+(HasEntry(selected)?1:0);}
+        int DetailActionCount(){return Mathf.Max(1,(selected==null?0:selected.media.Length)+(narrationClip!=null?1:0)+(HasEntry(selected)?1:0)+1);}
         int MediaActionCount(){int count=2;if(video!=null&&video.isPrepared)count++;if(videoAudio!=null)count++;return count;}
         void ActivateDetailFocus()
         {
             if(selected==null)return;
             int mediaCount=selected.media.Length;
             if(detailFocus<mediaCount){ShowMedia(selected.media[detailFocus]);return;}
-            if(HasEntry(selected)&&detailFocus==mediaCount){EnterSelected();return;}
+            int cursor=mediaCount;
+            if(narrationClip!=null){if(detailFocus==cursor){ToggleNarration();return;}cursor++;}
+            if(HasEntry(selected)&&detailFocus==cursor){EnterSelected();return;}
             if(TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
         }
         void ActivateMediaFocus()
@@ -264,10 +271,12 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(x+30,160,panelWidth-60,22),selected.category.ToUpperInvariant(),small);
             GUI.Label(new Rect(x+30,214,panelWidth-60,22),"THE STORY",small);
             GUI.Label(new Rect(x+30,250,panelWidth-60,245),RevealedStory(),story);
-            if(ControlButton(new Rect(x+30,520,185,38),FocusLabel(0,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
-            if(ControlButton(new Rect(x+235,520,185,38),FocusLabel(1,"More information"))){sidePanel=false;Open(selected);}
-            if(ControlButton(new Rect(x+30,575,185,38),FocusLabel(2,"Enter building")))EnterSelected();
-            if(ControlButton(new Rect(x+235,575,185,38),FocusLabel(3,"Close")))Close();
+            if(OdysseyAccessibility.CaptionsEnabled&&narrationClip!=null){Box(new Rect(x+30,468,panelWidth-60,38),new Color(.04f,.07f,.09f,.95f));GUI.Label(new Rect(x+42,476,panelWidth-84,24),"CAPTIONS  ·  "+(voicePlaying?CurrentStory:"Audio description ready."),small);}
+            if(ControlButton(new Rect(x+30,520,185,38),FocusLabel(0,NarrationLabel)))ToggleNarration();
+            if(ControlButton(new Rect(x+235,520,185,38),FocusLabel(1,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+            if(ControlButton(new Rect(x+30,575,185,38),FocusLabel(2,"More information"))){sidePanel=false;Open(selected);}
+            if(ControlButton(new Rect(x+235,575,185,38),FocusLabel(3,"Enter building")))EnterSelected();
+            if(ControlButton(new Rect(x+30,630,185,38),FocusLabel(4,"Close")))Close();
         }
         void OnGUI()
         {
@@ -303,6 +312,7 @@ namespace AlbionOdyssey
                     detailScroll=GUI.BeginScrollView(new Rect(x+22,258,w-44,132),detailScroll,new Rect(0,0,w-66,Mathf.Max(120,story.CalcHeight(new GUIContent(selected.summary),w-66)+8)));
                     GUI.Label(new Rect(0,0,w-66,Mathf.Max(120,story.CalcHeight(new GUIContent(selected.summary),w-66))),RevealedStory(),story);GUI.EndScrollView();
                     GUI.Label(new Rect(x,462,w,27),"REFERENCE MATERIAL",small);
+                    if(narrationClip!=null&&Button(new Rect(x,495,w,40),DetailFocusLabel(selected.media.Length,NarrationLabel)))ToggleNarration();
                     for(int i=0;i<selected.media.Length;i++)
                     {
                         var m=selected.media[i];string label=m.kind=="panorama"?"360° room view":m.kind=="video"?"Watch video":"Photo "+(i+1);
@@ -326,13 +336,15 @@ namespace AlbionOdyssey
                         panoramaCamera.transform.rotation=Quaternion.Euler(pitch,yaw,0);if(Event.current.type==EventType.Repaint)panoramaCamera.Render();GUI.DrawTexture(r,panoramaTexture,ScaleMode.ScaleToFit);
                     }
                     if(video!=null&&video.isPrepared)GUI.DrawTexture(r,videoTexture,ScaleMode.ScaleToFit);
-                    if(Button(new Rect(x,r.yMax+14,170,42),DetailFocusLabel(0,"Back to information")))StopMedia();
-                    if(activeMedia!=null&&Button(new Rect(x+185,r.yMax+14,110,42),DetailFocusLabel(1,"Retry")))ShowMedia(activeMedia);
-                    if(video!=null&&video.isPrepared&&Button(new Rect(x+310,r.yMax+14,120,42),DetailFocusLabel(2,video.isPlaying?"Pause":"Play"))){if(video.isPlaying)video.Pause();else video.Play();}
-                    if(videoAudio!=null&&Button(new Rect(x+445,r.yMax+14,120,42),DetailFocusLabel(3,videoAudio.mute?"Unmute":"Mute")))videoAudio.mute=!videoAudio.mute;
+                    float controlsY=r.yMax+(MediaCaption.Length>0?58:14);
+                    if(MediaCaption.Length>0){Box(new Rect(x,r.yMax+8,w,42),new Color(.04f,.07f,.09f,.95f));GUI.Label(new Rect(x+12,r.yMax+15,w-24,28),"CAPTIONS  ·  "+MediaCaption,small);}
+                    if(Button(new Rect(x,controlsY,170,42),DetailFocusLabel(0,"Back to information")))StopMedia();
+                    if(activeMedia!=null&&Button(new Rect(x+185,controlsY,110,42),DetailFocusLabel(1,"Retry")))ShowMedia(activeMedia);
+                    if(video!=null&&video.isPrepared&&Button(new Rect(x+310,controlsY,120,42),DetailFocusLabel(2,video.isPlaying?"Pause":"Play"))){if(video.isPlaying)video.Pause();else video.Play();}
+                    if(videoAudio!=null&&Button(new Rect(x+445,controlsY,120,42),DetailFocusLabel(3,videoAudio.mute?"Unmute":"Mute")))videoAudio.mute=!videoAudio.mute;
                 }
                 GUI.Label(new Rect(x,height-99,w-205,77),Status,small);
-                int readFocus=selected.media.Length+(HasEntry(selected)?1:0);if(Button(new Rect(right-180,safe.yMax-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+                int readFocus=SourceFocus();if(Button(new Rect(right-180,safe.yMax-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
             }
             GUI.Label(new Rect(left,safe.yMax-22,right-left,18),"STICK  Browse   ·   TRIGGER  Open   ·   MENU  Back",small);
             GUI.matrix=old;
