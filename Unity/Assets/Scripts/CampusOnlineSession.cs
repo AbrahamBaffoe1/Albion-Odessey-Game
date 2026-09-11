@@ -24,6 +24,7 @@ namespace AlbionOdyssey
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
+        readonly Queue<string> chatLog = new Queue<string>();
         GUIStyle title, text, button;int focus;
         public int RemoteCount => remotes.Count;
         string PlayerId { get { string id = PlayerPrefs.GetString("Odyssey.NetworkId", ""); if (id.Length == 0) { id = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString("Odyssey.NetworkId", id); PlayerPrefs.Save(); } return id; } }
@@ -89,7 +90,7 @@ namespace AlbionOdyssey
                     if (packet.type == "join" && host) Send(packet, from, "hello");
                     if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
-                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); if (game != null) game.notice = message; if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
+                    if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); AddChat(message); if (game != null) game.notice = message; if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
                 }
             }
@@ -128,7 +129,7 @@ namespace AlbionOdyssey
         void SendChat()
         {
             string clean=Sanitize(message);if(!active||clean.Length==0){status=active?"Type a message before sending.":"Start or join a world before chatting.";return;}
-            Send(new CampusNetPacket { type="chat", text=clean }, broadcast);message="";
+            string local = display + ": " + clean; AddChat(local); game.notice = local; Send(new CampusNetPacket { type="chat", text=clean }, broadcast);message="";
         }
         void CopyInvite()
         {
@@ -146,6 +147,11 @@ namespace AlbionOdyssey
         static string Sanitize(string value)
         {
             value = (value ?? "").Trim(); if (value.Length > 80) value = value.Substring(0, 80); return value.Replace("<", "").Replace(">", "").Replace("\n", " ");
+        }
+        void AddChat(string line)
+        {
+            line = Sanitize(line); if (line.Length == 0) return;
+            chatLog.Enqueue(line); while (chatLog.Count > 8) chatLog.Dequeue();
         }
         void OnGUI()
         {
@@ -171,6 +177,14 @@ namespace AlbionOdyssey
             // Defer the dictionary mutation until after enumeration. A host can
             // remove a player from the roster without throwing a GUI exception.
             if (removeId.Length > 0) Block(removeId);
+            GUI.Label(new Rect(x + 590, 425, 190, 28), "CHAT  ·  LAST 8", text);
+            int chatRow = 458;
+            foreach (var line in chatLog)
+            {
+                string shown = line.Length > 26 ? line.Substring(0, 25) + "…" : line;
+                GUI.Label(new Rect(x + 590, chatRow, 190, 27), shown, text);
+                chatRow += 28;
+            }
             message = GUI.TextField(new Rect(x, h - 115, 530, 36), message, 80); if (GUI.Button(new Rect(x + 545, h - 115, 120, 36), (focus==3?"▶  ":"")+"Send", button)) { focus=3; SendChat(); }
             if (GUI.Button(new Rect(x + 680, 325, 100, 44), (focus==5?"▶  ":"") + "Close", button)) { focus=5; ClosePanel(); }
             GUI.Label(new Rect(x, h - 65, 760, 28), AlbionControls.MenuFooter(game.xr != null && game.xr.Active, "Select"), text);
