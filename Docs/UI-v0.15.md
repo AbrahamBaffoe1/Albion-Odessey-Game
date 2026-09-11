@@ -6,6 +6,7 @@ The live HUD includes:
 
 - Current building or campus location and Keeper status.
 - A compact compass and objective card with memory and Beacon progress.
+- A six-step charter meter that shows the current chapter and fills as milestones are completed.
 - Energy feedback while sprinting and speed feedback while driving.
 - A live Campus Pulse card for moving students, seated activities, squirrels, weather and total campus population.
 - Contextual world tags for memories, Pip and classroom activities.

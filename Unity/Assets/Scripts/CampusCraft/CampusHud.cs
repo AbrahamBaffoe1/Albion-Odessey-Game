@@ -26,6 +26,10 @@ namespace AlbionOdyssey
             if(game.state.school!=null&&game.state.school.active<0)return "Create a course for your campus";
             return "Your charter is complete — keep exploring";
         }
+        int CharterStep()
+        {
+            return Mathf.Clamp(OdysseyStory.Next(game.state.Current),0,OdysseyStory.Chapters.Length);
+        }
         string InteractGlyph()
         {
             if(game.xr!=null&&game.xr.Active)return "TRIGGER";
@@ -154,8 +158,9 @@ namespace AlbionOdyssey
             string online=game.online!=null&&game.online.Active?"  ·  "+game.online.RemoteCount+" ONLINE":"";
             if(game.player.vehicle==null){GUI.Label(new Rect(right-304,top+55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%"+online,value);Fill(new Rect(right-304,top+88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(right-304,top+88,258*game.player.Stamina,7),Cyan);}
             else GUI.Label(new Rect(right-304,top+57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H"+online,value);
-            Card(new Rect(left+24,top+132,330,74),true);GUI.Label(new Rect(left+44,top+143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(left+44,top+164,286,34),Objective(),small);
-            string progress=OdysseyState.Count(game.state.Current.memories)+" / 12 memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(left+44,top+190,286,18),progress,eyebrow);
+            Card(new Rect(left+24,top+132,330,96),true);GUI.Label(new Rect(left+44,top+143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(left+44,top+164,286,30),Objective(),small);
+            int step=CharterStep(),total=OdysseyStory.Chapters.Length;string progress="CHARTER  "+step+" / "+total+"   ·   "+OdysseyState.Count(game.state.Current.memories)+" memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(left+44,top+194,286,16),progress,eyebrow);
+            Fill(new Rect(left+44,top+214,286,5),new Color(.13f,.15f,.20f));float target=total==0?1:(float)step/total;float fill=Mathf.Lerp(0,286,OdysseyAccessibility.ReducedMotion?target:Mathf.SmoothStep(0,target,.88f));Fill(new Rect(left+44,top+214,fill,5),step>=total?Cyan:Gold);
             TargetTag(scale);
             string action=Context();float promptY=bottom-78;Card(new Rect((left+right)*.5f-285,promptY,570,52),true);GUI.Label(new Rect((left+right)*.5f-270,promptY+8,540,34),action,prompt);
             string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
