@@ -29,6 +29,10 @@ assert "pending source verification" in tour_ui.lower()
 world_label_ui=(root/"Unity/Assets/Scripts/CampusWorldLabel.cs").read_text()
 for marker in ["World label backing", "Physics.Raycast", "LookRotation(targetCamera.transform.position"]:
     assert marker in world_label_ui, f"World-label readability hook missing: {marker}"
+geometry_ui=(root/"Unity/Assets/Scripts/CampusGeometry.cs").read_text()
+walkable_ui=(root/"Unity/Assets/Scripts/CampusCraft/WalkableCampusBuilding.cs").read_text()
+assert "BuildingNameplate" in geometry_ui and "CampusWorldLabel" in geometry_ui, "Building nameplate hook missing from campus geometry"
+assert "nameplate.Configure" in walkable_ui, "Walkable building nameplate hook missing"
 controls_ui=(root/"Unity/Assets/Scripts/AlbionControls.cs").read_text()
 for marker in ["MenuFooter", "GameplayFooter", "A / CROSS", "TRIGGER"]:
     assert marker in controls_ui, f"Controller legend hook missing: {marker}"

@@ -55,7 +55,17 @@ namespace AlbionOdyssey
             var plaque = new GameObject(Place.name + " history plaque"); plaque.transform.SetParent(Root.transform, false); plaque.transform.localPosition = new Vector3(0, 2.15f, -Depth * .5f - .08f);
             var label = plaque.AddComponent<TextMesh>(); label.text = Place.name.ToUpperInvariant(); label.fontSize = 52; label.characterSize = .09f; label.anchor = TextAnchor.MiddleCenter; label.color = new Color(.22f, .13f, .30f);
             var info = plaque.AddComponent<CampusBuildingInfo>(); info.Title = Place.name; info.Body = History;
+            var nameplate = Root.AddComponent<CampusWorldLabel>(); nameplate.Configure(Id + "  ·  " + Place.name.ToUpperInvariant(), LabelAccent(Place.category), new Vector3(0, Mathf.Min(Floors * FloorHeight + 1.15f, 4.2f), -Depth * .5f - .65f), 24f);
             Physics.SyncTransforms();
+        }
+
+        static Color LabelAccent(string category)
+        {
+            if (category == "Academic") return new Color(1f, .76f, .28f);
+            if (category == "Residential" || category == "Nature") return new Color(.35f, .84f, .92f);
+            if (category == "Athletics") return new Color(.45f, .85f, .48f);
+            if (category == "Greek life") return new Color(.78f, .48f, .88f);
+            return new Color(.84f, .86f, .92f);
         }
 
         void BuildAuthoredRobinson()

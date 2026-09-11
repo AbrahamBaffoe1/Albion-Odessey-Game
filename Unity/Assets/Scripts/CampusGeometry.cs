@@ -91,7 +91,7 @@ namespace AlbionOdyssey
                     for(int row=0;row<4;row++)Box(t,"Spectator seating",new Vector3(0,.5f+row*.5f,side*(d/2+1+row)),new Vector3(w*.75f,.5f,1),stone);
                     if(p.shape!="baseball")Box(t,"Goal",new Vector3(side*(w/2-2),2,0),new Vector3(.25f,4,5),gold,false);
                 }
-                Sign(t,p.name,new Vector3(0,3,-d/2-6),Mathf.Min(w,25));return;
+                Sign(t,p.name,new Vector3(0,3,-d/2-6),Mathf.Min(w,25));BuildingNameplate(t,p,3.35f,d);return;
             }
             Material wall=p.shape=="arts"||p.shape=="science"||p.shape=="gym"?stone:brick;
             Box(t,"Foundation",Vector3.up*.25f,new Vector3(w+.5f,.5f,d+.5f),stone);
@@ -125,7 +125,20 @@ namespace AlbionOdyssey
                 KeeperAvatar.Part(t,"Observatory copper dome",PrimitiveType.Sphere,new Vector3(0,h+3,0),new Vector3(w*.85f,4,w*.85f),roof);
             }
             if(p.shape=="library")foreach(int side in new[]{-1,1})Box(t,"Library entrance pier",new Vector3(side*2.4f,2,-d/2-.5f),new Vector3(.5f,4,.7f),stone);
-            // Building names appear contextually in the HUD rather than floating across facades.
+            BuildingNameplate(t,p,Mathf.Min(h+1.2f,4.2f),d);
+        }
+        static Color LabelAccent(string category)
+        {
+            if(category=="Academic")return new Color(1f,.76f,.28f);
+            if(category=="Residential"||category=="Nature")return new Color(.35f,.84f,.92f);
+            if(category=="Athletics")return new Color(.45f,.85f,.48f);
+            if(category=="Greek life")return new Color(.78f,.48f,.88f);
+            return new Color(.84f,.86f,.92f);
+        }
+        static void BuildingNameplate(Transform parent,CampusPlace place,float height,float depth)
+        {
+            var tag=parent.gameObject.AddComponent<CampusWorldLabel>();
+            tag.Configure(place.id+"  ·  "+place.name.ToUpperInvariant(),LabelAccent(place.category),new Vector3(0,height,-depth*.5f-.65f),24f);
         }
         static void Spire(Transform parent,Vector3 position,float radius,float height)
         {

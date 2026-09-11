@@ -10,6 +10,7 @@ The live HUD includes:
 - Energy feedback while sprinting and speed feedback while driving.
 - A live Campus Pulse card for moving students, seated activities, squirrels, weather and total campus population.
 - Contextual world tags for memories, Pip and classroom activities.
+- Distance-aware building nameplates for map destinations, walkable halls and field spaces; the labels face the camera and hide behind geometry.
 - One readable interaction prompt with the current action.
 - Animated achievement and notice cards with the existing collection sounds.
 - Responsive scaling for 16:9, ultrawide and headset preview resolutions.
