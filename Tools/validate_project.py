@@ -30,6 +30,9 @@ for marker in ["World label backing", "Physics.Raycast", "LookRotation(targetCam
 controls_ui=(root/"Unity/Assets/Scripts/AlbionControls.cs").read_text()
 for marker in ["MenuFooter", "GameplayFooter", "A / CROSS", "TRIGGER"]:
     assert marker in controls_ui, f"Controller legend hook missing: {marker}"
+online_ui=(root/"Unity/Assets/Scripts/CampusOnlineSession.cs").read_text()
+for marker in ["chatLog", "AddChat", "chatLog.Count > 8"]:
+    assert marker in online_ui, f"Shared chat feed hook missing: {marker}"
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
         if any(part in path.parts for part in ("Builds", "Releases", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):
