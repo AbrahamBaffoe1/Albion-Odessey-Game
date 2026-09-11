@@ -6,7 +6,7 @@ The 0.8 update includes a playable three-level Ferguson reconstruction, a rigged
 2. **Robinson and Bonta polish.** Robinson now has a dedicated Blender exterior/interior asset and authored collision in the 0.13 build; continue visual review alongside the Bonta pass.
 3. **Science Complex art review.** Tune the four-wing proportions, lab dressing, collection displays, accessibility signs and lighting against the public references.
 4. **Campus placement and landscape.** Continue replacing generic map exteriors with individually authored halls and improve roads, planting and lighting.
-5. **Student movement and campus life.** Connect more natural animation transitions and extend NPC schedules beyond the six deterministic routes.
+5. **Student movement and campus life.** Roaming students now pause at route waypoints with small idle gestures, while seated learners, club dancers and service roles keep their activity loops. Extend NPC schedules beyond the authored routes and add richer transition clips.
 6. **Interface and accessibility.** Per-action keyboard rebinding, building audio-description controls and per-media caption cards are shipped in 0.15. Add controller glyph assets and import complete source transcripts where they are available.
 7. **Building and learning gameplay.** Expand the schedule into prerequisites, assignments, clubs and saved student activity history.
 8. **Online service hardening.** The LAN session now binds UDP 40777, carries presence/movement snapshots, shows online nameplates, keeps a capped sanitized chat feed and supports host moderation. The production phase still needs accounts, an authoritative hosted server, encrypted transport, cloud persistence and abuse reporting.

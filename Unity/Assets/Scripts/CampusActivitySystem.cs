@@ -207,16 +207,16 @@ namespace AlbionOdyssey
     public sealed class CampusActivityAgent : MonoBehaviour
     {
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
-        KeeperAvatar avatar; CampusConversationBubble bubble; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase;
+        KeeperAvatar avatar; CampusConversationBubble bubble; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase,workPhase;
         public CampusStudentIdentity Identity { get; private set; }
         public bool IsSeated { get { return seated && pause > 0f; } }
         public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); bubble=gameObject.AddComponent<CampusConversationBubble>();bubble.Configure(displayName,Activity,new Vector3(0,2.72f,0),16f); last = transform.position; }
         void Update()
         {
             if (avatar == null || Route == null || Route.Length == 0) return;
-            if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) { bubble.SetVisible(true); if(OdysseyAccessibility.ReducedMotion) avatar.Animate(0, false); else Dance(); } else {avatar.Animate(0, seated);bubble.SetVisible(seated);if(seated&&!OdysseyAccessibility.ReducedMotion)Talk();} return; }
+            if (pause > 0) { pause -= Time.deltaTime; if (Activity == CampusActivityKind.Play) { bubble.SetVisible(true); if(OdysseyAccessibility.ReducedMotion) avatar.Animate(0, false); else Dance(); } else {avatar.Animate(0, seated);bubble.SetVisible(seated);if(!OdysseyAccessibility.ReducedMotion){if(seated)Talk();else if(Activity==CampusActivityKind.Teach||Activity==CampusActivityKind.Serve||Activity==CampusActivityKind.Buy)Work();}} return; }
             Vector3 goal = Route[target]; Vector3 delta = goal - transform.position; delta.y = 0;
-            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if(seated)FaceConversationPartner(); bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) { if(OdysseyAccessibility.ReducedMotion) avatar.Animate(0, false); else Dance(); } else {avatar.Animate(0, seated);if(seated&&!OdysseyAccessibility.ReducedMotion)Talk();} return; }
+            if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if(seated)FaceConversationPartner(); bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) { if(OdysseyAccessibility.ReducedMotion) avatar.Animate(0, false); else Dance(); } else {avatar.Animate(0, seated);if(!OdysseyAccessibility.ReducedMotion){if(seated)Talk();else if(Activity==CampusActivityKind.Teach||Activity==CampusActivityKind.Serve||Activity==CampusActivityKind.Buy)Work();}} return; }
             seated = false; bubble.SetVisible(false); avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
             if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;pause=.35f;return;}
@@ -230,6 +230,12 @@ namespace AlbionOdyssey
             talkPhase+=Time.deltaTime*3.1f;
             avatar.transform.localRotation=Quaternion.Euler(Mathf.Sin(talkPhase*.83f)*2.2f,Mathf.Sin(talkPhase*1.17f)*4.5f,Mathf.Sin(talkPhase*1.61f)*1.4f);
             avatar.transform.localPosition=Vector3.up*(Mathf.Abs(Mathf.Sin(talkPhase*1.45f))*.018f);
+        }
+        void Work()
+        {
+            workPhase+=Time.deltaTime*2.2f;
+            avatar.transform.localRotation=Quaternion.Euler(Mathf.Sin(workPhase*.67f)*1.5f,Mathf.Sin(workPhase*.44f)*4f,Mathf.Sin(workPhase*1.19f)*1.1f);
+            avatar.transform.localPosition=Vector3.up*(Mathf.Abs(Mathf.Sin(workPhase*.92f))*.014f);
         }
         void FaceConversationPartner()
         {

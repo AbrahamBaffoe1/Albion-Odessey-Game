@@ -33,6 +33,9 @@ for marker in ["MenuFooter", "GameplayFooter", "A / CROSS", "TRIGGER"]:
 online_ui=(root/"Unity/Assets/Scripts/CampusOnlineSession.cs").read_text()
 for marker in ["chatLog", "AddChat", "chatLog.Count > 8"]:
     assert marker in online_ui, f"Shared chat feed hook missing: {marker}"
+campus_life_ui=(root/"Unity/Assets/Scripts/CampusWorldSystems.cs").read_text()+"\n"+(root/"Unity/Assets/Scripts/CampusActivitySystem.cs").read_text()
+for marker in ["pauseVariant", "void Idle()", "void Work()"]:
+    assert marker in campus_life_ui, f"Campus-life animation hook missing: {marker}"
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
         if any(part in path.parts for part in ("Builds", "Releases", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):
