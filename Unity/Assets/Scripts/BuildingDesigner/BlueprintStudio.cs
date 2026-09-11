@@ -23,8 +23,9 @@ namespace AlbionOdyssey.BuildingDesigner
         AudioClip[] clips=new AudioClip[10];
         public bool Active {get;private set;}
         public bool Ready=>game!=null;
-        bool walking,showRoof,share,dirty,editingName,blurNextGui;
+        bool walking,showRoof,share,dirty,editingName,blurNextGui,controllerGrid;
         int keeper,slot,rotation,controllerFocus;StudioPart selected;
+        int gridX=6,gridZ=6;bool gridAlongX=true;
         float previousTimeScale,azimuth=35,pitch,velocity,openedAt,controllerTurnCooldown;bool previousControllerJump;int cardFocus;
         Vector3 returnCameraPosition;Quaternion returnCameraRotation;
         string message="Choose a piece, then click the grid. Right-click removes the selected layer.",card="";
@@ -47,7 +48,7 @@ namespace AlbionOdyssey.BuildingDesigner
             if(!game.player.TryExitVehicle()){game.notice="Park the car in an open space before entering the studio.";return false;}
             game.tour.StopMedia();
             if(game.life.PanelOpen)game.life.SetPanel("launch");
-            keeper=Smoke?0:game.state.active;Active=true;previousTimeScale=Time.timeScale;
+            keeper=Smoke?0:game.state.active;Active=true;controllerGrid=false;gridX=6;gridZ=6;gridAlongX=true;previousTimeScale=Time.timeScale;
             foreach(var c in FindObjectsByType<Camera>())if(c.enabled){cameras.Add(c);c.enabled=false;}
             foreach(var l in FindObjectsByType<AudioListener>())if(l.enabled){listeners.Add(l);l.enabled=false;}
             foreach(var b in FindObjectsByType<MonoBehaviour>())if(b!=this&&b.enabled){suspended.Add(b);b.enabled=false;}
@@ -106,6 +107,20 @@ namespace AlbionOdyssey.BuildingDesigner
             if(game==null||Smoke)return;
             if(!share&&!editingName&&Input.GetKeyDown(KeyCode.F4)){if(Active)Leave();else Enter();return;}
             if(!Active)return;
+            if(controllerGrid)
+            {
+                if(Input.GetKeyDown(KeyCode.R)){gridAlongX=!gridAlongX;message=gridAlongX?"Horizontal edge selected.":"Vertical edge selected.";}
+                if(AlbionUIInput.Poll(out var gridHorizontal,out var gridVertical,out var gridChoose,out var gridCancel))
+                {
+                    if(gridCancel){controllerGrid=false;preview.SetActive(false);message="Grid cursor closed. Choose another studio tool or keep designing.";return;}
+                    if(gridHorizontal!=0)gridX=Mathf.Clamp(gridX+(gridHorizontal>0?1:-1),0,11);
+                    if(gridVertical!=0)gridZ=Mathf.Clamp(gridZ+(gridVertical>0?1:-1),0,11);
+                    UpdateControllerPreview();
+                    if(gridChoose)PlaceAtControllerCursor();
+                }
+                else UpdateControllerPreview();
+                return;
+            }
             if(walking)
             {
                 AlbionUIInput.Poll(out var unusedHorizontal,out var unusedVertical,out var unusedChoose,out var cancelWalk);
@@ -127,9 +142,9 @@ namespace AlbionOdyssey.BuildingDesigner
             if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
             {
                 if(cancel){Leave();return;}
-                if(horizontal!=0)controllerFocus=(controllerFocus+(horizontal>0?1:-1)+16)%16;
-                if(vertical!=0)controllerFocus=(controllerFocus+(vertical>0?-1:1)+16)%16;
-                if(choose){if(controllerFocus==0)Leave();else if(controllerFocus<=8)selected=(StudioPart)(controllerFocus-1);else if(controllerFocus==9)SaveBlueprint();else if(controllerFocus==10)Undo();else if(controllerFocus==11)Redo();else if(controllerFocus==12)StartWalk();else if(controllerFocus==13){showRoof=!showRoof;Rebuild();}else if(controllerFocus==14){card=JsonUtility.ToJson(blueprint);cardFocus=0;share=true;}else if(controllerFocus==15&&(invalidSlot||SaveBlueprint())){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
+                if(horizontal!=0)controllerFocus=(controllerFocus+(horizontal>0?1:-1)+17)%17;
+                if(vertical!=0)controllerFocus=(controllerFocus+(vertical>0?-1:1)+17)%17;
+                if(choose){if(controllerFocus==0)Leave();else if(controllerFocus<=8)selected=(StudioPart)(controllerFocus-1);else if(controllerFocus==9)SaveBlueprint();else if(controllerFocus==10)Undo();else if(controllerFocus==11)Redo();else if(controllerFocus==12)StartWalk();else if(controllerFocus==13){showRoof=!showRoof;Rebuild();}else if(controllerFocus==14){card=JsonUtility.ToJson(blueprint);cardFocus=0;share=true;}else if(controllerFocus==15&&(invalidSlot||SaveBlueprint())){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}else if(controllerFocus==16){controllerGrid=true;message="Grid cursor active. Use the stick or arrows to move; press Select to place; Back closes it.";UpdateControllerPreview();}}
                 return;
             }
             if(Input.GetKeyDown(KeyCode.Escape)){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
@@ -181,6 +196,24 @@ namespace AlbionOdyssey.BuildingDesigner
                 center=StudioGeometry.Origin+new Vector3((x-6)*2+(alongX?1:0),0,(z-6)*2+(alongX?0:1));return BuildingBlueprint.Edge(alongX,x,z);
             }
             x=Mathf.FloorToInt(gx);z=Mathf.FloorToInt(gz);center=StudioGeometry.Origin+StudioGeometry.CellCenter(x,z);return BuildingBlueprint.Cell(x,z);
+        }
+        void UpdateControllerPreview()
+        {
+            if(preview==null||!controllerGrid)return;
+            bool edge=selected>=StudioPart.Wall&&selected<=StudioPart.Window;
+            bool alongX=gridAlongX;
+            Vector3 center=StudioGeometry.Origin+new Vector3((gridX-6)*2+(edge&&alongX?1:0),0,(gridZ-6)*2+(edge&&!alongX?1:0));
+            var candidate=blueprint.Copy();bool valid=candidate.Place(selected,gridX,gridZ,alongX,rotation,false);
+            preview.SetActive(true);preview.transform.position=center+Vector3.up*.16f;preview.transform.rotation=Quaternion.identity;
+            preview.transform.localScale=edge?new Vector3(1.95f,.06f,.20f):new Vector3(1.90f,.06f,1.90f);
+            preview.GetComponent<Renderer>().sharedMaterial=TowerGeometry.Material(valid?"Studio controller valid preview":"Studio controller blocked preview",valid?new Color(.30f,.88f,.52f):new Color(.9f,.30f,.24f));
+        }
+        void PlaceAtControllerCursor()
+        {
+            bool edge=selected>=StudioPart.Wall&&selected<=StudioPart.Window;
+            var candidate=blueprint.Copy();bool valid=candidate.Place(selected,gridX,gridZ,edge?gridAlongX:true,rotation,false);
+            if(valid){history.Record(blueprint);blueprint=candidate;dirty=true;Rebuild();Play((int)selected);message=selected+" placed at grid cursor. Move the cursor to continue.";UpdateControllerPreview();}
+            else message="That space is blocked. Move the grid cursor or choose a supporting floor.";
         }
         void Undo(){blueprint=history.Undo(blueprint);dirty=true;Rebuild();message="Undo.";}
         void Redo(){blueprint=history.Redo(blueprint);dirty=true;Rebuild();message="Redo.";}
@@ -236,6 +269,7 @@ namespace AlbionOdyssey.BuildingDesigner
             Label(24,60,1000,25,$"Keeper {keeper+1} · Slot {slot+1} · 24 × 24 metres · Original player blueprint",small);
             if(walking){Label(24,h-120,w-48,50,OdysseyAccessibility.ForwardKey+" / "+OdysseyAccessibility.LeftKey+" "+OdysseyAccessibility.BackKey+" "+OdysseyAccessibility.RightKey+" / arrows walk · Mouse look · "+OdysseyAccessibility.JumpKey+" jump · Esc back to design · Esc twice returns to campus",text);return;}
             if(Button(w-200,22,175,FocusLabel(0,"Save & return · Esc")))Leave();FocusBox(new Rect(w-200,22,175,36),0);
+            if(Button(w-200,68,175,FocusLabel(16,controllerGrid?"Close grid cursor":"Grid cursor"))){controllerGrid=!controllerGrid;message=controllerGrid?"Grid cursor active. Use the stick or arrows to move; Select places; R changes wall direction.":"Grid cursor closed.";if(controllerGrid)UpdateControllerPreview();else preview.SetActive(false);}FocusBox(new Rect(w-200,68,175,36),16);
             GUI.enabled=!invalidSlot;
             string[] names={"1 Floor","2 Wall","3 Door","4 Window","5 Roof","6 Table","7 Chair","8 Planter"};
             for(int i=0;i<8;i++)if(Button(24+i*153,110,145,FocusLabel(i+1,(selected==(StudioPart)i?"● ":"")+names[i]))){selected=(StudioPart)i;GUI.FocusControl(null);}
@@ -248,7 +282,7 @@ namespace AlbionOdyssey.BuildingDesigner
             GUI.enabled=true;
             if(Button(1097,h-120,145,FocusLabel(15,"Slot "+(slot+1)+" →"))){if(invalidSlot||SaveBlueprint()){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
             FocusBox(new Rect(300,h-120,100,36),9);FocusBox(new Rect(412,h-120,90,36),10);FocusBox(new Rect(514,h-120,90,36),11);FocusBox(new Rect(616,h-120,145,36),12);FocusBox(new Rect(773,h-120,140,36),13);FocusBox(new Rect(925,h-120,160,36),14);FocusBox(new Rect(1097,h-120,145,36),15);
-            Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Creative materials are free in this studio",small);
+            Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Grid cursor supports controller/XR placement",small);
             Label(w-430,h-73,406,24,AlbionControls.CompactMenuFooter(game.xr!=null&&game.xr.Active,"Choose"),small);
             Label(24,h-42,w-48,36,message,small);
             editingName=GUI.GetNameOfFocusedControl()=="BlueprintName";
@@ -262,12 +296,16 @@ namespace AlbionOdyssey.BuildingDesigner
                 if(Button(562,h-220,170,CardFocusLabel(2,"Close card")))share=false;
             }
         }
-        [Serializable] class SmokeResult {public bool passed,doorway,wallCollision,save,import,undo,restored;public int pieces;public string error;}
+        [Serializable] class SmokeResult {public bool passed,doorway,wallCollision,save,import,undo,restored,controllerPlacement,controllerBlocked,controllerOrientation;public int pieces;public string error;}
         IEnumerator RunSmoke()
         {
             var result=new SmokeResult();string output=Environment.GetEnvironmentVariable("BLUEPRINT_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"BlueprintSmokeOutput");Directory.CreateDirectory(output);
             Enter();blueprint=BuildingBlueprint.Classroom();Rebuild();yield return null;
             result.pieces=building.GetComponentsInChildren<Renderer>().Length;
+            var controllerLayout=BuildingBlueprint.Classroom();
+            result.controllerPlacement=controllerLayout.Place(StudioPart.Planter,6,6,true,0,false);
+            result.controllerBlocked=!controllerLayout.Place(StudioPart.Table,4,5,true,0,false);
+            result.controllerOrientation=controllerLayout.Place(StudioPart.Wall,4,9,true,0,false)&&controllerLayout.Place(StudioPart.Wall,3,4,false,0,false);
             history.Record(blueprint);blueprint.Place(StudioPart.Roof,5,5,true,0,false);Undo();result.undo=blueprint.roofs[65]==0;Redo();result.undo&=blueprint.roofs[65]==1;
             string export=JsonUtility.ToJson(blueprint);result.import=ParseCard(export)!=null&&ParseCard("{bad") ==null&&ParseCard(new string('x',20001))==null;
             result.save=SaveBlueprint()&&ParseCard(File.ReadAllText(SavePath))!=null;
@@ -281,7 +319,7 @@ namespace AlbionOdyssey.BuildingDesigner
             result.wallCollision=walker.transform.position.z<StudioGeometry.Origin.z+6&&walker.transform.position.z>StudioGeometry.Origin.z+5;
             StopWalk();share=true;card=export;yield return new WaitForEndOfFrame();Capture(output,"03-blueprint-card");
             bool wasEnabled=suspended.Contains(game);Leave();result.restored=!Active&&wasEnabled&&game.enabled&&Mathf.Approximately(Time.timeScale,previousTimeScale);
-            result.passed=result.doorway&&result.wallCollision&&result.save&&result.import&&result.undo&&result.restored;
+            result.passed=result.doorway&&result.wallCollision&&result.save&&result.import&&result.undo&&result.restored&&result.controllerPlacement&&result.controllerBlocked&&result.controllerOrientation;
             if(!result.passed)result.error="One or more designer checks failed; inspect result fields.";
             File.WriteAllText(Path.Combine(output,"result.json"),JsonUtility.ToJson(result,true));Debug.Log("BLUEPRINT_STUDIO_SMOKE "+JsonUtility.ToJson(result));Application.Quit(result.passed?0:1);
         }

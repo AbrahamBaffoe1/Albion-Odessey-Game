@@ -44,6 +44,9 @@ for marker in ["pauseVariant", "void Idle()", "void Work()"]:
     assert marker in campus_life_ui, f"Campus-life animation hook missing: {marker}"
 course_ui=(root/"Unity/Assets/Scripts/CampusLife.cs").read_text()
 assert "RosterLabel" in course_ui and "ROSTER" in course_ui, "Course roster presentation hook missing"
+builder_ui=(root/"Unity/Assets/Scripts/BuildingDesigner/BlueprintStudio.cs").read_text()
+for marker in ["controllerGrid", "UpdateControllerPreview", "PlaceAtControllerCursor", "Grid cursor"]:
+    assert marker in builder_ui, f"Controller blueprint placement hook missing: {marker}"
 for path in root.rglob("*"):
     if path.is_file() and ".git" not in path.parts:
         if any(part in path.parts for part in ("Builds", "Releases", "Verification", "Library", "Temp", "Logs", "Obj", "UserSettings")):

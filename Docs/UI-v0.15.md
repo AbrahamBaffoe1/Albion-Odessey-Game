@@ -22,6 +22,8 @@ The social layer now uses the same visual language: seated learners and lunch gr
 
 Course panels now show a compact roster strip alongside the seat count. Local Keepers and named simulated learners share the same enrollment view, so a player can see who is in a class before starting the lesson.
 
+The building studio now includes a controller/XR grid cursor. Open **Grid cursor**, move the stick or arrows across the 12 × 12 plan, press Select to place the selected floor, wall, door, window or furnishing, and use **R** to switch wall direction. Mouse placement remains available for precision editing.
+
 ## Typography and input pass
 
 Headings use a cached display face (`Avenir Next Condensed` when available) and body/control copy uses a readable system face (`Helvetica Neue` when available). Quest and other devices fall back to Unity's bundled Arial font without changing layout. The same font roles are applied to the HUD, history, courses, builder, journal, accessibility, VR and shared-session panels.
