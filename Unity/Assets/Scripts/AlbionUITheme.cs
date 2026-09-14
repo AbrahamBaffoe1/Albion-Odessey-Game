@@ -8,7 +8,7 @@ namespace AlbionOdyssey
     {
         public static readonly Color Ink=new Color(.025f,.028f,.052f), Gold=new Color(1f,.76f,.28f), Purple=new Color(.40f,.22f,.57f), Cyan=new Color(.35f,.84f,.92f);
         public static int TextSize(int size){return OdysseyAccessibility.LargeText?Mathf.RoundToInt(size*1.18f):size;}
-        static Texture2D pixel;
+        static Texture2D pixel,buttonTexture;
         static Font displayFont, bodyFont;
         static Texture2D Pixel(){if(pixel==null){pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}return pixel;}
         public static Font DisplayFont { get { if(displayFont==null) displayFont=ResolveFont("Avenir Next Condensed"); return displayFont; } }
@@ -24,8 +24,9 @@ namespace AlbionOdyssey
         }
         public static GUIStyle Button(int size=16)
         {
+            if(buttonTexture==null){buttonTexture=new Texture2D(1,1);buttonTexture.SetPixel(0,0,new Color(.10f,.17f,.27f));buttonTexture.Apply();}
             var style=new GUIStyle(GUI.skin.button){font=BodyFont,fontSize=TextSize(size),fontStyle=FontStyle.Bold,padding=new RectOffset(12,12,7,7),border=new RectOffset()};
-            style.normal.background=Pixel();style.normal.textColor=new Color(.98f,.96f,.9f);style.hover.background=Pixel();style.hover.textColor=Color.white;style.active.background=Pixel();style.active.textColor=Gold;style.focused.background=Pixel();style.focused.textColor=Cyan;
+            style.normal.background=buttonTexture;style.normal.textColor=Color.white;style.hover.background=buttonTexture;style.hover.textColor=Color.white;style.active.background=buttonTexture;style.active.textColor=Gold;style.focused.background=buttonTexture;style.focused.textColor=Cyan;
             return style;
         }
         // IMGUI uses a top-left origin while Screen.safeArea uses a bottom-left

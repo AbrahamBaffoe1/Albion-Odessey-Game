@@ -6,12 +6,12 @@ namespace AlbionOdyssey
     // animated cards with one clear action at a time.
     public sealed class CampusHud : MonoBehaviour
     {
-        static readonly Color Ink=new Color(.035f,.04f,.065f,.94f),Panel=new Color(.055f,.065f,.10f,.88f),Gold=new Color(1f,.76f,.28f),Purple=new Color(.44f,.25f,.64f),Cyan=new Color(.35f,.84f,.92f);
+        static readonly Color Ink=new Color(.035f,.04f,.065f,.94f),Panel=new Color(.012f,.022f,.048f,.92f),Gold=new Color(1f,.76f,.28f),Purple=new Color(.44f,.25f,.64f),Cyan=new Color(.35f,.84f,.92f);
         OdysseyGame game;Texture2D pixel;GUIStyle eyebrow,place,value,small,button,prompt,mapPlayer,mapName;string lastNotice="";float noticeUntil;
         public void Setup(OdysseyGame owner){game=owner;pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}
         void Update(){if(game!=null&&game.notice!=lastNotice){lastNotice=game.notice;noticeUntil=Time.unscaledTime+5;}}
         void Fill(Rect r,Color c){var old=GUI.color;GUI.color=c;GUI.DrawTexture(r,pixel);GUI.color=old;}
-        void Card(Rect r,bool accent=false){Fill(r,Panel);if(accent)Fill(new Rect(r.x,r.y,4,r.height),Gold);}
+        void Card(Rect r,bool accent=false){OdysseyUI.Card(r,Panel);if(accent)Fill(new Rect(r.x,r.y,4,r.height),Gold);}
         string CurrentPlace()
         {
             var buildings=CampusBuildings.Instance;var extra=buildings?.AdditionalInside();
@@ -149,27 +149,32 @@ namespace AlbionOdyssey
         }
         void OnGUI()
         {
+            if(game==null||!game.Ready)return;
             if(game==null||game.player==null||game.life.PanelOpen||game.building||game.journalOpen)return;
             InitStyles();var old=GUI.matrix;var oldBg=GUI.backgroundColor;float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale;Rect safe=AlbionUITheme.SafeArea(scale);float left=safe.xMin,right=safe.xMax,top=safe.yMin,bottom=safe.yMax;
             GUI.backgroundColor=Purple;string p=CurrentPlace();
-            Card(new Rect(left+24,top+24,330,92),true);GUI.Label(new Rect(left+44,top+34,290,18),"ALBION COLLEGE  /  LIVE",eyebrow);GUI.Label(new Rect(left+44,top+55,290,30),p,place);GUI.Label(new Rect(left+44,top+84,290,22),game.campus.keeperName+"   ·   "+game.state.Current.acorns+" ACORNS",small);
+            OdysseyUI.Card(new Rect(left+24,top+24,360,60),OdysseyUI.Navy);
+            OdysseyUI.Text(new Rect(left+44,top+38,318,35),p,24,OdysseyUI.White,true);
             Compass((left+right)*.5f,top);
-            Card(new Rect(right-326,top+24,302,92));GUI.Label(new Rect(right-304,top+35,260,18),game.player.vehicle==null?"KEEPER STATUS":"CAMPUS CAR",eyebrow);
-            string online=game.online!=null&&game.online.Active?"  ·  "+game.online.RemoteCount+" ONLINE":"";
-            if(game.player.vehicle==null){GUI.Label(new Rect(right-304,top+55,260,25),"ENERGY  "+Mathf.RoundToInt(game.player.Stamina*100)+"%"+online,value);Fill(new Rect(right-304,top+88,258,7),new Color(.13f,.15f,.20f));Fill(new Rect(right-304,top+88,258*game.player.Stamina,7),Cyan);}
-            else GUI.Label(new Rect(right-304,top+57,260,30),Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+"  KM/H"+online,value);
-            Card(new Rect(left+24,top+132,330,96),true);GUI.Label(new Rect(left+44,top+143,280,16),"CURRENT OBJECTIVE",eyebrow);GUI.Label(new Rect(left+44,top+164,286,30),Objective(),small);
-            int step=CharterStep(),total=OdysseyStory.Chapters.Length;string progress="CHARTER  "+step+" / "+total+"   ·   "+OdysseyState.Count(game.state.Current.memories)+" memories   ·   Beacon "+game.state.beacon+" / 24";GUI.Label(new Rect(left+44,top+194,286,16),progress,eyebrow);
-            Fill(new Rect(left+44,top+214,286,5),new Color(.13f,.15f,.20f));float target=total==0?1:(float)step/total;float fill=Mathf.Lerp(0,286,OdysseyAccessibility.ReducedMotion?target:Mathf.SmoothStep(0,target,.88f));Fill(new Rect(left+44,top+214,fill,5),step>=total?Cyan:Gold);
+            OdysseyUI.Card(new Rect(left+24,top+104,360,98),new Color(.012f,.022f,.048f,.9f));
+            OdysseyUI.Text(new Rect(left+44,top+116,318,25),"YOUR NEXT DISCOVERY",13,OdysseyUI.Mint,true);
+            OdysseyUI.Text(new Rect(left+44,top+145,318,52),Objective(),18,OdysseyUI.White);
+            if(!game.player.pointerControls)
+            {
+                OdysseyUI.Card(new Rect(left+24,bottom-126,280,70),OdysseyUI.Navy);
+                OdysseyUI.Text(new Rect(left+42,bottom-115,245,28),game.player.vehicle==null?game.state.Current.acorns+" ACORNS  ·  "+OdysseyState.Count(game.state.Current.memories)+" MEMORIES":Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+" KM/H",15,OdysseyUI.White,true);
+                OdysseyUI.Card(new Rect(left+42,bottom-76,240,6),OdysseyUI.Surface);
+                OdysseyUI.Card(new Rect(left+42,bottom-76,240*game.player.Stamina,6),OdysseyUI.Mint);
+            }
             TargetTag(scale);
             string action=Context();float promptY=bottom-78;Card(new Rect((left+right)*.5f-285,promptY,570,52),true);GUI.Label(new Rect((left+right)*.5f-270,promptY+8,540,34),action,prompt);
             string toast=OdysseyAccessibility.CaptionsEnabled?game.sound.AchievementCaption:"";
             if(toast.Length>0){float y=top+130-(OdysseyAccessibility.ReducedMotion?0:Mathf.Sin(Time.unscaledTime*2f)*2f);Card(new Rect((left+right)*.5f-225,y,450,72),true);GUI.Label(new Rect((left+right)*.5f-205,y+10,410,17),"ACHIEVEMENT UNLOCKED",eyebrow);GUI.Label(new Rect((left+right)*.5f-205,y+32,410,28),toast,value);}
             else if(Time.unscaledTime<noticeUntil&&lastNotice.Length>0&&!lastNotice.StartsWith("Welcome")&&!lastNotice.StartsWith("G opens")){float fade=OdysseyAccessibility.ReducedMotion?1:Mathf.Clamp01(Mathf.Min(1,(noticeUntil-Time.unscaledTime)*2));GUI.color=new Color(1,1,1,fade);Card(new Rect(left+24,top+220,330,66));GUI.Label(new Rect(left+44,top+232,286,42),lastNotice,small);GUI.color=Color.white;}
-            CampusPulse(new Rect(left+24,top+296,330,68));
+
             if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
-            float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize,top+130,mapSize,mapSize));
-            if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.OpenPause();
+            float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize-24,top+24,mapSize,mapSize));
+            if(OdysseyUI.Button(new Rect(right-mapSize-24,top+24+mapSize+10,104,32),"MAP  M","hud-map"))game.life.SetPanel("campus");if(OdysseyUI.Button(new Rect(right-136,top+24+mapSize+10,112,32),"MENU  ESC","hud-menu"))game.shell.OpenPause();
             GUI.Label(new Rect(left+24,bottom-28,right-left-48,20),InputFooter(),eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }

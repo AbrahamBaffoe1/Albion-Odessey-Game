@@ -37,7 +37,7 @@ namespace AlbionOdyssey
             Require(StudentAccountService.ValidEmail(email) && !string.IsNullOrEmpty(codeFile) && !string.IsNullOrEmpty(output), "Missing opt-in QA configuration");
             OdysseyGame game = null;
             float deadline = Time.realtimeSinceStartup + 45;
-            while (game == null || game.accountPanel == null)
+            while (game == null || !game.Ready || game.accountPanel == null)
             {
                 game = FindAnyObjectByType<OdysseyGame>();
                 Require(Time.realtimeSinceStartup < deadline, "Boot timed out");

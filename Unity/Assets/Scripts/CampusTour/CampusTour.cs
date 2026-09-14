@@ -218,7 +218,7 @@ namespace AlbionOdyssey
             foreach(var style in new[]{textButton.normal,textButton.hover,textButton.active,textButton.focused}){style.background=null;style.textColor=new Color(.95f,.92f,.84f,1);}
         }
         void Box(Rect r,Color c){GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}
-        bool Button(Rect r,string value){var color=GUI.backgroundColor;if(color==Color.white)GUI.backgroundColor=new Color(.29f,.17f,.40f);bool hit=GUI.Button(r,value,button);GUI.backgroundColor=color;return hit;}
+        bool Button(Rect r,string value)=>OdysseyUI.Button(r,value,"tour-"+r.x+"-"+r.y,GUI.backgroundColor.r>.5f&&GUI.backgroundColor.b<.8f);
         bool ControlButton(Rect r,string value)
         {return GUI.Button(r,value,textButton);}
         string FocusLabel(int index,string value)=>storyFocus==index?"▶  "+value:value;
@@ -280,6 +280,7 @@ namespace AlbionOdyssey
         }
         void OnGUI()
         {
+            if(game==null||!game.Ready)return;
             if(game==null)return;InitStyles();var old=GUI.matrix;
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);
             float width=Screen.width/scale,height=Screen.height/scale;Rect safe=AlbionUITheme.SafeArea(scale);float left=Mathf.Max(24,safe.xMin+8),right=Mathf.Min(width-24,safe.xMax-8);GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);
@@ -344,6 +345,7 @@ namespace AlbionOdyssey
                     if(videoAudio!=null&&Button(new Rect(x+445,controlsY,120,42),DetailFocusLabel(3,videoAudio.mute?"Unmute":"Mute")))videoAudio.mute=!videoAudio.mute;
                 }
                 GUI.Label(new Rect(x,height-99,w-205,77),Status,small);
+                if(Status.StartsWith("Loading"))OdysseyUI.Spinner(new Rect(x+w-60,height-100,40,40));
                 int readFocus=SourceFocus();if(Button(new Rect(right-180,safe.yMax-86,180,46),DetailFocusLabel(readFocus,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
             }
             GUI.Label(new Rect(left,safe.yMax-22,right-left,18),AlbionControls.MenuFooter(game.xr!=null&&game.xr.Active,"Open"),small);

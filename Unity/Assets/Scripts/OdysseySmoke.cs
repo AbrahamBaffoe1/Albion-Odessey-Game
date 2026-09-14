@@ -19,8 +19,8 @@ namespace AlbionOdyssey
         IEnumerator Start()
         {
             Directory.CreateDirectory(Output);
-            yield return null;yield return null;
-            game=FindAnyObjectByType<OdysseyGame>();
+            float bootDeadline=Time.realtimeSinceStartup+60;
+            while(game==null||!game.Ready){game=FindAnyObjectByType<OdysseyGame>();if(Time.realtimeSinceStartup>bootDeadline){Fail("Boot timeout");yield break;}yield return null;}
             if(game==null||game.player==null){Fail("Game failed to initialize");yield break;}
             var oldKeeper=new Keeper{acorns=9,memories=1};
             string oldJson="{\"version\":1,\"active\":0,\"beacon\":0,\"keepers\":["+JsonUtility.ToJson(oldKeeper)+","+JsonUtility.ToJson(new Keeper())+","+JsonUtility.ToJson(new Keeper())+","+JsonUtility.ToJson(new Keeper())+"]}";

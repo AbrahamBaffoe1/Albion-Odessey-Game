@@ -30,7 +30,7 @@ namespace AlbionOdyssey
         }
         IEnumerator Check()
         {
-            float end=Time.realtimeSinceStartup+50;while(g==null||g.shell==null||CampusBuildings.Instance==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<end,"Boot");yield return null;}
+            float end=Time.realtimeSinceStartup+50;while(g==null||!g.Ready||g.shell==null||CampusBuildings.Instance==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<end,"Boot");yield return null;}
             b=CampusBuildings.Instance;g.shell.ShowLaunch();yield return Frame("01-launch");b.Visit();g.player.controls=false;g.player.thirdPerson=false;g.player.UpdateCamera();yield return null;
             Require(g.player.avatar.IsRigged,"Rigged student missing");Require(b.Doors.Count==19,"Door count");Require(b.Interior.activeSelf,"Interior not loaded");
             var door=b.Doors[0];Require(!door.IsOpen,"Entrance should start closed");g.player.Teleport(b.Origin+new Vector3(0,.08f,-8));

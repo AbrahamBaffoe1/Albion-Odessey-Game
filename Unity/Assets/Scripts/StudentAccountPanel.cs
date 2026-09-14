@@ -77,7 +77,8 @@ namespace AlbionOdyssey
             var old = GUI.backgroundColor; var oldContent = GUI.contentColor;
             GUI.backgroundColor = focus == index ? AlbionUITheme.Gold : AlbionUITheme.Purple;
             GUI.contentColor = focus == index ? new Color(.12f,.08f,.17f) : Color.white;
-            bool hit = GUI.Button(rect, (focus == index ? "▶ " : "") + label, button); GUI.backgroundColor = old; GUI.contentColor = oldContent;
+            GUI.backgroundColor=Color.white;GUI.contentColor=Color.white;
+            bool hit = OdysseyUI.Button(rect,label,"account-"+index,focus==index,index==1||index==3); GUI.backgroundColor = old; GUI.contentColor = oldContent;
             if (hit) { focus = index; GUI.FocusControl(null); Activate(index); }
             return hit;
         }
@@ -126,6 +127,7 @@ namespace AlbionOdyssey
             }
             GUI.enabled = true;
             GUI.Label(new Rect(x,640,720,72),account.Status,text);
+            if(account.Busy)OdysseyUI.Spinner(new Rect(x+670,715,36,36));
             GUI.Label(new Rect(x,738,720,36),"F7  Account    ·    Esc  Back    ·    Stick / arrows & Select",text);
             if (keyboard)
             {
@@ -139,7 +141,8 @@ namespace AlbionOdyssey
                     string label = i < Keys.Length ? Keys[i].ToString() : i == Keys.Length ? "Del" : i == Keys.Length+1 ? "Space" : "Done";
                     GUI.backgroundColor = i == keyboardFocus ? AlbionUITheme.Gold : AlbionUITheme.Purple;
                     GUI.contentColor = i == keyboardFocus ? new Color(.12f,.08f,.17f) : Color.white;
-                    if (GUI.Button(new Rect(x+(i%10)*72,416+(i/10)*39,68,35),label,button)) Key(i);
+                    GUI.backgroundColor=Color.white;GUI.contentColor=Color.white;
+                    if (OdysseyUI.Button(new Rect(x+(i%10)*72,416+(i/10)*39,68,35),label,"account-key-"+i,i==keyboardFocus)) Key(i);
                 }
                 GUI.backgroundColor = Color.white;
             }

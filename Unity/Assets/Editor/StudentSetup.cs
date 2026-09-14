@@ -45,6 +45,9 @@ namespace AlbionOdyssey.Editor
                     var original=mats[i];var mat=new Material(Shader.Find("Standard")){name=original.name,color=original.color};mat.SetFloat("_Glossiness",.18f);
                     string texture=original.name.Contains("Superhero")?"T_Superhero_Male_Dark":original.name.Contains("Eyes")?"T_Eye_Brown":original.name.Contains("Hair_1")?"T_Hair_1_BaseColor":"";
                     if(texture.Length>0)mat.mainTexture=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/CampusCraft/Student/"+texture+".png");
+                    string normal=original.name.Contains("Superhero")?"T_Superhero_Male_Normal":original.name.Contains("Eyes")?"T_Eye_Normal":original.name.Contains("Hair_1")?"T_Hair_1_Normal":"";
+                    if(normal.Length>0){var map=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/CampusCraft/Student/"+normal+".png");if(map!=null){mat.SetTexture("_BumpMap",map);mat.SetFloat("_BumpScale",.65f);mat.EnableKeyword("_NORMALMAP");}}
+                    mat.SetFloat("_Glossiness",original.name.Contains("Eyes")?.65f:original.name.Contains("Hair")?.28f:.16f);
                     string mp="Assets/Resources/CampusCraft/Student/"+original.name.Replace("/","_")+".mat";
                     var old=AssetDatabase.LoadAssetAtPath<Material>(mp);if(old!=null){EditorUtility.CopySerialized(mat,old);UnityEngine.Object.DestroyImmediate(mat);mat=old;}else AssetDatabase.CreateAsset(mat,mp);mats[i]=mat;
                 }

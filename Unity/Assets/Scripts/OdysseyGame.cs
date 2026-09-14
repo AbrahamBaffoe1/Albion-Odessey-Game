@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,6 +12,9 @@ namespace AlbionOdyssey
     public sealed class PlotMarker : MonoBehaviour { public int cell; }
     public sealed class OdysseyGame : MonoBehaviour
     {
+        public bool Ready {get;private set;}
+        public OdysseyLoading loading;
+        public OdysseyPresentation presentation;
         public OdysseyState state=new OdysseyState();
         public Explorer player;
         public Camera builderCamera;
@@ -47,15 +51,29 @@ namespace AlbionOdyssey
         {
             if(FindAnyObjectByType<OdysseyGame>()==null)new GameObject("Albion Odyssey").AddComponent<OdysseyGame>();
         }
-        void Start()
+        IEnumerator Start()
         {
             Application.runInBackground=PlaytestMode.Active;
+            loading=gameObject.AddComponent<OdysseyLoading>();
+            var setup=Initialize();
+            while(true)
+            {
+                object current;
+                try { if(!setup.MoveNext())break; current=setup.Current; }
+                catch(Exception error){ Debug.LogException(error); loading.Fail(); yield break; }
+                yield return current;
+            }
+        }
+        IEnumerator Initialize()
+        {
+            loading.Report("Reading your campus save",0);yield return null;
             Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.pixelLightCount=8;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
             if(!PlaytestMode.Active&&File.Exists(LoadPath))
             {
                 try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(LoadPath));saved?.UpgradeLegacySave();if(saved!=null&&saved.Valid()){state=saved;if(LoadPath.EndsWith(".bak"))notice="Recovered the last safe save after an interrupted write.";}else notice="Invalid save ignored. A new session has started.";}
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
             }
+            loading.Report("Loading architecture and materials",1);yield return null;
             TowerGeometry.Load();
             crashReporter=gameObject.AddComponent<OdysseyCrashReporter>();crashReporter.Setup(this);
             var guide=new GameObject("Pip the squirrel guide");guide.transform.position=new Vector3(5,1.2f,-15);
@@ -80,6 +98,7 @@ namespace AlbionOdyssey
                 lamp.transform.position=new Vector3(x,floor*3.6f+3.1f,z);lamp.transform.rotation=Quaternion.Euler(90,0,0);
                 lamp.spotAngle=140;lamp.range=8;lamp.intensity=2.8f;lamp.color=new Color(1,.94f,.82f);lamp.shadows=LightShadows.Soft;
             }
+            loading.Report("Preparing your student",2);yield return null;
             var avatar=new GameObject("Keeper - 1.92m character");avatar.transform.position=new Vector3(0,.05f,-22);
             player=avatar.AddComponent<Explorer>();player.body=avatar.AddComponent<CharacterController>();
             player.body.height=1.92f;player.body.radius=.42f;player.body.center=new Vector3(0,.96f,0);player.body.stepOffset=.40f;player.body.skinWidth=.035f;
@@ -92,7 +111,9 @@ namespace AlbionOdyssey
             OdysseyStory.Refresh(state);RefreshMemories();RebuildCampus();CreateFootprint();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;
             sound=gameObject.AddComponent<OdysseyAudio>();sound.Initialize(state);
             life=gameObject.AddComponent<CampusLife>();life.Setup(this);
+            player.controls=false;loading.Report("Building the campus and its paths",3);yield return null;
             campus=gameObject.AddComponent<CampusExpansion>();campus.Setup(this);
+            player.controls=false;loading.Report("Preparing campus life and building interiors",4);yield return null;
             tour=gameObject.AddComponent<CampusTour>();tour.Setup(this);
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
@@ -107,11 +128,15 @@ namespace AlbionOdyssey
             diagnostics=gameObject.AddComponent<OdysseyRuntimeDiagnostics>();diagnostics.Setup(this);
             gameObject.AddComponent<CampusHud>().Setup(this);
             gameObject.AddComponent<WorldTextDepth>();
+            player.controls=false;loading.Report("Lighting your student showcase",5);yield return null;
+            gameObject.AddComponent<CampusArtDirection>().Setup(this);
+            presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
+            Ready=true;loading.Finish();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
-            if(player==null)return;
+            if(!Ready||player==null||loading!=null&&loading.Busy)return;
             if(accountPanel!=null&&accountPanel.HandleInput())return;
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
@@ -321,6 +346,7 @@ namespace AlbionOdyssey
         }
         void OnGUI()
         {
+            if(!Ready)return;
             if(player==null)return;
             if(title==null){title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(27),fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(17)};small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),wordWrap=true};}
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));

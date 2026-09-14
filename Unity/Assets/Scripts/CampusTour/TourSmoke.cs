@@ -19,7 +19,7 @@ namespace AlbionOdyssey
         IEnumerator Check()
         {
             OdysseyGame g=null;float deadline=Time.realtimeSinceStartup+45;
-            while(g==null||g.tour==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
+            while(g==null||!g.Ready||g.tour==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
             Application.runInBackground=true;var t=g.tour;g.life.SetPanel("");g.player.controls=false;
             Require(t.catalog.Valid(),"Catalog invalid");Require(t.catalog.Search("wesley").Length>=2,"Wesley search");
             foreach(var p in CampusCatalog.Places)Require(t.catalog.ForCampus(p.id)!=null,"Missing map record "+p.id);

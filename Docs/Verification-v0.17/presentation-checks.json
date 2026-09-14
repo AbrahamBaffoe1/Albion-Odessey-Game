@@ -1,0 +1,17 @@
+{
+  "version": "0.17.0",
+  "presentationSmoke": "passed",
+  "playerSuites": 5,
+  "macSignature": "ad-hoc, strict verification passed",
+  "quest": "compiled; physical headset not tested",
+  "screenshotsReviewed": [
+    "loading",
+    "lobby",
+    "student",
+    "hud",
+    "pause",
+    "account",
+    "summary",
+    "compact lobby"
+  ]
+}

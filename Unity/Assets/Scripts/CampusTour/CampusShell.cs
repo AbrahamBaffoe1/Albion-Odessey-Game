@@ -59,7 +59,7 @@ namespace AlbionOdyssey
         public void QuitSaved(){if(!SaveSucceeded){EndSession(chapterEnd);return;}allowQuit=true;Application.Quit();}
         bool OnQuitRequested()
         {
-            if(Automated||allowQuit||game==null)return true;
+            if(Automated||allowQuit||game==null||!game.Ready)return true;
             if(IsSummary&&SaveSucceeded)return true;
             EndSession();return false;
         }
@@ -87,7 +87,7 @@ namespace AlbionOdyssey
                         else
                         {
                             if(menuFocus==9){game.accountPanel.Open();return true;}
-                            if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)BuildYourOwn();else if(menuFocus==4)Courses();else if(menuFocus==5)game.life.SetPanel("settings");else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else if(CampusBuildings.Instance!=null)CampusBuildings.Instance.Visit();
+                            if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)OpenStudioWithLoading();else if(menuFocus==4)Courses();else if(menuFocus==5)OpenStudentWithLoading();else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else if(CampusBuildings.Instance!=null)CampusBuildings.Instance.Visit();
                         }
                     }
                     return true;
@@ -104,7 +104,7 @@ namespace AlbionOdyssey
         }
         void Update()
         {
-            if(game==null)return;
+            if(game==null||!game.Ready)return;
             if(!game.life.PanelOpen&&Application.isFocused)seconds+=Time.unscaledDeltaTime;
             int active=game.state.active;
             if(!chapterSeen[active]&&HasCompletedChapter(game.state.Current)){chapterSeen[active]=true;pendingChapter=true;}
@@ -123,16 +123,12 @@ namespace AlbionOdyssey
         void Label(Rect r,string value,GUIStyle style,Color color){var c=GUI.contentColor;GUI.contentColor=color;GUI.Label(r,value,style);GUI.contentColor=c;}
         bool Button(Rect r,string label,bool primary=false)
         {
-            var bg=GUI.backgroundColor;var fg=GUI.contentColor;
-            GUI.backgroundColor=primary?Gold:Purple;GUI.contentColor=primary?Ink:Cream;
-            // State text colors are explicit so the primary action remains dark on gold.
-            foreach(var s in new[]{button.normal,button.hover,button.active,button.focused})s.textColor=primary?Ink:Cream;
-            bool clicked=GUI.Button(r,label,button);GUI.backgroundColor=bg;GUI.contentColor=fg;return clicked;
+            return OdysseyUI.Button(r,label.TrimStart('▶',' '),"shell-"+r.x+"-"+r.y,label.StartsWith("▶"),primary);
         }
         string FocusLabel(int index,string label)=>menuFocus==index?"▶ "+label:label;
         void OnGUI()
         {
-            if(game==null)return;Styles();var oldMatrix=GUI.matrix;var oldColor=GUI.color;var oldContent=GUI.contentColor;var oldBackground=GUI.backgroundColor;int oldDepth=GUI.depth;
+            if(game==null||!game.Ready)return;Styles();var oldMatrix=GUI.matrix;var oldColor=GUI.color;var oldContent=GUI.contentColor;var oldBackground=GUI.backgroundColor;int oldDepth=GUI.depth;
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));GUI.color=GUI.contentColor=Color.white;GUI.backgroundColor=Color.white;GUI.depth=-20;
             float w=Screen.width/scale,h=Screen.height/scale;
             if(!OwnsPanel)
@@ -152,7 +148,7 @@ namespace AlbionOdyssey
             else if(IsPaused)DrawPause(w,h);
             else
             {
-                GUI.matrix=AlbionUITheme.Slide(GUI.matrix,menuOpenedAt,OdysseyAccessibility.ReducedMotion);
+
                 Fill(new Rect(0,0,w,h),Ink);
                 float right=w*.52f;
                 if(hero!=null)GUI.DrawTexture(new Rect(right,0,w-right,h),hero,ScaleMode.ScaleAndCrop);
@@ -166,28 +162,31 @@ namespace AlbionOdyssey
         }
         void DrawLaunch(float w,float h,float right)
         {
-            if(Button(new Rect(right+50,100,w-right-100,48),FocusLabel(9,game.accounts!=null&&game.accounts.SignedIn?"My student account":"Student sign in / join")))game.accountPanel.Open();
-            Label(new Rect(46,111,right-80,28),"A CAMPUS FULL OF STORIES",small,Gold);
-            Label(new Rect(40,155,right-72,155),"Make yourself\nat Albion.",display,Cream);
-            Label(new Rect(46,321,right-94,75),"Explore the college. Watch its stories.\nBuild a place of your own.",text,Muted);
-            string play=seconds>1?"Continue exploring   →":"Enter campus   →";
-            if(Button(new Rect(46,428,right-94,60),FocusLabel(0,play),true))Play();
-            float bw=(right-106)/2;
-            if(Button(new Rect(46,502,bw,55),FocusLabel(1,"College videos")))Videos();
-            if(Button(new Rect(58+bw,502,bw,55),FocusLabel(2,"Building stories")))Stories();
-            if(Button(new Rect(46,569,bw,48),FocusLabel(3,"Build your own · B")))BuildYourOwn();
-            if(Button(new Rect(58+bw,569,bw,48),FocusLabel(4,"Courses & classes")))Courses();
-            if(Button(new Rect(46,629,bw,42),FocusLabel(5,"Your character")))game.life.SetPanel("settings");
-            if(Button(new Rect(58+bw,629,bw,42),FocusLabel(6,"Controls & sound")))game.life.SetPanel("welcome");
-            if(Button(new Rect(46,683,right-94,36),FocusLabel(7,"Finish session")))EndSession();
-            string controls=game.xr!=null&&game.xr.Active?"VR  "+AlbionControls.MenuFooter(true,"Select"):AlbionUIInput.ControllerPresent?"GAMEPAD  "+AlbionControls.MenuFooter(false,"Select"):"G  Stories & media    ·    B  Building studio    ·    Esc  Menu\nWASD / arrows  Move    ·    O  On-screen controls";
-            Label(new Rect(46,h-74,right-90,46),controls,small,Muted);
-            Fill(new Rect(right+28,h-250,w-right-58,212),new Color(.025f,.018f,.042f,.91f));
-            Label(new Rect(right+50,h-227,w-right-98,26),"STEP INSIDE / FERGUSON HALL",small,Gold);
-            Label(new Rect(right+50,h-190,w-right-100,63),"Explore beyond the doors.",heading,Cream);
-            Label(new Rect(right+50,h-139,w-right-100,44),"Three levels, openable doors and rooms to explore.",small,Muted);
-            if(Button(new Rect(right+50,h-82,w-right-100,36),FocusLabel(8,"Explore Ferguson Hall   →"))){CampusBuildings.Instance.Visit();}
+            game.presentation?.DrawBackdrop(w,h);
+            float x=(w-1160)*.5f;
+            OdysseyUI.Text(new Rect(x,37,250,38),"ALBION / ODYSSEY",21,OdysseyUI.White,true);
+            if(OdysseyUI.Button(new Rect(x+290,27,160,57),"Explore","nav-explore",menuFocus==2))Stories();
+            if(OdysseyUI.Button(new Rect(x+464,27,140,57),"Build","nav-build",menuFocus==3))OpenStudioWithLoading();
+            if(OdysseyUI.Button(new Rect(x+618,27,140,57),"Learn","nav-learn",menuFocus==4))Courses();
+            if(OdysseyUI.Button(new Rect(x+772,27,174,57),"Your student","nav-student",menuFocus==5))OpenStudentWithLoading();
+            if(OdysseyUI.Button(new Rect(x+960,27,200,57),game.accounts.SignedIn?"My account":"Sign in / join","nav-account",menuFocus==9))game.accountPanel.Open();
+            OdysseyUI.Card(new Rect(x,157,240,30),new Color(.14f,.34f,.29f));
+            OdysseyUI.Text(new Rect(x+15,162,230,25),"A NEW DAY ON CAMPUS",13,OdysseyUI.Mint,true);
+            OdysseyUI.Text(new Rect(x-3,222,600,180),"YOUR CAMPUS.\nYOUR STORY.",58,OdysseyUI.White,true);
+            OdysseyUI.Text(new Rect(x,419,465,75),"Find your people. Discover the college.\nLeave your mark.",22,OdysseyUI.White);
+            if(OdysseyUI.Button(new Rect(x,523,320,76),seconds>1?"CONTINUE EXPLORING  →":"ENTER CAMPUS  →","lobby-play",menuFocus==0,true))Play();
+            if(OdysseyUI.Button(new Rect(x+338,535,158,56),"Controls","lobby-help",menuFocus==6))game.life.SetPanel("welcome");
+            game.presentation?.DrawStudent(new Rect(x+620,111,560,525));
+            OdysseyUI.Card(new Rect(x+710,600,365,43),new Color(.015f,.04f,.075f,.94f));
+            OdysseyUI.Text(new Rect(x+735,610,320,28),game.campus.keeperName+"  ·  READY TO EXPLORE",15,OdysseyUI.White,true);
+            float y=h-136;
+            if(OdysseyUI.Button(new Rect(x,y,370,86),"01   EXPLORE FERGUSON HALL","tile-hall",menuFocus==8))CampusBuildings.Instance.Visit();
+            if(OdysseyUI.Button(new Rect(x+395,y,370,86),"02   CAMPUS FILMS & STORIES","tile-film",menuFocus==1))Videos();
+            if(OdysseyUI.Button(new Rect(x+790,y,370,86),"03   SAVE & FINISH SESSION","tile-exit",menuFocus==7))EndSession();
+            OdysseyUI.Text(new Rect(x,h-32,1120,26),"WASD / ARROWS  Move    ·    E / F  Interact    ·    ESC  Menu                         ALBION COLLEGE, MICHIGAN",13,OdysseyUI.Muted);
         }
+        void OpenStudioWithLoading(){game.loading.Transition("Preparing your building studio",()=>BuildYourOwn());}
+        void OpenStudentWithLoading(){game.loading.Transition("Preparing your student",()=>game.life.SetPanel("settings"));}
         public void ActivatePause(int action)
         {
             if(!IsPaused)return;
@@ -204,50 +203,36 @@ namespace AlbionOdyssey
         }
         void DrawPause(float w,float h)
         {
-            float left=(w-1100)*.5f, right=left+700;
-            Fill(new Rect(0,0,w,h),new Color(.022f,.025f,.042f));
-            Fill(new Rect(right-32,0,w-right+32,h),new Color(.044f,.040f,.070f));
-            Fill(new Rect(left,64,44,4),Gold);
-            Label(new Rect(left,85,650,30),"ALBION ODYSSEY  /  CAMPUS MENU",brand,Muted);
-            Label(new Rect(left-4,127,650,92),"Take a breather.",display,Cream);
-            Label(new Rect(left,222,640,35),"Your next chapter is right where you left it.",text,Muted);
+            game.presentation?.DrawBackdrop(w,h);
+            OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.012f,.022f,.048f,.82f));
+            float x=(w-1120)*.5f;
+            OdysseyUI.Text(new Rect(x,62,700,35),"ALBION / ODYSSEY",22,OdysseyUI.Muted,true);
+            OdysseyUI.Text(new Rect(x,121,650,86),"CAMPUS MENU",48,OdysseyUI.White,true);
             string[] labels={"Resume exploring","Student account","Building stories","Courses & classes","VR & comfort","Main menu","Save & finish session"};
-            for(int i=0;i<labels.Length;i++)
-            {
-                Rect rect=new Rect(left,286+i*57,614,49);
-                bool selected=menuFocus==i;
-                if(Button(rect,FocusLabel(i,labels[i]),selected)){menuFocus=i;ActivatePause(i);}
-            }
-            Label(new Rect(right,104,350,28),"YOUR VISIT",brand,Gold);
-            Label(new Rect(right,155,350,104),game.life.Location,heading,Cream);
-            Fill(new Rect(right,285,350,1),new Color(.20f,.17f,.26f));
-            Label(new Rect(right,318,350,28),"STUDENT ACCOUNT",small,Muted);
-            bool signed=game.accounts!=null&&game.accounts.SignedIn;
-            Label(new Rect(right,364,350,78),signed?game.accounts.DisplayName:"Exploring as a guest",heading,Cream);
-            Label(new Rect(right,456,350,120),signed?"Your account is connected. Return to campus whenever you’re ready.":"Create an account or sign in to keep your student profile online.",text,Muted);
-            Label(new Rect(right,620,350,60),"Building and course progress\nis saved on this device.",small,Muted);
-            Fill(new Rect(left,h-72,1100,1),new Color(.16f,.14f,.22f));
-            Label(new Rect(left,h-51,1100,35),AlbionUIInput.ControllerPresent?"STICK  Navigate     ·     SELECT  Open     ·     BACK  Resume":"ESC  Resume     ·     ↑ ↓  Navigate     ·     ENTER  Select",small,Muted);
+            for(int i=0;i<labels.Length;i++)if(OdysseyUI.Button(new Rect(x,239+i*63,565,53),labels[i],"pause-"+i,menuFocus==i,i==0)){menuFocus=i;ActivatePause(i);}
+            game.presentation?.DrawStudent(new Rect(x+650,117,470,488));
+            OdysseyUI.Text(new Rect(x+650,627,470,40),game.campus.keeperName,27,OdysseyUI.White,true);
+            OdysseyUI.Text(new Rect(x+650,677,470,44),game.life.Location,16,OdysseyUI.Muted);
+            OdysseyUI.Text(new Rect(x,h-40,1120,30),"ESC  Resume     ·     ↑ ↓  Navigate     ·     ENTER  Select",14,OdysseyUI.Muted);
         }
         void Stat(float x,float y,float width,string value,string caption)
         {Fill(new Rect(x,y,width,93),new Color(.063f,.040f,.09f));Label(new Rect(x+14,y+10,width-28,42),value,heading,Gold);Label(new Rect(x+14,y+57,width-24,30),caption,small,Muted);}
         void DrawSummary(float w,float h,float right)
         {
-            Label(new Rect(46,111,right-80,26),chapterEnd?"FIRST CHAPTER COMPLETE":"SESSION WRAP-UP",small,Gold);
-            Label(new Rect(40,154,right-75,161),chapterEnd?"The Beacon\nis alight.":"Your story\ncontinues.",display,Cream);
-            Label(new Rect(46,329,right-94,58),chapterEnd?"You completed the shared Beacon. Keep exploring and building your campus.":"Every visit adds a little more to your campus story. Come back whenever you’re ready.",text,Muted);
-            float sw=(right-108)/2;
-            Stat(46,417,sw,game.tour.StoriesRead.ToString(),"building stories opened");
-            Stat(60+sw,417,sw,game.tour.VideosStarted.ToString(),"college videos started");
-            Stat(46,524,sw,Math.Max(0,MemoryCount()-initialMemories).ToString(),"new memories collected");
-            Stat(60+sw,524,sw,TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss"),"time exploring");
-            Label(new Rect(46,640,right-90,48),SaveMessage,small,SaveSucceeded?new Color(.43f,.81f,.64f):Gold);
-            Fill(new Rect(right+30,h-363,w-right-62,319),new Color(.025f,.018f,.042f,.94f));
-            Label(new Rect(right+53,h-340,w-right-102,32),"WHERE NEXT?",heading,Cream);
-            Label(new Rect(right+53,h-291,w-right-106,45),Math.Max(0,BuildingCount()-initialBuildings)+" more buildings on your campus this session.",small,Muted);
-            if(Button(new Rect(right+53,h-237,w-right-108,51),FocusLabel(0,"Keep exploring   →"),true))Play();
-            if(Button(new Rect(right+53,h-171,w-right-108,45),FocusLabel(1,"Return to launch screen")))ShowLaunch();
-            if(Button(new Rect(right+53,h-111,w-right-108,45),FocusLabel(2,SaveSucceeded?"Quit to desktop":"Retry saving"))){if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);}
+            game.presentation?.DrawBackdrop(w,h);
+            OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.012f,.022f,.048f,.8f));
+            float x=(w-1120)*.5f;
+            OdysseyUI.Text(new Rect(x,65,900,32),"ALBION / ODYSSEY",22,OdysseyUI.Muted,true);
+            OdysseyUI.Text(new Rect(x,144,1050,95),chapterEnd?"THE BEACON IS ALIGHT.":"YOUR STORY CONTINUES.",48,OdysseyUI.White,true);
+            OdysseyUI.Text(new Rect(x,256,970,65),chapterEnd?"You completed the shared Beacon. Keep exploring and building your campus.":"Your discoveries are part of the story. Come back whenever you’re ready.",22,OdysseyUI.Muted);
+            string[] values={game.tour.StoriesRead.ToString(),Math.Max(0,MemoryCount()-initialMemories).ToString(),Math.Max(0,BuildingCount()-initialBuildings).ToString(),TimeSpan.FromSeconds(seconds).ToString(@"hh\:mm\:ss")};
+            string[] captions={"Stories explored","Memories collected","Buildings added","Time on campus"};
+            for(int i=0;i<4;i++){float sx=x+i*286;OdysseyUI.Card(new Rect(sx,374,262,137),OdysseyUI.Surface);OdysseyUI.Text(new Rect(sx+20,393,222,54),values[i],34,OdysseyUI.White,true);OdysseyUI.Text(new Rect(sx+20,463,222,30),captions[i],16,OdysseyUI.Muted);}
+            OdysseyUI.Text(new Rect(x,552,1080,60),SaveMessage,18,SaveSucceeded?OdysseyUI.Mint:OdysseyUI.Gold,true);
+            if(OdysseyUI.Button(new Rect(x,h-143,356,62),"Keep exploring","summary-play",menuFocus==0,true))Play();
+            if(OdysseyUI.Button(new Rect(x+382,h-143,356,62),"Main menu","summary-menu",menuFocus==1))ShowLaunch();
+            if(OdysseyUI.Button(new Rect(x+764,h-143,356,62),SaveSucceeded?"Quit to desktop":"Retry saving","summary-quit",menuFocus==2)){if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);}
+            OdysseyUI.Text(new Rect(x,h-45,1080,26),"↑ ↓  Navigate    ·    ENTER  Select",14,OdysseyUI.Muted);
         }
     }
 }

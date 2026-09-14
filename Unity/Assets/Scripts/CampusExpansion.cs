@@ -70,7 +70,7 @@ namespace AlbionOdyssey
                 if(controllerPanel!=game.life.panel){controllerPanel=game.life.panel;controllerFocus=0;}
                 if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
                 {
-                    string panel=game.life.panel;int count=panel=="settings"?8:panel=="campus"?5:4;
+                    string panel=game.life.panel;int count=panel=="settings"?7:panel=="campus"?5:4;
                     if(cancel){game.life.SetPanel("");return true;}
                     if(panel=="campus"&&controllerFocus==0&&horizontal!=0)
                     {
@@ -88,13 +88,12 @@ namespace AlbionOdyssey
                     {
                         if(panel=="settings")
                         {
-                            if(controllerFocus==0){skin=0;outfit=0;hair=0;backpack=true;RefreshAvatar();SaveKeeper();}
-                            else if(controllerFocus==1){skin=(skin+1)%KeeperAvatar.Skin.Length;RefreshAvatar();SaveKeeper();}
-                            else if(controllerFocus==2){outfit=(outfit+1)%KeeperAvatar.Coats.Length;RefreshAvatar();SaveKeeper();}
-                            else if(controllerFocus==3){hair=(hair+1)%3;RefreshAvatar();SaveKeeper();}
-                            else if(controllerFocus==4){backpack=!backpack;RefreshAvatar();SaveKeeper();}
-                            else if(controllerFocus==5){game.player.thirdPerson=!game.player.thirdPerson;SaveKeeper();}
-                            else if(controllerFocus==6){SaveKeeper();game.life.SetPanel("");}
+                            if(controllerFocus==0){skin=(skin+1)%KeeperAvatar.Skin.Length;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==1){outfit=(outfit+1)%KeeperAvatar.Coats.Length;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==2){hair=(hair+1)%3;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==3){backpack=!backpack;RefreshAvatar();SaveKeeper();}
+                            else if(controllerFocus==4){game.player.thirdPerson=!game.player.thirdPerson;SaveKeeper();}
+                            else if(controllerFocus==5){SaveKeeper();game.life.SetPanel("");}
                             else {SaveKeeper();game.life.SetPanel("welcome");}
                         }
                         else if(panel=="campus")
@@ -195,7 +194,7 @@ namespace AlbionOdyssey
             foreach(var s in new[]{button.normal,button.hover,button.active,button.focused}){s.background=Texture2D.whiteTexture;s.textColor=Color.white;}
         }
         void Label(float x,float y,float w,float h,string s,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),s,style??text);
-        bool Button(float x,float y,float w,string s)=>GUI.Button(new Rect(x,y,w,38),s,button);
+        bool Button(float x,float y,float w,string s)=>OdysseyUI.Button(new Rect(x,y,w,38),s,"campus-"+x+"-"+y,s.StartsWith("▶"));
         void Card(Rect r,Color c){GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=Color.white;}
         void FocusBox(Rect r,int index)
         {
@@ -253,32 +252,32 @@ namespace AlbionOdyssey
         void LayerPreview(){foreach(var t in preview.GetComponentsInChildren<Transform>(true))t.gameObject.layer=30;}
         void DrawSettings(float x)
         {
-            PreparePreview();preview.transform.rotation=OdysseyAccessibility.ReducedMotion?Quaternion.identity:Quaternion.Euler(0,Mathf.Sin(Time.unscaledTime*.4f)*35,0);preview.Animate(0,false);
-            if(Event.current.type==EventType.Repaint)previewCamera.Render();GUI.DrawTexture(new Rect(x,112,480,552),previewTexture,ScaleMode.ScaleToFit);
-            Label(x,678,480,30,"YOUR KEEPER  /  Live character preview",small);
-            float r=x+535;Label(r,111,580,40,"CHOOSE YOUR LOOK",heading);
-            string[] presets={"Campus explorer","Trail keeper","Briton spirit"};
-            for(int i=0;i<3;i++)if(Button(r+i*196,167,184,presets[i])){skin=i;outfit=i==0?0:i==1?1:4;hair=i;backpack=i!=2;RefreshAvatar();SaveKeeper();}
-            FocusBox(new Rect(r,167,580,38),0);
-            Label(r,227,560,26,"NAME",small);string n=GUI.TextField(new Rect(r,262,570,36),keeperName,24);if(n!=keeperName){keeperName=n;}
-            Label(r,316,560,25,"SKIN TONE",small);
-            GUI.contentColor=new Color(.12f,.09f,.07f);
-            for(int i=0;i<5;i++){GUI.backgroundColor=KeeperAvatar.Skin[i];if(Button(r+i*114,351,102,skin==i?"Selected":"Tone "+(i+1))){skin=i;RefreshAvatar();SaveKeeper();}}
-            FocusBox(new Rect(r,351,558,38),1);
-            GUI.contentColor=Color.white;GUI.backgroundColor=new Color(.26f,.17f,.39f);Label(r,405,570,26,"OUTFIT COLOUR",small);
-            for(int i=0;i<5;i++){GUI.backgroundColor=KeeperAvatar.Coats[i];if(Button(r+i*114,440,102,outfit==i?"Selected":"Look "+(i+1))){outfit=i;RefreshAvatar();SaveKeeper();}}
-            FocusBox(new Rect(r,440,558,38),2);
-            GUI.backgroundColor=new Color(.26f,.17f,.39f);
-            string[] hairNames={"Dark hair","Brown hair","Shaved"};for(int i=0;i<3;i++)if(Button(r+i*196,495,184,(hair==i?"● ":"")+hairNames[i])){hair=i;RefreshAvatar();SaveKeeper();}
-            FocusBox(new Rect(r,495,580,38),3);
-            bool b=GUI.Toggle(new Rect(r,551,240,32),backpack,"Wear a backpack");if(b!=backpack){backpack=b;RefreshAvatar();SaveKeeper();}
-            bool third=GUI.Toggle(new Rect(r+270,551,300,32),game.player.thirdPerson,"Third-person camera");if(third!=game.player.thirdPerson){game.player.thirdPerson=third;SaveKeeper();}
-            FocusBox(new Rect(r,551,240,32),4);FocusBox(new Rect(r+270,551,300,32),5);
-            Label(r,596,570,26,"CAMERA DISTANCE",small);game.player.cameraDistance=GUI.HorizontalSlider(new Rect(r,631,570,24),game.player.cameraDistance,2.5f,7);
-            if(Button(r,678,275,"Save character & play")){SaveKeeper();game.life.SetPanel("");}
-            if(Button(r+295,678,275,"Sound & game controls")){SaveKeeper();game.life.SetPanel("welcome");}
-            FocusBox(new Rect(r,678,275,38),6);FocusBox(new Rect(r+295,678,275,38),7);
-            Label(x,739,1100,32,"Each of the four local Keepers remembers its own appearance and discoveries. V switches camera view during play.",small);
+            game.presentation?.DrawStudent(new Rect(x,96,470,600));
+            OdysseyUI.Text(new Rect(x+50,700,420,45),keeperName,26,OdysseyUI.White,true);
+            float r=x+535;
+            OdysseyUI.Text(new Rect(r,110,580,42),"MAKE YOURSELF AT ALBION",24,OdysseyUI.White,true);
+            OdysseyUI.Text(new Rect(r,164,570,28),"STUDENT NAME",13,OdysseyUI.Muted,true);
+            OdysseyUI.Card(new Rect(r,199,570,49),OdysseyUI.Surface);
+            var nameStyle=new GUIStyle(GUI.skin.textField){font=AlbionUITheme.BodyFont,fontSize=22,padding=new RectOffset(16,16,10,8)};nameStyle.normal.textColor=Color.white;nameStyle.normal.background=Texture2D.blackTexture;
+            keeperName=GUI.TextField(new Rect(r+2,201,566,45),keeperName,24,nameStyle);
+            string[] tones={"Deep","Warm","Golden","Light","Fair"};
+            OdysseyUI.Text(new Rect(r,272,560,24),(controllerFocus==0?"›  ":"")+"SKIN TONE",13,OdysseyUI.Muted,true);
+            for(int i=0;i<5;i++)
+            {
+                var rect=new Rect(r+i*115,306,108,44);OdysseyUI.Card(new Rect(rect.x,rect.y,108,4),KeeperAvatar.Skin[i]);
+                if(OdysseyUI.Button(rect,tones[i],"tone-"+i,skin==i)){skin=i;RefreshAvatar();SaveKeeper();}
+            }
+            OdysseyUI.Text(new Rect(r,377,570,24),(controllerFocus==1?"›  ":"")+"CAMPUS COLOURS",13,OdysseyUI.Muted,true);
+            string[] colors={"Albion","Forest","Clay","Blue","Gold"};
+            for(int i=0;i<5;i++)if(OdysseyUI.Button(new Rect(r+i*115,410,108,44),colors[i],"outfit-"+i,outfit==i)){outfit=i;RefreshAvatar();SaveKeeper();}
+            OdysseyUI.Text(new Rect(r,452,570,24),(controllerFocus==2?"›  ":"")+"HAIR",13,OdysseyUI.Muted,true);
+            string[] hairNames={"Dark hair","Brown hair","Shaved"};
+            for(int i=0;i<3;i++)if(OdysseyUI.Button(new Rect(r+i*196,479,184,48),hairNames[i],"hair-"+i,hair==i)){hair=i;RefreshAvatar();SaveKeeper();}
+            if(OdysseyUI.Button(new Rect(r,551,275,49),backpack?"Backpack  ON":"Backpack  OFF","look-pack",controllerFocus==3)){backpack=!backpack;RefreshAvatar();SaveKeeper();}
+            if(OdysseyUI.Button(new Rect(r+295,551,275,49),game.player.thirdPerson?"Third-person view":"First-person view","look-view",controllerFocus==4)){game.player.thirdPerson=!game.player.thirdPerson;SaveKeeper();}
+            if(OdysseyUI.Button(new Rect(r,650,275,58),"SAVE & PLAY","look-save",controllerFocus==5,true)){SaveKeeper();game.life.SetPanel("");}
+            if(OdysseyUI.Button(new Rect(r+295,650,275,58),"Controls & sound","look-controls",controllerFocus==6)){SaveKeeper();game.life.SetPanel("welcome");}
+            OdysseyUI.Text(new Rect(r,734,570,30),"Your look is saved on this device. V changes camera view.",13,OdysseyUI.Muted);
         }
         void DrawTreasures(float x)
         {

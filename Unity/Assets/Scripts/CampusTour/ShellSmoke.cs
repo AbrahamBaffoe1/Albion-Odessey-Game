@@ -17,9 +17,10 @@ namespace AlbionOdyssey
         IEnumerator Check()
         {
             OdysseyGame g=null;float deadline=Time.realtimeSinceStartup+45;
-            while(g==null||g.shell==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
+            while(g==null||!g.Ready||g.shell==null){g=FindAnyObjectByType<OdysseyGame>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
             Require(!CampusShell.HasCompletedChapter(new Keeper{milestones=32}),"Beacon alone incorrectly completes chapter");
             Require(CampusShell.HasCompletedChapter(new Keeper{milestones=63}),"Completed charter not recognized");
+            yield return new WaitForSecondsRealtime(.25f);
             Application.runInBackground=true;var shell=g.shell;shell.ShowLaunch();
             Require(shell.OwnsPanel&&!g.player.controls,"Launch did not pause input");Require(Cursor.lockState==CursorLockMode.None,"Launch cursor locked");
             yield return new WaitForEndOfFrame();Capture("Launch-screen");

@@ -38,7 +38,7 @@ namespace AlbionOdyssey.BuildingDesigner
         static void Boot(){new GameObject("Independent building designer").AddComponent<BlueprintStudio>();}
         IEnumerator Start()
         {
-            yield return null;yield return null;game=FindAnyObjectByType<OdysseyGame>();
+            while(game==null||!game.Ready){game=FindAnyObjectByType<OdysseyGame>();yield return null;}
             for(int i=0;i<10;i++)clips[i]=Resources.Load<AudioClip>("BuildingDesigner/Studio"+i);
             if(Smoke)yield return RunSmoke();
         }

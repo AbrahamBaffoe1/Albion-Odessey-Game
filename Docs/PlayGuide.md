@@ -1,16 +1,20 @@
-# Play Albion Odyssey 0.16 on this Mac
+# Play Albion Odyssey 0.17 on this Mac
 
-Open **Albion Odyssey.app** from Applications or the 0.16 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from Applications or the 0.17 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+
+## Your new lobby
+
+Startup now shows the actual preparation stages. Select **Your student** for the live animated appearance preview, **Build** for the room studio, **Explore** for building stories, or **Learn** for courses. **Esc** opens the campus menu during play. Use **Save & finish session** to see your session results and quit safely. See [visual direction and remaining art work](VisualDirection-v0.17.md).
 
 ## Your online student account
 
-Choose **Student sign in / join**, or press **F7**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
+Choose **Sign in / join**, or press **F7**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
 
 Your display name and account are stored online. **My student account** lets you save your name or sign out. You will sign in again after restarting the app. Gameplay progress, personal buildings and classes are still saved on this Mac; signing in does not yet synchronize them to other devices. Guest play remains available.
 
 ## Controls
 
-In version **0.16.1**, **Esc** opens the campus menu while exploring and resumes
+In version **0.17**, **Esc** opens the campus menu while exploring and resumes
 when pressed again. The menu links to accounts, stories, courses and VR settings.
 **F8** opens VR settings explicitly; Esc returns to the screen you opened them from.
 
