@@ -23,6 +23,8 @@ namespace AlbionOdyssey
         public CampusWorldSystems world;
         public OdysseyAccessibility accessibility;
         public CampusOnlineSession online;
+        public StudentAccountService accounts;
+        public StudentAccountPanel accountPanel;
         public OdysseyVrSupport vr;
         public OdysseyXRExperience xr;
         public CampusWeather weather;
@@ -98,6 +100,8 @@ namespace AlbionOdyssey
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
+            accounts=gameObject.AddComponent<StudentAccountService>();accounts.Setup();
+            accountPanel=gameObject.AddComponent<StudentAccountPanel>();accountPanel.Setup(this);
             vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);
             xr=gameObject.AddComponent<OdysseyXRExperience>();xr.Setup(this);
             diagnostics=gameObject.AddComponent<OdysseyRuntimeDiagnostics>();diagnostics.Setup(this);
@@ -108,6 +112,7 @@ namespace AlbionOdyssey
         void Update()
         {
             if(player==null)return;
+            if(accountPanel!=null&&accountPanel.HandleInput())return;
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
             if(vr!=null&&vr.HandleInput())return;

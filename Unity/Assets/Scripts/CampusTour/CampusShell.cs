@@ -68,7 +68,7 @@ namespace AlbionOdyssey
             {
                 if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
                 {
-                    int count=IsSummary?3:9;
+                    int count=IsSummary?3:10;
                     if(cancel){if(IsSummary)ShowLaunch();else Play();return true;}
                     if(horizontal!=0||vertical!=0)
                     {
@@ -83,6 +83,7 @@ namespace AlbionOdyssey
                         }
                         else
                         {
+                            if(menuFocus==9){game.accountPanel.Open();return true;}
                             if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)BuildYourOwn();else if(menuFocus==4)Courses();else if(menuFocus==5)game.life.SetPanel("settings");else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else if(CampusBuildings.Instance!=null)CampusBuildings.Instance.Visit();
                         }
                     }
@@ -161,6 +162,7 @@ namespace AlbionOdyssey
         }
         void DrawLaunch(float w,float h,float right)
         {
+            if(Button(new Rect(right+50,100,w-right-100,48),FocusLabel(9,game.accounts!=null&&game.accounts.SignedIn?"My student account":"Student sign in / join")))game.accountPanel.Open();
             Label(new Rect(46,111,right-80,28),"A CAMPUS FULL OF STORIES",small,Gold);
             Label(new Rect(40,155,right-72,155),"Make yourself\nat Albion.",display,Cream);
             Label(new Rect(46,321,right-94,75),"Explore the college. Watch its stories.\nBuild a place of your own.",text,Muted);

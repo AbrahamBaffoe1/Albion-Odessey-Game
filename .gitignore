@@ -12,9 +12,9 @@ Saved/
 __pycache__/
 work/
 .env*
-!.env.example
 Unity/Library/
 Unity/Temp/
+Unity/.utmp/
 Unity/Logs/
 Unity/Obj/
 Unity/Builds/
@@ -33,3 +33,12 @@ Tests/**/obj/
 Verification/
 outputs/
 Art/References/*.zip
+
+# Local service provisioning state and generated editor integration settings.
+.projects/
+.agents/
+.claude/
+.cursor/
+.cursorignore
+CLAUDE.md
+!.env.example

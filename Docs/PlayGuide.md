@@ -1,6 +1,12 @@
-# Play Albion Odyssey 0.15 on this Mac
+# Play Albion Odyssey 0.16 on this Mac
 
-Open **Albion Odyssey.app** from the 0.15 release folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from Applications or the 0.16 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+
+## Your online student account
+
+Choose **Student sign in / join**, or press **F7**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
+
+Your display name and account are stored online. **My student account** lets you save your name or sign out. You will sign in again after restarting the app. Gameplay progress, personal buildings and classes are still saved on this Mac; signing in does not yet synchronize them to other devices. Guest play remains available.
 
 ## Controls
 
@@ -15,6 +21,7 @@ Open **Albion Odyssey.app** from the 0.15 release folder. If using the ZIP, doub
 | Browse all building stories | G from the welcome screen or while exploring |
 | Map and travel | M, then Travel here |
 | Course creation and enrollment | K |
+| Online student account | F7 or Student sign in / join on the campus menu |
 | Journal | J; left/right arrows browse while open |
 | Build / explore | F2 (Fn-F2 if macOS uses the key for brightness) |
 | Choose building | 1 Garden, 2 Library, 3 Observatory, 4 Hall |
@@ -45,9 +52,9 @@ To reclaim a building that hosts a course, remove that course first. Course dele
 
 A local Mac chapter: walkable Ferguson, Robinson, Bonta and the four-wing Science Complex, exploration, personal campus construction and a classroom loop. Four Keepers share this Mac by taking turns. The visible students are simulated characters, not connected people. The building archive uses public college sources; the journal's magical story is clearly labeled fiction. The architecture and campus layout remain game-scale reconstructions, not measured digital twins.
 
-Online accounts, simultaneous multiplayer, user-authored lesson content, freeform architecture and the full real campus remain on the counted roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
+Real email-verified accounts and online profiles are available. A small LAN presence prototype is separate from accounts; authenticated hosted multiplayer, online enrollment, cloud game saves, user-authored lesson content, freeform architecture and the full real campus remain on the roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
 
-Version 0.15 writes a separate version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.15.
+Version 0.16 continues using the version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.16.
 
 ## Sound effects and narration
 
