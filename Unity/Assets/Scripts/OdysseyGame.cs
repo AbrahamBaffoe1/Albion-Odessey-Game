@@ -131,7 +131,7 @@ namespace AlbionOdyssey
             player.controls=false;loading.Report("Lighting your student showcase",5);yield return null;
             gameObject.AddComponent<CampusArtDirection>().Setup(this);
             presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
-            Ready=true;loading.Finish();
+            Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()

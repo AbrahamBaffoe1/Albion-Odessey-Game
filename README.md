@@ -2,6 +2,8 @@
 
 Albion Odyssey is a living campus adventure about learning, belonging and making a place your own.
 
+Version **0.18** replaces the cube-built vehicle placeholders with a detailed 3D coupe across the parked and drivable fleet, adding animated wheels, steering and brake-light feedback. See [vehicle notes and attribution](Docs/Vehicles-v0.18.md).
+
 Version **0.17** adds a live 3D student lobby, real startup loading stages, a redesigned campus menu and session summary, shared interactive controls, and a quieter HUD. See the [visual direction and verification](Docs/VisualDirection-v0.17.md) and [play guide](Docs/PlayGuide.md).
 
 Version 0.16 adds real email-code sign-up and sign-in with private online student profiles. Open **Student sign in / join** or press **F7**. See the [account setup and verification notes](Backend/README.md). Gameplay saves and courses remain local while the hosted multiplayer systems are developed.

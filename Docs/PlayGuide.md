@@ -1,6 +1,10 @@
-# Play Albion Odyssey 0.17 on this Mac
+# Play Albion Odyssey 0.18 on this Mac
 
-Open **Albion Odyssey.app** from Applications or the 0.17 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from Applications or the 0.18 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+
+## Campus cars
+
+Version 0.18 replaces the parked and drivable cars with detailed 3D coupes. Walk beside a drivable car and press **E**. **W/S** accelerates or reverses, **A/D** steers, and **Space** brakes. Stop, then press **E** to get out. See [vehicle details and credits](Vehicles-v0.18.md).
 
 ## Your new lobby
 

@@ -62,7 +62,7 @@ namespace AlbionOdyssey
         {
             Quaternion look=transform.rotation*Quaternion.Euler(pitch,0,0);
             if(!thirdPerson&&vehicle==null){eyes.transform.localPosition=new Vector3(0,1.65f,0);eyes.transform.rotation=look;avatar.gameObject.SetActive(false);return;}
-            Vector3 target=transform.position+Vector3.up*(vehicle==null?1.35f:2f);
+            Vector3 target=vehicle==null?transform.position+Vector3.up*1.35f:vehicle.transform.position+Vector3.up*1.2f;
             Vector3 offset=look*new Vector3(.42f,.4f,-(vehicle==null?cameraDistance:8));
             bool bodyEnabled=body.enabled;body.enabled=false;if(vehicle!=null)vehicle.hull.enabled=false;
             if(Physics.SphereCast(target,.18f,offset.normalized,out var hit,offset.magnitude,~0,QueryTriggerInteraction.Ignore))offset=offset.normalized*Mathf.Max(.15f,hit.distance-.1f);

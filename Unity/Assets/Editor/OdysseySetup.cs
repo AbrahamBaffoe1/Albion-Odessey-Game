@@ -30,7 +30,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.17.0";
+            PlayerSettings.bundleVersion="0.18.0";
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
@@ -39,7 +39,7 @@ namespace AlbionOdyssey.Editor
             var settings=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset")[0]);
             var input=settings.FindProperty("activeInputHandler");if(input!=null){input.intValue=0;settings.ApplyModifiedProperties();}
             ConfigureMouse();
-            StudentSetup.Prepare();
+            StudentSetup.Prepare();VehicleSetup.Prepare();
             ConfigureXR();
             Directory.CreateDirectory("Assets/Scenes");Directory.CreateDirectory("Assets/Resources");
             // Keep runtime-created Standard materials and their shader variants in player builds.
@@ -138,7 +138,7 @@ namespace AlbionOdyssey.Editor
             Prepare();
             PlayerSettings.Android.minSdkVersion=AndroidSdkVersions.AndroidApiLevel29;
             PlayerSettings.Android.targetSdkVersion=AndroidSdkVersions.AndroidApiLevel35;
-            PlayerSettings.Android.bundleVersionCode=18;
+            PlayerSettings.Android.bundleVersionCode=19;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android,ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(BuildTargetGroup.Android,(int)AndroidArchitecture.ARM64);
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.Android,options=BuildOptions.None});
