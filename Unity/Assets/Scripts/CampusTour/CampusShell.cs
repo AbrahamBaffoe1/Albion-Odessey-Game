@@ -10,7 +10,8 @@ namespace AlbionOdyssey
         float seconds,menuOpenedAt; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
         public bool SaveSucceeded {get;private set;}
         public string SaveMessage {get;private set;}="";
-        public bool OwnsPanel=>game.life.panel=="launch"||game.life.panel=="sessionend";
+        public bool OwnsPanel=>game.life.panel=="launch"||game.life.panel=="sessionend"||IsPaused;
+        public bool IsPaused=>game.life.panel=="pause";
         public bool IsSummary=>game.life.panel=="sessionend";
         public static bool Automated=>PlaytestMode.Active;
         static readonly Color Ink=new Color(.018f,.014f,.028f),Purple=new Color(.15f,.068f,.26f),Gold=new Color(.96f,.64f,.14f),Cream=new Color(.98f,.95f,.87f),Muted=new Color(.65f,.61f,.72f);
@@ -25,6 +26,7 @@ namespace AlbionOdyssey
         int MemoryCount()=>game.state.keepers.Sum(k=>OdysseyState.Count(k.memories));
         int BuildingCount()=>game.state.keepers.Sum(k=>k.plots.Count(p=>p!=0));
         public void ShowLaunch(){menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("launch");}
+        public void OpenPause(){menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("pause");}
         public void Play(){game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
         public void Stories(){game.tour.OpenDirectory();}
         public void Videos(){game.tour.OpenVideos();}
@@ -68,7 +70,7 @@ namespace AlbionOdyssey
             {
                 if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
                 {
-                    int count=IsSummary?3:10;
+                    int count=IsSummary?3:IsPaused?7:10;
                     if(cancel){if(IsSummary)ShowLaunch();else Play();return true;}
                     if(horizontal!=0||vertical!=0)
                     {
@@ -77,7 +79,8 @@ namespace AlbionOdyssey
                     }
                     if(choose)
                     {
-                        if(IsSummary)
+                        if(IsPaused)ActivatePause(menuFocus);
+                        else if(IsSummary)
                         {
                             if(menuFocus==0)Play();else if(menuFocus==1)ShowLaunch();else if(SaveSucceeded)QuitSaved();else EndSession(chapterEnd);
                         }
@@ -96,7 +99,7 @@ namespace AlbionOdyssey
             }
             if(!game.life.PanelOpen&&!game.journalOpen&&!game.building&&Input.GetKeyDown(KeyCode.B)){BuildYourOwn();return true;}
             if(game.life.panel=="welcome"&&Input.GetKeyDown(KeyCode.G)){Stories();return true;}
-            if(!game.life.PanelOpen&&!game.journalOpen&&Input.GetKeyDown(KeyCode.Escape)){ShowLaunch();return true;}
+            if(!game.life.PanelOpen&&!game.journalOpen&&Input.GetKeyDown(KeyCode.Escape)){OpenPause();return true;}
             return false;
         }
         void Update()
@@ -146,6 +149,7 @@ namespace AlbionOdyssey
 
                 }
             }
+            else if(IsPaused)DrawPause(w,h);
             else
             {
                 GUI.matrix=AlbionUITheme.Slide(GUI.matrix,menuOpenedAt,OdysseyAccessibility.ReducedMotion);
@@ -183,6 +187,47 @@ namespace AlbionOdyssey
             Label(new Rect(right+50,h-190,w-right-100,63),"Explore beyond the doors.",heading,Cream);
             Label(new Rect(right+50,h-139,w-right-100,44),"Three levels, openable doors and rooms to explore.",small,Muted);
             if(Button(new Rect(right+50,h-82,w-right-100,36),FocusLabel(8,"Explore Ferguson Hall   →"))){CampusBuildings.Instance.Visit();}
+        }
+        public void ActivatePause(int action)
+        {
+            if(!IsPaused)return;
+            switch(action)
+            {
+                case 0: Play(); break;
+                case 1: game.accountPanel.Open(); break;
+                case 2: Stories(); break;
+                case 3: Courses(); break;
+                case 4: game.vr.OpenPanel(); break;
+                case 5: ShowLaunch(); break;
+                case 6: EndSession(); break;
+            }
+        }
+        void DrawPause(float w,float h)
+        {
+            float left=(w-1100)*.5f, right=left+700;
+            Fill(new Rect(0,0,w,h),new Color(.022f,.025f,.042f));
+            Fill(new Rect(right-32,0,w-right+32,h),new Color(.044f,.040f,.070f));
+            Fill(new Rect(left,64,44,4),Gold);
+            Label(new Rect(left,85,650,30),"ALBION ODYSSEY  /  CAMPUS MENU",brand,Muted);
+            Label(new Rect(left-4,127,650,92),"Take a breather.",display,Cream);
+            Label(new Rect(left,222,640,35),"Your next chapter is right where you left it.",text,Muted);
+            string[] labels={"Resume exploring","Student account","Building stories","Courses & classes","VR & comfort","Main menu","Save & finish session"};
+            for(int i=0;i<labels.Length;i++)
+            {
+                Rect rect=new Rect(left,286+i*57,614,49);
+                bool selected=menuFocus==i;
+                if(Button(rect,FocusLabel(i,labels[i]),selected)){menuFocus=i;ActivatePause(i);}
+            }
+            Label(new Rect(right,104,350,28),"YOUR VISIT",brand,Gold);
+            Label(new Rect(right,155,350,104),game.life.Location,heading,Cream);
+            Fill(new Rect(right,285,350,1),new Color(.20f,.17f,.26f));
+            Label(new Rect(right,318,350,28),"STUDENT ACCOUNT",small,Muted);
+            bool signed=game.accounts!=null&&game.accounts.SignedIn;
+            Label(new Rect(right,364,350,78),signed?game.accounts.DisplayName:"Exploring as a guest",heading,Cream);
+            Label(new Rect(right,456,350,120),signed?"Your account is connected. Return to campus whenever you’re ready.":"Create an account or sign in to keep your student profile online.",text,Muted);
+            Label(new Rect(right,620,350,60),"Building and course progress\nis saved on this device.",small,Muted);
+            Fill(new Rect(left,h-72,1100,1),new Color(.16f,.14f,.22f));
+            Label(new Rect(left,h-51,1100,35),AlbionUIInput.ControllerPresent?"STICK  Navigate     ·     SELECT  Open     ·     BACK  Resume":"ESC  Resume     ·     ↑ ↓  Navigate     ·     ENTER  Select",small,Muted);
         }
         void Stat(float x,float y,float width,string value,string caption)
         {Fill(new Rect(x,y,width,93),new Color(.063f,.040f,.09f));Label(new Rect(x+14,y+10,width-28,42),value,heading,Gold);Label(new Rect(x+14,y+57,width-24,30),caption,small,Muted);}

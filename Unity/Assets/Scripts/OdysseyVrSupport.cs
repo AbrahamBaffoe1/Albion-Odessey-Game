@@ -7,9 +7,10 @@ namespace AlbionOdyssey
     // is installed, F8 enables headset rendering and a comfortable third-person offset.
     public sealed class OdysseyVrSupport : MonoBehaviour
     {
-        OdysseyGame game; bool open; bool active; float oldFov; int focus; float openedAt;
+        OdysseyGame game; bool active; float oldFov; int focus; string previousPanel = "";
         GUIStyle title, text, button;
         public bool Active => active;
+        public bool IsOpen => game != null && game.life.panel == "vr";
         public void Setup(OdysseyGame owner)
         {
             game = owner; oldFov = game.player.eyes.fieldOfView;
@@ -17,20 +18,31 @@ namespace AlbionOdyssey
         }
         public bool HandleInput()
         {
-            if (Input.GetKeyDown(KeyCode.F8)) { if (open) ClosePanel(); else OpenPanel(); return true; }
-            if (!open)
-            {
-                AlbionUIInput.Poll(out var unusedHorizontal, out var unusedVertical, out var unusedChoose, out var menu);
-                if (menu) { OpenPanel(); return true; }
-                return false;
-            }
-            if (Input.GetKeyDown(KeyCode.Escape)) { ClosePanel(); return true; }
-            int horizontal, vertical; bool choose, cancel;
-            AlbionUIInput.Poll(out horizontal, out vertical, out choose, out cancel);
-            if (vertical != 0 || horizontal != 0) focus = (focus + (vertical != 0 ? -vertical : horizontal) + 7) % 7;
+            bool toggle = Input.GetKeyDown(KeyCode.F8);
+            // A closed settings panel must never consume the shared Back/Escape action.
+            if (!IsOpen && !toggle) return false;
+            AlbionUIInput.Poll(out var horizontal, out var vertical, out var choose, out var cancel);
+            return HandleMenuInput(toggle, cancel || Input.GetKeyDown(KeyCode.Escape), horizontal, vertical, choose);
+        }
+        internal bool HandleMenuInput(bool toggle, bool cancel, int horizontal, int vertical, bool choose)
+        {
+            if (toggle) { if (IsOpen) ClosePanel(); else OpenPanel(); return true; }
+            if (!IsOpen) return false;
             if (cancel) { ClosePanel(); return true; }
-            if (choose) { if (focus == 0) Apply(!active); else if (focus == 1) SetComfort("Odyssey.XR.SnapTurn", true); else if (focus == 2) SetComfort("Odyssey.XR.Vignette", false); else if (focus == 3) SetComfort("Odyssey.XR.RoomScale", true); else if (focus == 4) SetComfort("Odyssey.XR.Hands", false); else if (focus == 5) game.xr?.RecenterView(); else ClosePanel(); return true; }
+            if (vertical != 0 || horizontal != 0) focus = (focus + (vertical != 0 ? -vertical : horizontal) + 7) % 7;
+            if (choose) Activate(focus);
             return true;
+        }
+        void Activate(int action)
+        {
+            focus = action;
+            if (action == 0) Apply(!active);
+            else if (action == 1) SetComfort("Odyssey.XR.SnapTurn", true);
+            else if (action == 2) SetComfort("Odyssey.XR.Vignette", false);
+            else if (action == 3) SetComfort("Odyssey.XR.RoomScale", true);
+            else if (action == 4) SetComfort("Odyssey.XR.Hands", false);
+            else if (action == 5) game.xr?.RecenterView();
+            else ClosePanel();
         }
         void SetComfort(string key, bool snap)
         {
@@ -41,20 +53,16 @@ namespace AlbionOdyssey
             else if (key == "Odyssey.XR.Hands") game.xr.HandTrackingEnabled = !game.xr.HandTrackingEnabled;
             PlayerPrefs.SetInt(key, key == "Odyssey.XR.SnapTurn" ? (game.xr.SnapTurn ? 1 : 0) : key == "Odyssey.XR.Vignette" ? (game.xr.ComfortVignette ? 1 : 0) : key == "Odyssey.XR.RoomScale" ? (game.xr.RoomScale ? 1 : 0) : (game.xr.HandTrackingEnabled ? 1 : 0)); PlayerPrefs.Save();
         }
-        string ComfortLabel(int index, string label) { return focus == index ? "▶  " + label : label; }
-        void OpenPanel()
+        public void OpenPanel()
         {
-            open = true; focus = 0; openedAt = Time.unscaledTime;
-            if (game == null || game.player == null) return;
-            game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true;
+            if (game == null || game.player == null || IsOpen) return;
+            previousPanel = game.life.panel; focus = 0;
+            game.life.SetPanel("vr");
         }
-        void ClosePanel()
+        public void ClosePanel()
         {
-            open = false;
-            if (game == null || game.player == null) return;
-            game.player.controls = game.xr == null || !game.xr.Active;
-            Cursor.lockState = game.player.pointerControls ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = game.player.pointerControls;
+            if (!IsOpen) return;
+            game.life.SetPanel(previousPanel);
         }
         void Apply(bool enable)
         {
@@ -67,30 +75,49 @@ namespace AlbionOdyssey
             if (game == null || game.player == null || game.player.eyes == null) return;
             game.player.eyes.fieldOfView = enable ? 90f : oldFov; game.player.cameraDistance = enable ? 3.1f : Mathf.Clamp(game.player.cameraDistance, 2.5f, 7f);
         }
+        void Fill(Rect rect, Color color)
+        {
+            var previous = GUI.color; GUI.color = color;
+            GUI.DrawTexture(rect, Texture2D.whiteTexture); GUI.color = previous;
+        }
+        void Action(Rect rect, int index, string label, string state)
+        {
+            bool selected = index == focus;
+            Color ink = new Color(.04f,.025f,.065f), cream = new Color(.96f,.95f,.98f);
+            Fill(rect, selected ? AlbionUITheme.Gold : new Color(.11f,.08f,.17f));
+            foreach (var style in new[] { button.normal, button.hover, button.active, button.focused })
+                style.textColor = selected ? ink : cream;
+            if (GUI.Button(rect, (selected ? "›  " : "") + label, button)) Activate(index);
+            var color = GUI.contentColor; GUI.contentColor = selected ? ink : new Color(.77f,.73f,.85f);
+            GUI.Label(new Rect(rect.xMax-146,rect.y+16,130,30),state,text); GUI.contentColor = color;
+        }
         void OnGUI()
         {
-            if (!open || game == null) return;
-            if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = AlbionUITheme.TextSize(27), fontStyle = FontStyle.Bold }; text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = AlbionUITheme.TextSize(17), wordWrap = true }; button = AlbionUITheme.Button(16); }
-            float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); float w = Screen.width / scale, h = Screen.height / scale; Rect safe = AlbionUITheme.SafeArea(scale); float x = Mathf.Clamp((w - 700) * .5f, safe.xMin + 24, safe.xMax - 700 - 24);
-            GUI.color = new Color(.018f, .03f, .05f, .98f); GUI.DrawTexture(new Rect(0, 0, w, h), Texture2D.whiteTexture); GUI.color = Color.white;
-            AlbionUITheme.TopRule(w); GUI.Label(new Rect(x, 130, 650, 45), "VR WALKTHROUGH", title); GUI.Label(new Rect(x, 195, 650, 90), "Optional XR support is detected automatically. Keep the room scale clear, use the controller stick to move, and take regular breaks. Desktop mode stays available when no headset is connected.", text);
-            GUI.Label(new Rect(x, 315, 650, 34), IsDeviceActive() ? "XR device detected" : "No XR loader detected · desktop preview", text);
-            string enable = (focus == 0 ? "▶  " : "") + (active ? "Disable VR" : "Enable VR");
-            string snap = (game.xr != null && game.xr.SnapTurn ? "✓  Snap turn" : "✓  Smooth turn") + "  ·  turn mode";
-            string vignette = (game.xr != null && game.xr.ComfortVignette ? "✓  " : "○  ") + "Comfort vignette";
-            string room = (game.xr != null && game.xr.RoomScale ? "✓  " : "○  ") + "Room-scale movement";
-            string hands = (game.xr != null && game.xr.HandTrackingEnabled ? "✓  " : "○  ") + "Hand tracking";
-            string recenter = "Recenter view";
-            string close = "Close · F8 / Esc";
-            if (GUI.Button(new Rect(x, 365, 250, 44), enable, button)) { focus = 0; Apply(!active); }
-            if (GUI.Button(new Rect(x + 270, 365, 250, 44), ComfortLabel(1, snap), button)) { focus = 1; SetComfort("Odyssey.XR.SnapTurn", true); }
-            if (GUI.Button(new Rect(x, 420, 250, 44), ComfortLabel(2, vignette), button)) { focus = 2; SetComfort("Odyssey.XR.Vignette", false); }
-            if (GUI.Button(new Rect(x + 270, 420, 250, 44), ComfortLabel(3, room), button)) { focus = 3; SetComfort("Odyssey.XR.RoomScale", true); }
-            if (GUI.Button(new Rect(x, 475, 250, 44), ComfortLabel(4, hands), button)) { focus = 4; SetComfort("Odyssey.XR.Hands", false); }
-            if (GUI.Button(new Rect(x + 270, 475, 250, 44), ComfortLabel(5, recenter), button)) { focus = 5; game.xr?.RecenterView(); }
-            if (GUI.Button(new Rect(x, 530, 250, 44), ComfortLabel(6, close), button)) { focus = 6; ClosePanel(); }
-            GUI.Label(new Rect(x, h - 145, 650, 32), "Comfort mode: third-person camera, reduced camera distance, 90° field of view, selectable turn mode.", text);
-            GUI.Label(new Rect(x, h - 105, 650, 32), AlbionControls.MenuFooter(true, "Select"), text);
+            if (!IsOpen) return;
+            if (title == null)
+            {
+                title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont, fontSize=AlbionUITheme.TextSize(48), fontStyle=FontStyle.Bold };
+                text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont, fontSize=AlbionUITheme.TextSize(16), wordWrap=true };
+                title.normal.textColor = text.normal.textColor = Color.white;
+                button = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont, fontSize=AlbionUITheme.TextSize(19), fontStyle=FontStyle.Bold, alignment=TextAnchor.MiddleLeft, padding=new RectOffset(20,150,10,10) };
+            }
+            var matrix=GUI.matrix; var color=GUI.color; var content=GUI.contentColor; var background=GUI.backgroundColor; int depth=GUI.depth;
+            float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f), w=Screen.width/scale, h=Screen.height/scale, x=(w-960)*.5f;
+            GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1)); GUI.color=GUI.contentColor=Color.white; GUI.depth=-30;
+            Fill(new Rect(0,0,w,h),new Color(.022f,.025f,.042f));
+            Fill(new Rect(x,60,44,4),AlbionUITheme.Gold);
+            GUI.Label(new Rect(x,83,960,30),"ALBION ODYSSEY  /  SETTINGS",text);
+            GUI.Label(new Rect(x,125,960,72),"VR & comfort",title);
+            GUI.Label(new Rect(x,208,960,50),IsDeviceActive()?"Headset connected. Adjust movement and comfort for your visit.":"Playing on desktop. Connect a supported headset to explore in VR.",text);
+            Action(new Rect(x,282,960,54),0,IsDeviceActive()?"Headset view":"Preview comfort camera",active?"ON":"OFF");
+            Action(new Rect(x,346,960,54),1,"Turning",game.xr!=null&&game.xr.SnapTurn?"SNAP":"SMOOTH");
+            Action(new Rect(x,410,960,54),2,"Comfort vignette",game.xr!=null&&game.xr.ComfortVignette?"ON":"OFF");
+            Action(new Rect(x,474,960,54),3,"Room-scale movement",game.xr!=null&&game.xr.RoomScale?"ON":"OFF");
+            Action(new Rect(x,538,960,54),4,"Hand tracking",game.xr!=null&&game.xr.HandTrackingEnabled?"ON":"OFF");
+            Action(new Rect(x,602,470,54),5,"Recenter view","");
+            Action(new Rect(x+490,602,470,54),6,"Back","");
+            GUI.Label(new Rect(x,h-78,960,50),AlbionUIInput.ControllerPresent?"STICK  Navigate   ·   SELECT  Change   ·   BACK  Return":"ESC / F8  Back   ·   ↑ ↓  Navigate   ·   ENTER  Change",text);
+            GUI.matrix=matrix; GUI.color=color; GUI.contentColor=content; GUI.backgroundColor=background; GUI.depth=depth;
         }
         static bool IsDeviceActive()
         {

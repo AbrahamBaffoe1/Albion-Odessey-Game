@@ -10,6 +10,10 @@ Your display name and account are stored online. **My student account** lets you
 
 ## Controls
 
+In version **0.16.1**, **Esc** opens the campus menu while exploring and resumes
+when pressed again. The menu links to accounts, stories, courses and VR settings.
+**F8** opens VR settings explicitly; Esc returns to the screen you opened them from.
+
 | Action | Key / button |
 |---|---|
 | Forward, backward, left, right | W/A/S/D or the four arrow keys |

@@ -169,7 +169,7 @@ namespace AlbionOdyssey
             CampusPulse(new Rect(left+24,top+296,330,68));
             if(game.player.pointerControls){float x=left+35,y=bottom-227;Card(new Rect(x-11,y-11,220,140));game.player.buttonMove=new Vector2((GUI.RepeatButton(new Rect(x+110,y+44,48,40),"→",button)?1:0)-(GUI.RepeatButton(new Rect(x,y+44,48,40),"←",button)?1:0),(GUI.RepeatButton(new Rect(x+55,y,48,40),"↑",button)?1:0)-(GUI.RepeatButton(new Rect(x+55,y+44,48,40),"↓",button)?1:0));game.player.buttonTurn=(GUI.RepeatButton(new Rect(x+164,y+44,34,40),"↻",button)?1:0)-(GUI.RepeatButton(new Rect(x+164,y,34,40),"↺",button)?1:0);if(GUI.Button(new Rect(x,y+92,130,30),"Interact",button))Interact();if(GUI.Button(new Rect(x+138,y+92,60,30),"Jump",button))game.player.buttonJump=true;}
             float mapSize=Mathf.Clamp(224f,(right-left)*.18f,224f);Minimap(new Rect(right-mapSize,top+130,mapSize,mapSize));
-            if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.ShowLaunch();
+            if(GUI.Button(new Rect(right-mapSize,top+130+mapSize+10,104,32),"MAP  M",button))game.life.SetPanel("campus");if(GUI.Button(new Rect(right-112,top+130+mapSize+10,112,32),"MENU  ESC",button))game.shell.OpenPause();
             GUI.Label(new Rect(left+24,bottom-28,right-left-48,20),InputFooter(),eyebrow);GUI.matrix=old;GUI.backgroundColor=oldBg;
         }
     }
