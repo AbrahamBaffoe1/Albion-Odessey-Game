@@ -39,7 +39,7 @@ namespace AlbionOdyssey
             game.player.eyes.farClipPlane=1400;game.player.eyes.cullingMask=~(1<<30);
             foreach(var p in new[]{CampusCatalog.Point(409,241),CampusCatalog.Point(520,161),CampusCatalog.Point(599,286)})
             {
-                var o=new GameObject("Briton Cruiser "+(cars.Count+1));o.transform.position=p;var car=o.AddComponent<CampusCar>();car.Build(KeeperAvatar.Coats[cars.Count]);cars.Add(car);
+                var o=new GameObject("Briton Cruiser "+(cars.Count+1));o.transform.position=p;var car=o.AddComponent<CampusCar>();car.Build(KeeperAvatar.Coats[cars.Count]);car.Configure(game,cars.Count);cars.Add(car);
             }
             BuildDiscoveries();LoadKeeper();
             if(!OdysseySmoke.Enabled){game.player.Teleport(CampusCatalog.Point(405,238)+Vector3.up*.08f);game.notice="Welcome to Albion! M opens all 61 destinations. E enters a nearby car. F3 opens your character settings.";}

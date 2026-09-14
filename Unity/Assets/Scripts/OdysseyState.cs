@@ -9,11 +9,14 @@ namespace AlbionOdyssey
         public int milestones;
         public int style=1;
         public int contribution;
+        public int repairAcorns, gemsSpent;
+        public int Gems => OdysseyState.Count(memories)-gemsSpent;
         public int[] plots=new int[49];
     }
     [Serializable] public sealed class OdysseyState
     {
-        public int version=2;
+        public int version=3;
+        public VehicleDamage[] vehicles={new VehicleDamage(),new VehicleDamage(),new VehicleDamage()};
         public CampusSchool school=new CampusSchool();
         public int active;
         public int beacon;
@@ -44,16 +47,19 @@ namespace AlbionOdyssey
         public void UpgradeLegacySave()
         {
             if(version==1){school=new CampusSchool();version=2;}
+            if(version==2){vehicles=new[]{new VehicleDamage(),new VehicleDamage(),new VehicleDamage()};version=3;}
             if(school!=null)school.NormalizeSchedules();
         }
         public bool Valid()
         {
-            if(version!=2||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4)return false;
+            if(version!=3||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4||vehicles==null||vehicles.Length!=3)return false;
+            foreach(var vehicle in vehicles)if(vehicle==null||!vehicle.Valid())return false;
             int total=0;
             foreach(var p in keepers)
             {
                 if(p==null||p.plots==null||p.plots.Length!=49||p.acorns<0||p.acorns>42||p.memories<0||p.memories>4095||p.milestones<0||p.milestones>63||p.style<0||p.style>1||p.contribution<0||p.contribution>24||p.contribution%2!=0)return false;
-                int spent=p.contribution;
+                if(p.repairAcorns<0||p.repairAcorns>42||p.gemsSpent<0||p.Gems<0)return false;
+                int spent=p.contribution+p.repairAcorns;
                 foreach(int b in p.plots) { if(b<0||b>4)return false; spent+=Cost(b); }
                 if(p.acorns+spent!=6+3*Count(p.memories))return false;
                 total+=p.contribution;

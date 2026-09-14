@@ -1,0 +1,4 @@
+AUDIO_FEEDBACK_OK: stable kinds, achievements, building/lesson sounds, failed actions, load/profile silence and shared Beacon deduplication
+VEHICLE_RULES_OK: migration, two currencies, failed/duplicate payments, isolated wallets, bounded dents and 20000 transactions
+CAMPUS_SCHOOL_OK: migration, ownership, capacity, quizzes and 10000 randomized classroom transactions
+UNITY_RULES_OK: 100000 randomized transactions plus economy, isolation and tamper cases

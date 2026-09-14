@@ -162,7 +162,7 @@ namespace AlbionOdyssey
             if(!game.player.pointerControls)
             {
                 OdysseyUI.Card(new Rect(left+24,bottom-126,280,70),OdysseyUI.Navy);
-                OdysseyUI.Text(new Rect(left+42,bottom-115,245,28),game.player.vehicle==null?game.state.Current.acorns+" ACORNS  ·  "+OdysseyState.Count(game.state.Current.memories)+" MEMORIES":Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+" KM/H",15,OdysseyUI.White,true);
+                OdysseyUI.Text(new Rect(left+42,bottom-115,245,28),game.player.vehicle==null?game.state.Current.acorns+" ACORNS  ·  "+game.state.Current.Gems+" GEMS":Mathf.RoundToInt(Mathf.Abs(game.player.vehicle.speed)*3.6f)+" KM/H",15,OdysseyUI.White,true);
                 OdysseyUI.Card(new Rect(left+42,bottom-76,240,6),OdysseyUI.Surface);
                 OdysseyUI.Card(new Rect(left+42,bottom-76,240*game.player.Stamina,6),OdysseyUI.Mint);
             }

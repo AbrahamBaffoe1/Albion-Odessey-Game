@@ -1,10 +1,10 @@
-# Play Albion Odyssey 0.18 on this Mac
+# Play Albion Odyssey 0.19 on this Mac
 
-Open **Albion Odyssey.app** from Applications or the 0.18 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from Applications or the 0.19 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
 
 ## Campus cars
 
-Version 0.18 replaces the parked and drivable cars with detailed 3D coupes. Walk beside a drivable car and press **E**. **W/S** accelerates or reverses, **A/D** steers, and **Space** brakes. Stop, then press **E** to get out. See [vehicle details and credits](Vehicles-v0.18.md).
+Version 0.18 replaces the parked and drivable cars with detailed 3D coupes. Walk beside a drivable car and press **E**. **W/S** accelerates or reverses, **A/D** steers, and **Space** brakes. Stop, then press **E** to get out. Stop and press **R** for the repair screen. Crashes dent the car; choose acorn coins or gems to restore it. Cars can knock down simulated students, who recover and resume their campus activities. See [impact and repair details](VehicleImpacts-v0.19.md) and [vehicle credits](Vehicles-v0.18.md).
 
 ## Your new lobby
 
@@ -49,7 +49,7 @@ when pressed again. The menu links to accounts, stories, courses and VR settings
 
 ## A first session
 
-1. Collect the golden memories outside and inside Legacy Hall. Each gives three acorns. Find Pip beside the entrance for the journal and chapter objectives.
+1. Collect the golden memories outside and inside Legacy Hall. Each gives three acorn coins and one gem. Find Pip beside the entrance for the journal and chapter objectives.
 2. Explore the eight floors. The stairs are at the right-hand rear of the hall; follow the STAIRS signs.
 3. Press F2. Press 4, then click an empty tile to create a Hall for three acorns. Press F2 to return to walking.
 4. Press K. Name a course, choose one of the three lessons, and choose **Create in my Hall / Library**. Every course needs an unused Hall or Library on your personal campus.

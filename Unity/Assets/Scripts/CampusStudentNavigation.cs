@@ -13,9 +13,9 @@ namespace AlbionOdyssey
         {
             if(distance<=.001f)return false;
             Vector3 bottom=position+Vector3.up*.36f,top=position+Vector3.up*1.46f;
-            if(!Physics.CapsuleCast(bottom,top,radius,direction,out var hit,distance+.05f,~0,QueryTriggerInteraction.Ignore))return false;
-            if(hit.collider.GetComponentInParent<CampusStudentIdentity>()!=null)return false;
-            return true;
+            foreach(var hit in Physics.CapsuleCastAll(bottom,top,radius,direction,distance+.05f,~0,QueryTriggerInteraction.Ignore))
+                if(hit.collider.GetComponentInParent<CampusStudentIdentity>()==null)return true;
+            return false;
         }
 
         public static Vector3 FreeWaypoint(Vector3 point)

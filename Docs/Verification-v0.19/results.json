@@ -1,0 +1,1 @@
+{"passed":true,"ragdollBodies":11,"checks":["vehicle sweep knocks down student","ground contact","automatic recovery","wall prevents student hit","barrier stops car","individual mesh deformation on 3 LODs","no repeated idle-wall damage","damage reload","coin and gem repairs","restored meshes","insufficient balance"]}

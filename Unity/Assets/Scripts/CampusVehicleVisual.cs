@@ -39,6 +39,34 @@ namespace AlbionOdyssey
                 if(hasLamp)lamps.Add(r);
             }
         }
+        readonly Dictionary<MeshFilter,Mesh> originals=new Dictionary<MeshFilter,Mesh>();
+        readonly List<Mesh> dentedMeshes=new List<Mesh>();
+        public int DeformedVertexCount {get;private set;}
+        public void ApplyDamage(VehicleDamage damage)
+        {
+            foreach(var entry in originals)if(entry.Key!=null)entry.Key.sharedMesh=entry.Value;
+            foreach(var mesh in dentedMeshes)Destroy(mesh);dentedMeshes.Clear();DeformedVertexCount=0;
+            if(damage.amount==0)return;
+            foreach(var filter in GetComponentsInChildren<MeshFilter>(true))
+            {
+                if(!filter.name.StartsWith("Body_Geometry_L"))continue;
+                if(!originals.ContainsKey(filter))originals[filter]=filter.sharedMesh;
+                Mesh mesh=Instantiate(originals[filter]);mesh.name="Individual coupe damage";var vertices=mesh.vertices;
+                for(int i=0;i<vertices.Length;i++)
+                {
+                    Vector3 point=transform.InverseTransformPoint(filter.transform.TransformPoint(vertices[i])),offset=Vector3.zero;
+                    foreach(var dent in damage.dents)
+                    {
+                        float d=Vector3.Distance(point,new Vector3(dent.x,dent.y,dent.z));float influence=Mathf.Clamp01(1-d/1.05f);
+                        offset+=new Vector3(dent.nx,dent.ny,dent.nz)*(dent.depth*influence*influence);
+                    }
+                    offset=Vector3.ClampMagnitude(offset,.52f);if(offset.sqrMagnitude>.000001f)DeformedVertexCount++;
+                    vertices[i]=filter.transform.InverseTransformPoint(transform.TransformPoint(point+offset));
+                }
+                mesh.vertices=vertices;mesh.RecalculateNormals();mesh.RecalculateBounds();filter.sharedMesh=mesh;dentedMeshes.Add(mesh);
+            }
+        }
+        void OnDestroy(){foreach(var mesh in dentedMeshes)if(mesh!=null)Destroy(mesh);}
         public void Animate(float distance,float turn,bool brake,float dt)
         {
             roll=(roll+distance/.465f*Mathf.Rad2Deg)%360;

@@ -1,0 +1,9 @@
+{
+  "version": "0.19.0",
+  "macPlayerSuites": 7,
+  "playerSuitesPassed": true,
+  "questBuild": "succeeded",
+  "headsetHardwareTested": false,
+  "unity": "6000.6.0f1",
+  "isolatedSave": true
+}

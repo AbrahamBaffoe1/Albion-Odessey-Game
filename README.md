@@ -2,6 +2,8 @@
 
 Albion Odyssey is a living campus adventure about learning, belonging and making a place your own.
 
+Version **0.19** adds skeletal student knockdowns with recovery, persistent car dents and a repair screen with earned acorn coins or gems. Stop near the car and press **R**. See [controls, economy and verification](Docs/VehicleImpacts-v0.19.md).
+
 Version **0.18** replaces the cube-built vehicle placeholders with a detailed 3D coupe across the parked and drivable fleet, adding animated wheels, steering and brake-light feedback. See [vehicle notes and attribution](Docs/Vehicles-v0.18.md).
 
 Version **0.17** adds a live 3D student lobby, real startup loading stages, a redesigned campus menu and session summary, shared interactive controls, and a quieter HUD. See the [visual direction and verification](Docs/VisualDirection-v0.17.md) and [play guide](Docs/PlayGuide.md).

@@ -21,6 +21,7 @@ namespace AlbionOdyssey
         public bool building;
         public CampusLife life;
         public CampusExpansion campus;
+        public CampusVehicleRepairs repairs;
         public CampusTour tour;
         public CampusShell shell;
         public OdysseyAudio sound;
@@ -131,12 +132,14 @@ namespace AlbionOdyssey
             player.controls=false;loading.Report("Lighting your student showcase",5);yield return null;
             gameObject.AddComponent<CampusArtDirection>().Setup(this);
             presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
+            repairs=gameObject.AddComponent<CampusVehicleRepairs>();repairs.Setup(this);
             Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
             if(!Ready||player==null||loading!=null&&loading.Busy)return;
+            if(repairs!=null&&repairs.HandleInput())return;
             if(accountPanel!=null&&accountPanel.HandleInput())return;
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
@@ -199,7 +202,7 @@ namespace AlbionOdyssey
                 if(hit.collider.GetComponent<GuideMarker>()!=null)
                 {int next=OdysseyStory.Next(state.Current);notice="Pip: "+(next<6?OdysseyStory.Hints[next]:"Your charter is complete! Visit the classroom and share what you have learned.");SetJournal(true);return;}
                 var memory=hit.collider.GetComponent<MemoryMarker>();
-                if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorns. Press J to read your journal.";Save();RefreshMemories();return;}
+                if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorn coins and +1 gem. Press J to read your journal.";Save();RefreshMemories();return;}
             }
             notice="Move closer and aim at a golden memory or Pip, then press "+OdysseyAccessibility.InteractLabel+".";
         }
