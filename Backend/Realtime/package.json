@@ -1,0 +1,21 @@
+{
+  "name": "albion-odyssey-online",
+  "version": "0.20.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test"
+  },
+  "keywords": [],
+  "type": "module",
+  "dependencies": {
+    "nodemailer": "10.0.10",
+    "standardwebhooks": "1.1.1",
+    "ws": "8.21.3"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  }
+}
