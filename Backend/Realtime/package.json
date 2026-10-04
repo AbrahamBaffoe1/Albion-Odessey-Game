@@ -1,6 +1,6 @@
 {
   "name": "albion-odyssey-online",
-  "version": "0.27.0",
+  "version": "0.27.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   "type": "module",
   "dependencies": {
     "nodemailer": "10.0.10",
+    "pg": "8.23.1",
     "standardwebhooks": "1.1.1",
     "ws": "8.21.3"
   },

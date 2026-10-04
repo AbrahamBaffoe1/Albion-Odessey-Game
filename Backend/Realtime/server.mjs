@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {createNeonAccounts} from './neon-accounts.mjs';
 import {forestCommand,forestLeave,tickForest,forestSnapshot} from './forest-run.mjs';
 import {updateTrail,trailSnapshot} from './campus-trail.mjs';
 import {readFileSync} from 'node:fs';
@@ -43,10 +44,12 @@ export function createMailHandler(env=process.env,transport){
  }};
 }
 export function createServer({authenticate=identify,env=process.env,maxRoom=16,maxClients=128,authTimeout=15000}={}){
+ const neon=createNeonAccounts(env);if(neon&&authenticate===identify)authenticate=token=>neon.identify(token);
  const mail=createMailHandler(env),rooms=new Map(),peers=new Map(),attempts=new Map();
  function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(body));}
  const server=http.createServer(async(req,res)=>{
-  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.27.0',service:'Albion Odyssey online rooms',mailConfigured:mail.ready(),roomCapacity:maxRoom});
+  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.27.1',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
+  if(neon&&(req.url.startsWith('/auth/v1/')||req.url.startsWith('/rest/v1/student_profiles'))){let raw='';try{for await(const chunk of req){raw+=chunk.toString();if(Buffer.byteLength(raw)>16384){json(res,413,{error:'Payload too large'});return;}}const body=raw?JSON.parse(raw):{};const result=await neon.handle(req,body);return json(res,result?.status||404,result?.body||{});}catch{return json(res,400,{error:'Invalid request'});}}
   if(req.url!=='/auth/send-email'||req.method!=='POST')return json(res,404,{error:'Not found'});
   let raw='',bytes=0;
   try{for await(const chunk of req){bytes+=chunk.length;if(bytes>65536){json(res,413,{error:'Payload too large'});req.destroy();return;}raw+=chunk.toString();}const result=await mail.handle(raw,req.headers);json(res,result.status,result.body);}catch{if(!res.headersSent)json(res,400,{error:'Invalid request'});}
@@ -107,10 +110,10 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
    if(p&&!p.revalidating&&now-p.verifiedAt>600000){p.revalidating=true;authenticate(p.token,env).then(identity=>{if(peers.has(ws)){Object.assign(p,identity);p.verifiedAt=Date.now();p.revalidating=false;}}).catch(()=>ws.close(4401,'Session expired; sign in again'));}
   }
  },15000);
- async function close(){clearInterval(snapshots);clearInterval(heartbeat);for(const ws of wss.clients)ws.terminate();await new Promise(resolve=>wss.close(resolve));await new Promise(resolve=>server.close(resolve));}
- return {server,close,rooms,peers};
+ async function close(){clearInterval(snapshots);clearInterval(heartbeat);for(const ws of wss.clients)ws.terminate();await new Promise(resolve=>wss.close(resolve));await new Promise(resolve=>server.close(resolve));await neon?.close();}
+ return {server,close,rooms,peers,initialize:async()=>{await neon?.init();}};
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
- const app=createServer();app.server.listen(Number(process.env.PORT||10000),'0.0.0.0',()=>console.log('Albion Odyssey online rooms listening'));
+ const app=createServer();await app.initialize();app.server.listen(Number(process.env.PORT||10000),'0.0.0.0',()=>console.log('Albion Odyssey online rooms listening'));
  process.on('SIGTERM',()=>app.close().then(()=>process.exit(0)));process.on('SIGINT',()=>app.close().then(()=>process.exit(0)));
 }
