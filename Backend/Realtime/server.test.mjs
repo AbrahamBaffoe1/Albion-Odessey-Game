@@ -27,3 +27,27 @@ test('signed OTP mail sends once on retry; failed delivery can retry and never r
  assert.equal((await handler.handle(raw,headers)).status,200);assert.equal((await handler.handle(raw,headers)).status,200);assert.equal(deliveries,1);
  const fail=createMailHandler(env,{sendMail:async()=>{throw Error('smtp failure');}});assert.equal((await fail.handle(raw,headers)).status,502);
 });
+
+test('room trail shares visits, persists for late joiners, isolates other rooms and resets when empty',async()=>{
+ const app=await fixture();try{
+  const a=await client(app.url,'a');await waitFor(a,'welcome');
+  a.send(JSON.stringify({type:'move',x:19.5,y:0,z:689.5,yaw:0,speed:0}));await pause(120);
+  const b=await client(app.url,'b');await waitFor(b,'welcome');
+  let trail=(await waitFor(b,'snapshot')).trail;assert.equal(trail.find(s=>s.id==='50').visited,true);assert.equal(trail.find(s=>s.id==='50').by,'Student a');
+  const c=await client(app.url,'c','OTHER');await waitFor(c,'welcome');assert((await waitFor(c,'snapshot')).trail.every(s=>!s.visited));
+  b.send(JSON.stringify({type:'move',x:156,y:30,z:498.5,yaw:0,speed:0}));await pause(120);assert.equal(app.rooms.get('QUAD').trail.has('49'),false);
+  b.send(JSON.stringify({type:'move',x:156,y:0,z:498.5,yaw:0,speed:0}));await pause(120);assert.equal(app.rooms.get('QUAD').trail.get('49').by,'Student b');
+  a.close();b.close();await pause(120);
+  const fresh=await client(app.url,'a');await waitFor(fresh,'welcome');assert((await waitFor(fresh,'snapshot')).trail.every(s=>!s.visited));
+ }finally{await app.close();}
+});
+
+test('two authenticated clients share a forest race and disconnected runners are removed',async()=>{
+ const app=await fixture();try{
+ const a=await client(app.url,'a'),b=await client(app.url,'b');await waitFor(a,'welcome');await waitFor(b,'welcome');
+ a.send(JSON.stringify({type:'forest',action:'join'}));b.send(JSON.stringify({type:'forest',action:'join'}));await pause(220);
+ const room=app.rooms.get('QUAD');assert.equal(room.forest.players.size,2);
+ a.messages=[];b.messages=[];const sa=await waitFor(a,'snapshot'),sb=await waitFor(b,'snapshot');assert.equal(sa.forest.seed,sb.forest.seed);assert.equal(sa.forest.players.length,2);assert.equal(sa.forest.phase,'countdown');
+ a.close();await once(a,'close');await pause(120);assert.equal(room.forest.players.size,1);assert(room.forest.players.has('b'));
+ }finally{await app.close();}
+});

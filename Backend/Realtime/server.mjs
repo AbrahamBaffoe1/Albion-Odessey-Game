@@ -1,4 +1,6 @@
 import http from 'node:http';
+import {forestCommand,forestLeave,tickForest,forestSnapshot} from './forest-run.mjs';
+import {updateTrail,trailSnapshot} from './campus-trail.mjs';
 import {readFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {WebSocketServer, WebSocket} from 'ws';
@@ -44,7 +46,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  const mail=createMailHandler(env),rooms=new Map(),peers=new Map(),attempts=new Map();
  function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(body));}
  const server=http.createServer(async(req,res)=>{
-  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.20.0',service:'Albion Odyssey online rooms',mailConfigured:mail.ready(),roomCapacity:maxRoom});
+  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.27.0',service:'Albion Odyssey online rooms',mailConfigured:mail.ready(),roomCapacity:maxRoom});
   if(req.url!=='/auth/send-email'||req.method!=='POST')return json(res,404,{error:'Not found'});
   let raw='',bytes=0;
   try{for await(const chunk of req){bytes+=chunk.length;if(bytes>65536){json(res,413,{error:'Payload too large'});req.destroy();return;}raw+=chunk.toString();}const result=await mail.handle(raw,req.headers);json(res,result.status,result.body);}catch{if(!res.headersSent)json(res,400,{error:'Invalid request'});}
@@ -52,7 +54,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  server.requestTimeout=15000;server.headersTimeout=10000;
  const wss=new WebSocketServer({noServer:true,maxPayload:12288,perMessageDeflate:false});
  function send(ws,message){if(ws.readyState===WebSocket.OPEN){if(ws.bufferedAmount>128000){ws.close(1013,'Connection too slow');return;}ws.send(JSON.stringify(message));}}
- function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);room?.delete(ws);if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
+ function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);forestLeave(room,p.id);room?.delete(ws);if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
  server.on('upgrade',(req,socket,head)=>{
   if(req.url!=='/campus'||wss.clients.size>=maxClients){socket.end('HTTP/1.1 503 Service Unavailable\r\n\r\n');return;}
   const ip=req.socket.remoteAddress,now=Date.now();let record=attempts.get(ip);if(!record||now-record.since>60000)record={since:now,count:0};record.count++;attempts.set(ip,record);
@@ -80,9 +82,11 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
      rooms.set(m.room,room);peers.set(ws,player);room.add(ws);clearTimeout(timeout);send(ws,{type:'welcome',id:identity.id,room:m.room,capacity:maxRoom});
     }catch{ws.close(4401,'Sign in or reload your profile');}return;
    }
-   if(m.type==='move'){
+   if(m.type==='forest'){forestCommand(rooms.get(p.room),p,m,now);
+   }else if(m.type==='move'){
     if(!validPosition(m)||!Number.isFinite(m.speed)||m.speed<0||m.speed>30){ws.close(4400,'Invalid movement');return;}
     p.x=m.x;p.y=m.y;p.z=m.z;p.yaw=m.yaw%360;p.speed=m.speed;
+    updateTrail(rooms.get(p.room),p);
    }else if(m.type==='emote'){
     if(['wave','cheer','dance'].includes(m.emote)&&now>p.emoteUntil){p.emote=m.emote;p.emoteUntil=now+3000;}
    }else if(m.type==='profile'&&now-lastProfile>5000){
@@ -92,8 +96,9 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  });
  const snapshots=setInterval(()=>{
   const now=Date.now();for(const room of rooms.values()){
+   tickForest(room,now);
    const players=[...room].map(ws=>{const p=peers.get(ws);return {id:p.id,display:p.display,x:p.x,y:p.y,z:p.z,yaw:p.yaw,speed:p.speed,skin:p.skin,outfit:p.outfit,hair:p.hair,backpack:p.backpack,emote:now<p.emoteUntil?p.emote:''};});
-   for(const ws of room)send(ws,{type:'snapshot',players});
+   for(const ws of room)send(ws,{type:'snapshot',players,trail:trailSnapshot(room),forest:forestSnapshot(room,now)});
   }
  },100);
  const heartbeat=setInterval(()=>{
