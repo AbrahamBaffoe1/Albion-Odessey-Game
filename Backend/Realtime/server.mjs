@@ -49,7 +49,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  const mail=createMailHandler(env),rooms=new Map(),peers=new Map(),attempts=new Map();
  function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(body));}
  const server=http.createServer(async(req,res)=>{
-  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.28.0',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
+  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.28.1',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
   if(neon&&(req.url.startsWith('/auth/v1/')||req.url.startsWith('/rest/v1/student_profiles'))){let raw='';try{for await(const chunk of req){raw+=chunk.toString();if(Buffer.byteLength(raw)>16384){json(res,413,{error:'Payload too large'});return;}}const body=raw?JSON.parse(raw):{};const result=await neon.handle(req,body);return json(res,result?.status||404,result?.body||{});}catch{return json(res,400,{error:'Invalid request'});}}
   if(req.url!=='/auth/send-email'||req.method!=='POST')return json(res,404,{error:'Not found'});
   let raw='',bytes=0;
