@@ -11,7 +11,7 @@ import {Webhook} from 'standardwebhooks';
 
 const publicConfig=JSON.parse(readFileSync(new URL('./account-config.json',import.meta.url)));
 export function cleanName(value){return String(value??'Student').replace(/[<>\x00-\x1f\x7f]/g,'').trim().slice(0,24)||'Student';}
-export function validPosition(p){return [p.x,p.y,p.z,p.yaw].every(Number.isFinite)&&Math.abs(p.x)<=2000&&Math.abs(p.z)<=2000&&p.y>=-20&&p.y<=150;}
+export function validPosition(p){return [p.x,p.y,p.z,p.yaw].every(Number.isFinite)&&((Math.abs(p.x)<=2000&&Math.abs(p.z)<=2000)||(p.x>=5400&&p.x<=6900&&p.z>=5200&&p.z<=6700))&&p.y>=-20&&p.y<=150;}
 export async function identify(token,env=process.env){
  if(typeof token!=='string'||token.length<40||token.length>8192)throw Error('sign_in');
  const base=env.SUPABASE_URL||publicConfig.url,key=env.SUPABASE_PUBLISHABLE_KEY||publicConfig.publishableKey;
