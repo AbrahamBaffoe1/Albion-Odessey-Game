@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {randomBytes} from 'node:crypto';
 import {createNeonAccounts} from './neon-accounts.mjs';
 import {forestCommand,forestLeave,tickForest,forestSnapshot} from './forest-run.mjs';
 import {updateTrail,trailSnapshot} from './campus-trail.mjs';
@@ -48,7 +49,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  const mail=createMailHandler(env),rooms=new Map(),peers=new Map(),attempts=new Map();
  function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(body));}
  const server=http.createServer(async(req,res)=>{
-  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.27.1',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
+  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.28.0',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
   if(neon&&(req.url.startsWith('/auth/v1/')||req.url.startsWith('/rest/v1/student_profiles'))){let raw='';try{for await(const chunk of req){raw+=chunk.toString();if(Buffer.byteLength(raw)>16384){json(res,413,{error:'Payload too large'});return;}}const body=raw?JSON.parse(raw):{};const result=await neon.handle(req,body);return json(res,result?.status||404,result?.body||{});}catch{return json(res,400,{error:'Invalid request'});}}
   if(req.url!=='/auth/send-email'||req.method!=='POST')return json(res,404,{error:'Not found'});
   let raw='',bytes=0;
@@ -57,7 +58,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  server.requestTimeout=15000;server.headersTimeout=10000;
  const wss=new WebSocketServer({noServer:true,maxPayload:12288,perMessageDeflate:false});
  function send(ws,message){if(ws.readyState===WebSocket.OPEN){if(ws.bufferedAmount>128000){ws.close(1013,'Connection too slow');return;}ws.send(JSON.stringify(message));}}
- function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);forestLeave(room,p.id);room?.delete(ws);if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
+ function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);forestLeave(room,p.id);room?.delete(ws);if(room?.size&&room.hostId===p.id)room.hostId=peers.get([...room][0])?.id;if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
  server.on('upgrade',(req,socket,head)=>{
   if(req.url!=='/campus'||wss.clients.size>=maxClients){socket.end('HTTP/1.1 503 Service Unavailable\r\n\r\n');return;}
   const ip=req.socket.remoteAddress,now=Date.now();let record=attempts.get(ip);if(!record||now-record.since>60000)record={since:now,count:0};record.count++;attempts.set(ip,record);
@@ -74,18 +75,23 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
    let m;try{if(binary)throw Error();m=JSON.parse(raw.toString());if(!m||Array.isArray(m)||typeof m.type!=='string')throw Error();}catch{ws.close(4400,'Invalid message');return;}
    const p=peers.get(ws);
    if(!p){
-    if(authenticating)return;if(m.type!=='authenticate'||!/^[-A-Z0-9]{3,18}$/.test(m.room??'')){ws.close(4401,'Sign in and choose a room');return;}
+    if(authenticating)return;if(m.type!=='authenticate'||(!['public','create'].includes(m.intent)&&!/^[-A-Z0-9]{3,18}$/.test(m.room??''))){ws.close(4401,'Sign in and choose a room');return;}
     authenticating=true;
     try{
      const identity=await authenticate(m.token,env);if(ws.readyState!==WebSocket.OPEN)return;
-     let room=rooms.get(m.room);if(!room){room=new Set();rooms.set(m.room,room);}
+     if(m.intent==='public')m.room=[...rooms].find(([code,r])=>r.visibility==='public'&&r.size<maxRoom)?.[0]||'PUB-'+randomBytes(5).toString('hex').toUpperCase();
+     if(m.intent==='create')m.room='P-'+randomBytes(6).toString('hex').toUpperCase();
+     let room=rooms.get(m.room);
+     if(!room&&m.intent==='join'){ws.close(4404,'Room not found');return;}
+     if(!room){room=new Set();room.visibility=m.intent==='public'?'public':'private';room.hostId=identity.id;room.mode='coop';rooms.set(m.room,room);}
      for(const old of room)if(peers.get(old)?.id===identity.id){leave(old);old.close(4409,'Account joined from another session');}
      if(room.size>=maxRoom){ws.close(4403,'Room is full');return;}
      const player={...identity,room:m.room,x:6,y:.08,z:418,yaw:0,speed:0,emote:'',emoteUntil:0,token:m.token,verifiedAt:now,revalidating:false};
-     rooms.set(m.room,room);peers.set(ws,player);room.add(ws);clearTimeout(timeout);send(ws,{type:'welcome',id:identity.id,room:m.room,capacity:maxRoom});
+     rooms.set(m.room,room);peers.set(ws,player);room.add(ws);clearTimeout(timeout);send(ws,{type:'welcome',id:identity.id,room:m.room,capacity:maxRoom,hostId:room.hostId,mode:room.mode,visibility:room.visibility});
     }catch{ws.close(4401,'Sign in or reload your profile');}return;
    }
-   if(m.type==='forest'){forestCommand(rooms.get(p.room),p,m,now);
+   if(m.type==='mode'){const room=rooms.get(p.room);if(room.hostId===p.id&&['coop','race'].includes(m.mode)&&(!room.forest||room.forest.phase==='finished'))room.mode=m.mode;
+   }else if(m.type==='forest'){forestCommand(rooms.get(p.room),p,m,now);
    }else if(m.type==='move'){
     if(!validPosition(m)||!Number.isFinite(m.speed)||m.speed<0||m.speed>30){ws.close(4400,'Invalid movement');return;}
     p.x=m.x;p.y=m.y;p.z=m.z;p.yaw=m.yaw%360;p.speed=m.speed;
@@ -101,7 +107,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
   const now=Date.now();for(const room of rooms.values()){
    tickForest(room,now);
    const players=[...room].map(ws=>{const p=peers.get(ws);return {id:p.id,display:p.display,x:p.x,y:p.y,z:p.z,yaw:p.yaw,speed:p.speed,skin:p.skin,outfit:p.outfit,hair:p.hair,backpack:p.backpack,emote:now<p.emoteUntil?p.emote:''};});
-   for(const ws of room)send(ws,{type:'snapshot',players,trail:trailSnapshot(room),forest:forestSnapshot(room,now)});
+   for(const ws of room)send(ws,{type:'snapshot',hostId:room.hostId,mode:room.mode,visibility:room.visibility,players,trail:trailSnapshot(room),forest:forestSnapshot(room,now)});
   }
  },100);
  const heartbeat=setInterval(()=>{

@@ -51,3 +51,18 @@ test('two authenticated clients share a forest race and disconnected runners are
  a.close();await once(a,'close');await pause(120);assert.equal(room.forest.players.size,1);assert(room.forest.players.has('b'));
  }finally{await app.close();}
 });
+
+test('public matching excludes private rooms; only host changes the next round mode',async()=>{
+ const app=await fixture();
+ async function join(token,intent,room='ANY'){const ws=new WebSocket(app.url);ws.messages=[];ws.on('message',r=>ws.messages.push(JSON.parse(r)));await once(ws,'open');ws.send(JSON.stringify({type:'authenticate',token,intent,room}));return ws;}
+ try{
+  const a=await join('a','create'),wa=await waitFor(a,'welcome');assert.match(wa.room,/^P-[A-F0-9]{12}$/);assert.equal(wa.visibility,'private');
+  const b=await join('b','public'),wb=await waitFor(b,'welcome');assert.notEqual(wa.room,wb.room);
+  const c=await join('c','public'),wc=await waitFor(c,'welcome');assert.equal(wc.room,wb.room);
+  c.send(JSON.stringify({type:'mode',mode:'race'}));await pause(120);assert.equal(app.rooms.get(wb.room).mode,'coop');
+  b.send(JSON.stringify({type:'mode',mode:'race'}));await pause(120);assert.equal(app.rooms.get(wb.room).mode,'race');
+  b.send(JSON.stringify({type:'forest',action:'join'}));await pause(120);b.send(JSON.stringify({type:'mode',mode:'coop'}));await pause(120);assert.equal(app.rooms.get(wb.room).mode,'race');
+  const missing=await join('a','join','MISSING');assert.equal((await once(missing,'close'))[0],4404);
+  b.close();await pause(120);assert.equal(app.rooms.get(wb.room).hostId,'c');
+ }finally{await app.close();}
+});

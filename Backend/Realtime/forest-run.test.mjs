@@ -8,3 +8,12 @@ test('jump clears logs, slide clears branches, rock collision allows teammate re
 });
 test('collectibles are shared once and three seeds earn one rescue',()=>{const r=setup();r.forest.events=[0,1,2].map(id=>({id,z:.2+id*.2,lane:0,kind:'seed'}));tickForest(r,5200);assert.equal(r.forest.seeds,3);assert.equal(r.forest.rescues,1);assert.equal(forestSnapshot(r,5200).events.length,0);forestCommand(r,{id:'c',display:'C'},{action:'join'},5300);assert.equal(r.forest.players.get('c').distance,r.forest.players.get('a').distance);forestLeave(r,'a');forestLeave(r,'b');forestLeave(r,'c');assert.equal(r.forest,null);});
 test('finish and restart reset the race, and caught runners cannot collect or move',()=>{const r=setup();const p=r.forest.players.get('a');p.caught=true;const before=p.distance;forestCommand(r,a,{action:'right'},5200);tickForest(r,5200);assert.equal(p.distance,before);assert.equal(p.lane,0);r.forest.players.get('b').distance=1199;tickForest(r,5400);assert.equal(r.forest.phase,'finished');forestCommand(r,a,{action:'join'},5500);assert.equal(r.forest.phase,'countdown');assert.equal(r.forest.players.size,1);assert.equal(r.forest.treasures,0);});
+
+test('competitive runs use individual collectibles, reject mid-race joins and disable rescue',()=>{
+ const r={mode:'race'};forestCommand(r,a,{action:'join'},0);forestCommand(r,b,{action:'join'},0);tickForest(r,5000);
+ r.forest.events=[{id:0,z:1,lane:0,kind:'treasure'}];tickForest(r,5200);
+ assert.equal(r.forest.players.get('a').treasures,1);assert.equal(r.forest.players.get('b').treasures,1);
+ forestCommand(r,{id:'c',display:'C'},{action:'join'},5300);assert.equal(r.forest.players.size,2);
+ r.forest.players.get('a').caught=true;r.forest.rescues=2;forestCommand(r,b,{action:'rescue'},5400);assert(r.forest.players.get('a').caught);
+ assert.equal(forestSnapshot(r).mode,'race');assert(!('used' in forestSnapshot(r).players[0]));
+});
