@@ -1,0 +1,138 @@
+{
+  "building": "Ingham Hall",
+  "source": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+  "planSource": "https://www.albion.edu/wp-content/uploads/2022/02/Ingham-Floor-Plan.pdf",
+  "planSHA256": "3d4241b59fc6636f3f9a8d9122793c580336237f04601f5ccaf7c8d700361151",
+  "status": "Eight published measurements transcribed; not yet implemented in runtime geometry. Not a surveyed footprint.",
+  "rooms": [
+    {
+      "room": "101",
+      "lengthText": "14'",
+      "widthText": "10'1\"",
+      "lengthMetres": 4.2672,
+      "widthMetres": 3.0734,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 1,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "single"
+    },
+    {
+      "room": "102",
+      "lengthText": "9'7\"",
+      "widthText": "18'8\"",
+      "lengthMetres": 2.921,
+      "widthMetres": 5.6896,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 1,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "double"
+    },
+    {
+      "room": "103",
+      "lengthText": "9'5\"",
+      "widthText": "13'1\"",
+      "lengthMetres": 2.8702,
+      "widthMetres": 3.9878,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 1,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "single"
+    },
+    {
+      "room": "104",
+      "lengthText": "10'7\"",
+      "widthText": "12'",
+      "lengthMetres": 3.2258,
+      "widthMetres": 3.6576,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 1,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "single"
+    },
+    {
+      "room": "201",
+      "lengthText": "14'",
+      "widthText": "15'3\"",
+      "lengthMetres": 4.2672,
+      "widthMetres": 4.6482,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 2,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "double"
+    },
+    {
+      "room": "202",
+      "lengthText": "16'",
+      "widthText": "14'",
+      "lengthMetres": 4.8768,
+      "widthMetres": 4.2672,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 2,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "double"
+    },
+    {
+      "room": "203",
+      "lengthText": "15'",
+      "widthText": "12'7\"",
+      "lengthMetres": 4.572,
+      "widthMetres": 3.8354,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 2,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "double"
+    },
+    {
+      "room": "204",
+      "lengthText": "15'10\"",
+      "widthText": "14'1\"",
+      "lengthMetres": 4.826,
+      "widthMetres": 4.2926,
+      "sourceSection": "Room Dimensions",
+      "sourcePage": null,
+      "diagramPage": 2,
+      "status": "Published dimensions; axis orientation and measurement conventions unconfirmed",
+      "diagramOccupancy": "double"
+    }
+  ],
+  "planObservations": {
+    "firstFloor": {
+      "bedrooms": [
+        "101",
+        "102",
+        "103",
+        "104"
+      ],
+      "bathrooms": 1,
+      "livingRoom": true,
+      "frontPorch": true
+    },
+    "secondFloor": {
+      "bedrooms": [
+        "201",
+        "202",
+        "203",
+        "204"
+      ],
+      "bathrooms": 3
+    },
+    "orientation": {
+      "porch": "Ingham Street (west)",
+      "rightSideOnDrawing": "Perry Street (north)"
+    },
+    "stairs": "Central stair with turning/winder geometry; first-floor drawing marks UP and DOWN, second-floor drawing also marks up and down. No basement or upper-level floor plan supplied."
+  },
+  "unresolved": [
+    "Current web page lists four double rooms and three singles; linked PDF labels five doubles and three singles. Do not infer current occupancy of each room from total capacity.",
+    "Neither page is drawn to scale. Room rectangles cannot determine a unique whole-building footprint.",
+    "Basement and any level above the second floor are undocumented by this PDF.",
+    "Stair rise, run, winder dimensions, floor heights, wall thickness, exact room-axis orientation, roof and exterior measurements remain unverified."
+  ]
+}

@@ -1,0 +1,1000 @@
+{
+  "method": "0.1m grid; player radius 0.42m plus 0.09m assumed half-wall margin. Stair footprints excluded from planar circulation. Door positions inferred, not source verified.",
+  "roomsChecked": 110,
+  "corridorReachable": 107,
+  "stairLandingUnverified": 3,
+  "blockedOrDisconnected": 0,
+  "physicalTraversalVerified": false,
+  "rooms": [
+    {
+      "room": "24-H",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "25",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "26",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -12.426128571428567,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "27",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -8.055128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "28",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.6841285714285705,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "29",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        0.6868714285714286,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "30",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        5.057871428571428,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "31",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        9.428871428571426,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "32",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        18.170871428571427,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "21",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -29.910128571428565,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "18",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "17",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "12",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        13.799871428571427,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "10-RA",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.283871428571423,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "9",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        35.654871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "42-S",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        10.51012558139535
+      ]
+    },
+    {
+      "room": "43-S",
+      "level": 0,
+      "status": "stair landing requires 3D validation",
+      "approach": [
+        30.372799999999998,
+        15.607851162790698
+      ]
+    },
+    {
+      "room": "6",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        -7.615120930232558
+      ]
+    },
+    {
+      "room": "5",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        -2.7062000000000004
+      ]
+    },
+    {
+      "room": "4",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "3",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "2",
+      "level": 0,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        10.510125581395348
+      ]
+    },
+    {
+      "room": "135",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "136",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "137",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -12.426128571428567,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "128",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -29.910128571428565,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "127",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -25.539128571428567,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "126",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "125",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "124",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -12.426128571428567,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "122-S",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -8.05512857142857,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "121-S",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.6841285714285705,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "111",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        22.541871428571426,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "110",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        26.912871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "109-RA",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        31.283871428571423,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "108",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        35.654871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "147",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        -2.7062000000000004
+      ]
+    },
+    {
+      "room": "148",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "149",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "150-S",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        10.51012558139535
+      ]
+    },
+    {
+      "room": "151-S",
+      "level": 1,
+      "status": "stair landing requires 3D validation",
+      "approach": [
+        30.372799999999998,
+        15.607851162790698
+      ]
+    },
+    {
+      "room": "104",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        -2.7062
+      ]
+    },
+    {
+      "room": "103",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "102",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "101",
+      "level": 1,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        10.51012558139535
+      ]
+    },
+    {
+      "room": "229",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "230",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "231",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -12.426128571428569,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "233",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.684128571428571,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "234",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        0.6868714285714286,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "235",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        5.057871428571428,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "236",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        9.428871428571426,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "238",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        18.170871428571427,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "223",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -29.910128571428565,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "222",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -25.539128571428567,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "221",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "220",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "218",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -8.05512857142857,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "217",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.6841285714285705,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "216",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        0.6868714285714286,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "215",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        5.057871428571428,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "214",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        9.428871428571426,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "213",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        13.799871428571427,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "212",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        18.170871428571427,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "211",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        22.541871428571426,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "210",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        26.912871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "209-RA",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.283871428571423,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "208",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        35.654871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "244",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        -2.7062000000000004
+      ]
+    },
+    {
+      "room": "245",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "246",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "247-S",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999994,
+        10.510125581395348
+      ]
+    },
+    {
+      "room": "248-S",
+      "level": 2,
+      "status": "stair landing requires 3D validation",
+      "approach": [
+        30.372799999999994,
+        15.607851162790698
+      ]
+    },
+    {
+      "room": "205",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        -7.615120930232558
+      ]
+    },
+    {
+      "room": "204",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        -2.7062000000000004
+      ]
+    },
+    {
+      "room": "203",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "202",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.820285714285706,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "201",
+      "level": 2,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        10.510125581395348
+      ]
+    },
+    {
+      "room": "328",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "329",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "330",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -12.426128571428567,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "331-RA",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -8.055128571428568,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "332",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.6841285714285705,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "333",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        0.6868714285714286,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "334",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        5.057871428571428,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "335",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        9.428871428571426,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "337",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        18.170871428571427,
+        -10.971320930232558
+      ]
+    },
+    {
+      "room": "322",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -29.910128571428565,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "321",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -25.539128571428567,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "320",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -21.168128571428568,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "319",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -16.79712857142857,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "317",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -8.05512857142857,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "316",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        -3.6841285714285705,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "315",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        0.6868714285714286,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "314",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        5.057871428571428,
+        -12.440455813953491
+      ]
+    },
+    {
+      "room": "313",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        9.428871428571426,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "312",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        13.799871428571427,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "311",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        18.170871428571427,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "310",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        22.541871428571426,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "309",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        26.912871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "308-RA",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.283871428571423,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "307",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        35.654871428571425,
+        -12.44045581395349
+      ]
+    },
+    {
+      "room": "344",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999994,
+        -2.7062
+      ]
+    },
+    {
+      "room": "345",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999994,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "346",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        30.372799999999998,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "305",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        -7.615120930232559
+      ]
+    },
+    {
+      "room": "304",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        -2.7062
+      ]
+    },
+    {
+      "room": "303",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        1.6992418604651163
+      ]
+    },
+    {
+      "room": "302",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        6.1046837209302325
+      ]
+    },
+    {
+      "room": "301",
+      "level": 3,
+      "status": "main corridor reachable",
+      "approach": [
+        31.82028571428571,
+        10.510125581395348
+      ]
+    }
+  ]
+}

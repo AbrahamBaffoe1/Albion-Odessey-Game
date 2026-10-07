@@ -2,28 +2,65 @@ using UnityEngine;
 using System.Collections.Generic;
 namespace AlbionOdyssey
 {
-    public static class CampusGeometry
+    public static partial class CampusGeometry
     {
+        public static readonly List<Rect> GroundTiles=new List<Rect>();
         public static readonly List<Vector3> HabitatTrees=new List<Vector3>();
         static Material brick,stone,roof,glass,grass,path,road,gold; static Transform root;
+        static readonly List<Vector3[]> streets=new List<Vector3[]>();
         static GameObject Box(Transform p,string name,Vector3 at,Vector3 size,Material mat,bool solid=true)
         {
             var o=KeeperAvatar.Part(p,name,PrimitiveType.Cube,at,size,mat,solid);
             if(mat.mainTexture!=null){var mesh=o.GetComponent<MeshFilter>().mesh;var uv=new Vector2[mesh.vertexCount];var v=mesh.vertices;var n=mesh.normals;for(int i=0;i<v.Length;i++){var w=Vector3.Scale(v[i],size)+at;uv[i]=Mathf.Abs(n[i].y)>.7f?new Vector2(w.x,w.z)/2:Mathf.Abs(n[i].x)>.7f?new Vector2(w.z,w.y)/2:new Vector2(w.x,w.y)/2;}mesh.uv=uv;mesh.RecalculateTangents();}
             return o;
         }
+        static void BuildGround()
+        {
+            // Cut only the documented building footprint, preserving the open side of the L.
+            // This makes the lowered ground floor usable without an invisible terrain slab.
+            var plan=JsonUtility.FromJson<WesleyPlan>(Resources.Load<TextAsset>("CampusCraft/seaton-plan").text);
+            var place=CampusExpansion.Find("49");var rotation=Quaternion.Euler(0,plan.rotation,0);
+            var holes=new List<Rect>();var xs=new SortedSet<float>{-600,600};var zs=new SortedSet<float>{75,825};
+            foreach(var r in plan.floors[0].footprints)
+            {
+                var at=place.position+rotation*new Vector3(r.x,0,r.z);
+                var hole=new Rect(at.x-r.width/2,at.z-r.depth/2,r.width,r.depth);holes.Add(hole);
+                xs.Add(hole.xMin);xs.Add(hole.xMax);zs.Add(hole.yMin);zs.Add(hole.yMax);
+            }
+            var xv=new List<float>(xs);var zv=new List<float>(zs);GroundTiles.Clear();
+            for(int x=0;x<xv.Count-1;x++)for(int z=0;z<zv.Count-1;z++)
+            {
+                var tile=new Rect(xv[x],zv[z],xv[x+1]-xv[x],zv[z+1]-zv[z]);
+                if(holes.Exists(h=>h.Contains(tile.center)))continue;
+                GroundTiles.Add(tile);Box(root,"Campus ground",new Vector3(tile.center.x,-.3f,tile.center.y),new Vector3(tile.width,.5f,tile.height),grass);
+            }
+        }
         public static void Build()
         {
-            HabitatTrees.Clear();
+            HabitatTrees.Clear();streets.Clear();
             root=new GameObject("Albion College · map-based exterior campus").transform;
             brick=CraftModel.Surface("Campus brick",Color.white,"red_brick_03");stone=TowerGeometry.Material("Campus limestone",new Color(.78f,.72f,.59f));
             roof=TowerGeometry.Material("Campus slate",new Color(.16f,.23f,.25f));glass=TowerGeometry.Material("Campus blue windows",new Color(.19f,.36f,.44f),.15f,.7f);
-            grass=CraftModel.Surface("Campus lawn",new Color(.7f,.8f,.65f),"aerial_grass_rock");path=CraftModel.Surface("Campus paving",Color.white,"concrete_pavement");
+            grass=CraftModel.Surface("Campus lawn",new Color(.55f,.78f,.45f),"grass_ground");path=CraftModel.Surface("Campus paving",Color.white,"concrete_pavement");
             road=TowerGeometry.Material("Campus asphalt",new Color(.14f,.17f,.18f));gold=TowerGeometry.Material("Campus gold",new Color(.94f,.65f,.15f));
-            Box(root,"Campus ground",new Vector3(0,-.3f,450),new Vector3(1200,.5f,750),grass);
+            BuildGround();
             Box(root,"Legacy connector",new Vector3(0,-.1f,95),new Vector3(16,.2f,190),path);
-            foreach(float y in new[]{77f,123f,161f,241f,286f})Street(CampusCatalog.Point(400,y),new Vector3(1060,.12f,10));
-            foreach(float x in new[]{64f,118f,178f,236f,297f,363f,474f,590f,718f})Street(CampusCatalog.Point(x,216),new Vector3(8,.12f,520));
+            // Trace visible road extents from the official August 2025 visitor map.
+            // The map is schematic; these are game-scale alignments, not survey coordinates.
+            foreach(var segment in new[]{
+                new Vector4(23,77,718,77),new Vector4(718,77,769,37),
+                new Vector4(124,123,363,123),new Vector4(533,123,590,123),
+                new Vector4(23,161,590,161),new Vector4(590,161,706,86),
+                new Vector4(185,241,297,241),new Vector4(474,243,718,243),
+                new Vector4(23,286,718,286),new Vector4(590,196,718,196),
+                new Vector4(64,23,64,341),new Vector4(118,23,118,115),new Vector4(118,115,124,123),
+                new Vector4(178,23,178,221),new Vector4(178,221,200,286),
+                new Vector4(236,23,236,161),new Vector4(236,200,236,286),
+                new Vector4(297,23,297,286),new Vector4(363,23,363,123),
+                new Vector4(418,80,418,161),new Vector4(449,23,449,77),
+                new Vector4(474,77,474,420),new Vector4(533,77,533,161),
+                new Vector4(590,23,590,286),new Vector4(718,23,718,243),new Vector4(718,243,769,220)})
+                RoadSegment(CampusCatalog.Point(segment.x,segment.y),CampusCatalog.Point(segment.z,segment.w));
             foreach(var place in CampusCatalog.Places)Building(place);
             // Public Quad paths, open lawns and trees are deliberately navigable.
             Box(root,"Quad east west path",CampusCatalog.Point(394,213)+Vector3.up*.03f,new Vector3(143,.1f,2.4f),path);
@@ -34,14 +71,17 @@ namespace AlbionOdyssey
                 float x=260+(float)random.NextDouble()*520,y=85+(float)random.NextDouble()*330;
                 Vector3 pos=CampusCatalog.Point(x,y); bool blocked=false;
                 foreach(var p in CampusCatalog.Places)if(Mathf.Abs(pos.x-p.position.x)<p.width/2+8&&Mathf.Abs(pos.z-p.position.z)<p.depth/2+8){blocked=true;break;}
-                foreach(float rx in new[]{297f,363f,474f,590f,718f})if(Mathf.Abs(x-rx)<7)blocked=true;
-                foreach(float ry in new[]{77f,123f,161f,241f,286f})if(Mathf.Abs(y-ry)<7)blocked=true;
+                foreach(var segment in streets){var span=segment[1]-segment[0];var closest=segment[0]+span*Mathf.Clamp01(Vector3.Dot(pos-segment[0],span)/span.sqrMagnitude);if(Vector3.Distance(pos,closest)<8)blocked=true;}
                 if(!blocked)Tree(pos,i%3);
             }
 
             // Deliberate planting around the arrival terrace and Quad, clear of doors and roads.
             var ferguson=CampusExpansion.Find("26").position;
             foreach(var at in new[]{new Vector3(-22,0,-9),new Vector3(22,0,-9),new Vector3(-22,0,15),new Vector3(22,0,15),new Vector3(0,0,24),new Vector3(-20,0,28)})Tree(ferguson+at,1);
+            // Mature planting frames Wesley's historic frontage in the public reference photo.
+            var wesley=CampusExpansion.Find("50").position;
+            foreach(var at in new[]{new Vector3(-37,0,-30),new Vector3(37,0,-30),new Vector3(-37,0,18),new Vector3(37,0,18),new Vector3(-15,0,43),new Vector3(16,0,43)})Tree(wesley+at,1);
+            Box(root,"Wesley connection to Michigan Avenue",wesley+new Vector3(-3.4f,.02f,-57.2f),new Vector3(4,.04f,24),path);
             Combine();
         }
         static void Combine()
@@ -50,8 +90,14 @@ namespace AlbionOdyssey
             foreach(var filter in root.GetComponentsInChildren<MeshFilter>())
             {
                 var renderer=filter.GetComponent<MeshRenderer>();if(renderer==null||filter.sharedMesh==null)continue;
-                var material=renderer.sharedMaterial;if(!groups.ContainsKey(material))groups[material]=new List<CombineInstance>();
-                groups[material].Add(new CombineInstance{mesh=filter.sharedMesh,transform=filter.transform.localToWorldMatrix});renderer.enabled=false;
+                var materials=renderer.sharedMaterials;
+                for(int sub=0;sub<filter.sharedMesh.subMeshCount;sub++)
+                {
+                    if(sub>=materials.Length||materials[sub]==null)continue;
+                    var material=materials[sub];if(!groups.ContainsKey(material))groups[material]=new List<CombineInstance>();
+                    groups[material].Add(new CombineInstance{mesh=filter.sharedMesh,subMeshIndex=sub,transform=filter.transform.localToWorldMatrix});
+                }
+                renderer.enabled=false;
             }
             foreach(var entry in groups)
             {
@@ -59,12 +105,13 @@ namespace AlbionOdyssey
                 o.AddComponent<MeshFilter>().sharedMesh=mesh;o.AddComponent<MeshRenderer>().sharedMaterial=entry.Key;
             }
         }
-        static void Street(Vector3 pos,Vector3 size)
+        static void RoadSegment(Vector3 a,Vector3 b)
         {
-            Box(root,"Campus street",pos,size,road);
-            bool horizontal=size.x>size.z;
-            int n=Mathf.FloorToInt((horizontal?size.x:size.z)/12);
-            for(int i=0;i<n;i++)Box(root,"Road marking",pos+(horizontal?Vector3.right:Vector3.forward)*((i-n/2)*12)+Vector3.up*.07f,horizontal?new Vector3(4,.02f,.10f):new Vector3(.10f,.02f,4),stone,false);
+            streets.Add(new[]{a,b});var axis=b-a;float length=axis.magnitude;
+            var street=new GameObject("Map-traced street").transform;street.SetParent(root,false);street.position=(a+b)/2;street.rotation=Quaternion.LookRotation(axis);
+            Box(street,"Asphalt carriageway",Vector3.zero,new Vector3(8,.12f,length),road);
+            foreach(int side in new[]{-1,1})Box(street,"Pedestrian sidewalk",new Vector3(side*5.2f,.03f,0),new Vector3(2,.16f,length),path);
+            for(float z=-length/2+3;z<length/2-2;z+=12)Box(street,"Street centre dash",new Vector3(0,.07f,z),new Vector3(.1f,.02f,4),stone,false);
         }
         static GameObject[] oakTemplates;
         static void Tree(Vector3 p,int variant)
@@ -93,6 +140,7 @@ namespace AlbionOdyssey
                 }
                 Sign(t,p.name,new Vector3(0,3,-d/2-6),Mathf.Min(w,25));BuildingNameplate(t,p,3.35f,d);return;
             }
+            if(p.id=="44"){BuildInghamExterior(t,p);return;}
             Material wall=p.shape=="arts"||p.shape=="science"||p.shape=="gym"?stone:brick;
             Box(t,"Foundation",Vector3.up*.25f,new Vector3(w+.5f,.5f,d+.5f),stone);
             Box(t,"Facade",new Vector3(0,h/2,0),new Vector3(w,h,d),wall);

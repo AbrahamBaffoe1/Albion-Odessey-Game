@@ -1,0 +1,538 @@
+{
+  "status": "Pre-fit nominal clear rectangles, before the new geometry. Source length/width interpreted as clear rectangle dimensions; actual wall thickness and measurement method remain unverified.",
+  "rooms": 106,
+  "maxAxisErrorMetres": 2.2004,
+  "meanAxisErrorMetres": 0.1393801886792453,
+  "errors": [
+    {
+      "room": 21,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 23,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 25,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 27,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.511
+    },
+    {
+      "room": 32,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 34,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 36,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 38,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 31,
+      "widthErrorMetres": 0.1836,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 33,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 35,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 37,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 42,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 44,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.2062
+    },
+    {
+      "room": 46,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 48,
+      "widthErrorMetres": 0.1836,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 41,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 43,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 45,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 47,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.1808
+    },
+    {
+      "room": 119,
+      "widthErrorMetres": 0.0538,
+      "depthErrorMetres": 0.6154
+    },
+    {
+      "room": 132,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 134,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 136,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 138,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 121,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 123,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 125,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 127,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.3078
+    },
+    {
+      "room": 129,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 131,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.3078
+    },
+    {
+      "room": 133,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 135,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 137,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 142,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 144,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 146,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 148,
+      "widthErrorMetres": 0.1836,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 141,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 143,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 145,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 147,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 211,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.0566
+    },
+    {
+      "room": 213,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 215,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.082
+    },
+    {
+      "room": 217,
+      "widthErrorMetres": 0.1046,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 219,
+      "widthErrorMetres": 0.1046,
+      "depthErrorMetres": 0.6662
+    },
+    {
+      "room": 212,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.0566
+    },
+    {
+      "room": 214,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.1328
+    },
+    {
+      "room": 216,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.082
+    },
+    {
+      "room": 218,
+      "widthErrorMetres": 0.2954,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 200,
+      "widthErrorMetres": 2.2004,
+      "depthErrorMetres": 0.209
+    },
+    {
+      "room": 228,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 232,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 234,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 236,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 238,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 221,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 223,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 225,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 227,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 229,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 231,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 233,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.1046
+    },
+    {
+      "room": 235,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 237,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 242,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 244,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 246,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 248,
+      "widthErrorMetres": 0.1582,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 241,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 243,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1046
+    },
+    {
+      "room": 245,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 247,
+      "widthErrorMetres": 0.0566,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 311,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.082
+    },
+    {
+      "room": 313,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.1328
+    },
+    {
+      "room": 315,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 317,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 319,
+      "widthErrorMetres": 0.0792,
+      "depthErrorMetres": 0.6662
+    },
+    {
+      "room": 312,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.082
+    },
+    {
+      "room": 314,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 316,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.1074
+    },
+    {
+      "room": 318,
+      "widthErrorMetres": 0.3208,
+      "depthErrorMetres": 0.1582
+    },
+    {
+      "room": 326,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 328,
+      "widthErrorMetres": 0.1582,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 332,
+      "widthErrorMetres": 0.1582,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 334,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 336,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 338,
+      "widthErrorMetres": 0.0566,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 321,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 323,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.1046
+    },
+    {
+      "room": 325,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 327,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 329,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 331,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.384
+    },
+    {
+      "room": 333,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 335,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 337,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 342,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 344,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 346,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0538
+    },
+    {
+      "room": 348,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 341,
+      "widthErrorMetres": 0.1328,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 343,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0284
+    },
+    {
+      "room": 345,
+      "widthErrorMetres": 0.1074,
+      "depthErrorMetres": 0.0792
+    },
+    {
+      "room": 347,
+      "widthErrorMetres": 0.082,
+      "depthErrorMetres": 0.0538
+    }
+  ]
+}

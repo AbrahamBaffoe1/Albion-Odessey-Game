@@ -41,6 +41,10 @@ Art/References/*.zip
 .cursorignore
 CLAUDE.md
 
+
+# Generated service credentials and local provisioning state.
+Backend/Realtime/node_modules/
+
 .projects/cache
 .projects/vault
 .projects/state.test.json
@@ -49,6 +53,5 @@ CLAUDE.md
 .env.*
 !.env.example
 
-# Generated service credentials and local provisioning state.
+# Provider state is local; credentials and account metadata must not be published.
 .projects/
-Backend/Realtime/node_modules/

@@ -12,6 +12,11 @@ namespace AlbionOdyssey
     {
         public string type, session, id, display, text;
         public float x, y, z;
+        // Host-owned world replica: the in-game hour and weather (1 = snow) sent with "env" packets.
+        public float hour; public int snow;
+        public string world; // base64 CampusWorldSnapshot sent with "world" packets
+        // A joined player's driven car, sent with "car" packets: car is the 1-based car index (0 = none).
+        public int car; public float yaw, speed;
     }
 
     // A small LAN transport that keeps the game playable without a server. It provides
@@ -20,7 +25,7 @@ namespace AlbionOdyssey
     public sealed class CampusOnlineSession : MonoBehaviour
     {
         const int Port = 40777; const float RemoteTimeout = 4.5f;
-        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,nextJoin,lastHostSeen,openedAt; int joinAttempts; bool open, active, host;
+        OdysseyGame game; string hostId; float nextEnv, nextWorld, nextCar; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,nextJoin,lastHostSeen,openedAt; int joinAttempts; bool open, active, host;
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
@@ -45,7 +50,7 @@ namespace AlbionOdyssey
         }
         public bool HandleInput()
         {
-            if (!open && Input.GetKeyDown(KeyCode.F5)) { open = true; focus=0; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
+            if (!open && Input.GetKey(KeyCode.LeftShift)&&Input.GetKeyDown(KeyCode.F5)) { open = true; focus=0; openedAt=Time.unscaledTime; game.player.controls = false; Cursor.lockState = CursorLockMode.None; Cursor.visible = true; return true; }
             if (!open) return false;
             if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){if(cancel){ClosePanel();}else{if(vertical!=0||horizontal!=0)focus=(focus+(vertical!=0?(vertical>0?-1:1):(horizontal>0?1:-1))+6)%6;if(choose){if(focus==0)StartSession(true);else if(focus==1)StartSession(false);else if(focus==2)StopSession("");else if(focus==3)SendChat();else if(focus==4)CopyInvite();else ClosePanel();}}return true;}
             if (Input.GetKeyDown(KeyCode.Escape)) { ClosePanel(); return true; }
@@ -62,7 +67,50 @@ namespace AlbionOdyssey
             ReceivePackets();
             if (Time.unscaledTime >= nextHeartbeat) { SendPresence(); nextHeartbeat = Time.unscaledTime + 1.2f; }
             if (!host && Time.unscaledTime >= nextJoin) { SendJoin(); nextJoin = Time.unscaledTime + 2.4f; joinAttempts++; if (lastHostSeen > 0 && Time.unscaledTime - lastHostSeen > 6f) status = "Host not responding · retrying (" + joinAttempts + ")"; }
+            if (host && Time.unscaledTime >= nextEnv) { SendEnvironment(); nextEnv = Time.unscaledTime + 1f; }
+            if (host && Time.unscaledTime >= nextWorld) { SendWorld(); nextWorld = Time.unscaledTime + .2f; }
+            if (!host) { SyncFollower(); if (Time.unscaledTime >= nextCar) { SendDrivenCar(); nextCar = Time.unscaledTime + .1f; } }
             PruneRemotes();
+        }
+        // The host owns the world clock and weather; joined players mirror it instead of simulating their own.
+        void SendEnvironment()
+        {
+            if (game.environment == null || game.weather == null) return;
+            Send(new CampusNetPacket { type = "env", hour = game.environment.Hour, snow = game.weather.IsSnowing ? 1 : 0 }, broadcast);
+        }
+        // A joined player who is driving shares that car's pose so the host (and so everyone) sees it move.
+        void SendDrivenCar()
+        {
+            var vehicle = game.player != null ? game.player.vehicle : null; if (vehicle == null || game.campus == null) return;
+            int index = game.campus.cars.IndexOf(vehicle); if (index < 0) return;
+            var p = vehicle.transform.position;
+            Send(new CampusNetPacket { type = "car", car = index + 1, x = p.x, y = p.y, z = p.z, yaw = vehicle.transform.eulerAngles.y, speed = vehicle.speed }, broadcast);
+        }
+        void SendWorld()
+        {
+            if (game.replica == null) return;
+            Send(new CampusNetPacket { type = "world", world = game.replica.Capture().Encode() }, broadcast);
+        }
+        void ApplyWorld(CampusNetPacket packet)
+        {
+            if (host || hostId == null || hostId != packet.id || game.replica == null) return;
+            if (CampusWorldSnapshot.TryDecode(packet.world, out var snapshot)) game.replica.Apply(snapshot);
+        }
+        void SyncFollower()
+        {
+            bool following = hostId != null && Time.unscaledTime - lastEnvSeen <= 6f;
+            if (!following && hostId != null) hostId = null;
+            if (game.weather != null) game.weather.Replicated = following;
+            if (!following && game.replica != null) game.replica.SetFollowing(false);
+        }
+        float lastEnvSeen;
+        void ApplyEnvironment(CampusNetPacket packet)
+        {
+            if (host || float.IsNaN(packet.hour) || float.IsInfinity(packet.hour)) return;
+            if (hostId == null) hostId = packet.id; else if (hostId != packet.id) return;
+            lastEnvSeen = Time.unscaledTime; status = "Synced with host · " + CampusClock.Label(packet.hour);
+            if (game.environment != null) game.environment.ReceiveHost(packet.hour);
+            if (game.weather != null) { game.weather.Replicated = true; game.weather.ApplyReplicated(packet.snow == 1); }
         }
         void PruneRemotes()
         {
@@ -91,6 +139,9 @@ namespace AlbionOdyssey
                     if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
                     if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); AddChat(message); if (game != null) game.notice = message; if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
+                    if (packet.type == "env") ApplyEnvironment(packet);
+                    if (packet.type == "world") ApplyWorld(packet);
+                    if (packet.type == "car" && host && game.replica != null) game.replica.ApplyRemoteCar(packet.car - 1, new Vector3(packet.x, packet.y, packet.z), packet.yaw, packet.speed);
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
                 }
             }
@@ -138,7 +189,7 @@ namespace AlbionOdyssey
         }
         public void StopSession(string reason)
         {
-            active = false; if (socket != null) { socket.Close(); socket = null; } foreach (var remote in remotes.Values) if (remote.root != null) Destroy(remote.root); remotes.Clear(); if (reason.Length > 0) status = reason; else status = "Offline";
+            active = false; hostId = null; if (game != null && game.weather != null) game.weather.Replicated = false; if (game != null && game.replica != null) game.replica.SetFollowing(false); if (socket != null) { socket.Close(); socket = null; } foreach (var remote in remotes.Values) if (remote.root != null) Destroy(remote.root); remotes.Clear(); if (reason.Length > 0) status = reason; else status = "Offline";
         }
         public void Block(string id)
         {
@@ -159,7 +210,7 @@ namespace AlbionOdyssey
             if (title == null) { title = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.DisplayFont,fontSize = AlbionUITheme.TextSize(27), fontStyle = FontStyle.Bold }; title.normal.textColor=new Color(.96f,.94f,.86f); text = new GUIStyle(GUI.skin.label) { font=AlbionUITheme.BodyFont,fontSize = AlbionUITheme.TextSize(17), wordWrap = true }; text.normal.textColor=new Color(.88f,.88f,.92f); button = AlbionUITheme.Button(16); }
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f); GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1)); GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion); float w = Screen.width / scale, h = Screen.height / scale; Rect safe = AlbionUITheme.SafeArea(scale); float x = Mathf.Clamp((w - 800) * .5f, safe.xMin + 24, safe.xMax - 800 - 24);
             GUI.color = new Color(.025f, .028f, .052f, .98f); GUI.DrawTexture(new Rect(0, 0, w, h), Texture2D.whiteTexture); GUI.color = Color.white;
-            GUI.Label(new Rect(x, 70, 760, 45), "SHARED CAMPUS SESSION", title); GUI.Label(new Rect(x, 125, 760, 54), "F5 opens this panel. Host or join a small LAN world. Player movement is synchronized and the host can remove a player.", text);
+            GUI.Label(new Rect(x, 70, 760, 45), "SHARED CAMPUS SESSION", title); GUI.Label(new Rect(x, 125, 760, 54), "Shift + F5 opens the LAN panel. Host or join a small LAN world. Player movement is synchronized and the host can remove a player.", text);
             GUI.Label(new Rect(x, 205, 140, 30), "WORLD CODE", text); session = GUI.TextField(new Rect(x + 150, 202, 250, 36), session, 18).ToUpperInvariant();
             GUI.Label(new Rect(x, 260, 140, 30), "DISPLAY NAME", text); display = GUI.TextField(new Rect(x + 150, 257, 250, 36), display, 24);
             if (GUI.Button(new Rect(x, 325, 190, 44), (focus==0?"▶  ":"") + "Host world", button)) { focus=0; StartSession(true); }

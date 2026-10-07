@@ -30,9 +30,13 @@ namespace AlbionOdyssey
         public CampusOnlineSession online;
         public StudentAccountService accounts;
         public StudentAccountPanel accountPanel;
+        public CampusSharedSession shared;
         public OdysseyVrSupport vr;
         public OdysseyXRExperience xr;
         public CampusWeather weather;
+        public CampusEnvironment environment;
+        public CampusWorldReplica replica;
+        public AlbionCity city;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press your interact key.";
@@ -75,6 +79,12 @@ namespace AlbionOdyssey
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
             }
             loading.Report("Loading architecture and materials",1);yield return null;
+            var warmAssets=new List<UnityEngine.Object>();
+            foreach(var path in new[]{"CampusCraft/Student","Vehicles/CampusCoupe","Wildlife/Squirrel_Leucistic"})
+            {
+                var request=Resources.LoadAsync<GameObject>(path);yield return request;
+                if(request.asset==null)throw new InvalidOperationException("Required campus asset is unavailable.");warmAssets.Add(request.asset);
+            }
             TowerGeometry.Load();
             crashReporter=gameObject.AddComponent<OdysseyCrashReporter>();crashReporter.Setup(this);
             var guide=new GameObject("Pip the squirrel guide");guide.transform.position=new Vector3(5,1.2f,-15);
@@ -119,10 +129,15 @@ namespace AlbionOdyssey
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
             weather=gameObject.AddComponent<CampusWeather>();weather.Setup(this);
+            environment=gameObject.AddComponent<CampusEnvironment>();environment.Setup(this);
+            replica=gameObject.AddComponent<CampusWorldReplica>();replica.Setup(this);
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
+            city=gameObject.AddComponent<AlbionCity>();city.Setup(this); // after the campus students so city pedestrians are appended in a fixed order
+            CampusStudentNavigation.BuildPaths();
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
-            accounts=gameObject.AddComponent<StudentAccountService>();accounts.Setup();
+            accounts=gameObject.AddComponent<StudentAccountService>();accounts.Setup();accounts.ProfileChanged+=campus.ApplyOnlineAvatar;
+            shared=gameObject.AddComponent<CampusSharedSession>();shared.Setup(this);
             accountPanel=gameObject.AddComponent<StudentAccountPanel>();accountPanel.Setup(this);
             vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);
             xr=gameObject.AddComponent<OdysseyXRExperience>();xr.Setup(this);
@@ -140,6 +155,7 @@ namespace AlbionOdyssey
         {
             if(!Ready||player==null||loading!=null&&loading.Busy)return;
             if(repairs!=null&&repairs.HandleInput())return;
+            if(shared!=null&&shared.HandleInput())return;
             if(accountPanel!=null&&accountPanel.HandleInput())return;
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
@@ -147,6 +163,7 @@ namespace AlbionOdyssey
             if(shell!=null&&shell.HandleInput())return;
             if(weather!=null&&weather.HandleInput())return;
             if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.HandleInput())return;
+            if(city!=null&&city.HandleInput())return;
             if(tour!=null&&tour.HandleInput())return;
             if(campus!=null&&campus.HandleInput())return;
             if(life!=null&&life.HandleInput())return;

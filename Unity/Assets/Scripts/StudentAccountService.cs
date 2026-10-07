@@ -7,14 +7,15 @@ using UnityEngine.Networking;
 
 namespace AlbionOdyssey
 {
-    [Serializable] public sealed class StudentAccountConfig { public string url, publishableKey; }
+    [Serializable] public sealed class StudentAccountConfig { public string url, publishableKey, provider; }
     [Serializable] public sealed class StudentAuthUser { public string id, email, email_confirmed_at; }
     [Serializable] public sealed class StudentAuthSession { public string access_token, refresh_token; public int expires_in; public StudentAuthUser user; }
-    [Serializable] public sealed class StudentOnlineProfile { public string id, display_name; }
+    [Serializable] public sealed class StudentOnlineProfile { public string id, display_name; public int avatar_skin,avatar_outfit,avatar_hair; public bool avatar_backpack,avatar_ready; }
     [Serializable] sealed class StudentProfileRows { public StudentOnlineProfile[] rows; }
     [Serializable] sealed class EmailCodeRequest { public string email; public bool create_user; }
     [Serializable] sealed class VerifyEmailCodeRequest { public string email, token; public string type = "email"; }
     [Serializable] sealed class RefreshAccountRequest { public string refresh_token; }
+    [Serializable] sealed class ProfileAvatarRequest { public int avatar_skin,avatar_outfit,avatar_hair; public bool avatar_backpack,avatar_ready=true; }
     [Serializable] sealed class ProfileNameRequest { public string display_name; }
 
     // Only the public project key ships in the player. Sessions exist in memory;
@@ -25,10 +26,17 @@ namespace AlbionOdyssey
         StudentAuthSession session;
         UnityWebRequest currentRequest;
         float refreshAt, resendAt;
+        float requestStarted;
+        public float BusySeconds => Busy ? Mathf.Max(0,Time.realtimeSinceStartup-requestStarted) : 0;
+        public bool HasError {get;private set;}
+        public string BusyHint => BusySeconds>15 ? "The online server is waking up. Keep this screen open…" : "Connecting securely…";
         string pendingEmail;
+        public StudentOnlineProfile Profile {get;private set;}
+        public event Action ProfileChanged;
+        internal string AccessToken=>SignedIn?session.access_token:"";
         public bool Busy { get; private set; }
         public bool SignedIn => session != null && session.user != null;
-        public bool Configured => config != null && Uri.TryCreate(config.url, UriKind.Absolute, out var uri) && uri.Scheme == "https" && !string.IsNullOrEmpty(config.publishableKey) && config.publishableKey.StartsWith("sb_publishable_");
+        public bool Configured => config != null && Uri.TryCreate(config.url, UriKind.Absolute, out var uri) && uri.Scheme == "https" && (config.provider=="neon" || (!string.IsNullOrEmpty(config.publishableKey) && config.publishableKey.StartsWith("sb_publishable_")));
         public string UserId => SignedIn ? session.user.id : "";
         public string Email => SignedIn ? session.user.email : "";
         public string DisplayName { get; private set; } = "Student";
@@ -57,10 +65,11 @@ namespace AlbionOdyssey
             foreach (char c in name) if (char.IsControl(c) || c == '<' || c == '>') return false;
             return true;
         }
+        public void ChangeEmail(){if(Busy||SignedIn)return;pendingEmail=null;HasError=false;Status="Enter your email to continue.";}
         public void RequestCode(string email, bool createAccount)
         {
             if (Busy || !Configured || SignedIn) return;
-            if (!ValidEmail(email)) { Status = "Enter a valid email address."; return; }
+            if (!ValidEmail(email)) { HasError=true; Status = "Enter a valid email address."; return; }
             if (ResendSeconds > 0) { Status = "Wait " + ResendSeconds + " seconds before requesting another code."; return; }
             StartCoroutine(SendCode(email.Trim(), createAccount));
         }
@@ -74,10 +83,13 @@ namespace AlbionOdyssey
         }
         public void VerifyCode(string code)
         {
-            if (Busy || !Configured || !CodeRequested || SignedIn) return;
-            code = (code ?? "").Trim();
-            if (code.Length < 6 || code.Length > 10) { Status = "Enter the code from your email."; return; }
-            foreach (char c in code) if (c < '0' || c > '9') { Status = "The email code contains digits only."; return; }
+            if (Busy || SignedIn) return;
+            if(!Configured){HasError=true;Status="Accounts are unavailable in this build.";return;}
+            if(!CodeRequested){HasError=true;Status="Request an email code first.";return;}
+            code = (code ?? "").Trim().Replace(" ","").Replace("-","");
+            HasError=false;
+            if (code.Length < 6 || code.Length > 10) { HasError=true;Status = "Enter all the digits from your newest email code."; return; }
+            foreach (char c in code) if (c < '0' || c > '9') { HasError=true;Status = "The email code contains digits only."; return; }
             StartCoroutine(Verify(code));
         }
         IEnumerator Verify(string code)
@@ -102,22 +114,22 @@ namespace AlbionOdyssey
                 if (value != null && !string.IsNullOrEmpty(value.access_token) && !string.IsNullOrEmpty(value.refresh_token) && value.expires_in > 0 && value.user != null && Guid.TryParse(value.user.id, out _) && !string.IsNullOrEmpty(value.user.email_confirmed_at)) return value;
             }
             catch { }
-            Status = "The service did not return a verified session. Request a new code.";
+            HasError=true;Status = "The service did not return a verified session. Request a new code.";
             return null;
         }
         IEnumerator LoadProfile()
         {
             ProfileLoaded = false;
-            yield return Request("/rest/v1/student_profiles?select=id,display_name&id=eq." + UserId, "GET", null, true, (ok, body) =>
+            yield return Request("/rest/v1/student_profiles?select=id,display_name,avatar_skin,avatar_outfit,avatar_hair,avatar_backpack,avatar_ready&id=eq." + UserId, "GET", null, true, (ok, body) =>
             {
                 if (!ok) return;
                 try
                 {
                     var rows = JsonUtility.FromJson<StudentProfileRows>("{\"rows\":" + body + "}").rows;
-                    if (rows.Length == 1 && rows[0].id == UserId) { DisplayName = rows[0].display_name; ProfileLoaded = true; Status = "Signed in. Your student profile is stored online."; return; }
+                    if (rows.Length == 1 && rows[0].id == UserId) { Profile=rows[0];DisplayName = rows[0].display_name; ProfileLoaded = true;ProfileChanged?.Invoke(); Status = "Signed in. Your student profile is stored online."; return; }
                 }
                 catch { }
-                Status = "Signed in, but your profile could not load. Use Reload profile.";
+                HasError=true;Status = "Signed in, but your profile could not load. Use Reload profile.";
             });
         }
         public void ReloadProfile() { if (SignedIn && !Busy) StartCoroutine(Reload()); }
@@ -132,8 +144,30 @@ namespace AlbionOdyssey
         {
             Busy = true;
             yield return Request("/rest/v1/student_profiles?id=eq." + UserId, "PATCH", JsonUtility.ToJson(new ProfileNameRequest { display_name = value }), true,
-                (ok, body) => { if (ok) { DisplayName = value; Status = "Your profile was saved online."; } });
+                (ok, body) => { if (ok) { DisplayName = value;if(Profile!=null)Profile.display_name=value;ProfileChanged?.Invoke(); Status = "Your profile was saved online."; } });
             Busy = false;
+        }
+        public bool SaveAvatar(int skin,int outfit,int hair,bool backpack)
+        {
+            if(!SignedIn||Busy||!ProfileLoaded)return false;
+            if(skin<0||skin>4||outfit<0||outfit>4||hair<0||hair>2)return false;
+            StartCoroutine(StoreAvatar(new ProfileAvatarRequest{avatar_skin=skin,avatar_outfit=outfit,avatar_hair=hair,avatar_backpack=backpack}));return true;
+        }
+        public void GenerateAvatar()
+        {
+            if(!SignedIn||Busy||!ProfileLoaded)return;
+            int outfit=UnityEngine.Random.Range(0,5);if(outfit==Profile.avatar_outfit)outfit=(outfit+1)%5;
+            SaveAvatar(UnityEngine.Random.Range(0,5),outfit,UnityEngine.Random.Range(0,3),UnityEngine.Random.value>.3f);
+        }
+        IEnumerator StoreAvatar(ProfileAvatarRequest look)
+        {
+            Busy=true;Status="Saving your 3D avatar…";
+            yield return Request("/rest/v1/student_profiles?id=eq."+UserId,"PATCH",JsonUtility.ToJson(look),true,(ok,body)=>
+            {
+                if(!ok)return;
+                Profile.avatar_skin=look.avatar_skin;Profile.avatar_outfit=look.avatar_outfit;Profile.avatar_hair=look.avatar_hair;Profile.avatar_backpack=look.avatar_backpack;Profile.avatar_ready=true;
+                ProfileChanged?.Invoke();Status="Your avatar is saved online. It follows your account.";
+            });Busy=false;
         }
         void Update()
         {
@@ -156,23 +190,27 @@ namespace AlbionOdyssey
             ClearSession(); Busy = false;
             Status = revoked ? "Signed out. Your profile remains safely stored online." : "Signed out on this device. The server could not confirm session revocation.";
         }
-        void ClearSession() { session = null; DisplayName = "Student"; ProfileLoaded = false; pendingEmail = null; }
+        void ClearSession() { session = null; DisplayName = "Student"; ProfileLoaded = false;Profile=null; pendingEmail = null;ProfileChanged?.Invoke(); }
         IEnumerator Request(string path, string method, string body, bool authenticated, Action<bool, string> finished)
         {
             using (var request = new UnityWebRequest(config.url.TrimEnd('/') + path, method))
             {
-                currentRequest = request; request.timeout = 20; request.redirectLimit = 0;
+                currentRequest = request; requestStarted=Time.realtimeSinceStartup; HasError=false; request.timeout = 90; request.redirectLimit = 0;
                 request.downloadHandler = new DownloadHandlerBuffer();
-                request.SetRequestHeader("apikey", config.publishableKey);
+                if(!string.IsNullOrEmpty(config.publishableKey))request.SetRequestHeader("apikey", config.publishableKey);
                 if (authenticated) request.SetRequestHeader("Authorization", "Bearer " + session.access_token);
                 if (body != null) { request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(body)); request.SetRequestHeader("Content-Type", "application/json"); }
                 yield return request.SendWebRequest();
                 bool ok = request.result == UnityWebRequest.Result.Success;
                 if (!ok)
                 {
+                    HasError=true;
+                    Debug.LogWarning("ACCOUNT_REQUEST_FAILED operation="+(path.Contains("verify")?"verify":path.Contains("otp")?"send-code":"profile/session")+" http="+request.responseCode+" result="+request.result);
                     Status = request.responseCode == 429 ? "Too many requests. Wait a little before trying again." :
-                        request.responseCode == 0 ? "Cannot reach accounts. Check your connection and try again." :
-                        path.Contains("verify") ? "That code is invalid or expired. Request a new code." :
+                        request.responseCode == 503 ? "The account service is temporarily unavailable. Please try again shortly." :
+                        request.responseCode == 0 ? "The server did not respond. Try again; if your code expired, request a new one." :
+                        path.Contains("verify") && (request.responseCode == 400 || request.responseCode == 401) ? "That code is invalid, expired, or already used. Request a fresh code." :
+                        path.Contains("verify") ? "Sign-in could not finish. Please try again shortly." :
                         path.Contains("otp") ? "The code could not be sent. Check your email. New here? Choose Create account." : "The account request failed. Please try again.";
                 }
                 finished(ok, ok ? request.downloadHandler.text : "");

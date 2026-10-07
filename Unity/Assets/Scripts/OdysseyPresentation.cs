@@ -7,7 +7,7 @@ namespace AlbionOdyssey
     // game assets, not promotional images standing in for gameplay.
     public static class OdysseyUI
     {
-        public static readonly Color Navy=new Color(.012f,.022f,.048f), Surface=new Color(.032f,.058f,.104f), Gold=new Color(1f,.74f,.16f), White=new Color(.97f,.98f,1), Muted=new Color(.64f,.73f,.83f), Mint=new Color(.36f,.92f,.78f);
+        public static readonly Color Navy=new Color(.018f,.019f,.018f), Surface=new Color(.105f,.061f,.025f), Gold=new Color(1f,.43f,.035f), White=new Color(.92f,.93f,.90f), Muted=new Color(.64f,.65f,.61f), Mint=new Color(.12f,.83f,.86f);
         static Texture2D round,gradient;
         static GUIStyle panel;
         static readonly Dictionary<int,GUIStyle> fonts=new Dictionary<int,GUIStyle>();
@@ -17,38 +17,50 @@ namespace AlbionOdyssey
             int key=size*2+(bold?1:0);
             if(!fonts.TryGetValue(key,out var style))
             {
-                style=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(size),fontStyle=bold?FontStyle.Bold:FontStyle.Normal,wordWrap=true,richText=false};
+                style=new GUIStyle(GUI.skin.label){font=size>=28?AlbionUITheme.DisplayFont:AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(size),fontStyle=bold?FontStyle.Bold:FontStyle.Normal,wordWrap=true,richText=false};
                 style.normal.textColor=Color.white;fonts[key]=style;
             }
             style.fontSize=AlbionUITheme.TextSize(size);return style;
         }
-        public static void Fill(Rect r,Color c){var old=GUI.color;GUI.color=c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=old;}
+        public static void Fill(Rect r,Color c){var old=GUI.color;GUI.color=QualitySettings.activeColorSpace==ColorSpace.Linear?c.linear:c;GUI.DrawTexture(r,Texture2D.whiteTexture);GUI.color=old;}
         public static void Text(Rect r,string value,int size,Color c,bool bold=false){var old=GUI.contentColor;GUI.contentColor=c;GUI.Label(r,value,Font(size,bold));GUI.contentColor=old;}
         public static void Card(Rect r,Color c)
         {
-            if(round==null)
+            Fill(r,c); Frame(r,new Color(Gold.r,Gold.g,Gold.b,.24f));
+        }
+        public static void Frame(Rect r,Color c,float thickness=1)
+        {Fill(new Rect(r.x,r.y,r.width,thickness),c);Fill(new Rect(r.x,r.yMax-thickness,r.width,thickness),c);Fill(new Rect(r.x,r.y,thickness,r.height),c);Fill(new Rect(r.xMax-thickness,r.y,thickness,r.height),c);}
+        static Texture2D lineCanvas;static Color32[] linePixels;static bool raster;
+        public static void BeginLineCanvas(int width,int height)
+        {
+            raster=true;if(Event.current.type!=EventType.Repaint)return;
+            if(lineCanvas==null||lineCanvas.width!=width||lineCanvas.height!=height){if(lineCanvas!=null)Object.Destroy(lineCanvas);lineCanvas=new Texture2D(width,height,TextureFormat.RGBA32,false){filterMode=FilterMode.Bilinear};linePixels=new Color32[width*height];}
+            System.Array.Clear(linePixels,0,linePixels.Length);
+        }
+        public static void EndLineCanvas()
+        {
+            raster=false;if(Event.current.type!=EventType.Repaint)return;lineCanvas.SetPixels32(linePixels);lineCanvas.Apply(false);var c=GUI.color;GUI.color=Color.white;GUI.DrawTexture(new Rect(0,0,lineCanvas.width,lineCanvas.height),lineCanvas);GUI.color=c;
+        }
+        public static void Line(Vector2 a,Vector2 b,Color c,float thickness=1)
+        {
+            if(Event.current.type!=EventType.Repaint)return;
+            if(raster)
             {
-                round=new Texture2D(32,32,TextureFormat.RGBA32,false);round.wrapMode=TextureWrapMode.Clamp;
-                for(int y=0;y<32;y++)for(int x=0;x<32;x++)
-                {float dx=Mathf.Max(8-x,0,x-23),dy=Mathf.Max(8-y,0,y-23);round.SetPixel(x,y,new Color(1,1,1,Mathf.Clamp01(8.5f-Mathf.Sqrt(dx*dx+dy*dy))));}
-                round.Apply();panel=new GUIStyle{border=new RectOffset(10,10,10,10)};panel.normal.background=round;
+                int count=Mathf.CeilToInt(Mathf.Max(Mathf.Abs(b.x-a.x),Mathf.Abs(b.y-a.y)));int width=lineCanvas.width,height=lineCanvas.height;
+                for(int i=0;i<=count;i++){var p=Vector2.Lerp(a,b,count==0?0:i/(float)count);int x=Mathf.RoundToInt(p.x),y=Mathf.RoundToInt(p.y);for(int j=0;j<Mathf.CeilToInt(thickness);j++)if(x>=0&&x<width&&y+j>=0&&y+j<height)linePixels[(height-1-y-j)*width+x]=c;}
+                return;
             }
-            var color=GUI.color;var background=GUI.backgroundColor;GUI.color=c;GUI.backgroundColor=Color.white;GUI.Box(r,GUIContent.none,panel);GUI.color=color;GUI.backgroundColor=background;
+            var m=GUI.matrix;GUI.matrix=m*Matrix4x4.TRS(new Vector3(a.x,a.y,0),Quaternion.Euler(0,0,Mathf.Atan2(b.y-a.y,b.x-a.x)*Mathf.Rad2Deg),Vector3.one);Fill(new Rect(0,0,(b-a).magnitude,thickness),c);GUI.matrix=m;
         }
         public static bool Button(Rect r,string label,string id,bool selected=false,bool primary=false)
         {
-            bool over=GUI.enabled&&r.Contains(Event.current.mousePosition);
-            hover.TryGetValue(id,out float t);
-            if(Event.current.type==EventType.Repaint){t=OdysseyAccessibility.ReducedMotion?(over||selected?1:0):Mathf.MoveTowards(t,over||selected?1:0,Time.unscaledDeltaTime*9);hover[id]=t;}
-            Rect visual=r;visual.y-=t*2;
-            Card(new Rect(visual.x,visual.y+4,visual.width,visual.height),new Color(0,0,0,.25f));
-            Card(visual,primary?Gold:Color.Lerp(Surface,new Color(.12f,.23f,.34f),t));
-            if(selected&&!primary&&r.width>=160)Fill(new Rect(visual.x+12,visual.y+12,3,visual.height-24),Mint);
-            float padding=r.width<160?10:24;int size=r.height<44||r.width<160?14:18;float textHeight=Mathf.Min(r.height,AlbionUITheme.TextSize(size)+10);
-            Text(new Rect(visual.x+padding,visual.y+(visual.height-textHeight)*.5f,visual.width-padding*2,textHeight),label,size,primary?Navy:White,true);
-            bool hit=GUI.Button(r,GUIContent.none,GUIStyle.none);
-            if(hit)OdysseyPresentation.Instance?.Click();
-            return hit;
+            bool over=GUI.enabled&&r.Contains(Event.current.mousePosition),active=selected||over||primary;
+            Fill(r,!GUI.enabled?new Color(.06f,.06f,.055f):active?Gold:Surface);
+            Fill(new Rect(r.x,r.yMax-1,r.width,1),new Color(1,.43f,.035f,active?1:.3f));
+            if(over||selected)Frame(new Rect(r.x-2,r.y-2,r.width+4,r.height+4),new Color(1,.55f,.08f,.5f));
+            float padding=r.width<160?9:16;int size=r.height<44||r.width<160?14:18;float th=Mathf.Min(r.height,AlbionUITheme.TextSize(size)+10);
+            Text(new Rect(r.x+padding,r.y+(r.height-th)*.5f,r.width-padding*2,th),label.ToUpperInvariant(),size,!GUI.enabled?Muted:active?Navy:Gold,false);
+            bool hit=GUI.Button(r,GUIContent.none,GUIStyle.none);if(hit){GUIUtility.keyboardControl=0;OdysseyPresentation.Instance?.Click();}return hit;
         }
         public static void Shade(Rect r)
         {

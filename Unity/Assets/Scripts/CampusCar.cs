@@ -10,6 +10,23 @@ namespace AlbionOdyssey
         public void Configure(OdysseyGame game,int id){Game=game;CarId=id;Visual.ApplyDamage(Damage);}
         public float speed; public BoxCollider hull; public Explorer driver;
         public CampusVehicleVisual Visual {get;private set;}
+        // True while a LAN host drives this car's pose; a car the local player is driving is never overwritten.
+        public bool Replicated{get;set;}
+        Vector3 replicaPosition;float replicaYaw;bool hasReplica;
+        public void ApplyReplicated(Vector3 position,float yaw,float hostSpeed)
+        {
+            if(driver!=null)return;
+            if(!hasReplica)transform.SetPositionAndRotation(position,Quaternion.Euler(0,yaw,0));
+            replicaPosition=position;replicaYaw=yaw;speed=hostSpeed;hasReplica=true;
+        }
+        void Update()
+        {
+            if(!Replicated||driver!=null||!hasReplica)return;
+            float blend=Mathf.Clamp01(Time.deltaTime*10f);
+            Vector3 next=(replicaPosition-transform.position).sqrMagnitude>100f?replicaPosition:Vector3.Lerp(transform.position,replicaPosition,blend);
+            transform.SetPositionAndRotation(next,Quaternion.Slerp(transform.rotation,Quaternion.Euler(0,replicaYaw,0),blend));
+            Visual?.Animate(speed*Time.deltaTime,0,false,Time.deltaTime);
+        }
         public void Build(Color color)
         {
             Visual=gameObject.AddComponent<CampusVehicleVisual>();Visual.Build(color);
@@ -54,7 +71,7 @@ namespace AlbionOdyssey
                 Vector3 next=transform.position+movement;
                 foreach(var hit in Physics.OverlapBox(next+Vector3.up*.85f,half,turn,~0,QueryTriggerInteraction.Ignore))
                     if(hit.GetComponentInParent<CampusStudentImpact>()==null)blocked=true;
-                blocked|=Mathf.Abs(next.x)>570||next.z<100||next.z>805;
+                blocked|=next.x>570||next.x<-1270||next.z<100||next.z>805;
                 // Only reach students in front of the first wall, including targets already touching the hull.
                 if(Mathf.Abs(speed)>=2.5f)
                 {

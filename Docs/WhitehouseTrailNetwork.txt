@@ -1,0 +1,12 @@
+Whitehouse Nature Center — mapped exploration foundation
+
+F7 enters/exits the separate explorable trail world. F6 remains the existing multiplayer runner; its straight race course has not yet been converted to follow this network.
+
+Source: https://www.albion.edu/wp-content/uploads/2021/09/whitehouse-nature-center-trail-map-1.pdf
+Map dated 2018-10-02, by Alyssa Olson and Michael McRivette, Albion College Geology Department.
+
+73 vector path pieces, 2187 vertices, six named trail families. Legend strokes excluded. Dashed connectors remain separate pieces, rather than silently inventing missing line segments. Scale inferred from the 0.2-mile bar; visitor origin estimated from the map. Trail width, flat ground and tree placements are provisional. The map is a cartographic source, not a surveyed current terrain model.
+
+Current official Trails page reports McIntyre Marsh closed pending repairs; game signs retain that status. The Rail Trail is a former interurban railway bed, not the operational railroad depicted separately on the map.
+
+Still needed: river/wetland polygons, bridges and boardwalks, elevation data, habitat-specific planting, visitor building and campus connection. Actual race-path following and junction choices are not implemented yet.

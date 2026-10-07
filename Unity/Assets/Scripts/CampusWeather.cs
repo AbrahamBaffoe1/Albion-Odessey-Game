@@ -27,6 +27,8 @@ namespace AlbionOdyssey
         int transitions;
         bool ready;
 
+        /// <summary>True while a LAN host owns the weather; local toggles and timers are paused.</summary>
+        public bool Replicated{get;set;}
         public CampusWeatherState State=>state;
         public bool IsSnowing=>state==CampusWeatherState.Snow;
         public int SnowTransitions=>transitions;
@@ -63,9 +65,41 @@ namespace AlbionOdyssey
 
         void BuildSnowCover()
         {
-            snowCover=GameObject.CreatePrimitive(PrimitiveType.Cube);snowCover.name="Campus snow blanket · visual only";
-            snowCover.transform.position=new Vector3(0,.095f,450);snowCover.transform.localScale=new Vector3(1200f,.07f,750f);
-            Destroy(snowCover.GetComponent<Collider>());snowCover.GetComponent<Renderer>().sharedMaterial=snowMaterial=TowerGeometry.Material("Campus snow cover",new Color(.80f,.87f,.94f),0,.82f);
+            snowCover=new GameObject("Campus snow blanket · visual only");
+            snowMaterial=TowerGeometry.Material("Campus snow cover",new Color(.80f,.87f,.94f),0,.82f);
+            var tiles=new List<Rect>(CampusGeometry.GroundTiles);
+            foreach(var place in CampusCatalog.Places)
+            {
+                var building=CampusBuildings.Instance.Building(place.id);if(building==null)continue;
+                var regions=building.Plan!=null?building.Plan.floors[0].footprints:new[]{new WesleyRect{x=0,z=0,width=building.Width,depth=building.Depth}};
+                foreach(var region in regions)
+                {
+                    var a=building.Root.transform.TransformPoint(new Vector3(region.x-region.width/2,0,region.z-region.depth/2));
+                    var b=building.Root.transform.TransformPoint(new Vector3(region.x+region.width/2,0,region.z+region.depth/2));
+                    var hole=Rect.MinMaxRect(Mathf.Min(a.x,b.x)-.1f,Mathf.Min(a.z,b.z)-.1f,Mathf.Max(a.x,b.x)+.1f,Mathf.Max(a.z,b.z)+.1f);
+                    tiles=SubtractSnowFootprint(tiles,hole);
+                }
+            }
+            var ferguson=CampusBuildings.Instance.Origin;
+            tiles=SubtractSnowFootprint(tiles,new Rect(ferguson.x-15.7f,ferguson.z-5.95f,31.4f,11.9f));
+            foreach(var tile in tiles)
+                KeeperAvatar.Part(snowCover.transform,"Snow ground tile",PrimitiveType.Cube,new Vector3(tile.center.x,.095f,tile.center.y),new Vector3(tile.width,.07f,tile.height),snowMaterial,false);
+        }
+
+        static List<Rect> SubtractSnowFootprint(List<Rect> tiles,Rect hole)
+        {
+            var result=new List<Rect>();
+            foreach(var tile in tiles)
+            {
+                float x0=Mathf.Max(tile.xMin,hole.xMin),x1=Mathf.Min(tile.xMax,hole.xMax),z0=Mathf.Max(tile.yMin,hole.yMin),z1=Mathf.Min(tile.yMax,hole.yMax);
+                if(x1<=x0||z1<=z0){result.Add(tile);continue;}
+                // Four non-overlapping strips retain the outdoor part of this tile.
+                if(x0>tile.xMin)result.Add(Rect.MinMaxRect(tile.xMin,tile.yMin,x0,tile.yMax));
+                if(x1<tile.xMax)result.Add(Rect.MinMaxRect(x1,tile.yMin,tile.xMax,tile.yMax));
+                if(z0>tile.yMin)result.Add(Rect.MinMaxRect(x0,tile.yMin,x1,z0));
+                if(z1<tile.yMax)result.Add(Rect.MinMaxRect(x0,z1,x1,tile.yMax));
+            }
+            return result;
         }
 
         void BuildRoofCaps()
@@ -101,9 +135,11 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if(!ready||game==null||game.life!=null&&game.life.PanelOpen)return false;
-            if(Input.GetKeyDown(KeyCode.Y)){SetSnow(!IsSnowing,false);return true;}
+            if(Input.GetKeyDown(KeyCode.Y)){if(Replicated){game.notice="The host controls the weather in this shared campus.";return true;}SetSnow(!IsSnowing,false);return true;}
             return false;
         }
+
+        public void ApplyReplicated(bool snowing){if(!ready||snowing==IsSnowing)return;SetSnow(snowing,true);}
 
         public void SetSnowForVerification(bool enabled){if(!ready)return;SetSnow(enabled,true);}
 
@@ -120,7 +156,7 @@ namespace AlbionOdyssey
         void Update()
         {
             if(!ready||game==null)return;
-            if(Time.time>=nextTransition)SetSnow(!IsSnowing,false);
+            if(!Replicated&&Time.time>=nextTransition)SetSnow(!IsSnowing,false);
             if(flakeRoot!=null&&game.player!=null)
             {
                 flakeRoot.transform.position=game.player.transform.position+Vector3.up*7f;

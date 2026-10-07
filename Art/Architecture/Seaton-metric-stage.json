@@ -1,0 +1,4728 @@
+{
+  "building": "Seaton metric fitting experiment",
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Seaton-Floor-Plan-and-Room-Dimensions.pdf",
+  "sourcePages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "110 published room rectangles fitted inside a uniformly expanded provisional topology. Infill and expanded shell are experimental, not source-backed architecture.",
+  "width": 75.68074285714285,
+  "depth": 37.005711627906976,
+  "floorHeight": 3.2,
+  "entryX": 5.057871428571428,
+  "rotation": 180,
+  "baseElevation": -2.4,
+  "floors": [
+    {
+      "level": 0,
+      "name": "Ground",
+      "footprints": [
+        {
+          "x": 2.872371428571428,
+          "z": -11.705888372093025,
+          "width": 69.93599999999999,
+          "depth": 13.593934883720932
+        },
+        {
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "x": 31.09654285714285,
+          "z": 6.796967441860466,
+          "width": 13.487657142857142,
+          "depth": 23.41177674418605
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs east end",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "name": "Stairs middle",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 13.799871428571427,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Stairs Baldwin end",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 33.78158571428571,
+          "z": 15.607851162790698,
+          "width": 8.117571428571427,
+          "depth": 5.790009302325581
+        },
+        {
+          "name": "Bathroom east",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -27.724628571428568,
+          "z": -7.615120930232558,
+          "width": 8.741999999999999,
+          "depth": 5.4124
+        },
+        {
+          "name": "Bathroom west",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 25.03958571428571,
+          "z": -7.615120930232558,
+          "width": 9.36642857142857,
+          "depth": 5.4124
+        },
+        {
+          "name": "24-H",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -8.148520930232557,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "25",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -8.148520930232557,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "26",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428567,
+          "z": -8.148520930232557,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "27",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.055128571428568,
+          "z": -8.161220930232558,
+          "width": 3.609,
+          "depth": 4.3202,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "28",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.6841285714285705,
+          "z": -7.678620930232558,
+          "width": 3.609,
+          "depth": 5.2854,
+          "clearWidth": 3.429,
+          "clearDepth": 5.1054,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "29",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 0.6868714285714286,
+          "z": -7.615120930232558,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "30",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.057871428571428,
+          "z": -7.615120930232558,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "31",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 9.428871428571426,
+          "z": -7.653220930232558,
+          "width": 3.609,
+          "depth": 5.3362,
+          "clearWidth": 3.429,
+          "clearDepth": 5.1562,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "32",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -8.189795930232558,
+          "width": 3.5074,
+          "depth": 4.26305,
+          "clearWidth": 3.3274,
+          "clearDepth": 4.08305,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "21",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.910128571428565,
+          "z": -15.23785581395349,
+          "width": 3.9646000000000003,
+          "depth": 4.2947999999999995,
+          "clearWidth": 3.7846,
+          "clearDepth": 4.1148,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "Storage east",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": -25.539128571428567,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "18",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -15.085455813953491,
+          "width": 3.99,
+          "depth": 3.99,
+          "clearWidth": 3.81,
+          "clearDepth": 3.81,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "17",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -15.09815581395349,
+          "width": 3.99,
+          "depth": 4.0154,
+          "clearWidth": 3.81,
+          "clearDepth": 3.8353999999999995,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "16",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428569,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "15-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Storage middle",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 2.872371428571428,
+          "z": -15.796655813953489,
+          "width": 17.483999999999998,
+          "depth": 5.4124
+        },
+        {
+          "name": "12",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 13.799871428571427,
+          "z": -15.18705581395349,
+          "width": 3.5836,
+          "depth": 4.1932,
+          "clearWidth": 3.4036,
+          "clearDepth": 4.0132,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "11",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Laundry",
+          "kind": "laundry",
+          "stairYaw": 0,
+          "x": 24.727371428571427,
+          "z": -15.796655813953489,
+          "width": 8.741999999999999,
+          "depth": 5.4124
+        },
+        {
+          "name": "10-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 31.283871428571423,
+          "z": -15.26325581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.3456,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "9",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 35.654871428571425,
+          "z": -15.28865581395349,
+          "width": 4.2313,
+          "depth": 4.3964,
+          "clearWidth": 4.0513,
+          "clearDepth": 4.2164,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "39",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.03775714285714,
+          "z": -2.7062,
+          "width": 5.370085714285714,
+          "depth": 4.405441860465117
+        },
+        {
+          "name": "40",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.03775714285714,
+          "z": 1.6992418604651165,
+          "width": 5.370085714285714,
+          "depth": 4.405441860465117
+        },
+        {
+          "name": "41",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.03775714285714,
+          "z": 6.1046837209302325,
+          "width": 5.370085714285714,
+          "depth": 4.405441860465117
+        },
+        {
+          "name": "42-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5754,
+          "z": 10.51012558139535,
+          "width": 4.2947999999999995,
+          "depth": 3.609,
+          "clearWidth": 4.1148,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "43-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.9183,
+          "z": 15.607851162790698,
+          "width": 3.609,
+          "depth": 4.1551,
+          "clearWidth": 3.429,
+          "clearDepth": 3.9751,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "6",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.636735714285706,
+          "z": -7.615120930232558,
+          "width": 4.3328999999999995,
+          "depth": 3.228,
+          "clearWidth": 4.1529,
+          "clearDepth": 3.048,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "5",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.636735714285706,
+          "z": -2.7062000000000004,
+          "width": 4.3328999999999995,
+          "depth": 3.5963000000000003,
+          "clearWidth": 4.1529,
+          "clearDepth": 3.4163,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "4",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.636735714285706,
+          "z": 1.6992418604651163,
+          "width": 4.3328999999999995,
+          "depth": 3.5963000000000003,
+          "clearWidth": 4.1529,
+          "clearDepth": 3.4163,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "3",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.636735714285706,
+          "z": 6.1046837209302325,
+          "width": 4.3328999999999995,
+          "depth": 3.5963000000000003,
+          "clearWidth": 4.1529,
+          "clearDepth": 3.4163,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "2",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.636735714285706,
+          "z": 10.510125581395348,
+          "width": 4.3328999999999995,
+          "depth": 3.5963000000000003,
+          "clearWidth": 4.1529,
+          "clearDepth": 3.4163,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "Provisional infill beside 24-H",
+          "kind": "void",
+          "x": -23.16312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 24-H",
+          "kind": "void",
+          "x": -19.17312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000038,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 24-H",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -5.442320930232558,
+          "width": 3.608999999999998,
+          "depth": 1.0667999999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 25",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 25",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 25",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -5.442320930232558,
+          "width": 3.609,
+          "depth": 1.0667999999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 26",
+          "kind": "void",
+          "x": -14.421128571428568,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 26",
+          "kind": "void",
+          "x": -10.43112857142857,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 26",
+          "kind": "void",
+          "x": -12.426128571428567,
+          "z": -5.442320930232558,
+          "width": 3.609,
+          "depth": 1.0667999999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 27",
+          "kind": "void",
+          "x": -10.05012857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 27",
+          "kind": "void",
+          "x": -6.06012857142857,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 27",
+          "kind": "void",
+          "x": -8.055128571428568,
+          "z": -5.455020930232558,
+          "width": 3.609,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 28",
+          "kind": "void",
+          "x": -5.679128571428571,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 28",
+          "kind": "void",
+          "x": -1.6891285714285709,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999934,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 28",
+          "kind": "void",
+          "x": -3.6841285714285705,
+          "z": -4.972420930232557,
+          "width": 3.609,
+          "depth": 0.12699999999999978,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 29",
+          "kind": "void",
+          "x": -1.3652785714285713,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 29",
+          "kind": "void",
+          "x": 2.7390214285714283,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 30",
+          "kind": "void",
+          "x": 3.0057214285714275,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 30",
+          "kind": "void",
+          "x": 7.110021428571427,
+          "z": -7.615120930232558,
+          "width": 0.26669999999999927,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 31",
+          "kind": "void",
+          "x": 7.433871428571427,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999934,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 31",
+          "kind": "void",
+          "x": 11.423871428571427,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 31",
+          "kind": "void",
+          "x": 9.428871428571426,
+          "z": -4.947020930232558,
+          "width": 3.609000000000001,
+          "depth": 0.07620000000000005,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 32",
+          "kind": "void",
+          "x": 16.201271428571427,
+          "z": -7.615120930232558,
+          "width": 0.43180000000000085,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 32",
+          "kind": "void",
+          "x": 20.14047142857143,
+          "z": -7.615120930232558,
+          "width": 0.4317999999999991,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 32",
+          "kind": "void",
+          "x": 18.17087142857143,
+          "z": -5.483595930232558,
+          "width": 3.5074000000000005,
+          "depth": 1.14935,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 21",
+          "kind": "void",
+          "x": -31.994028571428565,
+          "z": -15.796655813953489,
+          "width": 0.20319999999999894,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 21",
+          "kind": "void",
+          "x": -27.826228571428565,
+          "z": -15.796655813953489,
+          "width": 0.20319999999999894,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 21",
+          "kind": "void",
+          "x": -29.910128571428565,
+          "z": -17.94405581395349,
+          "width": 3.964600000000001,
+          "depth": 1.1175999999999995,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 18",
+          "kind": "void",
+          "x": -23.25837857142857,
+          "z": -15.796655813953489,
+          "width": 0.1905000000000001,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 18",
+          "kind": "void",
+          "x": -19.07787857142857,
+          "z": -15.796655813953489,
+          "width": 0.19050000000000367,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 18",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -17.79165581395349,
+          "width": 3.9899999999999984,
+          "depth": 1.4223999999999961,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 17",
+          "kind": "void",
+          "x": -18.88737857142857,
+          "z": -15.796655813953489,
+          "width": 0.1905000000000001,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 17",
+          "kind": "void",
+          "x": -14.70687857142857,
+          "z": -15.796655813953489,
+          "width": 0.1905000000000001,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 17",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -17.80435581395349,
+          "width": 3.99,
+          "depth": 1.3969999999999985,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 12",
+          "kind": "void",
+          "x": 11.811221428571427,
+          "z": -15.796655813953489,
+          "width": 0.39369999999999905,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 12",
+          "kind": "void",
+          "x": 15.788521428571427,
+          "z": -15.796655813953489,
+          "width": 0.39369999999999905,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 12",
+          "kind": "void",
+          "x": 13.799871428571427,
+          "z": -17.893255813953488,
+          "width": 3.5836000000000006,
+          "depth": 1.2191999999999972,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 10-RA",
+          "kind": "void",
+          "x": 29.28252142857142,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 10-RA",
+          "kind": "void",
+          "x": 33.28522142857142,
+          "z": -15.796655813953489,
+          "width": 0.36829999999999785,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 10-RA",
+          "kind": "void",
+          "x": 31.283871428571423,
+          "z": -17.969455813953488,
+          "width": 3.6343999999999994,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 9",
+          "kind": "void",
+          "x": 33.50429642857142,
+          "z": -15.796655813953489,
+          "width": 0.0698499999999953,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 9",
+          "kind": "void",
+          "x": 37.80544642857142,
+          "z": -15.796655813953489,
+          "width": 0.06985000000000241,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 9",
+          "kind": "void",
+          "x": 35.654871428571425,
+          "z": -17.99485581395349,
+          "width": 4.231299999999997,
+          "depth": 1.0159999999999982,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 42-S",
+          "kind": "void",
+          "x": 24.89035714285714,
+          "z": 10.510125581395348,
+          "width": 1.075285714285716,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 42-S",
+          "kind": "void",
+          "x": 27.575399999999995,
+          "z": 8.506515116279068,
+          "width": 4.294799999999999,
+          "depth": 0.39822093023255967,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 42-S",
+          "kind": "void",
+          "x": 27.575399999999995,
+          "z": 12.513736046511628,
+          "width": 4.294799999999999,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 43-S",
+          "kind": "void",
+          "x": 25.23325714285714,
+          "z": 15.607851162790698,
+          "width": 1.7610857142857164,
+          "depth": 5.790009302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 43-S",
+          "kind": "void",
+          "x": 27.9183,
+          "z": 13.121573837209304,
+          "width": 3.6090000000000018,
+          "depth": 0.8174546511627891,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 43-S",
+          "kind": "void",
+          "x": 27.9183,
+          "z": 18.094128488372093,
+          "width": 3.6090000000000018,
+          "depth": 0.8174546511627909,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 6",
+          "kind": "void",
+          "x": 37.32177857142857,
+          "z": -7.615120930232558,
+          "width": 1.0371857142857053,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 6",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": -9.775220930232557,
+          "width": 4.332900000000002,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 6",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": -5.455020930232558,
+          "width": 4.332900000000002,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 5",
+          "kind": "void",
+          "x": 37.32177857142857,
+          "z": -2.7062,
+          "width": 1.0371857142857053,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 5",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": -4.706635465116279,
+          "width": 4.332900000000002,
+          "depth": 0.4045709302325573,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 5",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": -0.7057645348837209,
+          "width": 4.332900000000002,
+          "depth": 0.40457093023255863,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 4",
+          "kind": "void",
+          "x": 37.32177857142857,
+          "z": 1.6992418604651163,
+          "width": 1.0371857142857053,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 4",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": -0.30119360465116285,
+          "width": 4.332900000000002,
+          "depth": 0.40457093023255797,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 4",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": 3.6996773255813955,
+          "width": 4.332900000000002,
+          "depth": 0.4045709302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 3",
+          "kind": "void",
+          "x": 37.32177857142857,
+          "z": 6.1046837209302325,
+          "width": 1.0371857142857053,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 3",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": 4.104248255813953,
+          "width": 4.332900000000002,
+          "depth": 0.40457093023255863,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 3",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": 8.105119186046512,
+          "width": 4.332900000000002,
+          "depth": 0.4045709302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 2",
+          "kind": "void",
+          "x": 37.32177857142857,
+          "z": 10.510125581395348,
+          "width": 1.0371857142857053,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 2",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": 8.509690116279069,
+          "width": 4.332900000000002,
+          "depth": 0.4045709302325591,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 2",
+          "kind": "void",
+          "x": 34.636735714285706,
+          "z": 12.51056104651163,
+          "width": 4.332900000000002,
+          "depth": 0.4045709302325573,
+          "stairYaw": 0
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 1,
+      "name": "First",
+      "footprints": [
+        {
+          "x": 2.872371428571428,
+          "z": -11.705888372093025,
+          "width": 69.93599999999999,
+          "depth": 13.593934883720932
+        },
+        {
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "x": 31.09654285714285,
+          "z": 6.796967441860466,
+          "width": 13.487657142857142,
+          "depth": 23.41177674418605
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs east end",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "name": "Stairs middle",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 13.799871428571427,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Stairs Baldwin end",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 33.78158571428571,
+          "z": 15.607851162790698,
+          "width": 8.117571428571427,
+          "depth": 5.790009302325581
+        },
+        {
+          "name": "Bathroom east",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -27.724628571428568,
+          "z": -7.615120930232558,
+          "width": 8.741999999999999,
+          "depth": 5.4124
+        },
+        {
+          "name": "Bathroom west",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 25.03958571428571,
+          "z": -7.615120930232558,
+          "width": 9.36642857142857,
+          "depth": 5.4124
+        },
+        {
+          "name": "135",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "136",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -8.148520930232557,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "137",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428567,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "138-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": 2.872371428571428,
+          "z": -7.615120930232558,
+          "width": 17.483999999999998,
+          "depth": 5.4124
+        },
+        {
+          "name": "140 \u00b7 RD office",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "128",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.910128571428565,
+          "z": -15.27595581395349,
+          "width": 3.8884000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.7084,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "127",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -25.539128571428567,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "126",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "125",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "124",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428567,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "122-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -14.86955581395349,
+          "width": 3.1518,
+          "depth": 3.5582000000000003,
+          "clearWidth": 2.9718,
+          "clearDepth": 3.3782,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "121-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.6841285714285705,
+          "z": -15.21245581395349,
+          "width": 3.5328,
+          "depth": 4.244,
+          "clearWidth": 3.3528,
+          "clearDepth": 4.064,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "RA office",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 0.6868714285714285,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "RD apartment",
+          "kind": "apartment",
+          "stairYaw": 0,
+          "x": 13.799871428571427,
+          "z": -15.796655813953489,
+          "width": 13.112999999999998,
+          "depth": 5.4124
+        },
+        {
+          "name": "111",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 22.541871428571426,
+          "z": -15.23785581395349,
+          "width": 3.5328,
+          "depth": 4.2947999999999995,
+          "clearWidth": 3.3528,
+          "clearDepth": 4.1148,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "110",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 26.912871428571425,
+          "z": -15.25055581395349,
+          "width": 3.609,
+          "depth": 4.3202,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "109-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 31.283871428571423,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "108",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 35.654871428571425,
+          "z": -15.27595581395349,
+          "width": 4.244,
+          "depth": 4.3709999999999996,
+          "clearWidth": 4.064,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "147",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": -2.7062000000000004,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "148",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": 1.6992418604651163,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "149",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": 6.1046837209302325,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "150-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.7278,
+          "z": 10.51012558139535,
+          "width": 3.99,
+          "depth": 3.609,
+          "clearWidth": 3.81,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "151-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.9183,
+          "z": 15.607851162790698,
+          "width": 3.609,
+          "depth": 4.180499999999999,
+          "clearWidth": 3.429,
+          "clearDepth": 4.0005,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "105",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 35.15532857142856,
+          "z": -7.615120930232558,
+          "width": 5.370085714285714,
+          "depth": 5.4124
+        },
+        {
+          "name": "104",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": -2.7062,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "103",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": 1.6992418604651163,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "102",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": 6.1046837209302325,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "101",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": 10.51012558139535,
+          "width": 4.3709999999999996,
+          "depth": 3.609,
+          "clearWidth": 4.191,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "Provisional infill beside 135",
+          "kind": "void",
+          "x": -23.16312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 135",
+          "kind": "void",
+          "x": -19.17312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000038,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 135",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -5.4296209302325575,
+          "width": 3.608999999999998,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 136",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 136",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 136",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -5.442320930232558,
+          "width": 3.609,
+          "depth": 1.0667999999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 137",
+          "kind": "void",
+          "x": -14.421128571428568,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 137",
+          "kind": "void",
+          "x": -10.43112857142857,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 137",
+          "kind": "void",
+          "x": -12.426128571428567,
+          "z": -5.4296209302325575,
+          "width": 3.609,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 128",
+          "kind": "void",
+          "x": -31.974978571428565,
+          "z": -15.796655813953489,
+          "width": 0.24129999999999896,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 128",
+          "kind": "void",
+          "x": -27.845278571428565,
+          "z": -15.796655813953489,
+          "width": 0.24129999999999896,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 128",
+          "kind": "void",
+          "x": -29.910128571428565,
+          "z": -17.98215581395349,
+          "width": 3.8884000000000007,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 127",
+          "kind": "void",
+          "x": -27.534128571428568,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 127",
+          "kind": "void",
+          "x": -23.544128571428566,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 127",
+          "kind": "void",
+          "x": -25.539128571428567,
+          "z": -17.98215581395349,
+          "width": 3.6090000000000018,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 126",
+          "kind": "void",
+          "x": -23.16312857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 126",
+          "kind": "void",
+          "x": -19.17312857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000038,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 126",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -17.98215581395349,
+          "width": 3.608999999999998,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 125",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 125",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 125",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -17.98215581395349,
+          "width": 3.609,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 124",
+          "kind": "void",
+          "x": -14.421128571428568,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 124",
+          "kind": "void",
+          "x": -10.43112857142857,
+          "z": -15.796655813953489,
+          "width": 0.38099999999999845,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 124",
+          "kind": "void",
+          "x": -12.426128571428567,
+          "z": -17.98215581395349,
+          "width": 3.609,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 122-S",
+          "kind": "void",
+          "x": -9.93582857142857,
+          "z": -15.796655813953489,
+          "width": 0.6095999999999986,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 122-S",
+          "kind": "void",
+          "x": -6.174428571428571,
+          "z": -15.796655813953489,
+          "width": 0.6096000000000004,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 122-S",
+          "kind": "void",
+          "x": -8.055128571428572,
+          "z": -17.57575581395349,
+          "width": 3.1517999999999997,
+          "depth": 1.8541999999999987,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 121-S",
+          "kind": "void",
+          "x": -5.660078571428571,
+          "z": -15.796655813953489,
+          "width": 0.41910000000000025,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 121-S",
+          "kind": "void",
+          "x": -1.7081785714285709,
+          "z": -15.796655813953489,
+          "width": 0.41909999999999936,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 121-S",
+          "kind": "void",
+          "x": -3.6841285714285705,
+          "z": -17.91865581395349,
+          "width": 3.5328,
+          "depth": 1.1683999999999983,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 111",
+          "kind": "void",
+          "x": 20.565921428571425,
+          "z": -15.796655813953489,
+          "width": 0.41910000000000025,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 111",
+          "kind": "void",
+          "x": 24.517821428571423,
+          "z": -15.796655813953489,
+          "width": 0.4191000000000038,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 111",
+          "kind": "void",
+          "x": 22.541871428571426,
+          "z": -17.94405581395349,
+          "width": 3.532799999999998,
+          "depth": 1.1175999999999995,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 110",
+          "kind": "void",
+          "x": 24.917871428571424,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 110",
+          "kind": "void",
+          "x": 28.907871428571426,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 110",
+          "kind": "void",
+          "x": 26.912871428571425,
+          "z": -17.95675581395349,
+          "width": 3.6090000000000018,
+          "depth": 1.0921999999999983,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 109-RA",
+          "kind": "void",
+          "x": 29.288871428571422,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 109-RA",
+          "kind": "void",
+          "x": 33.27887142857142,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 109-RA",
+          "kind": "void",
+          "x": 31.283871428571423,
+          "z": -17.98215581395349,
+          "width": 3.608999999999998,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 108",
+          "kind": "void",
+          "x": 33.50112142857142,
+          "z": -15.796655813953489,
+          "width": 0.06349999999999767,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 108",
+          "kind": "void",
+          "x": 37.80862142857143,
+          "z": -15.796655813953489,
+          "width": 0.06349999999999767,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 108",
+          "kind": "void",
+          "x": 35.654871428571425,
+          "z": -17.98215581395349,
+          "width": 4.244,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 147",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": -2.7062,
+          "width": 0.9990857142857159,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 147",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -4.716160465116279,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325573,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 147",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -0.6962395348837209,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325586,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 148",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": 1.6992418604651163,
+          "width": 0.9990857142857159,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 148",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -0.3043686046511628,
+          "width": 4.370999999999999,
+          "depth": 0.3982209302325581,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 148",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 3.7028523255813957,
+          "width": 4.370999999999999,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 149",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": 6.1046837209302325,
+          "width": 0.9990857142857159,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 149",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 4.1010732558139535,
+          "width": 4.370999999999999,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 149",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 8.108294186046512,
+          "width": 4.370999999999999,
+          "depth": 0.3982209302325588,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 150-S",
+          "kind": "void",
+          "x": 25.04275714285714,
+          "z": 10.510125581395348,
+          "width": 1.3800857142857161,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 150-S",
+          "kind": "void",
+          "x": 27.7278,
+          "z": 8.506515116279068,
+          "width": 3.990000000000002,
+          "depth": 0.39822093023255967,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 150-S",
+          "kind": "void",
+          "x": 27.7278,
+          "z": 12.513736046511628,
+          "width": 3.990000000000002,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 151-S",
+          "kind": "void",
+          "x": 25.23325714285714,
+          "z": 15.607851162790698,
+          "width": 1.7610857142857164,
+          "depth": 5.790009302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 151-S",
+          "kind": "void",
+          "x": 27.9183,
+          "z": 13.115223837209303,
+          "width": 3.6090000000000018,
+          "depth": 0.8047546511627903,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 151-S",
+          "kind": "void",
+          "x": 27.9183,
+          "z": 18.100478488372094,
+          "width": 3.6090000000000018,
+          "depth": 0.8047546511627885,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 104",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": -2.7062,
+          "width": 0.9990857142857053,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 104",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -4.709810465116279,
+          "width": 4.371000000000002,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 104",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -0.7025895348837208,
+          "width": 4.371000000000002,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 103",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": 1.6992418604651163,
+          "width": 0.9990857142857053,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 103",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -0.3043686046511628,
+          "width": 4.371000000000002,
+          "depth": 0.3982209302325581,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 103",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 3.7028523255813957,
+          "width": 4.371000000000002,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 102",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": 6.1046837209302325,
+          "width": 0.9990857142857053,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 102",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 4.1010732558139535,
+          "width": 4.371000000000002,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 102",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 8.108294186046512,
+          "width": 4.371000000000002,
+          "depth": 0.3982209302325588,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 101",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": 10.510125581395348,
+          "width": 0.9990857142857053,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 101",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 8.506515116279068,
+          "width": 4.371000000000002,
+          "depth": 0.39822093023255967,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 101",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 12.513736046511628,
+          "width": 4.371000000000002,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 2,
+      "name": "Second",
+      "footprints": [
+        {
+          "x": 2.872371428571428,
+          "z": -11.705888372093025,
+          "width": 69.93599999999999,
+          "depth": 13.593934883720932
+        },
+        {
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "x": 31.09654285714285,
+          "z": 6.796967441860466,
+          "width": 13.487657142857142,
+          "depth": 23.41177674418605
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs east end",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "name": "Stairs middle",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 13.799871428571427,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Stairs Baldwin end",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 33.78158571428571,
+          "z": 15.607851162790698,
+          "width": 8.117571428571427,
+          "depth": 5.790009302325581
+        },
+        {
+          "name": "Bathroom east",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -27.724628571428568,
+          "z": -7.615120930232558,
+          "width": 8.741999999999999,
+          "depth": 5.4124
+        },
+        {
+          "name": "Bathroom west",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 25.03958571428571,
+          "z": -7.615120930232558,
+          "width": 9.36642857142857,
+          "depth": 5.4124
+        },
+        {
+          "name": "229",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "230",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -8.135820930232558,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "231",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428569,
+          "z": -8.135820930232558,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "232-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "233",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.684128571428571,
+          "z": -7.615120930232558,
+          "width": 3.6344000000000003,
+          "depth": 5.4124,
+          "clearWidth": 3.4544,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "234",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 0.6868714285714286,
+          "z": -7.615120930232558,
+          "width": 3.736,
+          "depth": 5.4124,
+          "clearWidth": 3.556,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "235",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.057871428571428,
+          "z": -7.615120930232558,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "236",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 9.428871428571426,
+          "z": -7.615120930232558,
+          "width": 3.7614,
+          "depth": 5.4124,
+          "clearWidth": 3.5814,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "238",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -8.135820930232558,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "223",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.910128571428565,
+          "z": -15.27595581395349,
+          "width": 3.9138,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.7338,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "222",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -25.539128571428567,
+          "z": -15.27595581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "221",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -15.27595581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "220",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "219 \u00b7 Computer lab",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": -12.426128571428569,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "218",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -15.27595581395349,
+          "width": 4.3709999999999996,
+          "depth": 4.3709999999999996,
+          "clearWidth": 4.191,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "217",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.6841285714285705,
+          "z": -15.796655813953489,
+          "width": 3.609,
+          "depth": 5.4124,
+          "clearWidth": 3.429,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "216",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 0.6868714285714286,
+          "z": -15.796655813953489,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "215",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.057871428571428,
+          "z": -15.796655813953489,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "214",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 9.428871428571426,
+          "z": -15.796655813953489,
+          "width": 3.6344000000000003,
+          "depth": 5.4124,
+          "clearWidth": 3.4544,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "213",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 13.799871428571427,
+          "z": -15.27595581395349,
+          "width": 3.4566000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.2766,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "212",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -15.27595581395349,
+          "width": 3.7106000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.5306,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "211",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 22.541871428571426,
+          "z": -15.27595581395349,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "210",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 26.912871428571425,
+          "z": -15.27595581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "209-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 31.283871428571423,
+          "z": -15.27595581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "208",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 35.654871428571425,
+          "z": -15.27595581395349,
+          "width": 4.244,
+          "depth": 4.3709999999999996,
+          "clearWidth": 4.064,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "244",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": -2.7062000000000004,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "245",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": 1.6992418604651163,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "246",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5373,
+          "z": 6.1046837209302325,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "247-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.715099999999996,
+          "z": 10.510125581395348,
+          "width": 4.0154,
+          "depth": 3.6344000000000003,
+          "clearWidth": 3.8353999999999995,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "248-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.930999999999994,
+          "z": 15.607851162790698,
+          "width": 3.5836,
+          "depth": 3.863,
+          "clearWidth": 3.4036,
+          "clearDepth": 3.683,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "205",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 3.228,
+          "clearWidth": 4.191,
+          "clearDepth": 3.048,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "204",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": -2.7062000000000004,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "203",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": 1.6992418604651163,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "202",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.655785714285706,
+          "z": 6.1046837209302325,
+          "width": 4.3709999999999996,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.191,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "201",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.64308571428571,
+          "z": 10.510125581395348,
+          "width": 4.3456,
+          "depth": 3.6344000000000003,
+          "clearWidth": 4.1656,
+          "clearDepth": 3.4544,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "Provisional infill beside 229",
+          "kind": "void",
+          "x": -23.16312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 229",
+          "kind": "void",
+          "x": -19.17312857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000038,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 229",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -5.4296209302325575,
+          "width": 3.608999999999998,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 230",
+          "kind": "void",
+          "x": -18.798478571428568,
+          "z": -7.615120930232558,
+          "width": 0.3683000000000014,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 230",
+          "kind": "void",
+          "x": -14.79577857142857,
+          "z": -7.615120930232558,
+          "width": 0.3682999999999996,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 230",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -5.4296209302325575,
+          "width": 3.6343999999999994,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 231",
+          "kind": "void",
+          "x": -14.42747857142857,
+          "z": -7.615120930232558,
+          "width": 0.3682999999999996,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 231",
+          "kind": "void",
+          "x": -10.424778571428568,
+          "z": -7.615120930232558,
+          "width": 0.36829999999999785,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 231",
+          "kind": "void",
+          "x": -12.426128571428567,
+          "z": -5.4296209302325575,
+          "width": 3.634400000000001,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 233",
+          "kind": "void",
+          "x": -5.685478571428571,
+          "z": -7.615120930232558,
+          "width": 0.3682999999999996,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 233",
+          "kind": "void",
+          "x": -1.682778571428571,
+          "z": -7.615120930232558,
+          "width": 0.3682999999999996,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 234",
+          "kind": "void",
+          "x": -1.3398785714285713,
+          "z": -7.615120930232558,
+          "width": 0.31749999999999967,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 234",
+          "kind": "void",
+          "x": 2.7136214285714284,
+          "z": -7.615120930232558,
+          "width": 0.3174999999999999,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 235",
+          "kind": "void",
+          "x": 3.0057214285714275,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 235",
+          "kind": "void",
+          "x": 7.110021428571427,
+          "z": -7.615120930232558,
+          "width": 0.26669999999999927,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 236",
+          "kind": "void",
+          "x": 7.395771428571427,
+          "z": -7.615120930232558,
+          "width": 0.3047999999999993,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 236",
+          "kind": "void",
+          "x": 11.461971428571427,
+          "z": -7.615120930232558,
+          "width": 0.3047999999999984,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 238",
+          "kind": "void",
+          "x": 16.16952142857143,
+          "z": -7.615120930232558,
+          "width": 0.3682999999999996,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 238",
+          "kind": "void",
+          "x": 20.172221428571426,
+          "z": -7.615120930232558,
+          "width": 0.3683000000000014,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 238",
+          "kind": "void",
+          "x": 18.170871428571427,
+          "z": -5.4296209302325575,
+          "width": 3.6343999999999994,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 223",
+          "kind": "void",
+          "x": -31.981328571428563,
+          "z": -15.796655813953489,
+          "width": 0.22859999999999658,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 223",
+          "kind": "void",
+          "x": -27.838928571428568,
+          "z": -15.796655813953489,
+          "width": 0.2286000000000037,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 223",
+          "kind": "void",
+          "x": -29.910128571428565,
+          "z": -17.98215581395349,
+          "width": 3.9137999999999984,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 222",
+          "kind": "void",
+          "x": -27.540478571428565,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 222",
+          "kind": "void",
+          "x": -23.537778571428568,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 222",
+          "kind": "void",
+          "x": -25.539128571428567,
+          "z": -17.98215581395349,
+          "width": 3.6343999999999994,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 221",
+          "kind": "void",
+          "x": -23.16947857142857,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 221",
+          "kind": "void",
+          "x": -19.166778571428566,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 221",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -17.98215581395349,
+          "width": 3.6343999999999994,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 220",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 220",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 220",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -17.98215581395349,
+          "width": 3.609,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 218",
+          "kind": "void",
+          "x": -8.05512857142857,
+          "z": -17.98215581395349,
+          "width": 4.3709999999999996,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 217",
+          "kind": "void",
+          "x": -5.679128571428571,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 217",
+          "kind": "void",
+          "x": -1.6891285714285709,
+          "z": -15.796655813953489,
+          "width": 0.38099999999999934,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 216",
+          "kind": "void",
+          "x": -1.3652785714285713,
+          "z": -15.796655813953489,
+          "width": 0.2666999999999997,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 216",
+          "kind": "void",
+          "x": 2.7390214285714283,
+          "z": -15.796655813953489,
+          "width": 0.2666999999999997,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 215",
+          "kind": "void",
+          "x": 3.0057214285714275,
+          "z": -15.796655813953489,
+          "width": 0.2666999999999997,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 215",
+          "kind": "void",
+          "x": 7.110021428571427,
+          "z": -15.796655813953489,
+          "width": 0.26669999999999927,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 214",
+          "kind": "void",
+          "x": 7.427521428571427,
+          "z": -15.796655813953489,
+          "width": 0.3682999999999996,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 214",
+          "kind": "void",
+          "x": 11.430221428571425,
+          "z": -15.796655813953489,
+          "width": 0.3682999999999996,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 213",
+          "kind": "void",
+          "x": 11.842971428571428,
+          "z": -15.796655813953489,
+          "width": 0.4571999999999985,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 213",
+          "kind": "void",
+          "x": 15.756771428571426,
+          "z": -15.796655813953489,
+          "width": 0.4572000000000003,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 213",
+          "kind": "void",
+          "x": 13.799871428571425,
+          "z": -17.98215581395349,
+          "width": 3.4566,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 212",
+          "kind": "void",
+          "x": 16.15047142857143,
+          "z": -15.796655813953489,
+          "width": 0.3301999999999996,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 212",
+          "kind": "void",
+          "x": 20.191271428571426,
+          "z": -15.796655813953489,
+          "width": 0.3302000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 212",
+          "kind": "void",
+          "x": 18.170871428571427,
+          "z": -17.98215581395349,
+          "width": 3.7105999999999995,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 211",
+          "kind": "void",
+          "x": 20.546871428571425,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 211",
+          "kind": "void",
+          "x": 24.536871428571423,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000038,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 211",
+          "kind": "void",
+          "x": 22.541871428571426,
+          "z": -17.98215581395349,
+          "width": 3.608999999999998,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 210",
+          "kind": "void",
+          "x": 24.911521428571426,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 210",
+          "kind": "void",
+          "x": 28.914221428571423,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 210",
+          "kind": "void",
+          "x": 26.912871428571425,
+          "z": -17.98215581395349,
+          "width": 3.6343999999999994,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 209-RA",
+          "kind": "void",
+          "x": 29.28252142857142,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 209-RA",
+          "kind": "void",
+          "x": 33.28522142857142,
+          "z": -15.796655813953489,
+          "width": 0.36829999999999785,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 209-RA",
+          "kind": "void",
+          "x": 31.283871428571423,
+          "z": -17.98215581395349,
+          "width": 3.6343999999999994,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 208",
+          "kind": "void",
+          "x": 33.50112142857142,
+          "z": -15.796655813953489,
+          "width": 0.06349999999999767,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 208",
+          "kind": "void",
+          "x": 37.80862142857143,
+          "z": -15.796655813953489,
+          "width": 0.06349999999999767,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 208",
+          "kind": "void",
+          "x": 35.654871428571425,
+          "z": -17.98215581395349,
+          "width": 4.244,
+          "depth": 1.0413999999999994,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 244",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": -2.7062,
+          "width": 0.9990857142857159,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 244",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -4.716160465116279,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325573,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 244",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -0.6962395348837209,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325586,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 245",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": 1.6992418604651163,
+          "width": 0.9990857142857159,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 245",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": -0.31071860465116286,
+          "width": 4.370999999999999,
+          "depth": 0.38552093023255796,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 245",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 3.7092023255813955,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 246",
+          "kind": "void",
+          "x": 24.85225714285714,
+          "z": 6.1046837209302325,
+          "width": 0.9990857142857159,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 246",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 4.094723255813953,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325586,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 246",
+          "kind": "void",
+          "x": 27.537299999999995,
+          "z": 8.114644186046512,
+          "width": 4.370999999999999,
+          "depth": 0.3855209302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 247-S",
+          "kind": "void",
+          "x": 25.03005714285714,
+          "z": 10.510125581395348,
+          "width": 1.354685714285715,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 247-S",
+          "kind": "void",
+          "x": 27.715099999999996,
+          "z": 8.500165116279069,
+          "width": 4.0154,
+          "depth": 0.38552093023255907,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 247-S",
+          "kind": "void",
+          "x": 27.715099999999996,
+          "z": 12.52008604651163,
+          "width": 4.0154,
+          "depth": 0.3855209302325573,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 248-S",
+          "kind": "void",
+          "x": 25.245957142857137,
+          "z": 15.607851162790698,
+          "width": 1.786485714285714,
+          "depth": 5.790009302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 248-S",
+          "kind": "void",
+          "x": 27.930999999999997,
+          "z": 13.194598837209304,
+          "width": 3.5836000000000006,
+          "depth": 0.9635046511627898,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 248-S",
+          "kind": "void",
+          "x": 27.930999999999997,
+          "z": 18.02110348837209,
+          "width": 3.5836000000000006,
+          "depth": 0.9635046511627898,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 205",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": -7.615120930232558,
+          "width": 0.9990857142857053,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 205",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -9.775220930232557,
+          "width": 4.371000000000002,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 205",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -5.455020930232558,
+          "width": 4.371000000000002,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 204",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": -2.7062,
+          "width": 0.9990857142857053,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 204",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -4.716160465116279,
+          "width": 4.371000000000002,
+          "depth": 0.3855209302325573,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 204",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -0.6962395348837209,
+          "width": 4.371000000000002,
+          "depth": 0.3855209302325586,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 203",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": 1.6992418604651163,
+          "width": 0.9990857142857053,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 203",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": -0.31071860465116286,
+          "width": 4.371000000000002,
+          "depth": 0.38552093023255796,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 203",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 3.7092023255813955,
+          "width": 4.371000000000002,
+          "depth": 0.3855209302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 202",
+          "kind": "void",
+          "x": 37.34082857142856,
+          "z": 6.1046837209302325,
+          "width": 0.9990857142857053,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 202",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 4.094723255813953,
+          "width": 4.371000000000002,
+          "depth": 0.3855209302325586,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 202",
+          "kind": "void",
+          "x": 34.65578571428571,
+          "z": 8.114644186046512,
+          "width": 4.371000000000002,
+          "depth": 0.3855209302325582,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 201",
+          "kind": "void",
+          "x": 37.328128571428564,
+          "z": 10.510125581395348,
+          "width": 1.02448571428571,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 201",
+          "kind": "void",
+          "x": 34.643085714285704,
+          "z": 8.500165116279069,
+          "width": 4.3455999999999975,
+          "depth": 0.38552093023255907,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 201",
+          "kind": "void",
+          "x": 34.643085714285704,
+          "z": 12.52008604651163,
+          "width": 4.3455999999999975,
+          "depth": 0.3855209302325573,
+          "stairYaw": 0
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 3,
+      "name": "Third",
+      "footprints": [
+        {
+          "x": 2.872371428571428,
+          "z": -11.705888372093025,
+          "width": 69.93599999999999,
+          "depth": 13.593934883720932
+        },
+        {
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "x": 31.09654285714285,
+          "z": 6.796967441860466,
+          "width": 13.487657142857142,
+          "depth": 23.41177674418605
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs east end",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -34.967999999999996,
+          "z": -8.999688372093024,
+          "width": 5.744742857142856,
+          "depth": 8.18153488372093
+        },
+        {
+          "name": "Stairs middle",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 13.799871428571427,
+          "z": -7.615120930232558,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "Stairs Baldwin end",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "x": 33.78158571428571,
+          "z": 15.607851162790698,
+          "width": 8.117571428571427,
+          "depth": 5.790009302325581
+        },
+        {
+          "name": "Bathroom east",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -27.724628571428568,
+          "z": -7.615120930232558,
+          "width": 8.741999999999999,
+          "depth": 5.4124
+        },
+        {
+          "name": "Bathroom west",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 25.03958571428571,
+          "z": -7.615120930232558,
+          "width": 9.36642857142857,
+          "depth": 5.4124
+        },
+        {
+          "name": "328",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -8.148520930232557,
+          "width": 3.5836,
+          "depth": 4.3456,
+          "clearWidth": 3.4036,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "329",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "330",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.426128571428567,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "331-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.055128571428568,
+          "z": -8.135820930232558,
+          "width": 3.609,
+          "depth": 4.3709999999999996,
+          "clearWidth": 3.429,
+          "clearDepth": 4.191,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "332",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.6841285714285705,
+          "z": -7.615120930232558,
+          "width": 3.609,
+          "depth": 5.4124,
+          "clearWidth": 3.429,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "333",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 0.6868714285714286,
+          "z": -7.615120930232558,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "334",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.057871428571428,
+          "z": -7.615120930232558,
+          "width": 3.8376,
+          "depth": 5.4124,
+          "clearWidth": 3.6576,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "335",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 9.428871428571426,
+          "z": -7.615120930232558,
+          "width": 3.609,
+          "depth": 5.4124,
+          "clearWidth": 3.429,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "337",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -8.161220930232558,
+          "width": 3.609,
+          "depth": 4.3202,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "south"
+        },
+        {
+          "name": "322",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.910128571428565,
+          "z": -15.26325581395349,
+          "width": 3.9138,
+          "depth": 4.3456,
+          "clearWidth": 3.7338,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "321",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -25.539128571428567,
+          "z": -15.26325581395349,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "320",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -21.168128571428568,
+          "z": -15.26325581395349,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "319",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -16.79712857142857,
+          "z": -15.26325581395349,
+          "width": 3.609,
+          "depth": 4.3456,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "318 \u00b7 Study lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": -12.426128571428569,
+          "z": -15.796655813953489,
+          "width": 4.3709999999999996,
+          "depth": 5.4124
+        },
+        {
+          "name": "317",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.05512857142857,
+          "z": -15.26325581395349,
+          "width": 4.3456,
+          "depth": 4.3456,
+          "clearWidth": 4.1656,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "316",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -3.6841285714285705,
+          "z": -15.796655813953489,
+          "width": 3.5836,
+          "depth": 5.4124,
+          "clearWidth": 3.4036,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "315",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 0.6868714285714286,
+          "z": -15.26325581395349,
+          "width": 3.863,
+          "depth": 4.3456,
+          "clearWidth": 3.683,
+          "clearDepth": 4.1656,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "314",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.057871428571428,
+          "z": -15.22515581395349,
+          "width": 3.8376,
+          "depth": 4.2694,
+          "clearWidth": 3.6576,
+          "clearDepth": 4.0894,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "313",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 9.428871428571426,
+          "z": -15.796655813953489,
+          "width": 3.609,
+          "depth": 5.4124,
+          "clearWidth": 3.429,
+          "clearDepth": 5.2324,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "312",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 13.799871428571427,
+          "z": -15.23785581395349,
+          "width": 3.4566000000000003,
+          "depth": 4.2947999999999995,
+          "clearWidth": 3.2766,
+          "clearDepth": 4.1148,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "311",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.170871428571427,
+          "z": -15.25055581395349,
+          "width": 3.736,
+          "depth": 4.3202,
+          "clearWidth": 3.556,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "310",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 22.541871428571426,
+          "z": -15.25055581395349,
+          "width": 3.609,
+          "depth": 4.3202,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "309",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 26.912871428571425,
+          "z": -15.25055581395349,
+          "width": 3.609,
+          "depth": 4.3202,
+          "clearWidth": 3.429,
+          "clearDepth": 4.1402,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "308-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 31.283871428571423,
+          "z": -15.23785581395349,
+          "width": 3.6344000000000003,
+          "depth": 4.2947999999999995,
+          "clearWidth": 3.4544,
+          "clearDepth": 4.1148,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "307",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 35.654871428571425,
+          "z": -15.23785581395349,
+          "width": 4.2185999999999995,
+          "depth": 4.2947999999999995,
+          "clearWidth": 4.0386,
+          "clearDepth": 4.1148,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "north"
+        },
+        {
+          "name": "344",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.562699999999996,
+          "z": -2.7062,
+          "width": 4.3202,
+          "depth": 3.609,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "345",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.562699999999996,
+          "z": 1.6992418604651163,
+          "width": 4.3202,
+          "depth": 3.609,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "346",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 27.5754,
+          "z": 6.1046837209302325,
+          "width": 4.2947999999999995,
+          "depth": 3.609,
+          "clearWidth": 4.1148,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "east"
+        },
+        {
+          "name": "347 \u00b7 Storage",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 27.03775714285714,
+          "z": 10.510125581395348,
+          "width": 5.370085714285714,
+          "depth": 4.405441860465117
+        },
+        {
+          "name": "Unlabelled space above 248",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 27.03775714285714,
+          "z": 15.607851162790698,
+          "width": 5.370085714285714,
+          "depth": 5.790009302325581
+        },
+        {
+          "name": "305",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.63038571428571,
+          "z": -7.615120930232559,
+          "width": 4.3202,
+          "depth": 3.2026000000000003,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.0226,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "304",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.63038571428571,
+          "z": -2.7062,
+          "width": 4.3202,
+          "depth": 3.609,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "303",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.63038571428571,
+          "z": 1.6992418604651163,
+          "width": 4.3202,
+          "depth": 3.609,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "302",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.63038571428571,
+          "z": 6.1046837209302325,
+          "width": 4.3202,
+          "depth": 3.609,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.429,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "301",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 34.63038571428571,
+          "z": 10.510125581395348,
+          "width": 4.3202,
+          "depth": 3.5582000000000003,
+          "clearWidth": 4.1402,
+          "clearDepth": 3.3782,
+          "dimensionSourcePage": 5,
+          "doorSideEstimate": "west"
+        },
+        {
+          "name": "Provisional infill beside 328",
+          "kind": "void",
+          "x": -23.156778571428568,
+          "z": -7.615120930232558,
+          "width": 0.3937000000000026,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 328",
+          "kind": "void",
+          "x": -19.179478571428568,
+          "z": -7.615120930232558,
+          "width": 0.39369999999999905,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 328",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -5.442320930232558,
+          "width": 3.5836000000000006,
+          "depth": 1.0667999999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 329",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 329",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 329",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -5.4296209302325575,
+          "width": 3.609,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 330",
+          "kind": "void",
+          "x": -14.421128571428568,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 330",
+          "kind": "void",
+          "x": -10.43112857142857,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 330",
+          "kind": "void",
+          "x": -12.426128571428567,
+          "z": -5.4296209302325575,
+          "width": 3.609,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 331-RA",
+          "kind": "void",
+          "x": -10.05012857142857,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 331-RA",
+          "kind": "void",
+          "x": -6.06012857142857,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 331-RA",
+          "kind": "void",
+          "x": -8.055128571428568,
+          "z": -5.4296209302325575,
+          "width": 3.609,
+          "depth": 1.0414000000000003,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 332",
+          "kind": "void",
+          "x": -5.679128571428571,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 332",
+          "kind": "void",
+          "x": -1.6891285714285709,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999934,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 333",
+          "kind": "void",
+          "x": -1.3652785714285713,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 333",
+          "kind": "void",
+          "x": 2.7390214285714283,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 334",
+          "kind": "void",
+          "x": 3.0057214285714275,
+          "z": -7.615120930232558,
+          "width": 0.2666999999999997,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 334",
+          "kind": "void",
+          "x": 7.110021428571427,
+          "z": -7.615120930232558,
+          "width": 0.26669999999999927,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 335",
+          "kind": "void",
+          "x": 7.433871428571427,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999934,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 335",
+          "kind": "void",
+          "x": 11.423871428571427,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 337",
+          "kind": "void",
+          "x": 16.175871428571426,
+          "z": -7.615120930232558,
+          "width": 0.38099999999999845,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 337",
+          "kind": "void",
+          "x": 20.16587142857143,
+          "z": -7.615120930232558,
+          "width": 0.3810000000000002,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 337",
+          "kind": "void",
+          "x": 18.170871428571427,
+          "z": -5.455020930232558,
+          "width": 3.6090000000000018,
+          "depth": 1.0922,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 322",
+          "kind": "void",
+          "x": -31.981328571428563,
+          "z": -15.796655813953489,
+          "width": 0.22859999999999658,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 322",
+          "kind": "void",
+          "x": -27.838928571428568,
+          "z": -15.796655813953489,
+          "width": 0.2286000000000037,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 322",
+          "kind": "void",
+          "x": -29.910128571428565,
+          "z": -17.969455813953488,
+          "width": 3.9137999999999984,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 321",
+          "kind": "void",
+          "x": -27.534128571428568,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 321",
+          "kind": "void",
+          "x": -23.544128571428566,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 321",
+          "kind": "void",
+          "x": -25.539128571428567,
+          "z": -17.969455813953488,
+          "width": 3.6090000000000018,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 320",
+          "kind": "void",
+          "x": -23.16312857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 320",
+          "kind": "void",
+          "x": -19.17312857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000038,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 320",
+          "kind": "void",
+          "x": -21.168128571428568,
+          "z": -17.969455813953488,
+          "width": 3.608999999999998,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 319",
+          "kind": "void",
+          "x": -18.79212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 319",
+          "kind": "void",
+          "x": -14.80212857142857,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 319",
+          "kind": "void",
+          "x": -16.79712857142857,
+          "z": -17.969455813953488,
+          "width": 3.609,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 317",
+          "kind": "void",
+          "x": -10.23427857142857,
+          "z": -15.796655813953489,
+          "width": 0.012699999999998823,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 317",
+          "kind": "void",
+          "x": -5.87597857142857,
+          "z": -15.796655813953489,
+          "width": 0.012699999999999712,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 317",
+          "kind": "void",
+          "x": -8.05512857142857,
+          "z": -17.969455813953488,
+          "width": 4.3456,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 316",
+          "kind": "void",
+          "x": -5.672778571428571,
+          "z": -15.796655813953489,
+          "width": 0.39369999999999994,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 316",
+          "kind": "void",
+          "x": -1.695478571428571,
+          "z": -15.796655813953489,
+          "width": 0.3936999999999995,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 315",
+          "kind": "void",
+          "x": -1.3716285714285714,
+          "z": -15.796655813953489,
+          "width": 0.2539999999999998,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 315",
+          "kind": "void",
+          "x": 2.7453714285714286,
+          "z": -15.796655813953489,
+          "width": 0.25399999999999956,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 315",
+          "kind": "void",
+          "x": 0.6868714285714287,
+          "z": -17.969455813953488,
+          "width": 3.8630000000000004,
+          "depth": 1.066799999999997,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 314",
+          "kind": "void",
+          "x": 3.0057214285714275,
+          "z": -15.796655813953489,
+          "width": 0.2666999999999997,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 314",
+          "kind": "void",
+          "x": 7.110021428571427,
+          "z": -15.796655813953489,
+          "width": 0.26669999999999927,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 314",
+          "kind": "void",
+          "x": 5.057871428571428,
+          "z": -17.931355813953488,
+          "width": 3.8376,
+          "depth": 1.1429999999999971,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 313",
+          "kind": "void",
+          "x": 7.433871428571427,
+          "z": -15.796655813953489,
+          "width": 0.38099999999999934,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 313",
+          "kind": "void",
+          "x": 11.423871428571427,
+          "z": -15.796655813953489,
+          "width": 0.38099999999999845,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 312",
+          "kind": "void",
+          "x": 11.842971428571428,
+          "z": -15.796655813953489,
+          "width": 0.4571999999999985,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 312",
+          "kind": "void",
+          "x": 15.756771428571426,
+          "z": -15.796655813953489,
+          "width": 0.4572000000000003,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 312",
+          "kind": "void",
+          "x": 13.799871428571425,
+          "z": -17.94405581395349,
+          "width": 3.4566,
+          "depth": 1.1175999999999995,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 311",
+          "kind": "void",
+          "x": 16.144121428571427,
+          "z": -15.796655813953489,
+          "width": 0.3175000000000008,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 311",
+          "kind": "void",
+          "x": 20.19762142857143,
+          "z": -15.796655813953489,
+          "width": 0.317499999999999,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 311",
+          "kind": "void",
+          "x": 18.17087142857143,
+          "z": -17.95675581395349,
+          "width": 3.7360000000000007,
+          "depth": 1.0921999999999983,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 310",
+          "kind": "void",
+          "x": 20.546871428571425,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 310",
+          "kind": "void",
+          "x": 24.536871428571423,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000038,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 310",
+          "kind": "void",
+          "x": 22.541871428571426,
+          "z": -17.95675581395349,
+          "width": 3.608999999999998,
+          "depth": 1.0921999999999983,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 309",
+          "kind": "void",
+          "x": 24.917871428571424,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 309",
+          "kind": "void",
+          "x": 28.907871428571426,
+          "z": -15.796655813953489,
+          "width": 0.3810000000000002,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 309",
+          "kind": "void",
+          "x": 26.912871428571425,
+          "z": -17.95675581395349,
+          "width": 3.6090000000000018,
+          "depth": 1.0921999999999983,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 308-RA",
+          "kind": "void",
+          "x": 29.28252142857142,
+          "z": -15.796655813953489,
+          "width": 0.3683000000000014,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 308-RA",
+          "kind": "void",
+          "x": 33.28522142857142,
+          "z": -15.796655813953489,
+          "width": 0.36829999999999785,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 308-RA",
+          "kind": "void",
+          "x": 31.283871428571423,
+          "z": -17.94405581395349,
+          "width": 3.6343999999999994,
+          "depth": 1.1175999999999995,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 307",
+          "kind": "void",
+          "x": 33.50747142857143,
+          "z": -15.796655813953489,
+          "width": 0.07620000000000005,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 307",
+          "kind": "void",
+          "x": 37.80227142857143,
+          "z": -15.796655813953489,
+          "width": 0.07619999999999294,
+          "depth": 5.412399999999998,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 307",
+          "kind": "void",
+          "x": 35.654871428571425,
+          "z": -17.94405581395349,
+          "width": 4.218600000000002,
+          "depth": 1.1175999999999995,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 344",
+          "kind": "void",
+          "x": 24.87765714285714,
+          "z": -2.7062,
+          "width": 1.0498857142857148,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 344",
+          "kind": "void",
+          "x": 27.562699999999996,
+          "z": -4.709810465116279,
+          "width": 4.3202,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 344",
+          "kind": "void",
+          "x": 27.562699999999996,
+          "z": -0.7025895348837208,
+          "width": 4.3202,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 345",
+          "kind": "void",
+          "x": 24.87765714285714,
+          "z": 1.6992418604651163,
+          "width": 1.0498857142857148,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 345",
+          "kind": "void",
+          "x": 27.562699999999996,
+          "z": -0.3043686046511628,
+          "width": 4.3202,
+          "depth": 0.3982209302325581,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 345",
+          "kind": "void",
+          "x": 27.562699999999996,
+          "z": 3.7028523255813957,
+          "width": 4.3202,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 346",
+          "kind": "void",
+          "x": 24.89035714285714,
+          "z": 6.1046837209302325,
+          "width": 1.075285714285716,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 346",
+          "kind": "void",
+          "x": 27.575399999999995,
+          "z": 4.1010732558139535,
+          "width": 4.294799999999999,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 346",
+          "kind": "void",
+          "x": 27.575399999999995,
+          "z": 8.108294186046512,
+          "width": 4.294799999999999,
+          "depth": 0.3982209302325588,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 305",
+          "kind": "void",
+          "x": 37.31542857142856,
+          "z": -7.615120930232558,
+          "width": 1.0498857142857076,
+          "depth": 5.4124,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 305",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": -9.76887093023256,
+          "width": 4.3202,
+          "depth": 1.1048999999999989,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 305",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": -5.461370930232558,
+          "width": 4.3202,
+          "depth": 1.1049000000000007,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 304",
+          "kind": "void",
+          "x": 37.31542857142856,
+          "z": -2.7062,
+          "width": 1.0498857142857076,
+          "depth": 4.405441860465116,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 304",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": -4.709810465116279,
+          "width": 4.3202,
+          "depth": 0.3982209302325579,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 304",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": -0.7025895348837208,
+          "width": 4.3202,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 303",
+          "kind": "void",
+          "x": 37.31542857142856,
+          "z": 1.6992418604651163,
+          "width": 1.0498857142857076,
+          "depth": 4.405441860465117,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 303",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": -0.3043686046511628,
+          "width": 4.3202,
+          "depth": 0.3982209302325581,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 303",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": 3.7028523255813957,
+          "width": 4.3202,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 302",
+          "kind": "void",
+          "x": 37.31542857142856,
+          "z": 6.1046837209302325,
+          "width": 1.0498857142857076,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 302",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": 4.1010732558139535,
+          "width": 4.3202,
+          "depth": 0.39822093023255833,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 302",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": 8.108294186046512,
+          "width": 4.3202,
+          "depth": 0.3982209302325588,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 301",
+          "kind": "void",
+          "x": 37.31542857142856,
+          "z": 10.510125581395348,
+          "width": 1.0498857142857076,
+          "depth": 4.4054418604651175,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 301",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": 8.519215116279069,
+          "width": 4.3202,
+          "depth": 0.4236209302325591,
+          "stairYaw": 0
+        },
+        {
+          "name": "Provisional infill beside 301",
+          "kind": "void",
+          "x": 34.63038571428571,
+          "z": 12.50103604651163,
+          "width": 4.3202,
+          "depth": 0.4236209302325573,
+          "stairYaw": 0
+        }
+      ],
+      "circulationCorners": []
+    }
+  ],
+  "entryLevel": 1,
+  "runtimeReady": false,
+  "exactReplica": false
+}

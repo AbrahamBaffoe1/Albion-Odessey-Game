@@ -14,6 +14,7 @@ namespace AlbionOdyssey
         void Card(Rect r,bool accent=false){OdysseyUI.Card(r,Panel);if(accent)Fill(new Rect(r.x,r.y,4,r.height),Gold);}
         string CurrentPlace()
         {
+            if(game.city!=null&&game.city.InCity)return game.city.NearbyLandmark()?.name??"Downtown Albion";
             var buildings=CampusBuildings.Instance;var extra=buildings?.AdditionalInside();
             string p=extra!=null?extra.Location:buildings!=null&&buildings.Inside?buildings.Location:game.tour.InRoom?"Wesley Hall":game.campus.OnCampus?game.campus.Nearest.name:game.life.Location;
             return p.Length>31?p.Substring(0,29)+"…":p;
@@ -83,7 +84,7 @@ namespace AlbionOdyssey
         void Minimap(Rect r)
         {
             Card(r);
-            GUI.Label(new Rect(r.x+14,r.y+10,r.width-28,18),"CAMPUS MAP  ·  180 M",eyebrow);
+            GUI.Label(new Rect(r.x+14,r.y+10,r.width-28,18),(game.city!=null&&game.city.InCity?"CITY MAP  ·  180 M":"CAMPUS MAP  ·  180 M"),eyebrow);
             Rect map=new Rect(r.x+12,r.y+35,r.width-24,r.width-47);Fill(map,new Color(.025f,.07f,.085f,.96f));
             var grid=new Color(.20f,.52f,.55f,.18f);Fill(new Rect(map.x+map.width*.5f,map.y,1,map.height),grid);Fill(new Rect(map.x,map.y+map.height*.5f,map.width,1),grid);
             float radius=Mathf.Min(map.width,map.height)*.46f,range=180f;Vector3 player=game.player.transform.position;
@@ -98,6 +99,13 @@ namespace AlbionOdyssey
                 float py=map.y+map.height*.5f-Mathf.Clamp(delta.z/range,-1,1)*radius;
                 Color marker=MapColor(placeInfo.category);Fill(new Rect(px-3,py-3,6,6),marker);
                 if(distance<42f){mapName.normal.textColor=marker;GUI.Label(new Rect(px+6,py-7,Mathf.Min(110,map.xMax-px-5),18),placeInfo.name,mapName);}
+            }
+            if(game.city!=null&&game.city.InCity)foreach(var landmark in CityCatalog.Landmarks)
+            {
+                var delta=AlbionCity.ToWorld(landmark.x,0,landmark.z)-player;
+                if(new Vector2(delta.x,delta.z).magnitude>range)continue;
+                float px=map.center.x+delta.x/range*radius,py=map.center.y-delta.z/range*radius;
+                Fill(new Rect(px-3,py-3,6,6),Gold);
             }
             if(game.online!=null&&game.online.Active)
             {
@@ -115,7 +123,7 @@ namespace AlbionOdyssey
             // The player stays centered while the world map remains north-up.
             GUI.Label(new Rect(map.center.x-12,map.center.y-13,24,24),"▲",mapPlayer);
             GUI.Label(new Rect(map.x+4,map.y+2,18,18),"N",eyebrow);
-            string nearest=closest==null?"Explore the grounds":closest.name;
+            string nearest=game.city!=null&&game.city.InCity?"Downtown Albion":closest==null?"Explore the grounds":closest.name;
             GUI.Label(new Rect(r.x+14,r.yMax-25,r.width-28,18),nearest.Length>28?nearest.Substring(0,26)+"…":nearest,small);
         }
         void CampusPulse(Rect r)

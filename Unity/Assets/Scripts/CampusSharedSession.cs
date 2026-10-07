@@ -12,7 +12,7 @@ namespace AlbionOdyssey
     [Serializable] sealed class CampusRoomMessage {public string type,id,room,hostId,mode,visibility;public int capacity;public CampusRoomPlayer[] players;public CampusTrailStop[] trail;public ForestSnapshot forest;}
     public sealed class CampusSharedSession : MonoBehaviour
     {
-        OdysseyGame game;CampusSharedConfig config;CampusSocket socket;string room="QUAD",connectedId="",joinIntent="",hostId="",mode="coop",visibility="private";int focus,retries;bool wanted;float sendAt,retryAt,lastPacket;Vector3 lastPosition;
+        OdysseyGame game;CampusSharedConfig config;CampusSocket socket;string room="QUAD",connectedId="",joinIntent="",hostId="",mode="coop",visibility="private",roundPhase="";int focus,retries;bool wanted;float sendAt,retryAt,lastPacket;Vector3 lastPosition;
         readonly Dictionary<string,CampusRemoteStudent> remotes=new Dictionary<string,CampusRemoteStudent>();
         readonly HashSet<string> hidden=new HashSet<string>();
         public bool Joined {get;private set;}
@@ -28,10 +28,11 @@ namespace AlbionOdyssey
             game.accounts.ProfileChanged+=ProfileChanged;forest=gameObject.AddComponent<CampusForestRun>();forest.Setup(game,this);
         }
         void ProfileChanged(){if(game.accounts.SignedIn){if(Joined)socket?.Send("{\"type\":\"profile\"}");}else Leave();}
+        public void OpenForest(){if(!Joined){Open();Status="Join a public or private room, then choose Forest run.";return;}forest.Open();}
         public void Open(){focus=0;game.tour?.StopMedia();game.life.SetPanel("online");}
         public void Join(string code, string intent="")
         {
-            if(!game.accounts.SignedIn||!game.accounts.ProfileLoaded){Status="Sign in with F7 and load your profile first.";return;}
+            if(!game.accounts.SignedIn||!game.accounts.ProfileLoaded){Status="Choose Student account from the Esc menu and sign in first.";return;}
             if(!Configured){Status="Online rooms are not configured in this build.";return;}
             code=(code??"").Trim().ToUpperInvariant();if(code.Length<3||code.Length>18){Status="Use a room code of 3–18 letters, numbers or hyphens.";return;}
             foreach(char c in code)if(!(c>='A'&&c<='Z')&&!(c>='0'&&c<='9')&&c!='-'){Status="Room codes use letters, numbers and hyphens.";return;}
@@ -61,13 +62,24 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if(forest!=null&&forest.HandleInput())return true;
-            if(Input.GetKeyDown(KeyCode.F6)&&Joined){forest.Open();return true;}
-            if(Input.GetKeyDown(KeyCode.F5)&&!Input.GetKey(KeyCode.LeftShift)){if(game.life.panel=="online")game.life.SetPanel("");else Open();return true;}
+            if(Input.GetKeyDown(KeyCode.F6)||CampusMenuShortcuts.Pressed(KeyCode.T,game)){OpenForest();return true;}
+            if((Input.GetKeyDown(KeyCode.F5)&&!Input.GetKey(KeyCode.LeftShift))||CampusMenuShortcuts.Pressed(KeyCode.R,game)){if(game.life.panel=="online")game.life.SetPanel("");else Open();return true;}
             if(game.life.panel!="online")return false;
             if(Input.GetKeyDown(KeyCode.Escape)){game.life.SetPanel("");return true;}
-            if(GUIUtility.keyboardControl==0&&AlbionUIInput.Poll(out var x,out var y,out var choose,out var back)){if(back)game.life.SetPanel("");else{if(x!=0||y!=0)focus=(focus+(x>0||y<0?1:7))%8;if(choose)Activate(focus);}}return true;
+            if(GUIUtility.keyboardControl==0&&AlbionUIInput.Poll(out var x,out var y,out var choose,out var back)){if(back)game.life.SetPanel("");else{if(x!=0||y!=0)focus=(focus+(x>0||y<0?1:11))%12;if(choose)Activate(focus);}}return true;
         }
-        void Activate(int item){if(item==0){if(!game.accounts.SignedIn)game.accountPanel.Open();else Join(room,"join");}else if(item==1)Leave();else if(item==2){GUIUtility.systemCopyBuffer=room;Status="Room code copied. Friends can enter it in F5.";}else if(item==3)MeetAtFerguson();else if(item<7)Emote(item==4?"wave":item==5?"cheer":"dance");else game.life.SetPanel("");}
+        void Activate(int item)
+        {
+            if(item==0){if(!game.accounts.SignedIn)game.accountPanel.Open();else Join(room,"join");}
+            else if(item==1)Leave();
+            else if(item==2){GUIUtility.systemCopyBuffer=room;Status="Invite copied. Share this code with your friends.";}
+            else if(item==3)MeetAtFerguson();
+            else if(item>=4&&item<=6)Emote(item==4?"wave":item==5?"cheer":"dance");
+            else if(item==7)game.life.SetPanel("");
+            else if(item==8||item==9){if(!game.accounts.SignedIn)game.accountPanel.Open();else Join(item==8?"PUBLIC":"PRIVATE",item==8?"public":"create");}
+            else if(item==10)OpenForest();
+            else if(item==11&&Joined&&hostId==connectedId&&(string.IsNullOrEmpty(roundPhase)||roundPhase=="finished"))socket.Send("{\"type\":\"mode\",\"mode\":\""+(mode=="race"?"coop":"race")+"\"}");
+        }
         void Update()
         {
             if(!wanted)return;if(!game.accounts.SignedIn||game.accounts.UserId!=connectedId){Leave();return;}
@@ -78,7 +90,7 @@ namespace AlbionOdyssey
                 {
                     var message=JsonUtility.FromJson<CampusRoomMessage>(raw);lastPacket=Time.unscaledTime;
                     if(message.type=="welcome"){room=message.room;joinIntent="join";hostId=message.hostId;mode=message.mode;visibility=message.visibility;Joined=true;retries=0;Status="Connected · room "+room;lastPosition=game.player.transform.position;}
-                    if(message.type=="snapshot"&&message.players!=null){hostId=message.hostId;mode=message.mode;visibility=message.visibility;ApplyPlayers(message.players);trail=message.trail;forest.Accept(message.forest);}
+                    if(message.type=="snapshot"&&message.players!=null){hostId=message.hostId;mode=message.mode;visibility=message.visibility;ApplyPlayers(message.players);roundPhase=message.forest?.phase;trail=message.trail;forest.Accept(message.forest);}
                 }catch{DisconnectForRetry(4400);return;}
             }
             if(socket.Ended){DisconnectForRetry(socket.CloseCode);return;}
@@ -119,37 +131,41 @@ namespace AlbionOdyssey
                     OdysseyUI.Text(new Rect(34,Screen.height-102,348,24),"CAMPUS TRAIL · "+done+" / "+trail.Length,15,OdysseyUI.Mint,true);
                     string hint=next==null?"Your group explored every stop!":next.name+" · "+Mathf.RoundToInt(Vector3.Distance(game.player.transform.position,new Vector3(next.x,0,next.z)))+" m";
                     OdysseyUI.Text(new Rect(34,Screen.height-75,348,23),hint,16,OdysseyUI.White);
-                    OdysseyUI.Text(new Rect(34,Screen.height-49,348,22),"F6 forest treasure run · F5 room",13,OdysseyUI.Muted);
+                    OdysseyUI.Text(new Rect(34,Screen.height-49,348,22),"Esc menu · Online rooms · Forest run",13,OdysseyUI.Muted);
                 }
                 return;
             }
-            var old=GUI.matrix;float scale=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale,x=(w-1120)/2,y=(h-730)/2;
-            OdysseyUI.Fill(new Rect(0,0,w,h),OdysseyUI.Navy);OdysseyUI.Text(new Rect(x,y,700,26),"ALBION / TOGETHER",14,OdysseyUI.Mint,true);
-            OdysseyUI.Text(new Rect(x,y+38,850,72),"YOUR CAMPUS. YOUR PEOPLE.",38,OdysseyUI.White,true);
-            OdysseyUI.Text(new Rect(x,y+110,1100,48),"Your display name, avatar and game location are visible to people in this room. Email stays private.",18,OdysseyUI.Muted);
-            OdysseyUI.Card(new Rect(x,y+180,450,330),OdysseyUI.Surface);OdysseyUI.Text(new Rect(x+24,y+204,400,28),"ROOM CODE",14,OdysseyUI.Mint,true);
-            bool enabled=GUI.enabled;GUI.enabled=!wanted;room=GUI.TextField(new Rect(x+24,y+248,402,48),room,18,OdysseyUI.Font(27,true)).ToUpperInvariant();GUI.enabled=enabled;
-            if(OdysseyUI.Button(new Rect(x+24,y+324,402,56),game.accounts.SignedIn?(Joined?"REJOIN ROOM":"JOIN ONLINE") : "SIGN IN TO JOIN","room-join",focus==0,true))Activate(0);
-            if(OdysseyUI.Button(new Rect(x+24,y+402,190,52),"LEAVE","room-leave",focus==1))Activate(1);if(OdysseyUI.Button(new Rect(x+232,y+402,194,52),"COPY CODE","room-copy",focus==2))Activate(2);
-            OdysseyUI.Card(new Rect(x+472,y+180,648,330),OdysseyUI.Surface);OdysseyUI.Text(new Rect(x+498,y+204,590,30),(Joined?remotes.Count+1:0)+" / 16 PLAYERS",18,OdysseyUI.White,true);
-            if(remotes.Count==0)OdysseyUI.Text(new Rect(x+498,y+258,590,94),Joined?"You’re first here. Invite a friend with the same room code.":"Join a room to see real online players here.",24,OdysseyUI.Muted);
-            rosterScroll=GUI.BeginScrollView(new Rect(x+498,y+248,590,118),rosterScroll,new Rect(0,0,560,Mathf.Max(118,remotes.Count*29)));
-            int rowY=0;foreach(var peer in remotes.Values){OdysseyUI.Text(new Rect(0,rowY,555,29),peer.DisplayName,18,OdysseyUI.White);rowY+=29;}GUI.EndScrollView();
-            if(Joined&&trail!=null){int n=0;foreach(var stop in trail){OdysseyUI.Text(new Rect(x+498,y+380+n*32,590,30),(stop.visited?"✓ ":"○ ")+stop.name+(stop.visited?" · "+stop.by:" · explore together"),16,stop.visited?OdysseyUI.Mint:OdysseyUI.Muted);n++;}}
-            if(OdysseyUI.Button(new Rect(x,y+532,450,54),"MEET AT FERGUSON","room-meet",focus==3))Activate(3);
-            foreach(var option in new[]{4,5,6})if(OdysseyUI.Button(new Rect(x+472+(option-4)*220,y+532,208,54),option==4?"WAVE":option==5?"CHEER":"DANCE","room-emote-"+option,focus==option))Activate(option);
-            if(!wanted){
-                if(OdysseyUI.Button(new Rect(x,y+592,218,48),"PUBLIC ROOM","room-public",false,true))Join("PUBLIC","public");
-                if(OdysseyUI.Button(new Rect(x+232,y+592,218,48),"CREATE PRIVATE","room-private",false))Join("PRIVATE","create");
+            var old=GUI.matrix;float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(Vector3.one*scale);float w=Screen.width/scale,h=Screen.height/scale,x=(w-1120)/2;
+            ConsoleMenuStyle.Background(game,w,h);
+            ConsoleMenuStyle.Heading(x,"MULTIPLAYER",Joined?"Your party is here.":"Better together.",Joined?(visibility=="public"?"Public campus":"Private campus")+" · "+(remotes.Count+1)+" / 16 players · "+(mode=="race"?"Competitive race":"Cooperative treasure hunt"):"Find a public campus or invite friends into your own private room.");
+            bool enabled=GUI.enabled;GUI.enabled=!wanted;
+            if(OdysseyUI.Button(new Rect(x,255,347,62),"Find public room","room-public",focus==8,true))Activate(8);
+            if(OdysseyUI.Button(new Rect(x+369,255,347,62),"Create private room","room-private",focus==9))Activate(9);
+            GUI.enabled=enabled;
+            OdysseyUI.Text(new Rect(x,345,600,27),Joined?"INVITE CODE":"HAVE AN INVITE?",14,OdysseyUI.Mint,true);
+            GUI.enabled=!wanted;GUI.SetNextControlName("room-code");room=GUI.TextField(new Rect(x,382,450,57),room,18,ConsoleMenuStyle.Field()).ToUpperInvariant();GUI.enabled=enabled;
+            if(OdysseyUI.Button(new Rect(x+469,382,247,57),Joined?"Copy invite":"Join with code","room-join",focus==(Joined?2:0)))Activate(Joined?2:0);
+            OdysseyUI.Card(new Rect(x+754,255,366,312),new Color(.035f,.030f,.023f,.95f));
+            OdysseyUI.Text(new Rect(x+778,277,314,31),"YOUR PARTY",14,OdysseyUI.Mint,true);
+            OdysseyUI.Text(new Rect(x+778,321,314,34),Joined?game.accounts.DisplayName+" · You":"No room joined",20,OdysseyUI.White,true);
+            rosterScroll=GUI.BeginScrollView(new Rect(x+778,367,314,173),rosterScroll,new Rect(0,0,290,Mathf.Max(173,remotes.Count*34)));
+            int rowY=0;foreach(var peer in remotes.Values){OdysseyUI.Text(new Rect(0,rowY,290,32),peer.DisplayName,18,OdysseyUI.White);rowY+=34;}GUI.EndScrollView();
+            if(Joined)
+            {
+                if(OdysseyUI.Button(new Rect(x,472,347,60),"Start forest run","room-run",focus==10,true))Activate(10);
+                GUI.enabled=hostId==connectedId&&(string.IsNullOrEmpty(roundPhase)||roundPhase=="finished");
+                if(OdysseyUI.Button(new Rect(x+369,472,347,60),mode=="race"?"Switch to co-op":"Switch to race","room-mode",focus==11))Activate(11);GUI.enabled=enabled;
+                if(OdysseyUI.Button(new Rect(x,551,220,48),"Meet at Ferguson","room-meet",focus==3))Activate(3);
+                for(int i=4;i<=6;i++)if(OdysseyUI.Button(new Rect(x+236+(i-4)*160,551,150,48),i==4?"Wave":i==5?"Cheer":"Dance","room-emote-"+i,focus==i))Activate(i);
             }
-            if(Joined&&hostId==connectedId&&OdysseyUI.Button(new Rect(x,y+646,450,42),mode=="race"?"RACE · SWITCH TO CO-OP":"CO-OP · SWITCH TO RACE","room-mode",false)){
-                socket.Send("{\"type\":\"mode\",\"mode\":\""+(mode=="race"?"coop":"race")+"\"}");Status="Mode changes between runs. Finish the current run first.";
-            }
-            if(Joined&&OdysseyUI.Button(new Rect(x,y+592,450,48),"FOREST TREASURE RUN · F6","forest-open",false,true))forest.Open();
-            OdysseyUI.Text(new Rect(x+472,y+613,400,52),Status,18,Joined?OdysseyUI.Mint:OdysseyUI.Muted);
-            if(wanted&&!Joined)OdysseyUI.Spinner(new Rect(x+850,y+612,38,38));if(OdysseyUI.Button(new Rect(x+914,y+612,206,52),"BACK  ·  ESC","room-back",focus==7))Activate(7);
-            OdysseyUI.Text(new Rect(x,y+699,1120,28),"F5 Rooms · F7 Account · F8 Nature trails · Room host switches modes between runs",14,OdysseyUI.Muted);GUI.matrix=old;
+            OdysseyUI.Text(new Rect(x,634,716,67),Status+(Joined?"\nRoom hosts can switch modes between runs. Your email stays private.":""),17,Joined?OdysseyUI.Mint:OdysseyUI.Muted);
+            if(wanted&&!Joined)OdysseyUI.Spinner(new Rect(x+663,550,42,42));
+            if(Joined&&OdysseyUI.Button(new Rect(x+754,596,175,51),"Leave room","room-leave",focus==1))Activate(1);
+            if(OdysseyUI.Button(new Rect(x+945,596,175,51),"Back","room-back",focus==7))Activate(7);
+            if(Event.current.type==EventType.KeyDown&&Event.current.keyCode==KeyCode.Return&&GUI.GetNameOfFocusedControl()=="room-code"){Activate(0);Event.current.Use();}
+            ConsoleMenuStyle.Footer(x,h,"ESC  Back     ·     ARROWS  Browse     ·     ENTER  Select");GUI.matrix=old;
         }
+
         void OnApplicationQuit(){Leave();}
         void OnDestroy(){if(game?.accounts!=null)game.accounts.ProfileChanged-=ProfileChanged;Leave();}
     }

@@ -1,0 +1,675 @@
+{
+  "fittedRooms": 110,
+  "maxPairErrorMetres": 4.440892098500626e-16,
+  "overlaps": 0,
+  "expansionX": 1.2488571428571427,
+  "expansionZ": 1.2586976744186047,
+  "width": 75.68074285714285,
+  "depth": 37.005711627906976,
+  "runtimeVerified": false,
+  "liveInstalled": false,
+  "sourceAxisOrientationVerified": false,
+  "exactReplica": false,
+  "rooms": [
+    {
+      "room": "24",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "25",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "26",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "27",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "28",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "29",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "30",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "31",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "32",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "21",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "18",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "17",
+      "level": 0,
+      "errorMetres": 4.440892098500626e-16,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "12",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "10",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "9",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "42",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "43",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "6",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "5",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "4",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "3",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "2",
+      "level": 0,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "135",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "136",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "137",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "128",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "127",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "126",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "125",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "124",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "122",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "121",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "111",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "110",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "109",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "108",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "147",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "148",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "149",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "150",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "151",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "104",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "103",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "102",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "101",
+      "level": 1,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "229",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "230",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "231",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "233",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "234",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "235",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "236",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "238",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "223",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "222",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "221",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "220",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "218",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "217",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "216",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "215",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "214",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "213",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "212",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "211",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "210",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "209",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "208",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "244",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "245",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "246",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "247",
+      "level": 2,
+      "errorMetres": 4.440892098500626e-16,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "248",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "205",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "204",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "203",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "202",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "201",
+      "level": 2,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "328",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "329",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "330",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "331",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "332",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "333",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "334",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "335",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "337",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "south"
+    },
+    {
+      "room": "322",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "321",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "320",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "319",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "317",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "316",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "315",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "314",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "313",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "312",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "311",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "310",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "309",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "308",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "307",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "north"
+    },
+    {
+      "room": "344",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "345",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "346",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "east"
+    },
+    {
+      "room": "305",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "304",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "303",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "302",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    },
+    {
+      "room": "301",
+      "level": 3,
+      "errorMetres": 0.0,
+      "doorSideEstimate": "west"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "source": "https://ignca.gov.in/Asi_data/3497.pdf",
+  "pdfPageOneBased": 84,
+  "printedPage": 85,
+  "render": "work/architecture/stockwell-source-084.png",
+  "renderSizePixels": [
+    1741,
+    2400
+  ],
+  "historicalOnly": true,
+  "exactReplica": false,
+  "calibration": {
+    "labeledWidthFeet": 120,
+    "labeledWidthMetres": 36.576,
+    "pixelSpan": [
+      282,
+      1390
+    ],
+    "metresPerPixel": 0.03301083032490975
+  },
+  "reviewedLandmarks": {
+    "outerWallLeft": 282,
+    "outerWallRight": 1390,
+    "rearWall": 1594,
+    "frontWall": 2187,
+    "centralFacadeLeft": 552,
+    "centralFacadeRight": 1118
+  },
+  "derivedEstimatesMetres": {
+    "overallDepth": 19.5754,
+    "centralFacadeWidth": 18.6841,
+    "fiveBayPitch": 3.7368
+  },
+  "limitations": [
+    "Pixel edges have approximately 6px reading uncertainty, before unknown scan distortion.",
+    "Depth uses the horizontal scale; independent vertical calibration is unavailable.",
+    "Central facade bounds are plan projections, not measured pilaster centre lines.",
+    "Room clear dimensions, wall thicknesses and current alterations are not resolved.",
+    "Do not interpret the outer 156/138-foot composition lines as building footprint dimensions."
+  ]
+}

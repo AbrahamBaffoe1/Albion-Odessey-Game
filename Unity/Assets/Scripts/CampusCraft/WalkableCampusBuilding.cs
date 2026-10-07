@@ -5,7 +5,7 @@ namespace AlbionOdyssey
 {
     // Reference-driven building shell for halls whose public interior dimensions are
     // still being verified. All dimensions are explicit meters and easy to replace.
-    public sealed class WalkableCampusBuilding
+    public sealed partial class WalkableCampusBuilding
     {
         public readonly string Id;
         public readonly CampusPlace Place;
@@ -20,17 +20,28 @@ namespace AlbionOdyssey
             {
                 if (game == null) return false;
                 Vector3 p = game.player.transform.position - Origin;
+                if (Plan != null) return InsidePlan(Root.transform.InverseTransformPoint(game.player.transform.position));
                 return Mathf.Abs(p.x) < Width * .5f && Mathf.Abs(p.z) < Depth * .5f && p.y >= -.2f && p.y < Floors * FloorHeight + 1f;
             }
         }
-        public string Location => Inside ? Place.name + " · Level " + (Mathf.Clamp(Mathf.FloorToInt((game.player.transform.position.y + .15f) / FloorHeight), 0, (int)Floors - 1) + 1) : Place.name;
+        public string Location
+        {
+            get
+            {
+                if(!Inside)return Place.name;
+                int level=Mathf.Clamp(Mathf.FloorToInt(((Plan!=null?Root.transform.InverseTransformPoint(game.player.transform.position).y:game.player.transform.position.y-Origin.y)+.15f)/FloorHeight),0,(int)Floors-1);
+                return Place.name+" · "+(Plan!=null?Plan.floors[level].name+" floor":"Level "+(level+1));
+            }
+        }
 
         readonly OdysseyGame game;
+        readonly WesleyPlan suppliedPlan;
         readonly bool atrium;
         readonly Material brick, stone, trim, glass, roof, floor, plaster, wood, fabric, metal;
 
-        public WalkableCampusBuilding(OdysseyGame owner, CampusPlace place, float width, float depth, int floors, float floorHeight, bool centralAtrium, string history)
+        public WalkableCampusBuilding(OdysseyGame owner, CampusPlace place, float width, float depth, int floors, float floorHeight, bool centralAtrium, string history, WesleyPlan referencePlan=null)
         {
+            suppliedPlan=referencePlan;
             game = owner; Place = place; Id = place.id; Origin = place.position; Width = width; Depth = depth; Floors = floors; FloorHeight = floorHeight; atrium = centralAtrium; History = history;
             brick = CraftModel.Surface(place.name + " brick", new Color(.58f, .25f, .17f), "red_brick_03");
             stone = CraftModel.Surface(place.name + " limestone", new Color(.78f, .74f, .66f));
@@ -45,17 +56,38 @@ namespace AlbionOdyssey
             Build();
         }
 
-        static GameObject Box(Transform parent, string name, Vector3 at, Vector3 size, Material material, bool solid = true) => KeeperAvatar.Part(parent, name, PrimitiveType.Cube, at, size, material, solid);
+        static GameObject Box(Transform parent, string name, Vector3 at, Vector3 size, Material material, bool solid = true)
+        {
+            var part = KeeperAvatar.Part(parent, name, PrimitiveType.Cube, at, size, material, solid);
+            if (material.mainTexture != null)
+            {
+                var mesh = part.GetComponent<MeshFilter>().mesh;
+                var vertices = mesh.vertices; var normals = mesh.normals; var uv = new Vector2[vertices.Length];
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    var point = Vector3.Scale(vertices[i], size) + at;
+                    uv[i] = (Mathf.Abs(normals[i].y) > .7f ? new Vector2(point.x, point.z) : Mathf.Abs(normals[i].x) > .7f ? new Vector2(point.z, point.y) : new Vector2(point.x, point.y)) / 2f;
+                }
+                mesh.uv = uv; mesh.RecalculateTangents();
+            }
+            return part;
+        }
 
         void Build()
         {
             Root = new GameObject(Id + " · " + Place.name + " · walkable"); Root.transform.position = Origin;
-            if (Id == "16") BuildAuthoredRobinson();
+            if(suppliedPlan!=null) BuildReferencePlan(suppliedPlan);
+            else if (Id == "46") BuildMitchellPlan();
+            else if (Id == "49") BuildSeatonPlan();
+            else if (Id == "50") BuildWesleyPlan();
+            else if (Id == "51") BuildWhitehousePlan();
+            else if (Id == "16") BuildAuthoredRobinson();
             else { BuildExterior(); BuildInterior(); }
-            var plaque = new GameObject(Place.name + " history plaque"); plaque.transform.SetParent(Root.transform, false); plaque.transform.localPosition = new Vector3(0, 2.15f, -Depth * .5f - .08f);
+            var plaque = new GameObject(Place.name + " history plaque"); plaque.transform.SetParent(Root.transform, false); plaque.transform.localPosition = new Vector3(Plan!=null?Plan.entryX:0, Plan!=null?Plan.entryLevel*FloorHeight+2.75f:2.15f, -Depth * .5f - .08f);
             var label = plaque.AddComponent<TextMesh>(); label.text = Place.name.ToUpperInvariant(); label.fontSize = 52; label.characterSize = .09f; label.anchor = TextAnchor.MiddleCenter; label.color = new Color(.22f, .13f, .30f);
             var info = plaque.AddComponent<CampusBuildingInfo>(); info.Title = Place.name; info.Body = History;
             var nameplate = Root.AddComponent<CampusWorldLabel>(); nameplate.Configure(Id + "  ·  " + Place.name.ToUpperInvariant(), LabelAccent(Place.category), new Vector3(0, Mathf.Min(Floors * FloorHeight + 1.15f, 4.2f), -Depth * .5f - .65f), 24f);
+            BatchExteriorDetails();
             Physics.SyncTransforms();
         }
 
@@ -93,6 +125,7 @@ namespace AlbionOdyssey
         void BuildExterior()
         {
             if (Id == "18") { BuildScienceExterior(); return; }
+            if (Id == "50") { BuildWesleyExterior(); return; }
             float roofY = Floors * FloorHeight;
             Box(Root.transform, "Foundation", new Vector3(0, .15f, 0), new Vector3(Width + .45f, .30f, Depth + .45f), stone);
             Box(Root.transform, "Back wall", new Vector3(0, roofY * .5f, Depth * .5f), new Vector3(Width, roofY, .32f), brick);
@@ -192,7 +225,8 @@ namespace AlbionOdyssey
 
         void Window(Vector3 at, Vector3 size)
         {
-            Box(Root.transform, "Reference window", at, size, glass, false); Box(Root.transform, "Window trim", at, size + new Vector3(.16f, .05f, .16f), trim, false);
+            // Call sites use width, depth, height. Keep glazing vertical and trim around it.
+            FramedWindow(Root.transform, at, size.x, size.z);
         }
 
         void Dormer(Vector3 at)
@@ -208,6 +242,15 @@ namespace AlbionOdyssey
                 float y = f * FloorHeight;
                 if (f == 0 || !atrium || f >= Floors)
                     Box(Root.transform, "Interior floor", new Vector3(0, y - .10f, 0), new Vector3(Width - .7f, .2f, Depth - .7f), floor);
+                else if (Id == "50")
+                {
+                    float edge=Width/2-.35f, stairX=Width*.33f, left=stairX-1.3f, right=stairX+1.3f;
+                    float back=Depth/2-.35f, start=-Depth*.28f, finish=start+6f;
+                    Box(Root.transform,"Wesley upper west floor",new Vector3((-edge+left)/2,y-.1f,0),new Vector3(left+edge,.2f,Depth-.7f),floor);
+                    Box(Root.transform,"Wesley upper east floor",new Vector3((right+edge)/2,y-.1f,0),new Vector3(edge-right,.2f,Depth-.7f),floor);
+                    Box(Root.transform,"Wesley floor before stair",new Vector3(stairX,y-.1f,(-back+start)/2),new Vector3(2.6f,.2f,start+back),floor);
+                    Box(Root.transform,"Wesley floor beyond stair",new Vector3(stairX,y-.1f,(finish+back)/2),new Vector3(2.6f,.2f,back-finish),floor);
+                }
                 else
                 {
                     // Leave a real opening above the stair flight; a full plate here would
@@ -331,6 +374,12 @@ namespace AlbionOdyssey
 
         void Stair(int floorIndex)
         {
+            if (Id == "50")
+            {
+                int count=Mathf.CeilToInt(FloorHeight/.17f);float rise=FloorHeight/count,run=6f/count;
+                for(int step=0;step<count;step++)Box(Root.transform,"Wesley stair tread",new Vector3(Width*.33f,floorIndex*FloorHeight+(step+.5f)*rise,-Depth*.28f+(step+.5f)*run),new Vector3(2.4f,rise,run),stone);
+                return;
+            }
             float y = floorIndex * FloorHeight; for (int step = 0; step < 20; step++) Box(Root.transform, "Walkable stair tread", new Vector3(Width * .33f, y + (step + 1) * .17f - .085f, -Depth * .28f + step * .30f), new Vector3(2.4f, .17f, .30f), stone, true); Box(Root.transform, "Stair upper landing", new Vector3(Width * .33f, y + FloorHeight - .10f, Depth * .35f), new Vector3(2.8f, .20f, 2.0f), floor, true); for (int side = -1; side <= 1; side += 2) Box(Root.transform, "Stair handrail", new Vector3(Width * .33f + side * 1.25f, y + 1.55f, 0), new Vector3(.06f, .06f, Depth * .62f), wood, false);
         }
 
@@ -351,7 +400,7 @@ namespace AlbionOdyssey
 
         public void Visit()
         {
-            game.tour.StopMedia(); if (game.building) game.ToggleMode(); if (!game.player.TryExitVehicle()) return; game.player.Teleport(Origin + new Vector3(0, .08f, -Depth * .5f - 3.0f)); game.player.transform.rotation = Quaternion.identity; game.life.SetPanel(""); game.notice = Place.name + " · enter the reference-based interior. Press " + OdysseyAccessibility.InteractLabel + " at doors and H for the building story.";
+            game.tour.StopMedia(); if (game.building) game.ToggleMode(); if (!game.player.TryExitVehicle()) return; game.player.Teleport(Root.transform.TransformPoint(new Vector3(Plan!=null?Plan.entryX:0,.08f-(Plan!=null?Plan.baseElevation:0),-Depth*.5f-(Id=="50"?10.5f:Id=="49"?5f:3f)))); game.player.transform.rotation = Root.transform.rotation; game.life.SetPanel(""); game.notice = Place.name + " · enter the reference-based interior. Press " + OdysseyAccessibility.InteractLabel + " at doors and H for the building story.";
         }
 
         public bool HandleInput()

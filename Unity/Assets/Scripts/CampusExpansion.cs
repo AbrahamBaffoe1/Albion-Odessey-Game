@@ -51,13 +51,19 @@ namespace AlbionOdyssey
             found=PlayerPrefs.GetInt(Key+"found",0)&127;
             game.player.thirdPerson=OdysseySmoke.Enabled?false:PlayerPrefs.GetInt(Key+"third",1)==1;
             game.player.cameraDistance=Mathf.Clamp(PlayerPrefs.GetFloat(Key+"zoom",4.5f),2.5f,7);
-            RefreshAvatar();
+            RefreshAvatar();if(game.accounts!=null&&game.accounts.ProfileLoaded)ApplyOnlineAvatar();
+        }
+        public void ApplyOnlineAvatar()
+        {
+            var profile=game.accounts?.Profile;if(profile==null)return;
+            skin=profile.avatar_skin;outfit=profile.avatar_outfit;hair=profile.avatar_hair;backpack=profile.avatar_backpack;keeperName=profile.display_name;RefreshAvatar();
         }
         public void SaveKeeper()
         {
             keeperName=keeperName.Trim();if(keeperName.Length==0)keeperName="Keeper "+(active+1);
             PlayerPrefs.SetString(Key+"name",keeperName);PlayerPrefs.SetInt(Key+"skin",skin);PlayerPrefs.SetInt(Key+"outfit",outfit);PlayerPrefs.SetInt(Key+"hair",hair);PlayerPrefs.SetInt(Key+"pack",backpack?1:0);
             PlayerPrefs.SetInt(Key+"found",found);PlayerPrefs.SetInt(Key+"third",game.player.thirdPerson?1:0);PlayerPrefs.SetFloat(Key+"zoom",game.player.cameraDistance);PlayerPrefs.Save();
+            if(game.accounts!=null&&game.accounts.SignedIn&&!game.accounts.SaveAvatar(skin,outfit,hair,backpack))game.notice="Look saved on this device. Open F7 to save it to your online account.";
         }
         public void RefreshAvatar(){game.player.avatar.Build(skin,outfit,hair,backpack);if(preview!=null){preview.Build(skin,outfit,hair,backpack);LayerPreview();}}
         void Update(){if(game!=null&&active!=game.state.active)LoadKeeper();}
@@ -68,6 +74,7 @@ namespace AlbionOdyssey
             if(game.life!=null&&(game.life.panel=="settings"||game.life.panel=="campus"||game.life.panel=="treasures"))
             {
                 if(controllerPanel!=game.life.panel){controllerPanel=game.life.panel;controllerFocus=0;}
+                if(game.life.panel=="campus"&&GUIUtility.keyboardControl!=0&&!Input.GetKeyDown(KeyCode.Escape))return true;
                 if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
                 {
                     string panel=game.life.panel;int count=panel=="settings"?7:panel=="campus"?5:4;
@@ -98,10 +105,10 @@ namespace AlbionOdyssey
                         }
                         else if(panel=="campus")
                         {
-                            if(controllerFocus==0)Travel(CampusCatalog.Places[Mathf.Clamp(selectedPlace,0,CampusCatalog.Places.Length-1)]);
-                            else if(controllerFocus==1)game.life.SetPanel("treasures");
-                            else if(controllerFocus==2)Application.OpenURL(CampusCatalog.MapSource);
-                            else if(controllerFocus==3)game.life.SetPanel("map");
+                            if(controllerFocus==0){if(CampusNavigationMap.Nature)FindAnyObjectByType<WhitehouseTrailWorld>()?.ToggleVisit();else Travel(CampusCatalog.Places[Mathf.Clamp(selectedPlace,0,CampusCatalog.Places.Length-1)]);}
+                            else if(controllerFocus==1){if(CampusNavigationMap.Nature)game.shared.OpenForest();else game.life.SetPanel("treasures");}
+                            else if(controllerFocus==2)Application.OpenURL(CampusNavigationMap.Nature?"https://www.albion.edu/wp-content/uploads/2021/09/whitehouse-nature-center-trail-map-1.pdf":CampusCatalog.MapSource);
+                            else if(controllerFocus==3)CampusNavigationMap.Nature=!CampusNavigationMap.Nature;
                             else game.life.SetPanel("");
                         }
                         else
@@ -208,37 +215,7 @@ namespace AlbionOdyssey
             InitStyles();GUI.backgroundColor=new Color(.26f,.17f,.39f);
             if(panel=="settings"){DrawSettings(x);return;}
             if(panel=="treasures"){DrawTreasures(x);return;}
-            Label(x,88,1100,32,"61 DESTINATIONS  /  Campus exteriors · approximate map layout",small);
-            Label(x,126,370,26,"FIND A BUILDING",small);search=GUI.TextField(new Rect(x,157,370,35),search,60);
-            string[] categories={"All","Academic","Resources","Residential","Greek life","Athletics","Campus life","Nature"};
-            for(int i=0;i<categories.Length;i++)if(GUI.Button(new Rect(x+(i%2)*189,201+(i/2)*31,181,28),(category==categories[i]?"● ":"")+categories[i],button)){category=categories[i];scroll=Vector2.zero;}
-            var matches=new List<int>();for(int i=0;i<CampusCatalog.Places.Length;i++){var p=CampusCatalog.Places[i];if((category=="All"||p.category==category)&&(p.name.IndexOf(search,StringComparison.OrdinalIgnoreCase)>=0||p.id==search))matches.Add(i);}
-            scroll=GUI.BeginScrollView(new Rect(x,336,380,355),scroll,new Rect(0,0,355,Mathf.Max(350,matches.Count*47)));
-            for(int j=0;j<matches.Count;j++){int i=matches[j];if(Button(0,j*47,352,(selectedPlace==i?"● ":"")+CampusCatalog.Places[i].id+"  "+CampusCatalog.Places[i].name))selectedPlace=i;}
-            if(matches.Count==0)Label(12,20,310,80,"No matching buildings. Try another name or choose All.");GUI.EndScrollView();
-            float mx=x+410,my=126,mw=710,mh=390;
-            Card(new Rect(mx,my,mw,mh),new Color(.12f,.21f,.19f));
-            Func<Vector3,Vector2> map=p=>new Vector2(mx+(p.x/1.5f+400-35)/730*mw,my+(250-(p.z-400)/1.5f-20)/420*mh);
-            foreach(float streetY in new[]{77f,123f,161f,241f,286f})
-            {var v=map(CampusCatalog.Point(400,streetY));Card(new Rect(mx,v.y-2,mw,4),new Color(.08f,.12f,.13f));}
-            foreach(float streetX in new[]{64f,118f,178f,236f,297f,363f,474f,590f,718f})
-            {var v=map(CampusCatalog.Point(streetX,220));Card(new Rect(v.x-2,my,4,mh),new Color(.08f,.12f,.13f));}
-            foreach(var p in CampusCatalog.Places)
-            {
-                var v=map(p.position);float w=Mathf.Max(7,p.width/1.5f/730*mw),h=Mathf.Max(7,p.depth/1.5f/420*mh);
-                Card(new Rect(v.x-w/2,v.y-h/2,w,h),p==CampusCatalog.Places[selectedPlace]?new Color(1,.74f,.25f):p.category=="Athletics"?new Color(.15f,.65f,.58f):p.category=="Residential"||p.category=="Greek life"?new Color(.78f,.53f,.27f):new Color(.53f,.39f,.70f));
-                if(GUI.Button(new Rect(v.x-w/2,v.y-h/2,w,h),GUIContent.none,GUIStyle.none))selectedPlace=Array.IndexOf(CampusCatalog.Places,p);
-            }
-            var playerDot=map(game.player.transform.position);if(OnCampus)Card(new Rect(playerDot.x-4,playerDot.y-4,8,8),Color.white);
-            Label(mx+16,my+15,330,30,"ALBION COLLEGE     N ↑",small);Label(mx+16,my+mh-29,640,24,"Purple · academic    Gold · homes    Teal · athletics    White · you",small);
-            var chosen=CampusCatalog.Places[selectedPlace];Label(mx,535,710,60,chosen.name,heading);Label(mx,600,690,40,chosen.category+" · Map "+chosen.id+" · Approximate exterior");
-            if(Button(mx,650,215,"Travel to building"))Travel(chosen);
-            if(Button(mx+232,650,215,"Campus discoveries"))game.life.SetPanel("treasures");
-            if(Button(mx+464,650,230,"Official campus map"))Application.OpenURL(CampusCatalog.MapSource);
-            FocusBox(new Rect(mx,650,215,38),0);FocusBox(new Rect(mx+232,650,215,38),1);FocusBox(new Rect(mx+464,650,230,38),2);
-            if(Button(x,716,245,"Legacy Hall & builder"))game.life.SetPanel("map");
-            FocusBox(new Rect(x,716,245,38),3);
-            Label(x+270,717,840,45,"Buildings are exterior approximations; the original Legacy Hall still has eight walkable floors.",small);
+            CampusNavigationMap.Draw(game,x,ref selectedPlace,controllerFocus);
         }
         void PreparePreview()
         {

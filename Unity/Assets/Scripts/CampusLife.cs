@@ -172,7 +172,7 @@ namespace AlbionOdyssey
         void OnGUI()
         {
             if(game==null||!game.Ready)return;
-            if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend"||panel=="account"||panel=="pause"||panel=="vr"||panel=="repair")return;
+            if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend"||panel=="account"||panel=="pause"||panel=="vr"||panel=="repair"||panel=="online"||panel=="forestrun")return;
             if(heading==null)
             {
                 heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(30),fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);
@@ -184,7 +184,7 @@ namespace AlbionOdyssey
             }
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;Rect safe=AlbionUITheme.SafeArea(scale);GUI.matrix=AlbionUITheme.Slide(GUI.matrix,panelOpenedAt,OdysseyAccessibility.ReducedMotion);
-            GUI.backgroundColor=new Color(.40f,.22f,.57f);
+            GUI.backgroundColor=AlbionUITheme.Purple;
             if(PanelOpen&&game.sound.AchievementCaption.Length>0)
             {
                 GUI.color=new Color(.025f,.09f,.10f,.96f);GUI.DrawTexture(new Rect(width-440,138,420,78),Texture2D.whiteTexture);GUI.color=Color.white;
@@ -192,8 +192,7 @@ namespace AlbionOdyssey
                 Label(width-423,174,390,40,game.sound.AchievementCaption,text);
             }
             if(!PanelOpen)return;
-            GUI.color=new Color(.025f,.028f,.052f,1f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);GUI.color=Color.white;
-            GUI.color=new Color(1f,.76f,.28f,1f);GUI.DrawTexture(new Rect(0,0,width,5),Texture2D.whiteTexture);GUI.color=Color.white;
+            ConsoleMenuStyle.Background(game,width,height);
             float left=(width-1120)/2;
             Label(left,28,920,50,panel=="campus"?"EXPLORE ALBION COLLEGE":panel=="settings"?"YOUR STUDENT":panel=="treasures"?"CAMPUS TREASURES":panel=="map"?"LEGACY CAMPUS":panel=="history"?"ALBION / LEARN THE STORY":panel=="courses"?"YOUR CAMPUS / COURSES":"ALBION ODYSSEY",heading);
             if(Button(left+965,32,155,"Return · Esc"))SetPanel("");
@@ -208,7 +207,7 @@ namespace AlbionOdyssey
                 Label(left,95,1080,50,"Build your campus. Discover its stories. Start a class.",text);
                 Label(left,155,540,340,"MOVE  W A S D or ↑ ↓ ← →\nLOOK  Mouse   ·   RUN  Shift   ·   JUMP  Space\nPICK UP / TALK  "+OdysseyAccessibility.InteractLabel+", aimed at the object\nHISTORY  H near a building   ·   ALL STORIES  G\nCOURSES  K   ·   MAP / TRAVEL  M\nBUILD MODE  F2   ·   JOURNAL  J\nKEEPER  Tab   ·   BEACON  C\nON-SCREEN ARROWS  O   ·   TURN  Z / X\nCHARACTER SETTINGS  F3   ·   CAMERA  V\nHELP / PAUSE  Esc or F1",text);
                 Label(left+590,155,510,260,"NEW: EXPLORE ALBION\n61 campus destinations · 7 discoveries\nE enters / exits a car. Space brakes.\nF3 lets you choose or create your character.\n\nLEGACY CAMPUS\nCollect the golden memories at Legacy Hall.\nPress F2, then 4, and click a tile to build a Hall.\nPress K to name a course for that building.\nEnroll, assign students and travel to class.\nRead the lesson and answer its question.",text);
-                Label(left+590,447,510,75,"Version 0.18 · Four local Keepers on this Mac.\nHost or join a LAN campus with F5; movement, names and chat stay in sync.",muted);
+                Label(left+590,447,510,75,"Open Esc → Online rooms to meet players.\nSign in through Student account. No function keys required.",muted);
                 if(Button(left,530,260,FocusLabel(0,"Play / resume")))SetPanel("");
                 if(Button(left+280,530,260,FocusLabel(1,"Building stories · G")))game.shell.Stories();
                 if(Button(left+840,530,230,FocusLabel(3,"College videos")))game.shell.Videos();

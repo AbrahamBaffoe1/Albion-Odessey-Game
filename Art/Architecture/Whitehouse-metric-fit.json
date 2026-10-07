@@ -1,0 +1,971 @@
+{
+  "status": "Data-fit audit only; runtime clearances verified separately. Full-building accuracy remains unproven.",
+  "wallThicknessEstimate": 0.18,
+  "width": 61.300799999999995,
+  "depth": 33.5558,
+  "rooms": [
+    {
+      "room": 21,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 23,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 25,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 27,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.731,
+      "publishedLength": 6.731,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 32,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 34,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 36,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 38,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 31,
+      "level": 0,
+      "modelClearWidth": 3.4036,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.4036,
+      "sideways": false
+    },
+    {
+      "room": 33,
+      "level": 0,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 35,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 37,
+      "level": 0,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 42,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 44,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.4262,
+      "publishedLength": 6.4262,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 46,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 48,
+      "level": 0,
+      "modelClearWidth": 3.4036,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.4036,
+      "sideways": false
+    },
+    {
+      "room": 41,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 43,
+      "level": 0,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 45,
+      "level": 0,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 47,
+      "level": 0,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.4008,
+      "publishedLength": 6.4008,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 119,
+      "level": 1,
+      "modelClearWidth": 6.2738,
+      "modelClearDepth": 3.8354,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.8354,
+      "sideways": true
+    },
+    {
+      "room": 132,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 134,
+      "level": 1,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 136,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 138,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 121,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 123,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 125,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 127,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.5278,
+      "publishedLength": 6.5278,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 129,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 131,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.5278,
+      "publishedLength": 6.5278,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 133,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 135,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 137,
+      "level": 1,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 142,
+      "level": 1,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 144,
+      "level": 1,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 146,
+      "level": 1,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 148,
+      "level": 1,
+      "modelClearWidth": 3.4036,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.4036,
+      "sideways": false
+    },
+    {
+      "room": 141,
+      "level": 1,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 143,
+      "level": 1,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 145,
+      "level": 1,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 147,
+      "level": 1,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 211,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.2766,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.2766,
+      "sideways": true
+    },
+    {
+      "room": 213,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 215,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.302,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.302,
+      "sideways": true
+    },
+    {
+      "room": 217,
+      "level": 2,
+      "modelClearWidth": 6.3246,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 219,
+      "level": 2,
+      "modelClearWidth": 6.3246,
+      "modelClearDepth": 3.8862,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.8862,
+      "sideways": true
+    },
+    {
+      "room": 212,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.2766,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.2766,
+      "sideways": true
+    },
+    {
+      "room": 214,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3528,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": true
+    },
+    {
+      "room": 216,
+      "level": 2,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.302,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.302,
+      "sideways": true
+    },
+    {
+      "room": 218,
+      "level": 2,
+      "modelClearWidth": 6.3246,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 200,
+      "level": 2,
+      "modelClearWidth": 4.4196,
+      "modelClearDepth": 3.429,
+      "publishedLength": 4.4196,
+      "publishedWidth": 3.429,
+      "sideways": true
+    },
+    {
+      "room": 226,
+      "level": 2,
+      "modelClearWidth": 3.5,
+      "modelClearDepth": 6.3,
+      "publishedLength": null,
+      "publishedWidth": null,
+      "sideways": false
+    },
+    {
+      "room": 228,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 232,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 234,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 236,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 238,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 221,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 223,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 225,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 227,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 229,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 231,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 233,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.3246,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 235,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 237,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 242,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 244,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 246,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 248,
+      "level": 2,
+      "modelClearWidth": 3.3782,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3782,
+      "sideways": false
+    },
+    {
+      "room": 241,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 243,
+      "level": 2,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.3246,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 245,
+      "level": 2,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 247,
+      "level": 2,
+      "modelClearWidth": 3.2766,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.2766,
+      "sideways": false
+    },
+    {
+      "room": 311,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.302,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.302,
+      "sideways": true
+    },
+    {
+      "room": 313,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3528,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": true
+    },
+    {
+      "room": 315,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 317,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 319,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.8862,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.8862,
+      "sideways": true
+    },
+    {
+      "room": 312,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.302,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.302,
+      "sideways": true
+    },
+    {
+      "room": 314,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 316,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3274,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": true
+    },
+    {
+      "room": 318,
+      "level": 3,
+      "modelClearWidth": 6.2992,
+      "modelClearDepth": 3.3782,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3782,
+      "sideways": true
+    },
+    {
+      "room": 326,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 328,
+      "level": 3,
+      "modelClearWidth": 3.3782,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3782,
+      "sideways": false
+    },
+    {
+      "room": 332,
+      "level": 3,
+      "modelClearWidth": 3.3782,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3782,
+      "sideways": false
+    },
+    {
+      "room": 334,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 336,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 338,
+      "level": 3,
+      "modelClearWidth": 3.2766,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.2766,
+      "sideways": false
+    },
+    {
+      "room": 321,
+      "level": 3,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.302,
+      "sideways": false
+    },
+    {
+      "room": 323,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.3246,
+      "publishedLength": 6.3246,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 325,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 327,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 329,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 331,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.604,
+      "publishedLength": 6.604,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 333,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 335,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 337,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 342,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 344,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 346,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 348,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 341,
+      "level": 3,
+      "modelClearWidth": 3.3528,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3528,
+      "sideways": false
+    },
+    {
+      "room": 343,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2484,
+      "publishedLength": 6.2484,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 345,
+      "level": 3,
+      "modelClearWidth": 3.3274,
+      "modelClearDepth": 6.2992,
+      "publishedLength": 6.2992,
+      "publishedWidth": 3.3274,
+      "sideways": false
+    },
+    {
+      "room": 347,
+      "level": 3,
+      "modelClearWidth": 3.302,
+      "modelClearDepth": 6.2738,
+      "publishedLength": 6.2738,
+      "publishedWidth": 3.302,
+      "sideways": false
+    }
+  ]
+}

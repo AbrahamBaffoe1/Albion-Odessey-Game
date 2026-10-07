@@ -6,13 +6,13 @@ namespace AlbionOdyssey
     // asset-free lets the Mac, Android and XR players use the same theme.
     public static class AlbionUITheme
     {
-        public static readonly Color Ink=new Color(.025f,.028f,.052f), Gold=new Color(1f,.76f,.28f), Purple=new Color(.40f,.22f,.57f), Cyan=new Color(.35f,.84f,.92f);
+        public static readonly Color Ink=new Color(.025f,.028f,.052f), Gold=new Color(1f,.43f,.035f), Purple=new Color(.12f,.075f,.028f), Cyan=new Color(.12f,.83f,.86f);
         public static int TextSize(int size){return OdysseyAccessibility.LargeText?Mathf.RoundToInt(size*1.18f):size;}
         static Texture2D pixel,buttonTexture;
         static Font displayFont, bodyFont;
         static Texture2D Pixel(){if(pixel==null){pixel=new Texture2D(1,1,TextureFormat.RGBA32,false);pixel.SetPixel(0,0,Color.white);pixel.Apply();}return pixel;}
-        public static Font DisplayFont { get { if(displayFont==null) displayFont=ResolveFont("Avenir Next Condensed"); return displayFont; } }
-        public static Font BodyFont { get { if(bodyFont==null) bodyFont=ResolveFont("Helvetica Neue"); return bodyFont; } }
+        public static Font DisplayFont { get { if(displayFont==null) displayFont=Resources.Load<Font>("Fonts/Rajdhani-SemiBold")??ResolveFont("Avenir Next Condensed"); return displayFont; } }
+        public static Font BodyFont { get { if(bodyFont==null) bodyFont=Resources.Load<Font>("Fonts/Rajdhani-Regular")??ResolveFont("Avenir Next"); return bodyFont; } }
         static Font ResolveFont(string preferred)
         {
 #if !UNITY_ANDROID

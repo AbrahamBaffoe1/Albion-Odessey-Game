@@ -30,7 +30,8 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.19.0";
+            PlayerSettings.bundleVersion="0.29.0";
+            PlayerSettings.SplashScreen.show=false;PlayerSettings.SplashScreen.showUnityLogo=false;
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
             PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
@@ -58,6 +59,12 @@ namespace AlbionOdyssey.Editor
                 sky.SetFloat("_SunSize",.025f);sky.SetFloat("_AtmosphereThickness",.8f);sky.SetFloat("_Exposure",1.1f);
                 sky.SetColor("_SkyTint",new Color(.55f,.60f,.68f));
                 AssetDatabase.CreateAsset(sky,skyPath);
+            }
+            var daylight=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Resources/CampusCraft/CampusDaylight.hdr");
+            if(daylight!=null)
+            {
+                var sky=AssetDatabase.LoadAssetAtPath<Material>(skyPath);sky.shader=Shader.Find("Skybox/Panoramic");
+                sky.SetTexture("_MainTex",daylight);sky.SetFloat("_Exposure",.8f);sky.SetFloat("_Rotation",25);EditorUtility.SetDirty(sky);
             }
             var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
             EditorSceneManager.SaveScene(scene,"Assets/Scenes/LegacyHall.unity");
@@ -138,7 +145,7 @@ namespace AlbionOdyssey.Editor
             Prepare();
             PlayerSettings.Android.minSdkVersion=AndroidSdkVersions.AndroidApiLevel29;
             PlayerSettings.Android.targetSdkVersion=AndroidSdkVersions.AndroidApiLevel35;
-            PlayerSettings.Android.bundleVersionCode=20;
+            PlayerSettings.Android.bundleVersionCode=21;
             PlayerSettings.SetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android,ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(BuildTargetGroup.Android,(int)AndroidArchitecture.ARM64);
             var report=BuildPipeline.BuildPlayer(new BuildPlayerOptions{scenes=new[]{"Assets/Scenes/LegacyHall.unity"},locationPathName=output,target=BuildTarget.Android,options=BuildOptions.None});

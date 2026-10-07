@@ -209,6 +209,7 @@ namespace AlbionOdyssey
         public CampusActivityKind Activity; public Vector3[] Route; public float Speed = 1f;
         KeeperAvatar avatar; CampusConversationBubble bubble; int target; float pause; Vector3 last; bool seated; float dancePhase,talkPhase,workPhase;
         public CampusStudentIdentity Identity { get; private set; }
+        readonly CampusStudentPath navigation=new CampusStudentPath();
         public bool IsSeated { get { return seated && pause > 0f; } }
         public void Build(CampusStudentProfile profile,string displayName) { var body = new GameObject("Student body"); body.transform.SetParent(transform, false); avatar = body.AddComponent<KeeperAvatar>(); avatar.Build(profile.Skin, profile.Coat, profile.Hair, Activity != CampusActivityKind.Play||profile.Backpack); Identity=gameObject.AddComponent<CampusStudentIdentity>(); Identity.Apply(profile,displayName); var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure(displayName+"  ·  "+Activity.ToString().ToUpperInvariant(),new Color(.52f,.84f,.9f),new Vector3(0,2.35f,0),11f); bubble=gameObject.AddComponent<CampusConversationBubble>();bubble.Configure(displayName,Activity,new Vector3(0,2.72f,0),16f); last = transform.position; }
         void Update()
@@ -219,8 +220,8 @@ namespace AlbionOdyssey
             if (delta.magnitude < .22f) { target = (target + 1) % Route.Length; pause = Activity == CampusActivityKind.Play ? 2.5f : 1.5f; seated = Activity == CampusActivityKind.Learn || Activity == CampusActivityKind.Eat; if(seated)FaceConversationPartner(); bubble.SetVisible(seated || Activity == CampusActivityKind.Play); if (Activity == CampusActivityKind.Play) { if(OdysseyAccessibility.ReducedMotion) avatar.Animate(0, false); else Dance(); } else {avatar.Animate(0, seated);if(!OdysseyAccessibility.ReducedMotion){if(seated)Talk();else if(Activity==CampusActivityKind.Teach||Activity==CampusActivityKind.Serve||Activity==CampusActivityKind.Buy)Work();}} return; }
             seated = false; bubble.SetVisible(false); avatar.transform.localRotation = Quaternion.identity; avatar.transform.localPosition=Vector3.zero;
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
-            if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;pause=.35f;return;}
-            transform.position += direction * distance; transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction, Vector3.up), Time.deltaTime * 5f); avatar.Animate(OdysseyAccessibility.ReducedMotion?0:Speed, false); last = transform.position;
+            if(!navigation.Move(transform,goal,distance)){target=(target+1)%Route.Length;pause=.35f;avatar.Animate(0,false);last=transform.position;return;}
+            avatar.Animate(OdysseyAccessibility.ReducedMotion?0:(transform.position-last).magnitude/Mathf.Max(.001f,Time.deltaTime),false);last=transform.position;
         }
         void Talk()
         {

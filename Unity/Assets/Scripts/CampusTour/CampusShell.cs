@@ -68,14 +68,17 @@ namespace AlbionOdyssey
         {
             if(OwnsPanel)
             {
+                if(!IsSummary&&Input.GetKeyDown(KeyCode.D)){Play();game.city?.Travel();return true;}
+                if(!IsSummary&&Input.GetKeyDown(KeyCode.M)){game.life.SetPanel("campus");return true;}
                 if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
                 {
-                    int count=IsSummary?3:IsPaused?7:10;
+                    int[] navigation=IsSummary?new[]{0,1,2}:IsPaused?new[]{0,7,8,9,1,2,3,4,5,6}:new[]{0,10,11,12,5,9,3,4,2,1,6,7,8};
+                    int count=navigation.Length;
                     if(cancel){if(IsSummary)ShowLaunch();else Play();return true;}
                     if(horizontal!=0||vertical!=0)
                     {
                         int direction=horizontal!=0?(horizontal>0?1:-1):(vertical>0?-1:1);
-                        menuFocus=(menuFocus+direction+count)%count;
+                        int current=Array.IndexOf(navigation,menuFocus);menuFocus=navigation[(Math.Max(0,current)+direction+count)%count];
                     }
                     if(choose)
                     {
@@ -86,8 +89,11 @@ namespace AlbionOdyssey
                         }
                         else
                         {
+                            if(menuFocus==10){game.shared.Open();return true;}
+                            if(menuFocus==11){game.shared.OpenForest();return true;}
+                            if(menuFocus==12){FindAnyObjectByType<WhitehouseTrailWorld>()?.ToggleVisit();return true;}
                             if(menuFocus==9){game.accountPanel.Open();return true;}
-                            if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)OpenStudioWithLoading();else if(menuFocus==4)Courses();else if(menuFocus==5)OpenStudentWithLoading();else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else if(CampusBuildings.Instance!=null)CampusBuildings.Instance.Visit();
+                            if(menuFocus==0)Play();else if(menuFocus==1)Videos();else if(menuFocus==2)Stories();else if(menuFocus==3)OpenStudioWithLoading();else if(menuFocus==4)Courses();else if(menuFocus==5)OpenStudentWithLoading();else if(menuFocus==6)game.life.SetPanel("welcome");else if(menuFocus==7)EndSession();else {Play();game.city?.Travel();}
                         }
                     }
                     return true;
@@ -162,28 +168,27 @@ namespace AlbionOdyssey
         }
         void DrawLaunch(float w,float h,float right)
         {
-            game.presentation?.DrawBackdrop(w,h);
-            float x=(w-1160)*.5f;
-            OdysseyUI.Text(new Rect(x,37,250,38),"ALBION / ODYSSEY",21,OdysseyUI.White,true);
-            if(OdysseyUI.Button(new Rect(x+290,27,160,57),"Explore","nav-explore",menuFocus==2))Stories();
-            if(OdysseyUI.Button(new Rect(x+464,27,140,57),"Build","nav-build",menuFocus==3))OpenStudioWithLoading();
-            if(OdysseyUI.Button(new Rect(x+618,27,140,57),"Learn","nav-learn",menuFocus==4))Courses();
-            if(OdysseyUI.Button(new Rect(x+772,27,174,57),"Your student","nav-student",menuFocus==5))OpenStudentWithLoading();
-            if(OdysseyUI.Button(new Rect(x+960,27,200,57),game.accounts.SignedIn?"My account":"Sign in / join","nav-account",menuFocus==9))game.accountPanel.Open();
-            OdysseyUI.Card(new Rect(x,157,240,30),new Color(.14f,.34f,.29f));
-            OdysseyUI.Text(new Rect(x+15,162,230,25),"A NEW DAY ON CAMPUS",13,OdysseyUI.Mint,true);
-            OdysseyUI.Text(new Rect(x-3,222,600,180),"YOUR CAMPUS.\nYOUR STORY.",58,OdysseyUI.White,true);
-            OdysseyUI.Text(new Rect(x,419,465,75),"Find your people. Discover the college.\nLeave your mark.",22,OdysseyUI.White);
-            if(OdysseyUI.Button(new Rect(x,523,320,76),seconds>1?"CONTINUE EXPLORING  →":"ENTER CAMPUS  →","lobby-play",menuFocus==0,true))Play();
-            if(OdysseyUI.Button(new Rect(x+338,535,158,56),"Controls","lobby-help",menuFocus==6))game.life.SetPanel("welcome");
-            game.presentation?.DrawStudent(new Rect(x+620,111,560,525));
-            OdysseyUI.Card(new Rect(x+710,600,365,43),new Color(.015f,.04f,.075f,.94f));
-            OdysseyUI.Text(new Rect(x+735,610,320,28),game.campus.keeperName+"  ·  READY TO EXPLORE",15,OdysseyUI.White,true);
-            float y=h-136;
-            if(OdysseyUI.Button(new Rect(x,y,370,86),"01   EXPLORE FERGUSON HALL","tile-hall",menuFocus==8))CampusBuildings.Instance.Visit();
-            if(OdysseyUI.Button(new Rect(x+395,y,370,86),"02   CAMPUS FILMS & STORIES","tile-film",menuFocus==1))Videos();
-            if(OdysseyUI.Button(new Rect(x+790,y,370,86),"03   SAVE & FINISH SESSION","tile-exit",menuFocus==7))EndSession();
-            OdysseyUI.Text(new Rect(x,h-32,1120,26),"WASD / ARROWS  Move    ·    E / F  Interact    ·    ESC  Menu                         ALBION COLLEGE, MICHIGAN",13,OdysseyUI.Muted);
+            float x=(w-1160)*.5f;ConsoleMenuStyle.Background(game,w,h);
+            OdysseyUI.Text(new Rect(x,32,500,64),"ALBION ODYSSEY",48,OdysseyUI.White);
+            OdysseyUI.Text(new Rect(x+2,99,600,24),"EXPLORE  /  CONNECT  /  DISCOVER",14,OdysseyUI.Gold);
+            OdysseyUI.Text(new Rect(w-360,42,280,30),game.accounts.SignedIn?"STUDENT PROFILE CONNECTED":"GUEST EXPLORER",18,OdysseyUI.White);
+            OdysseyUI.Text(new Rect(w-360,78,280,26),"ALBION, MICHIGAN  /  v"+Application.version,14,OdysseyUI.Gold);
+            OdysseyUI.Fill(new Rect(x,149,1160,1),OdysseyUI.Gold);
+            int[] actions={0,10,11,12,5,9,3,4,2,1,6,7};
+            string[] labels={"Enter campus","Online rooms","Forest pursuit","Nature trails","Your student","Account / sign in","Build your own","Courses & classes","Campus stories","College films","Controls","Save & finish"};
+            for(int i=0;i<actions.Length;i++)if(OdysseyUI.Button(new Rect(x,181+i*40,330,35),labels[i],"command-"+i,menuFocus==actions[i]))
+            {
+                menuFocus=actions[i];switch(actions[i]){case 0:Play();break;case 10:game.shared.Open();break;case 11:game.shared.OpenForest();break;case 12:FindAnyObjectByType<WhitehouseTrailWorld>()?.ToggleVisit();break;case 5:OpenStudentWithLoading();break;case 9:game.accountPanel.Open();break;case 3:OpenStudioWithLoading();break;case 4:Courses();break;case 2:Stories();break;case 1:Videos();break;case 6:game.life.SetPanel("welcome");break;case 7:EndSession();break;}
+            }
+            float rx=x+375;OdysseyUI.Card(new Rect(rx,181,785,350),new Color(.02f,.025f,.025f,.7f));
+            if(game.presentation?.CampusView!=null)GUI.DrawTexture(new Rect(rx+1,182,783,348),game.presentation.CampusView,ScaleMode.ScaleAndCrop);
+            OdysseyUI.Fill(new Rect(rx,441,785,90),new Color(.015f,.017f,.016f,.94f));
+            OdysseyUI.Text(new Rect(rx+20,448,700,46),"YOUR NEXT DISCOVERY STARTS HERE",32,OdysseyUI.White);
+            OdysseyUI.Text(new Rect(rx+20,495,700,24),"FERGUSON HALL  /  CAMPUS EXPLORATION",14,OdysseyUI.Gold);
+            if(OdysseyUI.Button(new Rect(rx,550,380,50),"Open navigation map","hub-navigation"))game.life.SetPanel("campus");
+            if(OdysseyUI.Button(new Rect(rx+397,550,388,50),"Explore downtown Albion","hub-hall",menuFocus==8)){Play();game.city?.Travel();}
+            OdysseyUI.Text(new Rect(rx,620,780,44),"Choose a destination. Follow the trails. Build your story together.",19,OdysseyUI.Muted);
+            ConsoleMenuStyle.Footer(x,h,"ARROWS  Browse     /     ENTER  Select     /     M  Map     /     D  Downtown     /     ESC  Play           ALBION ODYSSEY  ·  FIELD TERMINAL");
         }
         void OpenStudioWithLoading(){game.loading.Transition("Preparing your building studio",()=>BuildYourOwn());}
         void OpenStudentWithLoading(){game.loading.Transition("Preparing your student",()=>game.life.SetPanel("settings"));}
@@ -199,21 +204,25 @@ namespace AlbionOdyssey
                 case 4: game.vr.OpenPanel(); break;
                 case 5: ShowLaunch(); break;
                 case 6: EndSession(); break;
+                case 7: game.shared.Open(); break;
+                case 8: game.shared.OpenForest(); break;
+                case 9: FindAnyObjectByType<WhitehouseTrailWorld>()?.ToggleVisit(); break;
             }
         }
         void DrawPause(float w,float h)
         {
-            game.presentation?.DrawBackdrop(w,h);
-            OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.012f,.022f,.048f,.82f));
-            float x=(w-1120)*.5f;
-            OdysseyUI.Text(new Rect(x,62,700,35),"ALBION / ODYSSEY",22,OdysseyUI.Muted,true);
-            OdysseyUI.Text(new Rect(x,121,650,86),"CAMPUS MENU",48,OdysseyUI.White,true);
-            string[] labels={"Resume exploring","Student account","Building stories","Courses & classes","VR & comfort","Main menu","Save & finish session"};
-            for(int i=0;i<labels.Length;i++)if(OdysseyUI.Button(new Rect(x,239+i*63,565,53),labels[i],"pause-"+i,menuFocus==i,i==0)){menuFocus=i;ActivatePause(i);}
-            game.presentation?.DrawStudent(new Rect(x+650,117,470,488));
-            OdysseyUI.Text(new Rect(x+650,627,470,40),game.campus.keeperName,27,OdysseyUI.White,true);
-            OdysseyUI.Text(new Rect(x+650,677,470,44),game.life.Location,16,OdysseyUI.Muted);
-            OdysseyUI.Text(new Rect(x,h-40,1120,30),"ESC  Resume     ·     ↑ ↓  Navigate     ·     ENTER  Select",14,OdysseyUI.Muted);
+            float x=(w-1120)*.5f;ConsoleMenuStyle.Background(game,w,h);
+            ConsoleMenuStyle.Heading(x,"SESSION / PAUSED","Albion Odyssey","Your next move.");
+            string[] labels={"Resume","Student account","Building stories","Courses & classes","VR & comfort","Main menu","Save & finish session","Online rooms","Forest pursuit","Nature trails / return"};
+            int[] order={0,7,8,9,1,2,3,4,5,6};
+            for(int i=0;i<order.Length;i++){int action=order[i];if(OdysseyUI.Button(new Rect(x,253+i*42,410,36),labels[action],"pause-"+action,menuFocus==action)){menuFocus=action;ActivatePause(action);}}
+            OdysseyUI.Card(new Rect(x+460,253,660,421),new Color(.025f,.029f,.026f,.6f));
+            game.presentation?.DrawStudent(new Rect(x+770,260,300,400));
+            OdysseyUI.Text(new Rect(x+488,280,310,26),"EXPLORER STATUS",18,OdysseyUI.Gold);
+            OdysseyUI.Text(new Rect(x+488,331,285,110),game.accounts.SignedIn?"PROFILE\nCONNECTED":"LOCAL\nEXPLORER",34,OdysseyUI.White);
+            OdysseyUI.Text(new Rect(x+488,446,265,60),"CAMPUS / ALBION COLLEGE\nSESSION / PAUSED",16,OdysseyUI.Muted);
+            if(OdysseyUI.Button(new Rect(x+485,594,300,48),"Navigation map","pause-map"))game.life.SetPanel("campus");
+            ConsoleMenuStyle.Footer(x,h,"ESC  Resume     /     ARROWS  Browse     /     ENTER  Select     /     M  Map");
         }
         void Stat(float x,float y,float width,string value,string caption)
         {Fill(new Rect(x,y,width,93),new Color(.063f,.040f,.09f));Label(new Rect(x+14,y+10,width-28,42),value,heading,Gold);Label(new Rect(x+14,y+57,width-24,30),caption,small,Muted);}
