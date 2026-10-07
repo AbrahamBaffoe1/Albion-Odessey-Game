@@ -12,7 +12,7 @@ namespace AlbionOdyssey
     {
         const float NearRange = 14f;
         OdysseyGame game; Transform root;
-        Material brickWarm, brickRed, limestone, slate, asphalt, sidewalk, lawn, water, glass, gold, bronze, hedge, trunk, leaf, stoneDark, awning;
+        Material lampHead, lampPost, brickWarm, brickRed, limestone, slate, asphalt, sidewalk, lawn, water, glass, gold, bronze, hedge, trunk, leaf, stoneDark, awning;
         CityLandmark open; string hintId = ""; float openedAt; int focus; GUIStyle title, body, small, button;
         readonly Dictionary<string, GameObject> landmarkRoots = new Dictionary<string, GameObject>();
 
@@ -35,7 +35,9 @@ namespace AlbionOdyssey
             BuildSuperiorStreet();
             BuildBohm(); BuildGardner(); BuildRieger(); BuildVictory(); BuildRiverTrail(); BuildRiverside();
             BuildTrees();
+            BuildLamps();
             Physics.SyncTransforms();
+            BuildResidents();
         }
 
         // ── Input and story panel ─────────────────────────────────────────────
@@ -125,6 +127,57 @@ namespace AlbionOdyssey
             if (GUI.Button(new Rect(x, 590, 230, 46), (focus == 0 ? "▶  " : "") + "Open source", button)) { focus = 0; OpenSource(); }
             if (GUI.Button(new Rect(x + 245, 590, 160, 46), (focus == 1 ? "▶  " : "") + "Close", button)) { focus = 1; ClosePanel(); }
             GUI.Label(new Rect(x, h - 65, 780, 28), "STICK Navigate   ·   TRIGGER Select   ·   MENU Back   ·   H / Esc Close", small);
+        }
+
+        // ── City life ─────────────────────────────────────────────────────────
+
+        bool lampsLit;
+        /// <summary>Lamp heads glow warm at dusk and stay dull in daylight; driven by <see cref="CampusEnvironment"/>.</summary>
+        public void UpdateLamps(float daylight)
+        {
+            bool lit = daylight < .35f; if (lampHead == null || lit == lampsLit) return;
+            lampsLit = lit; Color color = lit ? new Color(1f, .82f, .5f) : new Color(.55f, .55f, .5f);
+            if (lampHead.HasProperty("_BaseColor")) lampHead.SetColor("_BaseColor", color);
+            if (lampHead.HasProperty("_Color")) lampHead.SetColor("_Color", color);
+            if (lampHead.HasProperty("_EmissionColor")) { lampHead.SetColor("_EmissionColor", lit ? color * 2.2f : Color.black); if (lit) lampHead.EnableKeyword("_EMISSION"); else lampHead.DisableKeyword("_EMISSION"); }
+        }
+
+        void BuildLamps()
+        {
+            lampPost = TowerGeometry.Material("City lamp post", new Color(.08f, .09f, .1f), .6f, .4f);
+            lampHead = TowerGeometry.Material("City lamp glass", new Color(.55f, .55f, .5f), 0f, .6f);
+            for (float z = -360f; z <= 360f; z += 24f)
+            {
+                if (Mathf.Abs(z - CityCatalog.RiverZ) < 22f || Mathf.Abs(z - CityCatalog.ErieZ) < 12f) continue;
+                foreach (int side in new[] { -1, 1 })
+                {
+                    var post = KeeperAvatar.Part(root, "Street lamp post", PrimitiveType.Cylinder, ToWorld(side * 10.4f, 2.2f, z), new Vector3(.14f, 2.2f, .14f), lampPost, false);
+                    KeeperAvatar.Part(root, "Street lamp", PrimitiveType.Sphere, ToWorld(side * 10.4f, 4.5f, z), new Vector3(.55f, .55f, .55f), lampHead, false);
+                }
+            }
+        }
+
+        // Pedestrians reuse the campus student agents, so they are mirrored from the LAN host like every other student.
+        void BuildResidents()
+        {
+            if (game.world == null) return;
+            var routes = new[]
+            {
+                new[] { new Vector3(8f, 0, 40f), new Vector3(8f, 0, 300f) },
+                new[] { new Vector3(-8f, 0, 300f), new Vector3(-8f, 0, 40f) },
+                new[] { new Vector3(-200f, 0, CityCatalog.ErieZ - 8f), new Vector3(-30f, 0, CityCatalog.ErieZ - 8f) },
+                new[] { new Vector3(30f, 0, CityCatalog.ErieZ + 8f), new Vector3(200f, 0, CityCatalog.ErieZ + 8f) },
+                new[] { new Vector3(-250f, 0, CityCatalog.RiverZ + 18f), new Vector3(-120f, 0, CityCatalog.RiverZ + 18f), new Vector3(60f, 0, CityCatalog.RiverZ + 18f) },
+                new[] { new Vector3(-130f, 0, -230f), new Vector3(-170f, 0, -270f), new Vector3(-100f, 0, -270f) },
+                new[] { new Vector3(140f, 0, -128f), new Vector3(168f, 0, -146f) },
+                new[] { new Vector3(-110f, 0, 78f), new Vector3(-110f, 0, 124f) },
+                new[] { new Vector3(-6f, 0, -42f), new Vector3(-6f, 0, -18f) },
+            };
+            for (int i = 0; i < routes.Length; i++)
+            {
+                for (int w = 0; w < routes[i].Length; w++) routes[i][w] = ToWorld(routes[i][w].x, .08f, routes[i][w].z);
+                game.world.AddStudent(27 + i, routes[i], .95f + (i % 3) * .2f, "Albion city walk " + (i + 1));
+            }
         }
 
         // ── World building ────────────────────────────────────────────────────

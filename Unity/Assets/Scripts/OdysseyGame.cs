@@ -100,8 +100,8 @@ namespace AlbionOdyssey
             weather=gameObject.AddComponent<CampusWeather>();weather.Setup(this);
             environment=gameObject.AddComponent<CampusEnvironment>();environment.Setup(this);
             replica=gameObject.AddComponent<CampusWorldReplica>();replica.Setup(this);
-            city=gameObject.AddComponent<AlbionCity>();city.Setup(this);
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
+            city=gameObject.AddComponent<AlbionCity>();city.Setup(this); // after the campus students so city pedestrians are appended in a fixed order
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
             vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);

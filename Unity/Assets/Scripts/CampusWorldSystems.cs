@@ -106,13 +106,20 @@ namespace AlbionOdyssey
                 new[]{CampusCatalog.Point(544, 400)+new Vector3(-18,0,0), CampusCatalog.Point(630, 349)+new Vector3(18,0,0), CampusCatalog.Point(684, 349)},
                 new[]{CampusCatalog.Point(394, 383)+new Vector3(-20,0,-10), CampusCatalog.Point(394, 383)+new Vector3(20,0,10), CampusCatalog.Point(739, 294)}
             };
-            for (int i = 0; i < routes.Length; i++)
-            {
-                var profile=CampusStudentProfiles.Get(i);
-                for(int waypoint=0;waypoint<routes[i].Length;waypoint++)routes[i][waypoint]=CampusStudentNavigation.FreeWaypoint(routes[i][waypoint]);
-                var o = new GameObject("Campus student · "+profile.Name+" · route "+(i+1)); o.transform.SetParent(root); o.transform.position = routes[i][0];
-                var agent = o.AddComponent<CampusNpcAgent>(); agent.Route = routes[i]; agent.Speed = 1.1f + (i % 3) * .18f; agent.Build(profile); agents.Add(agent);
-            }
+            for (int i = 0; i < routes.Length; i++) AddStudent(i, routes[i], 1.1f + (i % 3) * .18f, "route " + (i + 1));
+        }
+
+        /// <summary>
+        /// Adds one walking student. Students are appended in a fixed order, so the LAN replica (which indexes
+        /// <see cref="Agents"/>) stays aligned between machines as long as every machine adds them in the same order.
+        /// </summary>
+        public CampusNpcAgent AddStudent(int profileIndex, Vector3[] route, float speed, string label)
+        {
+            var profile = CampusStudentProfiles.Get(profileIndex);
+            for (int waypoint = 0; waypoint < route.Length; waypoint++) route[waypoint] = CampusStudentNavigation.FreeWaypoint(route[waypoint]);
+            var o = new GameObject("Campus student · " + profile.Name + " · " + label); o.transform.SetParent(root); o.transform.position = route[0];
+            var agent = o.AddComponent<CampusNpcAgent>(); agent.Route = route; agent.Speed = speed; agent.Build(profile); agents.Add(agent);
+            return agent;
         }
     }
 

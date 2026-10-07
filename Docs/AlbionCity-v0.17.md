@@ -14,6 +14,10 @@ All positions, sizes and facades are **game-scale approximations**, not a survey
 | Kalamazoo River · Albion River Trail | A river crossed by a Superior Street bridge, with a paved trail, sign and bench on the bank. | [City of Albion](https://www.cityofalbionmi.gov/visitors/activities_and_attractions/albion_river_trail.php) |
 | Riverside Cemetery | Terraced hillside with headstones and a gate. | [Albion guide](https://albionmich.net/riverside-cemetery/) |
 
+## City life
+
+Nine pedestrians walk Superior Street, Erie Street, the river trail and the parks. They are ordinary campus student agents, so a LAN host's city walkers are mirrored to joined players. Street lamps along Superior Street glow warm at dusk and dim again by day.
+
 ## Controls
 
 Walk near a landmark and its name appears; press **H** to read its story and **Open source** to visit the page. **F7** teleports between the campus and downtown. The river can only be crossed on the Superior Street bridge; cars can drive into the city along Erie Street.
@@ -24,4 +28,4 @@ Walk near a landmark and its name appears; press **H** to read its story and **O
 
 ## Not yet done
 
-Interiors for the city buildings, residents and traffic on city streets, street lamps that light at night, and further landmarks (for example the Albion Historical Society and North Country Trail sections). A [Superior Street storefront row](https://en.wikipedia.org/wiki/Superior_Street_Commercial_Historic_District) here is generic: individual real businesses are not modelled.
+Interiors for the city buildings, traffic on city streets, and further landmarks (for example the Albion Historical Society and North Country Trail sections). A [Superior Street storefront row](https://en.wikipedia.org/wiki/Superior_Street_Commercial_Historic_District) here is generic: individual real businesses are not modelled.
