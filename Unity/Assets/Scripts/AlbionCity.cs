@@ -38,6 +38,7 @@ namespace AlbionOdyssey
             BuildLamps();
             Physics.SyncTransforms();
             BuildResidents();
+            BuildTraffic();
         }
 
         // ── Input and story panel ─────────────────────────────────────────────
@@ -177,6 +178,24 @@ namespace AlbionOdyssey
             {
                 for (int w = 0; w < routes[i].Length; w++) routes[i][w] = ToWorld(routes[i][w].x, .08f, routes[i][w].z);
                 game.world.AddStudent(27 + i, routes[i], .95f + (i % 3) * .2f, "Albion city walk " + (i + 1));
+            }
+        }
+
+        // Drivable town cars parked along the curbs. They join the campus car list (after the campus cruisers),
+        // so the LAN replica mirrors them and joined players can drive them like any other car.
+        void BuildTraffic()
+        {
+            if (game.campus == null) return;
+            var spots = new[]
+            {
+                new Vector4(3.6f, 0, 200f, 0f), new Vector4(-3.6f, 0, 262f, 180f),
+                new Vector4(-120f, 0, CityCatalog.ErieZ + 2.6f, 90f), new Vector4(120f, 0, CityCatalog.ErieZ - 2.6f, 270f),
+            };
+            for (int i = 0; i < spots.Length; i++)
+            {
+                var o = new GameObject("Albion town car " + (i + 1));
+                o.transform.SetPositionAndRotation(ToWorld(spots[i].x, .08f, spots[i].z), Quaternion.Euler(0, spots[i].w, 0));
+                var car = o.AddComponent<CampusCar>(); car.Build(KeeperAvatar.Coats[(i + 2) % KeeperAvatar.Coats.Length]); game.campus.cars.Add(car);
             }
         }
 

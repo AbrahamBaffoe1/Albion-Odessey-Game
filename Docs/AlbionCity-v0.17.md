@@ -16,7 +16,7 @@ All positions, sizes and facades are **game-scale approximations**, not a survey
 
 ## City life
 
-Nine pedestrians walk Superior Street, Erie Street, the river trail and the parks. They are ordinary campus student agents, so a LAN host's city walkers are mirrored to joined players. Street lamps along Superior Street glow warm at dusk and dim again by day.
+Nine pedestrians walk Superior Street, Erie Street, the river trail and the parks. They are ordinary campus student agents, so a LAN host's city walkers are mirrored to joined players. Street lamps along Superior Street glow warm at dusk and dim again by day. Four town cars are parked on Superior and Erie Streets; they can be driven (E to enter) and are mirrored for LAN players like the campus cruisers.
 
 ## Controls
 
@@ -28,4 +28,4 @@ Walk near a landmark and its name appears; press **H** to read its story and **O
 
 ## Not yet done
 
-Interiors for the city buildings, traffic on city streets, and further landmarks (for example the Albion Historical Society and North Country Trail sections). A [Superior Street storefront row](https://en.wikipedia.org/wiki/Superior_Street_Commercial_Historic_District) here is generic: individual real businesses are not modelled.
+Interiors for the city buildings, moving traffic, and further landmarks (for example the Albion Historical Society and North Country Trail sections). A [Superior Street storefront row](https://en.wikipedia.org/wiki/Superior_Street_Commercial_Historic_District) here is generic: individual real businesses are not modelled.
