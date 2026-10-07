@@ -70,7 +70,7 @@ namespace AlbionOdyssey
             hull.enabled=false;
             bool blocked=Physics.BoxCast(transform.position+Vector3.up*.85f,new Vector3(1.1f,.6f,2.2f),movement.normalized,out _,turn,movement.magnitude+.12f,~0,QueryTriggerInteraction.Ignore);
             Vector3 next=transform.position+movement;
-            blocked|=Mathf.Abs(next.x)>570||next.z<100||next.z>805;
+            blocked|=next.x>570||next.x<-1270||next.z<100||next.z>805; // campus plus the city of Albion to its west
             blocked|=Physics.CheckBox(next+Vector3.up*.85f,new Vector3(1.1f,.6f,2.2f),turn,~0,QueryTriggerInteraction.Ignore);
             hull.enabled=true;
             if(blocked)speed=0;else {transform.SetPositionAndRotation(next,turn);foreach(var wheel in wheels)wheel.Rotate(Vector3.up,speed*dt*120,Space.Self);}

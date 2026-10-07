@@ -15,6 +15,7 @@ The result should feel like a place rather than a menu. Students can tour, explo
 ## What players do
 
 - Explore Legacy Hall, Ferguson Hall, Robinson Hall, Bonta Admission Center and the growing Science Complex through walkable entrances, rooms, stairs and history interactions.
+- Walk west into downtown Albion, Michigan: Superior Street, the Kalamazoo River, the Bohm Theatre, the Gardner House Museum, Rieger and Victory Parks and Riverside Cemetery, with a sourced story at each ([city notes](Docs/AlbionCity-v0.17.md)).
 - Read the story of each place, open linked college media and discover how architecture, people and campus traditions connect.
 - Move across the campus on foot or by car, follow paths through landscaped grounds and encounter student NPCs travelling between destinations.
 - Create a personal campus in either a campus-inspired or fantasy style, then furnish its plots and make space for learning.
