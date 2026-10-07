@@ -59,6 +59,7 @@ namespace AlbionOdyssey
             RenderSettings.ambientEquatorColor = Color.Lerp(NightFog * 1.4f, new Color(.32f, .36f, .4f), day);
             RenderSettings.ambientGroundColor = Color.Lerp(NightFog, new Color(.19f, .21f, .22f), day);
             RenderSettings.fogColor = Color.Lerp(Color.Lerp(NightFog, DayFog, day), DuskSky * .8f, gold * .5f);
+            if (game.city != null) game.city.UpdateLamps(day);
             bool snow = game.weather != null && game.weather.IsSnowing; RenderSettings.fogDensity = Mathf.Lerp(.0008f, .0022f, snow ? 1f : 0f);
             if (skybox != null)
             {
