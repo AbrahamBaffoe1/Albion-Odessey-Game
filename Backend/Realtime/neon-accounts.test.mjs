@@ -11,8 +11,8 @@ test('email code sign-in carries the signed Neon session cookie into verified se
  const credential='signed-neon-session-token.signature%2Bvalue';let verified=false;
  const pool={query:async()=>({rows:[{id:'11111111-1111-4111-8111-111111111111'}]}),end:async()=>{}};
  const fetcher=async(url,options)=>{
-  if(url.endsWith('/sign-in/email-otp'))return new Response(JSON.stringify({token:'raw-token-not-sufficient'}),{headers:{'Content-Type':'application/json','Set-Cookie':'__Secure-neonauth.session_token='+credential+'; Path=/; Secure; HttpOnly'}});
-  assert.equal(options.headers.Cookie,'__Secure-neonauth.session_token='+credential);assert.equal(options.headers.Authorization,undefined);verified=true;
+  if(url.endsWith('/sign-in/email-otp'))return new Response(JSON.stringify({token:'raw-token-not-sufficient'}),{headers:{'Content-Type':'application/json','Set-Cookie':'__Secure-neon-auth.session_token='+credential+'; Path=/; Secure; HttpOnly'}});
+  assert.equal(options.headers.Cookie,'__Secure-neon-auth.session_token='+credential);assert.equal(options.headers.Authorization,undefined);verified=true;
   return Response.json({user:{id:'neon-user',email:'qa@example.test',emailVerified:true},session:{expiresAt:new Date(Date.now()+3600000).toISOString()}});
  };
  const accounts=createNeonAccounts(env,{pool,fetcher});
@@ -24,4 +24,12 @@ test('cookie session rejects header injection before contacting Neon',async()=>{
  let called=false;const accounts=createNeonAccounts(env,{pool:{end:async()=>{}},fetcher:async()=>{called=true;throw Error('unexpected');}});
  const request=req('/auth/v1/user');request.headers.authorization='Bearer neon-cookie:aaaaaaaaaaaaaaaaaaaa; other=bad';
  assert.equal((await accounts.handle(request,{})).status,401);assert.equal(called,false);
+});
+
+
+test('accepted OTP followed by a missing session is a service failure, not an invalid code',async()=>{
+ const entries=[];const accounts=createNeonAccounts(env,{pool:{end:async()=>{}},logger:{warn:(...args)=>entries.push(args)},fetcher:async(url)=>url.includes('get-session')?Response.json(null):Response.json({token:'a'.repeat(40)})});
+ const r=await accounts.handle(req('/auth/v1/verify','POST'),{email:'qa@example.test',token:'123456'});
+ assert.equal(r.status,503);assert.equal(r.body.code,'SESSION_SETUP_FAILED');
+ assert(!JSON.stringify(entries).includes('123456'));assert(!JSON.stringify(entries).includes('qa@example.test'));
 });

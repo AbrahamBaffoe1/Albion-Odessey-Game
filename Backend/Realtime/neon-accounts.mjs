@@ -18,7 +18,7 @@ export function createNeonAccounts(env=process.env,{pool,fetcher=fetch,logger=co
   const headers={'Content-Type':'application/json','Origin':env.PUBLIC_URL||'https://albion-odyssey-online.onrender.com'};
   if(token?.startsWith('neon-cookie:')){
    const value=token.slice(12);if(!/^[A-Za-z0-9%._~+\/=-]{20,4096}$/.test(value))throw Object.assign(Error('Invalid session'),{status:401});
-   headers.Cookie='__Secure-neonauth.session_token='+value;
+   headers.Cookie='__Secure-neon-auth.session_token='+value;
   }else if(token)headers.Authorization='Bearer '+token;
   const response=await fetcher(base+path,{method:body===undefined?'GET':'POST',headers,body:body===undefined?undefined:JSON.stringify(body),redirect:'error',signal:AbortSignal.timeout(12000)});
   const data=await response.json().catch(()=>null);
@@ -31,7 +31,7 @@ export function createNeonAccounts(env=process.env,{pool,fetcher=fetch,logger=co
   // Managed Neon Auth uses its signed HttpOnly session cookie. Native clients
   // retain only this opaque credential in memory; never forward unrelated cookies.
   const cookies=response.headers.getSetCookie?.()||[response.headers.get('set-cookie')||''];
-  const cookie=cookies.map(v=>v.match(/(?:^|,\s*)__Secure-neonauth\.session_token=([^;]+)/)?.[1]).find(v=>v&&/^[A-Za-z0-9%._~+\/=-]{20,4096}$/.test(v));
+  const cookie=cookies.map(v=>v.match(/(?:^|,\s*)__Secure-neon-auth\.session_token=([^;]+)/)?.[1]).find(v=>v&&/^[A-Za-z0-9%._~+\/=-]{20,4096}$/.test(v));
   return {data,token:cookie?'neon-cookie:'+cookie:response.headers.get('set-auth-token')||data?.token};
  }
  async function profile(user){
