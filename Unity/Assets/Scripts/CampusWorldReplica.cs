@@ -12,6 +12,8 @@ namespace AlbionOdyssey
     public sealed class CampusWorldReplica : MonoBehaviour
     {
         OdysseyGame game; bool following; float lastApplied;
+        // Host side: cars a joined player is driving, and until when that player's pose stays valid.
+        readonly Dictionary<int, float> remoteCars = new Dictionary<int, float>();
         public bool Following => following;
 
         public void Setup(OdysseyGame owner) { game = owner; }
@@ -57,6 +59,23 @@ namespace AlbionOdyssey
             if (CampusBuildings.Instance != null) CampusBuildings.Instance.DoorsReplicated = value;
         }
 
-        void Update() { if (following && Time.unscaledTime - lastApplied > 6f) SetFollowing(false); }
+        /// <summary>Host side: accepts a joined player's driven-car pose. Ignored if the host is driving that car.</summary>
+        public void ApplyRemoteCar(int index, Vector3 position, float yaw, float speed)
+        {
+            if (game == null || game.campus == null || following || index < 0 || index >= game.campus.cars.Count) return;
+            if (float.IsNaN(position.x + position.y + position.z + yaw + speed) || position.sqrMagnitude > 4e6f) return;
+            var car = game.campus.cars[index]; if (car.driver != null) return;
+            remoteCars[index] = Time.unscaledTime + 1f; car.Replicated = true; car.ApplyReplicated(position, yaw, speed);
+        }
+
+        void Update()
+        {
+            if (following && Time.unscaledTime - lastApplied > 6f) SetFollowing(false);
+            if (following || remoteCars.Count == 0) return;
+            List<int> expired = null;
+            foreach (var entry in remoteCars) if (Time.unscaledTime > entry.Value) (expired ?? (expired = new List<int>())).Add(entry.Key);
+            if (expired == null) return;
+            foreach (int index in expired) { remoteCars.Remove(index); if (index < game.campus.cars.Count) { var car = game.campus.cars[index]; car.Replicated = false; car.speed = 0; } }
+        }
     }
 }
