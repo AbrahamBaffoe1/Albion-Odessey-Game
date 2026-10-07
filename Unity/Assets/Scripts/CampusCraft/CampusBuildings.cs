@@ -8,6 +8,9 @@ namespace AlbionOdyssey
         public GameObject Exterior=>stream.Exterior;public GameObject Interior=>stream.Content;
         StreamedInterior stream;
         public readonly List<CampusDoor> Doors=new List<CampusDoor>();
+        /// <summary>True while a LAN host owns door state; players cannot toggle doors locally.</summary>
+        public bool DoorsReplicated{get;set;}
+        public IEnumerable<CampusDoor> AllDoors(){foreach(var d in Doors)yield return d;foreach(var b in additional)foreach(var d in b.Doors)yield return d;}
         readonly List<WalkableCampusBuilding> additional=new List<WalkableCampusBuilding>();
         OdysseyGame game;CraftDescription description;Transform site;
         public Vector3 Origin=>CampusExpansion.Find("26").position;

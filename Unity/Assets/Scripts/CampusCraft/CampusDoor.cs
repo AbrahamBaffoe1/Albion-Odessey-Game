@@ -14,8 +14,10 @@ namespace AlbionOdyssey
             for(int i=-1;i<=1;i++)KeeperAvatar.Part(leaf,"Door frame",PrimitiveType.Cube,new Vector3(i*.49f,0,-.1f),new Vector3(.025f,1.02f,1.3f),CraftModel.Surface("Door bronze",new Color(.16f,.18f,.18f)));
             var tag=gameObject.AddComponent<CampusWorldLabel>();tag.Configure("E  "+Label.ToUpperInvariant(),new Color(1f,.76f,.28f),new Vector3(0,height+.28f,0),8f);
         }
+        public void SetOpen(bool open){if(IsOpen==open)return;IsOpen=open;if(barrier!=null)barrier.enabled=!open;}
         public bool Toggle(Explorer player)
         {
+            if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.DoorsReplicated)return false;
             if(IsOpen&&Vector3.Distance(player.transform.position,ClosedPosition)<1.2f)return false;
             IsOpen=!IsOpen;barrier.enabled=!IsOpen;return true;
         }

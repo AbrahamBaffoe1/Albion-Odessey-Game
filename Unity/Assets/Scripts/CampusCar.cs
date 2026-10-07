@@ -5,6 +5,23 @@ namespace AlbionOdyssey
     {
         public float speed; public BoxCollider hull; public Explorer driver;
         Transform[] wheels=new Transform[4];
+        // True while a LAN host drives this car's pose; a car the local player is driving is never overwritten.
+        public bool Replicated{get;set;}
+        Vector3 replicaPosition;float replicaYaw;bool hasReplica;
+        public void ApplyReplicated(Vector3 position,float yaw,float hostSpeed)
+        {
+            if(driver!=null)return;
+            if(!hasReplica)transform.SetPositionAndRotation(position,Quaternion.Euler(0,yaw,0));
+            replicaPosition=position;replicaYaw=yaw;speed=hostSpeed;hasReplica=true;
+        }
+        void Update()
+        {
+            if(!Replicated||driver!=null||!hasReplica)return;
+            float blend=Mathf.Clamp01(Time.deltaTime*10f);
+            Vector3 next=(replicaPosition-transform.position).sqrMagnitude>100f?replicaPosition:Vector3.Lerp(transform.position,replicaPosition,blend);
+            transform.SetPositionAndRotation(next,Quaternion.Slerp(transform.rotation,Quaternion.Euler(0,replicaYaw,0),blend));
+            foreach(var wheel in wheels)wheel.Rotate(Vector3.up,speed*Time.deltaTime*120,Space.Self);
+        }
         public void Build(Color color)
         {
             var paint=TowerGeometry.Material("Car paint "+name,color,.3f,.65f);var tire=TowerGeometry.Material("Car rubber",new Color(.035f,.04f,.045f));

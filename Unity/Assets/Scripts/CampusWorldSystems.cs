@@ -12,6 +12,7 @@ namespace AlbionOdyssey
         Transform root;
         readonly List<CampusNpcAgent> agents = new List<CampusNpcAgent>();
         public int StudentCount=>agents.Count;
+        public IReadOnlyList<CampusNpcAgent> Agents=>agents;
         public int TransStudentCount
         {
             get {int count=0;foreach(var agent in agents)if(agent!=null&&agent.Identity!=null&&agent.Identity.IsTrans)count++;return count;}
@@ -119,6 +120,15 @@ namespace AlbionOdyssey
     {
         public Vector3[] Route; public float Speed = 1.2f;
         KeeperAvatar avatar; int target; Vector3 last;
+        // True while a LAN host drives this student; the local route AI is paused.
+        public bool Replicated { get; set; }
+        public float CurrentSpeed { get; private set; }
+        Vector3 replicaPosition; float replicaYaw, replicaSpeed; bool hasReplica;
+        public void ApplyReplicated(Vector3 position, float yaw, float speed)
+        {
+            if (!hasReplica) { transform.position = position; transform.rotation = Quaternion.Euler(0, yaw, 0); }
+            replicaPosition = position; replicaYaw = yaw; replicaSpeed = speed; hasReplica = true;
+        }
         public CampusStudentIdentity Identity { get; private set; }
         public void Build(CampusStudentProfile profile)
         {
@@ -126,14 +136,24 @@ namespace AlbionOdyssey
         }
         void Update()
         {
-            if (Route == null || Route.Length < 2 || avatar == null) return;
+            if (avatar == null) return;
+            if (Replicated)
+            {
+                if (!hasReplica) return;
+                float blend = Mathf.Clamp01(Time.deltaTime * 10f); Vector3 from = transform.position;
+                transform.position = (replicaPosition - from).sqrMagnitude > 100f ? replicaPosition : Vector3.Lerp(from, replicaPosition, blend);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, replicaYaw, 0), blend);
+                CurrentSpeed = replicaSpeed; avatar.Animate(replicaSpeed, false); last = transform.position; return;
+            }
+            hasReplica = false;
+            if (Route == null || Route.Length < 2) return;
             Vector3 goal = Route[target] + Vector3.up * .08f; Vector3 delta = goal - transform.position; delta.y = 0;
             if (delta.magnitude < .7f) { target = (target + 1) % Route.Length; return; }
             Vector3 direction=delta.normalized;float distance=Mathf.Min(Speed*Time.deltaTime,delta.magnitude);
             if(CampusStudentNavigation.Blocked(transform.position,direction,distance)){target=(target+1)%Route.Length;return;}
             transform.position += direction * distance;
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(delta.normalized, Vector3.up), Time.deltaTime * 5f);
-            avatar.Animate((transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime), false); last = transform.position;
+            CurrentSpeed = (transform.position - last).magnitude / Mathf.Max(.001f, Time.deltaTime); avatar.Animate(CurrentSpeed, false); last = transform.position;
         }
     }
 }
