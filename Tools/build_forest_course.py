@@ -104,7 +104,7 @@ def build_trail(b):
     for a, c in zip(ys, ys[1:]):
         for side in (-1, 1):
             e0, e1 = trail_edge(a, side), trail_edge(c, side)
-            v0, v1 = e0 + 1.35 + .25 * math.sin(a * .9), e1 + 1.35 + .25 * math.sin(c * .9)
+            v0, v1 = e0 + 1.35 + .25 * math.sin(math.tau * 30 * a / LENGTH), e1 + 1.35 + .25 * math.sin(math.tau * 30 * c / LENGTH)
             points = [(side * e0, a, .02), (side * v0, a, .02), (side * v1, c, .02), (side * e1, c, .02)]
             b.quad(M["trail_edge"], *(points if side > 0 else reversed(points)))
         b.quad(M["trail_earth"], (-trail_edge(a, -1), a, .03), (trail_edge(a, 1), a, .03), (trail_edge(c, 1), c, .03), (-trail_edge(c, -1), c, .03))
