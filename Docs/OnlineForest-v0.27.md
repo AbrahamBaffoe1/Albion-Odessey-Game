@@ -12,7 +12,7 @@ Sign in with F7, join the same room with F5, then choose Forest Treasure Run or 
 
 The server owns distance, obstacle encounters, treasure, captures, rescues and race completion. This is separate from casual campus exploration, whose position is still reported by clients. It is not a fully authoritative campus physics server. Door states, construction and vehicles are not synchronized.
 
-The course is original game fiction inspired by Whitehouse Nature Center's woodland, marsh and river trails, not a geographic replica. The mascot is an original stylized Briton interpretation. Existing authored oak meshes and photographic ground/sky assets are reused. The course and mascot still need art refinement; no photorealism claim is made.
+The course is original game fiction inspired by Whitehouse Nature Center's woodland, marsh and river trails, not a geographic replica. The mascot is an original stylized Briton interpretation. Existing authored oak meshes and photographic ground/sky assets are reused. The course scenery was redrawn in v0.30 with a shared nature look (see [NatureLook-v0.30.md](NatureLook-v0.30.md)); the mascot still needs art refinement, and no photorealism claim is made.
 
 Sources: https://www.albion.edu/about/our-campus/whitehouse-nature-center/ and https://www.albion.edu/wp-content/uploads/2021/09/whitehouse-nature-center-trail-map-1.pdf
 
