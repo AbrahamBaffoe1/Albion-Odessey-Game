@@ -13,7 +13,7 @@ namespace AlbionOdyssey
         static readonly Color DayFog = new Color(.62f, .69f, .73f), NightFog = new Color(.03f, .04f, .08f);
         static readonly Color DaySun = new Color(1f, .96f, .88f), GoldenSun = new Color(1f, .62f, .32f), Moon = new Color(.45f, .55f, .8f);
 
-        OdysseyGame game; Light sun; Material skybox; float hour = CampusClock.StartHour;
+        OdysseyGame game; Light sun; Material skybox; Color baseTint = Color.white; float hour = CampusClock.StartHour;
         bool following; float lastHostPacket, hostTarget;
 
         public float Hour => hour;
@@ -23,7 +23,7 @@ namespace AlbionOdyssey
         public void Setup(OdysseyGame owner)
         {
             game = owner; sun = RenderSettings.sun;
-            var source = RenderSettings.skybox; if (source != null) skybox = RenderSettings.skybox = new Material(source);
+            var source = RenderSettings.skybox; if (source != null) { skybox = RenderSettings.skybox = new Material(source); if (skybox.HasProperty("_SkyTint")) baseTint = skybox.GetColor("_SkyTint"); }
             Apply();
         }
 
@@ -63,7 +63,8 @@ namespace AlbionOdyssey
             if (skybox != null)
             {
                 if (skybox.HasProperty("_Exposure")) skybox.SetFloat("_Exposure", Mathf.Lerp(.12f, 1.1f, day));
-                if (skybox.HasProperty("_Tint")) skybox.SetColor("_Tint", Color.Lerp(Color.white, DuskSky, gold * .6f));
+                // Skybox/Procedural exposes _SkyTint (not _Tint); warm it toward dusk from the authored tint.
+                if (skybox.HasProperty("_SkyTint")) skybox.SetColor("_SkyTint", Color.Lerp(baseTint, DuskSky, gold * .6f));
             }
         }
 
