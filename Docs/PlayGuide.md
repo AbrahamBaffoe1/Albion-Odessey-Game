@@ -12,7 +12,7 @@ Startup now shows the actual preparation stages. Select **Your student** for the
 
 ## Your online student account
 
-Choose **Sign in / join**, or press **F7**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
+Choose **Sign in / join**, or press **Ctrl+Shift+D**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
 
 Your display name and account are stored online. **My student account** lets you save your name or sign out. You will sign in again after restarting the app. Gameplay progress, personal buildings and classes are still saved on this Mac; signing in does not yet synchronize them to other devices. Guest play remains available.
 
@@ -33,7 +33,7 @@ when pressed again. The menu links to accounts, stories, courses and VR settings
 | Browse all building stories | G from the welcome screen or while exploring |
 | Map and travel | M, then Travel here |
 | Course creation and enrollment | K |
-| Online student account | F7 or Student sign in / join on the campus menu |
+| Online student account | Ctrl+Shift+D or Student sign in / join on the campus menu |
 | Journal | J; left/right arrows browse while open |
 | Build / explore | F2 (Fn-F2 if macOS uses the key for brightness) |
 | Choose building | 1 Garden, 2 Library, 3 Observatory, 4 Hall |
@@ -44,7 +44,7 @@ when pressed again. The menu links to accounts, stories, courses and VR settings
 | Campus pulse | The live card shows moving students, seated activities, squirrels, weather and total campus population. |
 | Day and night | The campus runs a live 20-minute day: the sun moves with soft shadows, dusk turns the sky and fog warm, and nights are moonlit. In a shared LAN campus the host owns the clock and the weather, and every joined player mirrors them in real time (Y is disabled for joined players). |
 | Shared world | In a LAN campus the host's route students, campus cars and open doors are mirrored to every joined player five times a second. Joined players cannot toggle doors, and student routes follow the host. A car you drive yourself stays under your control, and its position is sent back to the host so everyone sees it move (the host ignores it if the host is driving the same car). |
-| City of Albion | F7 travels between the campus and downtown Albion (or walk west along Erie Street). Near a city landmark press H for its sourced story. See [the city notes](AlbionCity-v0.17.md). |
+| City of Albion | Ctrl+Shift+D travels between the campus and downtown Albion (or walk west along Erie Street). Near a city landmark press H for its sourced story. See [the city notes](AlbionCity-v0.17.md). |
 | Show four on-screen movement buttons | O; hold an arrow with the mouse |
 | Turn with screen-button controls | Z/X or the Turn L / Turn R buttons |
 | Paper-play shortcut | P inside the Common Classroom |

@@ -1,6 +1,6 @@
 # City of Albion, Michigan — version 0.17
 
-The game world is now Albion College **and** the city around it. A walkable downtown district sits west of the campus: the college lies east of downtown, so Erie Street runs straight from the campus street into the city. Press **F7** to travel between the campus and downtown, or simply walk along Erie Street.
+The game world is now Albion College **and** the city around it. A walkable downtown district sits west of the campus: the college lies east of downtown, so Erie Street runs straight from the campus street into the city. Press **Ctrl+Shift+D** to travel between the campus and downtown, or simply walk along Erie Street.
 
 All positions, sizes and facades are **game-scale approximations**, not a survey. Each landmark story below uses only statements from its cited public source.
 
@@ -20,7 +20,7 @@ Nine pedestrians walk Superior Street, Erie Street, the river trail and the park
 
 ## Controls
 
-Walk near a landmark and its name appears; press **H** to read its story and **Open source** to visit the page. **F7** teleports between the campus and downtown. The river can only be crossed on the Superior Street bridge; cars can drive into the city along Erie Street.
+Walk near a landmark and its name appears; press **H** to read its story and **Open source** to visit the page. **Ctrl+Shift+D** teleports between the campus and downtown. The river can only be crossed on the Superior Street bridge; cars can drive into the city along Erie Street.
 
 ## Implementation
 
