@@ -1,7 +1,7 @@
 """Reference-based Ferguson exterior and explicitly provisional playable interior.
 Coordinates: Blender X east, Y depth, Z up. Export swaps Y/Z and winding.
 """
-import bpy,math,json,struct,random
+import bpy,math,json,struct,random,sys
 from pathlib import Path
 from mathutils import Vector
 root=Path(__file__).resolve().parents[1];res=root/'Unity/Assets/Resources/CampusCraft';art=root/'Art'
@@ -13,8 +13,8 @@ def material(name,color,texture=None,scale=1):
  if texture:
   t=m.node_tree.nodes.new('ShaderNodeTexImage');t.image=bpy.data.images.load(str(res/(texture+'_Color.jpg')));m.node_tree.links.new(t.outputs['Color'],b.inputs['Base Color'])
  materials[name]={'material':m,'color':[*color,1],'texture':texture or '', 'scale':scale};return m
-brick=material('Ferguson brick',(.62,.32,.22),'red_brick_03');stone=material('Pale cut limestone',(.78,.76,.68));trim=material('Window frames',(.8,.81,.77));glass=material('Reflective blue glass',(.12,.22,.26));glass.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value=.45
-roof=material('Standing seam roof',(.13,.16,.17));copper=material('Aged copper cupola',(.22,.38,.34));plaster=material('Warm interior plaster',(.84,.82,.75));floorMat=material('Lobby stone floor',(.7,.7,.67),'concrete_pavement');wood=material('Oak millwork',(.4,.23,.1));fabric=material('Upholstery',(.23,.25,.29));metal=material('Dark bronze',(.08,.09,.09));purple=material('Albion purple',(.21,.105,.31));leaf=material('Oak foliage',(.23,.36,.12));bark=material('Tree bark',(.23,.18,.12));lightMat=material('Warm lamps',(.98,.88,.65))
+brick=material('Ferguson brick',(1,1,1),'red_brick_03');stone=material('Pale cut limestone',(.78,.76,.68));trim=material('Window frames',(.8,.81,.77));glass=material('Reflective blue glass',(.12,.22,.26));glass.node_tree.nodes.get('Principled BSDF').inputs['Metallic'].default_value=.45
+roof=material('Standing seam roof',(.13,.16,.17));copper=material('Aged copper cupola',(.22,.38,.34));plaster=material('Warm interior plaster',(.84,.82,.75));floorMat=material('Lobby stone floor',(1,1,1),'concrete_pavement');wood=material('Oak millwork',(.4,.23,.1));fabric=material('Upholstery',(.23,.25,.29));metal=material('Dark bronze',(.08,.09,.09));purple=material('Albion purple',(.21,.105,.31));leaf=material('Oak foliage',(.23,.36,.12));bark=material('Tree bark',(.23,.18,.12));lightMat=material('Warm lamps',(.98,.88,.65))
 def record(o,solid=False):
  parts.setdefault(active,[]).append(o)
  if solid:colliders.setdefault(active,[]).append({'name':o.name,'center':[o.location.x,o.location.z,o.location.y],'size':[o.dimensions.x,o.dimensions.z,o.dimensions.y]})
@@ -30,21 +30,21 @@ def cylinder(name,loc,radius,depth,mat,vertices=16):
 def mesh(name,vs,faces,mat):
  m=bpy.data.meshes.new(name);m.from_pydata(vs,[],faces);m.update();o=bpy.data.objects.new(name,m);bpy.context.collection.objects.link(o);o.data.materials.append(mat);return record(o)
 def arch(cx,y,base,r,thick,depth):
- vs=[];fs=[]
- for i in range(25):
-  a=i*math.pi/24
+ vs=[];fs=[];segments=48
+ for i in range(segments+1):
+  a=i*math.pi/segments
   for yy in [y-depth/2,y+depth/2]:
    for rr in [r,r+thick]:vs.append((cx+rr*math.cos(a),yy,base+rr*math.sin(a)))
- for i in range(24):
+ for i in range(segments):
   j=i*4;k=j+4
   fs.extend([(j,j+1,k+1,k),(j+2,k+2,k+3,j+3),(j,k,k+2,j+2),(j+1,j+3,k+3,k+1)])
- fs.extend([(0,2,3,1),(96,97,99,98)]);mesh('Cut stone arch',vs,fs,stone)
-def window(x,y,z,width=1.25):
- box('Inset glazing',(x,y,z),(width,.075,1.8),glass,False,0)
- for sx in [-1,1]:box('Window jamb',(x+sx*(width/2+.045),y-.045,z),(.08,.1,1.94),trim,False,.008)
- for dz in [-.94,.94]:box('Stone window lintel and sill',(x,y-.04,z+dz),(width+.28,.18,.12),stone)
- box('Window meeting rail',(x,y-.07,z-.12),(width,.075,.055),trim,False,.003)
- box('Window mullion',(x,y-.07,z),(.045,.075,1.8),trim,False,.003)
+ j=segments*4;fs.extend([(0,2,3,1),(j,j+1,j+3,j+2)]);mesh('Cut stone arch',vs,fs,stone)
+def window(x,y,z,width=1.25,outward=-1):
+ box('Inset glazing',(x,y,z),(width,.075,1.8),glass,True,0)
+ for sx in [-1,1]:box('Window jamb',(x+sx*(width/2+.045),y+outward*.045,z),(.08,.1,1.94),trim,False,.008)
+ for dz in [-.94,.94]:box('Stone window lintel and sill',(x,y+outward*.04,z+dz),(width+.28,.18,.12),stone)
+ box('Window meeting rail',(x,y+outward*.07,z-.12),(width,.075,.055),trim,False,.003)
+ box('Window mullion',(x,y+outward*.07,z),(.045,.075,1.8),trim,False,.003)
 # Main walls are separate panels around real window and door openings.
 for side in [-1,1]:
  y=side*6
@@ -57,7 +57,7 @@ for side in [-1,1]:
   for x in xs:
    a=x-.65;b=x+.65
    if a>last:box('Window bay pier',((last+a)/2,y,z+2.13),(a-last,.36,1.66),brick,True)
-   window(x,y-side*.09,z+2.12)
+   window(x,y-side*.09,z+2.12,outward=side)
    last=b
   box('Corner masonry',((last+15.75)/2,y,z+2.13),(15.75-last,.36,1.66),brick,True)
 # Remove center front ground spandrel: rebuild as two halves so doorway is actually open.
@@ -69,11 +69,25 @@ for x in [-8.825,8.825]:box('Entrance opening masonry',(x,-6,.65),(13.85,.36,1.3
 for o in list(parts['exterior']):
  if o.name.startswith('Window bay pier') and abs(o.location.x)<.1 and o.location.y<-5.9 and o.location.z<3:
   parts['exterior'].remove(o);colliders['exterior']=[b for b in colliders['exterior'] if b['name']!=o.name];bpy.data.objects.remove(o,do_unlink=True)
+# Side openings have actual reveals and glazing, rather than glass laid over solid walls.
 for side in [-1,1]:
- box('Side masonry',(side*15.75,0,5.25),(.36,12,10.5),brick,True)
+ x=side*15.75
  for f in range(3):
+  base=f*3.5
+  box('Side masonry spandrel',(x,0,base+.65),(.36,12,1.3),brick,True)
+  box('Side masonry lintel',(x,0,base+3.23),(.36,12,.54),brick,True)
+  last=-6
   for y in [-3,0,3]:
-   o=box('Side glazing',(side*15.95,y,2.12+f*3.5),(.06,1.3,1.8),glass,False,0)
+   left,right=y-.65,y+.65
+   box('Side masonry pier',(x,(last+left)/2,base+2.13),(.36,left-last,1.66),brick,True)
+   z=base+2.12
+   box('Side glazing',(x,y,z),(.075,1.3,1.8),glass,True,0)
+   for edge in [-1,1]:box('Side window jamb',(x+side*.08,y+edge*.69,z),(.1,.08,1.94),trim,False,.008)
+   for dz in [-.94,.94]:box('Side window sill and lintel',(x+side*.08,y,z+dz),(.18,1.58,.12),stone)
+   box('Side window rail',(x+side*.11,y,z-.12),(.075,1.3,.055),trim,False,.003)
+   box('Side window mullion',(x+side*.11,y,z),(.075,.045,1.8),trim,False,.003)
+   last=right
+  box('Side corner masonry',(x,(last+6)/2,base+2.13),(.36,6-last,1.66),brick,True)
 box('Foundation left',(-8.825,-6,.12),(13.85,.65,.24),stone,True)
 box('Foundation right',(8.825,-6,.12),(13.85,.65,.24),stone,True)
 for z in [3.4,10.55]:box('Stone cornice',(0,0,z),(32.1,12.55,.22),stone)
@@ -184,6 +198,13 @@ def export(group,objects):
   for ids in indices:out.write(struct.pack('<i',len(ids)));out.write(struct.pack('<'+'i'*len(ids),*ids))
  print(group,len(verts),'vertices',len(colliders.get(group,[])),'colliders')
 for group,objs in parts.items():export(group,objs)
+# Lower-detail copies preserve the building silhouette and all collision stays on LOD0's root.
+bevels=[m for o in parts['exterior'] for m in o.modifiers if m.type=='BEVEL']
+for m in bevels:m.segments=1
+export('exterior_lod1',parts['exterior'])
+for m in bevels:m.show_viewport=False
+export('exterior_lod2',parts['exterior'])
+for m in bevels:m.show_viewport=True;m.segments=2
 model={'materials':[{'name':n,'color':materials[n]['color'],'texture':materials[n]['texture']} for n in names],'sections':[{'name':n,'colliders':colliders.get(n,[])} for n in parts],'note':'Exterior based on photographs. Scale, floor plan and public room contents are provisional reconstructions; no official floor plan supplied.'}
 (res/'ferguson.json').write_text(json.dumps(model,indent=2))
 # Save authoring scene and a review render.
@@ -194,5 +215,5 @@ bpy.ops.object.light_add(type='AREA',location=(0,-18,15));bpy.context.object.dat
 bpy.ops.object.camera_add(location=(31,-39,15));cam=bpy.context.object;cam.rotation_euler=(Vector((0,-1,6))-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.lens=42;scene.camera=cam
 scene.render.resolution_x=1400;scene.render.resolution_y=900;scene.render.resolution_percentage=100;scene.render.filepath=str(art/'Ferguson-review.png')
 bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(art/'FergusonHall.blend'))
-bpy.ops.render.render(write_still=True)
+if '--no-render' not in sys.argv:bpy.ops.render.render(write_still=True)
 print('FERGUSON_MODEL_OK')

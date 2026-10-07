@@ -25,7 +25,7 @@ namespace AlbionOdyssey
         {
             game=owner;Instance=this;site=new GameObject("26 · Ferguson Hall").transform;site.position=Origin;
             description=JsonUtility.FromJson<CraftDescription>(Resources.Load<TextAsset>("CampusCraft/ferguson").text);
-            stream=site.gameObject.AddComponent<StreamedInterior>();stream.Initialize("ferguson",description,game.player.transform,DecorateInterior);
+            stream=site.gameObject.AddComponent<StreamedInterior>();stream.Initialize("ferguson",description,game.player.transform,DecorateInterior);ArchitectureReflection.Attach(site,game);
             // A small permanent collision shell is already present; occupied interior geometry loads by proximity.
             var plaque=new GameObject("Ferguson name").transform;plaque.SetParent(site,false);plaque.localPosition=new Vector3(0,5.84f,-7.22f);
             var label=plaque.gameObject.AddComponent<TextMesh>();label.text="FERGUSON HALL";label.fontSize=64;label.characterSize=.085f;label.anchor=TextAnchor.MiddleCenter;label.color=new Color(.18f,.2f,.18f);

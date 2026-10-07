@@ -145,7 +145,7 @@ namespace AlbionOdyssey
             gameObject.AddComponent<CampusHud>().Setup(this);
             gameObject.AddComponent<WorldTextDepth>();
             player.controls=false;loading.Report("Lighting your student showcase",5);yield return null;
-            gameObject.AddComponent<CampusArtDirection>().Setup(this);
+            // CampusEnvironment exclusively owns lighting, including weather response.
             presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
             repairs=gameObject.AddComponent<CampusVehicleRepairs>();repairs.Setup(this);
             Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();

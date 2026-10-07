@@ -15,11 +15,22 @@ namespace AlbionOdyssey
             if(texture.Length>0&&m.mainTexture==null)
             {
                 m.mainTexture=Resources.Load<Texture2D>("CampusCraft/"+texture+"_Color");
-                m.SetTexture("_BumpMap",Resources.Load<Texture2D>("CampusCraft/"+texture+"_Normal"));m.EnableKeyword("_NORMALMAP");
+                m.SetTexture("_BumpMap",Resources.Load<Texture2D>("CampusCraft/"+texture+"_Normal"));if(m.GetTexture("_BumpMap")!=null)m.EnableKeyword("_NORMALMAP");
+            }
+            if(texture.Length>0)
+            {
+                var packed=Resources.Load<Texture2D>("PreparedArchitecture/Textures/"+texture+"_MetallicSmoothness");
+                if(packed!=null){m.SetTexture("_MetallicGlossMap",packed);m.SetFloat("_GlossMapScale",1f);m.EnableKeyword("_METALLICGLOSSMAP");}
             }
             return m;
         }
         public static GameObject Load(string key,CraftSection section,CraftMaterial[] descriptors,Transform parent)
+        {
+            var prepared=Resources.Load<GameObject>("PreparedArchitecture/"+key);
+            if(prepared!=null){var instance=UnityEngine.Object.Instantiate(prepared,parent,false);instance.name=key;return instance;}
+            return LoadRaw(key,section,descriptors,parent);
+        }
+        public static GameObject LoadRaw(string key,CraftSection section,CraftMaterial[] descriptors,Transform parent)
         {
             var asset=Resources.Load<TextAsset>("CampusCraft/"+key);if(asset==null)throw new FileNotFoundException(key);
             var root=new GameObject(key);root.transform.SetParent(parent,false);
