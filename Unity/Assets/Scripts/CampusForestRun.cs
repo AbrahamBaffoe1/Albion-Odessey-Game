@@ -13,7 +13,6 @@ namespace AlbionOdyssey
         readonly Dictionary<string,KeeperAvatar> runners=new Dictionary<string,KeeperAvatar>();
         readonly Dictionary<int,GameObject> events=new Dictionary<int,GameObject>();
         const float ChunkLength=210f,LaneWidth=2.4f;
-        readonly List<Material> mascotMaterials=new List<Material>();
         NatureKit kit;readonly NatureBatch batch=new NatureBatch();readonly NatureAtmosphere atmosphere=new NatureAtmosphere();Transform chunkA,chunkB;
         float distance;int seed=-1;bool open,preview;string previewId;
         public bool IsOpen=>open;
@@ -42,9 +41,8 @@ namespace AlbionOdyssey
             var cameraObject=new GameObject("Treasure run camera");cameraObject.transform.SetParent(stage.transform,false);cameraObject.transform.localPosition=new Vector3(0,4.6f,-10f);cameraObject.transform.localRotation=Quaternion.Euler(13,0,0);
             view=cameraObject.AddComponent<Camera>();view.depth=100;view.fieldOfView=62;view.nearClipPlane=.3f;view.farClipPlane=180;view.clearFlags=CameraClearFlags.SolidColor;view.backgroundColor=NatureKit.Mist;
             brit=Avatar("Brit the Briton · original game interpretation");brit.Build(2,0,2,false);var silver=TowerGeometry.Material("Briton silver",new Color(.65f,.68f,.74f),0,.35f);
-            mascotMaterials.Add(silver);
             Part("Helmet",PrimitiveType.Sphere,new Vector3(0,1.75f,0),new Vector3(.43f,.48f,.45f),silver,brit.transform);
-            var purple=TowerGeometry.Material("Albion purple",new Color(.32f,.1f,.47f),0,.35f);mascotMaterials.Add(purple);
+            var purple=TowerGeometry.Material("Albion purple",new Color(.32f,.1f,.47f),0,.35f);
             Part("Purple crest",PrimitiveType.Cube,new Vector3(0,2.05f,0),new Vector3(.12f,.3f,.45f),purple,brit.transform);
             Part("Shield",PrimitiveType.Sphere,new Vector3(-.5f,1,.15f),new Vector3(.5f,.65f,.12f),kit.Gold,brit.transform);
         }
@@ -154,6 +152,6 @@ namespace AlbionOdyssey
             if(state?.players!=null)foreach(var p in state.players)if(p.id==(preview?previewId:game.accounts.UserId)&&p.caught&&state.phase!="finished")OdysseyUI.Text(new Rect(width/2-260,height/2-30,520,70),state.mode=="race"?"Brit caught you! Watch the remaining racers, then run again.":"Brit caught you! Your teammates can press R to rescue you.",26,OdysseyUI.White,true);
             GUI.matrix=old;
         }
-        void OnDestroy(){atmosphere.Restore();if(stage!=null)Destroy(stage);foreach(var mesh in batch.Meshes)if(mesh!=null)Destroy(mesh);foreach(var material in mascotMaterials)if(material!=null)Destroy(material);kit?.Release();}
+        void OnDestroy(){atmosphere.Restore();if(stage!=null)Destroy(stage);foreach(var mesh in batch.Meshes)if(mesh!=null)Destroy(mesh);kit?.Release();}
     }
 }

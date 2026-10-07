@@ -10,12 +10,18 @@ public sealed class WhitehouseTrailWorld:MonoBehaviour {
  OdysseyGame game;Transform root;bool visiting;Vector3 saved;Quaternion facing;
  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)] static void Boot(){new GameObject("Whitehouse mapped trails").AddComponent<WhitehouseTrailWorld>();}
  IEnumerator Start(){while(game==null||!game.Ready){game=FindAnyObjectByType<OdysseyGame>();yield return null;}
- if(Array.IndexOf(Environment.GetCommandLineArgs(),"-natureTrailSmoke")>=0){ToggleVisit();yield return null;
+ if(Array.IndexOf(Environment.GetCommandLineArgs(),"-natureTrailSmoke")>=0){ToggleVisit();if(!visiting||root==null){Debug.Log("NATURE_TRAIL_SMOKE_FAILED: trail entry unavailable");Application.Quit(1);yield break;}yield return null;
  var camera=new GameObject("Nature network review").AddComponent<Camera>();camera.CopyFrom(game.player.eyes);camera.enabled=false;camera.orthographic=true;camera.orthographicSize=600;camera.farClipPlane=2000;camera.transform.position=root.position+new Vector3(220,1200,-100);camera.transform.rotation=Quaternion.Euler(90,0,0);
  var rt=new RenderTexture(1400,1400,24);camera.targetTexture=rt;bool captureFog=RenderSettings.fog;RenderSettings.fog=false;camera.Render();RenderSettings.fog=captureFog;RenderTexture.active=rt;var pic=new Texture2D(1400,1400,TextureFormat.RGB24,false);pic.ReadPixels(new Rect(0,0,1400,1400),0,0);pic.Apply();var output=Environment.GetEnvironmentVariable("NATURE_OUTPUT");System.IO.Directory.CreateDirectory(output);System.IO.File.WriteAllBytes(System.IO.Path.Combine(output,"Trail-network.png"),pic.EncodeToPNG());bool lit=game.environment.Locked;var before=RenderSettings.sun;
  var nested=new NatureAtmosphere();nested.Apply(game,root);nested.Restore();bool nestedRestored=RenderSettings.sun==before&&game.environment.Locked;
  ToggleVisit();bool restored=!game.environment.Locked;camera.targetTexture=null;RenderTexture.active=null;rt.Release();Destroy(rt);Destroy(pic);Destroy(camera.gameObject);
- bool passed=lit&&nestedRestored&&restored;Debug.Log(passed?"NATURE_TRAIL_SMOKE_OK":"NATURE_TRAIL_SMOKE_FAILED");Application.Quit(passed?0:1);}}
+ // A discarded scene must not invalidate another kit or a cached CraftModel material.
+ var disposableKit=new NatureKit();var survivorKit=new NatureKit();var discarded=disposableKit.Trail;disposableKit.Release();
+ var probe=new GameObject("Nature ownership regression");var probeMesh=new Mesh();probe.AddComponent<MeshFilter>().sharedMesh=probeMesh;
+ var shared=TowerGeometry.Material("Nature smoke shared",Color.white);probe.AddComponent<MeshRenderer>().sharedMaterial=shared;probe.AddComponent<NatureOwnedAssets>().Track(probe);Destroy(probe);
+ yield return null;yield return null;
+ bool ownership=discarded==null&&survivorKit.Trail!=null&&shared!=null&&probeMesh==null;survivorKit.Release();
+ bool passed=lit&&nestedRestored&&restored&&ownership;Debug.Log(passed?"NATURE_TRAIL_SMOKE_OK":"NATURE_TRAIL_SMOKE_FAILED");Application.Quit(passed?0:1);}}
 
  void Update(){if(CampusMenuShortcuts.Pressed(KeyCode.N,game))ToggleVisit();}
  public void ToggleVisit(){if(game==null||!game.Ready)return;if(!game.player.TryExitVehicle()){game.notice="Park in an open space before visiting the nature trails.";return;}if(visiting){game.shell.Play();game.player.Teleport(saved);game.player.transform.rotation=facing;visiting=false;atmosphere.Restore();return;}if(root==null)Build();saved=game.player.transform.position;facing=game.player.transform.rotation;game.shell.Play();game.player.Teleport(root.position+new Vector3(0,.1f,0));visiting=true;atmosphere.Apply(game,root);}

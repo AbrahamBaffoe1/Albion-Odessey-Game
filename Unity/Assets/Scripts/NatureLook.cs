@@ -34,7 +34,7 @@ namespace AlbionOdyssey
             Mint = Make("Nature restoration seed", new Color(.35f, .95f, .59f), .5f); Gold = Make("Nature treasure gold", new Color(1f, .69f, .13f), .6f);
         }
 
-        Material Make(string name, Color color, float smoothness) { var m = TowerGeometry.Material(name, color, 0f, smoothness); all.Add(m); return m; }
+        Material Make(string name, Color color, float smoothness) { var m = new Material(Shader.Find("Standard")) { name = name, color = color }; m.SetFloat("_Metallic", 0f); m.SetFloat("_Glossiness", smoothness); all.Add(m); return m; }
 
         public void Release() { foreach (var m in all) if (m != null) Object.Destroy(m); all.Clear(); }
     }
@@ -101,16 +101,15 @@ namespace AlbionOdyssey
         }
     }
 
+    // Track only generated meshes. CraftModel materials belong to the shared TowerGeometry cache.
     public sealed class NatureOwnedAssets : MonoBehaviour
     {
         readonly HashSet<Mesh> meshes = new HashSet<Mesh>();
-        readonly HashSet<Material> materials = new HashSet<Material>();
         public void Track(GameObject root)
         {
             foreach (var f in root.GetComponentsInChildren<MeshFilter>(true)) if (f.sharedMesh != null) meshes.Add(f.sharedMesh);
-            foreach (var r in root.GetComponentsInChildren<MeshRenderer>(true)) foreach (var m in r.sharedMaterials) if (m != null) materials.Add(m);
         }
-        void OnDestroy() { foreach (var mesh in meshes) if (mesh != null) Object.Destroy(mesh); foreach (var mat in materials) if (mat != null) Object.Destroy(mat); }
+        void OnDestroy() { foreach (var mesh in meshes) if (mesh != null) Object.Destroy(mesh); }
     }
 
     public static class NatureLook
