@@ -9,7 +9,7 @@ export function validProfile(body){
  for(const k of ['avatar_backpack','avatar_ready'])if(k in body&&typeof body[k]!=='boolean')return false;
  return true;
 }
-export function createNeonAccounts(env=process.env,{pool,fetcher=fetch}={}){
+export function createNeonAccounts(env=process.env,{pool,fetcher=fetch,logger=console}={}){
  const configured=Boolean(env.NEON_DATABASE_URL&&env.NEON_AUTH_URL);
  if(!configured)return null;
  const db=pool??new pg.Pool({connectionString:env.NEON_DATABASE_URL,max:5,idleTimeoutMillis:30000,connectionTimeoutMillis:10000});
@@ -22,7 +22,12 @@ export function createNeonAccounts(env=process.env,{pool,fetcher=fetch}={}){
   }else if(token)headers.Authorization='Bearer '+token;
   const response=await fetcher(base+path,{method:body===undefined?'GET':'POST',headers,body:body===undefined?undefined:JSON.stringify(body),redirect:'error',signal:AbortSignal.timeout(12000)});
   const data=await response.json().catch(()=>null);
-  if(!response.ok)throw Object.assign(new Error('Authentication request failed'),{status:response.status===429?429:response.status>=500?503:401});
+  if(!response.ok){
+   // Log only bounded provider error identifiers: never bodies, email, OTP or credentials.
+   const code=typeof data?.code==='string'&&/^[A-Z_]{1,80}$/.test(data.code)?data.code:'UNKNOWN';
+   logger.warn('ACCOUNT_PROVIDER_FAILURE',JSON.stringify({stage:path.split('?')[0],status:response.status,code}));
+   throw Object.assign(new Error('Authentication request failed'),{status:response.status===429?429:response.status>=500?503:401});
+  }
   // Managed Neon Auth uses its signed HttpOnly session cookie. Native clients
   // retain only this opaque credential in memory; never forward unrelated cookies.
   const cookies=response.headers.getSetCookie?.()||[response.headers.get('set-cookie')||''];
@@ -35,7 +40,10 @@ export function createNeonAccounts(env=process.env,{pool,fetcher=fetch}={}){
  async function session(token){
   if(typeof token!=='string'||token.length<20||token.length>8192||/[\r\n]/.test(token))throw Object.assign(Error('Sign in'),{status:401});
   const {data}=await call('/get-session?disableCookieCache=true',undefined,token);
-  if(!data?.user?.id||data.user.emailVerified!==true||!data.session||Date.parse(data.session.expiresAt)<=Date.now())throw Object.assign(Error('Sign in'),{status:401});
+  if(!data?.user?.id||data.user.emailVerified!==true||!data.session||!Number.isFinite(Date.parse(data.session.expiresAt))||Date.parse(data.session.expiresAt)<=Date.now()){
+   logger.warn('ACCOUNT_SESSION_REJECTED',JSON.stringify({hasUser:Boolean(data?.user?.id),verified:data?.user?.emailVerified===true,hasSession:Boolean(data?.session)}));
+   throw Object.assign(Error('Sign in'),{status:401});
+  }
   return data;
  }
  async function envelope(token){const s=await session(token),p=await profile(s.user);return {access_token:token,refresh_token:token,expires_in:Math.min(900,Math.max(1,Math.floor((Date.parse(s.session.expiresAt)-Date.now())/1000))),user:{id:p.id,email:s.user.email,email_confirmed_at:s.user.updatedAt||new Date().toISOString()}};}
@@ -61,7 +69,11 @@ export function createNeonAccounts(env=process.env,{pool,fetcher=fetch}={}){
      if(!EMAIL.test(body.email||'')||!/^\d{6,10}$/.test(body.token||''))return {status:400,body:{error:'Invalid code.'}};
      if(!permit('verify:'+String(body.email).toLowerCase(),12,60000))return {status:429,body:{error:'Too many attempts.'}};
      const result=await call('/sign-in/email-otp',{email:body.email.trim().toLowerCase(),otp:body.token,name:'Student'});
-     return {status:200,body:await envelope(result.token)};
+     try{return {status:200,body:await envelope(result.token)};}
+     catch(error){
+      logger.warn('ACCOUNT_SESSION_SETUP_FAILED',JSON.stringify({status:error.status||503,credentialTransport:result.token?.startsWith('neon-cookie:')?'cookie':result.token?'bearer':'missing'}));
+      return {status:503,body:{code:'SESSION_SETUP_FAILED',error:'Your code was accepted, but sign-in could not finish. Please request a fresh code and try again shortly.'}};
+     }
     }
     const token=String(req.headers.authorization||'').replace(/^Bearer /,'');
     if(path==='/auth/v1/token'&&req.method==='POST')return {status:200,body:await envelope(body.refresh_token)};
