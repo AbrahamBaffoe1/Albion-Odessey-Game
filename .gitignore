@@ -55,3 +55,7 @@ Backend/Realtime/node_modules/
 
 # Provider state is local; credentials and account metadata must not be published.
 .projects/
+
+# Rebuilt deterministically by ArchitecturePreparation before player builds.
+Unity/Assets/Resources/PreparedArchitecture/
+Unity/Assets/Resources/PreparedArchitecture.meta

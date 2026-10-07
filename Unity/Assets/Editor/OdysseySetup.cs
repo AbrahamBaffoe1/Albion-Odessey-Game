@@ -20,7 +20,7 @@ namespace AlbionOdyssey.Editor
             importer.wrapMode=TextureWrapMode.Repeat;
             importer.maxTextureSize=2048;
             if((assetPath.EndsWith("_Normal.png")||assetPath.EndsWith("_Normal.jpg")))importer.textureType=TextureImporterType.NormalMap;
-            else if(assetPath.EndsWith("_Roughness.png"))importer.sRGBTexture=false;
+            else if(assetPath.EndsWith("_Roughness.png")||assetPath.EndsWith("_Rough.jpg"))importer.sRGBTexture=false;
         }
     }
     public static class OdysseySetup
@@ -30,7 +30,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.30.0";
+            PlayerSettings.bundleVersion="0.31.0";
             PlayerSettings.SplashScreen.show=false;PlayerSettings.SplashScreen.showUnityLogo=false;
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;
@@ -40,7 +40,7 @@ namespace AlbionOdyssey.Editor
             var settings=new SerializedObject(AssetDatabase.LoadAllAssetsAtPath("ProjectSettings/ProjectSettings.asset")[0]);
             var input=settings.FindProperty("activeInputHandler");if(input!=null){input.intValue=0;settings.ApplyModifiedProperties();}
             ConfigureMouse();
-            StudentSetup.Prepare();VehicleSetup.Prepare();
+            StudentSetup.Prepare();VehicleSetup.Prepare();ArchitecturePreparation.Prepare();
             ConfigureXR();
             Directory.CreateDirectory("Assets/Scenes");Directory.CreateDirectory("Assets/Resources");
             // Keep runtime-created Standard materials and their shader variants in player builds.
