@@ -12,6 +12,7 @@ namespace AlbionOdyssey
     {
         public bool Active { get; private set; }
         public bool SnapTurn = true;
+        public bool SmoothTurn;
         public bool ComfortVignette = true;
         public bool RoomScale = true;
         public bool HandTrackingEnabled = true;
@@ -24,7 +25,7 @@ namespace AlbionOdyssey
         static readonly XRHandJointID[] visibleJoints = { XRHandJointID.Wrist, XRHandJointID.Palm, XRHandJointID.ThumbTip, XRHandJointID.IndexTip, XRHandJointID.MiddleTip };
         Vector3 lastHeadLocal;
         bool haveHeadPose, wasSelect, wasGrip;
-        float turnCooldown, averageFrame, lowFrameSeconds, previousViewportScale = 1f;
+        float turnCooldown, averageFrame, lowFrameSeconds, previousViewportScale = 1f, nextDeviceRefresh;
         bool recovering, performanceReduced;
         Material handMaterial;
         public bool Tracking => leftController.isValid || rightController.isValid || handSubsystem != null;
@@ -32,6 +33,12 @@ namespace AlbionOdyssey
         public void Setup(OdysseyGame owner)
         {
             game = owner;
+            SnapTurn = PlayerPrefs.GetInt("Odyssey.XR.SnapTurn", 1) == 1;
+            SmoothTurn = PlayerPrefs.GetInt("Odyssey.XR.SmoothTurn", SnapTurn ? 0 : 1) == 1;
+            if (SmoothTurn) SnapTurn = false;
+            ComfortVignette = PlayerPrefs.GetInt("Odyssey.XR.Vignette", 1) == 1;
+            RoomScale = PlayerPrefs.GetInt("Odyssey.XR.RoomScale", 1) == 1;
+            HandTrackingEnabled = PlayerPrefs.GetInt("Odyssey.XR.Hands", 1) == 1;
             Application.targetFrameRate = 72;
             handMaterial = TowerGeometry.Material("XR hand tracking", new Color(.55f, .78f, .95f), 0, .55f);
             leftAnchor = Anchor("XR left controller");
@@ -52,7 +59,11 @@ namespace AlbionOdyssey
                 return;
             }
             if (!Active) Activate();
-            if (!leftController.isValid && !rightController.isValid) RefreshDevices();
+            if ((!leftController.isValid || !rightController.isValid || handSubsystem == null) && Time.unscaledTime >= nextDeviceRefresh)
+            {
+                RefreshDevices();
+                nextDeviceRefresh = Time.unscaledTime + .75f;
+            }
             UpdateController(leftController, leftAnchor, true);
             UpdateController(rightController, rightAnchor, false);
             UpdateHands();
@@ -72,6 +83,7 @@ namespace AlbionOdyssey
             haveHeadPose = false;
             previousViewportScale = XRSettings.renderViewportScale;
             performanceReduced = false;
+            nextDeviceRefresh = 0f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             Debug.Log("ODYSSEY_XR_ACTIVE: room-scale locomotion, controller input and hand tracking ready");
@@ -101,6 +113,12 @@ namespace AlbionOdyssey
             handSubsystems.Clear();
             SubsystemManager.GetSubsystems(handSubsystems);
             handSubsystem = handSubsystems.Count > 0 && handSubsystems[0].running ? handSubsystems[0] : null;
+            if (recovering && Tracking)
+            {
+                recovering = false;
+                haveHeadPose = false;
+                Debug.Log("ODYSSEY_XR_TRACKING_RESTORED: headset or controller tracking reacquired");
+            }
         }
 
         Transform Anchor(string name)
@@ -198,17 +216,23 @@ namespace AlbionOdyssey
         {
             if (rightController.isValid && rightController.TryGetFeatureValue(CommonUsages.primary2DAxis, out var turnAxis))
             {
-                if (SnapTurn && Mathf.Abs(turnAxis.x) > .65f && turnCooldown <= 0)
+                if (SmoothTurn && Mathf.Abs(turnAxis.x) > .08f)
+                    game.player.transform.Rotate(0, turnAxis.x * 75f * Time.unscaledDeltaTime, 0);
+                else if (SnapTurn && Mathf.Abs(turnAxis.x) > .65f && turnCooldown <= 0)
                 {
                     game.player.transform.Rotate(0, turnAxis.x > 0 ? 30f : -30f, 0);
                     turnCooldown = .28f;
                 }
             }
-            bool select = Button(rightController, CommonUsages.primaryButton) || Button(rightController, CommonUsages.triggerButton);
-            if (select && !wasSelect) game.Interact();
+            bool leftSelect = Button(leftController, CommonUsages.primaryButton) || Button(leftController, CommonUsages.triggerButton);
+            bool rightSelect = Button(rightController, CommonUsages.primaryButton) || Button(rightController, CommonUsages.triggerButton);
+            bool select = leftSelect || rightSelect;
+            if (select && !wasSelect) { game.Interact(); Pulse(rightSelect ? rightController : leftController, .28f, .06f); }
             wasSelect = select;
-            bool grip = Button(rightController, CommonUsages.gripButton);
-            if (grip && !wasGrip) TryGrab(rightAnchor);
+            bool leftGrip = Button(leftController, CommonUsages.gripButton);
+            bool rightGrip = Button(rightController, CommonUsages.gripButton);
+            bool grip = leftGrip || rightGrip;
+            if (grip && !wasGrip) TryGrab(rightGrip ? rightAnchor : leftAnchor, rightGrip ? rightController : leftController);
             if (!grip && wasGrip) ReleaseGrab();
             wasGrip = grip;
         }
@@ -235,23 +259,58 @@ namespace AlbionOdyssey
             return device.isValid && device.TryGetFeatureValue(usage, out var pressed) && pressed;
         }
 
-        void TryGrab(Transform hand)
+        bool TryGrab(Transform hand, InputDevice controller)
         {
-            if (hand == null || !hand.gameObject.activeSelf || !Physics.Raycast(hand.position, hand.forward, out var hit, 2.0f)) return;
+            if (hand == null || !hand.gameObject.activeSelf || !Physics.Raycast(hand.position, hand.forward, out var hit, 2.0f)) return false;
             var marker = hit.collider.GetComponentInParent<OdysseyXRGrabTarget>();
-            if (marker != null) marker.BeginGrab(hand);
+            if (marker == null) return false;
+            marker.BeginGrab(hand); Pulse(controller, .42f, .10f); return true;
+        }
+
+        public bool RecenterView()
+        {
+            bool recentered = false;
+            var subsystems = new List<XRInputSubsystem>();
+            SubsystemManager.GetSubsystems(subsystems);
+            foreach (var subsystem in subsystems)
+                if (subsystem != null && subsystem.running) recentered |= subsystem.TryRecenter();
+            haveHeadPose = false;
+            if (game != null) game.notice = recentered ? "XR view recentered. Keep your play area clear." : "XR recenter is unavailable until a running headset is connected.";
+            return recentered;
         }
 
         void ReleaseGrab()
         {
             var grabbed = FindObjectsByType<OdysseyXRGrabTarget>(FindObjectsSortMode.None);
             foreach (var target in grabbed) target.EndGrab();
+            Pulse(leftController, .18f, .04f); Pulse(rightController, .18f, .04f);
+        }
+
+        static void Pulse(InputDevice device, float amplitude, float duration)
+        {
+            if (!device.isValid || !device.TryGetHapticCapabilities(out var capabilities) || !capabilities.supportsImpulse) return;
+            try { device.SendHapticImpulse(0u, Mathf.Clamp01(amplitude), Mathf.Clamp(duration, .01f, .25f)); } catch { }
         }
 
         void OnApplicationPause(bool pause)
         {
-            if (pause) recovering = true;
-            else if (recovering) { recovering = false; RefreshDevices(); haveHeadPose = false; Debug.Log("ODYSSEY_XR_RECOVERED: tracking devices reacquired after pause"); }
+            if (pause) BeginRecovery();
+            else { BeginRecovery(); RefreshDevices(); Debug.Log("ODYSSEY_XR_RECOVERED: tracking devices reacquiring after pause"); }
+        }
+
+        void OnApplicationFocus(bool focused)
+        {
+            if (!focused) BeginRecovery();
+            else { BeginRecovery(); RefreshDevices(); }
+        }
+
+        void BeginRecovery()
+        {
+            recovering = true;
+            haveHeadPose = false;
+            wasSelect = false;
+            wasGrip = false;
+            nextDeviceRefresh = 0f;
         }
 
         void OnGUI()
@@ -259,13 +318,14 @@ namespace AlbionOdyssey
             if (!Active) return;
             float scale = Mathf.Min(Screen.width / 1280f, Screen.height / 800f);
             GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
-            float width = Screen.width / scale;
+            float width = Screen.width / scale; Rect safe = AlbionUITheme.SafeArea(scale);
             GUI.color = Color.white;
-            GUI.Label(new Rect(22, 20, 580, 28), "XR CAMPUS WALK · " + (Tracking ? "TRACKING" : "SEARCHING FOR HEADSET"));
-            GUI.Label(new Rect(22, 49, 700, 24), "Left stick move · right stick snap-turn · trigger interact · grip grab · F8 menu");
-            if (recovering) GUI.Label(new Rect(22, 78, 480, 24), "Resuming headset tracking…");
-            if (lowFrameSeconds > 1f) GUI.Label(new Rect(22, 78, 620, 24), "Comfort warning: performance below 55 FPS");
-            if (performanceReduced) GUI.Label(new Rect(22, 106, 620, 24), "Performance guard active · visual scale reduced temporarily");
+            // The regular campus HUD owns the top of the view. Keep XR diagnostics
+            // compact and safe-area aware so they never compete with objectives or prompts.
+            if (recovering) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 480, 24), "Resuming headset tracking…");
+            else if (!Tracking) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 620, 24), "Headset tracking unavailable · reconnect a controller or enable hands");
+            if (lowFrameSeconds > 1f) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 86, 620, 24), "Comfort warning: performance below 55 FPS");
+            if (performanceReduced) GUI.Label(new Rect(safe.xMin + 24, safe.yMax - 58, 620, 24), "Performance guard active · visual scale reduced temporarily");
             if (ComfortVignette)
             {
                 GUI.color = new Color(0, 0, 0, .42f);

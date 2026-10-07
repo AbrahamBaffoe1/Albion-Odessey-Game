@@ -1,0 +1,46 @@
+{
+  "building": "Whitehouse Hall",
+  "status": "Historical visual references; dimensions and present conditions unverified",
+  "referencePage": "https://isaackremer.com/albion/buildings/ac_whitehouse/",
+  "observations": [
+    {
+      "image": "https://isaackremer.com/wp-content/uploads/2018/12/whitehouse_hall_2.jpg",
+      "view": "Southwest, Hannah and Porter intersection",
+      "observed": [
+        "brick residential facade",
+        "four visible window levels",
+        "pale central frontage",
+        "pitched roof",
+        "central triangular pediment"
+      ],
+      "implementedQualitatively": [
+        "brick",
+        "four levels",
+        "pale central frontage",
+        "pitched roof",
+        "pediment"
+      ],
+      "unverified": [
+        "exact bay measurements",
+        "roof dimensions",
+        "current alterations"
+      ]
+    },
+    {
+      "image": "https://isaackremer.com/wp-content/uploads/2018/12/whitehouse_hall_1.jpg",
+      "view": "Covered connection to Baldwin",
+      "observed": [
+        "tall square masonry supports",
+        "covered outdoor walkway",
+        "steps and metal handrails"
+      ],
+      "implementedQualitatively": [],
+      "unverified": [
+        "connection geometry",
+        "floor elevations",
+        "current alterations"
+      ]
+    }
+  ],
+  "rights": "Reference viewing only; no source photo bundled as a game texture."
+}

@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 namespace AlbionOdyssey.BuildingDesigner
 {
     [DefaultExecutionOrder(-2000)]
@@ -22,9 +23,10 @@ namespace AlbionOdyssey.BuildingDesigner
         AudioClip[] clips=new AudioClip[10];
         public bool Active {get;private set;}
         public bool Ready=>game!=null;
-        bool walking,showRoof,share,dirty,editingName,blurNextGui;
+        bool walking,showRoof,share,dirty,editingName,blurNextGui,controllerGrid;
         int keeper,slot,rotation,controllerFocus;StudioPart selected;
-        float previousTimeScale,azimuth=35,pitch,velocity,openedAt;
+        int gridX=6,gridZ=6;bool gridAlongX=true;
+        float previousTimeScale,azimuth=35,pitch,velocity,openedAt,controllerTurnCooldown;bool previousControllerJump;int cardFocus;
         Vector3 returnCameraPosition;Quaternion returnCameraRotation;
         string message="Choose a piece, then click the grid. Right-click removes the selected layer.",card="";
         Vector2 cardScroll;
@@ -36,7 +38,7 @@ namespace AlbionOdyssey.BuildingDesigner
         static void Boot(){new GameObject("Independent building designer").AddComponent<BlueprintStudio>();}
         IEnumerator Start()
         {
-            yield return null;yield return null;game=FindAnyObjectByType<OdysseyGame>();
+            while(game==null||!game.Ready){game=FindAnyObjectByType<OdysseyGame>();yield return null;}
             for(int i=0;i<10;i++)clips[i]=Resources.Load<AudioClip>("BuildingDesigner/Studio"+i);
             if(Smoke)yield return RunSmoke();
         }
@@ -46,7 +48,7 @@ namespace AlbionOdyssey.BuildingDesigner
             if(!game.player.TryExitVehicle()){game.notice="Park the car in an open space before entering the studio.";return false;}
             game.tour.StopMedia();
             if(game.life.PanelOpen)game.life.SetPanel("launch");
-            keeper=Smoke?0:game.state.active;Active=true;previousTimeScale=Time.timeScale;
+            keeper=Smoke?0:game.state.active;Active=true;controllerGrid=false;gridX=6;gridZ=6;gridAlongX=true;previousTimeScale=Time.timeScale;
             foreach(var c in FindObjectsByType<Camera>())if(c.enabled){cameras.Add(c);c.enabled=false;}
             foreach(var l in FindObjectsByType<AudioListener>())if(l.enabled){listeners.Add(l);l.enabled=false;}
             foreach(var b in FindObjectsByType<MonoBehaviour>())if(b!=this&&b.enabled){suspended.Add(b);b.enabled=false;}
@@ -105,16 +107,47 @@ namespace AlbionOdyssey.BuildingDesigner
             if(game==null||Smoke)return;
             if(!share&&!editingName&&Input.GetKeyDown(KeyCode.F4)){if(Active)Leave();else Enter();return;}
             if(!Active)return;
+            if(controllerGrid)
+            {
+                if(Input.GetKeyDown(KeyCode.R)){gridAlongX=!gridAlongX;message=gridAlongX?"Horizontal edge selected.":"Vertical edge selected.";}
+                if(AlbionUIInput.Poll(out var gridHorizontal,out var gridVertical,out var gridChoose,out var gridCancel))
+                {
+                    if(gridCancel){controllerGrid=false;preview.SetActive(false);message="Grid cursor closed. Choose another studio tool or keep designing.";return;}
+                    if(gridHorizontal!=0)gridX=Mathf.Clamp(gridX+(gridHorizontal>0?1:-1),0,11);
+                    if(gridVertical!=0)gridZ=Mathf.Clamp(gridZ+(gridVertical>0?1:-1),0,11);
+                    UpdateControllerPreview();
+                    if(gridChoose)PlaceAtControllerCursor();
+                }
+                else UpdateControllerPreview();
+                return;
+            }
+            if(walking)
+            {
+                AlbionUIInput.Poll(out var unusedHorizontal,out var unusedVertical,out var unusedChoose,out var cancelWalk);
+                if(cancelWalk){StopWalk();return;}
+                WalkInput();return;
+            }
+            if(share)
+            {
+                if(AlbionUIInput.Poll(out var cardHorizontal,out var cardVertical,out var cardChoose,out var cardCancel))
+                {
+                    if(cardCancel){share=false;return;}
+                    if(cardHorizontal!=0||cardVertical!=0)cardFocus=(cardFocus+(cardHorizontal!=0?(cardHorizontal>0?1:-1):(cardVertical>0?-1:1))+3)%3;
+                    if(cardChoose){if(cardFocus==0)CopyCard();else if(cardFocus==1)ImportCard();else share=false;}
+                    return;
+                }
+                if(Input.GetKeyDown(KeyCode.Escape)){share=false;return;}
+                return;
+            }
             if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel))
             {
-                if(cancel){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
-                if(horizontal!=0)controllerFocus=(controllerFocus+(horizontal>0?1:-1)+13)%13;
-                if(vertical!=0)controllerFocus=(controllerFocus+(vertical>0?-1:1)+13)%13;
-                if(choose){if(controllerFocus==0)Leave();else if(controllerFocus<=8)selected=(StudioPart)(controllerFocus-1);else if(controllerFocus==9)StartWalk();else if(controllerFocus==10){showRoof=!showRoof;Rebuild();}else if(controllerFocus==11){card=JsonUtility.ToJson(blueprint);share=true;}else if(controllerFocus==12&& (invalidSlot||SaveBlueprint())){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
+                if(cancel){Leave();return;}
+                if(horizontal!=0)controllerFocus=(controllerFocus+(horizontal>0?1:-1)+17)%17;
+                if(vertical!=0)controllerFocus=(controllerFocus+(vertical>0?-1:1)+17)%17;
+                if(choose){if(controllerFocus==0)Leave();else if(controllerFocus<=8)selected=(StudioPart)(controllerFocus-1);else if(controllerFocus==9)SaveBlueprint();else if(controllerFocus==10)Undo();else if(controllerFocus==11)Redo();else if(controllerFocus==12)StartWalk();else if(controllerFocus==13){showRoof=!showRoof;Rebuild();}else if(controllerFocus==14){card=JsonUtility.ToJson(blueprint);cardFocus=0;share=true;}else if(controllerFocus==15&&(invalidSlot||SaveBlueprint())){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}else if(controllerFocus==16){controllerGrid=true;message="Grid cursor active. Use the stick or arrows to move; press Select to place; Back closes it.";UpdateControllerPreview();}}
                 return;
             }
             if(Input.GetKeyDown(KeyCode.Escape)){if(walking)StopWalk();else if(share)share=false;else Leave();return;}
-            if(walking){WalkInput();return;}
             if(share||invalidSlot)return;
             float interfaceScale=Mathf.Min(Screen.width/1280f,Screen.height/800f);
             if(editingName)
@@ -164,6 +197,24 @@ namespace AlbionOdyssey.BuildingDesigner
             }
             x=Mathf.FloorToInt(gx);z=Mathf.FloorToInt(gz);center=StudioGeometry.Origin+StudioGeometry.CellCenter(x,z);return BuildingBlueprint.Cell(x,z);
         }
+        void UpdateControllerPreview()
+        {
+            if(preview==null||!controllerGrid)return;
+            bool edge=selected>=StudioPart.Wall&&selected<=StudioPart.Window;
+            bool alongX=gridAlongX;
+            Vector3 center=StudioGeometry.Origin+new Vector3((gridX-6)*2+(edge&&alongX?1:0),0,(gridZ-6)*2+(edge&&!alongX?1:0));
+            var candidate=blueprint.Copy();bool valid=candidate.Place(selected,gridX,gridZ,alongX,rotation,false);
+            preview.SetActive(true);preview.transform.position=center+Vector3.up*.16f;preview.transform.rotation=Quaternion.identity;
+            preview.transform.localScale=edge?new Vector3(1.95f,.06f,.20f):new Vector3(1.90f,.06f,1.90f);
+            preview.GetComponent<Renderer>().sharedMaterial=TowerGeometry.Material(valid?"Studio controller valid preview":"Studio controller blocked preview",valid?new Color(.30f,.88f,.52f):new Color(.9f,.30f,.24f));
+        }
+        void PlaceAtControllerCursor()
+        {
+            bool edge=selected>=StudioPart.Wall&&selected<=StudioPart.Window;
+            var candidate=blueprint.Copy();bool valid=candidate.Place(selected,gridX,gridZ,edge?gridAlongX:true,rotation,false);
+            if(valid){history.Record(blueprint);blueprint=candidate;dirty=true;Rebuild();Play((int)selected);message=selected+" placed at grid cursor. Move the cursor to continue.";UpdateControllerPreview();}
+            else message="That space is blocked. Move the grid cursor or choose a supporting floor.";
+        }
         void Undo(){blueprint=history.Undo(blueprint);dirty=true;Rebuild();message="Undo.";}
         void Redo(){blueprint=history.Redo(blueprint);dirty=true;Rebuild();message="Redo.";}
         public void StartWalk()
@@ -171,46 +222,68 @@ namespace AlbionOdyssey.BuildingDesigner
             if(walking)return;walking=true;share=false;preview.SetActive(false);returnCameraPosition=camera.transform.position;returnCameraRotation=camera.transform.rotation;
             walker=new GameObject("Blueprint walkthrough Keeper");walker.transform.position=StudioGeometry.Origin+new Vector3(-1,.15f,-7);controller=walker.AddComponent<CharacterController>();controller.height=1.8f;controller.radius=.32f;controller.center=Vector3.up*.9f;controller.stepOffset=.3f;
             camera.orthographic=false;camera.fieldOfView=75;camera.transform.SetParent(walker.transform,false);camera.transform.localPosition=Vector3.up*1.65f;camera.transform.localRotation=Quaternion.identity;pitch=velocity=0;
-            Rebuild();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;message="Walk through your doorway. Esc returns to the designer.";
+            Rebuild();controllerTurnCooldown=0;previousControllerJump=false;Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;message="Walk through your doorway. Esc returns to the designer.";
         }
         void WalkInput()
         {
             walker.transform.Rotate(0,Input.GetAxisRaw("Mouse X")*2,0);pitch=Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*2,-80,80);camera.transform.localRotation=Quaternion.Euler(pitch,0,0);
-            float x=(Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.LeftArrow)?1:0);
-            float z=(Input.GetKey(KeyCode.W)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow)?1:0);
-            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&Input.GetKeyDown(KeyCode.Space))velocity=5;
+            float x=(Input.GetKey(OdysseyAccessibility.RightKey)||Input.GetKey(KeyCode.RightArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.LeftKey)||Input.GetKey(KeyCode.LeftArrow)?1:0);
+            float z=(Input.GetKey(OdysseyAccessibility.ForwardKey)||Input.GetKey(KeyCode.UpArrow)?1:0)-(Input.GetKey(OdysseyAccessibility.BackKey)||Input.GetKey(KeyCode.DownArrow)?1:0);
+            var devices=new List<InputDevice>();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Left,devices);
+            if(devices.Count>0&&devices[0].TryGetFeatureValue(CommonUsages.primary2DAxis,out var moveAxis)&&moveAxis.sqrMagnitude>.01f){x=moveAxis.x;z=moveAxis.y;}
+            devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller|InputDeviceCharacteristics.Right,devices);
+            if(devices.Count>0&&devices[0].TryGetFeatureValue(CommonUsages.primary2DAxis,out var turnAxis)&&Mathf.Abs(turnAxis.x)>.65f&&controllerTurnCooldown<=0){walker.transform.Rotate(0,turnAxis.x>0?30f:-30f,0);controllerTurnCooldown=.28f;}
+            if(controllerTurnCooldown>0)controllerTurnCooldown-=Time.unscaledDeltaTime;
+            bool controllerJump=devices.Count>0&&(Button(devices[0],CommonUsages.primaryButton)||Button(devices[0],CommonUsages.triggerButton));
+            bool jumpPressed=controllerJump&&!previousControllerJump;previousControllerJump=controllerJump;
+            if(controller.isGrounded&&velocity<0)velocity=-2;if(controller.isGrounded&&(Input.GetKeyDown(OdysseyAccessibility.JumpKey)||jumpPressed))velocity=5;
             velocity-=18*Time.unscaledDeltaTime;controller.Move((Vector3.ClampMagnitude(walker.transform.right*x+walker.transform.forward*z,1)*3.5f+Vector3.up*velocity)*Time.unscaledDeltaTime);
             if(walker.transform.position.y< -5){controller.enabled=false;walker.transform.position=StudioGeometry.Origin+new Vector3(-1,.15f,-7);controller.enabled=true;velocity=0;}
         }
+        static bool Button(InputDevice device,InputFeatureUsage<bool> usage){return device.isValid&&device.TryGetFeatureValue(usage,out var pressed)&&pressed;}
         public void StopWalk()
         {
-            walking=false;camera.transform.SetParent(null,true);camera.orthographic=true;camera.transform.position=returnCameraPosition;camera.transform.rotation=returnCameraRotation;Destroy(walker);Rebuild();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
+            walking=false;previousControllerJump=false;camera.transform.SetParent(null,true);camera.orthographic=true;camera.transform.position=returnCameraPosition;camera.transform.rotation=returnCameraRotation;Destroy(walker);Rebuild();Cursor.lockState=CursorLockMode.None;Cursor.visible=true;
         }
         bool Button(float x,float y,float w,string value)=>GUI.Button(new Rect(x,y,w,36),value,button);
         void Label(float x,float y,float w,float h,string value,GUIStyle style=null)=>GUI.Label(new Rect(x,y,w,h),value,style??text);
+        string FocusLabel(int index,string value)=>controllerFocus==index?"▶ "+value:value;
+        string CardFocusLabel(int index,string value)=>cardFocus==index?"▶ "+value:value;
+        void FocusBox(Rect r,int index)
+        {
+            if(controllerFocus!=index)return;
+            var old=GUI.color;GUI.color=AlbionUITheme.Cyan;
+            GUI.DrawTexture(new Rect(r.x-3,r.y-3,r.width+6,3),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(r.x-3,r.yMax,r.width+6,3),Texture2D.whiteTexture);
+            GUI.DrawTexture(new Rect(r.x-3,r.y,3,r.height),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(r.xMax,r.y,3,r.height),Texture2D.whiteTexture);GUI.color=old;
+        }
+        void CopyCard(){GUIUtility.systemCopyBuffer=card;message="Blueprint card copied.";}
+        void ImportCard(){var candidate=ParseCard(card);if(candidate==null)message="Invalid card. Your current building is unchanged.";else{history.Record(blueprint);blueprint=candidate;dirty=true;Rebuild();share=false;message="Imported locally. Review it, then save.";}}
         void OnGUI()
         {
             if(!Active)return;
             if(blurNextGui){GUI.FocusControl(null);blurNextGui=false;}
-            if(heading==null){heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=28,fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=16,wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);small=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=13};small.normal.textColor=new Color(.52f,.84f,.9f);button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,richText=false};foreach(var v in new[]{button.normal,button.active,button.hover,button.focused}){v.background=Texture2D.whiteTexture;v.textColor=new Color(.98f,.96f,.9f);}}
+            if(heading==null){heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(28),fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);text=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(16),wordWrap=true,richText=false};text.normal.textColor=new Color(.88f,.88f,.92f);small=new GUIStyle(text){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(13)};small.normal.textColor=new Color(.52f,.84f,.9f);button=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),richText=false};foreach(var v in new[]{button.normal,button.active,button.hover,button.focused}){v.background=Texture2D.whiteTexture;v.textColor=new Color(.98f,.96f,.9f);}}
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));GUI.matrix=AlbionUITheme.Slide(GUI.matrix,openedAt,OdysseyAccessibility.ReducedMotion);float w=Screen.width/scale,h=Screen.height/scale;
             GUI.backgroundColor=new Color(.22f,.10f,.34f);GUI.color=new Color(.025f,.04f,.055f,.96f);GUI.DrawTexture(new Rect(0,0,w,walking?85:190),Texture2D.whiteTexture);GUI.DrawTexture(new Rect(0,h-140,w,140),Texture2D.whiteTexture);GUI.color=Color.white;
             Label(24,18,850,40,walking?"WALK INSIDE YOUR DESIGN":"THE BUILDING STUDIO",heading);
             Label(24,60,1000,25,$"Keeper {keeper+1} · Slot {slot+1} · 24 × 24 metres · Original player blueprint",small);
-            if(walking){Label(24,h-120,w-48,50,"WASD / arrows walk · Mouse look · Space jump · Esc back to design · Esc twice returns to campus",text);return;}
-            if(Button(w-200,22,175,"Save & return · Esc"))Leave();
+            if(walking){Label(24,h-120,w-48,50,OdysseyAccessibility.ForwardKey+" / "+OdysseyAccessibility.LeftKey+" "+OdysseyAccessibility.BackKey+" "+OdysseyAccessibility.RightKey+" / arrows walk · Mouse look · "+OdysseyAccessibility.JumpKey+" jump · Esc back to design · Esc twice returns to campus",text);return;}
+            if(Button(w-200,22,175,FocusLabel(0,"Save & return · Esc")))Leave();FocusBox(new Rect(w-200,22,175,36),0);
+            if(Button(w-200,68,175,FocusLabel(16,controllerGrid?"Close grid cursor":"Grid cursor"))){controllerGrid=!controllerGrid;message=controllerGrid?"Grid cursor active. Use the stick or arrows to move; Select places; R changes wall direction.":"Grid cursor closed.";if(controllerGrid)UpdateControllerPreview();else preview.SetActive(false);}FocusBox(new Rect(w-200,68,175,36),16);
             GUI.enabled=!invalidSlot;
             string[] names={"1 Floor","2 Wall","3 Door","4 Window","5 Roof","6 Table","7 Chair","8 Planter"};
-            for(int i=0;i<8;i++)if(Button(24+i*153,110,145,(selected==(StudioPart)i?"● ":"")+names[i])){selected=(StudioPart)i;GUI.FocusControl(null);}
+            for(int i=0;i<8;i++)if(Button(24+i*153,110,145,FocusLabel(i+1,(selected==(StudioPart)i?"● ":"")+names[i]))){selected=(StudioPart)i;GUI.FocusControl(null);}
+            for(int i=0;i<8;i++)FocusBox(new Rect(24+i*153,110,145,36),i+1);
             Label(24,157,w-48,28,"Walls, doors and windows snap to floor edges. Other pieces snap to floor cells. Right-click removes the selected layer.",small);
             GUI.SetNextControlName("BlueprintName");string name=GUI.TextField(new Rect(24,h-119,260,34),blueprint.title,40);if(name!=blueprint.title){blueprint.title=name;dirty=true;}
-            if(Button(300,h-120,100,"Save"))SaveBlueprint();if(Button(412,h-120,90,"Undo"))Undo();if(Button(514,h-120,90,"Redo"))Redo();
-            if(Button(616,h-120,145,"Walk inside"))StartWalk();if(Button(773,h-120,140,showRoof?"Hide roof":"Show roof")){showRoof=!showRoof;Rebuild();}
-            if(Button(925,h-120,160,"Blueprint card")){card=JsonUtility.ToJson(blueprint);share=true;}
+            if(Button(300,h-120,100,FocusLabel(9,"Save")))SaveBlueprint();if(Button(412,h-120,90,FocusLabel(10,"Undo")))Undo();if(Button(514,h-120,90,FocusLabel(11,"Redo")))Redo();
+            if(Button(616,h-120,145,FocusLabel(12,"Walk inside")))StartWalk();if(Button(773,h-120,140,FocusLabel(13,showRoof?"Hide roof":"Show roof"))){showRoof=!showRoof;Rebuild();}
+            if(Button(925,h-120,160,FocusLabel(14,"Blueprint card"))){card=JsonUtility.ToJson(blueprint);cardFocus=0;share=true;}
             GUI.enabled=true;
-            if(Button(1097,h-120,145,"Slot "+(slot+1)+" →")){if(invalidSlot||SaveBlueprint()){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
-            Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Creative materials are free in this prototype",small);
-            Label(w-430,h-73,406,24,"STICK navigate · TRIGGER choose · MENU back",small);
+            if(Button(1097,h-120,145,FocusLabel(15,"Slot "+(slot+1)+" →"))){if(invalidSlot||SaveBlueprint()){slot=(slot+1)%3;invalidSlot=false;LoadSlot();}}
+            FocusBox(new Rect(300,h-120,100,36),9);FocusBox(new Rect(412,h-120,90,36),10);FocusBox(new Rect(514,h-120,90,36),11);FocusBox(new Rect(616,h-120,145,36),12);FocusBox(new Rect(773,h-120,140,36),13);FocusBox(new Rect(925,h-120,160,36),14);FocusBox(new Rect(1097,h-120,145,36),15);
+            Label(24,h-73,w-48,24,"R rotate furniture · Q/E orbit · Scroll zoom · Ctrl/Cmd Z undo · Ctrl/Cmd Y redo · Grid cursor supports controller/XR placement",small);
+            Label(w-430,h-73,406,24,AlbionControls.CompactMenuFooter(game.xr!=null&&game.xr.Active,"Choose"),small);
             Label(24,h-42,w-48,36,message,small);
             editingName=GUI.GetNameOfFocusedControl()=="BlueprintName";
             if(share)
@@ -218,17 +291,21 @@ namespace AlbionOdyssey.BuildingDesigner
                 GUI.color=new Color(.02f,.035f,.05f,1);GUI.DrawTexture(new Rect(80,205,w-160,h-365),Texture2D.whiteTexture);GUI.color=Color.white;
                 Label(102,219,w-300,35,"BLUEPRINT CARD · COPY OR PASTE A LAYOUT",text);
                 cardScroll=GUI.BeginScrollView(new Rect(102,260,w-204,h-495),cardScroll,new Rect(0,0,w-228,1500));card=GUI.TextArea(new Rect(0,0,w-230,1490),card,20000);GUI.EndScrollView();
-                if(Button(102,h-220,210,"Copy card")){GUIUtility.systemCopyBuffer=card;message="Blueprint card copied.";}
-                if(Button(326,h-220,220,"Import this card")){var candidate=ParseCard(card);if(candidate==null)message="Invalid card. Your current building is unchanged.";else{history.Record(blueprint);blueprint=candidate;dirty=true;Rebuild();share=false;message="Imported locally. Review it, then save.";}}
-                if(Button(562,h-220,170,"Close card"))share=false;
+                if(Button(102,h-220,210,CardFocusLabel(0,"Copy card")))CopyCard();
+                if(Button(326,h-220,220,CardFocusLabel(1,"Import this card")))ImportCard();
+                if(Button(562,h-220,170,CardFocusLabel(2,"Close card")))share=false;
             }
         }
-        [Serializable] class SmokeResult {public bool passed,doorway,wallCollision,save,import,undo,restored;public int pieces;public string error;}
+        [Serializable] class SmokeResult {public bool passed,doorway,wallCollision,save,import,undo,restored,controllerPlacement,controllerBlocked,controllerOrientation;public int pieces;public string error;}
         IEnumerator RunSmoke()
         {
             var result=new SmokeResult();string output=Environment.GetEnvironmentVariable("BLUEPRINT_SMOKE_PATH")??Path.Combine(Application.persistentDataPath,"BlueprintSmokeOutput");Directory.CreateDirectory(output);
             Enter();blueprint=BuildingBlueprint.Classroom();Rebuild();yield return null;
             result.pieces=building.GetComponentsInChildren<Renderer>().Length;
+            var controllerLayout=BuildingBlueprint.Classroom();
+            result.controllerPlacement=controllerLayout.Place(StudioPart.Planter,6,6,true,0,false);
+            result.controllerBlocked=!controllerLayout.Place(StudioPart.Table,4,5,true,0,false);
+            result.controllerOrientation=controllerLayout.Place(StudioPart.Wall,4,9,true,0,false)&&controllerLayout.Place(StudioPart.Wall,3,4,false,0,false);
             history.Record(blueprint);blueprint.Place(StudioPart.Roof,5,5,true,0,false);Undo();result.undo=blueprint.roofs[65]==0;Redo();result.undo&=blueprint.roofs[65]==1;
             string export=JsonUtility.ToJson(blueprint);result.import=ParseCard(export)!=null&&ParseCard("{bad") ==null&&ParseCard(new string('x',20001))==null;
             result.save=SaveBlueprint()&&ParseCard(File.ReadAllText(SavePath))!=null;
@@ -242,7 +319,7 @@ namespace AlbionOdyssey.BuildingDesigner
             result.wallCollision=walker.transform.position.z<StudioGeometry.Origin.z+6&&walker.transform.position.z>StudioGeometry.Origin.z+5;
             StopWalk();share=true;card=export;yield return new WaitForEndOfFrame();Capture(output,"03-blueprint-card");
             bool wasEnabled=suspended.Contains(game);Leave();result.restored=!Active&&wasEnabled&&game.enabled&&Mathf.Approximately(Time.timeScale,previousTimeScale);
-            result.passed=result.doorway&&result.wallCollision&&result.save&&result.import&&result.undo&&result.restored;
+            result.passed=result.doorway&&result.wallCollision&&result.save&&result.import&&result.undo&&result.restored&&result.controllerPlacement&&result.controllerBlocked&&result.controllerOrientation;
             if(!result.passed)result.error="One or more designer checks failed; inspect result fields.";
             File.WriteAllText(Path.Combine(output,"result.json"),JsonUtility.ToJson(result,true));Debug.Log("BLUEPRINT_STUDIO_SMOKE "+JsonUtility.ToJson(result));Application.Quit(result.passed?0:1);
         }

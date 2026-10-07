@@ -1,0 +1,142 @@
+CAMPUS REPLICA COVERAGE
+
+61 catalog destinations reviewed. No complete exact replica verified.
+Site coordinates remain schematic, not surveyed.
+
+Construction route counts:
+25: generic walkable reconstruction
+20: generic sealed exterior
+1: authored Robinson model; dimensions unverified
+4: combined generic Science Complex interior
+1: generic walkable reconstruction; separate Stockwell study
+1: authored Ferguson model; dimensions unverified
+1: photo-informed exterior; interior only staged
+4: published-plan reconstruction
+4: generic athletics geometry
+
+Per-destination status:
+1 — Bonta Admission Center: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+2 — Cass Center: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+5 — Astronomical Observatory: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+6 — Baldwin Hall: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+7 — Bobbitt Visual Arts Center: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+7a — Bobbitt Annex: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+9 — Facilities Operations: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+10 — Goodrich Chapel: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+11 — Grounds: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+12 — Herrick Theatre: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+14 — Kellogg Center: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+15 — Ludington Center: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+16 — Robinson Hall: authored Robinson model; dimensions unverified
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+17 — Olin Hall: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+18n — Norris Center · Science Complex: combined generic Science Complex interior
+  Remaining: Four distinct building envelopes and connections; Measured laboratory layouts; Floor elevations and stairs
+18k — Kresge Hall · Science Complex: combined generic Science Complex interior
+  Remaining: Four distinct building envelopes and connections; Measured laboratory layouts; Floor elevations and stairs
+18p — Palenske Hall · Science Complex: combined generic Science Complex interior
+  Remaining: Four distinct building envelopes and connections; Measured laboratory layouts; Floor elevations and stairs
+18u — Putnam Hall · Science Complex: combined generic Science Complex interior
+  Remaining: Four distinct building envelopes and connections; Measured laboratory layouts; Floor elevations and stairs
+19 — Seely-Berkey House: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+20 — Stockwell Memorial Library: generic walkable reconstruction; separate Stockwell study
+  Remaining: Install reconciled full building; Current floor/stack elevations and stairs; Mudd connection; Measured side/rear elevations
+21 — Mudd Learning Center: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+22 — Umbrella House: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+23 — Vulgamore Hall (North Hall): generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+24 — Welton House: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+25 — Whitehouse Nature Center: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+26 — Ferguson Hall: authored Ferguson model; dimensions unverified
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+40 — Briton House Apartments: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+41 — Burns Street Apartments: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+42 — Dean Hall: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+43 — Fiske House: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+44 — Ingham Hall: photo-informed exterior; interior only staged
+  Remaining: Measured stair geometry and vertical alignment; Reconcile staged footprint with exterior; Complete current elevations
+45 — Karro Apartments: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+46 — Mitchell Towers: published-plan reconstruction
+  Remaining: Complete measured geometry; Current detailed elevations; Unresolved rooms, partitions and stair dimensions
+47 — Munger Hall / Apartments: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+48 — Munger Annex: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+49 — Seaton Hall: published-plan reconstruction
+  Remaining: Complete measured geometry; Current detailed elevations; Unresolved rooms, partitions and stair dimensions
+50 — Wesley Hall: published-plan reconstruction
+  Remaining: Complete measured geometry; Current detailed elevations; Unresolved rooms, partitions and stair dimensions
+51 — Whitehouse Hall: published-plan reconstruction
+  Remaining: Complete measured geometry; Current detailed elevations; Unresolved rooms, partitions and stair dimensions
+52 — 416 Erie St. Apartments: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+53 — President’s House: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+54 — 507 Erie St. Apartments: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+55 — 711 E. Michigan Ave. Annex: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+56 — Guest House · 810 E. Michigan Ave.: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+60 — Alpha Chi Omega Sorority: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+61 — Alpha Tau Omega Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+62 — Alpha Xi Delta Sorority: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+63 — Delta Gamma Sorority: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+64 — Delta Sigma Phi Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+65 — Delta Tau Delta Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+66 — Kappa Alpha Theta Sorority: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+67 — Kappa Delta Sorority: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+68 — Sigma Nu Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+69 — Sigma Chi Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+70 — Tau Kappa Epsilon Fraternity: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+76a — Alumni Stadium · Davis Athletic Complex: generic athletics geometry
+  Remaining: Surveyed field and stand geometry; Current site detail
+76b — Joranko Field · Davis Athletic Complex: generic athletics geometry
+  Remaining: Surveyed field and stand geometry; Current site detail
+76c — Dempsey Field · Davis Athletic Complex: generic athletics geometry
+  Remaining: Surveyed field and stand geometry; Current site detail
+77 — Dow Recreation and Wellness Center: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+78 — Held Equestrian Center: generic sealed exterior
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+79 — Kresge Gymnasium: generic walkable reconstruction
+  Remaining: Measured exterior and interior geometry; Floor elevations and stairs; Current facade details
+80 — Sprankle-Sprandel Stadium: generic athletics geometry
+  Remaining: Surveyed field and stand geometry; Current site detail
+
+This is a static implementation inventory. Runtime tests for selected routes do not establish campus-wide accuracy.
+The catalog itself is not a surveyed inventory of every campus structure or landscape feature.

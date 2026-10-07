@@ -1,0 +1,25 @@
+SEATON MEASURED-ROOM FIT CONSTRAINTS
+
+Best pair orientation only; no source-axis claim. Existing clear cells assume 0.18m partitions, not raycast geometry.
+110 usable room pairs; 105 need cell expansion.
+Ambiguous/conflicting source entries remain excluded.
+
+Largest required changes (metres):
+Room 29: width +0.338, depth +1.112
+Room 30: width +0.338, depth +1.112
+Room 233: width +0.134, depth +1.112
+Room 234: width +0.236, depth +1.112
+Room 235: width +0.338, depth +1.112
+Room 236: width +0.261, depth +1.112
+Room 217: width +0.109, depth +1.112
+Room 216: width +0.338, depth +1.112
+Room 215: width +0.338, depth +1.112
+Room 214: width +0.134, depth +1.112
+Room 332: width +0.109, depth +1.112
+Room 333: width +0.338, depth +1.112
+Room 334: width +0.338, depth +1.112
+Room 335: width +0.109, depth +1.112
+Room 316: width +0.084, depth +1.112
+
+Repack connected room rows and preserve corridor/stair topology before changing live walls. Do not enlarge rooms independently into neighbours or circulation.
+No live walls changed by this analysis.

@@ -1,0 +1,19 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {forestCommand,tickForest,forestSnapshot,forestLeave,makeCourse} from './forest-run.mjs';
+const a={id:'a',display:'Ada'},b={id:'b',display:'Bee'};
+function setup(){const r={};forestCommand(r,a,{action:'join'},0);forestCommand(r,b,{action:'join'},0);tickForest(r,5000);return r;}
+test('countdown, bounded authority, deterministic course and room isolation',()=>{const r=setup(),s=setup();assert.deepEqual(makeCourse(12),makeCourse(12));assert.equal(r.forest.players.size,2);forestCommand(r,a,{action:'left',distance:99999,treasures:999},5100);forestCommand(r,a,{action:'left'},5101);assert.equal(r.forest.players.get('a').lane,-1);tickForest(r,9999999);assert(r.forest.players.get('a').distance<5);assert.equal(r.forest.treasures,0);assert.equal(s.forest.players.get('a').distance,0);});
+test('jump clears logs, slide clears branches, rock collision allows teammate rescue',()=>{for(const [kind,action] of [['log','jump'],['branch','slide']]){const r=setup();r.forest.events=[{id:0,z:1,lane:0,kind}];forestCommand(r,a,{action},5000);tickForest(r,5200);assert(r.forest.players.get('a').gap>=20);assert(r.forest.players.get('b').gap<20);}
+ const r=setup();r.forest.events=[{id:1,z:1,lane:0,kind:'rock'}];r.forest.players.get('a').gap=2;r.forest.players.get('b').lane=1;tickForest(r,5200);assert(r.forest.players.get('a').caught);r.forest.rescues=1;forestCommand(r,b,{action:'rescue'},5400);assert(!r.forest.players.get('a').caught);assert.equal(r.forest.rescues,0);
+});
+test('collectibles are shared once and three seeds earn one rescue',()=>{const r=setup();r.forest.events=[0,1,2].map(id=>({id,z:.2+id*.2,lane:0,kind:'seed'}));tickForest(r,5200);assert.equal(r.forest.seeds,3);assert.equal(r.forest.rescues,1);assert.equal(forestSnapshot(r,5200).events.length,0);forestCommand(r,{id:'c',display:'C'},{action:'join'},5300);assert.equal(r.forest.players.get('c').distance,r.forest.players.get('a').distance);forestLeave(r,'a');forestLeave(r,'b');forestLeave(r,'c');assert.equal(r.forest,null);});
+test('finish and restart reset the race, and caught runners cannot collect or move',()=>{const r=setup();const p=r.forest.players.get('a');p.caught=true;const before=p.distance;forestCommand(r,a,{action:'right'},5200);tickForest(r,5200);assert.equal(p.distance,before);assert.equal(p.lane,0);r.forest.players.get('b').distance=1199;tickForest(r,5400);assert.equal(r.forest.phase,'finished');forestCommand(r,a,{action:'join'},5500);assert.equal(r.forest.phase,'countdown');assert.equal(r.forest.players.size,1);assert.equal(r.forest.treasures,0);});
+
+test('competitive runs use individual collectibles, reject mid-race joins and disable rescue',()=>{
+ const r={mode:'race'};forestCommand(r,a,{action:'join'},0);forestCommand(r,b,{action:'join'},0);tickForest(r,5000);
+ r.forest.events=[{id:0,z:1,lane:0,kind:'treasure'}];tickForest(r,5200);
+ assert.equal(r.forest.players.get('a').treasures,1);assert.equal(r.forest.players.get('b').treasures,1);
+ forestCommand(r,{id:'c',display:'C'},{action:'join'},5300);assert.equal(r.forest.players.size,2);
+ r.forest.players.get('a').caught=true;r.forest.rescues=2;forestCommand(r,b,{action:'rescue'},5400);assert(r.forest.players.get('a').caught);
+ assert.equal(forestSnapshot(r).mode,'race');assert(!('used' in forestSnapshot(r).players[0]));
+});

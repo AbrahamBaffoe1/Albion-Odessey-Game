@@ -1,0 +1,27 @@
+{
+  "holdingURL": "https://www.philadelphiabuildings.org/pab/app/ho_display.cfm/97150",
+  "repository": "Architectural Archives of the University of Pennsylvania",
+  "collection": "Day & Klauder Collection",
+  "holding": "069.4",
+  "description": "14 architectural construction drawings",
+  "date": "1937",
+  "publicGalleryImageIds": [
+    495537,
+    495539,
+    495540,
+    495538,
+    495563,
+    495561,
+    495535
+  ],
+  "reviewedImageRecord": "https://www.philadelphiabuildings.org/pab/app/im_display.cfm/495540",
+  "reviewedRecordDescription": "elevations, sections, and plans",
+  "drawingDate": "1937-02-20",
+  "access": "Public preview available; high-resolution online images require PAB subscriber login",
+  "previewDimensionsPixels": [
+    250,
+    180
+  ],
+  "measurementsExtracted": false,
+  "reason": "Public preview is not legible enough for architectural dimensions; no attempt to bypass login."
+}

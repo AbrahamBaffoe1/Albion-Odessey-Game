@@ -6,8 +6,11 @@ The live HUD includes:
 
 - Current building or campus location and Keeper status.
 - A compact compass and objective card with memory and Beacon progress.
+- A six-step charter meter that shows the current chapter and fills as milestones are completed.
 - Energy feedback while sprinting and speed feedback while driving.
+- A live Campus Pulse card for moving students, seated activities, squirrels, weather and total campus population.
 - Contextual world tags for memories, Pip and classroom activities.
+- Distance-aware building nameplates for map destinations, walkable halls and field spaces; the labels face the camera and hide behind geometry.
 - One readable interaction prompt with the current action.
 - Animated achievement and notice cards with the existing collection sounds.
 - Responsive scaling for 16:9, ultrawide and headset preview resolutions.
@@ -16,6 +19,10 @@ The live HUD includes:
 Keyboard, pointer buttons, controller input and the XR action layer use the same interaction methods. The HUD pauses behind history, course, builder, journal and launch panels, which now share the same card treatment without duplicating gameplay state.
 
 The social layer now uses the same visual language: seated learners and lunch groups show short conversation bubbles while they talk, club players show a playful prompt while paused, and online Keepers can show a short chat bubble above their avatar. All bubbles face the active camera, expire quickly, and disappear outside a readable distance. The VR walkthrough and shared-campus panels expose their focused action with a gold-arrow cue and show the same stick/trigger/menu footer used by the in-world controls.
+
+Course panels now show a compact roster strip alongside the seat count. Local Keepers and named simulated learners share the same enrollment view, so a player can see who is in a class before starting the lesson.
+
+The building studio now includes a controller/XR grid cursor. Open **Grid cursor**, move the stick or arrows across the 12 × 12 plan, press Select to place the selected floor, wall, door, window or furnishing, and use **R** to switch wall direction. Mouse placement remains available for precision editing.
 
 ## Typography and input pass
 

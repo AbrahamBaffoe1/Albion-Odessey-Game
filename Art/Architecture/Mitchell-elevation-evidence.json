@@ -1,0 +1,18 @@
+{
+  "building": "Mitchell Towers",
+  "officialPage": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/mitchell-towers/",
+  "image": "https://www.albion.edu/wp-content/uploads/2021/03/Mitchell-pg-300x206.jpg",
+  "observed": [
+    "brick towers",
+    "pale panels at window bays",
+    "dark upper roof zone",
+    "low link between towers"
+  ],
+  "limitations": [
+    "300 by 206 pixels; not adequate for measuring elevations",
+    "mansard geometry and current alterations unverified",
+    "suite bathroom partitions omitted from public diagrams",
+    "lobby stair destination and rise unresolved"
+  ],
+  "sourcePhotoBundled": false
+}

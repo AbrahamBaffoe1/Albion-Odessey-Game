@@ -1,0 +1,19 @@
+{
+  "source": "https://www.albion.edu/wp-content/uploads/2021/03/ingham.jpg",
+  "status": "Front exterior features modeled from official photograph; all dimensions provisional.",
+  "observed": [
+    "Brick body",
+    "Raised west-facing porch",
+    "Pale round porch columns and projecting cornices with brackets",
+    "Central gabled dormer with three front windows",
+    "Central entrance and flanking first-floor window groups"
+  ],
+  "unverified": [
+    "Exact column count and spacing",
+    "Whole-building dimensions",
+    "Roof geometry behind visible dormer",
+    "Concealed side and rear elevations",
+    "Interior and stair dimensions"
+  ],
+  "runtimeInterior": false
+}

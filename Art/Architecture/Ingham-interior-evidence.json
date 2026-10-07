@@ -1,0 +1,24 @@
+{
+  "sources": [
+    "https://www.albion.edu/wp-content/uploads/2021/03/ingham-common.jpg",
+    "https://www.albion.edu/wp-content/uploads/2021/03/ingham-bedroom.jpg"
+  ],
+  "livingRoomObserved": [
+    "Fireplace and hearth with green surround",
+    "Terracotta walls, pale baseboards and crown trim",
+    "Three-window group",
+    "Patterned carpet, sofa, two armchairs, pendant lights"
+  ],
+  "bedroomObserved": [
+    "Three-window group",
+    "Two wooden beds with under-bed drawers",
+    "Desks with shelves",
+    "Carpet",
+    "Image annotation: 12 feet 8 inches by 15 feet 2 inches"
+  ],
+  "limitations": [
+    "Photos do not show stairs or full circulation",
+    "Bedroom photo has no room number",
+    "Annotated bedroom dimensions cannot be safely assigned to a numbered room or override the table"
+  ]
+}

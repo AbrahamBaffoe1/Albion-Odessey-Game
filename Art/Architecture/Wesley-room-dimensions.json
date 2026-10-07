@@ -1,0 +1,2007 @@
+{
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Wesley-Floor-Plan-and-Room-Dimensions.pdf",
+  "page": 5,
+  "status": "Published room dimensions, not a measured whole-building survey. Axis orientation and assignment to exterior walls need verification.",
+  "rooms": [
+    {
+      "room": "10",
+      "dimension1": "15'-2\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.6228,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "102",
+      "dimension1": "14'-4\"",
+      "dimension2": "10'-9\"",
+      "metres1": 4.3688,
+      "metres2": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "200",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-7\"",
+      "metres1": 4.7752,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "300",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-10\"",
+      "metres1": 4.7752,
+      "metres2": 3.6068,
+      "sourcePage": 5
+    },
+    {
+      "room": "11",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-5\"",
+      "metres1": 4.3434,
+      "metres2": 3.175,
+      "sourcePage": 5
+    },
+    {
+      "room": "103",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "201",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-7\"",
+      "metres1": 4.7752,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "301",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-8\"",
+      "metres1": 4.7752,
+      "metres2": 3.556,
+      "sourcePage": 5
+    },
+    {
+      "room": "12",
+      "dimension1": "15'-2\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.6228,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "104",
+      "dimension1": "14'-4\"",
+      "dimension2": "10'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.0734,
+      "sourcePage": 5
+    },
+    {
+      "room": "202",
+      "dimension1": "16'-8\"",
+      "dimension2": "12'-1\"",
+      "metres1": 5.08,
+      "metres2": 3.683,
+      "sourcePage": 5
+    },
+    {
+      "room": "302",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.7752,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "13",
+      "dimension1": "16'-8\"",
+      "dimension2": "11'-5\"",
+      "metres1": 5.08,
+      "metres2": 3.4798,
+      "sourcePage": 5
+    },
+    {
+      "room": "105",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3434,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "203",
+      "dimension1": "11'-7\"",
+      "dimension2": "16'-10\"",
+      "metres1": 3.5306,
+      "metres2": 5.1308,
+      "sourcePage": 5
+    },
+    {
+      "room": "303",
+      "dimension1": "15'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.6736,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "14",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.318,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "106",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "204",
+      "dimension1": "15'-9\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.8006,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "304 Common",
+      "dimension1": "14'-6\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.4196,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "15",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-7\"",
+      "metres1": 4.3434,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "107",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.3942,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "205",
+      "dimension1": "15'-8\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.7752,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "304A",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-2\"",
+      "metres1": 3.3528,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "16",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.1148,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "108",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3434,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "206",
+      "dimension1": "16'-9\"",
+      "dimension2": "10'-9\"",
+      "metres1": 5.1054,
+      "metres2": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "304B",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-2\"",
+      "metres1": 3.3528,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "17",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.1148,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "109",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "207",
+      "dimension1": "16'-8\"",
+      "dimension2": "10'-11\"",
+      "metres1": 5.08,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "305 Common",
+      "dimension1": "14'-6\"",
+      "dimension2": "11'-10\"",
+      "metres1": 4.4196,
+      "metres2": 3.6068,
+      "sourcePage": 5
+    },
+    {
+      "room": "18",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.3434,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "110",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "208",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.1148,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "305A",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-7\"",
+      "metres1": 3.3528,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "19",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1148,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "111",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "209",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-6\"",
+      "metres1": 4.1148,
+      "metres2": 3.5052,
+      "sourcePage": 5
+    },
+    {
+      "room": "305B",
+      "dimension1": "11'-10\"",
+      "dimension2": "11'-7\"",
+      "metres1": 3.6068,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "20",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.3434,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "112",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "210",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-5\"",
+      "metres1": 4.1148,
+      "metres2": 3.175,
+      "sourcePage": 5
+    },
+    {
+      "room": "306",
+      "dimension1": "11'-3\"",
+      "dimension2": "13'-8\"",
+      "metres1": 3.429,
+      "metres2": 4.1656,
+      "sourcePage": 5
+    },
+    {
+      "room": "21",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.1148,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "113",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.3688,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "211",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-5\"",
+      "metres1": 4.1402,
+      "metres2": 3.4798,
+      "sourcePage": 5
+    },
+    {
+      "room": "307 Common",
+      "dimension1": "14'-7\"",
+      "dimension2": "14'-3\"",
+      "metres1": 4.445,
+      "metres2": 4.3434,
+      "sourcePage": 5
+    },
+    {
+      "room": "22",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.318,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "114",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "212",
+      "dimension1": "13'-7\"",
+      "dimension2": "14'-10\"",
+      "metres1": 4.1402,
+      "metres2": 4.5212,
+      "sourcePage": 5
+    },
+    {
+      "room": "307A",
+      "dimension1": "10'-10\"",
+      "dimension2": "11'-9\"",
+      "metres1": 3.302,
+      "metres2": 3.5814,
+      "sourcePage": 5
+    },
+    {
+      "room": "23",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.3434,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "115",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "213",
+      "dimension1": "13'-7\"",
+      "dimension2": "13'-9\"",
+      "metres1": 4.1402,
+      "metres2": 4.191,
+      "sourcePage": 5
+    },
+    {
+      "room": "307B",
+      "dimension1": "11'-9\"",
+      "dimension2": "11'-8\"",
+      "metres1": 3.5814,
+      "metres2": 3.556,
+      "sourcePage": 5
+    },
+    {
+      "room": "24",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.1402,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "116",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "214",
+      "dimension1": "13'-7\"",
+      "dimension2": "14'-1\"",
+      "metres1": 4.1402,
+      "metres2": 4.2926,
+      "sourcePage": 5
+    },
+    {
+      "room": "308",
+      "dimension1": "11'-3\"",
+      "dimension2": "14'-7\"",
+      "metres1": 3.429,
+      "metres2": 4.445,
+      "sourcePage": 5
+    },
+    {
+      "room": "25",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.1148,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "117",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "215",
+      "dimension1": "13'-7\"",
+      "dimension2": "13'-10\"",
+      "metres1": 4.1402,
+      "metres2": 4.2164,
+      "sourcePage": 5
+    },
+    {
+      "room": "310-S",
+      "dimension1": "11'-11\"",
+      "dimension2": "11'-1\"",
+      "metres1": 3.6322,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "26",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1402,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "118",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3942,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "216",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "311-S",
+      "dimension1": "11'-9\"",
+      "dimension2": "11'-0\"",
+      "metres1": 3.5814,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "27",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1402,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "119",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.3942,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "217",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3434,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "312 Common",
+      "dimension1": "14'-11\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.5466,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "28",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1656,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "120",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-1\"",
+      "metres1": 4.3434,
+      "metres2": 3.0734,
+      "sourcePage": 5
+    },
+    {
+      "room": "218",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "312A",
+      "dimension1": "11'-1\"",
+      "dimension2": "12'-0\"",
+      "metres1": 3.3782,
+      "metres2": 3.6576,
+      "sourcePage": 5
+    },
+    {
+      "room": "29",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1402,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "121",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "219",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "312B",
+      "dimension1": "11'-1\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3782,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "30",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-7\"",
+      "metres1": 4.318,
+      "metres2": 3.5306,
+      "sourcePage": 5
+    },
+    {
+      "room": "123",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3942,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "220",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "313 Common",
+      "dimension1": "14'-10\"",
+      "dimension2": "11'-11\"",
+      "metres1": 4.5212,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "31-S",
+      "dimension1": "13'-6\"",
+      "dimension2": "9'-3\"",
+      "metres1": 4.1148,
+      "metres2": 2.8194,
+      "sourcePage": 5
+    },
+    {
+      "room": "124",
+      "dimension1": "14'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.445,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "221",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "313A",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3528,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "32",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.1148,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "125",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-4\"",
+      "metres1": 4.3434,
+      "metres2": 3.1496,
+      "sourcePage": 5
+    },
+    {
+      "room": "222",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "313B",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3528,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "34",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.3434,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "126",
+      "dimension1": "15'-1\"",
+      "dimension2": "10'-1\"",
+      "metres1": 4.5974,
+      "metres2": 3.0734,
+      "sourcePage": 5
+    },
+    {
+      "room": "223",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3434,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "314 Common",
+      "dimension1": "14'-11\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.5466,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "36",
+      "dimension1": "13'-2\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.0132,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "128",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "224",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "314A",
+      "dimension1": "11'-0\"",
+      "dimension2": "12'-0\"",
+      "metres1": 3.3528,
+      "metres2": 3.6576,
+      "sourcePage": 5
+    },
+    {
+      "room": "38",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-4\"",
+      "metres1": 4.1402,
+      "metres2": 3.4544,
+      "sourcePage": 5
+    },
+    {
+      "room": "129",
+      "dimension1": "15'-4\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.6736,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "225",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3942,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "314B",
+      "dimension1": "10'-11\"",
+      "dimension2": "12'-0\"",
+      "metres1": 3.3274,
+      "metres2": 3.6576,
+      "sourcePage": 5
+    },
+    {
+      "room": "40-S",
+      "dimension1": "13'-5\"",
+      "dimension2": "9'-2\"",
+      "metres1": 4.0894,
+      "metres2": 2.794,
+      "sourcePage": 5
+    },
+    {
+      "room": "130",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1402,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "226",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3688,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "315 Common",
+      "dimension1": "14'-10\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.5212,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "131",
+      "dimension1": "14'-7\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.445,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "227",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3434,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "315A",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-10\"",
+      "metres1": 3.3528,
+      "metres2": 3.6068,
+      "sourcePage": 5
+    },
+    {
+      "room": "132",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "228",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "315B",
+      "dimension1": "10'-11\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3274,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "133",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.1656,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "229",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "316 Common",
+      "dimension1": "14'-11\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.5466,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "134",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "230",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "316A",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3528,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "135",
+      "dimension1": "13'-9\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.191,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "231",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3434,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "316B",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3528,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "136",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.3434,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "232",
+      "dimension1": "14'-6\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.4196,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "317 Common",
+      "dimension1": "15'-0\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.572,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "137",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-8\"",
+      "metres1": 4.1656,
+      "metres2": 3.2512,
+      "sourcePage": 5
+    },
+    {
+      "room": "233",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "317A",
+      "dimension1": "10'-10\"",
+      "dimension2": "12'-0\"",
+      "metres1": 3.302,
+      "metres2": 3.6576,
+      "sourcePage": 5
+    },
+    {
+      "room": "138",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1402,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "234",
+      "dimension1": "14'-5\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3942,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "317B",
+      "dimension1": "11'-0\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.3528,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "139",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3434,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "235",
+      "dimension1": "14'-4\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3688,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "318",
+      "dimension1": "14'-4\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.3688,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "140",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.318,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "236",
+      "dimension1": "14'-6\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.4196,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "319",
+      "dimension1": "14'-5\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3942,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "141",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "237",
+      "dimension1": "14'-4\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3688,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "320",
+      "dimension1": "17'-10\"",
+      "dimension2": "9'-5\"",
+      "metres1": 5.4356,
+      "metres2": 2.8702,
+      "sourcePage": 5
+    },
+    {
+      "room": "142",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "238",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.3434,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "321",
+      "dimension1": "15'-3\"",
+      "dimension2": "9'-5\"",
+      "metres1": 4.6482,
+      "metres2": 2.8702,
+      "sourcePage": 5
+    },
+    {
+      "room": "143",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1656,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "239",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.3434,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "322",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "144",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1656,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "240",
+      "dimension1": "14'-9\"",
+      "dimension2": "10'-3\"",
+      "metres1": 4.4958,
+      "metres2": 3.1242,
+      "sourcePage": 5
+    },
+    {
+      "room": "323",
+      "dimension1": "11'-0\"",
+      "dimension2": "14'-2\"",
+      "metres1": 3.3528,
+      "metres2": 4.318,
+      "sourcePage": 5
+    },
+    {
+      "room": "145",
+      "dimension1": "13'-10\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.2164,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "241",
+      "dimension1": "14'-10\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.5212,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "324",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-10\"",
+      "metres1": 4.1656,
+      "metres2": 3.6068,
+      "sourcePage": 5
+    },
+    {
+      "room": "146",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "242",
+      "dimension1": "15'-5\"",
+      "dimension2": "9'-7\"",
+      "metres1": 4.699,
+      "metres2": 2.921,
+      "sourcePage": 5
+    },
+    {
+      "room": "325",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.318,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "147",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.1402,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "243",
+      "dimension1": "15'-7\"",
+      "dimension2": "9'-7\"",
+      "metres1": 4.7498,
+      "metres2": 2.921,
+      "sourcePage": 5
+    },
+    {
+      "room": "326",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3434,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "148",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "244",
+      "dimension1": "14'-3\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.3434,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "327",
+      "dimension1": "14'-1\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.2926,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "149",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1656,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "245",
+      "dimension1": "10'-11\"",
+      "dimension2": "14'-2\"",
+      "metres1": 3.3274,
+      "metres2": 4.318,
+      "sourcePage": 5
+    },
+    {
+      "room": "328-S",
+      "dimension1": "10'-3\"",
+      "dimension2": "13'-3\"",
+      "metres1": 3.1242,
+      "metres2": 4.0386,
+      "sourcePage": 5
+    },
+    {
+      "room": "150",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "246",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-9\"",
+      "metres1": 4.318,
+      "metres2": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "329-S",
+      "dimension1": "10'-1\"",
+      "dimension2": "13'-2\"",
+      "metres1": 3.0734,
+      "metres2": 4.0132,
+      "sourcePage": 5
+    },
+    {
+      "room": "151",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "247",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.1402,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "330-S",
+      "dimension1": "9'-4\"",
+      "dimension2": "9'-5\"",
+      "metres1": 2.8448,
+      "metres2": 2.8702,
+      "sourcePage": 5
+    },
+    {
+      "room": "152",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-1\"",
+      "metres1": 4.1656,
+      "metres2": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "248",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3434,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "331-S",
+      "dimension1": "9'-9\"",
+      "dimension2": "9'-6\"",
+      "metres1": 2.9718,
+      "metres2": 2.8956,
+      "sourcePage": 5
+    },
+    {
+      "room": "153",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.1656,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "249",
+      "dimension1": "14'-3\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.3434,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "332",
+      "dimension1": "16'-2\"",
+      "dimension2": "13'-2\"",
+      "metres1": 4.9276,
+      "metres2": 4.0132,
+      "sourcePage": 5
+    },
+    {
+      "room": "154-S",
+      "dimension1": "13'-7\"",
+      "dimension2": "9'-3\"",
+      "metres1": 4.1402,
+      "metres2": 2.8194,
+      "sourcePage": 5
+    },
+    {
+      "room": "250",
+      "dimension1": "12'-2\"",
+      "dimension2": "13'-3\"",
+      "metres1": 3.7084,
+      "metres2": 4.0386,
+      "sourcePage": 5
+    },
+    {
+      "room": "333",
+      "dimension1": "15'-8\"",
+      "dimension2": "12'-8\"",
+      "metres1": 4.7752,
+      "metres2": 3.8608,
+      "sourcePage": 5
+    },
+    {
+      "room": "155",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "251",
+      "dimension1": "12'-2\"",
+      "dimension2": "13'-2\"",
+      "metres1": 3.7084,
+      "metres2": 4.0132,
+      "sourcePage": 5
+    },
+    {
+      "room": "334",
+      "dimension1": "14'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.445,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "157",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.1656,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "252",
+      "dimension1": "12'-1\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.683,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "335",
+      "dimension1": "14'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.4196,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "159-S",
+      "dimension1": "13'-8\"",
+      "dimension2": "9'-3\"",
+      "metres1": 4.1656,
+      "metres2": 2.8194,
+      "sourcePage": 5
+    },
+    {
+      "room": "253",
+      "dimension1": "12'-2\"",
+      "dimension2": "11'-11\"",
+      "metres1": 3.7084,
+      "metres2": 3.6322,
+      "sourcePage": 5
+    },
+    {
+      "room": "338",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "254",
+      "dimension1": "16'-2\"",
+      "dimension2": "12'-11\"",
+      "metres1": 4.9276,
+      "metres2": 3.937,
+      "sourcePage": 5
+    },
+    {
+      "room": "339",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-2\"",
+      "metres1": 4.318,
+      "metres2": 3.0988,
+      "sourcePage": 5
+    },
+    {
+      "room": "255",
+      "dimension1": "16'-2\"",
+      "dimension2": "13'-0\"",
+      "metres1": 4.9276,
+      "metres2": 3.9624,
+      "sourcePage": 5
+    },
+    {
+      "room": "340",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "256",
+      "dimension1": "14'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.445,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "341",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "257",
+      "dimension1": "14'-9\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.4958,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "342",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.318,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "258",
+      "dimension1": "16'-9\"",
+      "dimension2": "10'-4\"",
+      "metres1": 5.1054,
+      "metres2": 3.1496,
+      "sourcePage": 5
+    },
+    {
+      "room": "343",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1148,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "259",
+      "dimension1": "16'-6\"",
+      "dimension2": "10'-2\"",
+      "metres1": 5.0292,
+      "metres2": 3.0988,
+      "sourcePage": 5
+    },
+    {
+      "room": "344",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "260",
+      "dimension1": "13'-10\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.2164,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "345",
+      "dimension1": "15'-5\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.699,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "261",
+      "dimension1": "13'-6\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1148,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "346",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "262",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "347",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.0894,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "263",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.1402,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "348",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "264",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-0\"",
+      "metres1": 4.318,
+      "metres2": 3.048,
+      "sourcePage": 5
+    },
+    {
+      "room": "349",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "265",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.318,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "350",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.1402,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "266",
+      "dimension1": "13'-7\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1402,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "351",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.0894,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "267",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "352",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "268",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1656,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "353",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-6\"",
+      "metres1": 4.1148,
+      "metres2": 3.2004,
+      "sourcePage": 5
+    },
+    {
+      "room": "269",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "354",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "270",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1402,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "355",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.1402,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "271",
+      "dimension1": "13'-8\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1656,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "356",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.0894,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "272",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-9\"",
+      "metres1": 4.318,
+      "metres2": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "357",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.0894,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "273",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1402,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "358",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "274",
+      "dimension1": "14'-7\"",
+      "dimension2": "10'-8\"",
+      "metres1": 4.445,
+      "metres2": 3.2512,
+      "sourcePage": 5
+    },
+    {
+      "room": "359",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-7\"",
+      "metres1": 4.0894,
+      "metres2": 3.2258,
+      "sourcePage": 5
+    },
+    {
+      "room": "275",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-1\"",
+      "metres1": 4.1148,
+      "metres2": 3.0734,
+      "sourcePage": 5
+    },
+    {
+      "room": "360",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1148,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "276",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "361",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.0894,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "277",
+      "dimension1": "13'-10\"",
+      "dimension2": "11'-3\"",
+      "metres1": 4.2164,
+      "metres2": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "362",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "278",
+      "dimension1": "14'-2\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.318,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "363",
+      "dimension1": "13'-5\"",
+      "dimension2": "10'-9\"",
+      "metres1": 4.0894,
+      "metres2": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "279",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "364-S",
+      "dimension1": "13'-6\"",
+      "dimension2": "9'-1\"",
+      "metres1": 4.1148,
+      "metres2": 2.7686,
+      "sourcePage": 5
+    },
+    {
+      "room": "280",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-10\"",
+      "metres1": 4.1402,
+      "metres2": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "365-S",
+      "dimension1": "13'-5\"",
+      "dimension2": "9'-0\"",
+      "metres1": 4.0894,
+      "metres2": 2.7432,
+      "sourcePage": 5
+    },
+    {
+      "room": "281",
+      "dimension1": "13'-6\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1148,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "282",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "283",
+      "dimension1": "13'-7\"",
+      "dimension2": "10'-11\"",
+      "metres1": 4.1402,
+      "metres2": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "284",
+      "dimension1": "13'-8\"",
+      "dimension2": "11'-0\"",
+      "metres1": 4.1656,
+      "metres2": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "285",
+      "dimension1": "14'-2\"",
+      "dimension2": "11'-2\"",
+      "metres1": 4.318,
+      "metres2": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "286-S",
+      "dimension1": "9'-1\"",
+      "dimension2": "13'-7\"",
+      "metres1": 2.7686,
+      "metres2": 4.1402,
+      "sourcePage": 5
+    },
+    {
+      "room": "287-S",
+      "dimension1": "13'-8\"",
+      "dimension2": "9'-2\"",
+      "metres1": 4.1656,
+      "metres2": 2.794,
+      "sourcePage": 5
+    }
+  ]
+}

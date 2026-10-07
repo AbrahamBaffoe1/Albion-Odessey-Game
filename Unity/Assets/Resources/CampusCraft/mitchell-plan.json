@@ -1,0 +1,2100 @@
+{
+  "building": "Mitchell Towers",
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Mitchell-Towers-Floor-Plan.pdf",
+  "sourcePages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "Published two-tower topology and room sequence. Envelope, heights and window bays are estimates. Suite-bathroom partitions and lobby-stair elevation remain unresolved.",
+  "width": 57.2,
+  "depth": 29.6,
+  "floorHeight": 3.2,
+  "entryX": 0,
+  "entryLevel": 0,
+  "rotation": 90,
+  "baseElevation": 0,
+  "floors": [
+    {
+      "level": 0,
+      "name": "First",
+      "footprints": [
+        {
+          "x": -16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": -16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        },
+        {
+          "x": -6.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "x": 16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": 16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        },
+        {
+          "x": 6.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "x": 0.0,
+          "z": -9.4,
+          "width": 9.6,
+          "depth": 10.8
+        }
+      ],
+      "spaces": [
+        {
+          "name": "North Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": -16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": -16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "North central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "North Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "North Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "109",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "110",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "111",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "112",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "108",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "107 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "106",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "105",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "113",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "114",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "115 PB",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "Spare RD apartment \u00b7 103",
+          "kind": "apartment",
+          "stairYaw": 0,
+          "group": "north-rd",
+          "x": -23.5,
+          "z": -8.0,
+          "width": 10.2,
+          "depth": 2.4
+        },
+        {
+          "name": "103 apartment sleeping area",
+          "kind": "apartment",
+          "stairYaw": 0,
+          "group": "north-rd",
+          "x": -21.8,
+          "z": -12.0,
+          "width": 6.8,
+          "depth": 5.6
+        },
+        {
+          "name": "Bathroom",
+          "kind": "bath",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "Computer room",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "102",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "101",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "Link lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": 16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": 16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "South central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "South Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "South Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "132",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "131",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "130",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "129",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "133",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "134",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "135",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "136 SH",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "128",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "127 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "RD apartment living area",
+          "kind": "apartment",
+          "stairYaw": 0,
+          "group": "south-rd",
+          "x": 25.2,
+          "z": -4.6,
+          "width": 6.8,
+          "depth": 9.2
+        },
+        {
+          "name": "RD apartment sleeping area",
+          "kind": "apartment",
+          "stairYaw": 0,
+          "group": "south-rd",
+          "x": 21.8,
+          "z": -12.0,
+          "width": 6.8,
+          "depth": 5.6
+        },
+        {
+          "name": "Vending",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "121",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "122",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "RD office",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -3.2,
+          "z": -5.4,
+          "width": 3.2,
+          "depth": 2.8
+        },
+        {
+          "name": "Lobby stair \u00b7 elevation unresolved",
+          "kind": "unresolvedStair",
+          "stairYaw": 0,
+          "group": "",
+          "x": 0.0,
+          "z": -6.8,
+          "width": 3.2,
+          "depth": 5.6
+        },
+        {
+          "name": "RA office",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 0.0,
+          "z": -11.0,
+          "width": 3.2,
+          "depth": 2.8
+        },
+        {
+          "name": "Connecting lobby",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": 0.0,
+          "z": -13.6,
+          "width": 9.6,
+          "depth": 2.4
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 1,
+      "name": "Second",
+      "footprints": [
+        {
+          "x": -16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": -16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        },
+        {
+          "x": 16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": 16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        }
+      ],
+      "spaces": [
+        {
+          "name": "North Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": -16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": -16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "North central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "North Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "North Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "209",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "210",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "211",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "212",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "208",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "207 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "206",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "205",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "213",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "214",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "215",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "216",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "204",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "203",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "202",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "201",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "North janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": 16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": 16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "South central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "South Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "South Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "232",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "231",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "230",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "229",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "233",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "234",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "235",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "236",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "228",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "227 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "226",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "225",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "221",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "222",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "223",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "224",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 2,
+      "name": "Third",
+      "footprints": [
+        {
+          "x": -16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": -16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        },
+        {
+          "x": 16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": 16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        }
+      ],
+      "spaces": [
+        {
+          "name": "North Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": -16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": -16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "North central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "North Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "North Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "309",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "310",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "311",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "312",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "308",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "307 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "306",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "305",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "313",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "314",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "315",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "316",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "304",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "303",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "302",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "301",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "North janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": 16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": 16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "South central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "South Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "South Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "332",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "331",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "330",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "329",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "333",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "334",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "335",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "336",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "328",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "327 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "326",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "325",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "321",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "322",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "323",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "324",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 3,
+      "name": "Fourth",
+      "footprints": [
+        {
+          "x": -16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": -16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        },
+        {
+          "x": 16.7,
+          "z": 1.4,
+          "width": 23.8,
+          "depth": 21.2
+        },
+        {
+          "x": 16.7,
+          "z": 0.0,
+          "width": 17,
+          "depth": 29.6
+        }
+      ],
+      "spaces": [
+        {
+          "name": "North Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": -16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": -16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "North central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": -16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "North Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "North Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "409",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "410",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "411",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "412",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "408",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "407 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "406",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "405",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "413",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "414",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "415",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "416",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "404",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "403",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "402",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "401",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": -9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "North sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "North janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": -6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South Mingo stairs",
+          "kind": "stairs",
+          "stairYaw": -90,
+          "group": "",
+          "x": 16.7,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South campus stairs",
+          "kind": "stairs",
+          "stairYaw": 90,
+          "group": "",
+          "x": 16.7,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South elevator shaft",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": -5.4,
+          "width": 3.4,
+          "depth": 2.8
+        },
+        {
+          "name": "South central lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "group": "",
+          "x": 16.7,
+          "z": 1.4,
+          "width": 10.2,
+          "depth": 10.8
+        },
+        {
+          "name": "South Mingo study A",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "South Mingo study B",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": 9.4,
+          "width": 3.4,
+          "depth": 5.2
+        },
+        {
+          "name": "432",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "431",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "430",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "429",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": 12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "433",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "434",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "435",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "436",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 8.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "428",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "427 \u00b7 RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": 1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "426",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -1.7,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "425",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 25.2,
+          "z": -5.1,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "421",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 9.9,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "422",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 13.3,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "423",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 20.1,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "424",
+          "kind": "room",
+          "stairYaw": 0,
+          "group": "",
+          "x": 23.5,
+          "z": -12.0,
+          "width": 3.4,
+          "depth": 5.6
+        },
+        {
+          "name": "South sink area",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 26.9,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        },
+        {
+          "name": "South janitor",
+          "kind": "service",
+          "stairYaw": 0,
+          "group": "",
+          "x": 6.5,
+          "z": -8.0,
+          "width": 3.4,
+          "depth": 2.4
+        }
+      ],
+      "circulationCorners": []
+    }
+  ]
+}

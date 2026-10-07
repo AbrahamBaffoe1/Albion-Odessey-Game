@@ -15,6 +15,7 @@ def cloth(name,planes,color,thickness):
  o=body.copy();o.data=body.data.copy();bpy.context.collection.objects.link(o);o.name=name
  bm=bmesh.new();bm.from_mesh(o.data)
  for co,no in planes:bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),plane_co=co,plane_no=no,clear_outer=True,dist=.00001)
+ bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.00001)
  bm.to_mesh(o.data);bm.free()
  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True;shader=m.node_tree.nodes['Principled BSDF'];shader.inputs['Base Color'].default_value=(*color,1);shader.inputs['Roughness'].default_value=.86
  # Fine woven bump in the Blender source. Runtime uses the imported cloth material.
@@ -25,6 +26,20 @@ def cloth(name,planes,color,thickness):
  return o
 shirt=cloth('Campus sweatshirt',[((0,0,.99),(0,0,-1)),((0,0,1.572),(0,0,1)),((.69,0,0),(1,0,0)),((-.69,0,0),(-1,0,0))],(.22,.12,.33),.023)
 pants=cloth('Indigo denim',[((0,0,.16),(0,0,-1)),((0,0,1.04),(0,0,1))],(.09,.13,.19),.016)
+# Relax the body-copy garment surfaces to remove the superhero muscle imprint.
+for garment in [shirt,pants]:
+ bpy.context.view_layer.objects.active=garment
+ bm=bmesh.new();bm.from_mesh(garment.data);bm.verts.ensure_lookup_table()
+ interior=[v.index for v in bm.verts if not v.is_boundary];bm.free()
+ group=garment.vertex_groups.new(name='Fabric interior');group.add(interior,1,'REPLACE')
+ smooth=garment.modifiers.new('Relaxed everyday fabric','SMOOTH');smooth.factor=.4;smooth.iterations=6;smooth.vertex_group=group.name
+ bpy.ops.object.modifier_move_up(modifier=smooth.name)
+ bpy.ops.object.modifier_apply(modifier=smooth.name)
+# Covered skin is not rendered through clothing during animation.
+bm=bmesh.new();bm.from_mesh(body.data)
+covered=[f for f in bm.faces if (.20<f.calc_center_median().z<1.02) or (1.04<f.calc_center_median().z<1.54 and abs(f.calc_center_median().x)<.66)]
+bmesh.ops.delete(bm,geom=covered,context='FACES');bm.to_mesh(body.data);bm.free()
+
 # Remove skin feet where fully enclosed by modeled shoes.
 bm=bmesh.new();bm.from_mesh(body.data);bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),plane_co=(0,0,.12),plane_no=(0,0,-1),clear_outer=True);bm.to_mesh(body.data);bm.free()
 # Fit a short hairstyle from the same character kit, binding it to the head.

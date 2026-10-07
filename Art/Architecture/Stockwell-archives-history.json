@@ -1,0 +1,39 @@
+{
+  "source": "https://storymaps.arcgis.com/stories/06d8caba4d5c4b139fc7340d7d3e54a4",
+  "authorByline": "Albion College Archives & Special Collections",
+  "publicItemId": "06d8caba4d5c4b139fc7340d7d3e54a4",
+  "sourceModifiedYear": 2022,
+  "evidence": [
+    {
+      "year": 1980,
+      "event": "Mudd era: separate library building connected by enclosed bridge; Stockwell main entrance closed",
+      "yearBasis": "1980 opening corroborated by library About page; history describes 1978 grant and construction sequence"
+    },
+    {
+      "year": 2011,
+      "event": "Stockwell main doors reopened as library main entrance; circulation desk moved and cafe added"
+    },
+    {
+      "year": 2020,
+      "event": "Cutler Center occupies first and second Stockwell floors"
+    }
+  ],
+  "bridgeImage": {
+    "resourceId": "tzt0-M5OuPwr2IAobPzRu.jpeg",
+    "localFile": "work/architecture/mudd-bridge-archive.jpeg",
+    "sha256": "c7931e33f6db5dd21cd9b7763794fc1ae0f102a630a3d926f4dbfc7fcf55c14a",
+    "classification": "Architectural rendering, not a photograph or as-built drawing",
+    "observed": "Low enclosed connection between distinct Mudd and Stockwell masses",
+    "notEstablished": [
+      "Measured bridge dimensions",
+      "Current bridge elevations and door interfaces",
+      "Current rear and side window layout"
+    ]
+  },
+  "implementationConsequences": [
+    "Do not reproduce the closed entrance from pre-2011 descriptions.",
+    "Do not assign historical upper-floor Art Department rooms as current uses.",
+    "Do not treat 2011 reopening and 2020 Cutler occupancy as one renovation event.",
+    "Connector must be reconciled against present floor plans before installation."
+  ]
+}

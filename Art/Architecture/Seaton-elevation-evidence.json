@@ -1,0 +1,39 @@
+{
+  "sourcePage": "https://isaackremer.com/albion/buildings/ac_seaton/",
+  "attribution": "Page attributes photographs to Albion College Archives unless otherwise noted",
+  "referenceType": "historical photographs; current conditions unverified",
+  "observedImages": [
+    "https://isaackremer.com/wp-content/uploads/2018/12/seaton_hall_1.jpg",
+    "https://isaackremer.com/wp-content/uploads/2018/12/seaton_hall_2.jpg",
+    "https://isaackremer.com/wp-content/uploads/2018/12/seaton_hall.jpg"
+  ],
+  "observations": [
+    {
+      "feature": "three exposed main storeys",
+      "implemented": "ground level lowered; exact floor elevations remain estimated"
+    },
+    {
+      "feature": "light projecting cornice",
+      "implemented": "simplified front cornice; ornament not reproduced"
+    },
+    {
+      "feature": "columned two-storey entrance portico",
+      "implemented": "four supports and entablature; dimensions, profiles and ornament provisional"
+    },
+    {
+      "feature": "short entrance steps",
+      "implemented": "five provisional risers; grade not surveyed"
+    },
+    {
+      "feature": "arched entrance surround",
+      "implemented": "not yet reproduced"
+    },
+    {
+      "feature": "entrance rails, mature planting and hedges",
+      "implemented": "not yet reconstructed from survey"
+    }
+  ],
+  "warning": "Do not claim a current, exact replica from these small archival images. Source dimensions, window counts and present renovations still need verification.",
+  "interiorReference": "https://www.albion.edu/wp-content/uploads/2023/01/Seaton-Room-scaled.jpg",
+  "interiorObservation": "Pale painted walls, plain light floor, oak furniture, supported beds and desks. Generic furniture placement is not a replica of the photographed room."
+}

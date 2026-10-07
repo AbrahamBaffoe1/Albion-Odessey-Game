@@ -8,6 +8,9 @@ namespace AlbionOdyssey
         public GameObject Exterior=>stream.Exterior;public GameObject Interior=>stream.Content;
         StreamedInterior stream;
         public readonly List<CampusDoor> Doors=new List<CampusDoor>();
+        /// <summary>True while a LAN host owns door state; players cannot toggle doors locally.</summary>
+        public bool DoorsReplicated{get;set;}
+        public IEnumerable<CampusDoor> AllDoors(){foreach(var d in Doors)yield return d;foreach(var b in additional)foreach(var d in b.Doors)yield return d;}
         readonly List<WalkableCampusBuilding> additional=new List<WalkableCampusBuilding>();
         OdysseyGame game;CraftDescription description;Transform site;
         public Vector3 Origin=>CampusExpansion.Find("26").position;
@@ -26,6 +29,7 @@ namespace AlbionOdyssey
             // A small permanent collision shell is already present; occupied interior geometry loads by proximity.
             var plaque=new GameObject("Ferguson name").transform;plaque.SetParent(site,false);plaque.localPosition=new Vector3(0,5.84f,-7.22f);
             var label=plaque.gameObject.AddComponent<TextMesh>();label.text="FERGUSON HALL";label.fontSize=64;label.characterSize=.085f;label.anchor=TextAnchor.MiddleCenter;label.color=new Color(.18f,.2f,.18f);
+            var nameplate=site.gameObject.AddComponent<CampusWorldLabel>();nameplate.Configure("26  ·  FERGUSON HALL",new Color(1f,.76f,.28f),new Vector3(0,4.15f,-7.45f),24f);
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("16"),28f,13.5f,4,3.35f,true,"Robinson Hall stands on the site of Albion’s original Central Building. The 1843 building was rebuilt after fire and renovated in 1992; its present use includes humanities and social-science classrooms and offices. The central atrium in this game follows the documented renovation description, while room placement remains a reconstruction."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("1"),16.5f,11.2f,1,3.7f,false,"The Bonta Admission Center is Albion College’s visitor front door at 100 N. Hannah Street. It was named for Dean of Admissions Frank Bonta in 1996. This playable lobby and office layout is reconstructed from the official tour, campus photographs and public descriptions; hidden room dimensions remain unverified."));
             var science=new CampusPlace("18","Science Complex","Academic","science",503f,120f,22f,16f,14f);
@@ -43,11 +47,12 @@ namespace AlbionOdyssey
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("41"),30f,10f,3,3.5f,true,"Burns Street Apartments are student residences. The interior models shared circulation, lounges and study rooms as a game-scale reconstruction."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("42"),14f,10f,3,3.5f,false,"Dean Hall is a residential campus hall. The interior models a common room, resident rooms and study circulation."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("45"),18f,28f,3,3.5f,true,"Karro Apartments are student residences. The interior models apartment entries, a shared lounge and study spaces."));
-            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("46"),16f,28f,5,3.8f,true,"Mitchell Towers are campus residences. The interior models a tower lobby, repeated room floors and shared study lounges."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("46"),57.2f,29.6f,4,3.2f,false,"Mitchell’s published plans show two four-story towers linked by a first-floor lobby. Room numbering, lounges and four tower stair cores follow those diagrams. Suite bathroom partitions, the lobby stair elevation, exact dimensions and detailed elevations remain unresolved."));
             additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("47"),24f,15f,3,3.5f,true,"Munger Hall and Apartments are student residences. The interior models shared lounges, rooms and quiet study areas."));
-            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("49"),30f,11f,4,3.5f,true,"Seaton Hall is a residential campus hall. The interior models resident rooms, a common lounge and study circulation."));
-            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("50"),24f,30f,4,3.5f,true,"Wesley Hall is a residential campus hall. The interior models a lobby, resident rooms, study lounges and shared gathering areas."));
-            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("51"),28f,11f,4,3.5f,true,"Whitehouse Hall is a residential campus hall. The interior models resident rooms, shared lounges and study circulation."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("49"),60.6f,29.4f,4,3.2f,false,"Seaton’s L-shaped wings, room sequence and three stair cores follow the published four-level plans. The Cass Street entrance faces north and the return wing extends south toward Baldwin. Whole-building dimensions, elevations, facade and furnishing placement remain provisional."));
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("50"),63.6f,71.4f,4,3.2f,true,"Wesley Hall: four levels and room adjacency follow the college’s published floor plans. The metric envelope, elevations, suite subdivisions and furnishings are provisional; this is not yet a measured architectural replica."));
+            var whitehousePlan=JsonUtility.FromJson<WesleyPlan>(Resources.Load<TextAsset>("CampusCraft/whitehouse-plan").text);
+            additional.Add(new WalkableCampusBuilding(game,CampusExpansion.Find("51"),whitehousePlan.width,whitehousePlan.depth,4,3.2f,false,"Whitehouse’s four published plans supply the stepped wings, named rooms, three stair cores and distinct lower-floor arrangements. Published clear dimensions are fitted for 106 rooms. Structural thicknesses, site placement, corridor dimensions, elevations and detailed facade remain provisional; this is not an exact replica."));
             foreach(var greek in CampusCatalog.Places)
                 if(greek.category=="Greek life") additional.Add(new WalkableCampusBuilding(game,greek,11f,9f,2,3.5f,false,greek.name+" is a Greek-life residence and student organization house. The playable reconstruction provides a shared lounge, rooms, study space and an active club floor; private room dimensions remain a game-scale approximation."));
         }
@@ -88,7 +93,7 @@ namespace AlbionOdyssey
         {
             if(game.life.PanelOpen||game.building||game.journalOpen)return false;
             foreach(var b in additional)if(b.HandleInput())return true;
-            if(Input.GetKeyDown(KeyCode.E)&&NearbyDoor!=null){NearbyDoor.Toggle(game.player);return true;}
+            if(OdysseyAccessibility.InteractPressed()&&NearbyDoor!=null){NearbyDoor.Toggle(game.player);return true;}
             if(Input.GetKeyDown(KeyCode.H)&&Inside){game.tour.OpenStory(game.tour.catalog.ForCampus("26"));return true;}
             return false;
         }

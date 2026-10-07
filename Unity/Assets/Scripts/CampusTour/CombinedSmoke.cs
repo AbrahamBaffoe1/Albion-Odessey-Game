@@ -18,7 +18,7 @@ namespace AlbionOdyssey
         IEnumerator Check()
         {
             OdysseyGame g=null;BlueprintStudio studio=null;float deadline=Time.realtimeSinceStartup+45;
-            while(g==null||g.shell==null||studio==null||!studio.Ready){g=FindAnyObjectByType<OdysseyGame>();studio=FindAnyObjectByType<BlueprintStudio>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
+            while(g==null||!g.Ready||g.shell==null||studio==null||!studio.Ready){g=FindAnyObjectByType<OdysseyGame>();studio=FindAnyObjectByType<BlueprintStudio>();Require(Time.realtimeSinceStartup<deadline,"Boot timeout");yield return null;}
             Application.runInBackground=true;g.shell.ShowLaunch();yield return new WaitForEndOfFrame();
             var path=Environment.GetEnvironmentVariable("COMBINED_SCREENSHOT");if(!string.IsNullOrWhiteSpace(path))ScreenCapture.CaptureScreenshot(path);
             foreach(var p in CampusCatalog.Places)Require(g.tour.catalog.ForCampus(p.id)!=null,"Missing building "+p.id);

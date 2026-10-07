@@ -22,7 +22,7 @@ namespace AlbionOdyssey
             var prefab=Resources.Load<GameObject>("CampusCraft/Student");
             if(prefab!=null)
             {
-                rigged=Instantiate(prefab,transform,false);animator=rigged.GetComponent<Animator>();
+                rigged=Instantiate(prefab,transform,false);rigged.transform.localScale=new Vector3(.9f,1f,.96f);animator=rigged.GetComponent<Animator>();
                 animator.Rebind();animator.Play("Locomotion",0,0);animator.Update(0);
                 foreach(var renderer in rigged.GetComponentsInChildren<Renderer>())
                 {

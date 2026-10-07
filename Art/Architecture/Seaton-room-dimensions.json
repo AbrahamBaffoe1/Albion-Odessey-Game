@@ -1,0 +1,1089 @@
+{
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Seaton-Floor-Plan-and-Room-Dimensions.pdf",
+  "page": 5,
+  "status": "Source table transcription. Not integrated into runtime walls. Ambiguous source unit marks are not guessed.",
+  "rooms": [
+    {
+      "room": "2",
+      "lengthText": "13'7.5\"",
+      "widthText": "11'2.5\"",
+      "lengthMetres": 4.1529,
+      "widthMetres": 3.4163,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "101",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "201",
+      "lengthText": "13'8\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "301",
+      "lengthText": "13'7\"",
+      "widthText": "11'1\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.3782,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "3",
+      "lengthText": "13'7.5\"",
+      "widthText": "11'2.5\"",
+      "lengthMetres": 4.1529,
+      "widthMetres": 3.4163,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "102",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "202",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "302",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "4",
+      "lengthText": "13'7.5\"",
+      "widthText": "11'2.5\"",
+      "lengthMetres": 4.1529,
+      "widthMetres": 3.4163,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "103",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "203",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "303",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "5",
+      "lengthText": "13'7.5\"",
+      "widthText": "11'2.5\"",
+      "lengthMetres": 4.1529,
+      "widthMetres": 3.4163,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "104",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "204",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "304",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "6",
+      "lengthText": "13'7.5\"",
+      "widthText": "10'",
+      "lengthMetres": 4.1529,
+      "widthMetres": 3.048,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "105",
+      "lengthText": "13'9\"",
+      "widthText": "10\"",
+      "lengthMetres": 4.191,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "205",
+      "lengthText": "13'9\"",
+      "widthText": "10'",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.048,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "305",
+      "lengthText": "13'7\"",
+      "widthText": "9'11\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.0226,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "9",
+      "lengthText": "13'10\"",
+      "widthText": "13'3.5\"",
+      "lengthMetres": 4.2164,
+      "widthMetres": 4.0513,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "108",
+      "lengthText": "13'9\"",
+      "widthText": "13'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 4.064,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "208",
+      "lengthText": "13'9\"",
+      "widthText": "13'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 4.064,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "307",
+      "lengthText": "13'6\"",
+      "widthText": "13'3\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 4.0386,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "10",
+      "lengthText": "13'8\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "109",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "209",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "308",
+      "lengthText": "13'6\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "11",
+      "lengthText": "13'1\"",
+      "widthText": "11\"",
+      "lengthMetres": 3.9878,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "110",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "210",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "309",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "12",
+      "lengthText": "13'2\"",
+      "widthText": "11'2\"",
+      "lengthMetres": 4.0132,
+      "widthMetres": 3.4036,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "111",
+      "lengthText": "13'6\"",
+      "widthText": "11'",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.3528,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "211",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "310",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "15",
+      "lengthText": "13'2\"",
+      "widthText": "11\"",
+      "lengthMetres": 4.0132,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "121",
+      "lengthText": "13'4\"",
+      "widthText": "11'",
+      "lengthMetres": 4.064,
+      "widthMetres": 3.3528,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "212",
+      "lengthText": "13'9\"",
+      "widthText": "11'7\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.5306,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "311",
+      "lengthText": "13'7\"",
+      "widthText": "11'8\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.556,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "16",
+      "lengthText": "13'2.5\"",
+      "widthText": "11\"",
+      "lengthMetres": 4.0259,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "122",
+      "lengthText": "9'9\"",
+      "widthText": "11'1\"",
+      "lengthMetres": 2.9718,
+      "widthMetres": 3.3782,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "213",
+      "lengthText": "13'9\"",
+      "widthText": "10'9\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.2766,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "312",
+      "lengthText": "13'6\"",
+      "widthText": "10'9\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.2766,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "17",
+      "lengthText": "12'7\"",
+      "widthText": "12'6\"",
+      "lengthMetres": 3.8354,
+      "widthMetres": 3.81,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "124",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "214",
+      "lengthText": "17'2\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "313",
+      "lengthText": "17'2\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "18",
+      "lengthText": "12'6\"",
+      "widthText": "12'6\"",
+      "lengthMetres": 3.81,
+      "widthMetres": 3.81,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "125",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "215",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "314",
+      "lengthText": "13'5\"",
+      "widthText": "12'",
+      "lengthMetres": 4.0894,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "21",
+      "lengthText": "13'6\"",
+      "widthText": "12'5\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.7846,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "126",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "216",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "315",
+      "lengthText": "13'8\"",
+      "widthText": "12'1\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.683,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "24",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "127",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "217",
+      "lengthText": "17'2\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "316",
+      "lengthText": "17'2\"",
+      "widthText": "11'2\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.4036,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "25",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "128",
+      "lengthText": "13'9\"",
+      "widthText": "12'2\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.7084,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "218",
+      "lengthText": "13'9\"",
+      "widthText": "13'9\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 4.191,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "317",
+      "lengthText": "13'8\"",
+      "widthText": "13'8\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 4.1656,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "26",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "135",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "220",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "319",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "27",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "136",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "221",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "320",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "28",
+      "lengthText": "16'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.1054,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "137",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "222",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "321",
+      "lengthText": "13'8\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "29",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "138",
+      "lengthText": "13'8'",
+      "widthText": "11'3\"",
+      "lengthMetres": null,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "223",
+      "lengthText": "13'9\"",
+      "widthText": "12'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.7338,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "322",
+      "lengthText": "13'8\"",
+      "widthText": "12'3\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.7338,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "30",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "147",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "229",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "328",
+      "lengthText": "13'8\"",
+      "widthText": "11'2\"",
+      "lengthMetres": 4.1656,
+      "widthMetres": 3.4036,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "31",
+      "lengthText": "16'11\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.1562,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "148",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "230",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "329",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "32",
+      "lengthText": "13'4.75\"",
+      "widthText": "10'11\"",
+      "lengthMetres": 4.08305,
+      "widthMetres": 3.3274,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "149",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "231",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "330",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "39",
+      "lengthText": "13'9\"",
+      "widthText": "11\"3.5\"",
+      "lengthMetres": 4.191,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "150",
+      "lengthText": "12'6\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 3.81,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "232",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": null,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "source conflict: visible length 23 feet 9 inches; embedded text 13 feet 9 inches; confirmation required",
+      "extractedLengthText": "13'9\"",
+      "visualLengthText": "23'9\""
+    },
+    {
+      "room": "331",
+      "lengthText": "13'9\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "40",
+      "lengthText": "13'9\"",
+      "widthText": "11\"3.5\"",
+      "lengthMetres": 4.191,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "151",
+      "lengthText": "13'1.5\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.0005,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "233",
+      "lengthText": "17'2\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "332",
+      "lengthText": "17'2\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "41",
+      "lengthText": "13'9\"",
+      "widthText": "11\"3.5\"",
+      "lengthMetres": 4.191,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "234",
+      "lengthText": "17'2\"",
+      "widthText": "11'8\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.556,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "333",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "42",
+      "lengthText": "13'6\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "235",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "334",
+      "lengthText": "17'2\"",
+      "widthText": "12'",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.6576,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "43",
+      "lengthText": "13'.5\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 3.9751,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "236",
+      "lengthText": "17'2\"",
+      "widthText": "11'9\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.5814,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "335",
+      "lengthText": "17'2\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 5.2324,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "238",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "337",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "244",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "344",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "245",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "345",
+      "lengthText": "13'7\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1402,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "246",
+      "lengthText": "13'9\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 4.191,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "346",
+      "lengthText": "13'6\"",
+      "widthText": "11'3\"",
+      "lengthMetres": 4.1148,
+      "widthMetres": 3.429,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "247",
+      "lengthText": "12'7\"",
+      "widthText": "11'4\"",
+      "lengthMetres": 3.8354,
+      "widthMetres": 3.4544,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    },
+    {
+      "room": "347",
+      "lengthText": "Storage",
+      "widthText": "Storage",
+      "lengthMetres": null,
+      "widthMetres": null,
+      "sourcePage": 5,
+      "status": "storage, no dimensions published"
+    },
+    {
+      "room": "248",
+      "lengthText": "12'1\"",
+      "widthText": "11'2\"",
+      "lengthMetres": 3.683,
+      "widthMetres": 3.4036,
+      "sourcePage": 5,
+      "status": "published dimensions"
+    }
+  ]
+}
