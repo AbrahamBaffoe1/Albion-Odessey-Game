@@ -27,6 +27,8 @@ namespace AlbionOdyssey
         int transitions;
         bool ready;
 
+        /// <summary>True while a LAN host owns the weather; local toggles and timers are paused.</summary>
+        public bool Replicated{get;set;}
         public CampusWeatherState State=>state;
         public bool IsSnowing=>state==CampusWeatherState.Snow;
         public int SnowTransitions=>transitions;
@@ -101,9 +103,11 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if(!ready||game==null||game.life!=null&&game.life.PanelOpen)return false;
-            if(Input.GetKeyDown(KeyCode.Y)){SetSnow(!IsSnowing,false);return true;}
+            if(Input.GetKeyDown(KeyCode.Y)){if(Replicated){game.notice="The host controls the weather in this shared campus.";return true;}SetSnow(!IsSnowing,false);return true;}
             return false;
         }
+
+        public void ApplyReplicated(bool snowing){if(!ready||snowing==IsSnowing)return;SetSnow(snowing,true);}
 
         public void SetSnowForVerification(bool enabled){if(!ready)return;SetSnow(enabled,true);}
 
@@ -120,7 +124,7 @@ namespace AlbionOdyssey
         void Update()
         {
             if(!ready||game==null)return;
-            if(Time.time>=nextTransition)SetSnow(!IsSnowing,false);
+            if(!Replicated&&Time.time>=nextTransition)SetSnow(!IsSnowing,false);
             if(flakeRoot!=null&&game.player!=null)
             {
                 flakeRoot.transform.position=game.player.transform.position+Vector3.up*7f;

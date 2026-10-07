@@ -26,6 +26,7 @@ namespace AlbionOdyssey
         public OdysseyVrSupport vr;
         public OdysseyXRExperience xr;
         public CampusWeather weather;
+        public CampusEnvironment environment;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
         public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
@@ -95,6 +96,7 @@ namespace AlbionOdyssey
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
             weather=gameObject.AddComponent<CampusWeather>();weather.Setup(this);
+            environment=gameObject.AddComponent<CampusEnvironment>();environment.Setup(this);
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);

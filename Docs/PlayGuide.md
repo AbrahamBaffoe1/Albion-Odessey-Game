@@ -21,6 +21,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Builder zoom / appearance | Mouse wheel / T |
 | Next local Keeper / contribute to Beacon | Tab / C |
 | Snowfall | Y toggles campus snow; clear weather returns when pressed again. Snow also cycles automatically during a longer visit. |
+| Day and night | The campus runs a live 20-minute day: the sun moves with soft shadows, dusk turns the sky and fog warm, and nights are moonlit. In a shared LAN campus the host owns the clock and the weather, and every joined player mirrors them in real time (Y is disabled for joined players). |
 | Show four on-screen movement buttons | O; hold an arrow with the mouse |
 | Turn with screen-button controls | Z/X or the Turn L / Turn R buttons |
 | Paper-play shortcut | P inside the Common Classroom |
