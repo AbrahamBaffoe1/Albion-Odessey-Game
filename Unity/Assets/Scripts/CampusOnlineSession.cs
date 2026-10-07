@@ -12,6 +12,8 @@ namespace AlbionOdyssey
     {
         public string type, session, id, display, text;
         public float x, y, z;
+        // Host-owned world replica: the in-game hour and weather (1 = snow) sent with "env" packets.
+        public float hour; public int snow;
     }
 
     // A small LAN transport that keeps the game playable without a server. It provides
@@ -20,7 +22,7 @@ namespace AlbionOdyssey
     public sealed class CampusOnlineSession : MonoBehaviour
     {
         const int Port = 40777; const float RemoteTimeout = 4.5f;
-        OdysseyGame game; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,nextJoin,lastHostSeen,openedAt; int joinAttempts; bool open, active, host;
+        OdysseyGame game; string hostId; float nextEnv; UdpClient socket; IPEndPoint broadcast; float nextHeartbeat,nextJoin,lastHostSeen,openedAt; int joinAttempts; bool open, active, host;
         string session = "ALBION", display = "Keeper", message = "", status = "Offline";
         readonly Dictionary<string, RemoteKeeper> remotes = new Dictionary<string, RemoteKeeper>();
         readonly HashSet<string> blocked = new HashSet<string>();
@@ -54,7 +56,30 @@ namespace AlbionOdyssey
             ReceivePackets();
             if (Time.unscaledTime >= nextHeartbeat) { SendPresence(); nextHeartbeat = Time.unscaledTime + 1.2f; }
             if (!host && Time.unscaledTime >= nextJoin) { SendJoin(); nextJoin = Time.unscaledTime + 2.4f; joinAttempts++; if (lastHostSeen > 0 && Time.unscaledTime - lastHostSeen > 6f) status = "Host not responding · retrying (" + joinAttempts + ")"; }
+            if (host && Time.unscaledTime >= nextEnv) { SendEnvironment(); nextEnv = Time.unscaledTime + 1f; }
+            if (!host) SyncFollower();
             PruneRemotes();
+        }
+        // The host owns the world clock and weather; joined players mirror it instead of simulating their own.
+        void SendEnvironment()
+        {
+            if (game.environment == null || game.weather == null) return;
+            Send(new CampusNetPacket { type = "env", hour = game.environment.Hour, snow = game.weather.IsSnowing ? 1 : 0 }, broadcast);
+        }
+        void SyncFollower()
+        {
+            bool following = hostId != null && Time.unscaledTime - lastEnvSeen <= 6f;
+            if (!following && hostId != null) hostId = null;
+            if (game.weather != null) game.weather.Replicated = following;
+        }
+        float lastEnvSeen;
+        void ApplyEnvironment(CampusNetPacket packet)
+        {
+            if (host || float.IsNaN(packet.hour) || float.IsInfinity(packet.hour)) return;
+            if (hostId == null) hostId = packet.id; else if (hostId != packet.id) return;
+            lastEnvSeen = Time.unscaledTime; status = "Synced with host · " + CampusClock.Label(packet.hour);
+            if (game.environment != null) game.environment.ReceiveHost(packet.hour);
+            if (game.weather != null) { game.weather.Replicated = true; game.weather.ApplyReplicated(packet.snow == 1); }
         }
         void PruneRemotes()
         {
@@ -74,6 +99,7 @@ namespace AlbionOdyssey
                     if (packet.type == "join" && host) Send(packet, from, "hello");
                     if (packet.type == "hello" || packet.type == "presence") lastHostSeen = Time.unscaledTime;
                     if (packet.type == "join" || packet.type == "hello" || packet.type == "presence") UpdateRemote(packet);
+                    if (packet.type == "env") ApplyEnvironment(packet);
                     if (packet.type == "chat" && !string.IsNullOrEmpty(packet.text)) { message = packet.display + ": " + Sanitize(packet.text); if (remotes.TryGetValue(packet.id, out var speaker)) speaker.Chat(packet.display, packet.text); }
                     if (packet.type == "block" && packet.text == PlayerId) StopSession("You were removed by the host.");
                 }
@@ -111,7 +137,7 @@ namespace AlbionOdyssey
         }
         public void StopSession(string reason)
         {
-            active = false; if (socket != null) { socket.Close(); socket = null; } foreach (var remote in remotes.Values) if (remote.root != null) Destroy(remote.root); remotes.Clear(); if (reason.Length > 0) status = reason; else status = "Offline";
+            active = false; hostId = null; if (game != null && game.weather != null) game.weather.Replicated = false; if (socket != null) { socket.Close(); socket = null; } foreach (var remote in remotes.Values) if (remote.root != null) Destroy(remote.root); remotes.Clear(); if (reason.Length > 0) status = reason; else status = "Offline";
         }
         public void Block(string id)
         {
