@@ -21,7 +21,9 @@ namespace AlbionOdyssey
         public bool PanelOpen => open != null;
         public int LandmarkCount => landmarkRoots.Count;
         /// <summary>True when the player stands within the city district.</summary>
-        public bool InCity => game != null && game.player != null && Mathf.Abs(game.player.transform.position.x - CityCatalog.OriginX) < CityCatalog.HalfWidth + 20f;
+        public bool InCity => game != null && game.player != null
+            && Mathf.Abs(game.player.transform.position.x - CityCatalog.OriginX) < CityCatalog.HalfWidth
+            && Mathf.Abs(game.player.transform.position.z - CityCatalog.OriginZ) < CityCatalog.HalfDepth;
 
         public void Setup(OdysseyGame owner)
         {
