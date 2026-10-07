@@ -1,0 +1,321 @@
+{
+ "materials": [
+  {
+   "name": "Forest moss",
+   "color": [
+    0.3,
+    0.48,
+    0.16,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest trail earth",
+   "color": [
+    0.66,
+    0.52,
+    0.32,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest trail edge",
+   "color": [
+    0.43,
+    0.41,
+    0.22,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest trail lane",
+   "color": [
+    0.7,
+    0.58,
+    0.4,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest river mud",
+   "color": [
+    0.34,
+    0.26,
+    0.16,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest river glass water",
+   "color": [
+    0.07,
+    0.27,
+    0.31,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest foam",
+   "color": [
+    0.8,
+    0.9,
+    0.88,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest bark",
+   "color": [
+    0.3,
+    0.2,
+    0.12,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest dead wood",
+   "color": [
+    0.55,
+    0.5,
+    0.44,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest leaf sun",
+   "color": [
+    0.4,
+    0.56,
+    0.18,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest leaf mid",
+   "color": [
+    0.26,
+    0.42,
+    0.15,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest leaf shade",
+   "color": [
+    0.14,
+    0.28,
+    0.12,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest willow",
+   "color": [
+    0.58,
+    0.7,
+    0.3,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest grass blade",
+   "color": [
+    0.45,
+    0.65,
+    0.22,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest reed",
+   "color": [
+    0.55,
+    0.62,
+    0.28,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest cattail",
+   "color": [
+    0.33,
+    0.2,
+    0.12,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest stone",
+   "color": [
+    0.55,
+    0.57,
+    0.56,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest steel rust",
+   "color": [
+    0.46,
+    0.24,
+    0.13,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest plank wood",
+   "color": [
+    0.52,
+    0.38,
+    0.24,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest Albion purple",
+   "color": [
+    0.32,
+    0.1,
+    0.47,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest gold",
+   "color": [
+    0.94,
+    0.65,
+    0.15,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest flower white",
+   "color": [
+    0.95,
+    0.95,
+    0.88,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest flower lilac",
+   "color": [
+    0.68,
+    0.5,
+    0.88,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest flower gold",
+   "color": [
+    0.96,
+    0.78,
+    0.2,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest squirrel black",
+   "color": [
+    0.04,
+    0.04,
+    0.05,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest sign cream",
+   "color": [
+    0.86,
+    0.82,
+    0.7,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest fern",
+   "color": [
+    0.3,
+    0.52,
+    0.22,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest leaf litter",
+   "color": [
+    0.55,
+    0.34,
+    0.16,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest meadow",
+   "color": [
+    0.34,
+    0.52,
+    0.17,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest moss deep",
+   "color": [
+    0.26,
+    0.43,
+    0.14,
+    1.0
+   ],
+   "texture": ""
+  },
+  {
+   "name": "Forest dry grass",
+   "color": [
+    0.4,
+    0.52,
+    0.19,
+    1.0
+   ],
+   "texture": ""
+  }
+ ],
+ "sections": [
+  {
+   "name": "forest",
+   "colliders": []
+  }
+ ],
+ "note": "Authored by Tools/build_forest_course.py; stretch meshes forest_stretch_a/b share this material list."
+}

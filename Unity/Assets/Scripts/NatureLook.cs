@@ -11,7 +11,7 @@ namespace AlbionOdyssey
     /// </summary>
     public sealed class NatureKit
     {
-        public static readonly Color Mist = new Color(.74f, .85f, .80f), SunTint = new Color(1f, .93f, .78f);
+        public static readonly Color Mist = new Color(.74f, .86f, .86f), SunTint = new Color(1f, .93f, .78f);
 
         public readonly Material Moss, Trail, TrailEdge, TrailLight, TrailClosed, Gravel, Litter, Mud, Water, Foam, Reed, Cattail, Bark, WoodCut,
             LeafLight, LeafDeep, Fern, Stone, FlowerWhite, FlowerLilac, FlowerGold, Mint, Gold;
@@ -19,16 +19,15 @@ namespace AlbionOdyssey
 
         public NatureKit()
         {
-            Moss = Make("Nature moss", new Color(.72f, .84f, .58f), .05f);
-            var grass = Resources.Load<Texture2D>("CampusCraft/grass_ground_Color"); if (grass != null) Moss.mainTexture = grass;
-            Trail = Make("Nature trail earth", new Color(.62f, .48f, .30f), .08f); TrailEdge = Make("Nature trail edge", new Color(.50f, .41f, .26f), .08f);
-            TrailLight = Make("Nature trail lane", new Color(.74f, .62f, .43f), .08f); TrailClosed = Make("Nature trail closed", new Color(.42f, .34f, .26f), .08f);
+            Moss = Make("Nature moss", new Color(.30f, .48f, .16f), .05f);
+            Trail = Make("Nature trail earth", new Color(.66f, .52f, .32f), .08f); TrailEdge = Make("Nature trail edge", new Color(.43f, .41f, .22f), .08f);
+            TrailLight = Make("Nature trail lane", new Color(.70f, .58f, .40f), .08f); TrailClosed = Make("Nature trail closed", new Color(.42f, .34f, .26f), .08f);
             Gravel = Make("Nature rail gravel", new Color(.52f, .51f, .48f), .1f); Litter = Make("Nature leaf litter", new Color(.55f, .34f, .16f), .05f);
-            Mud = Make("Nature river mud", new Color(.26f, .21f, .15f), .05f); Water = Make("Nature river water", new Color(.20f, .46f, .52f), .92f);
+            Mud = Make("Nature river mud", new Color(.34f, .26f, .16f), .05f); Water = Make("Nature river water", new Color(.07f, .27f, .31f), .92f);
             Foam = Make("Nature water edge", new Color(.80f, .90f, .88f), .6f); Reed = Make("Nature reed", new Color(.48f, .58f, .26f), .1f);
             Cattail = Make("Nature cattail", new Color(.33f, .20f, .12f), .1f); Bark = Make("Nature bark", new Color(.30f, .20f, .12f), .1f);
-            WoodCut = Make("Nature cut wood", new Color(.70f, .55f, .34f), .15f); LeafLight = Make("Nature leaf light", new Color(.38f, .54f, .22f), .15f);
-            LeafDeep = Make("Nature leaf deep", new Color(.15f, .32f, .14f), .12f); Fern = Make("Nature fern", new Color(.30f, .52f, .22f), .12f);
+            WoodCut = Make("Nature cut wood", new Color(.70f, .55f, .34f), .15f); LeafLight = Make("Nature leaf light", new Color(.40f, .56f, .18f), .15f);
+            LeafDeep = Make("Nature leaf deep", new Color(.14f, .28f, .12f), .12f); Fern = Make("Nature fern", new Color(.30f, .52f, .22f), .12f);
             Stone = Make("Nature stone", new Color(.55f, .57f, .56f), .2f); FlowerWhite = Make("Nature flower white", new Color(.95f, .95f, .88f), .2f);
             FlowerLilac = Make("Nature flower lilac", new Color(.68f, .55f, .85f), .2f); FlowerGold = Make("Nature flower gold", new Color(.96f, .78f, .20f), .2f);
             Mint = Make("Nature restoration seed", new Color(.35f, .95f, .59f), .5f); Gold = Make("Nature treasure gold", new Color(1f, .69f, .13f), .6f);
@@ -130,7 +129,7 @@ namespace AlbionOdyssey
     public sealed class NatureAtmosphere
     {
         const float FogDensity = .0095f;
-        Light sun, campusSun; GameObject sunObject; CampusEnvironment environment; bool applied;
+        Light sun, campusSun, previousSun; GameObject sunObject; CampusEnvironment environment; bool applied; Material forestSky, previousSky;
         bool fog; Color fogColor, ambientSky, ambientEquator, ambientGround; float density; FogMode fogMode; AmbientMode ambientMode; bool campusSunWasOn;
 
         public void Apply(OdysseyGame game, Transform parent)
@@ -140,6 +139,7 @@ namespace AlbionOdyssey
             ambientMode = RenderSettings.ambientMode; ambientSky = RenderSettings.ambientSkyColor; ambientEquator = RenderSettings.ambientEquatorColor; ambientGround = RenderSettings.ambientGroundColor;
             environment = game != null ? game.environment : null; if (environment != null) environment.Locked = true;
             campusSun = RenderSettings.sun; campusSunWasOn = campusSun != null && campusSun.enabled; if (campusSun != null) campusSun.enabled = false;
+            previousSky = RenderSettings.skybox; previousSun = RenderSettings.sun;
             RenderSettings.fog = true; RenderSettings.fogMode = FogMode.ExponentialSquared; RenderSettings.fogColor = NatureKit.Mist; RenderSettings.fogDensity = FogDensity;
             RenderSettings.ambientMode = AmbientMode.Trilight; RenderSettings.ambientSkyColor = new Color(.66f, .78f, .82f);
             RenderSettings.ambientEquatorColor = new Color(.50f, .58f, .46f); RenderSettings.ambientGroundColor = new Color(.26f, .28f, .20f);
@@ -149,6 +149,9 @@ namespace AlbionOdyssey
                 sun = sunObject.AddComponent<Light>(); sun.type = LightType.Directional; sun.color = NatureKit.SunTint; sun.intensity = 1.2f; sun.shadows = LightShadows.Soft; sun.shadowStrength = .8f;
             }
             sunObject.SetActive(true);
+            // A clear blue sky over the mist, like the photographs of the river, with the forest sun as its sun disc.
+            if (forestSky == null) { var source = Resources.Load<Material>("ArchitectureSky"); if (source != null) { forestSky = new Material(source) { name = "Forest sky" }; if (forestSky.HasProperty("_SkyTint")) forestSky.SetColor("_SkyTint", new Color(.5f, .55f, .72f)); if (forestSky.HasProperty("_GroundColor")) forestSky.SetColor("_GroundColor", NatureKit.Mist); if (forestSky.HasProperty("_Exposure")) forestSky.SetFloat("_Exposure", 1.1f); if (forestSky.HasProperty("_AtmosphereThickness")) forestSky.SetFloat("_AtmosphereThickness", 1f); } }
+            if (forestSky != null) RenderSettings.skybox = forestSky; RenderSettings.sun = sun;
         }
 
         public void Restore()
@@ -157,6 +160,7 @@ namespace AlbionOdyssey
             applied = false; if (sunObject != null) sunObject.SetActive(false);
             RenderSettings.fog = fog; RenderSettings.fogMode = fogMode; RenderSettings.fogColor = fogColor; RenderSettings.fogDensity = density;
             RenderSettings.ambientMode = ambientMode; RenderSettings.ambientSkyColor = ambientSky; RenderSettings.ambientEquatorColor = ambientEquator; RenderSettings.ambientGroundColor = ambientGround;
+            RenderSettings.skybox = previousSky; RenderSettings.sun = previousSun;
             if (campusSun != null) campusSun.enabled = campusSunWasOn;
             if (environment != null) environment.Locked = false;
         }
