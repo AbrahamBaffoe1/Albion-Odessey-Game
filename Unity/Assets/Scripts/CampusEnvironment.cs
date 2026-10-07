@@ -39,9 +39,8 @@ namespace AlbionOdyssey
 
         void Update()
         {
-            if (game == null) return;
-            // Verification freezes time, but lighting still responds to weather and scene ownership.
-            if (PlaytestMode.Active) { if (!Locked) Apply(); return; }
+            // Verification scenes explicitly control their clock and study lighting.
+            if (game == null || PlaytestMode.Active) return;
             if (following && Time.unscaledTime - lastHostPacket > 6f) following = false;
             if (following) hour = CampusClock.Follow(hour, CampusClock.Advance(hostTarget, Time.unscaledTime - lastHostPacket), Time.deltaTime);
             else hour = CampusClock.Advance(hour, Time.deltaTime);
