@@ -16,6 +16,8 @@ namespace AlbionOdyssey
         OdysseyGame game; Light sun; Material skybox; Color baseTint = Color.white; float hour = CampusClock.StartHour;
         bool following; float lastHostPacket, hostTarget;
 
+        /// <summary>Set by nature scenes that bring their own light and fog; the clock keeps running but the sky stays untouched.</summary>
+        public bool Locked { get; set; }
         public float Hour => hour;
         public bool Following => following;
         public string TimeLabel => CampusClock.Label(hour);
@@ -41,11 +43,12 @@ namespace AlbionOdyssey
             if (following && Time.unscaledTime - lastHostPacket > 6f) following = false;
             if (following) hour = CampusClock.Follow(hour, CampusClock.Advance(hostTarget, Time.unscaledTime - lastHostPacket), Time.deltaTime);
             else hour = CampusClock.Advance(hour, Time.deltaTime);
-            Apply();
+            if (!Locked) Apply();
         }
 
         void Apply()
         {
+            if (Locked) return;
             if (sun == null) sun = RenderSettings.sun; if (sun == null) return;
             float day = CampusClock.Daylight(hour), gold = CampusClock.Golden(hour), elevation = CampusClock.SunElevation(hour);
             // The moon takes over the key light after sunset so shadows never vanish completely.
