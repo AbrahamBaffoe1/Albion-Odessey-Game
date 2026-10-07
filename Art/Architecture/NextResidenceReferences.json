@@ -1,0 +1,26 @@
+[
+  {
+    "building": "Seaton",
+    "url": "https://www.albion.edu/wp-content/uploads/2022/02/Seaton-Floor-Plan-and-Room-Dimensions.pdf",
+    "sha256": "27bca4289b3a828ce37524492f5f7af775d36b26758828fbe381b666aa9b7382",
+    "status": "Four-level L-shaped topology implemented; measured dimensions and detailed elevations remain incomplete"
+  },
+  {
+    "building": "Whitehouse",
+    "url": "https://www.albion.edu/wp-content/uploads/2022/02/Whitehouse-Floor-Plan-and-Room-Dimensions.pdf",
+    "sha256": "1706e0bbe6366c503af2291b98feed5c0a7c5ab49a669a098cebd511a7831f0e",
+    "status": "106 published room length/width pairs fitted as clear rectangles; full measured architecture, elevations, suite bathrooms and secondary exits remain incomplete"
+  },
+  {
+    "building": "Mitchell",
+    "url": "https://www.albion.edu/wp-content/uploads/2022/02/Mitchell-Towers-Floor-Plan.pdf",
+    "sha256": "a5c7a1eb41a37ac915353d8e67c7d5f2ac1b97a953e842e1acf09a558a3e069e",
+    "status": "Four-level twin-tower topology implemented; measured geometry, suite bathrooms, lobby stair and detailed elevations remain unresolved"
+  },
+  {
+    "building": "Ingham",
+    "url": "https://www.albion.edu/wp-content/uploads/2022/02/Ingham-Floor-Plan.pdf",
+    "sha256": "3d4241b59fc6636f3f9a8d9122793c580336237f04601f5ccaf7c8d700361151",
+    "status": "Photo-informed exterior is live. Eight measured bedroom rectangles and twelve door routes are implemented and checked in an isolated interior stage; stairs, envelope reconciliation and live installation remain incomplete."
+  }
+]

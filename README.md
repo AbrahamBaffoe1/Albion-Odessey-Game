@@ -1,6 +1,26 @@
+Mitchell Towers reconstruction: [reference and accuracy notes](Docs/MitchellFloorPlan-v0.26.md).
+
+Whitehouse reconstruction: [reference and accuracy notes](Docs/WhitehouseFloorPlan-v0.25.md).
+
 # Albion Odyssey
 
+Seaton now follows its published L-shaped, four-level floor plans, with a photo-informed entrance and accessible lower ground floor. See [sources and remaining accuracy gaps](Docs/SeatonFloorPlan-v0.24.md).
+
+Wesley now has a four-level reconstruction from the published floor-plan topology, with room identifiers and connected stairs. Whole-building dimensions are still provisional; see [the source and accuracy record](Docs/WesleyFloorPlan-v0.23.md).
+
+The previous local correction build restores missing tree foliage, adds photographed daylight, traces bounded streets from the official map and replaces straight-line student movement with navigation paths and live collision checks. See [realism corrections and remaining accuracy gaps](Docs/CampusRealism-v0.22.md).
+
+The next local build adds a cooperative online campus trail and a photo-referenced Wesley frontage, plus corrected glazing and brick texture scale. See [housing, multiplayer and release status](Docs/HousingMultiplayer-v0.21.md). The new trail backend has not yet been published.
+
 Albion Odyssey is a living campus adventure about learning, belonging and making a place your own.
+
+Version **0.19** adds skeletal student knockdowns with recovery, persistent car dents and a repair screen with earned acorn coins or gems. Stop near the car and press **R**. See [controls, economy and verification](Docs/VehicleImpacts-v0.19.md).
+
+Version **0.18** replaces the cube-built vehicle placeholders with a detailed 3D coupe across the parked and drivable fleet, adding animated wheels, steering and brake-light feedback. See [vehicle notes and attribution](Docs/Vehicles-v0.18.md).
+
+Version **0.17** adds a live 3D student lobby, real startup loading stages, a redesigned campus menu and session summary, shared interactive controls, and a quieter HUD. See the [visual direction and verification](Docs/VisualDirection-v0.17.md) and [play guide](Docs/PlayGuide.md).
+
+Version 0.16 adds real email-code sign-up and sign-in with private online student profiles. Open **Student sign in / join** or press **F7**. See the [account setup and verification notes](Backend/README.md). Gameplay saves and courses remain local while the hosted multiplayer systems are developed.
 
 The current Unity campus build includes a production wildlife layer: 18 animated squirrels use a 432-point habitat graph around the authored campus trees. They forage, sprint, rest and climb, with one consistent warm-ivory leucistic coat, pale underside, ruby eyes and pink ears and paws. Sixteen named students now circulate through the exterior routes, with an inclusive roster of women, men, trans, non-binary, genderfluid and agender students; learning, dining, recreation and club agents add more people at destinations. The exterior also supports seasonal snowfall: a campus-wide snow blanket, roof caps and falling flakes appear automatically sometimes or whenever the player presses **Y**. See the [student population notes](Docs/CampusStudents-v0.9.md), [fauna notes](Docs/CampusFauna-v0.7.md), [weather notes](Docs/CampusWeather-v0.8.md) and [verification record](Docs/Verification-v0.7.md).
 
@@ -15,6 +35,7 @@ The result should feel like a place rather than a menu. Students can tour, explo
 ## What players do
 
 - Explore Legacy Hall, Ferguson Hall, Robinson Hall, Bonta Admission Center and the growing Science Complex through walkable entrances, rooms, stairs and history interactions.
+- Walk west into downtown Albion, Michigan: Superior Street, the Kalamazoo River, the Bohm Theatre, the Gardner House Museum, Rieger and Victory Parks and Riverside Cemetery, with a sourced story at each ([city notes](Docs/AlbionCity-v0.17.md)).
 - Read the story of each place, open linked college media and discover how architecture, people and campus traditions connect.
 - Move across the campus on foot or by car, follow paths through landscaped grounds and encounter student NPCs travelling between destinations.
 - Create a personal campus in either a campus-inspired or fantasy style, then furnish its plots and make space for learning.

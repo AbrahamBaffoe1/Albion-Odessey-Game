@@ -1,0 +1,2246 @@
+{
+  "method": "Best pair orientation only; no source-axis claim. Existing clear cells assume 0.18m partitions, not raycast geometry.",
+  "compared": 110,
+  "requiresCellExpansion": 105,
+  "excluded": [
+    {
+      "room": "16",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "15",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "11",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "39",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "40",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "41",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "138",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "105",
+      "status": "ambiguous source unit marks; needs confirmation"
+    },
+    {
+      "room": "232",
+      "status": "source conflict: visible length 23 feet 9 inches; embedded text 13 feet 9 inches; confirmation required"
+    }
+  ],
+  "rooms": [
+    {
+      "room": "29",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "30",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "233",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        5.2324
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "234",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.556
+      ],
+      "bestOrientationTarget": [
+        3.556,
+        5.2324
+      ],
+      "widthChange": 0.236,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "235",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "236",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.5814
+      ],
+      "bestOrientationTarget": [
+        3.5814,
+        5.2324
+      ],
+      "widthChange": 0.2614,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "217",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.2324
+      ],
+      "widthChange": 0.109,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "216",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "215",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "214",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        5.2324
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "332",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.2324
+      ],
+      "widthChange": 0.109,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "333",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "334",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        5.2324
+      ],
+      "widthChange": 0.3376,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "335",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.2324
+      ],
+      "widthChange": 0.109,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "316",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.4036
+      ],
+      "bestOrientationTarget": [
+        3.4036,
+        5.2324
+      ],
+      "widthChange": 0.0836,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "313",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.2324,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.2324
+      ],
+      "widthChange": 0.109,
+      "depthChange": 1.1124,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "31",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.1562,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.1562
+      ],
+      "widthChange": 0.109,
+      "depthChange": 1.0362,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "28",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        5.1054,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        5.1054
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.9854,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "218",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        4.191
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        4.191
+      ],
+      "widthChange": 0.871,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "317",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        4.1656
+      ],
+      "bestOrientationTarget": [
+        4.1656,
+        4.1656
+      ],
+      "widthChange": 0.8456,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "108",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        4.064
+      ],
+      "bestOrientationTarget": [
+        4.064,
+        4.191
+      ],
+      "widthChange": 0.744,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "208",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        4.064
+      ],
+      "bestOrientationTarget": [
+        4.064,
+        4.191
+      ],
+      "widthChange": 0.744,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "9",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.2164,
+        4.0513
+      ],
+      "bestOrientationTarget": [
+        4.0513,
+        4.2164
+      ],
+      "widthChange": 0.7313,
+      "depthChange": 0.0964,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "307",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1148,
+        4.0386
+      ],
+      "bestOrientationTarget": [
+        4.0386,
+        4.1148
+      ],
+      "widthChange": 0.7186,
+      "depthChange": -0.0052,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "18",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        3.81,
+        3.81
+      ],
+      "bestOrientationTarget": [
+        3.81,
+        3.81
+      ],
+      "widthChange": 0.49,
+      "depthChange": -0.31,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "17",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        3.8354,
+        3.81
+      ],
+      "bestOrientationTarget": [
+        3.81,
+        3.8354
+      ],
+      "widthChange": 0.49,
+      "depthChange": -0.2846,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "21",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1148,
+        3.7846
+      ],
+      "bestOrientationTarget": [
+        3.7846,
+        4.1148
+      ],
+      "widthChange": 0.4646,
+      "depthChange": -0.0052,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "223",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.7338
+      ],
+      "bestOrientationTarget": [
+        3.7338,
+        4.191
+      ],
+      "widthChange": 0.4138,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "322",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.7338
+      ],
+      "bestOrientationTarget": [
+        3.7338,
+        4.1656
+      ],
+      "widthChange": 0.4138,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "128",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.7084
+      ],
+      "bestOrientationTarget": [
+        3.7084,
+        4.191
+      ],
+      "widthChange": 0.3884,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "315",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.683
+      ],
+      "bestOrientationTarget": [
+        3.683,
+        4.1656
+      ],
+      "widthChange": 0.363,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "314",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.0894,
+        3.6576
+      ],
+      "bestOrientationTarget": [
+        3.6576,
+        4.0894
+      ],
+      "widthChange": 0.3376,
+      "depthChange": -0.0306,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "311",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.556
+      ],
+      "bestOrientationTarget": [
+        3.556,
+        4.1402
+      ],
+      "widthChange": 0.236,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "212",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.5306
+      ],
+      "bestOrientationTarget": [
+        3.5306,
+        4.191
+      ],
+      "widthChange": 0.2106,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "10",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.1656
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "147",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "230",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "231",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "238",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "222",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "221",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "210",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "209",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.191
+      ],
+      "widthChange": 0.1344,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "244",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "245",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "246",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "247",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        3.8354,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.8354,
+        3.4544
+      ],
+      "widthChange": -0.2846,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "204",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "203",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "202",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.4544
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "201",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1656,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        4.1656,
+        3.4544
+      ],
+      "widthChange": 0.0456,
+      "depthChange": 0.1344,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "308",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1148,
+        3.4544
+      ],
+      "bestOrientationTarget": [
+        3.4544,
+        4.1148
+      ],
+      "widthChange": 0.1344,
+      "depthChange": -0.0052,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "24",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "25",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "26",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "27",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1402
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "42",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1148,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1148,
+        3.429
+      ],
+      "widthChange": -0.0052,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "135",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "136",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "137",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "127",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "126",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "125",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "124",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "110",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1402
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "109",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "148",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "149",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "150",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        3.81,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.81,
+        3.429
+      ],
+      "widthChange": -0.31,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "104",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "103",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "102",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "101",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.429
+      ],
+      "widthChange": 0.071,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "229",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "220",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "211",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "329",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "330",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "331",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.191
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "337",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1402
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "321",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "320",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "319",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1656
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "310",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1402
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "309",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.1402
+      ],
+      "widthChange": 0.109,
+      "depthChange": 0.0202,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "344",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.429
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "345",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.429
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "346",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1148,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1148,
+        3.429
+      ],
+      "widthChange": -0.0052,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "304",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.429
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "303",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.429
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "302",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.429
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.109,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "5",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1529,
+        3.4163
+      ],
+      "bestOrientationTarget": [
+        4.1529,
+        3.4163
+      ],
+      "widthChange": 0.0329,
+      "depthChange": 0.0963,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "4",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1529,
+        3.4163
+      ],
+      "bestOrientationTarget": [
+        4.1529,
+        3.4163
+      ],
+      "widthChange": 0.0329,
+      "depthChange": 0.0963,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "3",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1529,
+        3.4163
+      ],
+      "bestOrientationTarget": [
+        4.1529,
+        3.4163
+      ],
+      "widthChange": 0.0329,
+      "depthChange": 0.0963,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "2",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1529,
+        3.4163
+      ],
+      "bestOrientationTarget": [
+        4.1529,
+        3.4163
+      ],
+      "widthChange": 0.0329,
+      "depthChange": 0.0963,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "12",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.0132,
+        3.4036
+      ],
+      "bestOrientationTarget": [
+        3.4036,
+        4.0132
+      ],
+      "widthChange": 0.0836,
+      "depthChange": -0.1068,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "328",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1656,
+        3.4036
+      ],
+      "bestOrientationTarget": [
+        3.4036,
+        4.1656
+      ],
+      "widthChange": 0.0836,
+      "depthChange": 0.0456,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "213",
+      "level": 2,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.2766
+      ],
+      "bestOrientationTarget": [
+        3.2766,
+        4.191
+      ],
+      "widthChange": -0.0434,
+      "depthChange": 0.071,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "205",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        4.12
+      ],
+      "publishedPair": [
+        4.191,
+        3.048
+      ],
+      "bestOrientationTarget": [
+        4.191,
+        3.048
+      ],
+      "widthChange": 0.071,
+      "depthChange": -1.072,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "301",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        3.32
+      ],
+      "publishedPair": [
+        4.1402,
+        3.3782
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.3782
+      ],
+      "widthChange": 0.0202,
+      "depthChange": 0.0582,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "6",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        4.12
+      ],
+      "publishedPair": [
+        4.1529,
+        3.048
+      ],
+      "bestOrientationTarget": [
+        4.1529,
+        3.048
+      ],
+      "widthChange": 0.0329,
+      "depthChange": -1.072,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "121",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.064,
+        3.3528
+      ],
+      "bestOrientationTarget": [
+        3.3528,
+        4.064
+      ],
+      "widthChange": 0.0328,
+      "depthChange": -0.056,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "111",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1148,
+        3.3528
+      ],
+      "bestOrientationTarget": [
+        3.3528,
+        4.1148
+      ],
+      "widthChange": 0.0328,
+      "depthChange": -0.0052,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "305",
+      "level": 3,
+      "existingClearRectangle": [
+        4.12,
+        4.12
+      ],
+      "publishedPair": [
+        4.1402,
+        3.0226
+      ],
+      "bestOrientationTarget": [
+        4.1402,
+        3.0226
+      ],
+      "widthChange": 0.0202,
+      "depthChange": -1.0974,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "32",
+      "level": 0,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.08305,
+        3.3274
+      ],
+      "bestOrientationTarget": [
+        3.3274,
+        4.08305
+      ],
+      "widthChange": 0.0074,
+      "depthChange": -0.03695,
+      "fitsWithoutExpansion": false,
+      "sourcePage": 5
+    },
+    {
+      "room": "312",
+      "level": 3,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        4.1148,
+        3.2766
+      ],
+      "bestOrientationTarget": [
+        3.2766,
+        4.1148
+      ],
+      "widthChange": -0.0434,
+      "depthChange": -0.0052,
+      "fitsWithoutExpansion": true,
+      "sourcePage": 5
+    },
+    {
+      "room": "122",
+      "level": 1,
+      "existingClearRectangle": [
+        3.32,
+        4.12
+      ],
+      "publishedPair": [
+        2.9718,
+        3.3782
+      ],
+      "bestOrientationTarget": [
+        2.9718,
+        3.3782
+      ],
+      "widthChange": -0.3482,
+      "depthChange": -0.7418,
+      "fitsWithoutExpansion": true,
+      "sourcePage": 5
+    },
+    {
+      "room": "151",
+      "level": 1,
+      "existingClearRectangle": [
+        4.12,
+        4.42
+      ],
+      "publishedPair": [
+        4.0005,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        4.0005
+      ],
+      "widthChange": -0.691,
+      "depthChange": -0.4195,
+      "fitsWithoutExpansion": true,
+      "sourcePage": 5
+    },
+    {
+      "room": "43",
+      "level": 0,
+      "existingClearRectangle": [
+        4.12,
+        4.42
+      ],
+      "publishedPair": [
+        3.9751,
+        3.429
+      ],
+      "bestOrientationTarget": [
+        3.429,
+        3.9751
+      ],
+      "widthChange": -0.691,
+      "depthChange": -0.4449,
+      "fitsWithoutExpansion": true,
+      "sourcePage": 5
+    },
+    {
+      "room": "248",
+      "level": 2,
+      "existingClearRectangle": [
+        4.12,
+        4.42
+      ],
+      "publishedPair": [
+        3.683,
+        3.4036
+      ],
+      "bestOrientationTarget": [
+        3.4036,
+        3.683
+      ],
+      "widthChange": -0.7164,
+      "depthChange": -0.737,
+      "fitsWithoutExpansion": true,
+      "sourcePage": 5
+    }
+  ],
+  "nextAction": "Repack connected room rows and preserve corridor/stair topology before changing live walls. Do not enlarge rooms independently into neighbours or circulation."
+}

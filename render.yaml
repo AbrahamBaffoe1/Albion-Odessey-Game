@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: albion-odyssey-online
+    runtime: node
+    plan: free
+    branch: fauna-remote
+    rootDir: Backend/Realtime
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: PUBLIC_URL
+        value: https://albion-odyssey-online.onrender.com
+      - key: NEON_AUTH_URL
+        value: https://ep-cool-morning-b5r28ljb.neonauth.c-7.us-east-2.aws.neon.tech/albion_odyssey/auth
+      - key: NEON_DATABASE_URL
+        sync: false
+      # Set true only after Hostinger SMTP is saved and tested in Neon Auth.
+      - key: NEON_SMTP_READY
+        value: "false"

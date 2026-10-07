@@ -1,0 +1,36 @@
+{
+  "buildings": [
+    "Kresge Hall",
+    "Norris Center",
+    "Palenske Hall",
+    "Putnam Hall"
+  ],
+  "officialSources": [
+    "https://www.albion.edu/departments/chemistry/campus-facilities/",
+    "https://www.albion.edu/wp-content/uploads/2024/01/Albion-College-Academic-Catalog-2023-24.pdf",
+    "https://www.albion.edu/offices/facilities-operations/design-and-construction/services/"
+  ],
+  "confirmed": {
+    "connectedBuildings": 4,
+    "atriumAreaSquareFeet": 7000,
+    "atriumAreaSquareMetres": 650.32128,
+    "Norris": "Towsley Lecture Hall, Mitchell Museum, classrooms and analytical laboratory",
+    "Palenske": "Four levels; classrooms and laboratories",
+    "Putnam": "Classrooms, laboratories and research spaces"
+  },
+  "constraints": [
+    "Atrium area alone cannot determine width, depth, volume or floor connections.",
+    "Public room names do not establish room shapes or coordinates.",
+    "Current game combines the complex into one generic 33 by 24 metre four-level interior."
+  ],
+  "requiredDrawings": [
+    "Current floor plans for all four buildings and the atrium",
+    "Dimensioned sections identifying floor datums and inter-building transitions",
+    "Stair plans and sections, including landings and floor openings",
+    "Exterior elevations and roof plans",
+    "Surveyed footprint placement and terrain levels"
+  ],
+  "officialAcquisitionRoute": "Facilities Design and Construction maintains campus CAD plans and archived project PDFs; its Services FAQ directs requesters to the Drawing Request Form under Campus Standards/Forms.",
+  "drawingRequestSubmitted": false,
+  "exactReplicaVerified": false
+}

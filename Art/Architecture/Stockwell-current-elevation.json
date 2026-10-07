@@ -1,0 +1,40 @@
+{
+  "sourcePage": "https://www.albion.edu/current-students/",
+  "image": "https://www.albion.edu/wp-content/uploads/2021/03/FJG-ALBION-0227-687x458.jpg",
+  "sha256": "2fe658015328fa435a644dd9ac7ff7dac352fa28472e023c91175f882e9ea7e9",
+  "status": "Official currently published image visually inspected; image date is not confirmed by the page",
+  "confirmedVisibleFeatures": [
+    "Pale pilasters span the two principal facade levels",
+    "Five central upper window bays visible between the pale vertical elements",
+    "Pale horizontal entablature bears the library name",
+    "Central projecting portico with triangular pediment and two slender supports",
+    "Glass entrance doors beneath the portico",
+    "Raised entrance terrace and broad central stair approach",
+    "Brick stair sidewalls with pale sloped coping",
+    "Side terrace railing and planted beds",
+    "Portico supports have rectangular visible faces with projecting capitals and bases",
+    "Glazed entrance assembly has a transom, narrow sidelights and pale frames",
+    "Pediment has a radiating linear decorative motif",
+    "Dark lantern standards flank the approach near the terrace",
+    "Visible side terrace railings have crossed diagonal braces"
+  ],
+  "notEstablished": [
+    "Exact pilaster/window dimensions and spacing",
+    "Current total building width or story heights",
+    "Lower-level datum and exact entrance elevation",
+    "Step count and rise/run from this oblique cropped view",
+    "Full roof geometry, rear elevations and Mudd connector geometry"
+  ],
+  "modelDiscrepancies": [
+    "Generic fa\u00e7ade does not model the two-story pilasters or pale central bays",
+    "Generic entrance canopy lacks the pedimented portico",
+    "Current approach enters at ground-level rather than a verified raised terrace datum",
+    "Generic model dimensions are not reconciled with the historical measured shell"
+  ],
+  "implementationConstraint": "Reconcile the entrance datum and interior floor elevations together; do not add decorative stairs that lead into a wall or an incorrect floor.",
+  "studyLimitations": [
+    "Added entrance details are visual approximations, not measured fabrication geometry",
+    "Railing bay count and lantern ornamental geometry are provisional",
+    "Door assembly is visual only; live interior entrance is not implemented"
+  ]
+}

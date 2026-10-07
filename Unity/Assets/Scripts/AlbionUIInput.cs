@@ -9,10 +9,24 @@ namespace AlbionOdyssey
     public static class AlbionUIInput
     {
         static readonly List<InputDevice> devices=new List<InputDevice>();
-        static int frame=-1;static Vector2 axis;static bool accept,back,previousAccept,previousBack;static float nextStep;
+        static int frame=-1;static Vector2 axis;static bool accept,back,previousAccept,previousBack;static float nextStep,nextDeviceCheck;static bool controllerPresent;
+        public static bool ControllerPresent
+        {
+            get
+            {
+                if(Time.unscaledTime<nextDeviceCheck)return controllerPresent;
+                nextDeviceCheck=Time.unscaledTime+.75f;devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller,devices);controllerPresent=devices.Count>0;
+                if(!controllerPresent)foreach(var name in Input.GetJoystickNames())if(!string.IsNullOrWhiteSpace(name)){controllerPresent=true;break;}
+                return controllerPresent;
+            }
+        }
         public static bool Poll(out int horizontal,out int vertical,out bool choose,out bool cancel)
         {
-            if(frame!=Time.frameCount){frame=Time.frameCount;axis=Vector2.zero;bool a=false,b=false;devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller,devices);foreach(var device in devices){if(device.TryGetFeatureValue(CommonUsages.primary2DAxis,out var stick)&&stick.sqrMagnitude>axis.sqrMagnitude)axis=stick;a|=Button(device,CommonUsages.primaryButton)||Button(device,CommonUsages.triggerButton);b|=Button(device,CommonUsages.menuButton)||Button(device,CommonUsages.secondaryButton);}accept=a&&!previousAccept;back=b&&!previousBack;previousAccept=a;previousBack=b;}
+            if(frame!=Time.frameCount){frame=Time.frameCount;axis=Vector2.zero;bool a=false,b=false;devices.Clear();InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller,devices);foreach(var device in devices){if(device.TryGetFeatureValue(CommonUsages.primary2DAxis,out var stick)&&stick.sqrMagnitude>axis.sqrMagnitude)axis=stick;a|=Button(device,CommonUsages.primaryButton)||Button(device,CommonUsages.triggerButton);b|=Button(device,CommonUsages.menuButton)||Button(device,CommonUsages.secondaryButton);}
+                // The legacy axes/buttons are Unity's stable bridge for USB and Bluetooth gamepads.
+                Vector2 gamepadAxis=new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));if(gamepadAxis.sqrMagnitude>axis.sqrMagnitude)axis=gamepadAxis;
+                a|=Input.GetButton("Submit")||Input.GetKey(KeyCode.JoystickButton0);b|=Input.GetButton("Cancel")||Input.GetKey(KeyCode.JoystickButton1);
+                accept=a&&!previousAccept;back=b&&!previousBack;previousAccept=a;previousBack=b;}
             horizontal=vertical=0;float now=Time.unscaledTime;if(now>=nextStep){if(Mathf.Abs(axis.x)>.6f){horizontal=axis.x>0?1:-1;nextStep=now+.22f;}else if(Mathf.Abs(axis.y)>.6f){vertical=axis.y>0?1:-1;nextStep=now+.22f;}}
             choose=accept;cancel=back;return horizontal!=0||vertical!=0||choose||cancel;
         }

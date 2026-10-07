@@ -1,0 +1,855 @@
+{
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Whitehouse-Floor-Plan-and-Room-Dimensions.pdf",
+  "page": 5,
+  "status": "Manually transcribed published table, used by the runtime plan generator as clear rectangular dimensions. Measurement method and wall construction are unverified. Room 226 is present on the floor diagram but absent from this table.",
+  "rooms": [
+    {
+      "room": "21",
+      "lengthText": "21",
+      "widthText": "10'11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "23",
+      "lengthText": "21",
+      "widthText": "10'11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "25",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "27",
+      "lengthText": "22'1",
+      "widthText": "10'11",
+      "lengthMetres": 6.731,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "31",
+      "lengthText": "21",
+      "widthText": "11'2",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "32",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "33",
+      "lengthText": "21",
+      "widthText": "10'10",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "34",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "35",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "36",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "37",
+      "lengthText": "21",
+      "widthText": "10'10",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "38",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "41",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "42",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "43",
+      "lengthText": "21",
+      "widthText": "11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "44",
+      "lengthText": "21'1",
+      "widthText": "10'11",
+      "lengthMetres": 6.4262,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "45",
+      "lengthText": "21",
+      "widthText": "10'11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "46",
+      "lengthText": "21",
+      "widthText": "10'11",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "47",
+      "lengthText": "21",
+      "widthText": "10'10",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "48",
+      "lengthText": "21",
+      "widthText": "11'2",
+      "lengthMetres": 6.4008,
+      "widthMetres": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "119",
+      "lengthText": "20*7",
+      "widthText": "12*7",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.8354,
+      "sourcePage": 5
+    },
+    {
+      "room": "121",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "123",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "125",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "127",
+      "lengthText": "21*5",
+      "widthText": "10*11",
+      "lengthMetres": 6.5278,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "129",
+      "lengthText": "21*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "131",
+      "lengthText": "21*5",
+      "widthText": "10*11",
+      "lengthMetres": 6.5278,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "132",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "133",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "134",
+      "lengthText": "20*6",
+      "widthText": "11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "135",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "136",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "137",
+      "lengthText": "20*6",
+      "widthText": "10*10",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "138",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "141",
+      "lengthText": "20*6",
+      "widthText": "11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "142",
+      "lengthText": "20*6",
+      "widthText": "10*10",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "143",
+      "lengthText": "20*6",
+      "widthText": "10*10",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "144",
+      "lengthText": "20*6",
+      "widthText": "10*10",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "145",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "146",
+      "lengthText": "20*6",
+      "widthText": "10*10",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "147",
+      "lengthText": "20*6",
+      "widthText": "11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "148",
+      "lengthText": "20*6",
+      "widthText": "11*2",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.4036,
+      "sourcePage": 5
+    },
+    {
+      "room": "200",
+      "lengthText": "14*6",
+      "widthText": "11*3",
+      "lengthMetres": 4.4196,
+      "widthMetres": 3.429,
+      "sourcePage": 5
+    },
+    {
+      "room": "211",
+      "lengthText": "20*8",
+      "widthText": "10*9",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "212",
+      "lengthText": "20*8",
+      "widthText": "10*9",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "213",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "214",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "215",
+      "lengthText": "20*8",
+      "widthText": "10*10",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "216",
+      "lengthText": "20*8",
+      "widthText": "10*10",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "217",
+      "lengthText": "20*9",
+      "widthText": "10*11",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "218",
+      "lengthText": "20*9",
+      "widthText": "10*11",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "219",
+      "lengthText": "20*9",
+      "widthText": "12*9",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.8862,
+      "sourcePage": 5
+    },
+    {
+      "room": "221",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "223",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "225",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "227",
+      "lengthText": "21*8",
+      "widthText": "11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "228",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "229",
+      "lengthText": "21*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "231",
+      "lengthText": "21*8",
+      "widthText": "11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "232",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "233",
+      "lengthText": "20*9",
+      "widthText": "11",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "234",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "235",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "236",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "237",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "238",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "241",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "242",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "243",
+      "lengthText": "20*9",
+      "widthText": "10*11",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "244",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "245",
+      "lengthText": "20*7",
+      "widthText": "11",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "246",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "247",
+      "lengthText": "20*7",
+      "widthText": "10*9",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "248",
+      "lengthText": "20*8",
+      "widthText": "11*1",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "311",
+      "lengthText": "20*8",
+      "widthText": "10*10",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "312",
+      "lengthText": "20*8",
+      "widthText": "10*10",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "313",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "314",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "315",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "316",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "317",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "318",
+      "lengthText": "20*8",
+      "widthText": "11*1",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "319",
+      "lengthText": "20*8",
+      "widthText": "12*9",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.8862,
+      "sourcePage": 5
+    },
+    {
+      "room": "321",
+      "lengthText": "20*8",
+      "widthText": "10*10",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "323",
+      "lengthText": "20*9",
+      "widthText": "10*11",
+      "lengthMetres": 6.3246,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "325",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "326",
+      "lengthText": "20*7",
+      "widthText": "10*11",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "327",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "328",
+      "lengthText": "20*8",
+      "widthText": "11*1",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "329",
+      "lengthText": "21*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "331",
+      "lengthText": "21*8",
+      "widthText": "11",
+      "lengthMetres": 6.604,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "332",
+      "lengthText": "20*7",
+      "widthText": "11*1",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3782,
+      "sourcePage": 5
+    },
+    {
+      "room": "333",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "334",
+      "lengthText": "20*7",
+      "widthText": "10*11",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "335",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "336",
+      "lengthText": "20*7",
+      "widthText": "10*11",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "337",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "338",
+      "lengthText": "20*7",
+      "widthText": "10*9",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.2766,
+      "sourcePage": 5
+    },
+    {
+      "room": "341",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "342",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "343",
+      "lengthText": "20*6",
+      "widthText": "10*11",
+      "lengthMetres": 6.2484,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "344",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "345",
+      "lengthText": "20*8",
+      "widthText": "10*11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3274,
+      "sourcePage": 5
+    },
+    {
+      "room": "346",
+      "lengthText": "20*7",
+      "widthText": "11",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    },
+    {
+      "room": "347",
+      "lengthText": "20*7",
+      "widthText": "10*10",
+      "lengthMetres": 6.2738,
+      "widthMetres": 3.302,
+      "sourcePage": 5
+    },
+    {
+      "room": "348",
+      "lengthText": "20*8",
+      "widthText": "11",
+      "lengthMetres": 6.2992,
+      "widthMetres": 3.3528,
+      "sourcePage": 5
+    }
+  ]
+}

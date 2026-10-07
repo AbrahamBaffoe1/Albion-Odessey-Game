@@ -12,7 +12,9 @@ The macOS player is built with `bash Tools/unity_mac.sh build` and writes to `Un
 
 WASD or arrow keys move, the mouse looks, Shift runs, Space jumps and V changes camera. E interacts with doors, objects, vehicles and characters. M opens the campus map, H opens nearby history, G opens building stories, K opens courses, J opens the journal and F2 opens personal building mode.
 
-F4 opens accessibility settings: captions, large text, high contrast, reduced motion and alternate movement keys. F5 opens the LAN shared-campus panel. F8 opens optional XR mode. F9 shows the runtime profiler. O enables the four on-screen movement buttons for mouse-only play.
+F4 opens accessibility settings: captions, large text, high contrast, reduced motion and alternate movement keys. F5 opens the LAN shared-campus panel. F7 opens real online student accounts. F8 opens optional XR mode. F9 shows the runtime profiler. O enables the four on-screen movement buttons for mouse-only play.
+
+See [Live student accounts](../Backend/README.md) for the deployed Auth service, profile access policies, transactional email setup and opt-in live verification.
 
 ## Verification
 

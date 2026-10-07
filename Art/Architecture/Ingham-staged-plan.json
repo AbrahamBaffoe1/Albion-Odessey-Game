@@ -1,0 +1,386 @@
+{
+  "building": "Ingham Hall",
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Ingham-Floor-Plan.pdf",
+  "measurementSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+  "status": "STAGING ONLY: eight room pairs fitted, common spaces provisional; doors, floor heights, stairs, nonrectangular details and envelope not verified",
+  "runtimeReady": false,
+  "width": 12.935199999999998,
+  "depth": 11.1064,
+  "wallThickness": 0.18,
+  "entryX": -0.7112000000000007,
+  "rotation": 90,
+  "floors": [
+    {
+      "level": 0,
+      "name": "First",
+      "footprints": [
+        {
+          "x": 0.0,
+          "z": 0.0,
+          "width": 12.9352,
+          "depth": 11.1064
+        }
+      ],
+      "spaces": [
+        {
+          "name": "101",
+          "kind": "room",
+          "x": -4.244,
+          "z": 3.9265,
+          "width": 4.4472,
+          "depth": 3.2534,
+          "clearWidth": 4.2672,
+          "clearDepth": 3.0734,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 1
+        },
+        {
+          "name": "Living room",
+          "kind": "lounge",
+          "x": -4.244,
+          "z": -1.6267,
+          "width": 4.4472,
+          "depth": 7.853
+        },
+        {
+          "name": "102",
+          "kind": "room",
+          "x": 3.5328,
+          "z": -4.0027,
+          "width": 5.8696,
+          "depth": 3.101,
+          "clearWidth": 5.6896,
+          "clearDepth": 2.921,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 1
+        },
+        {
+          "name": "103",
+          "kind": "room",
+          "x": 4.9425,
+          "z": -0.3683,
+          "width": 3.0502,
+          "depth": 4.1678,
+          "clearWidth": 2.8702,
+          "clearDepth": 3.9878,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 1
+        },
+        {
+          "name": "104",
+          "kind": "room",
+          "x": 4.7647,
+          "z": 3.6344,
+          "width": 3.4058,
+          "depth": 3.8376,
+          "clearWidth": 3.2258,
+          "clearDepth": 3.6576,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 1
+        },
+        {
+          "name": "First floor bath",
+          "kind": "bath",
+          "x": 0.5207,
+          "z": 4.95,
+          "width": 5.0822,
+          "depth": 1.2064
+        },
+        {
+          "name": "Central stair \u00b7 geometry unresolved",
+          "kind": "unresolvedStair",
+          "x": 0.4074,
+          "z": 2.5218,
+          "width": 2.45,
+          "depth": 3.45
+        }
+      ],
+      "circulationCorners": [],
+      "doors": [
+        {
+          "space": "101",
+          "side": "east",
+          "x": -2.0204,
+          "z": 2.9998,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": -1.4203999999999999,
+            "z": 2.9997999999999996,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "102",
+          "side": "south",
+          "x": 1.298,
+          "z": -2.4522,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 1.2979999999999998,
+            "z": -1.8521999999999998,
+            "width": 0.95,
+            "depth": 0.65
+          }
+        },
+        {
+          "space": "103",
+          "side": "west",
+          "x": 3.4174,
+          "z": 1.0156,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 2.8173999999999997,
+            "z": 1.0155999999999998,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "104",
+          "side": "west",
+          "x": 3.0618,
+          "z": 2.4156,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 2.4618,
+            "z": 2.4155999999999995,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "First floor bath",
+          "side": "north",
+          "x": -1.3704,
+          "z": 4.3468,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": -1.3704,
+            "z": 3.7468,
+            "width": 0.95,
+            "depth": 0.65
+          }
+        }
+      ],
+      "circulationCheck": {
+        "method": "2D 0.05m grid with 0.42m radius plus 0.09m half-wall; unmodeled stairs treated as obstruction",
+        "connectedDoorApproaches": 5,
+        "runtimeTraversalVerified": false
+      }
+    },
+    {
+      "level": 1,
+      "name": "Second",
+      "footprints": [
+        {
+          "x": 0.0,
+          "z": 0.0,
+          "width": 12.9352,
+          "depth": 11.1064
+        }
+      ],
+      "spaces": [
+        {
+          "name": "202",
+          "kind": "room",
+          "x": -4.244,
+          "z": -3.0248,
+          "width": 4.4472,
+          "depth": 5.0568,
+          "clearWidth": 4.2672,
+          "clearDepth": 4.8768,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 2
+        },
+        {
+          "name": "203",
+          "kind": "room",
+          "x": -0.0127,
+          "z": -3.1772,
+          "width": 4.0154,
+          "depth": 4.752,
+          "clearWidth": 3.8354,
+          "clearDepth": 4.572,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 2
+        },
+        {
+          "name": "204",
+          "kind": "room",
+          "x": 4.2313,
+          "z": -3.0502,
+          "width": 4.4726,
+          "depth": 5.006,
+          "clearWidth": 4.2926,
+          "clearDepth": 4.826,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 2
+        },
+        {
+          "name": "201",
+          "kind": "room",
+          "x": -4.244,
+          "z": 3.1391,
+          "width": 4.4472,
+          "depth": 4.8282,
+          "clearWidth": 4.2672,
+          "clearDepth": 4.6482,
+          "dimensionSource": "https://www.albion.edu/offices/community-living/living-on-campus/our-communities/ingham-hall/",
+          "dimensionStatus": "Published pair fitted as clear rectangle; orientation and wall thickness inferred",
+          "sourceDiagramPage": 2
+        },
+        {
+          "name": "Second floor bath 1",
+          "kind": "bath",
+          "x": 5.0676,
+          "z": 0.61953,
+          "width": 2.8,
+          "depth": 1.97347
+        },
+        {
+          "name": "Second floor bath 2",
+          "kind": "bath",
+          "x": 5.0676,
+          "z": 2.593,
+          "width": 2.8,
+          "depth": 1.97347
+        },
+        {
+          "name": "Second floor bath 3",
+          "kind": "bath",
+          "x": 5.0676,
+          "z": 4.56647,
+          "width": 2.8,
+          "depth": 1.97347
+        },
+        {
+          "name": "Central stair \u00b7 geometry unresolved",
+          "kind": "unresolvedStair",
+          "x": 0.4074,
+          "z": 2.5218,
+          "width": 2.45,
+          "depth": 3.45
+        }
+      ],
+      "circulationCorners": [],
+      "doors": [
+        {
+          "space": "202",
+          "side": "south",
+          "x": -2.7204,
+          "z": -0.4964,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": -2.7203999999999997,
+            "z": 0.10360000000000003,
+            "width": 0.95,
+            "depth": 0.65
+          }
+        },
+        {
+          "space": "203",
+          "side": "south",
+          "x": -1.3204,
+          "z": -0.8012,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": -1.3204,
+            "z": -0.20120000000000016,
+            "width": 0.95,
+            "depth": 0.65
+          }
+        },
+        {
+          "space": "204",
+          "side": "south",
+          "x": 2.695,
+          "z": -0.5472,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 2.6950000000000003,
+            "z": 0.05280000000000029,
+            "width": 0.95,
+            "depth": 0.65
+          }
+        },
+        {
+          "space": "201",
+          "side": "east",
+          "x": -2.0204,
+          "z": 4.8532,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": -1.4203999999999999,
+            "z": 4.8532,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "Second floor bath 1",
+          "side": "west",
+          "x": 3.6676,
+          "z": 0.61953,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 3.0675999999999997,
+            "z": 0.61953,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "Second floor bath 2",
+          "side": "west",
+          "x": 3.6676,
+          "z": 2.593,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 3.0675999999999997,
+            "z": 2.593,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        },
+        {
+          "space": "Second floor bath 3",
+          "side": "west",
+          "x": 3.6676,
+          "z": 4.56647,
+          "width": 0.95,
+          "status": "Diagram side retained; exact offset, opening width and swing not measured",
+          "approach": {
+            "x": 3.0675999999999997,
+            "z": 4.56647,
+            "width": 0.65,
+            "depth": 0.95
+          }
+        }
+      ],
+      "circulationCheck": {
+        "method": "2D 0.05m grid with 0.42m radius plus 0.09m half-wall; unmodeled stairs treated as obstruction",
+        "connectedDoorApproaches": 7,
+        "runtimeTraversalVerified": false
+      }
+    }
+  ]
+}

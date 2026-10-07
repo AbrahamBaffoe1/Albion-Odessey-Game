@@ -1,0 +1,2961 @@
+{
+  "building": "Wesley Hall",
+  "source": "https://www.albion.edu/wp-content/uploads/2022/02/Wesley-Floor-Plan-and-Room-Dimensions.pdf",
+  "sourcePages": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "status": "Published room adjacency; provisional metric envelope. Source explicitly not drawn to scale. Suite subdivisions, elevations and room measurement integration remain incomplete.",
+  "width": 63.59999999999999,
+  "depth": 71.4,
+  "floorHeight": 3.2,
+  "entryX": -3.4,
+  "rotation": 0,
+  "floors": [
+    {
+      "level": 0,
+      "name": "Ground",
+      "footprints": [
+        {
+          "x": -26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": 26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": -15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 0.0,
+          "z": -30.6,
+          "width": 20.4,
+          "depth": 10.2
+        },
+        {
+          "x": 0.0,
+          "z": 3.4,
+          "width": 20.4,
+          "depth": 10.2
+        },
+        {
+          "x": 0.0,
+          "z": -13.6,
+          "width": 20.4,
+          "depth": 23.8
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs west-rear",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-rear",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": 23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-middle",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-middle",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-front",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "31-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "27",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "23",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "19",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "13-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "29",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "25",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "21",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "17",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "15",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "11",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "40-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "36",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "32",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "28",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "24",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "20-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "16",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "14",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "12",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "10",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "38",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "34",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "30",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "26",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "22",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "18",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "Study lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": -15.6,
+          "z": 6.8,
+          "width": 10.8,
+          "depth": 3.4
+        },
+        {
+          "name": "Computer lab",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": 6.8,
+          "width": 10.8,
+          "depth": 3.4
+        },
+        {
+          "name": "Lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": 0.0,
+          "z": 3.4,
+          "width": 20.4,
+          "depth": 10.2
+        },
+        {
+          "name": "Kresge Commons",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": -5.4,
+          "z": -22.1,
+          "width": 31.2,
+          "depth": 27.2
+        },
+        {
+          "name": "Laundry",
+          "kind": "laundry",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -8.5,
+          "width": 4.3,
+          "depth": 13.6
+        },
+        {
+          "name": "Bath west",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath east",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 1,
+      "name": "First",
+      "footprints": [
+        {
+          "x": -26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": 26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": -15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 0.0,
+          "z": -30.6,
+          "width": 20.4,
+          "depth": 10.2
+        },
+        {
+          "x": 0.0,
+          "z": 3.4,
+          "width": 20.4,
+          "depth": 10.2
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs west-rear",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-rear",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": 23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-middle",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-middle",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-front",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-front",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "159-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "155",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "151",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "147",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "143",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "139",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "135",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "133",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "131",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "129",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "127-SRA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "157",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "153",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "149",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "145",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "141",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "137",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "154-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "150",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "146",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "142",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "138",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "134",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "130",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "128",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "126",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "124",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "122-SRA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "152",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "148",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "144",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "140",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "136",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "132",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "Vending west",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "161-Quad",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -13.45,
+          "z": 6.8,
+          "width": 6.5,
+          "depth": 3.4
+        },
+        {
+          "name": "156-Quad",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 13.45,
+          "z": 6.8,
+          "width": 6.5,
+          "depth": 3.4
+        },
+        {
+          "name": "Vending east",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Recreation lounge",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": 0.0,
+          "z": 3.4,
+          "width": 20.4,
+          "depth": 10.2
+        },
+        {
+          "name": "Storage",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Kitchen",
+          "kind": "kitchen",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "123",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "119",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "115-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "111",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "107",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "105",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "103",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "125",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "121",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "117",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "113",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "109",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "120",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "116",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "112",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "108",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "104",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "118",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "114",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "110",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "106-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Custodial",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -18.7,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "102",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Living room",
+          "kind": "lounge",
+          "stairYaw": 0,
+          "x": 1.7,
+          "z": -25.5,
+          "width": 10.2,
+          "depth": 6.8
+        },
+        {
+          "name": "Custodial",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "Elevator",
+          "kind": "service",
+          "stairYaw": 0,
+          "x": 8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "RD apartment",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -13.9,
+          "z": -34.0,
+          "width": 14.2,
+          "depth": 3.4
+        },
+        {
+          "name": "RA office",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 3.4,
+          "z": -34.0,
+          "width": 6.8,
+          "depth": 3.4
+        },
+        {
+          "name": "RD office",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 8.5,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "Staff apartment",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": -34.0,
+          "width": 10.8,
+          "depth": 3.4
+        }
+      ],
+      "circulationCorners": []
+    },
+    {
+      "level": 2,
+      "name": "Second",
+      "footprints": [
+        {
+          "x": -26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": 26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": -15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 0.0,
+          "z": -30.6,
+          "width": 20.4,
+          "depth": 10.2
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs west-rear",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-rear",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": 23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-middle",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-middle",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-front",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-front",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "287-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "283",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "279",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "275",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "271",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "267",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "263",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "261",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "259-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "257",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "255-PB",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "285",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "281",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "277",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "273",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "269",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "265",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "286-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "282",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "278",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "274",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "270",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "266",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "262",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "260",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "258-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "256",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "254-PB",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "284",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "280",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "276",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "272",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "268",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "264",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "249",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "247",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -15.6,
+          "z": 6.8,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "245",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "243",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "241",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "253",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -26.4,
+          "z": 0.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "251",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "244",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "246",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": 6.8,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "248",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "242",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "240",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "250",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "252",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 26.4,
+          "z": 0.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "237",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "233",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "229",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "225",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "221",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "219",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "217",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "239",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "235",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "231",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "227",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "223",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "238",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "234",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "230",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "226",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "222",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "236",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "232",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "228",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "224",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "220",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "218",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "216",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Custodial",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "205",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -5.1,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "201",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -1.7,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "200-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 1.7,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "204",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.1,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "Elevator",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "215",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "213-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -15.6,
+          "z": -34.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "211",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "209",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.5,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "207",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -5.1,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "203",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -1.7,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "202",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 1.7,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "206",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.1,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "208",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 8.5,
+          "z": -34.0,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "210",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "212-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": -34.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "214",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        }
+      ],
+      "circulationCorners": [
+        {
+          "x": -27.5,
+          "z": 1.7,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": 27.5,
+          "z": 1.7,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": -14.5,
+          "z": 5.1,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": 14.5,
+          "z": 5.1,
+          "width": 2.8,
+          "depth": 2.8
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "name": "Third",
+      "footprints": [
+        {
+          "x": -26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": 26.4,
+          "z": 17.0,
+          "width": 10.8,
+          "depth": 37.4
+        },
+        {
+          "x": -15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 15.6,
+          "z": -13.6,
+          "width": 10.8,
+          "depth": 44.2
+        },
+        {
+          "x": 0.0,
+          "z": -30.6,
+          "width": 20.4,
+          "depth": 10.2
+        }
+      ],
+      "spaces": [
+        {
+          "name": "Stairs west-rear",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-rear",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": 23.15,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-middle",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-middle",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs west-front",
+          "kind": "stairs",
+          "stairYaw": 180,
+          "x": -18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Stairs east-front",
+          "kind": "stairs",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "365-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "361",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "357",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "353",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "349",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "345",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "341",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "339-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Lounge",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "335",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "333",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "363",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "359",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "355",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "351",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "347",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "343",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "364-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "360",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "356",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "352",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "348",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "344",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "340",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "338-RA",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 10.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Lounge",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "334",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "332",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 29.65,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "362",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 30.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "358",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 27.2,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "354",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "350",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 20.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "346",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 17.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "342",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 13.6,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 8.5,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "327",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "325",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -15.6,
+          "z": 6.8,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "323",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "321",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "319",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "331-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -26.4,
+          "z": 0.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "329-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -23.15,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "322",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "324",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": 6.8,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "326",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": 6.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "320",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 3.4,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "318",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "328-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 23.15,
+          "z": 0.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "330-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 26.4,
+          "z": 0.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "317 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "313 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "315 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "316 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -6.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "312 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -17.0,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "314 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -13.6,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "319A Triple",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -5.1,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "Kitchen",
+          "kind": "kitchen",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -5.1,
+          "width": 4.3,
+          "depth": 6.8
+        },
+        {
+          "name": "311-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "310-S",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": -12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "Bath",
+          "kind": "bath",
+          "stairYaw": 0,
+          "x": 12.35,
+          "z": -23.8,
+          "width": 4.3,
+          "depth": 10.2
+        },
+        {
+          "name": "Custodial",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "303",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -5.1,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "301",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -1.7,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "300",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 1.7,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "302",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 5.1,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "Elevator",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 8.5,
+          "z": -27.2,
+          "width": 3.4,
+          "depth": 3.4
+        },
+        {
+          "name": "309",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": -18.85,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        },
+        {
+          "name": "307 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": -11.75,
+          "z": -34.0,
+          "width": 9.9,
+          "depth": 3.4
+        },
+        {
+          "name": "305 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": -1.7,
+          "z": -34.0,
+          "width": 10.2,
+          "depth": 3.4
+        },
+        {
+          "name": "304 Suite",
+          "kind": "suite",
+          "stairYaw": 0,
+          "x": 8.95,
+          "z": -34.0,
+          "width": 11.1,
+          "depth": 3.4
+        },
+        {
+          "name": "306",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 15.6,
+          "z": -34.0,
+          "width": 2.2,
+          "depth": 3.4
+        },
+        {
+          "name": "308",
+          "kind": "room",
+          "stairYaw": 0,
+          "x": 18.85,
+          "z": -34.0,
+          "width": 4.3,
+          "depth": 3.4
+        }
+      ],
+      "circulationCorners": [
+        {
+          "x": -27.5,
+          "z": 1.7,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": 27.5,
+          "z": 1.7,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": -14.5,
+          "z": 5.1,
+          "width": 2.8,
+          "depth": 2.8
+        },
+        {
+          "x": 14.5,
+          "z": 5.1,
+          "width": 2.8,
+          "depth": 2.8
+        }
+      ]
+    }
+  ],
+  "entryLevel": 1
+}

@@ -1,19 +1,39 @@
-# Play Albion Odyssey 0.12 on this Mac
+# Play Albion Odyssey 0.19 on this Mac
 
-Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, double-click it to extract the app first. Click **Play / resume** on the welcome screen. No Unity editor is needed to play this packaged Mac build.
+Open **Albion Odyssey.app** from Applications or the 0.19 release folder. If using the ZIP, double-click it to extract the app first. Click **Enter campus** on the launch screen. No Unity editor is needed to play this packaged Mac build.
+
+## Campus cars
+
+Version 0.18 replaces the parked and drivable cars with detailed 3D coupes. Walk beside a drivable car and press **E**. **W/S** accelerates or reverses, **A/D** steers, and **Space** brakes. Stop, then press **E** to get out. Stop and press **R** for the repair screen. Crashes dent the car; choose acorn coins or gems to restore it. Cars can knock down simulated students, who recover and resume their campus activities. See [impact and repair details](VehicleImpacts-v0.19.md) and [vehicle credits](Vehicles-v0.18.md).
+
+## Your new lobby
+
+Startup now shows the actual preparation stages. Select **Your student** for the live animated appearance preview, **Build** for the room studio, **Explore** for building stories, or **Learn** for courses. **Esc** opens the campus menu during play. Use **Save & finish session** to see your session results and quit safely. See [visual direction and remaining art work](VisualDirection-v0.17.md).
+
+## Your online student account
+
+Choose **Sign in / join**, or press **Ctrl+Shift+D**. For your first visit, select **New here? Create account**. Enter your email, select **Send email code**, then enter the code from your inbox and select **Verify & sign in**. Check spam for mail from **Albion Odyssey**. Returning students use the sign-in screen and a fresh email code.
+
+Your display name and account are stored online. **My student account** lets you save your name or sign out. You will sign in again after restarting the app. Gameplay progress, personal buildings and classes are still saved on this Mac; signing in does not yet synchronize them to other devices. Guest play remains available.
 
 ## Controls
+
+In version **0.17**, **Esc** opens the campus menu while exploring and resumes
+when pressed again. The menu links to accounts, stories, courses and VR settings.
+**F8** opens VR settings explicitly; Esc returns to the screen you opened them from.
 
 | Action | Key / button |
 |---|---|
 | Forward, backward, left, right | W/A/S/D or the four arrow keys |
 | Look around | Mouse |
+| Gamepad | Left stick moves, right stick looks, A/Cross jumps, B/Circle interacts, Menu pauses |
 | Run / jump | Shift / Space |
 | Pick up a golden memory or talk to Pip | Aim at it from nearby, then E or F |
 | Read a building's story | H near a building opens a glass side panel; use **Read online** for the official building page or **More information** for the full archive |
 | Browse all building stories | G from the welcome screen or while exploring |
 | Map and travel | M, then Travel here |
 | Course creation and enrollment | K |
+| Online student account | Ctrl+Shift+D or Student sign in / join on the campus menu |
 | Journal | J; left/right arrows browse while open |
 | Build / explore | F2 (Fn-F2 if macOS uses the key for brightness) |
 | Choose building | 1 Garden, 2 Library, 3 Observatory, 4 Hall |
@@ -21,6 +41,10 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 | Builder zoom / appearance | Mouse wheel / T |
 | Next local Keeper / contribute to Beacon | Tab / C |
 | Snowfall | Y toggles campus snow; clear weather returns when pressed again. Snow also cycles automatically during a longer visit. |
+| Campus pulse | The live card shows moving students, seated activities, squirrels, weather and total campus population. |
+| Day and night | The campus runs a live 20-minute day: the sun moves with soft shadows, dusk turns the sky and fog warm, and nights are moonlit. In a shared LAN campus the host owns the clock and the weather, and every joined player mirrors them in real time (Y is disabled for joined players). |
+| Shared world | In a LAN campus the host's route students, campus cars and open doors are mirrored to every joined player five times a second. Joined players cannot toggle doors, and student routes follow the host. A car you drive yourself stays under your control, and its position is sent back to the host so everyone sees it move (the host ignores it if the host is driving the same car). |
+| City of Albion | Ctrl+Shift+D travels between the campus and downtown Albion (or walk west along Erie Street). Near a city landmark press H for its sourced story. See [the city notes](AlbionCity-v0.17.md). |
 | Show four on-screen movement buttons | O; hold an arrow with the mouse |
 | Turn with screen-button controls | Z/X or the Turn L / Turn R buttons |
 | Paper-play shortcut | P inside the Common Classroom |
@@ -28,7 +52,7 @@ Open **Albion Odyssey.app** from the 0.12 release folder. If using the ZIP, doub
 
 ## A first session
 
-1. Collect the golden memories outside and inside Legacy Hall. Each gives three acorns. Find Pip beside the entrance for the journal and chapter objectives.
+1. Collect the golden memories outside and inside Legacy Hall. Each gives three acorn coins and one gem. Find Pip beside the entrance for the journal and chapter objectives.
 2. Explore the eight floors. The stairs are at the right-hand rear of the hall; follow the STAIRS signs.
 3. Press F2. Press 4, then click an empty tile to create a Hall for three acorns. Press F2 to return to walking.
 4. Press K. Name a course, choose one of the three lessons, and choose **Create in my Hall / Library**. Every course needs an unused Hall or Library on your personal campus.
@@ -43,9 +67,9 @@ To reclaim a building that hosts a course, remove that course first. Course dele
 
 A local Mac chapter: walkable Ferguson, Robinson, Bonta and the four-wing Science Complex, exploration, personal campus construction and a classroom loop. Four Keepers share this Mac by taking turns. The visible students are simulated characters, not connected people. The building archive uses public college sources; the journal's magical story is clearly labeled fiction. The architecture and campus layout remain game-scale reconstructions, not measured digital twins.
 
-Online accounts, simultaneous multiplayer, user-authored lesson content, freeform architecture and the full real campus remain on the counted roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
+Real email-verified accounts and online profiles are available. A small LAN presence prototype is separate from accounts; authenticated hosted multiplayer, online enrollment, cloud game saves, user-authored lesson content, freeform architecture and the full real campus remain on the roadmap. The current Unity app is playable; Unreal runtime verification is still pending.
 
-Version 0.4 writes a separate version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.4.
+Version 0.16 continues using the version-2 save. On its first launch it imports a valid version-1 save if present. The older save stays intact; later changes made in the old app do not merge into version 0.16.
 
 ## Sound effects and narration
 

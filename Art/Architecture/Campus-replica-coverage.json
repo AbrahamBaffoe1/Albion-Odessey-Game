@@ -1,0 +1,826 @@
+{
+  "scope": "Every CampusCatalog destination; not a claim that the catalog exhausts campus structures",
+  "catalogCount": 61,
+  "exactReplicasVerified": 0,
+  "siteStatus": "Schematic map positions scaled at 1.5 game metres per pixel; no surveyed site/terrain/planting validation",
+  "coverageCounts": {
+    "generic walkable reconstruction": 25,
+    "generic sealed exterior": 20,
+    "authored Robinson model; dimensions unverified": 1,
+    "combined generic Science Complex interior": 4,
+    "generic walkable reconstruction; separate Stockwell study": 1,
+    "authored Ferguson model; dimensions unverified": 1,
+    "photo-informed exterior; interior only staged": 1,
+    "published-plan reconstruction": 4,
+    "generic athletics geometry": 4
+  },
+  "limitations": [
+    "Static code-route audit only, not a rendered or physical verification",
+    "Supporting artifacts are evidence references, not proof of full accuracy",
+    "Small structures, utility spaces and grounds absent from the catalog still need a source inventory"
+  ],
+  "destinations": [
+    {
+      "id": "1",
+      "name": "Bonta Admission Center",
+      "category": "Resources",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "2",
+      "name": "Cass Center",
+      "category": "Resources",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "5",
+      "name": "Astronomical Observatory",
+      "category": "Academic",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "6",
+      "name": "Baldwin Hall",
+      "category": "Campus life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "7",
+      "name": "Bobbitt Visual Arts Center",
+      "category": "Academic",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "7a",
+      "name": "Bobbitt Annex",
+      "category": "Academic",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "9",
+      "name": "Facilities Operations",
+      "category": "Resources",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "10",
+      "name": "Goodrich Chapel",
+      "category": "Academic",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "11",
+      "name": "Grounds",
+      "category": "Resources",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "12",
+      "name": "Herrick Theatre",
+      "category": "Academic",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "14",
+      "name": "Kellogg Center",
+      "category": "Campus life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "15",
+      "name": "Ludington Center",
+      "category": "Academic",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "16",
+      "name": "Robinson Hall",
+      "category": "Academic",
+      "liveConstruction": "authored Robinson model; dimensions unverified",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "17",
+      "name": "Olin Hall",
+      "category": "Academic",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "18n",
+      "name": "Norris Center \u00b7 Science Complex",
+      "category": "Academic",
+      "liveConstruction": "combined generic Science Complex interior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Four distinct building envelopes and connections",
+        "Measured laboratory layouts",
+        "Floor elevations and stairs"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "18k",
+      "name": "Kresge Hall \u00b7 Science Complex",
+      "category": "Academic",
+      "liveConstruction": "combined generic Science Complex interior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Four distinct building envelopes and connections",
+        "Measured laboratory layouts",
+        "Floor elevations and stairs"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "18p",
+      "name": "Palenske Hall \u00b7 Science Complex",
+      "category": "Academic",
+      "liveConstruction": "combined generic Science Complex interior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Four distinct building envelopes and connections",
+        "Measured laboratory layouts",
+        "Floor elevations and stairs"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "18u",
+      "name": "Putnam Hall \u00b7 Science Complex",
+      "category": "Academic",
+      "liveConstruction": "combined generic Science Complex interior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Four distinct building envelopes and connections",
+        "Measured laboratory layouts",
+        "Floor elevations and stairs"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "19",
+      "name": "Seely-Berkey House",
+      "category": "Campus life",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "20",
+      "name": "Stockwell Memorial Library",
+      "category": "Academic",
+      "liveConstruction": "generic walkable reconstruction; separate Stockwell study",
+      "supportingArtifacts": [
+        "Art/Architecture/Stockwell-shell-trace.json"
+      ],
+      "remaining": [
+        "Install reconciled full building",
+        "Current floor/stack elevations and stairs",
+        "Mudd connection",
+        "Measured side/rear elevations"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "21",
+      "name": "Mudd Learning Center",
+      "category": "Academic",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "22",
+      "name": "Umbrella House",
+      "category": "Campus life",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "23",
+      "name": "Vulgamore Hall (North Hall)",
+      "category": "Academic",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "24",
+      "name": "Welton House",
+      "category": "Campus life",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "25",
+      "name": "Whitehouse Nature Center",
+      "category": "Nature",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "26",
+      "name": "Ferguson Hall",
+      "category": "Resources",
+      "liveConstruction": "authored Ferguson model; dimensions unverified",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "40",
+      "name": "Briton House Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "41",
+      "name": "Burns Street Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "42",
+      "name": "Dean Hall",
+      "category": "Residential",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "43",
+      "name": "Fiske House",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "44",
+      "name": "Ingham Hall",
+      "category": "Residential",
+      "liveConstruction": "photo-informed exterior; interior only staged",
+      "supportingArtifacts": [
+        "Art/Architecture/Ingham-staged-plan.json"
+      ],
+      "remaining": [
+        "Measured stair geometry and vertical alignment",
+        "Reconcile staged footprint with exterior",
+        "Complete current elevations"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "45",
+      "name": "Karro Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "46",
+      "name": "Mitchell Towers",
+      "category": "Residential",
+      "liveConstruction": "published-plan reconstruction",
+      "supportingArtifacts": [
+        "Unity/Assets/Resources/CampusCraft/mitchell-plan.json"
+      ],
+      "remaining": [
+        "Complete measured geometry",
+        "Current detailed elevations",
+        "Unresolved rooms, partitions and stair dimensions"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "47",
+      "name": "Munger Hall / Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "48",
+      "name": "Munger Annex",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "49",
+      "name": "Seaton Hall",
+      "category": "Residential",
+      "liveConstruction": "published-plan reconstruction",
+      "supportingArtifacts": [
+        "Unity/Assets/Resources/CampusCraft/seaton-plan.json"
+      ],
+      "remaining": [
+        "Complete measured geometry",
+        "Current detailed elevations",
+        "Unresolved rooms, partitions and stair dimensions"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "50",
+      "name": "Wesley Hall",
+      "category": "Residential",
+      "liveConstruction": "published-plan reconstruction",
+      "supportingArtifacts": [
+        "Unity/Assets/Resources/CampusCraft/wesley-plan.json"
+      ],
+      "remaining": [
+        "Complete measured geometry",
+        "Current detailed elevations",
+        "Unresolved rooms, partitions and stair dimensions"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "51",
+      "name": "Whitehouse Hall",
+      "category": "Residential",
+      "liveConstruction": "published-plan reconstruction",
+      "supportingArtifacts": [
+        "Unity/Assets/Resources/CampusCraft/whitehouse-plan.json"
+      ],
+      "remaining": [
+        "Complete measured geometry",
+        "Current detailed elevations",
+        "Unresolved rooms, partitions and stair dimensions"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "52",
+      "name": "416 Erie St. Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "53",
+      "name": "President\u2019s House",
+      "category": "Campus life",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "54",
+      "name": "507 Erie St. Apartments",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "55",
+      "name": "711 E. Michigan Ave. Annex",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "56",
+      "name": "Guest House \u00b7 810 E. Michigan Ave.",
+      "category": "Residential",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "60",
+      "name": "Alpha Chi Omega Sorority",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "61",
+      "name": "Alpha Tau Omega Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "62",
+      "name": "Alpha Xi Delta Sorority",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "63",
+      "name": "Delta Gamma Sorority",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "64",
+      "name": "Delta Sigma Phi Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "65",
+      "name": "Delta Tau Delta Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "66",
+      "name": "Kappa Alpha Theta Sorority",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "67",
+      "name": "Kappa Delta Sorority",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "68",
+      "name": "Sigma Nu Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "69",
+      "name": "Sigma Chi Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "70",
+      "name": "Tau Kappa Epsilon Fraternity",
+      "category": "Greek life",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "76a",
+      "name": "Alumni Stadium \u00b7 Davis Athletic Complex",
+      "category": "Athletics",
+      "liveConstruction": "generic athletics geometry",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Surveyed field and stand geometry",
+        "Current site detail"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "76b",
+      "name": "Joranko Field \u00b7 Davis Athletic Complex",
+      "category": "Athletics",
+      "liveConstruction": "generic athletics geometry",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Surveyed field and stand geometry",
+        "Current site detail"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "76c",
+      "name": "Dempsey Field \u00b7 Davis Athletic Complex",
+      "category": "Athletics",
+      "liveConstruction": "generic athletics geometry",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Surveyed field and stand geometry",
+        "Current site detail"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "77",
+      "name": "Dow Recreation and Wellness Center",
+      "category": "Athletics",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "78",
+      "name": "Held Equestrian Center",
+      "category": "Athletics",
+      "liveConstruction": "generic sealed exterior",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "79",
+      "name": "Kresge Gymnasium",
+      "category": "Athletics",
+      "liveConstruction": "generic walkable reconstruction",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Measured exterior and interior geometry",
+        "Floor elevations and stairs",
+        "Current facade details"
+      ],
+      "exactReplicaVerified": false
+    },
+    {
+      "id": "80",
+      "name": "Sprankle-Sprandel Stadium",
+      "category": "Athletics",
+      "liveConstruction": "generic athletics geometry",
+      "supportingArtifacts": [],
+      "remaining": [
+        "Surveyed field and stand geometry",
+        "Current site detail"
+      ],
+      "exactReplicaVerified": false
+    }
+  ]
+}

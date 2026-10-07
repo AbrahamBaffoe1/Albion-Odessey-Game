@@ -1,0 +1,4696 @@
+[
+  {
+    "building": "Wesley",
+    "source": "https://www.albion.edu/wp-content/uploads/2022/02/Wesley-Floor-Plan-and-Room-Dimensions.pdf",
+    "method": "Corresponding individual spaces only; best orientation match, assuming 0.18 m partitions. Runtime finish thickness is not raycast. No surveyed accuracy claim.",
+    "compared": 223,
+    "ambiguousSourceRooms": [],
+    "conflictingSourceRooms": [],
+    "nonMetricSourceEntries": [],
+    "unmatchedSourceRooms": [],
+    "unmodeledSuiteSpaces": [
+      {
+        "room": "304 Common",
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.4544,
+        "sourcePage": 5,
+        "modelSuite": "304 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "304A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.4036,
+        "sourcePage": 5,
+        "modelSuite": "304 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "304B",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.4036,
+        "sourcePage": 5,
+        "modelSuite": "304 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "305 Common",
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.6068,
+        "sourcePage": 5,
+        "modelSuite": "305 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "305A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.5306,
+        "sourcePage": 5,
+        "modelSuite": "305 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "305B",
+        "publishedLength": 3.6068,
+        "publishedWidth": 3.5306,
+        "sourcePage": 5,
+        "modelSuite": "305 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "307 Common",
+        "publishedLength": 4.445,
+        "publishedWidth": 4.3434,
+        "sourcePage": 5,
+        "modelSuite": "307 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "307A",
+        "publishedLength": 3.302,
+        "publishedWidth": 3.5814,
+        "sourcePage": 5,
+        "modelSuite": "307 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "307B",
+        "publishedLength": 3.5814,
+        "publishedWidth": 3.556,
+        "sourcePage": 5,
+        "modelSuite": "307 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "312 Common",
+        "publishedLength": 4.5466,
+        "publishedWidth": 3.3782,
+        "sourcePage": 5,
+        "modelSuite": "312 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "312A",
+        "publishedLength": 3.3782,
+        "publishedWidth": 3.6576,
+        "sourcePage": 5,
+        "modelSuite": "312 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "312B",
+        "publishedLength": 3.3782,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "312 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "313 Common",
+        "publishedLength": 4.5212,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "313 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "313A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "313 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "313B",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "313 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "314 Common",
+        "publishedLength": 4.5466,
+        "publishedWidth": 3.3528,
+        "sourcePage": 5,
+        "modelSuite": "314 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "314A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6576,
+        "sourcePage": 5,
+        "modelSuite": "314 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "314B",
+        "publishedLength": 3.3274,
+        "publishedWidth": 3.6576,
+        "sourcePage": 5,
+        "modelSuite": "314 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "315 Common",
+        "publishedLength": 4.5212,
+        "publishedWidth": 3.3528,
+        "sourcePage": 5,
+        "modelSuite": "315 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "315A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6068,
+        "sourcePage": 5,
+        "modelSuite": "315 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "315B",
+        "publishedLength": 3.3274,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "315 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "316 Common",
+        "publishedLength": 4.5466,
+        "publishedWidth": 3.3782,
+        "sourcePage": 5,
+        "modelSuite": "316 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "316A",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "316 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "316B",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "316 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "317 Common",
+        "publishedLength": 4.572,
+        "publishedWidth": 3.3274,
+        "sourcePage": 5,
+        "modelSuite": "317 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "317A",
+        "publishedLength": 3.302,
+        "publishedWidth": 3.6576,
+        "sourcePage": 5,
+        "modelSuite": "317 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      },
+      {
+        "room": "317B",
+        "publishedLength": 3.3528,
+        "publishedWidth": 3.6322,
+        "sourcePage": 5,
+        "modelSuite": "317 Suite",
+        "status": "Suite envelope exists; this individual bedroom/common space is not modeled"
+      }
+    ],
+    "maximumAxisErrorMetres": 2.1202,
+    "rooms": [
+      {
+        "room": "212",
+        "modelSpace": "212-RA",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 4.5212,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 2.1202
+      },
+      {
+        "room": "213",
+        "modelSpace": "213-RA",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 4.191,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 2.1202
+      },
+      {
+        "room": "203",
+        "modelSpace": "203",
+        "level": 2,
+        "publishedLength": 3.5306,
+        "publishedWidth": 5.1308,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.9108
+      },
+      {
+        "room": "206",
+        "modelSpace": "206",
+        "level": 2,
+        "publishedLength": 5.1054,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.8854
+      },
+      {
+        "room": "202",
+        "modelSpace": "202",
+        "level": 2,
+        "publishedLength": 5.08,
+        "publishedWidth": 3.683,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.86
+      },
+      {
+        "room": "207",
+        "modelSpace": "207",
+        "level": 2,
+        "publishedLength": 5.08,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.86
+      },
+      {
+        "room": "252",
+        "modelSpace": "252",
+        "level": 2,
+        "publishedLength": 3.683,
+        "publishedWidth": 3.6322,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.6122
+      },
+      {
+        "room": "253",
+        "modelSpace": "253",
+        "level": 2,
+        "publishedLength": 3.7084,
+        "publishedWidth": 3.6322,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.6122
+      },
+      {
+        "room": "324",
+        "modelSpace": "324",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.6068,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5868
+      },
+      {
+        "room": "204",
+        "modelSpace": "204",
+        "level": 2,
+        "publishedLength": 4.8006,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5806
+      },
+      {
+        "room": "200",
+        "modelSpace": "200-RA",
+        "level": 2,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.5306,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "300",
+        "modelSpace": "300",
+        "level": 3,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.6068,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "201",
+        "modelSpace": "201",
+        "level": 2,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.5306,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "301",
+        "modelSpace": "301",
+        "level": 3,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.556,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "302",
+        "modelSpace": "302",
+        "level": 3,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "205",
+        "modelSpace": "205",
+        "level": 2,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.5552
+      },
+      {
+        "room": "303",
+        "modelSpace": "303",
+        "level": 3,
+        "publishedLength": 4.6736,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.4536
+      },
+      {
+        "room": "306",
+        "modelSpace": "306",
+        "level": 3,
+        "publishedLength": 3.429,
+        "publishedWidth": 4.1656,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.409
+      },
+      {
+        "room": "247",
+        "modelSpace": "247",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.3582
+      },
+      {
+        "room": "325",
+        "modelSpace": "325",
+        "level": 3,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.3328
+      },
+      {
+        "room": "320",
+        "modelSpace": "320",
+        "level": 3,
+        "publishedLength": 5.4356,
+        "publishedWidth": 2.8702,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.3156
+      },
+      {
+        "room": "246",
+        "modelSpace": "246",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 1.2566
+      },
+      {
+        "room": "258",
+        "modelSpace": "258-RA",
+        "level": 2,
+        "publishedLength": 5.1054,
+        "publishedWidth": 3.1496,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.9854
+      },
+      {
+        "room": "13",
+        "modelSpace": "13-RA",
+        "level": 0,
+        "publishedLength": 5.08,
+        "publishedWidth": 3.4798,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.96
+      },
+      {
+        "room": "214",
+        "modelSpace": "214",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 4.2926,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.9202
+      },
+      {
+        "room": "215",
+        "modelSpace": "215",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 4.2164,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.9202
+      },
+      {
+        "room": "259",
+        "modelSpace": "259-RA",
+        "level": 2,
+        "publishedLength": 5.0292,
+        "publishedWidth": 3.0988,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.9092
+      },
+      {
+        "room": "208",
+        "modelSpace": "208",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8948
+      },
+      {
+        "room": "209",
+        "modelSpace": "209",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.5052,
+        "nominalClearWidth": 3.22,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8948
+      },
+      {
+        "room": "331-S",
+        "modelSpace": "331-S",
+        "level": 3,
+        "publishedLength": 2.9718,
+        "publishedWidth": 2.8956,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8756
+      },
+      {
+        "room": "330-S",
+        "modelSpace": "330-S",
+        "level": 3,
+        "publishedLength": 2.8448,
+        "publishedWidth": 2.8702,
+        "nominalClearWidth": 2.02,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8248
+      },
+      {
+        "room": "332",
+        "modelSpace": "332",
+        "level": 3,
+        "publishedLength": 4.9276,
+        "publishedWidth": 4.0132,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8076
+      },
+      {
+        "room": "254",
+        "modelSpace": "254-PB",
+        "level": 2,
+        "publishedLength": 4.9276,
+        "publishedWidth": 3.937,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8076
+      },
+      {
+        "room": "255",
+        "modelSpace": "255-PB",
+        "level": 2,
+        "publishedLength": 4.9276,
+        "publishedWidth": 3.9624,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.8076
+      },
+      {
+        "room": "333",
+        "modelSpace": "333",
+        "level": 3,
+        "publishedLength": 4.7752,
+        "publishedWidth": 3.8608,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.6552
+      },
+      {
+        "room": "243",
+        "modelSpace": "243",
+        "level": 2,
+        "publishedLength": 4.7498,
+        "publishedWidth": 2.921,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.6298
+      },
+      {
+        "room": "242",
+        "modelSpace": "242",
+        "level": 2,
+        "publishedLength": 4.699,
+        "publishedWidth": 2.921,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.579
+      },
+      {
+        "room": "345",
+        "modelSpace": "345",
+        "level": 3,
+        "publishedLength": 4.699,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.579
+      },
+      {
+        "room": "129",
+        "modelSpace": "129",
+        "level": 1,
+        "publishedLength": 4.6736,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.5536
+      },
+      {
+        "room": "311-S",
+        "modelSpace": "311-S",
+        "level": 3,
+        "publishedLength": 3.5814,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.5386
+      },
+      {
+        "room": "321",
+        "modelSpace": "321",
+        "level": 3,
+        "publishedLength": 4.6482,
+        "publishedWidth": 2.8702,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.5282
+      },
+      {
+        "room": "10",
+        "modelSpace": "10",
+        "level": 0,
+        "publishedLength": 4.6228,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.5028
+      },
+      {
+        "room": "12",
+        "modelSpace": "12",
+        "level": 0,
+        "publishedLength": 4.6228,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.5028
+      },
+      {
+        "room": "250",
+        "modelSpace": "250",
+        "level": 2,
+        "publishedLength": 3.7084,
+        "publishedWidth": 4.0386,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4884
+      },
+      {
+        "room": "251",
+        "modelSpace": "251",
+        "level": 2,
+        "publishedLength": 3.7084,
+        "publishedWidth": 4.0132,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4884
+      },
+      {
+        "room": "310-S",
+        "modelSpace": "310-S",
+        "level": 3,
+        "publishedLength": 3.6322,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4878
+      },
+      {
+        "room": "126",
+        "modelSpace": "126",
+        "level": 1,
+        "publishedLength": 4.5974,
+        "publishedWidth": 3.0734,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4774
+      },
+      {
+        "room": "365-S",
+        "modelSpace": "365-S",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 2.7432,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4768
+      },
+      {
+        "room": "364-S",
+        "modelSpace": "364-S",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 2.7686,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4514
+      },
+      {
+        "room": "286-S",
+        "modelSpace": "286-S",
+        "level": 2,
+        "publishedLength": 2.7686,
+        "publishedWidth": 4.1402,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4514
+      },
+      {
+        "room": "40-S",
+        "modelSpace": "40-S",
+        "level": 0,
+        "publishedLength": 4.0894,
+        "publishedWidth": 2.794,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.426
+      },
+      {
+        "room": "287-S",
+        "modelSpace": "287-S",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 2.794,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.426
+      },
+      {
+        "room": "241",
+        "modelSpace": "241",
+        "level": 2,
+        "publishedLength": 4.5212,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4012
+      },
+      {
+        "room": "31-S",
+        "modelSpace": "31-S",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 2.8194,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4006
+      },
+      {
+        "room": "154-S",
+        "modelSpace": "154-S",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 2.8194,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4006
+      },
+      {
+        "room": "159-S",
+        "modelSpace": "159-S",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 2.8194,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.4006
+      },
+      {
+        "room": "240",
+        "modelSpace": "240",
+        "level": 2,
+        "publishedLength": 4.4958,
+        "publishedWidth": 3.1242,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.3758
+      },
+      {
+        "room": "257",
+        "modelSpace": "257",
+        "level": 2,
+        "publishedLength": 4.4958,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.3758
+      },
+      {
+        "room": "308",
+        "modelSpace": "308",
+        "level": 3,
+        "publishedLength": 3.429,
+        "publishedWidth": 4.445,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "124",
+        "modelSpace": "124",
+        "level": 1,
+        "publishedLength": 4.445,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "131",
+        "modelSpace": "131",
+        "level": 1,
+        "publishedLength": 4.445,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "334",
+        "modelSpace": "334",
+        "level": 3,
+        "publishedLength": 4.445,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "256",
+        "modelSpace": "256",
+        "level": 2,
+        "publishedLength": 4.445,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "274",
+        "modelSpace": "274",
+        "level": 2,
+        "publishedLength": 4.445,
+        "publishedWidth": 3.2512,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.325
+      },
+      {
+        "room": "15",
+        "modelSpace": "15",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.5306,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.3106
+      },
+      {
+        "room": "30",
+        "modelSpace": "30",
+        "level": 0,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.5306,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.3106
+      },
+      {
+        "room": "232",
+        "modelSpace": "232",
+        "level": 2,
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2996
+      },
+      {
+        "room": "236",
+        "modelSpace": "236",
+        "level": 2,
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2996
+      },
+      {
+        "room": "335",
+        "modelSpace": "335",
+        "level": 3,
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2996
+      },
+      {
+        "room": "107",
+        "modelSpace": "107",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "111",
+        "modelSpace": "111",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "114",
+        "modelSpace": "114",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "115",
+        "modelSpace": "115-RA",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "118",
+        "modelSpace": "118",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "216",
+        "modelSpace": "216",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "119",
+        "modelSpace": "119",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "218",
+        "modelSpace": "218",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "123",
+        "modelSpace": "123",
+        "level": 1,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "220",
+        "modelSpace": "220",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "224",
+        "modelSpace": "224",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "225",
+        "modelSpace": "225",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "228",
+        "modelSpace": "228",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "230",
+        "modelSpace": "230",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "234",
+        "modelSpace": "234",
+        "level": 2,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "319",
+        "modelSpace": "319",
+        "level": 3,
+        "publishedLength": 4.3942,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2742
+      },
+      {
+        "room": "211",
+        "modelSpace": "211",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.4798,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2598
+      },
+      {
+        "room": "102",
+        "modelSpace": "102",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "103",
+        "modelSpace": "103",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "104",
+        "modelSpace": "104",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.0734,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "106",
+        "modelSpace": "106-RA",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "109",
+        "modelSpace": "109",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "110",
+        "modelSpace": "110",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "112",
+        "modelSpace": "112",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "113",
+        "modelSpace": "113",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "116",
+        "modelSpace": "116",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "117",
+        "modelSpace": "117",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "121",
+        "modelSpace": "121",
+        "level": 1,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "219",
+        "modelSpace": "219",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "221",
+        "modelSpace": "221",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "222",
+        "modelSpace": "222",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "226",
+        "modelSpace": "226",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "229",
+        "modelSpace": "229",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "233",
+        "modelSpace": "233",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "235",
+        "modelSpace": "235",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "318",
+        "modelSpace": "318",
+        "level": 3,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "237",
+        "modelSpace": "237",
+        "level": 2,
+        "publishedLength": 4.3688,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2488
+      },
+      {
+        "room": "16",
+        "modelSpace": "16",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "17",
+        "modelSpace": "17",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "18",
+        "modelSpace": "18",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "22",
+        "modelSpace": "22",
+        "level": 0,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "25",
+        "modelSpace": "25",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "38",
+        "modelSpace": "38",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2344
+      },
+      {
+        "room": "11",
+        "modelSpace": "11",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.175,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "105",
+        "modelSpace": "105",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "108",
+        "modelSpace": "108",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "20",
+        "modelSpace": "20-RA",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "23",
+        "modelSpace": "23",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "217",
+        "modelSpace": "217",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "120",
+        "modelSpace": "120",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.0734,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "125",
+        "modelSpace": "125",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.1496,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "34",
+        "modelSpace": "34",
+        "level": 0,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "223",
+        "modelSpace": "223",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "227",
+        "modelSpace": "227",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "231",
+        "modelSpace": "231",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "136",
+        "modelSpace": "136",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "139",
+        "modelSpace": "139",
+        "level": 1,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "238",
+        "modelSpace": "238",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "239",
+        "modelSpace": "239",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "326",
+        "modelSpace": "326",
+        "level": 3,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "244",
+        "modelSpace": "244",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "248",
+        "modelSpace": "248",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "249",
+        "modelSpace": "249",
+        "level": 2,
+        "publishedLength": 4.3434,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.2234
+      },
+      {
+        "room": "14",
+        "modelSpace": "14",
+        "level": 0,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "19",
+        "modelSpace": "19",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "26",
+        "modelSpace": "26",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "27",
+        "modelSpace": "27",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "28",
+        "modelSpace": "28",
+        "level": 0,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "29",
+        "modelSpace": "29",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "32",
+        "modelSpace": "32",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "277",
+        "modelSpace": "277",
+        "level": 2,
+        "publishedLength": 4.2164,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.209
+      },
+      {
+        "room": "140",
+        "modelSpace": "140",
+        "level": 1,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "323",
+        "modelSpace": "323",
+        "level": 3,
+        "publishedLength": 3.3528,
+        "publishedWidth": 4.318,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "245",
+        "modelSpace": "245",
+        "level": 2,
+        "publishedLength": 3.3274,
+        "publishedWidth": 4.318,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "339",
+        "modelSpace": "339-RA",
+        "level": 3,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.0988,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "342",
+        "modelSpace": "342",
+        "level": 3,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "264",
+        "modelSpace": "264",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.048,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "265",
+        "modelSpace": "265",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "272",
+        "modelSpace": "272",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "278",
+        "modelSpace": "278",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "285",
+        "modelSpace": "285",
+        "level": 2,
+        "publishedLength": 4.318,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.198
+      },
+      {
+        "room": "21",
+        "modelSpace": "21",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1836
+      },
+      {
+        "room": "24",
+        "modelSpace": "24",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1836
+      },
+      {
+        "room": "36",
+        "modelSpace": "36",
+        "level": 0,
+        "publishedLength": 4.0132,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1836
+      },
+      {
+        "room": "153",
+        "modelSpace": "153",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1836
+      },
+      {
+        "room": "157",
+        "modelSpace": "157",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1836
+      },
+      {
+        "room": "327",
+        "modelSpace": "327",
+        "level": 3,
+        "publishedLength": 4.2926,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1726
+      },
+      {
+        "room": "133",
+        "modelSpace": "133",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1582
+      },
+      {
+        "room": "147",
+        "modelSpace": "147",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1582
+      },
+      {
+        "room": "152",
+        "modelSpace": "152",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1582
+      },
+      {
+        "room": "329-S",
+        "modelSpace": "329-S",
+        "level": 3,
+        "publishedLength": 3.0734,
+        "publishedWidth": 4.0132,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1466
+      },
+      {
+        "room": "275",
+        "modelSpace": "275",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.0734,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1466
+      },
+      {
+        "room": "128",
+        "modelSpace": "128",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "132",
+        "modelSpace": "132",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "134",
+        "modelSpace": "134",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "142",
+        "modelSpace": "142",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "322",
+        "modelSpace": "322",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "145",
+        "modelSpace": "145",
+        "level": 1,
+        "publishedLength": 4.2164,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "146",
+        "modelSpace": "146",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "148",
+        "modelSpace": "148",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "150",
+        "modelSpace": "150",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "151",
+        "modelSpace": "151",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "155",
+        "modelSpace": "155",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "338",
+        "modelSpace": "338-RA",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "340",
+        "modelSpace": "340",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "261",
+        "modelSpace": "261",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "346",
+        "modelSpace": "346",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "266",
+        "modelSpace": "266",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "276",
+        "modelSpace": "276",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "279",
+        "modelSpace": "279",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "282",
+        "modelSpace": "282",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "284",
+        "modelSpace": "284",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1328
+      },
+      {
+        "room": "135",
+        "modelSpace": "135",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "141",
+        "modelSpace": "141",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "144",
+        "modelSpace": "144",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "149",
+        "modelSpace": "149",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "341",
+        "modelSpace": "341",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "344",
+        "modelSpace": "344",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "262",
+        "modelSpace": "262",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "347",
+        "modelSpace": "347",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "348",
+        "modelSpace": "348",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "349",
+        "modelSpace": "349",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "351",
+        "modelSpace": "351",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "267",
+        "modelSpace": "267",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "352",
+        "modelSpace": "352",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "268",
+        "modelSpace": "268",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "269",
+        "modelSpace": "269",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "354",
+        "modelSpace": "354",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "356",
+        "modelSpace": "356",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "358",
+        "modelSpace": "358",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "362",
+        "modelSpace": "362",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "281",
+        "modelSpace": "281",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "283",
+        "modelSpace": "283",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.1074
+      },
+      {
+        "room": "260",
+        "modelSpace": "260",
+        "level": 2,
+        "publishedLength": 4.2164,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0964
+      },
+      {
+        "room": "328-S",
+        "modelSpace": "328-S",
+        "level": 3,
+        "publishedLength": 3.1242,
+        "publishedWidth": 4.0386,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0958
+      },
+      {
+        "room": "130",
+        "modelSpace": "130",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "138",
+        "modelSpace": "138",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "143",
+        "modelSpace": "143",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "343",
+        "modelSpace": "343",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "270",
+        "modelSpace": "270",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "271",
+        "modelSpace": "271",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "357",
+        "modelSpace": "357",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "273",
+        "modelSpace": "273",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "360",
+        "modelSpace": "360",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "361",
+        "modelSpace": "361",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "280",
+        "modelSpace": "280",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.082
+      },
+      {
+        "room": "363",
+        "modelSpace": "363",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0566
+      },
+      {
+        "room": "137",
+        "modelSpace": "137",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.2512,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0456
+      },
+      {
+        "room": "210",
+        "modelSpace": "210",
+        "level": 2,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.175,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.045
+      },
+      {
+        "room": "359",
+        "modelSpace": "359",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0306
+      },
+      {
+        "room": "263",
+        "modelSpace": "263",
+        "level": 2,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0202
+      },
+      {
+        "room": "350",
+        "modelSpace": "350",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0202
+      },
+      {
+        "room": "355",
+        "modelSpace": "355",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.2258,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0202
+      },
+      {
+        "room": "353",
+        "modelSpace": "353",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.2004,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.22,
+        "maximumAxisError": 0.0196
+      }
+    ]
+  },
+  {
+    "building": "Seaton",
+    "source": "https://www.albion.edu/wp-content/uploads/2022/02/Seaton-Floor-Plan-and-Room-Dimensions.pdf",
+    "method": "Corresponding individual spaces only; best orientation match, assuming 0.18 m partitions. Runtime finish thickness is not raycast. No surveyed accuracy claim.",
+    "compared": 110,
+    "ambiguousSourceRooms": [
+      {
+        "room": "105",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "11",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "15",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "16",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "138",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "39",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "40",
+        "status": "ambiguous source unit marks; needs confirmation"
+      },
+      {
+        "room": "41",
+        "status": "ambiguous source unit marks; needs confirmation"
+      }
+    ],
+    "conflictingSourceRooms": [
+      {
+        "room": "232",
+        "status": "source conflict: visible length 23 feet 9 inches; embedded text 13 feet 9 inches; confirmation required",
+        "extractedLengthText": "13'9\"",
+        "visualLengthText": "23'9\""
+      }
+    ],
+    "nonMetricSourceEntries": [
+      {
+        "room": "347",
+        "status": "storage, no dimensions published"
+      }
+    ],
+    "unmatchedSourceRooms": [],
+    "unmodeledSuiteSpaces": [],
+    "maximumAxisErrorMetres": 1.1124,
+    "rooms": [
+      {
+        "room": "214",
+        "modelSpace": "214",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "313",
+        "modelSpace": "313",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "215",
+        "modelSpace": "215",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "216",
+        "modelSpace": "216",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "217",
+        "modelSpace": "217",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "316",
+        "modelSpace": "316",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "29",
+        "modelSpace": "29",
+        "level": 0,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "30",
+        "modelSpace": "30",
+        "level": 0,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "233",
+        "modelSpace": "233",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "332",
+        "modelSpace": "332",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "234",
+        "modelSpace": "234",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.556,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "333",
+        "modelSpace": "333",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "235",
+        "modelSpace": "235",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "334",
+        "modelSpace": "334",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "236",
+        "modelSpace": "236",
+        "level": 2,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.5814,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "335",
+        "modelSpace": "335",
+        "level": 3,
+        "publishedLength": 5.2324,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.1124
+      },
+      {
+        "room": "305",
+        "modelSpace": "305",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.0226,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.0974
+      },
+      {
+        "room": "6",
+        "modelSpace": "6",
+        "level": 0,
+        "publishedLength": 4.1529,
+        "publishedWidth": 3.048,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.072
+      },
+      {
+        "room": "205",
+        "modelSpace": "205",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.048,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.072
+      },
+      {
+        "room": "31",
+        "modelSpace": "31",
+        "level": 0,
+        "publishedLength": 5.1562,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 1.0362
+      },
+      {
+        "room": "28",
+        "modelSpace": "28",
+        "level": 0,
+        "publishedLength": 5.1054,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.9854
+      },
+      {
+        "room": "218",
+        "modelSpace": "218",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 4.191,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.871
+      },
+      {
+        "room": "317",
+        "modelSpace": "317",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 4.1656,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.8456
+      },
+      {
+        "room": "108",
+        "modelSpace": "108",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 4.064,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.744
+      },
+      {
+        "room": "208",
+        "modelSpace": "208",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 4.064,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.744
+      },
+      {
+        "room": "122",
+        "modelSpace": "122-S",
+        "level": 1,
+        "publishedLength": 2.9718,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.7418
+      },
+      {
+        "room": "248",
+        "modelSpace": "248-S",
+        "level": 2,
+        "publishedLength": 3.683,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.42,
+        "maximumAxisError": 0.737
+      },
+      {
+        "room": "9",
+        "modelSpace": "9",
+        "level": 0,
+        "publishedLength": 4.2164,
+        "publishedWidth": 4.0513,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.7313
+      },
+      {
+        "room": "307",
+        "modelSpace": "307",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 4.0386,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.7186
+      },
+      {
+        "room": "151",
+        "modelSpace": "151-S",
+        "level": 1,
+        "publishedLength": 4.0005,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.42,
+        "maximumAxisError": 0.691
+      },
+      {
+        "room": "43",
+        "modelSpace": "43-S",
+        "level": 0,
+        "publishedLength": 3.9751,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 4.42,
+        "maximumAxisError": 0.691
+      },
+      {
+        "room": "17",
+        "modelSpace": "17",
+        "level": 0,
+        "publishedLength": 3.8354,
+        "publishedWidth": 3.81,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.49
+      },
+      {
+        "room": "18",
+        "modelSpace": "18",
+        "level": 0,
+        "publishedLength": 3.81,
+        "publishedWidth": 3.81,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.49
+      },
+      {
+        "room": "21",
+        "modelSpace": "21",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.7846,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.4646
+      },
+      {
+        "room": "223",
+        "modelSpace": "223",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.7338,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.4138
+      },
+      {
+        "room": "322",
+        "modelSpace": "322",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.7338,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.4138
+      },
+      {
+        "room": "128",
+        "modelSpace": "128",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.7084,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.3884
+      },
+      {
+        "room": "315",
+        "modelSpace": "315",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.683,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.363
+      },
+      {
+        "room": "314",
+        "modelSpace": "314",
+        "level": 3,
+        "publishedLength": 4.0894,
+        "publishedWidth": 3.6576,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.3376
+      },
+      {
+        "room": "150",
+        "modelSpace": "150-S",
+        "level": 1,
+        "publishedLength": 3.81,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.31
+      },
+      {
+        "room": "247",
+        "modelSpace": "247-S",
+        "level": 2,
+        "publishedLength": 3.8354,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.2846
+      },
+      {
+        "room": "311",
+        "modelSpace": "311",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.556,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.236
+      },
+      {
+        "room": "212",
+        "modelSpace": "212",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.5306,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.2106
+      },
+      {
+        "room": "201",
+        "modelSpace": "201",
+        "level": 2,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "202",
+        "modelSpace": "202",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "203",
+        "modelSpace": "203",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "204",
+        "modelSpace": "204",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "10",
+        "modelSpace": "10-RA",
+        "level": 0,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "209",
+        "modelSpace": "209-RA",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "308",
+        "modelSpace": "308-RA",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "210",
+        "modelSpace": "210",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "221",
+        "modelSpace": "221",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "222",
+        "modelSpace": "222",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "147",
+        "modelSpace": "147",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "230",
+        "modelSpace": "230",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "231",
+        "modelSpace": "231",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "238",
+        "modelSpace": "238",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "244",
+        "modelSpace": "244",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "245",
+        "modelSpace": "245",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "246",
+        "modelSpace": "246",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.4544,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.1344
+      },
+      {
+        "room": "101",
+        "modelSpace": "101",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "102",
+        "modelSpace": "102",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "302",
+        "modelSpace": "302",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "103",
+        "modelSpace": "103",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "303",
+        "modelSpace": "303",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "104",
+        "modelSpace": "104",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "304",
+        "modelSpace": "304",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "109",
+        "modelSpace": "109-RA",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "110",
+        "modelSpace": "110",
+        "level": 1,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "309",
+        "modelSpace": "309",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "211",
+        "modelSpace": "211",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "310",
+        "modelSpace": "310",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "124",
+        "modelSpace": "124",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "125",
+        "modelSpace": "125",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "126",
+        "modelSpace": "126",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "24",
+        "modelSpace": "24-H",
+        "level": 0,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "127",
+        "modelSpace": "127",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "25",
+        "modelSpace": "25",
+        "level": 0,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "26",
+        "modelSpace": "26",
+        "level": 0,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "135",
+        "modelSpace": "135",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "220",
+        "modelSpace": "220",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "319",
+        "modelSpace": "319",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "27",
+        "modelSpace": "27",
+        "level": 0,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "136",
+        "modelSpace": "136",
+        "level": 1,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "320",
+        "modelSpace": "320",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "137",
+        "modelSpace": "137",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "321",
+        "modelSpace": "321",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "229",
+        "modelSpace": "229",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "148",
+        "modelSpace": "148",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "329",
+        "modelSpace": "329",
+        "level": 3,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "149",
+        "modelSpace": "149",
+        "level": 1,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "330",
+        "modelSpace": "330",
+        "level": 3,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "331",
+        "modelSpace": "331-RA",
+        "level": 3,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "42",
+        "modelSpace": "42-S",
+        "level": 0,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "337",
+        "modelSpace": "337",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "344",
+        "modelSpace": "344",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "345",
+        "modelSpace": "345",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "346",
+        "modelSpace": "346",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.109
+      },
+      {
+        "room": "12",
+        "modelSpace": "12",
+        "level": 0,
+        "publishedLength": 4.0132,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.1068
+      },
+      {
+        "room": "2",
+        "modelSpace": "2",
+        "level": 0,
+        "publishedLength": 4.1529,
+        "publishedWidth": 3.4163,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.0963
+      },
+      {
+        "room": "3",
+        "modelSpace": "3",
+        "level": 0,
+        "publishedLength": 4.1529,
+        "publishedWidth": 3.4163,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.0963
+      },
+      {
+        "room": "4",
+        "modelSpace": "4",
+        "level": 0,
+        "publishedLength": 4.1529,
+        "publishedWidth": 3.4163,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.0963
+      },
+      {
+        "room": "5",
+        "modelSpace": "5",
+        "level": 0,
+        "publishedLength": 4.1529,
+        "publishedWidth": 3.4163,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.0963
+      },
+      {
+        "room": "328",
+        "modelSpace": "328",
+        "level": 3,
+        "publishedLength": 4.1656,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.0836
+      },
+      {
+        "room": "213",
+        "modelSpace": "213",
+        "level": 2,
+        "publishedLength": 4.191,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.071
+      },
+      {
+        "room": "301",
+        "modelSpace": "301",
+        "level": 3,
+        "publishedLength": 4.1402,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 4.12,
+        "nominalClearDepth": 3.32,
+        "maximumAxisError": 0.0582
+      },
+      {
+        "room": "121",
+        "modelSpace": "121-S",
+        "level": 1,
+        "publishedLength": 4.064,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.056
+      },
+      {
+        "room": "312",
+        "modelSpace": "312",
+        "level": 3,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.0434
+      },
+      {
+        "room": "32",
+        "modelSpace": "32",
+        "level": 0,
+        "publishedLength": 4.08305,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.03695
+      },
+      {
+        "room": "111",
+        "modelSpace": "111",
+        "level": 1,
+        "publishedLength": 4.1148,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.32,
+        "nominalClearDepth": 4.12,
+        "maximumAxisError": 0.0328
+      }
+    ]
+  },
+  {
+    "building": "Whitehouse",
+    "source": "https://www.albion.edu/wp-content/uploads/2022/02/Whitehouse-Floor-Plan-and-Room-Dimensions.pdf",
+    "method": "Corresponding individual spaces only; best orientation match, assuming 0.18 m partitions. Runtime finish thickness is not raycast. No surveyed accuracy claim.",
+    "compared": 106,
+    "ambiguousSourceRooms": [],
+    "conflictingSourceRooms": [],
+    "nonMetricSourceEntries": [],
+    "unmatchedSourceRooms": [],
+    "unmodeledSuiteSpaces": [],
+    "maximumAxisErrorMetres": 0.0,
+    "rooms": [
+      {
+        "room": "21",
+        "modelSpace": "021",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "23",
+        "modelSpace": "023",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "25",
+        "modelSpace": "025",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "27",
+        "modelSpace": "027",
+        "level": 0,
+        "publishedLength": 6.731,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.731,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "31",
+        "modelSpace": "031",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.4036,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "32",
+        "modelSpace": "032",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "33",
+        "modelSpace": "033",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "34",
+        "modelSpace": "034",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "35",
+        "modelSpace": "035",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "36",
+        "modelSpace": "036",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "37",
+        "modelSpace": "037 \u00b7 RA",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "38",
+        "modelSpace": "038",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "41",
+        "modelSpace": "41",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "42",
+        "modelSpace": "42",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "43",
+        "modelSpace": "43",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "44",
+        "modelSpace": "44",
+        "level": 0,
+        "publishedLength": 6.4262,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.4262,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "45",
+        "modelSpace": "45",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "46",
+        "modelSpace": "46",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "47",
+        "modelSpace": "47",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "48",
+        "modelSpace": "48",
+        "level": 0,
+        "publishedLength": 6.4008,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.4036,
+        "nominalClearDepth": 6.4008,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "119",
+        "modelSpace": "119",
+        "level": 1,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.8354,
+        "nominalClearWidth": 6.2738,
+        "nominalClearDepth": 3.8354,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "121",
+        "modelSpace": "121",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "123",
+        "modelSpace": "123",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "125",
+        "modelSpace": "125",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "127",
+        "modelSpace": "127",
+        "level": 1,
+        "publishedLength": 6.5278,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.5278,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "129",
+        "modelSpace": "129",
+        "level": 1,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "131",
+        "modelSpace": "131",
+        "level": 1,
+        "publishedLength": 6.5278,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.5278,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "132",
+        "modelSpace": "132",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "133",
+        "modelSpace": "133",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "134",
+        "modelSpace": "134",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "135",
+        "modelSpace": "135 \u00b7 RA",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "136",
+        "modelSpace": "136",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "137",
+        "modelSpace": "137",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "138",
+        "modelSpace": "138",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "141",
+        "modelSpace": "141",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "142",
+        "modelSpace": "142",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "143",
+        "modelSpace": "143",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "144",
+        "modelSpace": "144",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "145",
+        "modelSpace": "145",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "146",
+        "modelSpace": "146",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "147",
+        "modelSpace": "147",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "148",
+        "modelSpace": "148",
+        "level": 1,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.4036,
+        "nominalClearWidth": 3.4036,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "200",
+        "modelSpace": "200-S",
+        "level": 2,
+        "publishedLength": 4.4196,
+        "publishedWidth": 3.429,
+        "nominalClearWidth": 4.4196,
+        "nominalClearDepth": 3.429,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "211",
+        "modelSpace": "211",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.2766,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "212",
+        "modelSpace": "212",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.2766,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "213",
+        "modelSpace": "213",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "214",
+        "modelSpace": "214",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3528,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "215",
+        "modelSpace": "215",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.302,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "216",
+        "modelSpace": "216",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.302,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "217",
+        "modelSpace": "217",
+        "level": 2,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.3246,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "218",
+        "modelSpace": "218",
+        "level": 2,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.3246,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "219",
+        "modelSpace": "219",
+        "level": 2,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.8862,
+        "nominalClearWidth": 6.3246,
+        "nominalClearDepth": 3.8862,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "221",
+        "modelSpace": "221 \u00b7 RA",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "223",
+        "modelSpace": "223",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "225",
+        "modelSpace": "225",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "227",
+        "modelSpace": "227",
+        "level": 2,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "228",
+        "modelSpace": "228",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "229",
+        "modelSpace": "229",
+        "level": 2,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "231",
+        "modelSpace": "231",
+        "level": 2,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "232",
+        "modelSpace": "232",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "233",
+        "modelSpace": "233",
+        "level": 2,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.3246,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "234",
+        "modelSpace": "234",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "235",
+        "modelSpace": "235",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "236",
+        "modelSpace": "236",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "237",
+        "modelSpace": "237",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "238",
+        "modelSpace": "238 \u00b7 RA",
+        "level": 2,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "241",
+        "modelSpace": "241",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "242",
+        "modelSpace": "242",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "243",
+        "modelSpace": "243",
+        "level": 2,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.3246,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "244",
+        "modelSpace": "244",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "245",
+        "modelSpace": "245",
+        "level": 2,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "246",
+        "modelSpace": "246",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "247",
+        "modelSpace": "247",
+        "level": 2,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 3.2766,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "248",
+        "modelSpace": "248",
+        "level": 2,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 3.3782,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "311",
+        "modelSpace": "311",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.302,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "312",
+        "modelSpace": "312",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.302,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "313",
+        "modelSpace": "313",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3528,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "314",
+        "modelSpace": "314",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "315",
+        "modelSpace": "315",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "316",
+        "modelSpace": "316",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "317",
+        "modelSpace": "317",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3274,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "318",
+        "modelSpace": "318",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.3782,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "319",
+        "modelSpace": "319",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.8862,
+        "nominalClearWidth": 6.2992,
+        "nominalClearDepth": 3.8862,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "321",
+        "modelSpace": "321 \u00b7 RA",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "323",
+        "modelSpace": "323",
+        "level": 3,
+        "publishedLength": 6.3246,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.3246,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "325",
+        "modelSpace": "325",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "326",
+        "modelSpace": "326",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "327",
+        "modelSpace": "327",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "328",
+        "modelSpace": "328",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 3.3782,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "329",
+        "modelSpace": "329",
+        "level": 3,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "331",
+        "modelSpace": "331",
+        "level": 3,
+        "publishedLength": 6.604,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.604,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "332",
+        "modelSpace": "332",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3782,
+        "nominalClearWidth": 3.3782,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "333",
+        "modelSpace": "333",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "334",
+        "modelSpace": "334",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "335",
+        "modelSpace": "335",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "336",
+        "modelSpace": "336",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "337",
+        "modelSpace": "337",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "338",
+        "modelSpace": "338 \u00b7 RA",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.2766,
+        "nominalClearWidth": 3.2766,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "341",
+        "modelSpace": "341",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "342",
+        "modelSpace": "342",
+        "level": 3,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "343",
+        "modelSpace": "343",
+        "level": 3,
+        "publishedLength": 6.2484,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2484,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "344",
+        "modelSpace": "344",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "345",
+        "modelSpace": "345",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3274,
+        "nominalClearWidth": 3.3274,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "346",
+        "modelSpace": "346",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "347",
+        "modelSpace": "347",
+        "level": 3,
+        "publishedLength": 6.2738,
+        "publishedWidth": 3.302,
+        "nominalClearWidth": 3.302,
+        "nominalClearDepth": 6.2738,
+        "maximumAxisError": 0.0
+      },
+      {
+        "room": "348",
+        "modelSpace": "348",
+        "level": 3,
+        "publishedLength": 6.2992,
+        "publishedWidth": 3.3528,
+        "nominalClearWidth": 3.3528,
+        "nominalClearDepth": 6.2992,
+        "maximumAxisError": 0.0
+      }
+    ]
+  }
+]

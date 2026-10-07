@@ -61,6 +61,7 @@ namespace AlbionOdyssey
         public void Apply(CampusStudentProfile profile,string displayName=null)
         {
             StudentName=displayName??profile.Name;GenderIdentity=profile.GenderIdentity;Pronouns=profile.Pronouns;IsTrans=profile.IsTrans;
+            if(GetComponentInChildren<KeeperAvatar>()!=null&&GetComponent<CampusStudentImpact>()==null)gameObject.AddComponent<CampusStudentImpact>();
         }
     }
 }

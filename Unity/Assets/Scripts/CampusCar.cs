@@ -3,28 +3,34 @@ namespace AlbionOdyssey
 {
     public sealed class CampusCar : MonoBehaviour
     {
+        public OdysseyGame Game {get;private set;}
+        public int CarId {get;private set;}=-1;
+        public VehicleDamage Damage=>Game!=null?Game.state.vehicles[CarId]:temporaryDamage;
+        readonly VehicleDamage temporaryDamage=new VehicleDamage();float impactReady;
+        public void Configure(OdysseyGame game,int id){Game=game;CarId=id;Visual.ApplyDamage(Damage);}
         public float speed; public BoxCollider hull; public Explorer driver;
-        Transform[] wheels=new Transform[4];
+        public CampusVehicleVisual Visual {get;private set;}
+        // True while a LAN host drives this car's pose; a car the local player is driving is never overwritten.
+        public bool Replicated{get;set;}
+        Vector3 replicaPosition;float replicaYaw;bool hasReplica;
+        public void ApplyReplicated(Vector3 position,float yaw,float hostSpeed)
+        {
+            if(driver!=null)return;
+            if(!hasReplica)transform.SetPositionAndRotation(position,Quaternion.Euler(0,yaw,0));
+            replicaPosition=position;replicaYaw=yaw;speed=hostSpeed;hasReplica=true;
+        }
+        void Update()
+        {
+            if(!Replicated||driver!=null||!hasReplica)return;
+            float blend=Mathf.Clamp01(Time.deltaTime*10f);
+            Vector3 next=(replicaPosition-transform.position).sqrMagnitude>100f?replicaPosition:Vector3.Lerp(transform.position,replicaPosition,blend);
+            transform.SetPositionAndRotation(next,Quaternion.Slerp(transform.rotation,Quaternion.Euler(0,replicaYaw,0),blend));
+            Visual?.Animate(speed*Time.deltaTime,0,false,Time.deltaTime);
+        }
         public void Build(Color color)
         {
-            var paint=TowerGeometry.Material("Car paint "+name,color,.3f,.65f);var tire=TowerGeometry.Material("Car rubber",new Color(.035f,.04f,.045f));
-            var silver=TowerGeometry.Material("Car silver",new Color(.65f,.7f,.72f),.6f,.6f);var seat=TowerGeometry.Material("Car seat",new Color(.09f,.11f,.13f));
-            KeeperAvatar.Part(transform,"Chassis",PrimitiveType.Cube,new Vector3(0,.65f,0),new Vector3(2.1f,.55f,4.3f),paint);
-            KeeperAvatar.Part(transform,"Bonnet",PrimitiveType.Cube,new Vector3(0,1.0f,1.3f),new Vector3(2.05f,.3f,1.6f),paint);
-            KeeperAvatar.Part(transform,"Rear trunk",PrimitiveType.Cube,new Vector3(0,1.02f,-1.5f),new Vector3(2.05f,.4f,1.1f),paint);
-            foreach(int side in new[]{-1,1})
-            {
-                KeeperAvatar.Part(transform,"Door",PrimitiveType.Cube,new Vector3(side*1f,1,0),new Vector3(.14f,.5f,1.8f),paint);
-                KeeperAvatar.Part(transform,"Seat",PrimitiveType.Cube,new Vector3(side*.45f,1,-.4f),new Vector3(.68f,.8f,.35f),seat);
-                KeeperAvatar.Part(transform,"Headlamp",PrimitiveType.Cube,new Vector3(side*.7f,1,2.13f),new Vector3(.45f,.22f,.06f),silver);
-                KeeperAvatar.Part(transform,"Tail lamp",PrimitiveType.Cube,new Vector3(side*.7f,.95f,-2.18f),new Vector3(.4f,.16f,.06f),TowerGeometry.Material("Car tail light",new Color(.7f,.035f,.02f)));
-            }
-            for(int i=0;i<4;i++)
-            {
-                var wheel=KeeperAvatar.Part(transform,"Wheel",PrimitiveType.Cylinder,new Vector3(i%2==0?-1.08f:1.08f,.48f,i<2?-1.35f:1.35f),new Vector3(.8f,.16f,.8f),tire);
-                wheel.transform.localRotation=Quaternion.Euler(0,0,90);wheels[i]=wheel.transform;
-            }
-            hull=gameObject.AddComponent<BoxCollider>();hull.center=new Vector3(0,.85f,0);hull.size=new Vector3(2.2f,1.3f,4.4f);
+            Visual=gameObject.AddComponent<CampusVehicleVisual>();Visual.Build(color);
+            hull=gameObject.AddComponent<BoxCollider>();hull.center=new Vector3(0,.78f,0);hull.size=new Vector3(2.2f,1.3f,4.4f);
         }
         public bool Enter(Explorer player)
         {
@@ -46,19 +52,62 @@ namespace AlbionOdyssey
         public void Drive(float throttle,float steering,bool brake,float dt)
         {
             if(driver==null)return;
-            dt=Mathf.Min(dt,.05f);
-            speed=Mathf.MoveTowards(speed,brake?0:throttle*(throttle<0?7:19),dt*(brake?28:throttle==0?5:8));
+            if(dt<=0)return;dt=Mathf.Min(dt,.05f);
+            float limit=Mathf.Lerp(1,.6f,Damage.amount/100f);
+            speed=Mathf.MoveTowards(speed,brake?0:throttle*(throttle<0?7:19)*limit,dt*(brake?28:throttle==0?5:8));
             Quaternion turn=transform.rotation*Quaternion.Euler(0,steering*Mathf.Clamp(speed,-9,9)*4*dt,0);
-            Vector3 movement=turn*Vector3.forward*speed*dt;
+            Vector3 movement=turn*Vector3.forward*speed*dt,center=transform.position+Vector3.up*.85f;
+            var half=new Vector3(1.1f,.6f,2.2f);bool blocked=false;RaycastHit wall=default;
             hull.enabled=false;
-            bool blocked=Physics.BoxCast(transform.position+Vector3.up*.85f,new Vector3(1.1f,.6f,2.2f),movement.normalized,out _,turn,movement.magnitude+.12f,~0,QueryTriggerInteraction.Ignore);
-            Vector3 next=transform.position+movement;
-            blocked|=Mathf.Abs(next.x)>570||next.z<100||next.z>805;
-            blocked|=Physics.CheckBox(next+Vector3.up*.85f,new Vector3(1.1f,.6f,2.2f),turn,~0,QueryTriggerInteraction.Ignore);
-            hull.enabled=true;
-            if(blocked)speed=0;else {transform.SetPositionAndRotation(next,turn);foreach(var wheel in wheels)wheel.Rotate(Vector3.up,speed*dt*120,Space.Self);}
+            try
+            {
+                // Sweep every contact and select the nearest solid surface; trigger targets cannot hide a wall.
+                float nearest=float.MaxValue;
+                if(movement.sqrMagnitude>.000001f)foreach(var hit in Physics.BoxCastAll(center,half,movement.normalized,turn,movement.magnitude+.12f,~0,QueryTriggerInteraction.Ignore))
+                {
+                    if(hit.collider.GetComponentInParent<CampusStudentImpact>()!=null)continue;
+                    if(hit.distance<nearest){nearest=hit.distance;wall=hit;blocked=true;}
+                }
+                Vector3 next=transform.position+movement;
+                foreach(var hit in Physics.OverlapBox(next+Vector3.up*.85f,half,turn,~0,QueryTriggerInteraction.Ignore))
+                    if(hit.GetComponentInParent<CampusStudentImpact>()==null)blocked=true;
+                blocked|=next.x>570||next.x<-1270||next.z<100||next.z>805;
+                // Only reach students in front of the first wall, including targets already touching the hull.
+                if(Mathf.Abs(speed)>=2.5f)
+                {
+                    float reach=Mathf.Min(movement.magnitude,nearest);
+                    var hitStudents=new System.Collections.Generic.HashSet<CampusStudentImpact>();
+                    foreach(var hit in Physics.BoxCastAll(center,half,movement.normalized,turn,reach,~0,QueryTriggerInteraction.Collide))
+                    {var student=hit.collider.GetComponentInParent<CampusStudentImpact>();if(student!=null&&hit.distance<nearest)hitStudents.Add(student);}
+                    foreach(var hit in Physics.OverlapBox(center,half,turn,~0,QueryTriggerInteraction.Collide))
+                    {var student=hit.GetComponentInParent<CampusStudentImpact>();if(student!=null)hitStudents.Add(student);}
+                    bool struck=false;foreach(var student in hitStudents)struck|=student.KnockDown(movement.normalized*Mathf.Abs(speed),hull);
+                    if(struck){Game?.repairs?.ImpactSound(false);if(Game!=null)Game.notice="Student knocked down · recovering";speed*=.7f;}
+                }
+                if(blocked)
+                {
+                    if(wall.collider!=null&&Time.time>=impactReady&&Mathf.Abs(speed)>=3)
+                    {
+                        float strength=Mathf.Abs(speed);Vector3 point=wall.point;
+                        if(point==Vector3.zero)point=hull.ClosestPoint(transform.position+movement.normalized*3+Vector3.up*.8f);
+                        RecordImpact(point,wall.normal,strength);impactReady=Time.time+.8f;
+                    }
+                    speed=0;
+                }
+                else transform.SetPositionAndRotation(next,turn);
+            }
+            finally{hull.enabled=true;}
+            Visual.Animate(blocked?0:speed*dt,steering,brake,dt);
             SyncDriver();
         }
-        void SyncDriver(){driver.transform.position=transform.TransformPoint(new Vector3(-.45f,.42f,-.05f));driver.transform.rotation=transform.rotation;}
+        public void RecordImpact(Vector3 point,Vector3 normal,float velocity)
+        {
+            if(velocity<3||normal.sqrMagnitude<.1f)return;
+            Vector3 p=transform.InverseTransformPoint(point),n=transform.InverseTransformDirection(normal).normalized;
+            var dent=new VehicleDent{x=Mathf.Clamp(p.x,-1.1f,1.1f),y=Mathf.Clamp(p.y,.25f,1.4f),z=Mathf.Clamp(p.z,-2.2f,2.2f),nx=n.x,ny=n.y,nz=n.z,depth=Mathf.Clamp(velocity*.027f,.10f,.48f)};
+            Damage.Impact(Mathf.Clamp(Mathf.RoundToInt((velocity-2)*4),1,65),dent);Visual.ApplyDamage(Damage);
+            if(Game!=null){Game.Save();Game.notice="Collision · body damage "+Damage.amount+"%. Stop and press R for repairs.";Game.repairs?.ImpactSound(true);}
+        }
+        void SyncDriver(){driver.transform.position=transform.TransformPoint(new Vector3(-.38f,-.12f,-.05f));driver.transform.rotation=transform.rotation;}
     }
 }

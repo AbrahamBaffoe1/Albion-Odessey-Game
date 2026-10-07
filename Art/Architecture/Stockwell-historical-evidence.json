@@ -1,0 +1,57 @@
+{
+  "building": "Stockwell Memorial Library",
+  "campusId": "20",
+  "source": "https://ignca.gov.in/Asi_data/3497.pdf",
+  "title": "College and University Library Buildings",
+  "author": "Edna Ruth Hanley",
+  "publisher": "American Library Association",
+  "publicationYear": 1939,
+  "pdfPagesOneBased": [
+    83,
+    84
+  ],
+  "printedPages": [
+    84,
+    85
+  ],
+  "sha256": "6a0d67f2a30eb24b1781fbc04e187180d127f7daf7dcc228538bb7847263087e",
+  "status": "Historical evidence visually reviewed; not approved as a current interior plan",
+  "observations": {
+    "entranceOrientation": "south",
+    "buildingWidthFeet": 120,
+    "buildingWidthMetres": 36.576,
+    "readingRoomCeilingHeightFeet": 15,
+    "readingRoomCeilingHeightMetres": 4.572,
+    "mainLevels": [
+      "Ground",
+      "First",
+      "Second"
+    ],
+    "stackTiers": 6,
+    "stackLocation": "rear central",
+    "sectionAvailable": true,
+    "floorPlansAvailable": true,
+    "historicalExterior": {
+      "form": "Rectangular brick shell with hipped roof",
+      "sourcePrintedPage": 84,
+      "visibleRoofStacks": 2,
+      "currentRoofStackStatus": "unverified",
+      "sectionRoofRiseToSpanApproximate": 0.25,
+      "sectionRatioStatus": "visual estimate from printed page 85, not a labeled dimension"
+    }
+  },
+  "uncertainties": [
+    "Outer dimensions 156 and 138 feet appear around the combined plan composition; their scope is not established and they are not treated as footprint dimensions.",
+    "The 15-foot dimension is a historical reading-room ceiling height, not a universal floor-to-floor interval.",
+    "Room arrangement predates 1980 Mudd connection and 2011 Cutler Commons renovation.",
+    "Current partition positions, stairs, accessible routes and elevations require comparison with contemporary evidence."
+  ],
+  "modernReference": "https://www.albion.edu/wp-content/uploads/2024/01/Albion-College-Academic-Catalog-2023-24.pdf",
+  "currentModel": {
+    "widthMetres": 24,
+    "depthMetres": 15,
+    "floors": 3,
+    "floorHeightMetres": 3.6,
+    "status": "Generic game reconstruction; does not reproduce the historical plan or prove present-day accuracy"
+  }
+}

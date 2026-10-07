@@ -1,0 +1,33 @@
+SEATON ROOM-FITTING EXPERIMENT
+
+110 usable published length/width pairs now fit as clear rectangles in a separate staged plan. Pairwise checks across rooms, service spaces, stairs and provisional infill found no rectangle overlaps.
+
+The experimental layout expands the original diagram cells uniformly by 1.24886 horizontally and 1.25870 vertically, producing a 75.681 by 37.006 metre envelope. THIS IS NOT A MEASURED BUILDING FOOTPRINT. Uniform expansion is a feasibility experiment, not an accepted reconstruction. Unused cell regions are explicitly marked provisional infill, not invented corridors.
+
+Wall thickness remains an assumed 0.18 metres. Measurement axis orientation, irregular room shapes, corridor widths, current exterior alignment and stair dimensions remain unverified. Ambiguous/conflicting measurements remain excluded. Numerical agreement only proves that the encoded rectangles reproduce the selected pairs; it does not prove architectural accuracy.
+
+No live geometry was changed. No runtime traversal or door-clearance test has yet been run for this stage.
+
+Next: compare the row packing against the source diagrams and measured exterior constraints before choosing a replacement footprint. Validate room approaches, doors, stairs and actual rendered wall clearances before live installation.
+
+PLAN-LEVEL CIRCULATION CHECK
+
+The 0.1 m grid check found 107 inferred doorway approaches connected to each floor's largest corridor component. Rooms 43-S, 151-S and 248-S meet the Baldwin-end stair and remain unverified until actual landing geometry is tested. No other blocked/disconnected approach was found.
+
+The check reserves a 0.42 m player radius plus 0.09 m assumed half-wall clearance and conservatively erodes the union of footprint rectangles. Eroding individual rectangles would incorrectly create barriers along their internal seams; the checker explicitly avoids that error. It blocks all stair footprints rather than pretending their entire area is a level floor.
+
+This does not test door leaves, rendered partition thickness, furniture, vertical routes or correspondence to real doorway positions. The stage remains uninstalled and is not an exact replica.
+
+3D STAGED CHECK RESULT
+
+SeatonMetricSmoke now builds this supplied plan in isolation and uses the actual player controller. All 110 measured rectangles passed physical wall-ray checks within 0.00066 m of their encoded source pairs. All 110 closed doors blocked movement, and all 110 opened doors allowed entry while preserving the expected floor height. This includes 43-S, 151-S and 248-S beside the Baldwin-end stair landing.
+
+Measurement rays sample away from doorway centres; an initial centre ray escaped through a doorway and measured an adjacent space. That measuring defect was corrected before the passing run. The reported tolerance is computational agreement with transcribed pairs, not survey accuracy.
+
+Each room approach was reached by test teleport. The check does not prove continuous building-wide routes, full stair traversal, furniture clearances, realistic doorway locations, exterior dimensions or historical fidelity. The stage remains separate from the live campus. The test saved its success result before the player was stopped during exit cleanup.
+
+STAGED STAIR TRAVERSAL
+
+The actual controller ascended and descended all 18 staged flights across three cores and three floor transitions. Each two-flight ascent and its reversed descent ran continuously; the player was repositioned between core/level cases. Landing elevations stayed within 0.2 m of the generated floor/half-floor datums. The saved stairs-result.json reports success.
+
+This verifies movement on the generated stairs, not that their risers, treads, landings or elevations reproduce real Seaton. It also does not establish one continuous route from the external entry through every room. The expanded layout remains isolated and its exterior size is unverified.

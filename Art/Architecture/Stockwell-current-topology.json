@@ -1,0 +1,86 @@
+{
+  "source": "https://library.albion.edu/find-resources/library-map",
+  "guideImage": "https://library.albion.edu/sites/default/files/Building-Guide_0.png",
+  "guideSHA256": "9eacc0877ae14af13940a809c9edc770997bb4ce3b2fcbb844c4b957922ea714",
+  "status": "Current official wayfinding guide visually reviewed; schematic, not a dimensioned architectural plan",
+  "stockwell": {
+    "mainLevels": [
+      {
+        "name": "Lower",
+        "functions": [
+          "Stockwell 110 Q\u2013Z",
+          "Quiet study",
+          "Restrooms"
+        ],
+        "associatedTiers": [
+          1,
+          2
+        ]
+      },
+      {
+        "name": "Main",
+        "functions": [
+          "Cutler Center",
+          "Read Between the Grinds",
+          "Offices"
+        ],
+        "associatedTiers": [
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Upper",
+        "functions": [
+          "Peer tutoring",
+          "Study space",
+          "Restrooms",
+          "Offices"
+        ],
+        "associatedTiers": [
+          5,
+          6
+        ]
+      }
+    ],
+    "tiers": [
+      {
+        "number": 1,
+        "use": "PR\u2013PZ books"
+      },
+      {
+        "number": 2,
+        "use": "PQ\u2013PR books"
+      },
+      {
+        "number": 3,
+        "use": "P\u2013PQ books and juvenile books"
+      },
+      {
+        "number": 4,
+        "use": "Bound journals"
+      },
+      {
+        "number": 5,
+        "use": "Group study"
+      },
+      {
+        "number": 6,
+        "use": "Bound journals"
+      }
+    ]
+  },
+  "mudd": {
+    "levels": [
+      "Lower",
+      "Main",
+      "Upper"
+    ]
+  },
+  "limitations": [
+    "Guide does not establish exact floor heights, tier elevations, stair dimensions or measured room boundaries.",
+    "Association of tier pairs with a main level is wayfinding information, not surveyed vertical alignment.",
+    "Archive floor functions cannot override this guide without current evidence."
+  ],
+  "requiredModelCorrection": "Stockwell currently has three uniform generic floors; six distinct stack tiers and source-consistent circulation remain unimplemented."
+}

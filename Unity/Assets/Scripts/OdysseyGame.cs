@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -11,24 +12,34 @@ namespace AlbionOdyssey
     public sealed class PlotMarker : MonoBehaviour { public int cell; }
     public sealed class OdysseyGame : MonoBehaviour
     {
+        public bool Ready {get;private set;}
+        public OdysseyLoading loading;
+        public OdysseyPresentation presentation;
         public OdysseyState state=new OdysseyState();
         public Explorer player;
         public Camera builderCamera;
         public bool building;
         public CampusLife life;
         public CampusExpansion campus;
+        public CampusVehicleRepairs repairs;
         public CampusTour tour;
         public CampusShell shell;
         public OdysseyAudio sound;
         public CampusWorldSystems world;
         public OdysseyAccessibility accessibility;
         public CampusOnlineSession online;
+        public StudentAccountService accounts;
+        public StudentAccountPanel accountPanel;
+        public CampusSharedSession shared;
         public OdysseyVrSupport vr;
         public OdysseyXRExperience xr;
         public CampusWeather weather;
+        public CampusEnvironment environment;
+        public CampusWorldReplica replica;
+        public AlbionCity city;
         public OdysseyRuntimeDiagnostics diagnostics;
         public OdysseyCrashReporter crashReporter;
-        public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press E to interact.";
+        public string notice="Meet Pip beside the entrance, or explore Legacy Hall. Aim and press your interact key.";
         readonly List<GameObject> memories=new List<GameObject>();
         GameObject island,beacon;
         int selected=1;
@@ -45,14 +56,34 @@ namespace AlbionOdyssey
         {
             if(FindAnyObjectByType<OdysseyGame>()==null)new GameObject("Albion Odyssey").AddComponent<OdysseyGame>();
         }
-        void Start()
+        IEnumerator Start()
         {
             Application.runInBackground=PlaytestMode.Active;
+            loading=gameObject.AddComponent<OdysseyLoading>();
+            var setup=Initialize();
+            while(true)
+            {
+                object current;
+                try { if(!setup.MoveNext())break; current=setup.Current; }
+                catch(Exception error){ Debug.LogException(error); loading.Fail(); yield break; }
+                yield return current;
+            }
+        }
+        IEnumerator Initialize()
+        {
+            loading.Report("Reading your campus save",0);yield return null;
             Application.targetFrameRate=60;QualitySettings.antiAliasing=4;QualitySettings.pixelLightCount=8;QualitySettings.shadowDistance=100;QualitySettings.shadows=ShadowQuality.All;
             if(!PlaytestMode.Active&&File.Exists(LoadPath))
             {
                 try{var saved=JsonUtility.FromJson<OdysseyState>(File.ReadAllText(LoadPath));saved?.UpgradeLegacySave();if(saved!=null&&saved.Valid()){state=saved;if(LoadPath.EndsWith(".bak"))notice="Recovered the last safe save after an interrupted write.";}else notice="Invalid save ignored. A new session has started.";}
                 catch(Exception e){notice="Save could not be loaded: "+e.Message;}
+            }
+            loading.Report("Loading architecture and materials",1);yield return null;
+            var warmAssets=new List<UnityEngine.Object>();
+            foreach(var path in new[]{"CampusCraft/Student","Vehicles/CampusCoupe","Wildlife/Squirrel_Leucistic"})
+            {
+                var request=Resources.LoadAsync<GameObject>(path);yield return request;
+                if(request.asset==null)throw new InvalidOperationException("Required campus asset is unavailable.");warmAssets.Add(request.asset);
             }
             TowerGeometry.Load();
             crashReporter=gameObject.AddComponent<OdysseyCrashReporter>();crashReporter.Setup(this);
@@ -78,6 +109,7 @@ namespace AlbionOdyssey
                 lamp.transform.position=new Vector3(x,floor*3.6f+3.1f,z);lamp.transform.rotation=Quaternion.Euler(90,0,0);
                 lamp.spotAngle=140;lamp.range=8;lamp.intensity=2.8f;lamp.color=new Color(1,.94f,.82f);lamp.shadows=LightShadows.Soft;
             }
+            loading.Report("Preparing your student",2);yield return null;
             var avatar=new GameObject("Keeper - 1.92m character");avatar.transform.position=new Vector3(0,.05f,-22);
             player=avatar.AddComponent<Explorer>();player.body=avatar.AddComponent<CharacterController>();
             player.body.height=1.92f;player.body.radius=.42f;player.body.center=new Vector3(0,.96f,0);player.body.stepOffset=.40f;player.body.skinWidth=.035f;
@@ -90,30 +122,48 @@ namespace AlbionOdyssey
             OdysseyStory.Refresh(state);RefreshMemories();RebuildCampus();CreateFootprint();Cursor.lockState=CursorLockMode.Locked;Cursor.visible=false;
             sound=gameObject.AddComponent<OdysseyAudio>();sound.Initialize(state);
             life=gameObject.AddComponent<CampusLife>();life.Setup(this);
+            player.controls=false;loading.Report("Building the campus and its paths",3);yield return null;
             campus=gameObject.AddComponent<CampusExpansion>();campus.Setup(this);
+            player.controls=false;loading.Report("Preparing campus life and building interiors",4);yield return null;
             tour=gameObject.AddComponent<CampusTour>();tour.Setup(this);
             shell=gameObject.AddComponent<CampusShell>();shell.Setup(this);
             gameObject.AddComponent<CampusBuildings>().Setup(this);
             weather=gameObject.AddComponent<CampusWeather>();weather.Setup(this);
+            environment=gameObject.AddComponent<CampusEnvironment>();environment.Setup(this);
+            replica=gameObject.AddComponent<CampusWorldReplica>();replica.Setup(this);
             world=gameObject.AddComponent<CampusWorldSystems>();world.Setup(this);
+            city=gameObject.AddComponent<AlbionCity>();city.Setup(this); // after the campus students so city pedestrians are appended in a fixed order
+            CampusStudentNavigation.BuildPaths();
             accessibility=gameObject.AddComponent<OdysseyAccessibility>();accessibility.Setup(this);
             online=gameObject.AddComponent<CampusOnlineSession>();online.Setup(this);
+            accounts=gameObject.AddComponent<StudentAccountService>();accounts.Setup();accounts.ProfileChanged+=campus.ApplyOnlineAvatar;
+            shared=gameObject.AddComponent<CampusSharedSession>();shared.Setup(this);
+            accountPanel=gameObject.AddComponent<StudentAccountPanel>();accountPanel.Setup(this);
             vr=gameObject.AddComponent<OdysseyVrSupport>();vr.Setup(this);
             xr=gameObject.AddComponent<OdysseyXRExperience>();xr.Setup(this);
             diagnostics=gameObject.AddComponent<OdysseyRuntimeDiagnostics>();diagnostics.Setup(this);
             gameObject.AddComponent<CampusHud>().Setup(this);
             gameObject.AddComponent<WorldTextDepth>();
+            player.controls=false;loading.Report("Lighting your student showcase",5);yield return null;
+            gameObject.AddComponent<CampusArtDirection>().Setup(this);
+            presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
+            repairs=gameObject.AddComponent<CampusVehicleRepairs>();repairs.Setup(this);
+            Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
-            if(player==null)return;
+            if(!Ready||player==null||loading!=null&&loading.Busy)return;
+            if(repairs!=null&&repairs.HandleInput())return;
+            if(shared!=null&&shared.HandleInput())return;
+            if(accountPanel!=null&&accountPanel.HandleInput())return;
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
             if(vr!=null&&vr.HandleInput())return;
             if(shell!=null&&shell.HandleInput())return;
             if(weather!=null&&weather.HandleInput())return;
             if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.HandleInput())return;
+            if(city!=null&&city.HandleInput())return;
             if(tour!=null&&tour.HandleInput())return;
             if(campus!=null&&campus.HandleInput())return;
             if(life!=null&&life.HandleInput())return;
@@ -155,7 +205,7 @@ namespace AlbionOdyssey
                     }
                 }
             }
-            else if((Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.F))&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
+            else if(OdysseyAccessibility.InteractPressed()&&(Cursor.lockState==CursorLockMode.Locked||player.pointerControls))Interact();
             foreach(var m in memories)if(m!=null)m.transform.Rotate(0,30*Time.deltaTime,0);
         }
         public void Interact()
@@ -169,9 +219,9 @@ namespace AlbionOdyssey
                 if(hit.collider.GetComponent<GuideMarker>()!=null)
                 {int next=OdysseyStory.Next(state.Current);notice="Pip: "+(next<6?OdysseyStory.Hints[next]:"Your charter is complete! Visit the classroom and share what you have learned.");SetJournal(true);return;}
                 var memory=hit.collider.GetComponent<MemoryMarker>();
-                if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorns. Press J to read your journal.";Save();RefreshMemories();return;}
+                if(memory!=null&&state.Collect(memory.id)){notice=OdysseyStory.Titles[memory.id]+" discovered. +3 acorn coins and +1 gem. Press J to read your journal.";Save();RefreshMemories();return;}
             }
-            notice="Move closer and aim at a golden memory or Pip, then press E or F.";
+            notice="Move closer and aim at a golden memory or Pip, then press "+OdysseyAccessibility.InteractLabel+".";
         }
         public void ToggleMode()
         {
@@ -279,14 +329,16 @@ namespace AlbionOdyssey
             foreach(var edge in footprintEdges)edge.sharedMaterial=material;
             footprint.SetActive(true);
         }
-        void DrawJournal(float width,float height)
+        void DrawJournal(float width,float height,float scale)
         {
-            float w=Mathf.Min(1000,width-50),h=Mathf.Min(650,height-40),x=(width-w)/2,y=(height-h)/2;
+            Rect safe=AlbionUITheme.SafeArea(scale);
+            float w=Mathf.Min(1000,Mathf.Max(320,safe.width-50)),h=Mathf.Min(650,Mathf.Max(300,safe.height-40));
+            float x=Mathf.Max(safe.xMin+25,safe.xMin+(safe.width-w)/2),y=Mathf.Max(safe.yMin+20,safe.yMin+(safe.height-h)/2);
             GUI.color=new Color(0,0,0,.75f);GUI.DrawTexture(new Rect(0,0,width,height),Texture2D.whiteTexture);
             GUI.color=new Color(.024f,.037f,.052f,1);GUI.DrawTexture(new Rect(x,y,w,h),Texture2D.whiteTexture);GUI.color=Color.white;
             if(journalButton==null)
             {
-                journalButton=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=14,alignment=TextAnchor.MiddleLeft,padding=new RectOffset(12,8,0,0),border=new RectOffset()};
+                journalButton=new GUIStyle(GUI.skin.button){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),alignment=TextAnchor.MiddleLeft,padding=new RectOffset(12,8,0,0),border=new RectOffset()};
                 foreach(var appearance in new[]{journalButton.normal,journalButton.hover,journalButton.active,journalButton.focused}){appearance.background=Texture2D.whiteTexture;appearance.textColor=Color.white;}
             }
             GUI.Label(new Rect(x+24,y+18,w-130,40),"THE KEEPER'S JOURNAL",title);
@@ -304,9 +356,9 @@ namespace AlbionOdyssey
             }
             float rx=x+column+14,rw=w-column-40;
             bool collected=(state.Current.memories&(1<<journalPage))!=0;
-            GUI.Label(new Rect(rx,y+106,rw,50),collected?OdysseyStory.Titles[journalPage]:"A memory is waiting",new GUIStyle(title){fontSize=23,wordWrap=true});
+            GUI.Label(new Rect(rx,y+106,rw,50),collected?OdysseyStory.Titles[journalPage]:"A memory is waiting",new GUIStyle(title){fontSize=AlbionUITheme.TextSize(23),wordWrap=true});
             GUI.Label(new Rect(rx,y+163,rw,30),journalPage<8?"FLOOR "+(journalPage+1)+" · "+OdysseyStory.Floors[journalPage]:"OUTSIDE · Entrance plaza",small);
-            GUI.Label(new Rect(rx,y+204,rw,160),collected?OdysseyStory.Entries[journalPage]:"Find the golden memory at this location, aim at it and press E. Every Keeper can make their own discoveries.",new GUIStyle(body){wordWrap=true});
+            GUI.Label(new Rect(rx,y+204,rw,160),collected?OdysseyStory.Entries[journalPage]:"Find the golden memory at this location, aim at it and press your interact key. Every Keeper can make their own discoveries.",new GUIStyle(body){wordWrap=true});
             GUI.Label(new Rect(rx,y+370,rw,28),"YOUR CHARTER",body);
             for(int i=0;i<6;i++)GUI.Label(new Rect(rx,y+407+i*26,rw,25),((state.Current.milestones&(1<<i))!=0?"✓  ":"○  ")+OdysseyStory.Chapters[i],small);
             int next=OdysseyStory.Next(state.Current);
@@ -314,12 +366,13 @@ namespace AlbionOdyssey
         }
         void OnGUI()
         {
+            if(!Ready)return;
             if(player==null)return;
-            if(title==null){title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=27,fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=17};small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=14,wordWrap=true};}
+            if(title==null){title=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(27),fontStyle=FontStyle.Bold};body=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(17)};small=new GUIStyle(GUI.skin.label){font=AlbionUITheme.BodyFont,fontSize=AlbionUITheme.TextSize(14),wordWrap=true};}
             float scale=Mathf.Min(Screen.width/1280f,Screen.height/800f);GUI.matrix=Matrix4x4.Scale(new Vector3(scale,scale,1));
             float width=Screen.width/scale,height=Screen.height/scale;
             if(life!=null&&life.PanelOpen)return;
-            if(journalOpen){DrawJournal(width,height);return;}
+            if(journalOpen){DrawJournal(width,height,scale);return;}
             if(!building)return;
             GUI.color=new Color(.035f,.05f,.08f,.94f);GUI.DrawTexture(new Rect(16,16,Mathf.Min(width-32,850),108),Texture2D.whiteTexture);
             GUI.DrawTexture(new Rect(0,height-115,width,115),Texture2D.whiteTexture);GUI.color=Color.white;
@@ -328,7 +381,7 @@ namespace AlbionOdyssey
             GUI.Label(new Rect(32,96,800,23),tour!=null&&tour.InRoom?"Wesley · room study (approximate dimensions)":campus!=null&&campus.OnCampus&&!building?campus.Nearest.name+" · "+campus.CountFound()+"/7 discoveries" : building?"Personal campus · "+(state.Current.style==1?"Fantasy":"Campus"):$"Eight-storey Blender building · Floor {Mathf.Clamp(Mathf.FloorToInt((player.transform.position.y+.1f)/3.6f)+1,1,8)}",small);
             GUI.Label(new Rect(24,height-105,width-48,30),notice,small);
             GUI.Label(new Rect(24,height-81,width-48,25),"CHARTER  /  "+OdysseyStory.Objective(state.Current),small);
-            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":"WASD / ARROWS move   MOUSE look   SHIFT run   SPACE jump / brake   E interact / enter / exit   V camera",small);
+            GUI.Label(new Rect(24,height-55,width-48,30),building?$"1 Garden (2)   2 Library (4)   3 Observatory (6)   4 Hall (3)    Selected: {Names[selected]}":OdysseyAccessibility.ForwardKey+" / ARROWS move   MOUSE look   SHIFT run   "+OdysseyAccessibility.JumpKey+" jump / brake   "+OdysseyAccessibility.InteractLabel+" interact / enter / exit   V camera",small);
             GUI.Label(new Rect(24,height-30,width-48,28),"M map    H history    G building stories    K courses    J journal    F2 build    TAB Keeper    C Beacon    Y snow    ESC help"+(building?"    T appearance    CLICK build    RIGHT-CLICK reclaim":"    Click to capture mouse"),small);
             if(!building&&!journalOpen){GUI.Label(new Rect(width/2-5,height/2-12,20,24),"+",body);}
         }
