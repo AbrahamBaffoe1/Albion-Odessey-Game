@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 namespace AlbionOdyssey {
 public sealed class OdysseyPortraitStudio:MonoBehaviour {
  [Serializable] class Payload {public string image,candidateId,error;public bool consent,enabled;}
- OdysseyGame game;Texture2D source,preview,current;byte[] sourceBytes;string candidate="",owner="",status="Choose a photo to create your student portrait.";int focus;bool busy,consent,enabledGeneration;UnityWebRequest pending;
+ OdysseyGame game;Texture2D source,preview,current;byte[] sourceBytes;string candidate="",owner="",status="Choose a photo to create your student portrait.";int focus;bool busy,consent,enabledGeneration,serviceChecked;string serviceError="";UnityWebRequest pending;
  public Texture2D Current=>current;
  public bool IsOpen=>game!=null&&game.life.panel=="portrait";
  #if UNITY_STANDALONE_OSX && !UNITY_EDITOR
@@ -17,22 +17,33 @@ public sealed class OdysseyPortraitStudio:MonoBehaviour {
  #endif
  public void Setup(OdysseyGame g){game=g;game.accounts.ProfileChanged+=AccountChanged;}
  void AccountChanged(){if(owner==game.accounts.UserId)return;owner=game.accounts.UserId;pending?.Abort();Clear();if(game.accounts.SignedIn)StartCoroutine(Call("GET",null));}
- void Clear(){if(source!=null)Destroy(source);if(preview!=null)Destroy(preview);if(current!=null)Destroy(current);source=preview=current=null;sourceBytes=null;candidate="";consent=false;enabledGeneration=false;}
+ void Clear(){if(source!=null)Destroy(source);if(preview!=null)Destroy(preview);if(current!=null)Destroy(current);source=preview=current=null;sourceBytes=null;candidate="";consent=false;enabledGeneration=false;serviceChecked=false;serviceError="";}
  public void Open(){game.life.SetPanel("portrait");AccountChanged();if(!busy&&game.accounts.SignedIn)StartCoroutine(Call("GET",null));}
  public bool HandleInput(){if(!IsOpen)return false;
   if(AlbionUIInput.Poll(out var horizontal,out var vertical,out var choose,out var cancel)){
    if(cancel&&!busy){game.life.SetPanel("store");return true;}
-   if(vertical!=0||horizontal!=0)focus=(focus+(vertical>0||horizontal<0?-1:1)+6)%6;
-   if(choose&&!busy){if(focus==0)Choose();else if(focus==1&&game.accounts.SignedIn)consent=!consent;else if(focus==2){if(!game.accounts.SignedIn)game.accountPanel.Open();else if(consent&&sourceBytes!=null&&enabledGeneration)StartCoroutine(Call("POST",new Payload{image=Convert.ToBase64String(sourceBytes),consent=true}));}else if(focus==3&&preview!=null&&!string.IsNullOrEmpty(candidate))StartCoroutine(Call("PUT",new Payload{candidateId=candidate}));else if(focus==4&&current!=null)StartCoroutine(Call("DELETE",null));else if(focus==5)game.life.SetPanel("store");}
+   if(vertical!=0||horizontal!=0)focus=(focus+(vertical>0||horizontal<0?-1:1)+7)%7;
+   if(choose&&!busy){if(focus==0)Choose();else if(focus==1&&game.accounts.SignedIn)consent=!consent;else if(focus==2){if(!game.accounts.SignedIn)game.accountPanel.Open();else if(consent&&sourceBytes!=null&&enabledGeneration)StartCoroutine(Call("POST",new Payload{image=Convert.ToBase64String(sourceBytes),consent=true}));}else if(focus==3&&preview!=null&&!string.IsNullOrEmpty(candidate))StartCoroutine(Call("PUT",new Payload{candidateId=candidate}));else if(focus==4&&current!=null)StartCoroutine(Call("DELETE",null));else if(focus==5)game.life.SetPanel("store");else if(focus==6)RefreshService();}
   }return true;
  }
  public void SelectFile(string path){
   try{var info=new FileInfo(path);if(!info.Exists||info.Length>6*1024*1024)throw new Exception();byte[] bytes=File.ReadAllBytes(path);if(bytes.Length<24)throw new Exception();
    // Decode only bounded PNG/JPEG dimensions, before allocating a texture.
    if(!PortraitImageBounds.Valid(bytes))throw new Exception();
-   var image=new Texture2D(2,2);if(!image.LoadImage(bytes)){Destroy(image);throw new Exception();}if(source!=null)Destroy(source);source=image;sourceBytes=bytes;consent=false;status="Photo selected. Nothing has been uploaded yet.";
+   var image=new Texture2D(2,2);if(!image.LoadImage(bytes)){Destroy(image);throw new Exception();}if(source!=null)Destroy(source);if(preview!=null)Destroy(preview);preview=null;candidate="";source=image;sourceBytes=bytes;consent=false;status="Photo selected. Nothing has been uploaded yet.";
   }catch{status="Choose a PNG or JPEG photo between 128 and 4096 pixels, under 6 MB.";}
  }
+ public static string Blocker(bool signedIn,bool working,bool checkedService,bool enabled,string error,bool photo,bool agreed){
+  if(!signedIn)return "Sign in to create and save your portrait.";
+  if(working)return "Please wait for the current request to finish.";
+  if(!string.IsNullOrEmpty(error))return error+" Select Check connection to retry.";
+  if(!checkedService)return "Check the portrait service connection before generating.";
+  if(!enabled)return "Online portrait generation has not been activated. The game owner must finish the provider and spending-limit setup. Your photo stays on this Mac.";
+  if(!photo)return "Choose a photo first.";
+  if(!agreed)return "Tick the consent box below your photo to enable Generate portrait.";
+  return "Ready to generate. Your photo is uploaded only when you select Generate portrait.";
+ }
+ void RefreshService(){if(!busy&&game.accounts.SignedIn)StartCoroutine(Call("GET",null));}
  void Choose(){
  #if UNITY_EDITOR
  string path=UnityEditor.EditorUtility.OpenFilePanel("Choose your photo","","png,jpg,jpeg");if(!string.IsNullOrEmpty(path))SelectFile(path);
@@ -50,10 +61,10 @@ public sealed class OdysseyPortraitStudio:MonoBehaviour {
    if(payload!=null){req.uploadHandler=new UploadHandlerRaw(Encoding.UTF8.GetBytes(JsonUtility.ToJson(payload)));req.SetRequestHeader("Content-Type","application/json");}
    yield return req.SendWebRequest();
    if(requestOwner==game.accounts.UserId){Payload result=null;try{result=JsonUtility.FromJson<Payload>(req.downloadHandler.text);}catch{}
-    if(req.result!=UnityWebRequest.Result.Success)status=result?.error??"The portrait studio could not connect. Try again.";
+    if(req.result!=UnityWebRequest.Result.Success){status=result?.error??"The portrait studio could not connect. Try again.";if(method=="GET"){enabledGeneration=false;serviceChecked=false;serviceError="Cannot reach your portrait service.";}}
     else if(method=="DELETE"){if(current!=null)Destroy(current);if(preview!=null)Destroy(preview);current=preview=null;candidate="";status="Portrait removed from your account.";}
     else if(method=="PUT"){if(current!=null)Destroy(current);current=preview;preview=null;candidate="";status="Portrait equipped on your student profile.";}
-    else {enabledGeneration=method=="GET"?result!=null&&result.enabled:enabledGeneration;
+    else {if(method=="GET"){serviceChecked=result!=null;serviceError=result==null?"The portrait service returned an unreadable response.":"";}enabledGeneration=method=="GET"?result!=null&&result.enabled:enabledGeneration;
      if(method=="GET"&&string.IsNullOrEmpty(result?.image)){if(current!=null)Destroy(current);current=null;}
      if(!string.IsNullOrEmpty(result?.image)){var t=new Texture2D(2,2);bool loaded=false;try{byte[] b=Convert.FromBase64String(result.image);loaded=PortraitImageBounds.Valid(b)&&t.LoadImage(b);}catch{}
       if(loaded){if(method=="GET"){if(current!=null)Destroy(current);current=t;}else{if(preview!=null)Destroy(preview);preview=t;candidate=result.candidateId;}}else Destroy(t);
@@ -74,12 +85,18 @@ public sealed class OdysseyPortraitStudio:MonoBehaviour {
   bool before=GUI.enabled;GUI.enabled=!busy;
   if(OdysseyUI.Button(new Rect(x,630,420,48),"Choose photo…","portrait-file",focus==0))Choose();
   if(!game.accounts.SignedIn){if(OdysseyUI.Button(new Rect(x+455,630,420,48),"Sign in to create your portrait","portrait-login",focus==2))game.accountPanel.Open();}
-  else {if(focus==1)OdysseyUI.Frame(new Rect(x-4,696,904,39),OdysseyUI.Gold);consent=GUI.Toggle(new Rect(x,700,900,35),consent,"This is my photo. I agree to send it for AI portrait processing.");GUI.enabled=!busy&&consent&&sourceBytes!=null&&enabledGeneration;
+  else {if(focus==1)OdysseyUI.Frame(new Rect(x-4,694,428,53),OdysseyUI.Gold);consent=GUI.Toggle(new Rect(x,698,420,48),consent,"This is my photo. I agree to send it for AI portrait processing.",new GUIStyle(GUI.skin.toggle){wordWrap=true,fontSize=15});GUI.enabled=!busy&&consent&&sourceBytes!=null&&enabledGeneration;
    if(OdysseyUI.Button(new Rect(x+455,630,420,48),"Generate portrait","portrait-generate",focus==2))StartCoroutine(Call("POST",new Payload{image=Convert.ToBase64String(sourceBytes),consent=true}));
    GUI.enabled=!busy&&preview!=null&&!string.IsNullOrEmpty(candidate);if(OdysseyUI.Button(new Rect(x+930,630,310,48),"Use portrait","portrait-use",focus==3))StartCoroutine(Call("PUT",new Payload{candidateId=candidate}));
    GUI.enabled=!busy&&current!=null;if(OdysseyUI.Button(new Rect(x+930,695,310,40),"Remove saved portrait","portrait-remove",focus==4))StartCoroutine(Call("DELETE",null));
   }
-  GUI.enabled=before;OdysseyUI.Text(new Rect(x,755,1240,55),status,20,OdysseyUI.White);GUI.enabled=!busy;
+  GUI.enabled=before;
+  string reason=Blocker(game.accounts.SignedIn,busy,serviceChecked,enabledGeneration,serviceError,sourceBytes!=null,consent);
+  OdysseyUI.Text(new Rect(x+455,686,420,110),reason,17,enabledGeneration?OdysseyUI.White:OdysseyUI.Gold);
+  OdysseyUI.Text(new Rect(x,754,420,65),status,17,OdysseyUI.White);
+  GUI.enabled=!busy&&game.accounts.SignedIn;
+  if(OdysseyUI.Button(new Rect(x+930,750,310,40),"Check connection","portrait-refresh",focus==6))RefreshService();
+  GUI.enabled=!busy;
   if(OdysseyUI.Button(new Rect(x,h-65,250,42),"Back to Store","portrait-back",focus==5))game.life.SetPanel("store");GUI.enabled=before;GUI.matrix=old;
  }
  void OnDestroy(){if(game?.accounts!=null)game.accounts.ProfileChanged-=AccountChanged;pending?.Abort();Clear();}

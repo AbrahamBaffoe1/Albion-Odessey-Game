@@ -19,11 +19,17 @@ namespace AlbionOdyssey
             while(g==null||!g.Ready||g.loading.Busy){if(Time.realtimeSinceStartup>deadline){Debug.LogError("CONSOLE_UI_BOOT_TIMEOUT");Application.Quit(1);yield break;}g=FindAnyObjectByType<OdysseyGame>();yield return null;}
             foreach(var track in new[]{"WhenTheFutureWhispers","TheBeautyOfYourSoul"}){var music=Resources.Load<AudioClip>("Audio/Music/"+track);if(music==null||music.length<190||music.channels!=2)throw new Exception("Soundtrack import failed: "+track);}
             if(OdysseySoundscape.Phase("arrival")!="beauty"||OdysseySoundscape.Phase("telescope")!="future"||OdysseySoundscape.Phase("forestrun")!="forestrun")throw new Exception("Music phase routing failed");
+            if(!OdysseyPortraitStudio.Blocker(true,false,true,false,"",true,true).Contains("not been activated"))throw new Exception("Portrait availability feedback regression");
+            if(!OdysseyPortraitStudio.Blocker(true,false,true,true,"",true,false).Contains("consent"))throw new Exception("Portrait consent feedback regression");
+            if(!OdysseyPortraitStudio.Blocker(true,false,false,false,"Connection failed",true,true).Contains("retry"))throw new Exception("Portrait retry feedback regression");
             yield return new WaitForSecondsRealtime(1);
             g.shell.ShowLaunch();yield return Capture("01-Console-home");
             yield return new WaitForSecondsRealtime(2.5f);yield return Capture("01b-Console-motion");
             yield return new WaitForSecondsRealtime(.5f);yield return Capture("01c-Coin-impact");
             Set(g.shell,"menuFocus",14);yield return Capture("01d-Menu-selection");
+            Set(g.accounts,"refreshAt",float.MaxValue);Set(g.accounts,"session",new StudentAuthSession{access_token="visual-fixture",user=new StudentAuthUser{id="visual-fixture",email="player@example.test"}});
+            g.life.SetPanel("portrait");Set(g.portraits,"serviceChecked",true);Set(g.portraits,"enabledGeneration",false);Set(g.portraits,"status","Photo selected. Nothing has been uploaded yet.");
+            yield return Capture("01e-Portrait-unavailable");Set(g.accounts,"session",null);
             g.shell.OpenPause();yield return Capture("02-Control-center");
             g.accountPanel.Open();yield return Capture("03-Sign-in");
             Set(g.accountPanel,"email","player@example.test");Set(g.accounts,"pendingEmail","player@example.test");

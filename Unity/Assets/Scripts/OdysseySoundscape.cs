@@ -8,7 +8,7 @@ namespace AlbionOdyssey {
    Music("future","WhenTheFutureWhispers");Music("beauty","TheBeautyOfYourSoul");Add("forestrun",146,220,293);
   }
   void Music(string key,string asset){var clip=Resources.Load<AudioClip>("Audio/Music/"+asset);if(clip==null){Debug.LogError("Missing soundtrack: "+asset);return;}var source=Source();source.clip=clip;source.loop=true;beds.Add(key,source);gains.Add(key,0);}
-  public static string Phase(string panel){switch(panel){case "launch":case "telescope":return "future";case "":case "store":case "portraits":case "fieldguide":case "arrival":return "beauty";case "forestrun":return "forestrun";default:return "";}}
+  public static string Phase(string panel){switch(panel){case "launch":case "telescope":return "future";case "":case "store":case "portrait":case "fieldguide":case "arrival":return "beauty";case "forestrun":return "forestrun";default:return "";}}
   AudioSource Source(){var s=gameObject.AddComponent<AudioSource>();s.playOnAwake=false;s.spatialBlend=0;s.priority=180;s.volume=0;return s;}
   AudioClip Keep(string name,float[] data,int rate){var clip=AudioClip.Create(name,data.Length,1,rate,false);clip.SetData(data,0);owned.Add(clip);return clip;}
   void Add(string name,float a,float b,float c){const int rate=22050,seconds=12;var data=new float[rate*seconds];for(int i=0;i<data.Length;i++){float t=i/(float)rate;float swell=.65f+.35f*Mathf.Cos(2*Mathf.PI*t/seconds);float v=(Mathf.Sin(t*a*2*Mathf.PI)+.5f*Mathf.Sin(t*b*2*Mathf.PI)+.3f*Mathf.Sin(t*c*2*Mathf.PI))*.075f*swell;
