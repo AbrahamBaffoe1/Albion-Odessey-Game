@@ -24,6 +24,7 @@ namespace AlbionOdyssey
         public CampusVehicleRepairs repairs;
         public CampusTour tour;
         public CampusShell shell;
+        public OdysseyStore store;
         public OdysseyAudio sound;
         public CampusWorldSystems world;
         public OdysseyAccessibility accessibility;
@@ -148,6 +149,7 @@ namespace AlbionOdyssey
             // CampusEnvironment exclusively owns lighting, including weather response.
             presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
             repairs=gameObject.AddComponent<CampusVehicleRepairs>();repairs.Setup(this);
+            store=gameObject.AddComponent<OdysseyStore>();store.Setup(this);
             Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
@@ -160,6 +162,7 @@ namespace AlbionOdyssey
             if(accessibility!=null&&accessibility.HandleInput())return;
             if(online!=null&&online.HandleInput())return;
             if(vr!=null&&vr.HandleInput())return;
+            if(store!=null&&store.HandleInput())return;
             if(shell!=null&&shell.HandleInput())return;
             if(weather!=null&&weather.HandleInput())return;
             if(CampusBuildings.Instance!=null&&CampusBuildings.Instance.HandleInput())return;

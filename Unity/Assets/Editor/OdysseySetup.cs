@@ -15,6 +15,11 @@ namespace AlbionOdyssey.Editor
     {
         void OnPreprocessTexture()
         {
+            if(assetPath.Contains("/Presentation/"))
+            {
+                var art=(TextureImporter)assetImporter;art.textureCompression=TextureImporterCompression.Uncompressed;
+                art.mipmapEnabled=false;art.npotScale=TextureImporterNPOTScale.None;art.wrapMode=TextureWrapMode.Clamp;art.maxTextureSize=2048;return;
+            }
             if(!assetPath.Contains("/Architecture/")&&!assetPath.Contains("/CampusCraft/"))return;
             var importer=(TextureImporter)assetImporter;
             importer.wrapMode=TextureWrapMode.Repeat;
@@ -30,7 +35,7 @@ namespace AlbionOdyssey.Editor
         {
             PlayerSettings.companyName="AlbionOdyssey";
             PlayerSettings.productName="Albion Odyssey";
-            PlayerSettings.bundleVersion="0.31.0";
+            PlayerSettings.bundleVersion="0.32.0";
             PlayerSettings.SplashScreen.show=false;PlayerSettings.SplashScreen.showUnityLogo=false;
             PlayerSettings.defaultScreenWidth=1440;
             PlayerSettings.defaultScreenHeight=900;

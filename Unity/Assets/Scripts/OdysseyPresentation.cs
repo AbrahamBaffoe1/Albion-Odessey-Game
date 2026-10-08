@@ -107,8 +107,8 @@ namespace AlbionOdyssey
         {var light=new GameObject(label).AddComponent<Light>();light.transform.SetParent(stage.transform,false);light.transform.localPosition=pos;light.type=LightType.Point;light.range=8;light.color=color;light.intensity=intensity;light.cullingMask=1<<29;}
         void RefreshStudent()
         {
-            int next=game.campus.skin+game.campus.outfit*10+game.campus.hair*100+(game.campus.backpack?1000:0);if(next==appearance)return;appearance=next;
-            student.Build(game.campus.skin,game.campus.outfit,game.campus.hair,game.campus.backpack);
+            int next=game.campus.skin+game.campus.outfit*10+game.campus.hair*100+(game.campus.backpack?1000:0)+game.state.Current.equippedFinish*10000;if(next==appearance)return;appearance=next;
+            student.Build(game.campus.skin,game.campus.outfit,game.campus.hair,game.campus.backpack);student.ApplyFinish(game.state.Current.equippedFinish);
             foreach(var item in student.GetComponentsInChildren<Transform>(true))item.gameObject.layer=29;
         }
         public void Click(){if(uiAudio!=null&&game.sound!=null&&!game.sound.Muted)uiAudio.PlayOneShot(click,game.sound.Volume*.55f);}

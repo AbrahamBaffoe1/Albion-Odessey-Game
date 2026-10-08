@@ -65,7 +65,7 @@ namespace AlbionOdyssey
             PlayerPrefs.SetInt(Key+"found",found);PlayerPrefs.SetInt(Key+"third",game.player.thirdPerson?1:0);PlayerPrefs.SetFloat(Key+"zoom",game.player.cameraDistance);PlayerPrefs.Save();
             if(game.accounts!=null&&game.accounts.SignedIn&&!game.accounts.SaveAvatar(skin,outfit,hair,backpack))game.notice="Look saved on this device. Open F7 to save it to your online account.";
         }
-        public void RefreshAvatar(){game.player.avatar.Build(skin,outfit,hair,backpack);if(preview!=null){preview.Build(skin,outfit,hair,backpack);LayerPreview();}}
+        public void RefreshAvatar(){game.player.avatar.Build(skin,outfit,hair,backpack);game.player.avatar.ApplyFinish(game.state.Current.equippedFinish);if(preview!=null){preview.Build(skin,outfit,hair,backpack);preview.ApplyFinish(game.state.Current.equippedFinish);LayerPreview();}}
         void Update(){if(game!=null&&active!=game.state.active)LoadKeeper();}
         public bool HandleInput()
         {
@@ -220,7 +220,7 @@ namespace AlbionOdyssey
         void PreparePreview()
         {
             if(preview!=null)return;
-            var t=new GameObject("Character dressing room");t.transform.position=new Vector3(0,-1000,0);preview=t.AddComponent<KeeperAvatar>();preview.Build(skin,outfit,hair,backpack);LayerPreview();
+            var t=new GameObject("Character dressing room");t.transform.position=new Vector3(0,-1000,0);preview=t.AddComponent<KeeperAvatar>();preview.Build(skin,outfit,hair,backpack);preview.ApplyFinish(game.state.Current.equippedFinish);LayerPreview();
             previewCamera=new GameObject("Character preview camera").AddComponent<Camera>();previewCamera.enabled=false;previewCamera.transform.position=t.transform.position+new Vector3(2.4f,1.8f,4.2f);previewCamera.transform.LookAt(t.transform.position+Vector3.up*1.0f);
             previewCamera.cullingMask=1<<30;previewCamera.nearClipPlane=.1f;previewCamera.farClipPlane=10;previewCamera.fieldOfView=30;
             previewCamera.clearFlags=CameraClearFlags.SolidColor;previewCamera.backgroundColor=new Color(.08f,.1f,.14f);
