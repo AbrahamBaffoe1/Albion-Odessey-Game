@@ -55,6 +55,15 @@ namespace AlbionOdyssey
             rightLeg=Limb("Right leg",new Vector3(.17f,.87f,0),.65f,.23f,dark,white,true);
             if(pack){Part(transform,"Backpack",PrimitiveType.Cube,new Vector3(0,1.18f,-.26f),new Vector3(.43f,.53f,.20f),gold);Part(transform,"Backpack pocket",PrimitiveType.Cube,new Vector3(0,1.09f,-.38f),new Vector3(.32f,.23f,.07f),jacket);}
         }
+        public static readonly Color[] Finishes={new Color(.055f,.065f,.10f),new Color(.68f,.83f,.87f),new Color(.52f,.045f,.09f),new Color(.035f,.19f,.13f),new Color(.41f,.19f,.58f),new Color(.94f,.48f,.08f)};
+        public void ApplyFinish(int id)
+        {
+            if(id<1||id>Finishes.Length)return;
+            foreach(var renderer in GetComponentsInChildren<Renderer>(true))
+                foreach(var material in renderer.materials)
+                    if(material.name.Contains("Campus sweatshirt")||material.name.Contains("Keeper jacket"))
+                    {material.color=Finishes[id-1];material.SetFloat("_Metallic",id==2?.25f:.05f);material.SetFloat("_Glossiness",.3f);}
+        }
         Transform Limb(string name,Vector3 pivot,float length,float width,Material material,Material end,bool foot)
         {
             var joint=new GameObject(name).transform;joint.SetParent(transform,false);joint.localPosition=pivot;
