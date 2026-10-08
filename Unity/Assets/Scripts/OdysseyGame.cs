@@ -25,6 +25,8 @@ namespace AlbionOdyssey
         public CampusTour tour;
         public CampusShell shell;
         public OdysseyStore store;
+        public OdysseyPortraitStudio portraits;
+        public OdysseyDestinations destinations;
         public OdysseyAudio sound;
         public CampusWorldSystems world;
         public OdysseyAccessibility accessibility;
@@ -150,12 +152,16 @@ namespace AlbionOdyssey
             presentation=gameObject.AddComponent<OdysseyPresentation>();presentation.Setup(this);
             repairs=gameObject.AddComponent<CampusVehicleRepairs>();repairs.Setup(this);
             store=gameObject.AddComponent<OdysseyStore>();store.Setup(this);
+            portraits=gameObject.AddComponent<OdysseyPortraitStudio>();portraits.Setup(this);
+            destinations=gameObject.AddComponent<OdysseyDestinations>();destinations.Setup(this);
             Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
             if(!Ready||player==null||loading!=null&&loading.Busy)return;
+            if(portraits!=null&&portraits.HandleInput())return;
+            if(destinations!=null&&destinations.HandleInput())return;
             if(repairs!=null&&repairs.HandleInput())return;
             if(shared!=null&&shared.HandleInput())return;
             if(accountPanel!=null&&accountPanel.HandleInput())return;

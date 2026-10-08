@@ -33,6 +33,7 @@ namespace AlbionOdyssey
         string pendingEmail;
         public StudentOnlineProfile Profile {get;private set;}
         public event Action ProfileChanged;
+        internal string ApiUrl=>config?.url?.TrimEnd('/')??"";
         internal string AccessToken=>SignedIn?session.access_token:"";
         public bool Busy { get; private set; }
         public bool SignedIn => session != null && session.user != null;

@@ -26,6 +26,7 @@ public sealed class WhitehouseTrailWorld:MonoBehaviour {
  void Update(){if(CampusMenuShortcuts.Pressed(KeyCode.N,game))ToggleVisit();}
  public void ToggleVisit(){if(game==null||!game.Ready)return;if(!game.player.TryExitVehicle()){game.notice="Park in an open space before visiting the nature trails.";return;}if(visiting){game.shell.Play();game.player.Teleport(saved);game.player.transform.rotation=facing;visiting=false;atmosphere.Restore();return;}if(root==null)Build();saved=game.player.transform.position;facing=game.player.transform.rotation;game.shell.Play();game.player.Teleport(root.position+new Vector3(0,.1f,0));visiting=true;atmosphere.Apply(game,root);}
 
+ public bool EnterVisit(){if(!visiting)ToggleVisit();return visiting;}
  NatureKit kit;readonly NatureAtmosphere atmosphere=new NatureAtmosphere();
 
  void Build()
@@ -38,6 +39,7 @@ public sealed class WhitehouseTrailWorld:MonoBehaviour {
   foreach(var path in map.paths){BuildTrail(path);AddHabitat(batch,path);}
   batch.Flush(root);
   PlantWoodland(map);
+  game.destinations?.BuildNatureCenter(root);
   root.gameObject.AddComponent<NatureOwnedAssets>().Track(root.gameObject);
   Debug.Log("WHITEHOUSE_TRAILS_READY paths="+map.paths.Length);
  }
@@ -116,12 +118,12 @@ public sealed class WhitehouseTrailWorld:MonoBehaviour {
   {
    float x=(float)random.NextDouble()*780-70,z=(float)random.NextDouble()*590-520;bool near=false;
    foreach(var path in map.paths){foreach(var p in path.points)if((new Vector2(x-p.x,z-p.z)).sqrMagnitude<64){near=true;break;}if(near)break;}
-   if(near)continue;
+   if(near||(x>-13&&x<13&&z>-33&&z<-8))continue;
    var tree=Instantiate(template,root);tree.name="Provisional woodland planting";tree.transform.localPosition=new Vector3(x,0,z);
    tree.transform.localRotation=Quaternion.Euler(0,(float)random.NextDouble()*360f,0);tree.transform.localScale=Vector3.one*(.7f+(float)random.NextDouble()*.6f);tree.SetActive(true);
   }
  }
 
  void OnDestroy(){atmosphere.Restore();if(root!=null)Destroy(root.gameObject);kit?.Release();}
- void OnGUI(){if(!visiting)return;GUI.Box(new Rect(20,20,610,70),"WHITEHOUSE NATURE CENTER · Esc menu → Nature trails to return\nPaths extracted from Albion's 2018 map. Terrain and planting provisional.\nExplore with normal movement controls. Use Esc → Forest run for the runner game.");}
+ void OnGUI(){if(!visiting||game.life.PanelOpen)return;GUI.Box(new Rect(20,20,610,70),"WHITEHOUSE NATURE CENTER · Esc menu → Nature trails to return\nPaths extracted from Albion's 2018 map. Terrain and planting provisional.\nExplore with normal movement controls. Use Esc → Forest run for the runner game.");}
 }}

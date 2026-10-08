@@ -142,6 +142,7 @@ namespace AlbionOdyssey
             if(state?.mode=="race"&&!participating&&state.phase=="running")OdysseyUI.Text(new Rect(40,160,850,40),"Race underway. Join the next round when it finishes.",22,OdysseyUI.White,true);
             if(state!=null&&(state.phase=="finished"||!participating&&state.phase!="running")&&OdysseyUI.Button(new Rect(width/2-140,height/2-28,280,56),"RUN AGAIN","forest-again",false,true))Send("join");
             if(state?.players!=null)foreach(var p in state.players)if(p.id==(preview?previewId:game.accounts.UserId)&&p.caught&&state.phase!="finished")OdysseyUI.Text(new Rect(width/2-260,height/2-30,520,70),state.mode=="race"?"Brit caught you! Watch the remaining racers, then run again.":"Brit caught you! Your teammates can press R to rescue you.",26,OdysseyUI.White,true);
+            if(state?.phase=="finished"&&OdysseyUI.Button(new Rect(width/2-190,height/2+45,380,52),"CONTINUE TO WHITEHOUSE","forest-continue",false,true)){Close();game.destinations.ArriveNature();}
             GUI.matrix=old;
         }
         void OnDestroy(){atmosphere.Restore();if(stage!=null)Destroy(stage);kit?.Release();}

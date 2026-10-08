@@ -11,6 +11,15 @@ jobs:
           lfs: true
       - name: Test core rules with sanitizers and validate assets
         run: bash Tools/test.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: Backend/Realtime/package-lock.json
+      - name: Test accounts, multiplayer and portrait spending safeguards
+        run: |
+          npm ci --prefix Backend/Realtime
+          npm test --prefix Backend/Realtime
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '9.0.x'

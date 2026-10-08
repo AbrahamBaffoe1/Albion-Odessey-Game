@@ -181,6 +181,7 @@ namespace AlbionOdyssey
             OdysseyCinematic.Title(new Rect(center-490,h*.14f+112,980,80),"O D Y S S E Y",44,new Color(.8f,.81f,.81f));
             OdysseyUI.Fill(new Rect(center-320,h*.14f+203,640,1),new Color(.67f,.57f,.43f,.7f));
             OdysseyCinematic.Title(new Rect(center-350,h*.14f+220,700,32),"Every path becomes a story",17,new Color(.62f,.66f,.7f));
+            if(game.portraits?.Current!=null)GUI.DrawTexture(new Rect(w-130,35,90,90),game.portraits.Current,ScaleMode.ScaleToFit);
             int[] actions={0,13,14,10,6,7};string[] labels={"Continue","Explore Albion","Store","Play Online","Controls & Help","Save & Quit"};
             for(int i=0;i<actions.Length;i++)
             {

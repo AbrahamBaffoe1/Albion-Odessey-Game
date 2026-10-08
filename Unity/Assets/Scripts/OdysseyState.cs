@@ -6,6 +6,7 @@ namespace AlbionOdyssey
     {
         public int acorns=6;
         public int memories;
+        public int fieldJournal;
         public int milestones;
         public int style=1;
         public int contribution;
@@ -71,6 +72,7 @@ namespace AlbionOdyssey
             foreach(var p in keepers)
             {
                 if(p==null||p.plots==null||p.plots.Length!=49||p.acorns<0||p.acorns>42||p.memories<0||p.memories>4095||p.milestones<0||p.milestones>63||p.style<0||p.style>1||p.contribution<0||p.contribution>24||p.contribution%2!=0)return false;
+                if(p.fieldJournal<0||p.fieldJournal>7)return false;
                 if(p.repairAcorns<0||p.repairAcorns>42||p.gemsSpent<0||p.Gems<0)return false;
                 if(p.ownedFinishes<0||p.ownedFinishes>63||p.equippedFinish<0||p.equippedFinish>6||(p.equippedFinish!=0&&!p.OwnsFinish(p.equippedFinish)))return false;
                 int spent=p.contribution+p.repairAcorns+p.FinishSpend;

@@ -19,6 +19,7 @@ namespace AlbionOdyssey
             float until=first&&!PlaytestMode.Active&&!OdysseyAccessibility.ReducedMotion?Mathf.Max(opened+4.5f,Time.unscaledTime+.6f):Time.unscaledTime+.2f;
             while(Time.unscaledTime<until)yield return null;
             while(fade>0){fade-=Time.unscaledDeltaTime/(OdysseyAccessibility.ReducedMotion?.05f:.8f);yield return null;}
+            if(first&&!PlaytestMode.Active){var intro=gameObject.AddComponent<AcornAwakening>();yield return intro.Play();Destroy(intro);}
             Busy=false;first=false;
         }
         void Update(){progress=Mathf.MoveTowards(progress,Completed/(float)Mathf.Max(1,Total),Time.unscaledDeltaTime*.55f);}
