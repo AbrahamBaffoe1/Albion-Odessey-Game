@@ -40,3 +40,9 @@ Observatory massing and the eight-inch Alvan Clark refractor follow public refer
 - `-journeySmoke`: isolated save, observatory doorway/wall collision, telescope control handoff, arrival handoff, journal/studio screens, and medallion sequence.
 - `-storeSmoke`: existing purchase, equip, save/reload and rollback checks.
 - Paid end-to-end portrait generation is **not yet verified**. Sign-in and the key spending limit are verified; the account has $0 credits and requires private billing-address entry before funding. No purchase was made. Generation remains disabled pending funding and deployment verification.
+
+## 0.33.1 title update
+
+The title underline is removed. The menu now renders a live GPU nebula, three parallax star layers and occasional meteors. Original AI-generated squirrel cutouts flank the title, with independent UV-deformation animation for breathing, head movement and tail sway. These are animated 2D characters, not rigged 3D animals. Reduced motion freezes the scene. Rendering is capped at 30 updates per second and 1600 pixels wide, and runs only while the title is drawn.
+
+The console UI smoke capture includes two title frames to inspect motion and continues to verify menu routing and invalid-code feedback.

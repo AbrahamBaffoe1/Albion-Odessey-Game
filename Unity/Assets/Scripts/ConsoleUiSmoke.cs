@@ -16,9 +16,10 @@ namespace AlbionOdyssey
         {
             Application.runInBackground=true;output=Environment.GetEnvironmentVariable("CONSOLE_UI_OUTPUT");Directory.CreateDirectory(output);OdysseyGame g=null;
             float deadline=Time.realtimeSinceStartup+90;
-            while(g==null||!g.Ready){if(Time.realtimeSinceStartup>deadline){Debug.LogError("CONSOLE_UI_BOOT_TIMEOUT");Application.Quit(1);yield break;}g=FindAnyObjectByType<OdysseyGame>();yield return null;}
+            while(g==null||!g.Ready||g.loading.Busy){if(Time.realtimeSinceStartup>deadline){Debug.LogError("CONSOLE_UI_BOOT_TIMEOUT");Application.Quit(1);yield break;}g=FindAnyObjectByType<OdysseyGame>();yield return null;}
             yield return new WaitForSecondsRealtime(1);
             g.shell.ShowLaunch();yield return Capture("01-Console-home");
+            yield return new WaitForSecondsRealtime(2.5f);yield return Capture("01b-Console-motion");
             g.shell.OpenPause();yield return Capture("02-Control-center");
             g.accountPanel.Open();yield return Capture("03-Sign-in");
             Set(g.accountPanel,"email","player@example.test");Set(g.accounts,"pendingEmail","player@example.test");
