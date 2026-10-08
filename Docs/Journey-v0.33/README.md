@@ -46,3 +46,20 @@ Observatory massing and the eight-inch Alvan Clark refractor follow public refer
 The title underline is removed. The menu now renders a live GPU nebula, three parallax star layers and occasional meteors. Original AI-generated squirrel cutouts flank the title, with independent UV-deformation animation for breathing, head movement and tail sway. These are animated 2D characters, not rigged 3D animals. Reduced motion freezes the scene. Rendering is capped at 30 updates per second and 1600 pixels wide, and runs only while the title is drawn.
 
 The console UI smoke capture includes two title frames to inspect motion and continues to verify menu routing and invalid-code feedback.
+
+### 0.33.2 — meteor title and phase audio
+
+Title meteors strike the medallion every twelve seconds, with a local spark ring,
+two face flips and a settling rotation. Reduced motion disables the impact and
+motion. The tagline sits below the coin; the single selection highlight glides
+between commands for pointer, keyboard and controller navigation.
+
+Six original procedural audio beds cover title, campus, forest run, store,
+telescope and field guide, with crossfades and navigation/impact cues. They obey
+existing effects volume and mute settings; focus loss mutes immediately. Other
+panels fade the beds out so story/video narration remains clear. These are tonal
+ambiences, not a recorded orchestral soundtrack. No third-party audio is bundled.
+
+Validation: macOS build, console UI smoke (including impact and selection frames),
+visual inspection of tagline clearance and coin rotation. Automated smoke runs
+are muted; final listening/mix assessment remains subjective.

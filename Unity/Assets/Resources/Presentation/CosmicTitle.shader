@@ -6,7 +6,7 @@ Shader "Albion/CosmicTitle" {
  #pragma fragment frag
  #pragma target 3.0
  #include "UnityCG.cginc"
- sampler2D _Squirrel; float _Clock,_Aspect;
+ sampler2D _Squirrel,_Coin; float _Clock,_Aspect,_CoinSize;
  float hash(float2 p){return frac(sin(dot(p,float2(127.1,311.7)))*43758.5453);}
  float noise(float2 p){float2 i=floor(p),f=frac(p);f=f*f*(3-2*f);return lerp(lerp(hash(i),hash(i+float2(1,0)),f.x),lerp(hash(i+float2(0,1)),hash(i+1),f.x),f.y);}
  float fbm(float2 p){float f=0,a=.5;for(int j=0;j<5;j++){f+=a*noise(p);p=mul(float2x2(.8,-.6,.6,.8),p)*2.03+13.2;a*=.5;}return f;}
@@ -48,10 +48,27 @@ Shader "Albion/CosmicTitle" {
    float star=exp(-dot(f,f)*(220+100*k))*step(.979,seed);
    col+=star*(.35+.3*sin(t*(.7+seed)+seed*43))*lerp(float3(1,.75,.4),float3(.5,.8,1),seed);
   }
-  float cycle=floor(t/11),age=fmod(t,11);float2 start=float2(.7+hash(float2(cycle,1))*.5,.48);
-  float2 delta=p-(start+float2(-.55,-.25)*age);float along=dot(delta,normalize(float2(.55,.25))),across=dot(delta,normalize(float2(-.25,.55)));
-  float meteor=exp(-abs(across)*800)*exp(-max(0,along)*18)*step(0,along)*step(age,1.7)*smoothstep(0,.25,age);
-  col+=meteor*float3(.45,.65,.85)*.35;
+  // A twelve-second flight/impact/settle cycle shares one clock with its sound cue.
+  float age=fmod(t,12),hit=age-4;
+  float2 center=float2(0,.5-.025-_CoinSize*.5);
+  float2 target=center+float2(_CoinSize*.28,_CoinSize*.12);
+  float2 direction=normalize(float2(-1,-.38));
+  float2 head=target-direction*(4-age)*.7;
+  float2 d=p-head;float along=dot(d,-direction),across=dot(d,float2(-direction.y,direction.x));
+  float meteor=exp(-abs(across)*650)*exp(-max(0,along)*15)*step(0,along)*step(2.3,age)*(1-step(4,age));
+  col+=meteor*float3(1,.56,.2)*.9;
+  float u=saturate(hit/3.5),ease=1-pow(1-u,3);
+  float active=step(0,hit)*(1-step(3.5,hit));
+  float angle=ease*6.2831853*active;
+  float2 c=p-center-float2(sin(u*6.283)*.045,sin(u*3.14159)*.035)*active;
+  c=mul(float2x2(cos(angle),-sin(angle),sin(angle),cos(angle)),c);
+  float squash=cos(ease*12.56637);if(abs(squash)<.055)squash=squash<0?-.055:.055;
+  c.x/=lerp(1,squash,active);c.y/=lerp(1,.8+.2*cos(ease*6.283),active);
+  float2 coinUV=c/_CoinSize+.5;
+  if(all(coinUV>=0)&&all(coinUV<=1)){float4 coin=tex2D(_Coin,coinUV);col=lerp(col,coin.rgb*(.65+.25*abs(squash)),coin.a*.58);}
+  float burst=step(0,hit)*exp(-max(0,hit)*6);
+  float2 spark=p-target;float radius=length(spark);
+  col+=float3(1,.52,.12)*burst*(exp(-radius*75)+exp(-abs(radius-max(0,hit)*.16)*180)*.3);
   // Keep the central navigation quiet and readable.
   col*=1-.48*exp(-p.x*p.x*12)*smoothstep(.15,-.5,p.y);
   float4 left=animal(uv,-1),right=animal(uv,1);col=lerp(col,left.rgb,left.a);col=lerp(col,right.rgb,right.a);

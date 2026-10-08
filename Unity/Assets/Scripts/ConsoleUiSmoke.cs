@@ -20,6 +20,8 @@ namespace AlbionOdyssey
             yield return new WaitForSecondsRealtime(1);
             g.shell.ShowLaunch();yield return Capture("01-Console-home");
             yield return new WaitForSecondsRealtime(2.5f);yield return Capture("01b-Console-motion");
+            yield return new WaitForSecondsRealtime(.5f);yield return Capture("01c-Coin-impact");
+            Set(g.shell,"menuFocus",14);yield return Capture("01d-Menu-selection");
             g.shell.OpenPause();yield return Capture("02-Control-center");
             g.accountPanel.Open();yield return Capture("03-Sign-in");
             Set(g.accountPanel,"email","player@example.test");Set(g.accounts,"pendingEmail","player@example.test");
