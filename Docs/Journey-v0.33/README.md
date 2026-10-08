@@ -63,3 +63,16 @@ ambiences, not a recorded orchestral soundtrack. No third-party audio is bundled
 Validation: macOS build, console UI smoke (including impact and selection frames),
 visual inspection of tagline clearance and coin rotation. Automated smoke runs
 are muted; final listening/mix assessment remains subjective.
+
+### 0.33.3 — supplied soundtrack
+
+User-supplied Desktop tracks (original files left unchanged):
+- **When the Future Whispers** (3:50): title and telescope.
+- **The Beauty of Your Soul v2** (3:18): campus, store, nature arrival and field guide.
+
+Converted locally from Opus-in-M4A to stereo MP3 at 192 kbps, with loudness
+normalization targeting -20 LUFS and -2 dBTP. Unity streams the imported music.
+Shared scene assignments retain playback; track changes crossfade; each loop
+fades gently at its boundary. Existing mute/focus controls and forest rhythm
+remain. These files were supplied by the project owner; no third-party license
+claim is made. Console smoke validates both imported clips and phase routing.

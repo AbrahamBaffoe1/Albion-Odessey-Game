@@ -17,6 +17,8 @@ namespace AlbionOdyssey
             Application.runInBackground=true;output=Environment.GetEnvironmentVariable("CONSOLE_UI_OUTPUT");Directory.CreateDirectory(output);OdysseyGame g=null;
             float deadline=Time.realtimeSinceStartup+90;
             while(g==null||!g.Ready||g.loading.Busy){if(Time.realtimeSinceStartup>deadline){Debug.LogError("CONSOLE_UI_BOOT_TIMEOUT");Application.Quit(1);yield break;}g=FindAnyObjectByType<OdysseyGame>();yield return null;}
+            foreach(var track in new[]{"WhenTheFutureWhispers","TheBeautyOfYourSoul"}){var music=Resources.Load<AudioClip>("Audio/Music/"+track);if(music==null||music.length<190||music.channels!=2)throw new Exception("Soundtrack import failed: "+track);}
+            if(OdysseySoundscape.Phase("arrival")!="beauty"||OdysseySoundscape.Phase("telescope")!="future"||OdysseySoundscape.Phase("forestrun")!="forestrun")throw new Exception("Music phase routing failed");
             yield return new WaitForSecondsRealtime(1);
             g.shell.ShowLaunch();yield return Capture("01-Console-home");
             yield return new WaitForSecondsRealtime(2.5f);yield return Capture("01b-Console-motion");
