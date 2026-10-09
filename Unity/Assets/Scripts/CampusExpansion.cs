@@ -66,7 +66,7 @@ namespace AlbionOdyssey
             if(game.accounts!=null&&game.accounts.SignedIn&&!game.accounts.SaveAvatar(skin,outfit,hair,backpack))game.notice="Look saved on this device. Open F7 to save it to your online account.";
         }
         public void RefreshAvatar(){game.player.avatar.Build(skin,outfit,hair,backpack);game.player.avatar.ApplyFinish(game.state.Current.equippedFinish);if(preview!=null){preview.Build(skin,outfit,hair,backpack);preview.ApplyFinish(game.state.Current.equippedFinish);LayerPreview();}}
-        void Update(){if(game!=null&&active!=game.state.active)LoadKeeper();}
+        void Update(){if(game!=null&&active!=game.state.active)LoadKeeper();if(game!=null){bool open=game.life.panel=="treasures";if(open&&!treasureViewActive)treasureView.Capture(game);treasureViewActive=open;}}
         public bool HandleInput()
         {
             if(game.life!=null&&!game.life.PanelOpen)controllerPanel="";
@@ -156,7 +156,6 @@ namespace AlbionOdyssey
                     var token=KeeperAvatar.Part(t,"Discovery token",i==3?PrimitiveType.Cube:PrimitiveType.Sphere,new Vector3(0,1.2f,0),i==3?new Vector3(.65f,.15f,.5f):Vector3.one*.55f,gold);
                     if(i==2){token.transform.localScale=new Vector3(.22f,.22f,1.3f);token.transform.localRotation=Quaternion.Euler(-30,0,0);}
                 }
-                CampusGeometry.Sign(t,TreasureNames[i]+"\nDISCOVER",new Vector3(0,2.9f,0),9);
                 var worldTag=t.gameObject.AddComponent<CampusWorldLabel>();worldTag.Configure("DISCOVERY\n"+TreasureNames[i],new Color(1f,.76f,.28f),new Vector3(0,3.45f,0),18f);
             }
         }
@@ -169,6 +168,7 @@ namespace AlbionOdyssey
         }
         public bool TryInteract()
         {
+            if(game.shared!=null&&game.shared.Joined&&game.shared.Social.Interact())return true;
             if(game.player.vehicle!=null){game.notice=game.player.vehicle.Exit()?"Back on foot. Your car stays where you parked it.":"Brake with Space before exiting. Leave room beside the car.";return true;}
             foreach(var car in cars)if(car.Enter(game.player)){game.notice="Cruiser: W/S accelerate or reverse · A/D steer · SPACE brake · E exit";return true;}
             for(int i=0;i<discoveries.Count;i++)if(Discover(i))return true;
@@ -256,10 +256,40 @@ namespace AlbionOdyssey
             if(OdysseyUI.Button(new Rect(r+295,650,275,58),"Controls & sound","look-controls",controllerFocus==6)){SaveKeeper();game.life.SetPanel("welcome");}
             OdysseyUI.Text(new Rect(r,734,570,30),"Your look is saved on this device. V changes camera view.",13,OdysseyUI.Muted);
         }
+        readonly ConversationPresentation treasureView=new ConversationPresentation();bool treasureViewActive;float treasureZoom=1;Vector2 treasurePan;
+        public void DrawTreasureScreen()
+        {
+            var old=GUI.matrix;GUI.matrix=Matrix4x4.identity;OdysseyUI.Fill(new Rect(0,0,Screen.width,Screen.height),Color.black);float scale=Mathf.Min(Screen.width/1280f,Screen.height/720f);GUI.matrix=Matrix4x4.TRS(new Vector3((Screen.width-1280*scale)/2,(Screen.height-720*scale)/2,0),Quaternion.identity,Vector3.one*scale);
+            treasureView.Background(1280,720);var purple=new Color(.43f,.10f,.77f);var cyan=new Color(.2f,.9f,1);var white=new Color(.86f,.88f,1);
+            treasureView.Panel(new Rect(82,59,1116,601),new Color(.018f,.008f,.10f,.91f));
+            OdysseyUI.BeginLineCanvas(1280,720);
+            var border=new[]{new Vector2(97,61),new Vector2(1182,61),new Vector2(1194,73),new Vector2(1194,641),new Vector2(1180,656),new Vector2(97,656),new Vector2(85,643),new Vector2(85,74),new Vector2(97,61)};
+            for(int i=1;i<border.Length;i++)OdysseyUI.Line(border[i-1],border[i],new Color(.4f,.77f,.91f,.6f),1);
+            OdysseyUI.EndLineCanvas();GUI.Label(new Rect(118,87,460,36),"CAMPUS TREASURES",treasureView.Text(19,white));GUI.Label(new Rect(118,128,330,28),CountFound()+" / 7 DISCOVERED",treasureView.Text(15,cyan));
+            if(treasureView.Button(new Rect(1118,80,48,43),"⌂"))game.life.SetPanel("");
+            Rect map=new Rect(128,177,984,340);if(map.Contains(Event.current.mousePosition)){if(Event.current.type==EventType.ScrollWheel){treasureZoom=Mathf.Clamp(treasureZoom-Event.current.delta.y*.08f,.7f,2.8f);Event.current.Use();}if(Event.current.type==EventType.MouseDrag){treasurePan+=Event.current.delta;Event.current.Use();}}
+            GUI.BeginGroup(map);
+            Vector2 Project(Vector3 p)=>new Vector2((p.x+570)/1200f*map.width,(800-p.z)/760f*map.height)*treasureZoom+treasurePan;
+            OdysseyUI.BeginLineCanvas(984,340);
+            foreach(var road in CampusGeometry.RoadSegments)OdysseyUI.Line(Project(CampusCatalog.Point(road.x,road.y)),Project(CampusCatalog.Point(road.z,road.w)),purple,2);
+            foreach(var place in CampusCatalog.Places){var p=Project(place.position);float w=Mathf.Max(4,place.width/1200*map.width*treasureZoom),h=Mathf.Max(3,place.depth/760*map.height*treasureZoom);var c=new Color(.3f,.15f,.60f,.7f);OdysseyUI.Line(p-new Vector2(w/2,h/2),p+new Vector2(w/2,-h/2),c);OdysseyUI.Line(p+new Vector2(w/2,-h/2),p+new Vector2(w/2,h/2),c);OdysseyUI.Line(p+new Vector2(w/2,h/2),p+new Vector2(-w/2,h/2),c);OdysseyUI.Line(p+new Vector2(-w/2,h/2),p-new Vector2(w/2,h/2),c);}
+            OdysseyUI.EndLineCanvas();
+            foreach(var id in new[]{"25"}){var p=Find(id);var v=Project(p.position);GUI.Label(new Rect(v.x+17,v.y-22,210,30),p.name.ToUpperInvariant(),treasureView.Text(12,white));}
+            GUI.Label(new Rect(390,34,250,30),"MAIN CAMPUS",treasureView.Text(16,white));
+            for(int i=0;i<discoveries.Count;i++){var v=Project(discoveries[i]);bool known=(found&(1<<i))!=0;if(treasureView.Button(new Rect(v.x-17,v.y-17,36,36),known?"✓":"?",false,i==treasurePage))treasurePage=i;}
+            var player=Project(game.player.transform.position);treasureView.Panel(new Rect(player.x-7,player.y-7,14,14),Color.white,7);GUI.EndGroup();
+            if(treasureView.Button(new Rect(1130,413,42,42),"+"))treasureZoom=Mathf.Min(2.8f,treasureZoom+.2f);if(treasureView.Button(new Rect(1130,462,42,42),"−"))treasureZoom=Mathf.Max(.7f,treasureZoom-.2f);
+            GUI.Label(new Rect(120,535,645,32),TreasureNames[treasurePage],treasureView.Text(22,white,true));GUI.Label(new Rect(120,577,645,53),(found&(1<<treasurePage))!=0?TreasureText[treasurePage]:"Hidden discovery · follow the clue, explore nearby, and collect it together.",treasureView.Text(15,white));
+            if(treasureView.Button(new Rect(812,552,330,60),"TRAVEL TO CLUE",true)){if(game.player.TryExitVehicle()){if(game.building)game.ToggleMode();game.player.Teleport(discoveries[treasurePage]+new Vector3(0,.08f,-3));game.life.SetPanel("");}}
+            if(treasureView.Button(new Rect(947,671,245,32),"CLOSE · ESC"))game.life.SetPanel("");GUI.matrix=old;
+        }
+        bool treasureMap;
         void DrawTreasures(float x)
         {
             Label(x,97,1100,30,$"CAMPUS DISCOVERIES  /  {CountFound()}/7 collected · saved for {keeperName}",small);
-            for(int i=0;i<7;i++)if(Button(x,155+i*60,400,((found&(1<<i))!=0?"✓ ":"○ ")+TreasureNames[i]))treasurePage=i;
+            if(Button(x,610,400,treasureMap?"Show discovery list":"Open hidden treasures map"))treasureMap=!treasureMap;
+            if(treasureMap)DrawTreasureMap(new Rect(x,155,400,420));
+            else for(int i=0;i<7;i++)if(Button(x,155+i*60,400,((found&(1<<i))!=0?"✓ ":"○ ")+TreasureNames[i]))treasurePage=i;
             FocusBox(new Rect(x,155,400,38),0);
             float r=x+450;bool unlocked=(found&(1<<treasurePage))!=0;
             Label(r,157,640,80,TreasureNames[treasurePage],heading);
@@ -273,6 +303,17 @@ namespace AlbionOdyssey
             if(Button(r,619,300,"All campus buildings"))game.life.SetPanel("campus");
             FocusBox(new Rect(r,554,300,38),1);FocusBox(new Rect(r+320,554,300,38),2);FocusBox(new Rect(r,619,300,38),3);
             Label(r,690,635,65,"Brit's model and the treasure tokens are original game artwork. Discovery does not imply the real object can be taken.",small);
+        }
+        void DrawTreasureMap(Rect area)
+        {
+            OdysseyUI.Card(area,new Color(.035f,.025f,.13f));
+            float minX=float.MaxValue,maxX=float.MinValue,minZ=float.MaxValue,maxZ=float.MinValue;
+            foreach(var p in discoveries){minX=Mathf.Min(minX,p.x);maxX=Mathf.Max(maxX,p.x);minZ=Mathf.Min(minZ,p.z);maxZ=Mathf.Max(maxZ,p.z);}
+            for(int i=1;i<8;i++){OdysseyUI.Card(new Rect(area.x+i*area.width/8,area.y,1,area.height),new Color(.18f,.12f,.35f));OdysseyUI.Card(new Rect(area.x,area.y+i*area.height/8,area.width,1),new Color(.18f,.12f,.35f));}
+            for(int i=0;i<discoveries.Count;i++)
+            {var p=discoveries[i];float px=area.x+25+(p.x-minX)/Mathf.Max(1,maxX-minX)*(area.width-50),py=area.y+area.height-30-(p.z-minZ)/Mathf.Max(1,maxZ-minZ)*(area.height-70);
+             bool known=(found&(1<<i))!=0;if(GUI.Button(new Rect(px-17,py-17,36,34),known?"✓":"?"))treasurePage=i;
+             if(treasurePage==i)OdysseyUI.Text(new Rect(area.x+15,area.y+8,area.width-30,30),known?TreasureNames[i]:"UNDISCOVERED · FOLLOW THE CLUE",13,AlbionUITheme.Cyan);}
         }
         public int CountFound(){int count=0;for(int i=0;i<7;i++)if((found&(1<<i))!=0)count++;return count;}
         // Gameplay controls and prompts are drawn once by CampusHud.

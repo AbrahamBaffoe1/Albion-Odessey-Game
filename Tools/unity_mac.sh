@@ -10,4 +10,7 @@ METHOD=AlbionOdyssey.Editor.OdysseySetup.Prepare
 [[ "${1:-}" == "build" ]] && METHOD=AlbionOdyssey.Editor.OdysseySetup.BuildMac
 [[ "${1:-}" == "quest" ]] && METHOD=AlbionOdyssey.Editor.OdysseySetup.BuildQuest
 mkdir -p "$ROOT/Unity/Logs"
+if [[ "${1:-}" == "build" ]]; then
+  clang -dynamiclib -arch arm64 -framework Cocoa "$ROOT/Tools/PortraitPicker.m" -o "$ROOT/Unity/Assets/Plugins/macOS/PortraitPicker.dylib"
+fi
 "$UNITY_EDITOR" -batchmode -quit -projectPath "$ROOT/Unity" -executeMethod "$METHOD" -logFile "$ROOT/Unity/Logs/setup.log"

@@ -9,13 +9,15 @@ namespace AlbionOdyssey
     [Serializable] sealed class CampusRoomEmote {public string type="emote",emote;}
     [Serializable] public sealed class CampusRoomPlayer {public string id,display,emote;public float x,y,z,yaw,speed;public int skin,outfit,hair;public bool backpack;}
     [Serializable] public sealed class CampusTrailStop { public string id,name,by; public float x,z; public bool visited; }
-    [Serializable] sealed class CampusRoomMessage {public string type,id,room,hostId,mode,visibility;public int capacity;public CampusRoomPlayer[] players;public CampusTrailStop[] trail;public ForestSnapshot forest;}
+    [Serializable] sealed class CampusRoomMessage {public string type,id,room,hostId,mode,visibility;public int capacity,socialVersion;public CampusRoomPlayer[] players;public CampusTrailStop[] trail;public ForestSnapshot forest;public RoomSocialState social;public bool ok,canRate;public string action;}
     public sealed class CampusSharedSession : MonoBehaviour
     {
+        public CampusRoomSocial Social {get;private set;}
         OdysseyGame game;CampusSharedConfig config;CampusSocket socket;string room="QUAD",connectedId="",joinIntent="",hostId="",mode="coop",visibility="private",roundPhase="";int focus,retries;bool wanted;float sendAt,retryAt,lastPacket;Vector3 lastPosition;
         readonly Dictionary<string,CampusRemoteStudent> remotes=new Dictionary<string,CampusRemoteStudent>();
         readonly HashSet<string> hidden=new HashSet<string>();
         public bool Joined {get;private set;}
+        public bool SocialSupported {get;private set;}
         public string Status {get;private set;}="Join a room to meet other players.";
         public int RemoteCount=>remotes.Count;
         public string Room=>room;
@@ -24,7 +26,7 @@ namespace AlbionOdyssey
         public bool Configured=>config!=null&&Uri.TryCreate(config.url,UriKind.Absolute,out var uri)&&uri.Scheme=="wss";
         public void Setup(OdysseyGame owner)
         {
-            game=owner;var asset=Resources.Load<TextAsset>("SharedCampusConfig");try{config=asset==null?null:JsonUtility.FromJson<CampusSharedConfig>(asset.text);}catch{}
+            game=owner;Social=gameObject.AddComponent<CampusRoomSocial>();Social.Setup(game,this);var asset=Resources.Load<TextAsset>("SharedCampusConfig");try{config=asset==null?null:JsonUtility.FromJson<CampusSharedConfig>(asset.text);}catch{}
             game.accounts.ProfileChanged+=ProfileChanged;forest=gameObject.AddComponent<CampusForestRun>();forest.Setup(game,this);
         }
         void ProfileChanged(){if(game.accounts.SignedIn){if(Joined)socket?.Send("{\"type\":\"profile\"}");}else Leave();}
@@ -46,7 +48,7 @@ namespace AlbionOdyssey
         }
         public void Leave()
         {
-            forest?.Close();trail=null;wanted=false;Application.runInBackground=PlaytestMode.Active;Joined=false;socket?.Dispose();socket=null;foreach(var peer in remotes.Values)if(peer!=null)Destroy(peer.gameObject);remotes.Clear();Status="Offline · explore on your own or join a room.";
+            Social?.ResetRoom();forest?.Close();trail=null;wanted=false;Application.runInBackground=PlaytestMode.Active;Joined=false;socket?.Dispose();socket=null;foreach(var peer in remotes.Values)if(peer!=null)Destroy(peer.gameObject);remotes.Clear();Status="Offline · explore on your own or join a room.";
         }
         public void SendForest(string message){if(Joined)socket?.Send(message);}
         public void Emote(string value)
@@ -61,6 +63,7 @@ namespace AlbionOdyssey
         }
         public bool HandleInput()
         {
+            if(Social!=null&&Social.HandleInput())return true;
             if(forest!=null&&forest.HandleInput())return true;
             if(Input.GetKeyDown(KeyCode.F6)||CampusMenuShortcuts.Pressed(KeyCode.T,game)){OpenForest();return true;}
             if((Input.GetKeyDown(KeyCode.F5)&&!Input.GetKey(KeyCode.LeftShift))||CampusMenuShortcuts.Pressed(KeyCode.R,game)){if(game.life.panel=="online")game.life.SetPanel("");else Open();return true;}
@@ -88,9 +91,9 @@ namespace AlbionOdyssey
             {
                 try
                 {
-                    var message=JsonUtility.FromJson<CampusRoomMessage>(raw);lastPacket=Time.unscaledTime;
-                    if(message.type=="welcome"){room=message.room;joinIntent="join";hostId=message.hostId;mode=message.mode;visibility=message.visibility;Joined=true;retries=0;Status="Connected · room "+room;lastPosition=game.player.transform.position;}
-                    if(message.type=="snapshot"&&message.players!=null){hostId=message.hostId;mode=message.mode;visibility=message.visibility;ApplyPlayers(message.players);roundPhase=message.forest?.phase;trail=message.trail;forest.Accept(message.forest);}
+                    var message=JsonUtility.FromJson<CampusRoomMessage>(raw);if(message.type=="social-result")Social.Result(message.ok,message.action,message.canRate);lastPacket=Time.unscaledTime;
+                    if(message.type=="welcome"){SocialSupported=message.socialVersion>=1;room=message.room;joinIntent="join";hostId=message.hostId;mode=message.mode;visibility=message.visibility;Joined=true;retries=0;Status="Connected · room "+room;lastPosition=game.player.transform.position;}
+                    if(message.type=="snapshot"&&message.players!=null){hostId=message.hostId;mode=message.mode;visibility=message.visibility;ApplyPlayers(message.players);roundPhase=message.forest?.phase;trail=message.trail;forest.Accept(message.forest);Social.Accept(message.social);}
                 }catch{DisconnectForRetry(4400);return;}
             }
             if(socket.Ended){DisconnectForRetry(socket.CloseCode);return;}
@@ -104,7 +107,7 @@ namespace AlbionOdyssey
         void DisconnectForRetry(int code)
         {
             bool retry=code!=4401&&code!=4400&&code!=4403&&code!=4409&&code!=4404&&retries<3;
-            socket?.Dispose();socket=null;Joined=false;foreach(var peer in remotes.Values)if(peer!=null)Destroy(peer.gameObject);remotes.Clear();
+            Social?.ResetRoom();socket?.Dispose();socket=null;Joined=false;foreach(var peer in remotes.Values)if(peer!=null)Destroy(peer.gameObject);remotes.Clear();
             if(retry){retryAt=Time.unscaledTime+Mathf.Pow(2,++retries);Status="Connection lost · reconnecting shortly.";}
             else{wanted=false;Status=code==4404?"Room not found. Ask your friend for a current code.":code==4403?"This room is full. Choose another code.":code==4409?"This account joined from another session.":"Could not join. Check your connection and sign-in, then try again.";}
         }

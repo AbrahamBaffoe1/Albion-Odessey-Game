@@ -4,8 +4,11 @@ namespace AlbionOdyssey
 {
     [Serializable] public sealed class Keeper
     {
+        public CampusActivities activities=new CampusActivities();
+        public AdventureProgress adventure=new AdventureProgress();
         public int acorns=6;
         public int memories;
+        public int fieldJournal;
         public int milestones;
         public int style=1;
         public int contribution;
@@ -27,7 +30,7 @@ namespace AlbionOdyssey
     }
     [Serializable] public sealed class OdysseyState
     {
-        public int version=4;
+        public int version=5;
         public VehicleDamage[] vehicles={new VehicleDamage(),new VehicleDamage(),new VehicleDamage()};
         public CampusSchool school=new CampusSchool();
         public int active;
@@ -61,16 +64,20 @@ namespace AlbionOdyssey
             if(version==1){school=new CampusSchool();version=2;}
             if(version==2){vehicles=new[]{new VehicleDamage(),new VehicleDamage(),new VehicleDamage()};version=3;}
             if(version==3&&keepers!=null){foreach(var keeper in keepers){if(keeper==null)continue;keeper.ownedFinishes=0;keeper.equippedFinish=0;}version=4;}
+            if(version==4&&keepers!=null){foreach(var keeper in keepers)if(keeper!=null){keeper.adventure=new AdventureProgress();keeper.activities=new CampusActivities();}version=5;}
             if(school!=null)school.NormalizeSchedules();
         }
         public bool Valid()
         {
-            if(version!=4||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4||vehicles==null||vehicles.Length!=3)return false;
+            if(version!=5||active<0||active>=4||beacon<0||beacon>24||keepers==null||keepers.Length!=4||vehicles==null||vehicles.Length!=3)return false;
             foreach(var vehicle in vehicles)if(vehicle==null||!vehicle.Valid())return false;
             int total=0;
             foreach(var p in keepers)
             {
                 if(p==null||p.plots==null||p.plots.Length!=49||p.acorns<0||p.acorns>42||p.memories<0||p.memories>4095||p.milestones<0||p.milestones>63||p.style<0||p.style>1||p.contribution<0||p.contribution>24||p.contribution%2!=0)return false;
+                if(p.activities==null||!p.activities.Valid())return false;
+                if(p.adventure==null||!p.adventure.Valid())return false;
+                if(p.fieldJournal<0||p.fieldJournal>7)return false;
                 if(p.repairAcorns<0||p.repairAcorns>42||p.gemsSpent<0||p.Gems<0)return false;
                 if(p.ownedFinishes<0||p.ownedFinishes>63||p.equippedFinish<0||p.equippedFinish>6||(p.equippedFinish!=0&&!p.OwnsFinish(p.equippedFinish)))return false;
                 int spent=p.contribution+p.repairAcorns+p.FinishSpend;

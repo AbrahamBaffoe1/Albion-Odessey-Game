@@ -6,8 +6,8 @@ namespace AlbionOdyssey
 {
     public sealed class CampusShell : MonoBehaviour
     {
-        OdysseyGame game; Texture2D hero,keyArt; bool hub; GUIStyle brand,display,heading,text,small,button;
-        float seconds,menuOpenedAt; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
+        OdysseyTitleScene titleScene; OdysseyGame game; Texture2D hero,keyArt; bool hub; GUIStyle brand,display,heading,text,small,button;
+        Vector2 titleMouse;float titleHighlight=-1;int titleSelection=-1;float seconds,menuOpenedAt; int initialMemories,initialBuildings; bool[] chapterSeen; bool pendingChapter,chapterEnd,allowQuit; int menuFocus;
         public bool SaveSucceeded {get;private set;}
         public string SaveMessage {get;private set;}="";
         public bool OwnsPanel=>game.life.panel=="launch"||game.life.panel=="sessionend"||IsPaused;
@@ -17,7 +17,7 @@ namespace AlbionOdyssey
         static readonly Color Ink=new Color(.018f,.014f,.028f),Purple=new Color(.15f,.068f,.26f),Gold=new Color(.96f,.64f,.14f),Cream=new Color(.98f,.95f,.87f),Muted=new Color(.65f,.61f,.72f);
         public void Setup(OdysseyGame owner)
         {
-            game=owner;keyArt=Resources.Load<Texture2D>("Presentation/OdysseyTitleArt");hero=Resources.Load<Texture2D>("CampusCraft/FergusonHero");
+            game=owner;titleScene=gameObject.AddComponent<OdysseyTitleScene>();gameObject.AddComponent<OdysseySoundscape>().Setup(game);keyArt=Resources.Load<Texture2D>("Presentation/OdysseyTitleArt");hero=Resources.Load<Texture2D>("CampusCraft/FergusonHero");
             initialMemories=MemoryCount();initialBuildings=BuildingCount();chapterSeen=game.state.keepers.Select(HasCompletedChapter).ToArray();
             Application.wantsToQuit+=OnQuitRequested;
             if(!Automated)ShowLaunch();
@@ -25,9 +25,9 @@ namespace AlbionOdyssey
         public static bool HasCompletedChapter(Keeper keeper)=>keeper.milestones==63;
         int MemoryCount()=>game.state.keepers.Sum(k=>OdysseyState.Count(k.memories));
         int BuildingCount()=>game.state.keepers.Sum(k=>k.plots.Count(p=>p!=0));
-        public void ShowLaunch(){hub=false;menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("launch");}
+        public void ShowLaunch(){titleScene.Restart();titleHighlight=-1;titleSelection=-1;hub=false;menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("launch");}
         public void OpenPause(){menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("pause");}
-        public void Play(){game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
+        public void Play(){if(game.adventure!=null&&game.adventure.Progress.chapter==0&&!PlaytestMode.Active){game.adventure.Open();return;}game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
         public void Stories(){game.tour.OpenDirectory();}
         public void Videos(){game.tour.OpenVideos();}
         public bool BuildYourOwn()
@@ -173,30 +173,35 @@ namespace AlbionOdyssey
         void DrawTitle(float w,float h)
         {
             OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.008f,.012f,.028f));
-            if(keyArt!=null){var previous=GUI.color;GUI.color=Color.white;GUI.DrawTexture(new Rect(0,0,w,h),keyArt,ScaleMode.ScaleAndCrop);GUI.color=previous;}
-            OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.009f,.014f,.028f,.3f));
-            OdysseyCinematic.Atmosphere(w,h);
-            float center=w/2;
+            titleScene.Draw(w,h);
+            float center=w/2;bool mouseMoved=(Event.current.mousePosition-titleMouse).sqrMagnitude>1;
             OdysseyCinematic.Title(new Rect(center-490,h*.14f,980,120),"ALBION",99,new Color(.91f,.91f,.87f));
             OdysseyCinematic.Title(new Rect(center-490,h*.14f+112,980,80),"O D Y S S E Y",44,new Color(.8f,.81f,.81f));
-            OdysseyUI.Fill(new Rect(center-320,h*.14f+203,640,1),new Color(.67f,.57f,.43f,.7f));
-            OdysseyCinematic.Title(new Rect(center-350,h*.14f+220,700,32),"Every path becomes a story",17,new Color(.62f,.66f,.7f));
+            OdysseyCinematic.Title(new Rect(center-350,h*.025f+Mathf.Min(430,h*.52f)+6,700,32),"Every path becomes a story",17,new Color(.62f,.66f,.7f));
+            if(game.portraits?.Current!=null)GUI.DrawTexture(new Rect(w-130,35,90,90),game.portraits.Current,ScaleMode.ScaleToFit);
             int[] actions={0,13,14,10,6,7};string[] labels={"Continue","Explore Albion","Store","Play Online","Controls & Help","Save & Quit"};
             for(int i=0;i<actions.Length;i++)
             {
-                Rect r=new Rect(center-180,h*.55f+i*39,360,36);bool selected=menuFocus==actions[i]||r.Contains(Event.current.mousePosition);
+                Rect r=new Rect(center-180,h*.60f+i*36,360,34);
+                if(mouseMoved&&r.Contains(Event.current.mousePosition))menuFocus=actions[i];
+                bool selected=menuFocus==actions[i];
                 if(selected)
                 {
-                    for(int n=7;n>=1;n--)OdysseyUI.Fill(new Rect(center-390,r.center.y-n,780,n*2),new Color(.85f,.21f,.075f,.018f));
-                    OdysseyUI.Fill(new Rect(center-260,r.yMax,520,1),new Color(.96f,.36f,.13f,.7f));
+                    if(titleSelection!=i){if(titleSelection>=0)GetComponent<OdysseySoundscape>()?.Navigate();titleSelection=i;}
+                    if(titleHighlight<0||OdysseyAccessibility.ReducedMotion)titleHighlight=r.center.y;
+                    if(Event.current.type==EventType.Repaint)titleHighlight=Mathf.Lerp(titleHighlight,r.center.y,1-Mathf.Exp(-18*Time.unscaledDeltaTime));
+                    for(int n=7;n>=1;n--)OdysseyUI.Fill(new Rect(center-260,titleHighlight-n,520,n*2),new Color(.85f,.21f,.075f,.024f));
+                    OdysseyUI.Fill(new Rect(center-190,titleHighlight+17,380,1),new Color(.96f,.36f,.13f,.7f));
+                    r.x+=OdysseyAccessibility.ReducedMotion?0:6*Mathf.Exp(-Mathf.Abs(titleHighlight-r.center.y)*.07f);
                 }
-                OdysseyCinematic.Title(r,labels[i],20,selected?OdysseyUI.White:new Color(.57f,.57f,.59f));
+                OdysseyCinematic.Title(r,labels[i],20,selected?OdysseyUI.White:new Color(.76f,.77f,.8f));
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none))
                 {
                     GUIUtility.keyboardControl=0;menuFocus=actions[i];game.presentation?.Click();
                     switch(actions[i]){case 0:Play();break;case 13:hub=true;menuFocus=0;break;case 14:game.store.Open();break;case 10:game.shared.Open();break;case 6:game.life.SetPanel("welcome");break;case 7:EndSession();break;}
                 }
             }
+            titleMouse=Event.current.mousePosition;
             OdysseyUI.Text(new Rect(42,h-47,600,27),"ALBION ODYSSEY  /  AN ORIGINAL CAMPUS ADVENTURE",12,OdysseyUI.Muted);
             OdysseyUI.Text(new Rect(w-260,h-47,220,27),"ENTER  SELECT     /     v"+Application.version,12,OdysseyUI.Muted);
         }

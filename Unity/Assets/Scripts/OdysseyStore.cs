@@ -55,6 +55,7 @@ namespace AlbionOdyssey
         public bool HandleInput()
         {
             if(!IsOpen)return false;
+            if(Input.GetKeyDown(KeyCode.P)){game.portraits.Open();return true;}
             if(AlbionUIInput.Poll(out int horizontal,out int vertical,out bool choose,out bool cancel))Navigate(horizontal,vertical,choose,cancel);
             return true;
         }
@@ -142,6 +143,7 @@ namespace AlbionOdyssey
             OdysseyUI.Fill(new Rect(x,h-64,1320,1),OdysseyUI.Gold);
             if(OdysseyUI.Button(new Rect(x,h-49,145,35),"BACK","store-close",focus==2))Close();
             OdysseyUI.Text(new Rect(x+170,h-46,1140,43),message.Length>0?message:"← →  Browse items    /    ↑ ↓  Action, category, back    /    ENTER  Select    /    ESC  Back",16,message.Length>0?OdysseyUI.Mint:OdysseyUI.Muted);
+            if(OdysseyUI.Button(new Rect(x,570,144,55),"PORTRAITS · P","store-portraits"))game.portraits.Open();
             GUI.enabled=wasEnabled;
             if(confirm)
             {

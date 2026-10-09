@@ -30,6 +30,7 @@ namespace AlbionOdyssey
             game = owner;
             root = new GameObject("City of Albion · Michigan").transform;
             BuildMaterials();
+            asphalt.SetFloat("_Glossiness", .88f); asphalt.SetFloat("_Metallic", .35f);
             BuildGroundAndStreets();
             BuildRiver();
             BuildSuperiorStreet();
@@ -260,6 +261,8 @@ namespace AlbionOdyssey
 
         void BuildSuperiorStreet()
         {
+            var atmosphere = root.gameObject.AddComponent<DowntownAtmosphere>(); atmosphere.Setup(game);
+            int shopIndex = 0;
             var random = new System.Random(1835);
             var district = Find("superior");
             // Two rows of storefronts facing Superior Street, from the district's south end to the city's northern edge.
@@ -271,12 +274,15 @@ namespace AlbionOdyssey
                     float length = 11f + (float)random.NextDouble() * 7f, height = 6.5f + (float)random.NextDouble() * 4.5f, depth = 14f;
                     float x = side * (10f + depth / 2 + 2f), cz = z + length / 2;
                     var mat = random.Next(3) == 0 ? limestone : (random.Next(2) == 0 ? brickRed : brickWarm);
-                    Box("Storefront", new Vector3(x, height / 2, cz), new Vector3(depth, height, length - .4f), mat);
+                    Box("Storefront upper floors", new Vector3(x, (height+3.1f) / 2, cz), new Vector3(depth, height-3.1f, length - .4f), mat);
+                    Box("Storefront rear", new Vector3(x+side*2.3f, 1.55f, cz), new Vector3(depth-4.6f, 3.1f, length-.4f), mat);
+                    foreach(int end in new[]{-1,1}) Box("Shop party wall",new Vector3(x,1.55f,cz+end*(length/2-.3f)),new Vector3(depth,3.1f,.25f),mat);
+                    atmosphere.Dress(side,cz,length,height,shopIndex++);
                     float faceX = x - side * (depth / 2 + .03f);
-                    Box("Shop window", new Vector3(faceX, 1.9f, cz), new Vector3(.08f, 2.1f, length - 2.4f), glass, false);
-                    Box("Upper windows", new Vector3(faceX, height - 2f, cz), new Vector3(.08f, 1.4f, length - 3f), glass, false);
+
+
                     Box("Shop awning", new Vector3(faceX - side * .7f, 3.2f, cz), new Vector3(1.4f, .12f, length - 2f), awning, false);
-                    Box("Cornice", new Vector3(faceX - side * .15f, height + .1f, cz), new Vector3(depth + .3f, .35f, length - .2f), limestone, false);
+                    Box("Cornice", new Vector3(faceX - side * .15f, height + .1f, cz), new Vector3(.7f, .35f, length - .2f), limestone, false);
                     z += length;
                 }
             }

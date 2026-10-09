@@ -41,13 +41,18 @@ namespace AlbionOdyssey
         {
             if(driver==null)return true;
             if(Mathf.Abs(speed)>.5f)return false;
+            if(!TryExitPoint(out var p))return false;
+            var old=driver;driver=null;old.vehicle=null;old.Teleport(p);old.transform.rotation=transform.rotation;return true;
+        }
+        public bool TryExitPoint(out Vector3 point)
+        {
             foreach(var offset in new[]{Vector3.left*2.2f,Vector3.right*2.2f,Vector3.back*3.5f,Vector3.forward*3.5f})
             {
                 Vector3 p=transform.TransformPoint(offset);p.y=.08f;
                 if(Physics.CheckCapsule(p+Vector3.up*.45f,p+Vector3.up*1.5f,.43f,~0,QueryTriggerInteraction.Ignore))continue;
-                var old=driver;driver=null;old.vehicle=null;old.Teleport(p);old.transform.rotation=transform.rotation;return true;
+                point=p;return true;
             }
-            return false;
+            point=transform.position+transform.right*4;return false;
         }
         public void Drive(float throttle,float steering,bool brake,float dt)
         {
