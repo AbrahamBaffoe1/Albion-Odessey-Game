@@ -173,7 +173,7 @@ namespace AlbionOdyssey
         {
             if(game==null||!game.Ready)return;
             if(panel=="treasures"){game.campus.DrawTreasureScreen();return;}
-            if(game==null||game.player==null||panel=="tour"||panel=="launch"||panel=="sessionend"||panel=="account"||panel=="pause"||panel=="vr"||panel=="repair"||panel=="online"||panel=="forestrun"||panel=="conversation"||panel=="portrait"||panel=="telescope"||panel=="arrival"||panel=="fieldguide"||panel=="store")return;
+            if(game==null||game.player==null||panel=="activities"||panel=="adventure"||panel=="tour"||panel=="launch"||panel=="sessionend"||panel=="account"||panel=="pause"||panel=="vr"||panel=="repair"||panel=="online"||panel=="forestrun"||panel=="conversation"||panel=="portrait"||panel=="telescope"||panel=="arrival"||panel=="fieldguide"||panel=="store")return;
             if(heading==null)
             {
                 heading=new GUIStyle(GUI.skin.label){font=AlbionUITheme.DisplayFont,fontSize=AlbionUITheme.TextSize(30),fontStyle=FontStyle.Bold};heading.normal.textColor=new Color(.96f,.94f,.86f);

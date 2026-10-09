@@ -27,6 +27,8 @@ namespace AlbionOdyssey
         public OdysseyStore store;
         public OdysseyPortraitStudio portraits;
         public OdysseyDestinations destinations;
+        public OdysseyAdventure adventure;
+        public CampusActivitiesPanel activities;
         public OdysseyAudio sound;
         public CampusWorldSystems world;
         public OdysseyAccessibility accessibility;
@@ -154,12 +156,16 @@ namespace AlbionOdyssey
             store=gameObject.AddComponent<OdysseyStore>();store.Setup(this);
             portraits=gameObject.AddComponent<OdysseyPortraitStudio>();portraits.Setup(this);
             destinations=gameObject.AddComponent<OdysseyDestinations>();destinations.Setup(this);
+            activities=gameObject.AddComponent<CampusActivitiesPanel>();activities.Setup(this);
+            adventure=gameObject.AddComponent<OdysseyAdventure>();adventure.Setup(this);
             Ready=true;loading.Finish();gameObject.AddComponent<CampusVehicleReflections>();
             Debug.Log("ODYSSEY_READY: Blender tower, authored collision boxes, first-person controller and campus builder initialized.");
         }
         void Update()
         {
             if(!Ready||player==null||loading!=null&&loading.Busy)return;
+            if(activities!=null&&activities.HandleInput())return;
+            if(adventure!=null&&adventure.HandleInput())return;
             if(portraits!=null&&portraits.HandleInput())return;
             if(destinations!=null&&destinations.HandleInput())return;
             if(repairs!=null&&repairs.HandleInput())return;
@@ -310,6 +316,7 @@ namespace AlbionOdyssey
         public void SetJournal(bool open)
         {
             journalOpen=open;player.controls=!open&&!building;
+            if(open&&state.Current.memories!=0&&Vector3.Distance(player.transform.position,new Vector3(0,.05f,-22))<45){for(int i=0;i<12;i++)if((state.Current.memories&(1<<i))!=0){journalPage=i;break;}activities?.Record(0);}
             if(footprint!=null)footprint.SetActive(false);
             Cursor.lockState=open||building||player.pointerControls?CursorLockMode.None:CursorLockMode.Locked;
             Cursor.visible=open||building||player.pointerControls;

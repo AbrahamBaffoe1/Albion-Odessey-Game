@@ -91,12 +91,14 @@ public sealed class OdysseyDestinations:MonoBehaviour {
   arrivalCamera.gameObject.SetActive(true);game.player.Teleport(natureEntry);UpdateArrival();
  }
  void UpdateArrival(){if(!arrival)return;float t=OdysseyAccessibility.ReducedMotion?1:Mathf.SmoothStep(0,1,(Time.unscaledTime-arrivalAt)/4.5f);arrivalCamera.transform.position=natureEntry+new Vector3(8*(1-t),3.8f-1.7f*t,-14+9*t);arrivalCamera.transform.LookAt(natureEntry+new Vector3(0,2,10));}
- public void FinishArrival(){arrival=false;if(arrivalCamera!=null)arrivalCamera.gameObject.SetActive(false);game.life.SetPanel("");game.player.Teleport(natureEntry);game.player.transform.rotation=Quaternion.identity;}
+ public void FinishArrival(){game.adventure?.Arrived();arrival=false;if(arrivalCamera!=null)arrivalCamera.gameObject.SetActive(false);game.life.SetPanel("");game.player.Teleport(natureEntry);game.player.transform.rotation=Quaternion.identity;}
  public void OpenTelescope(){if(sky==null)BuildSky();sky.gameObject.SetActive(true);game.life.SetPanel("telescope");Aim(0);}
  void Aim(int i){target=i;yaw=Bearings[i].x;pitch=Bearings[i].y;fov=i==0?12:i==1?7:32;}
+ public void RecordObservation(){if(TelescopeOpen&&Vector3.Distance(game.player.transform.position,telescope.position)<3.4f){game.adventure?.Observe(target);game.activities?.Record(1);}}
+ public bool RecordHabitat(int i){if(game.life.panel!="fieldguide"||i<0||i>2||Vector3.Distance(game.player.transform.position,natureEntry+new Vector3(5,0,8))>=4)return false;int before=journalBits;journalBits|=1<<i;if(game.Save()){game.activities?.Record(2);return true;}journalBits=before;return false;}
  public void CloseTelescope(){if(sky!=null)sky.gameObject.SetActive(false);game.life.SetPanel("");}
  public bool HandleInput(){
-  if(TelescopeOpen){if(Input.GetKeyDown(KeyCode.Escape)){CloseTelescope();return true;}if(Input.GetKeyDown(KeyCode.Alpha1))Aim(0);if(Input.GetKeyDown(KeyCode.Alpha2))Aim(1);if(Input.GetKeyDown(KeyCode.Alpha3))Aim(2);
+  if(TelescopeOpen){if(Input.GetKeyDown(KeyCode.Space))RecordObservation();if(Input.GetKeyDown(KeyCode.Escape)){CloseTelescope();return true;}if(Input.GetKeyDown(KeyCode.Alpha1))Aim(0);if(Input.GetKeyDown(KeyCode.Alpha2))Aim(1);if(Input.GetKeyDown(KeyCode.Alpha3))Aim(2);
    float dt=Time.unscaledDeltaTime;yaw+=(Input.GetAxisRaw("Horizontal")*25)*dt;pitch=Mathf.Clamp(pitch+Input.GetAxisRaw("Vertical")*20*dt,-10,85);if(Input.GetMouseButton(0)){yaw+=Input.GetAxis("Mouse X")*1.2f;pitch=Mathf.Clamp(pitch-Input.GetAxis("Mouse Y")*1.2f,-10,85);}fov=Mathf.Clamp(fov-Input.mouseScrollDelta.y*1.5f,3,60);return true;}
   if(game.life.panel=="arrival"){if(Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.Escape))FinishArrival();return true;}
   if(game.life.panel=="fieldguide"){if(Input.GetKeyDown(KeyCode.Escape))game.life.SetPanel("");return true;}
@@ -121,6 +123,7 @@ public sealed class OdysseyDestinations:MonoBehaviour {
  }
  void OnGUI(){if(game==null||!game.Ready)return;var old=GUI.matrix;float s=Mathf.Min(Screen.width/1440f,Screen.height/900f);GUI.matrix=Matrix4x4.Scale(Vector3.one*s);float w=Screen.width/s,h=Screen.height/s;
   if(TelescopeOpen){GUI.DrawTexture(new Rect(0,0,w,h),skyImage,ScaleMode.ScaleAndCrop);OdysseyUI.Fill(new Rect(0,0,w,115),new Color(.01f,.015f,.025f,.9f));OdysseyCinematic.Title(new Rect(40,18,w-80,55),"The Observatory",34,Ivory);OdysseyUI.Text(new Rect(40,76,w-80,30),"ALVAN CLARK REFRACTOR  /  AN EDUCATIONAL SKY",16,OdysseyUI.Muted);
+   if(OdysseyUI.Button(new Rect(w-340,130,300,42),"Record observation · Space","sky-record"))RecordObservation();
    OdysseyUI.Fill(new Rect(w/2-14,h/2,28,1),Ivory);OdysseyUI.Fill(new Rect(w/2,h/2-14,1,28),Ivory);
    for(int i=0;i<3;i++)if(OdysseyUI.Button(new Rect(40+i*205,h-125,190,42),(i+1)+"  "+Targets[i],"sky-"+i,target==i))Aim(i);
    OdysseyUI.Text(new Rect(40,h-65,w-360,42),"Drag / arrows: aim    Scroll: magnify    Field of view "+fov.ToString("0")+"°    /    Illustrative sky; positions are not live",17,Ivory);if(OdysseyUI.Button(new Rect(w-255,h-75,215,45),"Leave telescope","sky-close"))CloseTelescope();
@@ -128,7 +131,7 @@ public sealed class OdysseyDestinations:MonoBehaviour {
   }else if(game.life.panel=="fieldguide"){
    OdysseyUI.Fill(new Rect(0,0,w,h),new Color(.015f,.02f,.019f,.97f));OdysseyCinematic.Title(new Rect(80,60,w-160,65),"The Whitehouse Field Journal",40,Ivory);
    string[] entries={"Woodland / Listen to the canopy","Prairie / Follow the pollinators","River & marsh / Watch the water"};string[] descriptions={"Look for layered habitats: the canopy, understory and leaf litter each shelter different life.","Wildflowers support bees and butterflies. Stay on the marked path and leave blooms for wildlife.","Wetlands slow water and provide shelter. Observe from the trail without disturbing reeds or banks."};
-   for(int i=0;i<3;i++){float y=190+i*165;OdysseyCinematic.Title(new Rect(100,y,w-200,42),entries[i],27,Ivory);OdysseyUI.Text(new Rect(180,y+55,w-360,50),descriptions[i],22,OdysseyUI.White);if(OdysseyUI.Button(new Rect(w/2-125,y+105,250,38),(journalBits&(1<<i))!=0?"Recorded":"Add to field journal","journal-"+i)){int before=journalBits;journalBits|=1<<i;if(!game.Save())journalBits=before;}}
+   for(int i=0;i<3;i++){float y=190+i*165;OdysseyCinematic.Title(new Rect(100,y,w-200,42),entries[i],27,Ivory);OdysseyUI.Text(new Rect(180,y+55,w-360,50),descriptions[i],22,OdysseyUI.White);if(OdysseyUI.Button(new Rect(w/2-125,y+105,250,38),(journalBits&(1<<i))!=0?"Recorded":"Add to field journal","journal-"+i)){RecordHabitat(i);}}
    if(OdysseyUI.Button(new Rect(w/2-150,h-95,300,48),"Return to the center","journal-close"))game.life.SetPanel("");
   }else if(!game.life.PanelOpen){string hint=Vector3.Distance(game.player.transform.position,telescope.position)<3.4f?"Use the Alvan Clark telescope":natureEntry!=Vector3.zero&&Vector3.Distance(game.player.transform.position,natureEntry+new Vector3(5,0,8))<4?"Speak to the nature guide":"";if(hint.Length>0){OdysseyUI.Fill(new Rect(w/2-300,h-150,600,50),new Color(.02f,.02f,.02f,.9f));OdysseyUI.Text(new Rect(w/2-280,h-142,560,40),OdysseyAccessibility.InteractLabel+"  ·  "+hint,22,Ivory);}}
   GUI.matrix=old;

@@ -27,7 +27,7 @@ namespace AlbionOdyssey
         int BuildingCount()=>game.state.keepers.Sum(k=>k.plots.Count(p=>p!=0));
         public void ShowLaunch(){titleScene.Restart();titleHighlight=-1;titleSelection=-1;hub=false;menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("launch");}
         public void OpenPause(){menuFocus=0;menuOpenedAt=Time.unscaledTime;game.tour.StopMedia();game.life.SetPanel("pause");}
-        public void Play(){game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
+        public void Play(){if(game.adventure!=null&&game.adventure.Progress.chapter==0&&!PlaytestMode.Active){game.adventure.Open();return;}game.life.SetPanel("");game.notice="G opens building stories. Esc opens the menu. O shows movement buttons and frees the pointer.";}
         public void Stories(){game.tour.OpenDirectory();}
         public void Videos(){game.tour.OpenVideos();}
         public bool BuildYourOwn()

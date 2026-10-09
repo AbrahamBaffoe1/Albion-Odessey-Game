@@ -26,6 +26,7 @@ public sealed class WhitehouseTrailWorld:MonoBehaviour {
  void Update(){if(CampusMenuShortcuts.Pressed(KeyCode.N,game))ToggleVisit();}
  public void ToggleVisit(){if(game==null||!game.Ready)return;if(!game.player.TryExitVehicle()){game.notice="Park in an open space before visiting the nature trails.";return;}if(visiting){game.shell.Play();game.player.Teleport(saved);game.player.transform.rotation=facing;visiting=false;atmosphere.Restore();return;}if(root==null)Build();saved=game.player.transform.position;facing=game.player.transform.rotation;game.shell.Play();game.player.Teleport(root.position+new Vector3(0,.1f,0));visiting=true;atmosphere.Apply(game,root);}
 
+ public void LeaveVisit(){if(visiting)ToggleVisit();}
  public bool EnterVisit(){if(!visiting)ToggleVisit();return visiting;}
  NatureKit kit;readonly NatureAtmosphere atmosphere=new NatureAtmosphere();
 
