@@ -61,6 +61,7 @@ namespace AlbionOdyssey
         public void UpdateCamera()
         {
             Quaternion look=transform.rotation*Quaternion.Euler(pitch,0,0);
+            if(!thirdPerson&&vehicle!=null){eyes.transform.position=transform.position+Vector3.up*1.35f;eyes.transform.rotation=look;avatar.gameObject.SetActive(false);return;}
             if(!thirdPerson&&vehicle==null){eyes.transform.localPosition=new Vector3(0,1.65f,0);eyes.transform.rotation=look;avatar.gameObject.SetActive(false);return;}
             Vector3 target=vehicle==null?transform.position+Vector3.up*1.35f:vehicle.transform.position+Vector3.up*1.2f;
             Vector3 offset=look*new Vector3(.42f,.4f,-(vehicle==null?cameraDistance:8));
@@ -78,7 +79,7 @@ namespace AlbionOdyssey
         }
         public bool TryExitVehicle()
         {
-            if(vehicle==null)return true;vehicle.speed=0;return vehicle.Exit();
+            if(vehicle==null)return true;var social=FindAnyObjectByType<CampusSharedSession>();if(social!=null&&social.Joined){social.Social.Interact();return false;}vehicle.speed=0;return vehicle.Exit();
         }
         public void Teleport(Vector3 position)
         {

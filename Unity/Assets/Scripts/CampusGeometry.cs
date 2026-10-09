@@ -35,6 +35,19 @@ namespace AlbionOdyssey
                 GroundTiles.Add(tile);Box(root,"Campus ground",new Vector3(tile.center.x,-.3f,tile.center.y),new Vector3(tile.width,.5f,tile.height),grass);
             }
         }
+        public static readonly Vector4[] RoadSegments=new[]{
+                new Vector4(23,77,718,77),new Vector4(718,77,769,37),
+                new Vector4(124,123,363,123),new Vector4(533,123,590,123),
+                new Vector4(23,161,590,161),new Vector4(590,161,706,86),
+                new Vector4(185,241,297,241),new Vector4(474,243,718,243),
+                new Vector4(23,286,718,286),new Vector4(590,196,718,196),
+                new Vector4(64,23,64,341),new Vector4(118,23,118,115),new Vector4(118,115,124,123),
+                new Vector4(178,23,178,221),new Vector4(178,221,200,286),
+                new Vector4(236,23,236,161),new Vector4(236,200,236,286),
+                new Vector4(297,23,297,286),new Vector4(363,23,363,123),
+                new Vector4(418,80,418,161),new Vector4(449,23,449,77),
+                new Vector4(474,77,474,420),new Vector4(533,77,533,161),
+                new Vector4(590,23,590,286),new Vector4(718,23,718,243),new Vector4(718,243,769,220)};
         public static void Build()
         {
             HabitatTrees.Clear();streets.Clear();
@@ -47,19 +60,7 @@ namespace AlbionOdyssey
             Box(root,"Legacy connector",new Vector3(0,-.1f,95),new Vector3(16,.2f,190),path);
             // Trace visible road extents from the official August 2025 visitor map.
             // The map is schematic; these are game-scale alignments, not survey coordinates.
-            foreach(var segment in new[]{
-                new Vector4(23,77,718,77),new Vector4(718,77,769,37),
-                new Vector4(124,123,363,123),new Vector4(533,123,590,123),
-                new Vector4(23,161,590,161),new Vector4(590,161,706,86),
-                new Vector4(185,241,297,241),new Vector4(474,243,718,243),
-                new Vector4(23,286,718,286),new Vector4(590,196,718,196),
-                new Vector4(64,23,64,341),new Vector4(118,23,118,115),new Vector4(118,115,124,123),
-                new Vector4(178,23,178,221),new Vector4(178,221,200,286),
-                new Vector4(236,23,236,161),new Vector4(236,200,236,286),
-                new Vector4(297,23,297,286),new Vector4(363,23,363,123),
-                new Vector4(418,80,418,161),new Vector4(449,23,449,77),
-                new Vector4(474,77,474,420),new Vector4(533,77,533,161),
-                new Vector4(590,23,590,286),new Vector4(718,23,718,243),new Vector4(718,243,769,220)})
+            foreach(var segment in RoadSegments)
                 RoadSegment(CampusCatalog.Point(segment.x,segment.y),CampusCatalog.Point(segment.z,segment.w));
             foreach(var place in CampusCatalog.Places)Building(place);
             // Public Quad paths, open lawns and trees are deliberately navigable.

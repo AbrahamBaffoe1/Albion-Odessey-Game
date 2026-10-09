@@ -261,22 +261,37 @@ namespace AlbionOdyssey
             if(activeMedia==null)return;
             if(detailFocus==0)StopMedia();else if(detailFocus==1)ShowMedia(activeMedia);else if(detailFocus==2&&video!=null&&video.isPrepared){if(video.isPlaying)video.Pause();else video.Play();}else if(detailFocus==3&&videoAudio!=null)videoAudio.mute=!videoAudio.mute;
         }
+        bool readingTranscript;Font handwriting,readingFont;Texture2D fieldPaper;
         void DrawStorySide(float width,float height,Rect safe)
         {
-            float panelWidth=Mathf.Min(505,width*.44f),x=Mathf.Clamp(width-panelWidth,safe.xMin,safe.xMax-panelWidth);
-            Box(new Rect(x,190,panelWidth,height-190),new Color(.005f,.008f,.012f,.68f));
-            GUI.Label(new Rect(x+30,28,panelWidth-90,22),"HISTORY",small);
-            if(ControlButton(new Rect(x+panelWidth-105,22,78,34),"Close"))Close();
-            GUI.Label(new Rect(x+30,67,panelWidth-60,90),selected.name,detailTitle);
-            GUI.Label(new Rect(x+30,160,panelWidth-60,22),selected.category.ToUpperInvariant(),small);
-            GUI.Label(new Rect(x+30,214,panelWidth-60,22),"THE STORY",small);
-            GUI.Label(new Rect(x+30,250,panelWidth-60,245),RevealedStory(),story);
-            if(OdysseyAccessibility.CaptionsEnabled&&narrationClip!=null){Box(new Rect(x+30,468,panelWidth-60,38),new Color(.04f,.07f,.09f,.95f));GUI.Label(new Rect(x+42,476,panelWidth-84,24),"CAPTIONS  ·  "+(voicePlaying?CurrentStory:"Audio description ready."),small);}
-            if(ControlButton(new Rect(x+30,520,185,38),FocusLabel(0,NarrationLabel)))ToggleNarration();
-            if(ControlButton(new Rect(x+235,520,185,38),FocusLabel(1,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
-            if(ControlButton(new Rect(x+30,575,185,38),FocusLabel(2,"More information"))){sidePanel=false;Open(selected);}
-            if(ControlButton(new Rect(x+235,575,185,38),FocusLabel(3,"Enter building")))EnterSelected();
-            if(ControlButton(new Rect(x+30,630,185,38),FocusLabel(4,"Close")))Close();
+            if(handwriting==null)handwriting=Resources.Load<Font>("Fonts/Kalam-Regular");
+            if(readingFont==null)readingFont=Font.CreateDynamicFontFromOSFont(new[]{"Avenir Next","Trebuchet MS","Arial"},28);
+            float pw=Mathf.Min(610,width*.48f),ph=height-108,x=(width-pw)/2;
+            OdysseyUI.Fill(new Rect(0,0,width,height),new Color(.015f,.02f,.028f,.25f));
+            if(fieldPaper==null)fieldPaper=Resources.Load<Texture2D>("Reading/FieldNote");
+            if(fieldPaper!=null)GUI.DrawTexture(new Rect(x-20,22,pw+40,ph+42),fieldPaper,ScaleMode.StretchToFill);
+            var ink=new Color(.16f,.20f,.37f);var handwritten=new GUIStyle{font=handwriting,fontSize=23,wordWrap=true,richText=false,normal={textColor=ink}};
+            GUI.Label(new Rect(x+35,78,pw-70,75),selected.name,new GUIStyle(handwritten){fontSize=29});
+            GUI.Label(new Rect(x+35,165,pw-70,ph-190),selected.summary,handwritten);
+            GUI.Label(new Rect(x+35,ph+5,pw-70,30),"Albion College · Campus archive",new GUIStyle(handwritten){fontSize=18});
+            if(readingTranscript){
+                OdysseyUI.Fill(new Rect(0,0,width,height),new Color(.015f,.025f,.04f,.93f));
+                float tx=width*.18f,tw=width*.64f,top=height*.18f;
+                OdysseyUI.Fill(new Rect(tx,top,tw,2),new Color(.9f,.94f,1,.35f));OdysseyUI.Fill(new Rect(tx,height*.82f,tw,2),new Color(.9f,.94f,1,.35f));
+                var read=new GUIStyle{font=readingFont,fontSize=27,wordWrap=true,richText=false,normal={textColor=new Color(.96f,.97f,1)}};
+                float content=read.CalcHeight(new GUIContent(selected.name.ToUpperInvariant()+"\n\n"+selected.summary),tw-28)+20;
+                detailScroll=GUI.BeginScrollView(new Rect(tx,top+32,tw,height*.64f-62),detailScroll,new Rect(0,0,tw-25,content));
+                GUI.Label(new Rect(0,Mathf.Max(0,(height*.64f-62-content)*.5f),tw-28,content),selected.name.ToUpperInvariant()+"\n\n"+selected.summary,read);GUI.EndScrollView();
+            }
+            float y=height-52;
+            OdysseyUI.Fill(new Rect(0,y-9,width,61),new Color(.015f,.025f,.04f,.8f));
+            if(ControlButton(new Rect(30,y,200,35),FocusLabel(0,NarrationLabel)))ToggleNarration();
+            if(ControlButton(new Rect(240,y,140,35),FocusLabel(1,"Read online"))&&TourCatalog.SafeSource(selected.source))Application.OpenURL(selected.source);
+            if(ControlButton(new Rect(390,y,110,35),FocusLabel(2,"Archive"))){sidePanel=false;Open(selected);}
+            if(ControlButton(new Rect(510,y,150,35),FocusLabel(3,"Enter building")))EnterSelected();
+            if(ControlButton(new Rect(width-345,y,175,35),readingTranscript?"Y  View document":"Y  READ"))readingTranscript=!readingTranscript;
+            if(ControlButton(new Rect(width-160,y,145,35),FocusLabel(4,"Close · Esc")))Close();
+            if(Event.current.type==EventType.KeyDown&&Event.current.keyCode==KeyCode.Y){readingTranscript=!readingTranscript;Event.current.Use();}
         }
         void OnGUI()
         {

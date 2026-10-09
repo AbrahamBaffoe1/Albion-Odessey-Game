@@ -66,3 +66,10 @@ test('public matching excludes private rooms; only host changes the next round m
   b.close();await pause(120);assert.equal(app.rooms.get(wb.room).hostId,'c');
  }finally{await app.close();}
 });
+
+test('live chat broadcasts only within an authenticated room and rejects forged sender',async()=>{
+ const app=await fixture();try{const a=await client(app.url,'a'),b=await client(app.url,'b'),c=await client(app.url,'c','OTHER');for(const ws of [a,b,c])await waitFor(ws,'welcome');
+ a.send(JSON.stringify({type:'chat',id:'c',text:'Meet at the library'}));await pause(250);
+ b.messages=[];c.messages=[];const local=await waitFor(b,'snapshot'),other=await waitFor(c,'snapshot');assert.equal(local.social.messages[0].id,'a');assert.equal(local.social.messages[0].text,'Meet at the library');assert.equal(other.social.messages.length,0);
+ }finally{await app.close();}
+});

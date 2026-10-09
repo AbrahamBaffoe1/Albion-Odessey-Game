@@ -1,3 +1,4 @@
+import {socialCommand,socialLeave,socialSnapshot} from './room-social.mjs';
 import http from 'node:http';
 import {randomBytes} from 'node:crypto';
 import {createNeonAccounts} from './neon-accounts.mjs';
@@ -49,7 +50,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  const mail=createMailHandler(env),rooms=new Map(),peers=new Map(),attempts=new Map();
  function json(res,status,body){res.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});res.end(JSON.stringify(body));}
  const server=http.createServer(async(req,res)=>{
-  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.28.1',service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
+  if(req.url==='/health'&&req.method==='GET')return json(res,200,{ok:true,version:'0.33.5',socialVersion:1,service:'Albion Odyssey online rooms',mailConfigured:neon?neon.ready():mail.ready(),accountProvider:neon?'neon':'supabase',roomCapacity:maxRoom});
   if(req.url==='/portraits'&&neon){
    let user;try{user=await authenticate(String(req.headers.authorization||'').replace(/^Bearer /,''),env);}catch{return json(res,401,{error:'Sign in before using the portrait studio.'});}
    let raw='',bytes=0;try{for await(const chunk of req){bytes+=chunk.length;if(bytes>8500000)return json(res,413,{error:'Photo is too large.'});raw+=chunk.toString();}
@@ -64,7 +65,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
  server.requestTimeout=15000;server.headersTimeout=10000;
  const wss=new WebSocketServer({noServer:true,maxPayload:12288,perMessageDeflate:false});
  function send(ws,message){if(ws.readyState===WebSocket.OPEN){if(ws.bufferedAmount>128000){ws.close(1013,'Connection too slow');return;}ws.send(JSON.stringify(message));}}
- function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);forestLeave(room,p.id);room?.delete(ws);if(room?.size&&room.hostId===p.id)room.hostId=peers.get([...room][0])?.id;if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
+ function leave(ws){const p=peers.get(ws);if(!p)return;const room=rooms.get(p.room);forestLeave(room,p.id);socialLeave(room,p.id);room?.delete(ws);if(room?.size&&room.hostId===p.id)room.hostId=peers.get([...room][0])?.id;if(room?.size===0)rooms.delete(p.room);peers.delete(ws);}
  server.on('upgrade',(req,socket,head)=>{
   if(req.url!=='/campus'||wss.clients.size>=maxClients){socket.end('HTTP/1.1 503 Service Unavailable\r\n\r\n');return;}
   const ip=req.socket.remoteAddress,now=Date.now();let record=attempts.get(ip);if(!record||now-record.since>60000)record={since:now,count:0};record.count++;attempts.set(ip,record);
@@ -93,10 +94,11 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
      for(const old of room)if(peers.get(old)?.id===identity.id){leave(old);old.close(4409,'Account joined from another session');}
      if(room.size>=maxRoom){ws.close(4403,'Room is full');return;}
      const player={...identity,room:m.room,x:6,y:.08,z:418,yaw:0,speed:0,emote:'',emoteUntil:0,token:m.token,verifiedAt:now,revalidating:false};
-     rooms.set(m.room,room);peers.set(ws,player);room.add(ws);clearTimeout(timeout);send(ws,{type:'welcome',id:identity.id,room:m.room,capacity:maxRoom,hostId:room.hostId,mode:room.mode,visibility:room.visibility});
+     rooms.set(m.room,room);peers.set(ws,player);room.add(ws);clearTimeout(timeout);send(ws,{type:'welcome',socialVersion:1,id:identity.id,room:m.room,capacity:maxRoom,hostId:room.hostId,mode:room.mode,visibility:room.visibility});
     }catch{ws.close(4401,'Sign in or reload your profile');}return;
    }
-   if(m.type==='mode'){const room=rooms.get(p.room);if(room.hostId===p.id&&['coop','race'].includes(m.mode)&&(!room.forest||room.forest.phase==='finished'))room.mode=m.mode;
+   if(m.type==='chat'||m.type==='ride'){const ok=socialCommand(rooms.get(p.room),p,m,now);send(ws,{type:'social-result',ok,action:m.action??'chat',canRate:!!p.rateRide&&p.rateRide.expires>=now});
+   }else if(m.type==='mode'){const room=rooms.get(p.room);if(room.hostId===p.id&&['coop','race'].includes(m.mode)&&(!room.forest||room.forest.phase==='finished'))room.mode=m.mode;
    }else if(m.type==='forest'){forestCommand(rooms.get(p.room),p,m,now);
    }else if(m.type==='move'){
     if(!validPosition(m)||!Number.isFinite(m.speed)||m.speed<0||m.speed>30){ws.close(4400,'Invalid movement');return;}
@@ -113,7 +115,7 @@ export function createServer({authenticate=identify,env=process.env,maxRoom=16,m
   const now=Date.now();for(const room of rooms.values()){
    tickForest(room,now);
    const players=[...room].map(ws=>{const p=peers.get(ws);return {id:p.id,display:p.display,x:p.x,y:p.y,z:p.z,yaw:p.yaw,speed:p.speed,skin:p.skin,outfit:p.outfit,hair:p.hair,backpack:p.backpack,emote:now<p.emoteUntil?p.emote:''};});
-   for(const ws of room)send(ws,{type:'snapshot',hostId:room.hostId,mode:room.mode,visibility:room.visibility,players,trail:trailSnapshot(room),forest:forestSnapshot(room,now)});
+   for(const ws of room)send(ws,{type:'snapshot',hostId:room.hostId,mode:room.mode,visibility:room.visibility,players,trail:trailSnapshot(room),forest:forestSnapshot(room,now),social:socialSnapshot(room)});
   }
  },100);
  const heartbeat=setInterval(()=>{
